@@ -1,0 +1,90 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: nileopedia-postgres
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.0
+    container_name: nileopedia-elasticsearch
+    environment:
+      - discovery.type=single-node
+      - xpack.security.enabled=false
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    restart: unless-stopped
+
+  pinecone:
+    image: ghcr.io/pinecone-io/pinecone-index:latest
+    container_name: nileopedia-pinecone
+    environment:
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+    ports:
+      - "20000:20000"
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    container_name: nileopedia-redis
+    ports:
+      - "6379:6379"
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./apps/frontend
+      dockerfile: ../../infrastructure/docker/frontend.Dockerfile
+    container_name: nileopedia-frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:4000
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./apps/backend
+      dockerfile: ../../infrastructure/docker/backend.Dockerfile
+    container_name: nileopedia-backend
+    ports:
+      - "4000:4000"
+    environment:
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - postgres
+      - elasticsearch
+    restart: unless-stopped
+
+  ai-services:
+    build:
+      context: ./apps/ai-services
+      dockerfile: ../../infrastructure/docker/ai-services.Dockerfile
+    container_name: nileopedia-ai-services
+    ports:
+      - "8000:8000"
+    environment:
+      - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    depends_on:
+      - pinecone
+      - elasticsearch
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  elasticsearch_data:
