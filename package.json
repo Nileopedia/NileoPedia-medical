@@ -1,0 +1,23 @@
+{
+  "name": "nileopedia-monorepo",
+  "version": "1.0.0",
+  "description": "NileoPedia - AI-Powered Medical Knowledge Platform Monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "clean": "turbo run clean"
+  },
+  "devDependencies": {
+    "turbo": "^1.10.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
