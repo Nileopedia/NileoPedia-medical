@@ -1,13 +1,11 @@
 import { config as dotenvConfig } from 'dotenv';
 
-// Load environment variables based on NODE_ENV
+// Load environment variables from .env
+dotenvConfig();
+
+// Load environment variables from .env.${NODE_ENV} to override
 const env = process.env.NODE_ENV || 'development';
 dotenvConfig({ path: `.env.${env}` });
-
-// If file doesn't exist, fall back to .env
-if (env !== 'development') {
-  dotenvConfig({ path: '.env' });
-}
 
 export const CONFIG = {
   PORT: parseInt(process.env.PORT || '3000', 10),

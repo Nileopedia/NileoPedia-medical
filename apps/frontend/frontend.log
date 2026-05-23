@@ -1,0 +1,10 @@
+
+> react-vite-tailwind@0.0.0 dev
+> vite
+
+7:10:35 AM [vite] (client) Re-optimizing dependencies because lockfile has changed
+
+  VITE v7.3.2  ready in 1043 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose

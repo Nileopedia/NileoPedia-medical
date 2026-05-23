@@ -27,7 +27,7 @@ class AuthService {
             fullName,
             email,
             passwordHash,
-            roleId: role,
+            roleId: role, // Assuming role is passed as roleId UUID
             organization,
             specialization,
             status: 'ACTIVE',

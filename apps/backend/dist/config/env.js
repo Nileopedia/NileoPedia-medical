@@ -2,13 +2,11 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CONFIG = void 0;
 const dotenv_1 = require("dotenv");
-// Load environment variables based on NODE_ENV
+// Load environment variables from .env
+(0, dotenv_1.config)();
+// Load environment variables from .env.${NODE_ENV} to override
 const env = process.env.NODE_ENV || 'development';
 (0, dotenv_1.config)({ path: `.env.${env}` });
-// If file doesn't exist, fall back to .env
-if (env !== 'development') {
-    (0, dotenv_1.config)({ path: '.env' });
-}
 exports.CONFIG = {
     PORT: parseInt(process.env.PORT || '3000', 10),
     NODE_ENV: process.env.NODE_ENV || 'development',
@@ -31,10 +29,10 @@ exports.CONFIG = {
     // CORS
     CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
     // Rate Limiting
-    RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
+    RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10), // 15 minutes
     RATE_LIMIT_MAX_REQUESTS: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10),
     // File Upload
-    MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),
+    MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10), // 10MB
     UPLOAD_DIR: process.env.UPLOAD_DIR || './uploads',
 };
 //# sourceMappingURL=env.js.map

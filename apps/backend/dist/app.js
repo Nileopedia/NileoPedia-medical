@@ -22,14 +22,17 @@ const io = new socket_io_1.Server(httpServer, {
     },
 });
 exports.io = io;
-// Connect to database
+// Connect to database and then setup everything
 (0, database_1.connectDB)()
     .then(() => {
     console.log('Database connected successfully');
     // Setup middleware (cors, helmet, body parser, etc.)
     (0, middleware_1.setupMiddleware)(app);
-    // Setup routes
-    (0, routes_1.setupRoutes)(app, io);
+    // Import and setup routes with controller instances
+    const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
+    const { default: AuthController } = require('./modules/auth/controllers/auth.controller');
+    const authController = new AuthController();
+    (0, routes_1.setupRoutes)(app, io, authController);
     // Socket.IO connection handling
     io.on('connection', (socket) => {
         console.log('User connected:', socket.id);

@@ -16,7 +16,7 @@ const io = new Server(httpServer, {
   },
 });
 
-// Connect to database
+// Connect to database and then setup everything
 connectDB()
   .then(() => {
     console.log('Database connected successfully');
@@ -24,8 +24,12 @@ connectDB()
     // Setup middleware (cors, helmet, body parser, etc.)
     setupMiddleware(app);
 
-    // Setup routes
-    setupRoutes(app, io);
+    // Import and setup routes with controller instances
+    const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
+    const { default: AuthController } = require('./modules/auth/controllers/auth.controller');
+    const authController = new AuthController();
+    
+    setupRoutes(app, io, authController);
 
     // Socket.IO connection handling
     io.on('connection', (socket) => {
