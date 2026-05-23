@@ -1,86 +1,90 @@
-import React, { useState } from 'react';
-import { useAppStore } from './store/useAppStore';
-import { Sidebar } from './components/navigation/Sidebar';
-import { Topbar } from './components/navigation/Topbar';
-import { QueryPage } from './features/medical-query/QueryPage';
-import { AIResponsePage } from './features/ai-response/AIResponsePage';
-import { ValidationDashboardPage } from './features/validation/ValidationDashboardPage';
-import { CitationsPage } from './features/citations/CitationsPage';
-import { AnalyticsPage } from './features/analytics/AnalyticsPage';
-import { HistoryPage } from './features/history/HistoryPage';
-import { MonorepoPage } from './features/monorepo/MonorepoPage';
-import { SettingsPage } from './features/settings/SettingsPage';
-import { CheckCircle2, X } from 'lucide-react';
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider } from './context/ThemeContext';
+import { AppLayout } from './components/layout/AppLayout';
+import { Dashboard } from './pages/Dashboard';
+import { Register } from './pages/Register';
+import { AskQuestion } from './pages/AskQuestion';
+import { QueryHistory } from './pages/QueryHistory';
+import { SavedResponses } from './pages/SavedResponses';
+import { Analytics } from './pages/Analytics';
+import { Reports } from './pages/Reports';
+import { UserManagement } from './pages/UserManagement';
+import { SystemHealth } from './pages/SystemHealth';
+import { Settings } from './pages/Settings';
+import { Profile } from './pages/Profile';
+import { ValidatorQueue } from './pages/validator/ValidatorQueue';
+import { ReviewWorkspace } from './pages/validator/ReviewWorkspace';
+import { ValidatorHistoryPage } from './pages/validator/ValidatorHistoryPage';
+import { FeedbackReports } from './pages/validator/FeedbackReports';
+import { AdminDashboard } from './pages/admin/AdminDashboard';
+import { ValidatorManagement } from './pages/admin/ValidatorManagement';
+import { CreateValidator } from './pages/admin/CreateValidator';
+import { AIActivity } from './pages/admin/AIActivity';
+import { SystemLogs } from './pages/admin/SystemLogs';
+import { PlatformSettings } from './pages/admin/PlatformSettings';
+// Public Pages
+import { LandingPage } from './pages/public/LandingPage';
+import { PublicLogin } from './pages/public/PublicLogin';
+import { RoleSelection } from './pages/public/RoleSelection';
+import { ForgotPassword } from './pages/public/ForgotPassword';
+import { PublicOtpVerify } from './pages/public/PublicOtpVerify';
+
+const queryClient = new QueryClient();
+
+const ProtectedRoute: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  return <>{children}</>;
+};
 
 export const App: React.FC = () => {
-  const { currentTab, toastMessage, clearToast } = useAppStore();
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const renderContent = () => {
-    switch (currentTab) {
-      case 'query':
-        return <QueryPage />;
-      case 'ai_response':
-        return <AIResponsePage />;
-      case 'validation':
-        return <ValidationDashboardPage />;
-      case 'citations':
-        return <CitationsPage />;
-      case 'analytics':
-        return <AnalyticsPage />;
-      case 'history':
-        return <HistoryPage />;
-      case 'monorepo':
-        return <MonorepoPage />;
-      case 'settings':
-        return <SettingsPage />;
-      default:
-        return <QueryPage />;
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 flex flex-col lg:flex-row text-slate-900 dark:text-slate-100 selection:bg-blue-500 selection:text-white transition-colors duration-200 font-sans">
-      {/* Sidebar Navigation */}
-      <Sidebar mobileOpen={mobileOpen} setMobileOpen={setMobileOpen} />
-
-      {/* Main Content Area */}
-      <div className="flex-1 flex flex-col lg:pl-72 min-w-0 transition-all duration-300 ease-in-out">
-        <Topbar setMobileOpen={setMobileOpen} />
-
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 overflow-y-auto">
-          {renderContent()}
-        </main>
-
-        {/* Global Footer */}
-        <footer className="h-14 border-t border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 flex items-center justify-between px-6 text-xs text-slate-500 dark:text-slate-400 shrink-0">
-          <div>
-            <strong>NileoPedia AI RAG Platform</strong> — Production Monorepo v2.4.0
-          </div>
-          <div className="hidden sm:flex items-center gap-4">
-            <span>Next.js 15 App Router</span>
-            <span>Express API Gateway</span>
-            <span>Python AI Microservices</span>
-            <span>Pinecone + PostgreSQL</span>
-          </div>
-        </footer>
-      </div>
-
-      {/* Toast Notification */}
-      {toastMessage && (
-        <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-5 py-3.5 rounded-2xl shadow-2xl border border-slate-800 dark:border-slate-200 animate-slideUp">
-          <CheckCircle2 size={20} className="text-emerald-400 dark:text-emerald-600 shrink-0" />
-          <span className="text-xs font-bold tracking-wide">{toastMessage}</span>
-          <button 
-            onClick={clearToast}
-            className="p-1 hover:bg-slate-800 dark:hover:bg-slate-100 rounded-lg transition-colors ml-2"
-            aria-label="Close Toast"
-          >
-            <X size={16} className="text-slate-400 dark:text-slate-500" />
-          </button>
-        </div>
-      )}
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <BrowserRouter>
+          <Routes>
+            {/* Public Routes */}
+            <Route path="/" element={<LandingPage />} />
+            <Route path="/login" element={<PublicLogin />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/role-select" element={<RoleSelection />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path="/otp-verify" element={<PublicOtpVerify />} />
+            
+            {/* Protected App Routes */}
+            <Route path="/app" element={<ProtectedRoute><AppLayout><Dashboard /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/ask" element={<ProtectedRoute><AppLayout><AskQuestion /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/history" element={<ProtectedRoute><AppLayout><QueryHistory /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/saved" element={<ProtectedRoute><AppLayout><SavedResponses /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/profile" element={<ProtectedRoute><AppLayout><Profile /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/settings" element={<ProtectedRoute><AppLayout><Settings /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/analytics" element={<ProtectedRoute><AppLayout><Analytics /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/reports" element={<ProtectedRoute><AppLayout><Reports /></AppLayout></ProtectedRoute>} />
+            
+            {/* Validator Routes */}
+            <Route path="/app/validator" element={<ProtectedRoute><AppLayout><ValidatorQueue /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/validator/review/:id" element={<ProtectedRoute><ReviewWorkspace /></ProtectedRoute>} />
+            <Route path="/app/validator/history" element={<ProtectedRoute><AppLayout><ValidatorHistoryPage /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/validator/feedback" element={<ProtectedRoute><AppLayout><FeedbackReports /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/validator/approved" element={<ProtectedRoute><AppLayout><ValidatorHistoryPage /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/validator/rejected" element={<ProtectedRoute><AppLayout><ValidatorHistoryPage /></AppLayout></ProtectedRoute>} />
+            
+            {/* Admin Routes */}
+            <Route path="/app/admin" element={<ProtectedRoute><AppLayout><AdminDashboard /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/users" element={<ProtectedRoute><AppLayout><UserManagement /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/validators" element={<ProtectedRoute><AppLayout><ValidatorManagement /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/validators/create" element={<ProtectedRoute><AppLayout><CreateValidator /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/analytics" element={<ProtectedRoute><AppLayout><Analytics /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/system" element={<ProtectedRoute><AppLayout><SystemHealth /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/ai-activity" element={<ProtectedRoute><AppLayout><AIActivity /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/logs" element={<ProtectedRoute><AppLayout><SystemLogs /></AppLayout></ProtectedRoute>} />
+            <Route path="/app/admin/settings" element={<ProtectedRoute><AppLayout><PlatformSettings /></AppLayout></ProtectedRoute>} />
+            
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 };
 
