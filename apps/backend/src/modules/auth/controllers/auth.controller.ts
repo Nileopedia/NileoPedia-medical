@@ -1,13 +1,16 @@
 import { Request, Response, NextFunction } from 'express';
 import { validationResult } from 'express-validator';
 import { AuthService } from '../services/auth.service';
+import { GoogleAuthService } from '../services/google.service';
 import { logger } from '../../../config/logger';
 
 export class AuthController {
   private authService: AuthService;
+  private googleAuthService: GoogleAuthService;
 
   constructor() {
     this.authService = new AuthService();
+    this.googleAuthService = new GoogleAuthService();
   }
 
   async register(req: Request, res: Response, next: NextFunction) {
@@ -44,6 +47,37 @@ export class AuthController {
       });
     } catch (error) {
       logger.error('Error in login controller:', error);
+      next(error);
+    }
+  }
+
+  async googleLogin(req: Request, res: Response, next: NextFunction) {
+    try {
+      const authUrl = await this.googleAuthService.getAuthUrl();
+      res.redirect(authUrl);
+    } catch (error) {
+      logger.error('Error generating Google auth URL:', error);
+      next(error);
+    }
+  }
+
+  async googleCallback(req: Request, res: Response, next: NextFunction) {
+    try {
+      const code = req.query.code as string;
+      if (!code) {
+        return res.status(400).json({ 
+          success: false, 
+          message: 'Authorization code not provided' 
+        });
+      }
+
+      const result = await this.googleAuthService.handleGoogleCallback(code);
+      
+      // Redirect to frontend with tokens (you might want to use a different approach)
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+      res.redirect(`${frontendUrl}/auth/google/callback?access_token=${result.accessToken}&refresh_token=${result.refreshToken}`);
+    } catch (error) {
+      logger.error('Error in Google callback:', error);
       next(error);
     }
   }

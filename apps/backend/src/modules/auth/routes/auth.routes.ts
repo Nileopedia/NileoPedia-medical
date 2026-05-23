@@ -10,6 +10,8 @@ export default function authRoutes(authController: any) {
   router.post('/login', loginValidation, validate, authController.login);
   router.post('/refresh-token', refreshTokenValidation, validate, authController.refreshToken);
   router.post('/logout', authController.logout);
+  router.get('/google/login', authController.googleLogin);
+  router.get('/google/callback', authController.googleCallback);
 
   return router;
 }
