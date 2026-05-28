@@ -1,4 +1,4 @@
-import { User } from '../../../models/user.model';
+import { User, UserInstance } from '../../../models/user.model';
 import { getDB } from '../../../config/db';
 import { Sequelize } from 'sequelize';
 
@@ -10,16 +10,16 @@ export class AuthRepository {
     this.UserModel = User(sequelize);
   }
 
-  async findByEmail(email: string) {
+  async findByEmail(email: string): Promise<UserInstance | null> {
     return this.UserModel.findOne({ where: { email } });
   }
 
-  async findById(id: string) {
+  async findById(id: string): Promise<UserInstance | null> {
     return this.UserModel.findByPk(id);
   }
 
-  async create(userData: any) {
-    return this.UserModel.create(userData);
+  async create(userData: any): Promise<UserInstance> {
+    return this.UserModel.create(userData) as Promise<UserInstance>;
   }
 
   async update(id: string, userData: any) {

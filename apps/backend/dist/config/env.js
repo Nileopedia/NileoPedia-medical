@@ -8,7 +8,7 @@ const dotenv_1 = require("dotenv");
 const env = process.env.NODE_ENV || 'development';
 (0, dotenv_1.config)({ path: `.env.${env}` });
 exports.CONFIG = {
-    PORT: parseInt(process.env.PORT || '3000', 10),
+    PORT: parseInt(process.env.PORT || '3001', 10),
     NODE_ENV: process.env.NODE_ENV || 'development',
     // Database
     DATABASE_URL: process.env.DATABASE_URL || '',
@@ -28,6 +28,12 @@ exports.CONFIG = {
     REDIS_URL: process.env.REDIS_URL || '',
     // CORS
     CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
+    // Frontend
+    FRONTEND_URL: process.env.FRONTEND_URL || 'http://localhost:3000',
+    // Google OAuth
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || '',
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || '',
+    GOOGLE_REDIRECT_URI: process.env.GOOGLE_REDIRECT_URI || 'http://localhost:3001/api/v1/auth/google/callback',
     // Rate Limiting
     RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10), // 15 minutes
     RATE_LIMIT_MAX_REQUESTS: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10),

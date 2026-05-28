@@ -43,35 +43,46 @@ export class GoogleAuthService {
         throw new Error('Invalid Google token');
       }
 
-      const { email, given_name, family_name, picture } = payload;
-      const fullName = `${given_name} ${family_name}`.trim();
+const { email, given_name, family_name, picture, sub } = payload;
+       const fullName = `${given_name || ''} ${family_name || ''}`.trim();
+       
+       if (!email) {
+         throw new Error('Email not provided by Google');
+       }
 
-      // Check if user already exists
-      let user = await this.authRepository.findByEmail(email);
-      
-      if (!user) {
-        // Create new user
-        user = await this.authRepository.create({
-          fullName,
-          email,
-          passwordHash: '', // No password for Google users initially
-          roleId: '00000000-0000-0000-0000-000000000001', // Default role - should be fetched properly
-          organization: '',
-          specialization: '',
-          status: 'ACTIVE',
-          profilePicture: picture,
-          isGoogleUser: true,
-          googleId: payload.sub
-        });
-      } else {
-        // Update existing user's Google info if needed
-        await this.authRepository.update(user.id, {
-          profilePicture: picture,
-          isGoogleUser: true,
-          googleId: payload.sub
-        });
+       // Check if user already exists
+       let user = await this.authRepository.findByEmail(email);
+       
+       if (!user) {
+         // Create new user
+         user = await this.authRepository.create({
+           fullName,
+           email,
+           passwordHash: '', // No password for Google users initially
+           roleId: '00000000-0000-0000-0000-000000000001', // Default role - should be fetched properly
+           organization: '',
+           specialization: '',
+           status: 'ACTIVE',
+           profilePicture: picture,
+           isGoogleUser: true,
+           googleId: sub
+         });
+       } else {
+         // Update existing user's Google info if needed
+         await this.authRepository.update(user.id, {
+           profilePicture: picture,
+           isGoogleUser: true,
+           googleId: sub
+         });
         // Fetch updated user
-        user = await this.authRepository.findById(user.id);
+        const updatedUser = await this.authRepository.findById(user.id);
+        if (updatedUser) {
+          user = updatedUser;
+        }
+      }
+
+      if (!user) {
+        throw new Error('Failed to create or retrieve user');
       }
 
       // Generate tokens

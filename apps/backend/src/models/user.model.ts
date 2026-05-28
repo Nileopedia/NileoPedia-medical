@@ -11,6 +11,9 @@ export interface UserAttributes {
   specialization?: string | null;
   status: string;
   refreshToken?: string | null;
+  profilePicture?: string | null;
+  isGoogleUser?: boolean;
+  googleId?: string | null;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -65,6 +68,19 @@ export const User = (sequelize: Sequelize) => {
     },
     refreshToken: {
       type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    profilePicture: {
+      type: DataTypes.STRING(500),
+      allowNull: true,
+    },
+    isGoogleUser: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true,
+      defaultValue: false,
+    },
+    googleId: {
+      type: DataTypes.STRING(255),
       allowNull: true,
     },
     createdAt: {

@@ -9,6 +9,9 @@ export interface UserAttributes {
     specialization?: string | null;
     status: string;
     refreshToken?: string | null;
+    profilePicture?: string | null;
+    isGoogleUser?: boolean;
+    googleId?: string | null;
     createdAt: Date;
     updatedAt: Date;
 }

@@ -43,6 +43,19 @@ const User = (sequelize) => {
             type: sequelize_1.DataTypes.TEXT,
             allowNull: true,
         },
+        profilePicture: {
+            type: sequelize_1.DataTypes.STRING(500),
+            allowNull: true,
+        },
+        isGoogleUser: {
+            type: sequelize_1.DataTypes.BOOLEAN,
+            allowNull: true,
+            defaultValue: false,
+        },
+        googleId: {
+            type: sequelize_1.DataTypes.STRING(255),
+            allowNull: true,
+        },
         createdAt: {
             type: sequelize_1.DataTypes.DATE,
             allowNull: false,

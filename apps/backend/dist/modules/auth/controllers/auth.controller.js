@@ -3,10 +3,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthController = void 0;
 const express_validator_1 = require("express-validator");
 const auth_service_1 = require("../services/auth.service");
+const google_service_1 = require("../services/google.service");
 const logger_1 = require("../../../config/logger");
 class AuthController {
     constructor() {
         this.authService = new auth_service_1.AuthService();
+        this.googleAuthService = new google_service_1.GoogleAuthService();
     }
     async register(req, res, next) {
         try {
@@ -41,6 +43,35 @@ class AuthController {
         }
         catch (error) {
             logger_1.logger.error('Error in login controller:', error);
+            next(error);
+        }
+    }
+    async googleLogin(req, res, next) {
+        try {
+            const authUrl = await this.googleAuthService.getAuthUrl();
+            res.redirect(authUrl);
+        }
+        catch (error) {
+            logger_1.logger.error('Error generating Google auth URL:', error);
+            next(error);
+        }
+    }
+    async googleCallback(req, res, next) {
+        try {
+            const code = req.query.code;
+            if (!code) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Authorization code not provided'
+                });
+            }
+            const result = await this.googleAuthService.handleGoogleCallback(code);
+            // Redirect to frontend with tokens (you might want to use a different approach)
+            const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+            res.redirect(`${frontendUrl}/auth/google/callback?access_token=${result.accessToken}&refresh_token=${result.refreshToken}`);
+        }
+        catch (error) {
+            logger_1.logger.error('Error in Google callback:', error);
             next(error);
         }
     }

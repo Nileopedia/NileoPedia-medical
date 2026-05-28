@@ -11,6 +11,8 @@ function authRoutes(authController) {
     router.post('/login', auth_validation_1.loginValidation, middleware_1.validate, authController.login);
     router.post('/refresh-token', auth_validation_1.refreshTokenValidation, middleware_1.validate, authController.refreshToken);
     router.post('/logout', authController.logout);
+    router.get('/google/login', authController.googleLogin);
+    router.get('/google/callback', authController.googleCallback);
     return router;
 }
 //# sourceMappingURL=auth.routes.js.map
