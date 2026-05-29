@@ -26,7 +26,7 @@ prisma.$connect()
 
     // Import and setup routes with controller instances
     const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
-    const { default: AuthController } = require('./modules/auth/controllers/auth.controller');
+    const { AuthController } = require('./modules/auth/controllers/auth.controller');
     const authController = new AuthController();
     
     setupRoutes(app, io, authController);

@@ -45,8 +45,16 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
+      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT:-us-west1-gcp}
+      - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME:-nileopedia-medical}
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - REDIS_URL=redis://redis:6379
     expose:
       - "8000"
+    depends_on:
+      - postgres
+      - redis
+      - elasticsearch
 
   postgres:
     image: postgres:16-alpine

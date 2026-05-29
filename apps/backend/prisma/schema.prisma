@@ -10,6 +10,8 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+seed = "ts-node prisma/seed.ts"
+
 // Enums
 enum UserRole {
   MEDICAL_USER

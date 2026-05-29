@@ -30,7 +30,7 @@ prisma_1.default.$connect()
     (0, middleware_1.setupMiddleware)(app);
     // Import and setup routes with controller instances
     const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
-    const { default: AuthController } = require('./modules/auth/controllers/auth.controller');
+    const { AuthController } = require('./modules/auth/controllers/auth.controller');
     const authController = new AuthController();
     (0, routes_1.setupRoutes)(app, io, authController);
     // Socket.IO connection handling
