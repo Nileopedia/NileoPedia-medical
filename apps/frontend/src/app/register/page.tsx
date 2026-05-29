@@ -1,38 +1,37 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { Mail, Lock, Eye, EyeOff, BookOpen, Shield, Brain, CheckCircle } from 'lucide-react';
+'use client';
 
-export const PublicLogin: React.FC = () => {
-  const navigate = useNavigate();
+import React, { useState } from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { User, Mail, Lock, Eye, EyeOff, BookOpen, Shield, Brain, CheckCircle } from 'lucide-react';
+
+export default function Register() {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (password !== confirmPassword) return;
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 1000));
     setLoading(false);
-    navigate('/role-select');
+  };
+
+  const handleGoogleRegister = () => {
+    window.location.href = 'http://localhost:3001/api/v1/auth/google/login';
   };
 
   return (
     <div className="min-h-screen flex">
-      {/* Left Panel - Dark Branding */}
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-12 flex-col justify-between relative overflow-hidden"
-      >
-        {/* Background pattern */}
+      <motion.div initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="hidden lg:flex lg:w-1/2 bg-gradient-to-br from-slate-900 via-slate-800 to-blue-900 p-12 flex-col justify-between relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500 rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl" />
         </div>
-
         <div className="relative z-10">
           <div className="flex items-center gap-3 mb-16">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
@@ -40,13 +39,9 @@ export const PublicLogin: React.FC = () => {
             </div>
             <span className="text-2xl font-bold text-white">NileoPedia</span>
           </div>
-
           <div>
-            <h2 className="text-4xl font-bold text-white mb-4">Welcome Back</h2>
-            <p className="text-slate-300 text-lg mb-12">
-              Sign in to your account and continue your work.
-            </p>
-
+            <h2 className="text-4xl font-bold text-white mb-4">Create Account</h2>
+            <p className="text-slate-300 text-lg mb-12">Join the medical intelligence platform.</p>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center">
@@ -69,19 +64,12 @@ export const PublicLogin: React.FC = () => {
             </div>
           </div>
         </div>
-
         <div className="relative z-10">
           <p className="text-slate-400 text-sm">© 2025 NileoPedia. All rights reserved.</p>
         </div>
       </motion.div>
 
-      {/* Right Panel - Login Form */}
-      <motion.div
-        initial={{ opacity: 0, x: 30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="flex-1 flex items-center justify-center p-8 bg-white"
-      >
+      <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} className="flex-1 flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">
           <div className="lg:hidden flex items-center gap-3 mb-8">
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
@@ -89,65 +77,52 @@ export const PublicLogin: React.FC = () => {
             </div>
             <span className="text-2xl font-bold text-slate-900">NileoPedia</span>
           </div>
-
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">Sign In</h2>
-          <p className="text-slate-500 mb-8">Enter your credentials to access your account</p>
-
+          <h2 className="text-2xl font-bold text-slate-900 mb-2">Create your account</h2>
+          <p className="text-slate-500 mb-8">Join the medical intelligence platform</p>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Email Address
-              </label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Full Name</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email"
-                  className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  required
-                />
+                <User className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Dr. John Smith" className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
               </div>
             </div>
-
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">
-                Password
-              </label>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="doctor@example.com" className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
+              </div>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Password</label>
               <div className="relative">
                 <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                <input
-                  type={showPassword ? 'text' : 'password'}
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter your password"
-                  className="w-full pl-10 pr-12 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
-                  required
-                />
-                <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
-                >
+                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="••••••••" className="w-full pl-10 pr-12 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
-              <div className="flex justify-end mt-2">
-                <Link to="/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 font-medium">
-                  Forgot Password?
-                </Link>
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-slate-700 mb-2">Confirm Password</label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                <input type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} placeholder="••••••••" className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
               </div>
             </div>
-
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-            >
-              {loading ? 'Signing in...' : 'Sign In'}
+            <div className="flex items-start gap-2">
+              <input type="checkbox" className="w-4 h-4 mt-0.5 rounded border-slate-300 text-blue-600 focus:ring-blue-500" required />
+              <span className="text-sm text-slate-600">
+                I agree to the{' '}
+                <a href="#" className="text-blue-600 hover:text-blue-700">Terms of Service</a>
+                {' '}and{' '}
+                <a href="#" className="text-blue-600 hover:text-blue-700">Privacy Policy</a>
+              </span>
+            </div>
+            <button type="submit" disabled={loading} className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+              {loading ? 'Creating account...' : 'Create Account'}
             </button>
-
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-slate-200" />
@@ -156,11 +131,7 @@ export const PublicLogin: React.FC = () => {
                 <span className="px-4 bg-white text-slate-500">or continue with</span>
               </div>
             </div>
-
-            <button
-              type="button"
-              className="w-full py-3 bg-white border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2"
-            >
+            <button type="button" onClick={handleGoogleRegister} className="w-full py-3 bg-white border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -170,15 +141,12 @@ export const PublicLogin: React.FC = () => {
               Continue with Google
             </button>
           </form>
-
           <p className="text-center mt-8 text-sm text-slate-500">
-            Don't have an account?{' '}
-            <Link to="/register" className="text-blue-600 hover:text-blue-700 font-medium">
-              Sign up
-            </Link>
+            Already have an account?{' '}
+            <Link href="/login" className="text-blue-600 hover:text-blue-700 font-medium">Sign in</Link>
           </p>
         </div>
       </motion.div>
     </div>
   );
-};
+}
