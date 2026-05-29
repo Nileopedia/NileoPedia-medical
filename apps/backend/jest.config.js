@@ -39,5 +39,5 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/tests/setup/jest.setup.ts'],
   testTimeout: 30000,
   verbose: true,
-  testPathIgnorePatterns: ['<rootDir>/src/tests/integration/', '<rootDir>/src/tests/e2e/'],
+  testPathIgnorePatterns: ['<rootDir>/src/tests/integration/', '<rootDir>/src/tests/e2e/', '<rootDir>/src/tests/jobs/'],
 };

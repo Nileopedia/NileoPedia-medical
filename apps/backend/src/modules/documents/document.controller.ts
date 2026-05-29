@@ -5,6 +5,7 @@ import { updateDocumentSchema, getDocumentsQuerySchema } from './document.valida
 import { allowedMimeTypes, maxFileSize } from './document.validation';
 import path from 'path';
 import fs from 'fs';
+import { documentQueue } from '../../jobs/queues';
 import { IngestionStatus } from '@prisma/client';
 
 export class DocumentController {
@@ -112,6 +113,7 @@ export class DocumentController {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fs.writeFileSync(fullPath, file.buffer as any);
 
+      // Create document record
       const document = await this.documentService.createDocument({
         title: body.title,
         description: body.description,
@@ -126,9 +128,25 @@ export class DocumentController {
         uploadedById: req.user!.id,
       });
 
+      // Queue document ingestion job
+      await documentQueue.add('ingest', {
+        documentId: document.id,
+        fileUrl: document.fileUrl,
+        fileName: document.fileName,
+        title: document.title,
+        specialty: document.specialty,
+        documentType: document.documentType,
+        uploadedById: req.user!.id,
+        source: document.source,
+        publicationYear: document.publicationYear,
+      }, {
+        attempts: 3,
+        backoff: { type: 'exponential', delay: 2000 },
+      });
+
       res.status(201).json({
         success: true,
-        message: 'Document uploaded successfully',
+        message: 'Document uploaded successfully. Processing started.',
         data: document,
       });
     } catch (error) {

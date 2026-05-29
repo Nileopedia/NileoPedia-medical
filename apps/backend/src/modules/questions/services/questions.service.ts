@@ -1,62 +1,26 @@
 import prisma from '../../../config/prisma';
-import { PineconeService } from '../../rag/services/pinecone.service';
-import { EmbeddingService } from '../../rag/services/embedding.service';
-import { AIService } from '../../ai/services/ai.service';
+import { aiQueue } from '../../../jobs/queues';
 
 export class QuestionsService {
-  private pineconeService: PineconeService;
-  private embeddingService: EmbeddingService;
-  private aiService: AIService;
-
-  constructor() {
-    this.pineconeService = new PineconeService();
-    this.embeddingService = new EmbeddingService();
-    this.aiService = new AIService();
-  }
-
   async askQuestion(userId: string, questionText: string) {
     const question = await prisma.question.create({
       data: { userId, questionText },
     });
 
-    const retrievedChunks = await this.pineconeService.searchSimilar(
-      questionText,
-      this.embeddingService,
-      10
-    );
-
-    const context = retrievedChunks.map((r: any) => r.metadata?.textPreview || '').join('\n\n');
-
-    const aiResponse = await this.aiService.generateResponse(questionText, context);
-
-    const response = await prisma.aIResponse.create({
-      data: {
-        questionId: question.id,
-        summary: aiResponse.summary,
-        confidenceScore: aiResponse.confidenceScore,
-        generatedBy: 'GPT-4o',
-        citations: {
-          create: aiResponse.citations?.map((c: any, i: number) => ({
-            title: c.title || 'Medical Source',
-            source: c.source || 'Unknown',
-            authors: c.authors,
-            publicationYear: c.year,
-            citationIndex: i + 1,
-          })) || [],
-        },
-      },
-      include: { citations: true },
+    await aiQueue.add('generate', {
+      questionId: question.id,
+      query: questionText,
+      userId,
+      topK: 10,
+    }, {
+      attempts: 3,
+      backoff: { type: 'exponential', delay: 2000 },
     });
 
     return {
       questionId: question.id,
-      response: {
-        summary: response.summary,
-        status: response.validationStatus,
-        confidenceScore: response.confidenceScore,
-        citations: response.citations,
-        timestamp: response.createdAt,
-      },
+      status: 'processing',
+      message: 'Question submitted for processing',
     };
   }
 

@@ -5,49 +5,25 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuestionsService = void 0;
 const prisma_1 = __importDefault(require("../../../config/prisma"));
-const pinecone_service_1 = require("../../rag/services/pinecone.service");
-const embedding_service_1 = require("../../rag/services/embedding.service");
-const ai_service_1 = require("../../ai/services/ai.service");
+const queues_1 = require("../../../jobs/queues");
 class QuestionsService {
-    constructor() {
-        this.pineconeService = new pinecone_service_1.PineconeService();
-        this.embeddingService = new embedding_service_1.EmbeddingService();
-        this.aiService = new ai_service_1.AIService();
-    }
     async askQuestion(userId, questionText) {
         const question = await prisma_1.default.question.create({
             data: { userId, questionText },
         });
-        const retrievedChunks = await this.pineconeService.searchSimilar(questionText, this.embeddingService, 10);
-        const context = retrievedChunks.map((r) => r.metadata?.textPreview || '').join('\n\n');
-        const aiResponse = await this.aiService.generateResponse(questionText, context);
-        const response = await prisma_1.default.aIResponse.create({
-            data: {
-                questionId: question.id,
-                summary: aiResponse.summary,
-                confidenceScore: aiResponse.confidenceScore,
-                generatedBy: 'GPT-4o',
-                citations: {
-                    create: aiResponse.citations?.map((c, i) => ({
-                        title: c.title || 'Medical Source',
-                        source: c.source || 'Unknown',
-                        authors: c.authors,
-                        publicationYear: c.year,
-                        citationIndex: i + 1,
-                    })) || [],
-                },
-            },
-            include: { citations: true },
+        await queues_1.aiQueue.add('generate', {
+            questionId: question.id,
+            query: questionText,
+            userId,
+            topK: 10,
+        }, {
+            attempts: 3,
+            backoff: { type: 'exponential', delay: 2000 },
         });
         return {
             questionId: question.id,
-            response: {
-                summary: response.summary,
-                status: response.validationStatus,
-                confidenceScore: response.confidenceScore,
-                citations: response.citations,
-                timestamp: response.createdAt,
-            },
+            status: 'processing',
+            message: 'Question submitted for processing',
         };
     }
     async getHistory(userId) {

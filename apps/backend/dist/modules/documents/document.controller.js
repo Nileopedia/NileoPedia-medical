@@ -10,6 +10,7 @@ const document_validation_1 = require("./document.validation");
 const document_validation_2 = require("./document.validation");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
+const queues_1 = require("../../jobs/queues");
 const client_1 = require("@prisma/client");
 class DocumentController {
     constructor() {
@@ -101,6 +102,7 @@ class DocumentController {
             }
             // eslint-disable-next-line @typescript-eslint/no-explicit-any
             fs_1.default.writeFileSync(fullPath, file.buffer);
+            // Create document record
             const document = await this.documentService.createDocument({
                 title: body.title,
                 description: body.description,
@@ -114,9 +116,24 @@ class DocumentController {
                 publicationYear: body.publicationYear ? parseInt(body.publicationYear) : undefined,
                 uploadedById: req.user.id,
             });
+            // Queue document ingestion job
+            await queues_1.documentQueue.add('ingest', {
+                documentId: document.id,
+                fileUrl: document.fileUrl,
+                fileName: document.fileName,
+                title: document.title,
+                specialty: document.specialty,
+                documentType: document.documentType,
+                uploadedById: req.user.id,
+                source: document.source,
+                publicationYear: document.publicationYear,
+            }, {
+                attempts: 3,
+                backoff: { type: 'exponential', delay: 2000 },
+            });
             res.status(201).json({
                 success: true,
-                message: 'Document uploaded successfully',
+                message: 'Document uploaded successfully. Processing started.',
                 data: document,
             });
         }
