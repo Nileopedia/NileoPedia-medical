@@ -1,4 +1,7 @@
+'use client';
+
 import React from 'react';
+import Image from 'next/image';
 import { cn } from '../../utils/cn';
 
 interface AvatarProps {
@@ -34,7 +37,7 @@ export const Avatar: React.FC<AvatarProps> = ({ src, alt, name, size = 'md', cla
       )}
     >
       {src ? (
-        <img src={src} alt={alt || name} className="w-full h-full object-cover" />
+        <Image src={src} alt={alt || name || 'Avatar'} className="w-full h-full object-cover" width={48} height={48} />
       ) : (
         <span>{name ? getInitials(name) : '?'}</span>
       )}

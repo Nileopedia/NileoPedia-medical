@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useRouter } from 'next/navigation';
 import { Button } from '../ui/Button';
 import { Input } from '../ui/Input';
 import { useAppStore } from '../../store/appStore';
@@ -7,21 +9,25 @@ import { currentUser } from '../../data/mockData';
 import { Shield, Mail, Loader2 } from 'lucide-react';
 
 export const OtpVerification: React.FC = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { otpState, setUser, setOtpState } = useAppStore();
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
   const [trustDevice, setTrustDevice] = useState(false);
   const [timer, setTimer] = useState(60);
   const [canResend, setCanResend] = useState(false);
+  const timerRef = React.useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     if (timer > 0) {
-      const interval = setInterval(() => setTimer((t) => t - 1), 1000);
-      return () => clearInterval(interval);
-    } else {
+      timerRef.current = setInterval(() => setTimer((t) => t - 1), 1000);
+    } else if (timer === 0 && timerRef.current) {
       setCanResend(true);
+      clearInterval(timerRef.current);
     }
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
   }, [timer]);
 
   const handleVerify = async (e: React.FormEvent) => {
@@ -43,7 +49,7 @@ export const OtpVerification: React.FC = () => {
     setUser(mockUser);
     setOtpState({ needsOtp: false, email: '', role: 'validator' });
     setLoading(false);
-    navigate('/app');
+    router.push('/app');
   };
 
   const handleResend = () => {
@@ -125,14 +131,16 @@ export const OtpVerification: React.FC = () => {
                   Verifying...
                 </>
               ) : (
-                'Verify & Login'
+                <>
+                  Verify &amp; Login
+                </>
               )}
             </Button>
           </form>
 
           <div className="mt-6 text-center">
             <p className="text-sm text-slate-500 dark:text-slate-400">
-              Didn't receive the code?{' '}
+              Didn&apos;t receive the code?{' '}
               {canResend ? (
                 <button onClick={handleResend} className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
                   Resend Code

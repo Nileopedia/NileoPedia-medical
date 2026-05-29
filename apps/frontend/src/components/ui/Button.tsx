@@ -22,6 +22,8 @@ export const Button: React.FC<ButtonProps> = ({
     outline: 'border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 focus:ring-slate-500',
     ghost: 'text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 focus:ring-slate-500',
     danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+    success: 'bg-emerald-600 text-white hover:bg-emerald-700 focus:ring-emerald-500',
+    destructive: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
   };
 
   const sizes = {
