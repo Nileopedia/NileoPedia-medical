@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Bot } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 
 export default function AdminAiActivityPage() {
   return (

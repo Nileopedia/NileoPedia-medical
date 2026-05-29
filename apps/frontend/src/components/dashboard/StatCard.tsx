@@ -8,6 +8,7 @@ interface StatCardProps {
   change?: string;
   changeType?: 'positive' | 'negative';
   subtitle?: string;
+  icon?: React.ReactNode;
   className?: string;
 }
 
@@ -17,10 +18,12 @@ export const StatCard: React.FC<StatCardProps> = ({
   change,
   changeType = 'positive',
   subtitle,
+  icon,
   className,
 }) => {
   return (
     <div className={cn('bg-white dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm', className)}>
+      {icon && <div className="mb-2">{icon}</div>}
       <p className="text-sm font-medium text-slate-600 dark:text-slate-400 mb-1">{title}</p>
       <p className="text-3xl font-bold text-slate-900 dark:text-slate-50 mb-2">{value}</p>
       {change && (

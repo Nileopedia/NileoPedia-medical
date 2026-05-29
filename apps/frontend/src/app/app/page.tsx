@@ -4,11 +4,9 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { QueryInput } from '../../components/query/QueryInput';
 import { ResponseViewer } from '../../components/query/ResponseViewer';
-import { ValidationBadge } from '../../components/query/ValidationBadge';
 import { StatCard } from '../../components/dashboard/StatCard';
 import { TopCategories } from '../../components/dashboard/TopCategories';
 import { RecentActivity } from '../../components/dashboard/RecentActivity';
-import { ValidationOverview } from '../../components/dashboard/ValidationOverview';
 import { useAppStore } from '../../store/appStore';
 import { mockResponse, mockCategoryStats, mockActivities } from '../../data/mockData';
 import { MessageCircleQuestion, History, Bookmark, Clock } from 'lucide-react';
@@ -18,7 +16,7 @@ export default function Dashboard() {
   const [showResponse, setShowResponse] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmitQuery = async (query: string) => {
+  const handleSubmitQuery = async () => {
     setLoading(true);
     await new Promise((resolve) => setTimeout(resolve, 2000));
     setLoading(false);
@@ -52,7 +50,7 @@ export default function Dashboard() {
           {showResponse && <ResponseViewer response={mockResponse} />}
         </div>
         <div className="space-y-6">
-          <TopCategories data={mockCategoryStats} />
+          <TopCategories categories={mockCategoryStats} />
           <RecentActivity activities={mockActivities} />
         </div>
       </div>

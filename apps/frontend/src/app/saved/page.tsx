@@ -3,8 +3,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../components/ui/Table';
-import { Badge } from '../../components/ui/Badge';
 import { Bookmark } from 'lucide-react';
 
 export default function SavedPage() {
@@ -26,30 +24,30 @@ export default function SavedPage() {
           <CardTitle>Saved Items</CardTitle>
         </CardHeader>
         <CardContent>
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead>Title</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Saved Date</TableHead>
-                <TableHead className="w-20">Actions</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
+          <table className="w-full">
+            <thead>
+              <tr className="border-b border-slate-200 dark:border-slate-700">
+                <th className="text-left py-2">Title</th>
+                <th className="text-left py-2">Category</th>
+                <th className="text-left py-2">Saved Date</th>
+                <th className="w-20 py-2">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
               {savedItems.map((item) => (
-                <TableRow key={item.id}>
-                  <TableCell className="font-medium">{item.title}</TableCell>
-                  <TableCell>{item.category}</TableCell>
-                  <TableCell>{item.savedAt}</TableCell>
-                  <TableCell>
+                <tr key={item.id} className="border-b border-slate-100 dark:border-slate-800">
+                  <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{item.title}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{item.category}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{item.savedAt}</td>
+                  <td>
                     <button className="text-blue-600 hover:text-blue-700">
                       <Bookmark size={16} />
                     </button>
-                  </TableCell>
-                </TableRow>
+                  </td>
+                </tr>
               ))}
-            </TableBody>
-          </Table>
+            </tbody>
+          </table>
         </CardContent>
       </Card>
     </div>

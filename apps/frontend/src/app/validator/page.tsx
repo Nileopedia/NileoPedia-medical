@@ -2,11 +2,10 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
+import { Card, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { mockReviewQueue } from '../../data/mockData';
-import { ClipboardCheck, Check, X, Clock, AlertCircle } from 'lucide-react';
+import { Check, X } from 'lucide-react';
 
 export default function ValidatorPage() {
   const [reviewQueue] = useState(mockReviewQueue);
@@ -27,14 +26,13 @@ export default function ValidatorPage() {
                   <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-1">{item.title}</h3>
                   <p className="text-sm text-slate-500 dark:text-slate-400">{item.category} &bull; Submitted {item.submittedAt}</p>
                 </div>
-                <Badge variant={item.priority === 'high' ? 'warning' : 'default'}>{item.priority} priority</Badge>
+                <span className={`px-2 py-1 text-xs font-medium rounded ${item.priority === 'high' ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-700'}`}>
+                  {item.priority} priority
+                </span>
               </div>
               
               <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
-                <div className="flex items-center gap-1">
-                  <Clock size={14} />
-                  Due: {item.dueDate}
-                </div>
+                <span>Due: {item.dueDate}</span>
               </div>
               
               <div className="flex gap-2">

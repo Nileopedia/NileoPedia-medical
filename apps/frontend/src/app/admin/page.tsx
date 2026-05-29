@@ -2,11 +2,15 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { StatCard } from '../../components/dashboard/StatCard';
-import { Users, Activity, BarChart3 } from 'lucide-react';
 
 export default function AdminDashboard() {
+  const stats = {
+    totalUsers: 1248,
+    activeValidators: 86,
+    systemStatus: 'Healthy',
+  };
+
   return (
     <div className="space-y-6">
       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
@@ -15,9 +19,9 @@ export default function AdminDashboard() {
       </motion.div>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <StatCard title="Total Users" value="1,248" icon={<Users size={20} className="text-blue-600" />} />
-        <StatCard title="Active Validators" value="86" icon={<Users size={20} className="text-emerald-600" />} />
-        <StatCard title="System Status" value="Healthy" icon={<Activity size={20} className="text-purple-600" />} />
+        <StatCard title="Total Users" value={stats.totalUsers.toString()} />
+        <StatCard title="Active Validators" value={stats.activeValidators.toString()} />
+        <StatCard title="System Status" value={stats.systemStatus} />
       </div>
     </div>
   );

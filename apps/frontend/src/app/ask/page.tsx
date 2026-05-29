@@ -3,8 +3,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
 import { TextArea } from '../../components/ui/Input';
+import { Button } from '../../components/ui/Button';
 import { Send, Loader2 } from 'lucide-react';
 
 export default function AskPage() {
@@ -47,7 +47,7 @@ Please consult with a healthcare provider for personal medical advice.`);
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Medical Question
                 </label>
-<TextArea
+                <TextArea
                   placeholder="Enter your medical question... (e.g., What are the latest guidelines for hypertension management in elderly patients?)"
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}

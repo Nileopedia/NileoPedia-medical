@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { XCircle } from 'lucide-react';
 
 export default function ValidatorRejectedPage() {

@@ -2,8 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { CheckCircle2 } from 'lucide-react';
 
 export default function ValidatorApprovedPage() {
@@ -33,7 +32,7 @@ export default function ValidatorApprovedPage() {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle2 size={16} className="text-emerald-600" />
-                  <span className="text-sm text-slate-500">{item.approvedAt}</span>
+                  <span className="text-sm text-slate-500 dark:text-slate-400">{item.approvedAt}</span>
                 </div>
               </div>
             ))}

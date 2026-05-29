@@ -2,9 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Badge } from '../../components/ui/Badge';
-import { Clock } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 
 export default function ValidatorHistoryPage() {
   const history = [
@@ -28,7 +26,9 @@ export default function ValidatorHistoryPage() {
             {history.map((item) => (
               <div key={item.id} className="flex items-center justify-between p-3 border-b border-slate-100 dark:border-slate-800">
                 <span className="text-slate-700 dark:text-slate-300">{item.title}</span>
-                <Badge variant={item.action === 'approved' ? 'success' : 'destructive'}>{item.action}</Badge>
+                <span className={`text-xs px-2 py-1 rounded ${item.action === 'approved' ? 'bg-emerald-100 text-emerald-700' : 'bg-red-100 text-red-700'}`}>
+                  {item.action}
+                </span>
               </div>
             ))}
           </div>
