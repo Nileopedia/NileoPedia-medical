@@ -8,6 +8,9 @@ import analyticsRoutes from '../modules/analytics/analytics.routes';
 import userRoutes from '../modules/users/user.routes';
 import notificationRoutes from '../modules/notifications/notification.routes';
 import auditRoutes from '../modules/audit/audit.routes';
+import citationRoutes from '../modules/citations/citation.routes';
+import documentRoutes from '../modules/documents/document.routes';
+import searchRoutes from '../modules/search/search.routes';
 
 export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authController: any) => {
   // Health check route
@@ -24,4 +27,7 @@ export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authCont
   app.use('/api/v1/users', userRoutes);
   app.use('/api/v1/notifications', notificationRoutes);
   app.use('/api/v1/audit-logs', auditRoutes);
+  app.use('/api/v1/citations', citationRoutes);
+  app.use('/api/v1/documents', documentRoutes);
+  app.use('/api/v1/search', searchRoutes);
 };

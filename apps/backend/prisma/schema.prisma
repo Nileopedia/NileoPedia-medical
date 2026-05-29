@@ -60,6 +60,7 @@ model User {
   sessions        Session[]
   notifications   Notification[]
   auditLogs       AuditLog[]
+  medicalDocuments MedicalDocument[]
 }
 
 // Medical Questions
@@ -104,6 +105,13 @@ model Citation {
   url             String?
   citationIndex   Int
 
+  documentType    String?
+  specialty       String?
+
+  chunkId         String?
+  pageNumber      Int?
+  sectionTitle    String?
+
   createdAt       DateTime @default(now())
 
   aiResponse      AIResponse @relation(fields: [aiResponseId], references: [id])
@@ -123,20 +131,32 @@ model ValidationReview {
   validator  User            @relation(fields: [validatorId], references: [id])
 }
 
+enum IngestionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
 // Medical Documents for RAG
 model MedicalDocument {
-  id         String @id @default(uuid())
-  title      String
-  category   String?
-  source     String?
-  content    String @db.Text
-  uploadedBy String?
-  isVerified Boolean @default(false)
-  version    Int   @default(1)
-
-  createdAt  DateTime @default(now())
-  updatedAt  DateTime @updatedAt
-
+  id              String           @id @default(uuid())
+  title           String
+  description     String?
+  fileName        String
+  fileUrl         String
+  fileType        String
+  fileSize        Int
+  specialty       String?
+  documentType    String?
+  source          String?
+  publicationYear Int?
+  uploadedById    String
+  uploadedBy      User @relation(fields: [uploadedById], references: [id])
+  ingestionStatus IngestionStatus @default(PENDING)
+  isVerified      Boolean @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
   embeddingMetadata EmbeddingMetadata[]
 }
 

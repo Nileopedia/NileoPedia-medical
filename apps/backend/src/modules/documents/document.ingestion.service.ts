@@ -1,4 +1,5 @@
 import prisma from '../../config/prisma';
+import { IngestionStatus } from '@prisma/client';
 import { EmbeddingService } from '../rag/services/embedding.service';
 import { ChunkingService } from '../rag/services/chunking.service';
 import { PineconeService } from '../rag/services/pinecone.service';
@@ -16,28 +17,34 @@ export class DocumentIngestionService {
 
   async ingestDocument(input: {
     title: string;
-    category?: string;
+    description?: string;
     source?: string;
     content: string;
     publicationYear?: number;
     specialty?: string;
-    uploadedBy?: string;
+    uploadedById: string;
+    fileName: string;
+    fileUrl: string;
+    fileType: string;
+    fileSize: number;
   }) {
-    const cleanedContent = input.content;
-    
     const document = await prisma.medicalDocument.create({
       data: {
         title: input.title,
-        category: input.category,
+        description: input.description,
         source: input.source,
-        content: cleanedContent,
-        uploadedBy: input.uploadedBy,
-        isVerified: false,
-        version: 1,
+        publicationYear: input.publicationYear,
+        specialty: input.specialty,
+        uploadedById: input.uploadedById,
+        fileName: input.fileName,
+        fileUrl: input.fileUrl,
+        fileType: input.fileType,
+        fileSize: input.fileSize,
+        ingestionStatus: IngestionStatus.PROCESSING,
       },
     });
 
-    const chunks = this.chunkingService.chunkDocument(cleanedContent, {
+    const chunks = this.chunkingService.chunkDocument(input.content, {
       source: input.source,
       publicationYear: input.publicationYear,
       specialty: input.specialty || 'general',
@@ -61,6 +68,11 @@ export class DocumentIngestionService {
         },
       });
     }
+
+    await prisma.medicalDocument.update({
+      where: { id: document.id },
+      data: { ingestionStatus: IngestionStatus.COMPLETED },
+    });
 
     return { document, chunksCount: chunks.length };
   }

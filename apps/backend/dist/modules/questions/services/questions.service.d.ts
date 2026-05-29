@@ -11,14 +11,19 @@ export declare class QuestionsService {
             confidenceScore: number | null;
             citations: {
                 id: string;
-                createdAt: Date;
-                url: string | null;
+                title: string;
+                specialty: string | null;
+                documentType: string | null;
                 source: string;
                 publicationYear: number | null;
-                title: string;
+                createdAt: Date;
+                url: string | null;
                 authors: string | null;
                 doi: string | null;
                 citationIndex: number;
+                chunkId: string | null;
+                pageNumber: number | null;
+                sectionTitle: string | null;
                 aiResponseId: string;
             }[];
             timestamp: Date;
@@ -28,14 +33,19 @@ export declare class QuestionsService {
         aiResponse: ({
             citations: {
                 id: string;
-                createdAt: Date;
-                url: string | null;
+                title: string;
+                specialty: string | null;
+                documentType: string | null;
                 source: string;
                 publicationYear: number | null;
-                title: string;
+                createdAt: Date;
+                url: string | null;
                 authors: string | null;
                 doi: string | null;
                 citationIndex: number;
+                chunkId: string | null;
+                pageNumber: number | null;
+                sectionTitle: string | null;
                 aiResponseId: string;
             }[];
         } & {
@@ -50,22 +60,27 @@ export declare class QuestionsService {
         }) | null;
     } & {
         id: string;
-        userId: string;
         createdAt: Date;
         questionText: string;
+        userId: string;
     })[]>;
     getQuestion(questionId: string): Promise<{
         aiResponse: ({
             citations: {
                 id: string;
-                createdAt: Date;
-                url: string | null;
+                title: string;
+                specialty: string | null;
+                documentType: string | null;
                 source: string;
                 publicationYear: number | null;
-                title: string;
+                createdAt: Date;
+                url: string | null;
                 authors: string | null;
                 doi: string | null;
                 citationIndex: number;
+                chunkId: string | null;
+                pageNumber: number | null;
+                sectionTitle: string | null;
                 aiResponseId: string;
             }[];
         } & {
@@ -80,9 +95,9 @@ export declare class QuestionsService {
         }) | null;
     } & {
         id: string;
-        userId: string;
         createdAt: Date;
         questionText: string;
+        userId: string;
     }>;
     saveResponse(questionId: string, userId: string): Promise<void>;
     unsaveResponse(questionId: string, userId: string): Promise<void>;

@@ -5,24 +5,34 @@ export declare class DocumentIngestionService {
     constructor();
     ingestDocument(input: {
         title: string;
-        category?: string;
+        description?: string;
         source?: string;
         content: string;
         publicationYear?: number;
         specialty?: string;
-        uploadedBy?: string;
+        uploadedById: string;
+        fileName: string;
+        fileUrl: string;
+        fileType: string;
+        fileSize: number;
     }): Promise<{
         document: {
             id: string;
+            title: string;
+            description: string | null;
+            fileName: string;
+            fileUrl: string;
+            fileType: string;
+            fileSize: number;
+            specialty: string | null;
+            documentType: string | null;
+            source: string | null;
+            publicationYear: number | null;
+            uploadedById: string;
+            ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
+            isVerified: boolean;
             createdAt: Date;
             updatedAt: Date;
-            source: string | null;
-            title: string;
-            category: string | null;
-            content: string;
-            uploadedBy: string | null;
-            isVerified: boolean;
-            version: number;
         };
         chunksCount: number;
     }>;

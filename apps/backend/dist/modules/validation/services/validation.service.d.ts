@@ -2,9 +2,9 @@ export declare class ValidationService {
     getPending(): Promise<({
         question: {
             id: string;
-            userId: string;
             createdAt: Date;
             questionText: string;
+            userId: string;
         };
     } & {
         id: string;
@@ -22,9 +22,9 @@ export declare class ValidationService {
         aiResponse: {
             question: {
                 id: string;
-                userId: string;
                 createdAt: Date;
                 questionText: string;
+                userId: string;
             };
         } & {
             id: string;
@@ -39,18 +39,18 @@ export declare class ValidationService {
     } & {
         id: string;
         feedback: string | null;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     })[]>;
     getReview(responseId: string): Promise<{
         id: string;
         feedback: string | null;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     } | null>;

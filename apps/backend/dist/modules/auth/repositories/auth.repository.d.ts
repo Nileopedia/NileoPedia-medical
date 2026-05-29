@@ -2,32 +2,32 @@ export declare class AuthRepository {
     findByEmail(email: string): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
+        refreshToken: string | null;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        refreshToken: string | null;
-        updatedAt: Date;
     } | null>;
     findById(id: string): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
+        refreshToken: string | null;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        refreshToken: string | null;
-        updatedAt: Date;
     } | null>;
     create(userData: {
         fullName: string;
@@ -39,17 +39,17 @@ export declare class AuthRepository {
     }): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
+        refreshToken: string | null;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        refreshToken: string | null;
-        updatedAt: Date;
     }>;
     update(id: string, userData: Partial<{
         fullName: string;
@@ -63,32 +63,32 @@ export declare class AuthRepository {
     }>): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
+        refreshToken: string | null;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        refreshToken: string | null;
-        updatedAt: Date;
     }>;
     setRefreshToken(id: string, refreshToken: string | null): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
+        refreshToken: string | null;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        refreshToken: string | null;
-        updatedAt: Date;
     }>;
 }
 //# sourceMappingURL=auth.repository.d.ts.map

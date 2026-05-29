@@ -1,0 +1,90 @@
+import { CreateCitationDto, UpdateCitationDto, SearchCitationsQuery, SearchCitationsResult } from './citation.types';
+export declare class CitationService {
+    getCitationsForResponse(aiResponseId: string): Promise<{
+        id: string;
+        title: string;
+        specialty: string | null;
+        documentType: string | null;
+        source: string;
+        publicationYear: number | null;
+        createdAt: Date;
+        url: string | null;
+        authors: string | null;
+        doi: string | null;
+        citationIndex: number;
+        chunkId: string | null;
+        pageNumber: number | null;
+        sectionTitle: string | null;
+        aiResponseId: string;
+    }[]>;
+    getCitationById(id: string): Promise<{
+        id: string;
+        title: string;
+        specialty: string | null;
+        documentType: string | null;
+        source: string;
+        publicationYear: number | null;
+        createdAt: Date;
+        url: string | null;
+        authors: string | null;
+        doi: string | null;
+        citationIndex: number;
+        chunkId: string | null;
+        pageNumber: number | null;
+        sectionTitle: string | null;
+        aiResponseId: string;
+    } | null>;
+    searchCitations(query: SearchCitationsQuery): Promise<SearchCitationsResult>;
+    createCitation(data: CreateCitationDto): Promise<{
+        id: string;
+        title: string;
+        specialty: string | null;
+        documentType: string | null;
+        source: string;
+        publicationYear: number | null;
+        createdAt: Date;
+        url: string | null;
+        authors: string | null;
+        doi: string | null;
+        citationIndex: number;
+        chunkId: string | null;
+        pageNumber: number | null;
+        sectionTitle: string | null;
+        aiResponseId: string;
+    }>;
+    updateCitation(id: string, data: UpdateCitationDto): Promise<{
+        id: string;
+        title: string;
+        specialty: string | null;
+        documentType: string | null;
+        source: string;
+        publicationYear: number | null;
+        createdAt: Date;
+        url: string | null;
+        authors: string | null;
+        doi: string | null;
+        citationIndex: number;
+        chunkId: string | null;
+        pageNumber: number | null;
+        sectionTitle: string | null;
+        aiResponseId: string;
+    }>;
+    deleteCitation(id: string): Promise<{
+        id: string;
+        title: string;
+        specialty: string | null;
+        documentType: string | null;
+        source: string;
+        publicationYear: number | null;
+        createdAt: Date;
+        url: string | null;
+        authors: string | null;
+        doi: string | null;
+        citationIndex: number;
+        chunkId: string | null;
+        pageNumber: number | null;
+        sectionTitle: string | null;
+        aiResponseId: string;
+    }>;
+}
+//# sourceMappingURL=citation.service.d.ts.map

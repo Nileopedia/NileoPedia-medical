@@ -12,6 +12,9 @@ const analytics_routes_1 = __importDefault(require("../modules/analytics/analyti
 const user_routes_1 = __importDefault(require("../modules/users/user.routes"));
 const notification_routes_1 = __importDefault(require("../modules/notifications/notification.routes"));
 const audit_routes_1 = __importDefault(require("../modules/audit/audit.routes"));
+const citation_routes_1 = __importDefault(require("../modules/citations/citation.routes"));
+const document_routes_1 = __importDefault(require("../modules/documents/document.routes"));
+const search_routes_1 = __importDefault(require("../modules/search/search.routes"));
 const setupRoutes = (app, io, authController) => {
     // Health check route
     app.get('/health', (req, res) => {
@@ -26,6 +29,9 @@ const setupRoutes = (app, io, authController) => {
     app.use('/api/v1/users', user_routes_1.default);
     app.use('/api/v1/notifications', notification_routes_1.default);
     app.use('/api/v1/audit-logs', audit_routes_1.default);
+    app.use('/api/v1/citations', citation_routes_1.default);
+    app.use('/api/v1/documents', document_routes_1.default);
+    app.use('/api/v1/search', search_routes_1.default);
 };
 exports.setupRoutes = setupRoutes;
 //# sourceMappingURL=index.js.map
