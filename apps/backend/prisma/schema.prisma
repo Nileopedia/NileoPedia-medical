@@ -1,0 +1,199 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/d/accelerate
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// Enums
+enum UserRole {
+  MEDICAL_USER
+  VALIDATOR
+  ADMIN
+}
+
+enum ValidationStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum AccountStatus {
+  ACTIVE
+  SUSPENDED
+  DISABLED
+}
+
+// User Model - All system users
+model User {
+  id              String        @id @default(uuid())
+  fullName        String
+  email           String        @unique
+  password        String
+  role            UserRole
+  specialization  String?
+  institution     String?
+  profileImage    String?
+  isEmailVerified Boolean       @default(false)
+  accountStatus   AccountStatus @default(ACTIVE)
+
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  questions       Question[]
+  validations     ValidationReview[]
+  sessions        Session[]
+  notifications   Notification[]
+  auditLogs       AuditLog[]
+}
+
+// Medical Questions
+model Question {
+  id           String     @id @default(uuid())
+  userId       String
+  questionText String     @db.Text
+
+  createdAt    DateTime   @default(now())
+
+  user         User       @relation(fields: [userId], references: [id])
+  aiResponse   AIResponse?
+}
+
+// AI Generated Responses
+model AIResponse {
+  id              String           @id @default(uuid())
+  questionId      String           @unique
+  summary         String           @db.Text
+  confidenceScore Float?
+  validationStatus ValidationStatus @default(PENDING)
+  generatedBy     String           @default("GPT-4o")
+
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  question        Question         @relation(fields: [questionId], references: [id])
+  citations       Citation[]
+  validations     ValidationReview[]
+  feedbacks       Feedback[]
+}
+
+// Evidence Citations
+model Citation {
+  id              String   @id @default(uuid())
+  aiResponseId    String
+  title           String
+  source          String
+  authors         String?
+  publicationYear Int?
+  doi             String?
+  url             String?
+  citationIndex   Int
+
+  createdAt       DateTime @default(now())
+
+  aiResponse      AIResponse @relation(fields: [aiResponseId], references: [id])
+}
+
+// Validation Reviews
+model ValidationReview {
+  id         String          @id @default(uuid())
+  aiResponseId String
+  validatorId String
+  status     ValidationStatus
+  score      Int?
+  feedback   String?         @db.Text
+  reviewedAt DateTime        @default(now())
+
+  aiResponse AIResponse      @relation(fields: [aiResponseId], references: [id])
+  validator  User            @relation(fields: [validatorId], references: [id])
+}
+
+// Medical Documents for RAG
+model MedicalDocument {
+  id         String @id @default(uuid())
+  title      String
+  category   String?
+  source     String?
+  content    String @db.Text
+  uploadedBy String?
+  isVerified Boolean @default(false)
+  version    Int   @default(1)
+
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  embeddingMetadata EmbeddingMetadata[]
+}
+
+// Pinecone Vector References
+model EmbeddingMetadata {
+  id              String @id @default(uuid())
+  documentId      String
+  pineconeVectorId String @unique
+  chunkIndex      Int
+  chunkText       String @db.Text
+
+  createdAt       DateTime @default(now())
+
+  document MedicalDocument @relation(fields: [documentId], references: [id])
+}
+
+// Notifications
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String   @db.Text
+  isRead    Boolean  @default(false)
+
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+// JWT Sessions
+model Session {
+  id           String   @id @default(uuid())
+  userId       String
+  refreshToken String
+  ipAddress    String?
+  userAgent    String?
+  expiresAt    DateTime
+
+  createdAt    DateTime @default(now())
+
+  user         User     @relation(fields: [userId], references: [id])
+}
+
+// Audit Logs
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String?
+  action    String
+  entity    String
+  entityId  String?
+  metadata  Json?
+
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id])
+}
+
+// Feedback
+model Feedback {
+  id          String @id @default(uuid())
+  aiResponseId String
+  comment     String @db.Text
+
+  createdAt   DateTime @default(now())
+
+  aiResponse  AIResponse @relation(fields: [aiResponseId], references: [id])
+}
