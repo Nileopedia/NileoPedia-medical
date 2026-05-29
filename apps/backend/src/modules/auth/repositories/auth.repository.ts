@@ -1,33 +1,39 @@
-import { User, UserInstance } from '../../../models/user.model';
-import { getDB } from '../../../config/db';
-import { Sequelize } from 'sequelize';
+import prisma from '../../../config/prisma';
 
 export class AuthRepository {
-  private UserModel: ReturnType<typeof User>;
-
-  constructor() {
-    const sequelize = getDB();
-    this.UserModel = User(sequelize);
+  async findByEmail(email: string) {
+    return prisma.user.findUnique({ where: { email } });
   }
 
-  async findByEmail(email: string): Promise<UserInstance | null> {
-    return this.UserModel.findOne({ where: { email } });
+  async findById(id: string) {
+    return prisma.user.findUnique({ where: { id } });
   }
 
-  async findById(id: string): Promise<UserInstance | null> {
-    return this.UserModel.findByPk(id);
+  async create(userData: {
+    fullName: string;
+    email: string;
+    password: string;
+    role: 'MEDICAL_USER' | 'VALIDATOR' | 'ADMIN';
+    specialization?: string;
+    institution?: string;
+  }) {
+    return prisma.user.create({ data: userData });
   }
 
-  async create(userData: any): Promise<UserInstance> {
-    return this.UserModel.create(userData) as Promise<UserInstance>;
-  }
-
-  async update(id: string, userData: any) {
-    const [updated] = await this.UserModel.update(userData, { where: { id } });
-    return updated;
+  async update(id: string, userData: Partial<{
+    fullName: string;
+    email: string;
+    password: string;
+    specialization: string;
+    institution: string;
+    profileImage: string;
+    isEmailVerified: boolean;
+    accountStatus: 'ACTIVE' | 'SUSPENDED' | 'DISABLED';
+  }>) {
+    return prisma.user.update({ where: { id }, data: userData });
   }
 
   async setRefreshToken(id: string, refreshToken: string | null) {
-    return this.UserModel.update({ refreshToken }, { where: { id } });
+    return prisma.user.update({ where: { id }, data: { refreshToken: refreshToken || undefined } });
   }
 }

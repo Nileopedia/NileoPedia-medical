@@ -9,11 +9,10 @@ export declare class GoogleAuthService {
             id: string;
             fullName: string;
             email: string;
-            role: string;
-            organization: string | null | undefined;
-            specialization: string | null | undefined;
-            status: string;
-            profilePicture: string | null | undefined;
+            role: import("@prisma/client").$Enums.UserRole;
+            institution: string | null;
+            specialization: string | null;
+            accountStatus: import("@prisma/client").$Enums.AccountStatus;
         };
         accessToken: string;
         refreshToken: string;

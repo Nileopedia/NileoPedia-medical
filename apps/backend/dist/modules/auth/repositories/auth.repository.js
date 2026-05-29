@@ -1,28 +1,25 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthRepository = void 0;
-const user_model_1 = require("../../../models/user.model");
-const db_1 = require("../../../config/db");
+const prisma_1 = __importDefault(require("../../../config/prisma"));
 class AuthRepository {
-    constructor() {
-        const sequelize = (0, db_1.getDB)();
-        this.UserModel = (0, user_model_1.User)(sequelize);
-    }
     async findByEmail(email) {
-        return this.UserModel.findOne({ where: { email } });
+        return prisma_1.default.user.findUnique({ where: { email } });
     }
     async findById(id) {
-        return this.UserModel.findByPk(id);
+        return prisma_1.default.user.findUnique({ where: { id } });
     }
     async create(userData) {
-        return this.UserModel.create(userData);
+        return prisma_1.default.user.create({ data: userData });
     }
     async update(id, userData) {
-        const [updated] = await this.UserModel.update(userData, { where: { id } });
-        return updated;
+        return prisma_1.default.user.update({ where: { id }, data: userData });
     }
     async setRefreshToken(id, refreshToken) {
-        return this.UserModel.update({ refreshToken }, { where: { id } });
+        return prisma_1.default.user.update({ where: { id }, data: { refreshToken: refreshToken || undefined } });
     }
 }
 exports.AuthRepository = AuthRepository;

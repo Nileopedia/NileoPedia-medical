@@ -2,7 +2,7 @@ import express from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { CONFIG } from './config/env';
-import { connectDB } from './infrastructure/database';
+import prisma from './config/prisma';
 import { setupMiddleware } from './shared/middleware';
 import { setupRoutes } from './routes';
 
@@ -17,7 +17,7 @@ const io = new Server(httpServer, {
 });
 
 // Connect to database and then setup everything
-connectDB()
+prisma.$connect()
   .then(() => {
     console.log('Database connected successfully');
     
@@ -46,7 +46,7 @@ connectDB()
       console.log(`Server running in ${CONFIG.NODE_ENV} mode on port ${PORT}`);
     });
   })
-  .catch((error) => {
+  .catch((error: Error) => {
     console.error('Failed to connect to database:', error);
     process.exit(1);
   });

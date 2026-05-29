@@ -15,7 +15,7 @@ export class GoogleAuthService {
     this.oAuth2Client = new OAuth2Client(
       CONFIG.GOOGLE_CLIENT_ID,
       CONFIG.GOOGLE_CLIENT_SECRET,
-      CONFIG.GOOGLE_REDIRECT_URI
+      CONFIG.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/v1/auth/google/callback'
     );
   }
 
@@ -32,7 +32,6 @@ export class GoogleAuthService {
       const { tokens } = await this.oAuth2Client.getToken(code);
       this.oAuth2Client.setCredentials(tokens);
 
-      // Get user info from Google
       const ticket = await this.oAuth2Client.verifyIdToken({
         idToken: tokens.id_token!,
         audience: CONFIG.GOOGLE_CLIENT_ID,
@@ -43,60 +42,38 @@ export class GoogleAuthService {
         throw new Error('Invalid Google token');
       }
 
-const { email, given_name, family_name, picture, sub } = payload;
-       const fullName = `${given_name || ''} ${family_name || ''}`.trim();
-       
-       if (!email) {
-         throw new Error('Email not provided by Google');
-       }
+      const { email, given_name, family_name, sub } = payload;
+      const fullName = `${given_name || ''} ${family_name || ''}`.trim();
+      
+      if (!email) {
+        throw new Error('Email not provided by Google');
+      }
 
-       // Check if user already exists
-       let user = await this.authRepository.findByEmail(email);
-       
-       if (!user) {
-         // Create new user
-         user = await this.authRepository.create({
-           fullName,
-           email,
-           passwordHash: '', // No password for Google users initially
-           roleId: '00000000-0000-0000-0000-000000000001', // Default role - should be fetched properly
-           organization: '',
-           specialization: '',
-           status: 'ACTIVE',
-           profilePicture: picture,
-           isGoogleUser: true,
-           googleId: sub
-         });
-       } else {
-         // Update existing user's Google info if needed
-         await this.authRepository.update(user.id, {
-           profilePicture: picture,
-           isGoogleUser: true,
-           googleId: sub
-         });
-        // Fetch updated user
-        const updatedUser = await this.authRepository.findById(user.id);
-        if (updatedUser) {
-          user = updatedUser;
-        }
+      let user = await this.authRepository.findByEmail(email);
+      
+      if (!user) {
+        user = await this.authRepository.create({
+          fullName,
+          email,
+          password: '',
+          role: 'MEDICAL_USER',
+        });
       }
 
       if (!user) {
         throw new Error('Failed to create or retrieve user');
       }
 
-      // Generate tokens
       const accessToken = this.jwtService.generateAccessToken({
         id: user.id,
         email: user.email,
-        role: user.roleId,
+        role: user.role,
       });
 
       const refreshToken = this.jwtService.generateRefreshToken({
         id: user.id,
       });
 
-      // Store refresh token
       await this.authRepository.setRefreshToken(user.id, refreshToken);
 
       return {
@@ -104,11 +81,10 @@ const { email, given_name, family_name, picture, sub } = payload;
           id: user.id,
           fullName: user.fullName,
           email: user.email,
-          role: user.roleId,
-          organization: user.organization,
+          role: user.role,
+          institution: user.institution,
           specialization: user.specialization,
-          status: user.status,
-          profilePicture: user.profilePicture,
+          accountStatus: user.accountStatus,
         },
         accessToken,
         refreshToken,

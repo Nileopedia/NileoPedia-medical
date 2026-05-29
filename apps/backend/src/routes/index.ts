@@ -1,6 +1,13 @@
 import { Router } from 'express';
 import { Server } from 'socket.io';
 import authRoutes from '../modules/auth/routes/auth.routes';
+import questionsRoutes from '../modules/questions/questions.routes';
+import validationRoutes from '../modules/validation/validation.routes';
+import adminRoutes from '../modules/admin/admin.routes';
+import analyticsRoutes from '../modules/analytics/analytics.routes';
+import userRoutes from '../modules/users/user.routes';
+import notificationRoutes from '../modules/notifications/notification.routes';
+import auditRoutes from '../modules/audit/audit.routes';
 
 export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authController: any) => {
   // Health check route
@@ -10,5 +17,11 @@ export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authCont
 
   // API routes
   app.use('/api/v1/auth', authRoutes(authController));
-  // Other modules will be added here
+  app.use('/api/v1/questions', questionsRoutes);
+  app.use('/api/v1/validation', validationRoutes);
+  app.use('/api/v1/admin', adminRoutes);
+  app.use('/api/v1/analytics', analyticsRoutes);
+  app.use('/api/v1/users', userRoutes);
+  app.use('/api/v1/notifications', notificationRoutes);
+  app.use('/api/v1/audit-logs', auditRoutes);
 };

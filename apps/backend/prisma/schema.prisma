@@ -1,9 +1,6 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/d/accelerate
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -32,6 +29,15 @@ enum AccountStatus {
   DISABLED
 }
 
+enum NotificationType {
+  INFO
+  SUCCESS
+  WARNING
+  ERROR
+  VALIDATION
+  SYSTEM
+}
+
 // User Model - All system users
 model User {
   id              String        @id @default(uuid())
@@ -44,6 +50,7 @@ model User {
   profileImage    String?
   isEmailVerified Boolean       @default(false)
   accountStatus   AccountStatus @default(ACTIVE)
+  refreshToken  String?
 
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
@@ -148,15 +155,17 @@ model EmbeddingMetadata {
 
 // Notifications
 model Notification {
-  id        String   @id @default(uuid())
+  id        String           @id @default(uuid())
   userId    String
   title     String
-  message   String   @db.Text
-  isRead    Boolean  @default(false)
-
-  createdAt DateTime @default(now())
+  message   String           @db.Text
+  type      NotificationType @default(INFO)
+  isRead    Boolean          @default(false)
 
   user      User     @relation(fields: [userId], references: [id])
+  metadata  Json?
+
+  createdAt DateTime @default(now())
 }
 
 // JWT Sessions
@@ -175,16 +184,19 @@ model Session {
 
 // Audit Logs
 model AuditLog {
-  id        String   @id @default(uuid())
-  userId    String?
-  action    String
-  entity    String
-  entityId  String?
-  metadata  Json?
+  id          String   @id @default(uuid())
+  userId      String?
+  action      String
+  entityType  String
+  entityId    String?
+  description String?
+  ipAddress   String?
+  userAgent   String?
+  metadata    Json?
 
-  createdAt DateTime @default(now())
+  createdAt   DateTime @default(now())
 
-  user      User?    @relation(fields: [userId], references: [id])
+  user        User?    @relation(fields: [userId], references: [id])
 }
 
 // Feedback

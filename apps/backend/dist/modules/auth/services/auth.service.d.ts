@@ -2,33 +2,45 @@ export declare class AuthService {
     private authRepository;
     private jwtService;
     constructor();
-    register(registerDto: any): Promise<{
+    register(registerDto: {
+        fullName: string;
+        email: string;
+        password: string;
+        role: 'MEDICAL_USER' | 'VALIDATOR';
+        institution?: string;
+        specialization?: string;
+    }): Promise<{
         user: {
             id: string;
             fullName: string;
             email: string;
-            role: string;
-            organization: string | null | undefined;
-            specialization: string | null | undefined;
-            status: string;
+            role: import("@prisma/client").$Enums.UserRole;
+            institution: string | null;
+            specialization: string | null;
+            accountStatus: import("@prisma/client").$Enums.AccountStatus;
         };
         accessToken: string;
         refreshToken: string;
     }>;
-    login(loginDto: any): Promise<{
+    login(loginDto: {
+        email: string;
+        password: string;
+    }): Promise<{
         user: {
             id: string;
             fullName: string;
             email: string;
-            role: string;
-            organization: string | null | undefined;
-            specialization: string | null | undefined;
-            status: string;
+            role: import("@prisma/client").$Enums.UserRole;
+            institution: string | null;
+            specialization: string | null;
+            accountStatus: import("@prisma/client").$Enums.AccountStatus;
         };
         accessToken: string;
         refreshToken: string;
     }>;
-    refreshToken(refreshTokenDto: any): Promise<{
+    refreshToken(refreshTokenDto: {
+        refreshToken: string;
+    }): Promise<{
         accessToken: string;
         refreshToken: string;
     }>;

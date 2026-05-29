@@ -16,6 +16,7 @@ export declare const CONFIG: {
     readonly FRONTEND_URL: string;
     readonly GOOGLE_CLIENT_ID: string;
     readonly GOOGLE_CLIENT_SECRET: string;
+    readonly GOOGLE_CALLBACK_URL: string;
     readonly GOOGLE_REDIRECT_URI: string;
     readonly RATE_LIMIT_WINDOW_MS: number;
     readonly RATE_LIMIT_MAX_REQUESTS: number;

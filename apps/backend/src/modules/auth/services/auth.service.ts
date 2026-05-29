@@ -1,7 +1,6 @@
 import { AuthRepository } from '../repositories/auth.repository';
 import { JwtService } from './jwt.service';
 import bcrypt from 'bcryptjs';
-import { CONFIG } from '../../../config/env';
 import { logger } from '../../../config/logger';
 
 export class AuthService {
@@ -13,42 +12,43 @@ export class AuthService {
     this.jwtService = new JwtService();
   }
 
-  async register(registerDto: any) {
-    const { fullName, email, password, role, organization, specialization } = registerDto;
+  async register(registerDto: {
+    fullName: string;
+    email: string;
+    password: string;
+    role: 'MEDICAL_USER' | 'VALIDATOR';
+    institution?: string;
+    specialization?: string;
+  }) {
+    const { fullName, email, password, role, institution, specialization } = registerDto;
 
-    // Check if user already exists
     const existingUser = await this.authRepository.findByEmail(email);
     if (existingUser) {
       throw new Error('User already exists');
     }
 
-    // Hash password
     const salt = await bcrypt.genSalt(10);
-    const passwordHash = await bcrypt.hash(password, salt);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
-    // Create user
     const user = await this.authRepository.create({
       fullName,
       email,
-      passwordHash,
-      roleId: role, // Assuming role is passed as roleId UUID
-      organization,
+      password: hashedPassword,
+      role,
+      institution,
       specialization,
-      status: 'ACTIVE',
     });
 
-    // Generate tokens
     const accessToken = this.jwtService.generateAccessToken({
       id: user.id,
       email: user.email,
-      role: user.roleId,
+      role: user.role,
     });
 
     const refreshToken = this.jwtService.generateRefreshToken({
       id: user.id,
     });
 
-    // Store refresh token
     await this.authRepository.setRefreshToken(user.id, refreshToken);
 
     return {
@@ -56,43 +56,39 @@ export class AuthService {
         id: user.id,
         fullName: user.fullName,
         email: user.email,
-        role: user.roleId,
-        organization: user.organization,
+        role: user.role,
+        institution: user.institution,
         specialization: user.specialization,
-        status: user.status,
+        accountStatus: user.accountStatus,
       },
       accessToken,
       refreshToken,
     };
   }
 
-  async login(loginDto: any) {
+  async login(loginDto: { email: string; password: string }) {
     const { email, password } = loginDto;
 
-    // Find user by email
     const user = await this.authRepository.findByEmail(email);
     if (!user) {
       throw new Error('Invalid credentials');
     }
 
-    // Check password
-    const isMatch = await bcrypt.compare(password, user.passwordHash);
+    const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
       throw new Error('Invalid credentials');
     }
 
-    // Generate tokens
     const accessToken = this.jwtService.generateAccessToken({
       id: user.id,
       email: user.email,
-      role: user.roleId,
+      role: user.role,
     });
 
     const refreshToken = this.jwtService.generateRefreshToken({
       id: user.id,
     });
 
-    // Store refresh token
     await this.authRepository.setRefreshToken(user.id, refreshToken);
 
     return {
@@ -100,45 +96,40 @@ export class AuthService {
         id: user.id,
         fullName: user.fullName,
         email: user.email,
-        role: user.roleId,
-        organization: user.organization,
+        role: user.role,
+        institution: user.institution,
         specialization: user.specialization,
-        status: user.status,
+        accountStatus: user.accountStatus,
       },
       accessToken,
       refreshToken,
     };
   }
 
-  async refreshToken(refreshTokenDto: any) {
+  async refreshToken(refreshTokenDto: { refreshToken: string }) {
     const { refreshToken } = refreshTokenDto;
 
-    // Verify refresh token
     const payload = this.jwtService.verifyRefreshToken(refreshToken) as any;
 
-    // Find user by id
     const user = await this.authRepository.findById(payload.id);
     if (!user) {
       throw new Error('Invalid refresh token');
     }
 
-    // Check if stored refresh token matches
     if (user.refreshToken !== refreshToken) {
       throw new Error('Invalid refresh token');
     }
 
-    // Generate new tokens
     const accessToken = this.jwtService.generateAccessToken({
       id: user.id,
       email: user.email,
-      role: user.roleId,
+      role: user.role,
     });
 
     const newRefreshToken = this.jwtService.generateRefreshToken({
       id: user.id,
     });
 
-    // Store new refresh token
     await this.authRepository.setRefreshToken(user.id, newRefreshToken);
 
     return {
@@ -148,7 +139,6 @@ export class AuthService {
   }
 
   async logout(userId: string) {
-    // Clear refresh token
     await this.authRepository.setRefreshToken(userId, null);
   }
 }

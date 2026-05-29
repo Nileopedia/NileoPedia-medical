@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
 const env_1 = require("./config/env");
-const database_1 = require("./infrastructure/database");
+const prisma_1 = __importDefault(require("./config/prisma"));
 const middleware_1 = require("./shared/middleware");
 const routes_1 = require("./routes");
 // Initialize Express app
@@ -23,7 +23,7 @@ const io = new socket_io_1.Server(httpServer, {
 });
 exports.io = io;
 // Connect to database and then setup everything
-(0, database_1.connectDB)()
+prisma_1.default.$connect()
     .then(() => {
     console.log('Database connected successfully');
     // Setup middleware (cors, helmet, body parser, etc.)
