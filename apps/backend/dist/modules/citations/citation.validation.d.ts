@@ -14,8 +14,8 @@ export declare const createCitationSchema: z.ZodObject<{
     sectionTitle: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     title: string;
-    source: string;
     aiResponseId: string;
+    source: string;
     authors?: string | undefined;
     publicationYear?: number | undefined;
     doi?: string | undefined;
@@ -27,8 +27,8 @@ export declare const createCitationSchema: z.ZodObject<{
     sectionTitle?: string | undefined;
 }, {
     title: string;
-    source: string;
     aiResponseId: string;
+    source: string;
     authors?: string | undefined;
     publicationYear?: number | undefined;
     doi?: string | undefined;
@@ -81,8 +81,8 @@ export declare const searchCitationsQuerySchema: z.ZodObject<{
     publicationYear: z.ZodOptional<z.ZodNumber>;
     documentType: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    page: number;
     limit: number;
+    page: number;
     keyword?: string | undefined;
     specialty?: string | undefined;
     publicationYear?: number | undefined;

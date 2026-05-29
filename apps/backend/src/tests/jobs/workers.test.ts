@@ -14,6 +14,7 @@ describe('Worker Queues', () => {
         fileUrl: '/uploads/test.pdf',
         fileName: 'test.pdf',
         title: 'Test Document',
+        uploadedById: 'user-test-id',
       };
 
       const job = await documentQueue.add('ingest', jobData);

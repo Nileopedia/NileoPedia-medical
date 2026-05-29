@@ -10,8 +10,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-seed = "ts-node prisma/seed.ts"
-
 // Enums
 enum UserRole {
   MEDICAL_USER
@@ -230,4 +228,21 @@ model Feedback {
   createdAt   DateTime @default(now())
 
   aiResponse  AIResponse @relation(fields: [aiResponseId], references: [id])
+}
+
+// Email Logs
+enum EmailStatus {
+  PENDING
+  SENT
+  FAILED
+}
+
+model EmailLog {
+  id        String       @id @default(uuid())
+  recipient String
+  subject   String
+  status    EmailStatus  @default(PENDING)
+  error     String?
+  sentAt    DateTime?
+  createdAt DateTime     @default(now())
 }

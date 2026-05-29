@@ -2,19 +2,19 @@ export declare class ValidationService {
     getPending(): Promise<({
         question: {
             id: string;
-            createdAt: Date;
             questionText: string;
+            createdAt: Date;
             userId: string;
         };
     } & {
         id: string;
         createdAt: Date;
+        questionId: string;
         updatedAt: Date;
         summary: string;
         confidenceScore: number | null;
         validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
-        questionId: string;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
     reject(responseId: string, validatorId: string, feedback: string): Promise<void>;
@@ -22,33 +22,33 @@ export declare class ValidationService {
         aiResponse: {
             question: {
                 id: string;
-                createdAt: Date;
                 questionText: string;
+                createdAt: Date;
                 userId: string;
             };
         } & {
             id: string;
             createdAt: Date;
+            questionId: string;
             updatedAt: Date;
             summary: string;
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
-            questionId: string;
         };
     } & {
-        id: string;
-        feedback: string | null;
         status: import("@prisma/client").$Enums.ValidationStatus;
+        feedback: string | null;
+        id: string;
         aiResponseId: string;
         validatorId: string;
         score: number | null;
         reviewedAt: Date;
     })[]>;
     getReview(responseId: string): Promise<{
-        id: string;
-        feedback: string | null;
         status: import("@prisma/client").$Enums.ValidationStatus;
+        feedback: string | null;
+        id: string;
         aiResponseId: string;
         validatorId: string;
         score: number | null;

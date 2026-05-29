@@ -1,0 +1,153 @@
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.EmailService = void 0;
+const email_types_1 = require("./email.types");
+const email_templates_1 = require("./email.templates");
+const email_utils_1 = require("./email.utils");
+const prisma_1 = __importDefault(require("../../config/prisma"));
+const email_types_2 = require("./email.types");
+const logger_1 = require("../../config/logger");
+const RESEND_API_KEY = process.env.RESEND_API_KEY;
+const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@nileopedia.com';
+const EMAIL_PROVIDER = process.env.EMAIL_PROVIDER || 'resend';
+let resendClient = null;
+async function getResendClient() {
+    if (!resendClient && RESEND_API_KEY) {
+        const { Resend } = await Promise.resolve().then(() => __importStar(require('resend')));
+        resendClient = new Resend(RESEND_API_KEY);
+    }
+    return resendClient;
+}
+class EmailService {
+    static async sendValidatorOtp(data) {
+        const template = email_templates_1.emailTemplates.validatorOtp(data);
+        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.VALIDATOR_OTP);
+    }
+    static async sendPasswordReset(data) {
+        const template = email_templates_1.emailTemplates.passwordReset(data);
+        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.PASSWORD_RESET);
+    }
+    static async sendWelcome(data) {
+        const template = email_templates_1.emailTemplates.welcome(data);
+        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.WELCOME);
+    }
+    static async sendAccountActivated(data) {
+        const template = email_templates_1.emailTemplates.accountActivated(data);
+        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.ACCOUNT_ACTIVATED);
+    }
+    static async sendAccountDeactivated(data) {
+        const template = email_templates_1.emailTemplates.accountDeactivated(data);
+        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.ACCOUNT_DEACTIVATED);
+    }
+    static async sendSecurityAlert(data) {
+        const template = email_templates_1.emailTemplates.securityAlert({ ...data, ipAddress: data.ipAddress });
+        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.SECURITY_ALERT);
+    }
+    static async sendSystemAnnouncement(recipients, subject, title, message) {
+        const html = `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>${title}</h2>
+        <p>${message}</p>
+        <hr>
+        <p style="font-size: 12px; color: #999;">NileoPedia Team</p>
+      </div>
+    `;
+        const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
+        const jobs = recipients.map((email) => ({
+            name: 'announcement',
+            data: { to: email, subject, html, type: email_types_1.EmailType.SYSTEM_ANNOUNCEMENT },
+        }));
+        await emailQueue.addBulk(jobs);
+    }
+    static async queueEmail(to, subject, html, type) {
+        if (!(0, email_utils_1.validateEmail)({ to, subject, html })) {
+            throw new Error('Invalid email data');
+        }
+        await prisma_1.default.emailLog.create({
+            data: {
+                recipient: to,
+                subject,
+                status: email_types_2.EmailStatus.PENDING,
+            },
+        });
+        const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
+        await emailQueue.add('send', { to, subject, html, type });
+    }
+    static async sendEmail(to, subject, html) {
+        if (EMAIL_PROVIDER === 'resend') {
+            await this.sendViaResend(to, subject, html);
+        }
+        else {
+            await this.sendViaNodemailer(to, subject, html);
+        }
+    }
+    static async sendViaResend(to, subject, html) {
+        try {
+            const resend = await getResendClient();
+            if (!resend) {
+                throw new Error('Resend client not configured');
+            }
+            await resend.emails.send({
+                from: EMAIL_FROM,
+                to,
+                subject,
+                html,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Resend email failed, falling back to Nodemailer', error);
+            await this.sendViaNodemailer(to, subject, html);
+        }
+    }
+    static async sendViaNodemailer(to, subject, html) {
+        const nodemailer = await Promise.resolve().then(() => __importStar(require('nodemailer')));
+        const transporter = nodemailer.createTransport({
+            host: process.env.SMTP_HOST || 'localhost',
+            port: parseInt(process.env.SMTP_PORT || '1025'),
+        });
+        await transporter.sendMail({
+            from: EMAIL_FROM,
+            to,
+            subject,
+            html,
+        });
+    }
+}
+exports.EmailService = EmailService;
+//# sourceMappingURL=email.service.js.map
