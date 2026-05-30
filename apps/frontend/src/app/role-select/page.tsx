@@ -8,8 +8,8 @@ import { User, ClipboardCheck, Shield, BookOpen } from 'lucide-react';
 export default function RoleSelect() {
   const roles = [
     { id: 'user', label: 'Medical User', description: 'Ask questions and get evidence-based answers', icon: <User size={32} />, path: '/app' },
-    { id: 'validator', label: 'Medical Validator', description: 'Review and validate AI responses', icon: <ClipboardCheck size={32} />, path: '/app/validator' },
-    { id: 'admin', label: 'Administrator', description: 'Manage system and users', icon: <Shield size={32} />, path: '/app/admin' },
+    { id: 'validator', label: 'Medical Validator', description: 'Review and validate AI responses', icon: <ClipboardCheck size={32} />, path: '/validator' },
+    { id: 'admin', label: 'Administrator', description: 'Manage system and users', icon: <Shield size={32} />, path: '/admin' },
   ];
 
   return (

@@ -21,6 +21,7 @@ import {
   User,
   LogOut,
   Bot,
+  Bell,
 } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
 import { useAppStore } from '../../store/appStore';
@@ -45,49 +46,47 @@ export const Sidebar: React.FC = () => {
     const sections: NavSection[] = [];
     
     if (user?.role === 'user') {
-      // Medical User Sidebar
       sections.push({
         items: [
           { icon: <LayoutDashboard size={18} />, label: 'Dashboard', path: '/app' },
-          { icon: <MessageCircleQuestion size={18} />, label: 'Ask AI', path: '/app/ask' },
-          { icon: <History size={18} />, label: 'Query History', path: '/app/history' },
-          { icon: <Bookmark size={18} />, label: 'Saved Responses', path: '/app/saved' },
+          { icon: <MessageCircleQuestion size={18} />, label: 'Ask AI', path: '/ask' },
+          { icon: <History size={18} />, label: 'Query History', path: '/history' },
+          { icon: <Bookmark size={18} />, label: 'Saved Responses', path: '/saved' },
           { icon: <User size={18} />, label: 'Profile', path: '/app/profile' },
           { icon: <Settings size={18} />, label: 'Settings', path: '/app/settings' },
         ],
       });
     } else if (user?.role === 'validator') {
-      // Validator Sidebar
       sections.push(
         {
           items: [
-            { icon: <ClipboardCheck size={18} />, label: 'Pending Reviews', path: '/app/validator', badge: 14 },
-            { icon: <CheckCircle2 size={18} />, label: 'Approved Responses', path: '/app/validator/approved' },
-            { icon: <XCircle size={18} />, label: 'Rejected Responses', path: '/app/validator/rejected' },
-            { icon: <Clock size={18} />, label: 'Validation History', path: '/app/validator/history' },
-            { icon: <FileText size={18} />, label: 'Feedback Reports', path: '/app/validator/feedback' },
+            { icon: <ClipboardCheck size={18} />, label: 'Pending Reviews', path: '/validator', badge: 14 },
+            { icon: <CheckCircle2 size={18} />, label: 'Approved Responses', path: '/validator/approved' },
+            { icon: <XCircle size={18} />, label: 'Rejected Responses', path: '/validator/rejected' },
+            { icon: <Clock size={18} />, label: 'Validation History', path: '/validator/history' },
+            { icon: <FileText size={18} />, label: 'Feedback Reports', path: '/validator/feedback' },
           ],
         },
         {
           items: [
-            { icon: <User size={18} />, label: 'Profile', path: '/app/profile' },
-            { icon: <Settings size={18} />, label: 'Settings', path: '/app/settings' },
+            { icon: <User size={18} />, label: 'Profile', path: '/validator/profile' },
+            { icon: <Settings size={18} />, label: 'Settings', path: '/validator/settings' },
           ],
         }
       );
     } else if (user?.role === 'admin') {
-      // Admin Sidebar
       sections.push(
         {
           items: [
-            { icon: <LayoutDashboard size={18} />, label: 'Dashboard', path: '/app/admin' },
-            { icon: <Users size={18} />, label: 'Users', path: '/app/admin/users' },
-            { icon: <ClipboardCheck size={18} />, label: 'Validators', path: '/app/admin/validators' },
-            { icon: <BarChart3 size={18} />, label: 'Analytics', path: '/app/admin/analytics' },
-            { icon: <Activity size={18} />, label: 'System Health', path: '/app/admin/system' },
-            { icon: <Bot size={18} />, label: 'AI Activity', path: '/app/admin/ai-activity' },
-            { icon: <FileText size={18} />, label: 'Logs', path: '/app/admin/logs' },
-            { icon: <Settings size={18} />, label: 'Settings', path: '/app/admin/settings' },
+            { icon: <LayoutDashboard size={18} />, label: 'Dashboard', path: '/admin' },
+            { icon: <Users size={18} />, label: 'Users', path: '/admin/users' },
+            { icon: <ClipboardCheck size={18} />, label: 'Validators', path: '/admin/validators' },
+            { icon: <BarChart3 size={18} />, label: 'Analytics', path: '/admin/analytics' },
+            { icon: <Activity size={18} />, label: 'System Health', path: '/admin/system' },
+            { icon: <Bot size={18} />, label: 'AI Activity', path: '/admin/ai-activity' },
+            { icon: <FileText size={18} />, label: 'Documents', path: '/documents' },
+            { icon: <FileText size={18} />, label: 'Logs', path: '/admin/logs' },
+            { icon: <Settings size={18} />, label: 'Settings', path: '/admin/settings' },
           ],
         }
       );
@@ -101,7 +100,7 @@ export const Sidebar: React.FC = () => {
     <aside className="w-64 bg-slate-900 dark:bg-slate-950 flex flex-col h-screen fixed left-0 top-0 z-30 border-r border-slate-800 dark:border-slate-900 transition-colors duration-200">
       {/* Logo */}
       <div className="px-5 py-5 border-b border-slate-800">
-        <Link href="/app" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2">
           <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
             <span className="text-white font-bold text-sm">N</span>
           </div>

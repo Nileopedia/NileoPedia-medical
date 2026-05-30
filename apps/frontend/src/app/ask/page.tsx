@@ -70,48 +70,48 @@ export default function AskPage() {
                   required
                 />
               </div>
-<Button type="submit" disabled={loading || !question.trim()}>
-               {loading ? (
-                 <>
-                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                   Generating Response...
-                 </>
-               ) : (
-                 <>
-                   <Send className="mr-2 h-4 w-4" />
-                   Submit Query
-                 </>
-               )}
-             </Button>
-           </form>
+              <Button type="submit" disabled={loading || !question.trim()}>
+                {loading ? (
+                  <>
+                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Generating Response...
+                  </>
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" />
+                    Submit Query
+                  </>
+                )}
+              </Button>
+            </form>
           </CardContent>
-         </Card>
+        </Card>
 
-         {response && (
-           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-             <Card>
-               <CardHeader>
-                 <CardTitle>AI Response</CardTitle>
-               </CardHeader>
-               <CardContent>
-                 <div className="prose dark:prose-invert max-w-none">
-                   <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
-                 </div>
-               </CardContent>
-             </Card>
-           </motion.div>
-         )}
-         
-         {error && (
-           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-             <Card>
-               <CardContent>
-                 <p className="text-red-600 dark:text-red-400">{error}</p>
-               </CardContent>
-             </Card>
-           </motion.div>
-         )}
-       </div>
-     </div>
-   );
- }
+        {response && (
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <Card>
+              <CardHeader>
+                <CardTitle>AI Response</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="prose dark:prose-invert max-w-none">
+                  <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+
+        {error && (
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+            <Card>
+              <CardContent>
+                <p className="text-red-600 dark:text-red-400">{error}</p>
+              </CardContent>
+            </Card>
+          </motion.div>
+        )}
+      </div>
+    </div>
+  );
+}
