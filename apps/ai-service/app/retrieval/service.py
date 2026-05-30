@@ -3,7 +3,9 @@ from app.rag.elasticsearch_service import keyword_search, search_citations
 from app.embeddings.service import generate_embedding
 from app.models.schemas import DocumentChunk, RetrievalType, EmbeddingRequest
 from typing import List
-from app.core.config import settings
+import logging
+
+logger = logging.getLogger(__name__)
 
 async def hybrid_retrieval(
     query: str,
@@ -14,20 +16,24 @@ async def hybrid_retrieval(
     """Perform hybrid retrieval combining semantic and keyword search."""
     
     if retrieval_type == RetrievalType.SEMANTIC:
-        embedding = await generate_embedding(EmbeddingRequest(text=query))
-        namespace = get_namespace_for_specialty(specialty) if specialty else settings.PINECONE_NAMESPACE
+        embedding = await generate_embedding(EmbeddingRequest(text=query, model="text-embedding-3-large"))
+        namespace = get_namespace_for_specialty(specialty) if specialty else "general"
+        logger.info(f"Generated query embedding, searching in namespace: {namespace}")
         return await semantic_search(embedding, topK, namespace)
     
     elif retrieval_type == RetrievalType.KEYWORD:
+        logger.info(f"Performing keyword search for: {query}")
         return await keyword_search(query, topK, specialty)
     
     else:  # HYBRID
-        embedding = await generate_embedding(EmbeddingRequest(text=query))
-        namespace = get_namespace_for_specialty(specialty) if specialty else settings.PINECONE_NAMESPACE
+        embedding = await generate_embedding(EmbeddingRequest(text=query, model="text-embedding-3-large"))
+        namespace = get_namespace_for_specialty(specialty) if specialty else "general"
         
+        logger.info(f"Performing hybrid search, namespace: {namespace}")
         semantic_chunks = await semantic_search(embedding, topK, namespace)
         keyword_chunks = await keyword_search(query, topK, specialty)
         
+        logger.info(f"Semantic results: {len(semantic_chunks)}, Keyword results: {len(keyword_chunks)}")
         return _merge_results(semantic_chunks, keyword_chunks, topK)
 
 async def _merge_results(
