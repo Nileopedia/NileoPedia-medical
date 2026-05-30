@@ -1,12 +1,21 @@
 from elasticsearch import AsyncElasticsearch
-from app.core.config import settings
 from app.models.schemas import DocumentChunk
 from typing import Optional
+import os
 
-es = AsyncElasticsearch(settings.ELASTICSEARCH_URL)
+ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL", "")
+ELASTICSEARCH_API_KEY = os.getenv("ELASTICSEARCH_API_KEY", "")
+
+es = AsyncElasticsearch(
+    ELASTICSEARCH_URL if ELASTICSEARCH_URL else "http://localhost:9200",
+    api_key=ELASTICSEARCH_API_KEY if ELASTICSEARCH_API_KEY else None,
+) if ELASTICSEARCH_URL else None
 
 async def keyword_search(query: str, topK: int = 10, specialty: str = None) -> list[DocumentChunk]:
     """Perform keyword search in Elasticsearch."""
+    if es is None:
+        return []
+        
     body = {
         "query": {
             "bool": {
@@ -47,10 +56,15 @@ async def keyword_search(query: str, topK: int = 10, specialty: str = None) -> l
 
 async def index_document(doc_id: str, document: dict) -> None:
     """Index document in Elasticsearch."""
+    if es is None:
+        return
     await es.index(index="medical_documents", id=doc_id, document=document)
 
 async def search_citations(query: str, topK: int = 10) -> list[DocumentChunk]:
     """Search for citations by medical terms."""
+    if es is None:
+        return []
+        
     body = {
         "query": {
             "multi_match": {

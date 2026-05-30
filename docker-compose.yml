@@ -64,7 +64,8 @@ services:
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT:-us-west1-gcp}
       - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME:-nileopedia-medical}
-      - ELASTICSEARCH_URL=http://elasticsearch:9200
+      - ELASTICSEARCH_URL=https://my-elasticsearch-project-dfcb85.es.us-east-1.aws.elastic.cloud:443
+      - ELASTICSEARCH_API_KEY=RVdOWmQ1NEJXS3dGVUxyWkc2RUY6TVJuLTktbG1MYjFXYXhPTHdlcUxLUQ==
       - REDIS_URL=redis://redis:6379
     expose:
       - "8000"
