@@ -1,12 +1,31 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Bookmark } from 'lucide-react';
+import { api } from '../../lib/api';
+import { Query } from '../../types';
 
 export default function SavedPage() {
-  const savedItems = [
+  const [savedItems, setSavedItems] = React.useState<Query[]>([]);
+  const [loading, setLoading] = React.useState(true);
+
+  useEffect(() => {
+    const fetchSaved = async () => {
+      try {
+        const data = await api.getSavedResponses();
+        setSavedItems(data);
+      } catch (err) {
+        console.error('Failed to load saved responses:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchSaved();
+  }, []);
+
+  const savedItemDisplay = [
     { id: '1', title: 'Type 2 Diabetes Management in Elderly', category: 'Endocrinology', savedAt: '2 days ago' },
     { id: '2', title: 'Hypertension Guidelines 2024', category: 'Cardiology', savedAt: '1 week ago' },
     { id: '3', title: 'Asthma Management in Children', category: 'Pediatrics', savedAt: '2 weeks ago' },
@@ -34,11 +53,11 @@ export default function SavedPage() {
               </tr>
             </thead>
             <tbody>
-              {savedItems.map((item) => (
+              {(savedItems.length > 0 ? savedItems : savedItemDisplay).map((item) => (
                 <tr key={item.id} className="border-b border-slate-100 dark:border-slate-800">
-                  <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{item.title}</td>
+                  <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{item.question || item.title}</td>
                   <td className="py-3 text-slate-500 dark:text-slate-400">{item.category}</td>
-                  <td className="py-3 text-slate-500 dark:text-slate-400">{item.savedAt}</td>
+                  <td className="py-3 text-slate-500 dark:text-slate-400">{item.createdAt || item.savedAt}</td>
                   <td>
                     <button className="text-blue-600 hover:text-blue-700">
                       <Bookmark size={16} />

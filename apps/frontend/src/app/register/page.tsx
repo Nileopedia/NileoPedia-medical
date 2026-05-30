@@ -4,6 +4,8 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { User, Mail, Lock, Eye, EyeOff, BookOpen, Shield, Brain, CheckCircle } from 'lucide-react';
+import { api } from '../../lib/api';
+import { useAppStore } from '../../store/appStore';
 
 export default function Register() {
   const [name, setName] = useState('');
@@ -12,13 +14,32 @@ export default function Register() {
   const [confirmPassword, setConfirmPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const setUser = useAppStore((state) => state.setUser);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (password !== confirmPassword) return;
+    if (password !== confirmPassword) {
+      setError('Passwords do not match');
+      return;
+    }
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setLoading(false);
+    setError(null);
+    try {
+      const result = await api.register(name, email, password, 'user');
+      localStorage.setItem('token', result.token);
+      setUser({
+        id: result.user.id,
+        name: result.user.name,
+        email: result.user.email,
+        role: result.user.role as 'user' | 'validator' | 'admin',
+      });
+      window.location.href = '/role-select';
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Registration failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleRegister = () => {

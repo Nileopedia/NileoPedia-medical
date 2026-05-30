@@ -1,5 +1,3 @@
-'use client';
-
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { QueryInput } from '../../components/query/QueryInput';
@@ -8,19 +6,42 @@ import { StatCard } from '../../components/dashboard/StatCard';
 import { TopCategories } from '../../components/dashboard/TopCategories';
 import { RecentActivity } from '../../components/dashboard/RecentActivity';
 import { useAppStore } from '../../store/appStore';
-import { mockResponse, mockCategoryStats, mockActivities } from '../../data/mockData';
+import { mockCategoryStats, mockActivities } from '../../data/mockData';
 import { MessageCircleQuestion, History, Bookmark, Clock } from 'lucide-react';
+import { api } from '../../lib/api';
+import { AIResponse } from '../../types';
 
 export default function Dashboard() {
   const { user } = useAppStore();
   const [showResponse, setShowResponse] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState<AIResponse | null>(null);
 
-  const handleSubmitQuery = async () => {
+  const handleSubmitQuery = async (query: string) => {
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-    setLoading(false);
-    setShowResponse(true);
+    try {
+      const result = await api.askQuestion(query);
+      const aiResponse: AIResponse = {
+        id: `resp-${result.questionId}`,
+        queryId: result.questionId,
+        title: query,
+        summary: 'Your question is being processed by our AI system.',
+        keyFindings: ['Response will be available shortly', 'Check back in a few moments'],
+        detailedExplanation: '',
+        citations: [],
+        status: 'pending',
+        confidenceScore: 0,
+        model: 'Processing',
+        generatedAt: new Date().toISOString(),
+        tags: [],
+      };
+      setResponse(aiResponse);
+      setShowResponse(true);
+    } catch (err) {
+      console.error('Failed to submit query:', err);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const stats = {
@@ -47,7 +68,7 @@ export default function Dashboard() {
       <div className="grid lg:grid-cols-3 gap-6">
         <div className="lg:col-span-2 space-y-6">
           <QueryInput onSubmit={handleSubmitQuery} loading={loading} />
-          {showResponse && <ResponseViewer response={mockResponse} />}
+          {showResponse && response && <ResponseViewer response={response} />}
         </div>
         <div className="space-y-6">
           <TopCategories categories={mockCategoryStats} />

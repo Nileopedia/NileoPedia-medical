@@ -1,21 +1,17 @@
-from pydantic import BaseSettings
 import os
 
-class Settings(BaseSettings):
-    OPENAI_API_KEY: str = os.getenv("OPENAI_API_KEY", "")
-    PINECONE_API_KEY: str = os.getenv("PINECONE_API_KEY", "")
-    PINECONE_ENVIRONMENT: str = os.getenv("PINECONE_ENVIRONMENT", "us-west1-gcp")
-    PINECONE_INDEX_NAME: str = os.getenv("PINECONE_INDEX_NAME", "nileopedia-medical")
-    ELASTICSEARCH_URL: str = os.getenv("ELASTICSEARCH_URL", "http://localhost:9200")
-    REDIS_URL: str = os.getenv("REDIS_URL", "redis://localhost:6379")
-    EMBEDDING_MODEL: str = os.getenv("EMBEDDING_MODEL", "text-embedding-3-large")
-    CHAT_MODEL: str = os.getenv("OPENAI_MODEL", "gpt-4o")
-    MAX_CHUNK_TOKENS: int = 500
-    MIN_CHUNK_TOKENS: int = 100
-    CHUNK_OVERLAP: int = 50
-    PINECONE_NAMESPACE: str = "general"
-    TOP_K_DEFAULT: int = 10
-    SEMANTIC_WEIGHT: float = 0.7
-    KEYWORD_WEIGHT: float = 0.3
+class Settings:
+    def __init__(self):
+        self.OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "")
+        self.PINECONE_API_KEY = os.getenv("PINECONE_API_KEY", "")
+        self.PINECONE_ENVIRONMENT = os.getenv("PINECONE_ENVIRONMENT", "us-west1-gcp")
+        self.PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "nileopedia-medical")
+        self.ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL", "https://my-elasticsearch-project-dfcb85.es.us-east-1.aws.elastic.cloud:443")
+        self.REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379")
+        self.EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "text-embedding-3-large")
+        self.CHAT_MODEL = os.getenv("OPENAI_MODEL", "gpt-4o")
+        self.MAX_CHUNK_TOKENS = int(os.getenv("MAX_CHUNK_TOKENS", "500"))
+        self.MIN_CHUNK_TOKENS = int(os.getenv("MIN_CHUNK_TOKENS", "100"))
+        self.CHUNK_OVERLAP = int(os.getenv("CHUNK_OVERLAP", "50"))
 
 settings = Settings()

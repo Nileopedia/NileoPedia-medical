@@ -1,17 +1,47 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardContent } from '../../components/ui/Card';
 import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from '../../components/ui/Table';
 import { Badge } from '../../components/ui/Badge';
-import { mockQueries } from '../../data/mockData';
+import { api } from '../../lib/api';
+import { Query } from '../../types';
 import { Search } from 'lucide-react';
 
 export default function HistoryPage() {
   const [search, setSearch] = React.useState('');
+  const [queries, setQueries] = React.useState<Query[]>([]);
+  const [loading, setLoading] = React.useState(true);
+  const [error, setError] = React.useState<string | null>(null);
 
-  const filteredQueries = mockQueries.filter(q => 
+  const fetchHistory = async () => {
+    try {
+      setLoading(true);
+      const data = await api.getHistory();
+      const formatted: Query[] = data.map((q: any) => ({
+        id: q.id,
+        question: q.questionText,
+        category: q.category || 'General',
+        status: q.aiResponse?.status || q.status || 'pending',
+        createdAt: new Date(q.createdAt).toLocaleDateString(),
+        updatedAt: new Date(q.updatedAt).toLocaleDateString(),
+        userId: q.userId,
+      }));
+      setQueries(formatted);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to load history');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchHistory();
+  }, []);
+
+  const filteredQueries = queries.filter(q => 
     q.question.toLowerCase().includes(search.toLowerCase()) ||
     q.category.toLowerCase().includes(search.toLowerCase())
   );

@@ -4,19 +4,37 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, BookOpen, Shield, Brain, CheckCircle } from 'lucide-react';
+import { api } from '../../lib/api';
+import { useAppStore } from '../../store/appStore';
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const setUser = useAppStore((state) => state.setUser);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-    setLoading(false);
-    window.location.href = '/role-select';
+    setError(null);
+    
+    try {
+      const result = await api.login(email, password);
+      localStorage.setItem('token', result.token);
+      setUser({
+        id: result.user.id,
+        name: result.user.name,
+        email: result.user.email,
+        role: result.user.role as 'user' | 'validator' | 'admin',
+      });
+      window.location.href = '/role-select';
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Login failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleGoogleLogin = () => {
@@ -98,9 +116,12 @@ export default function Login() {
                 <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 font-medium">Forgot Password?</Link>
               </div>
             </div>
-            <button type="submit" disabled={loading} className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-              {loading ? 'Signing in...' : 'Sign In'}
-            </button>
+<button type="submit" disabled={loading} className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+               {loading ? 'Signing in...' : 'Sign In'}
+             </button>
+             {error && (
+               <p className="text-sm text-red-600 text-center">{error}</p>
+             )}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-slate-200" />

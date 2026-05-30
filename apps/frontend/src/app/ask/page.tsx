@@ -6,27 +6,42 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Ca
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Send, Loader2 } from 'lucide-react';
+import { api } from '../../lib/api';
+import { AIResponse } from '../../types';
 
 export default function AskPage() {
   const [question, setQuestion] = React.useState('');
   const [loading, setLoading] = React.useState(false);
-  const [response, setResponse] = React.useState<string | null>(null);
+  const [response, setResponse] = React.useState<AIResponse | null>(null);
+  const [error, setError] = React.useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;
     
     setLoading(true);
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setResponse(`Based on current medical literature, here are evidence-based recommendations for: "${question}"
-
-Key findings:
-• This is a demo response for the migrated Next.js application
-• Actual responses would include citations and references
-• All content is validated by medical professionals
-
-Please consult with a healthcare provider for personal medical advice.`);
-    setLoading(false);
+    setError(null);
+    try {
+      const result = await api.askQuestion(question.trim());
+      setResponse({
+        id: `resp-${result.questionId}`,
+        queryId: result.questionId,
+        title: question,
+        summary: `Your question has been submitted for processing.`,
+        keyFindings: ['Question submitted successfully', 'Response will be generated shortly'],
+        detailedExplanation: '',
+        citations: [],
+        status: 'pending',
+        confidenceScore: 0,
+        model: 'Processing',
+        generatedAt: new Date().toISOString(),
+        tags: [],
+      });
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to submit question');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -55,38 +70,48 @@ Please consult with a healthcare provider for personal medical advice.`);
                   required
                 />
               </div>
-              <Button type="submit" disabled={loading || !question.trim()}>
-                {loading ? (
-                  <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Generating Response...
-                  </>
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    Submit Query
-                  </>
-                )}
-              </Button>
-            </form>
+<Button type="submit" disabled={loading || !question.trim()}>
+               {loading ? (
+                 <>
+                   <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                   Generating Response...
+                 </>
+               ) : (
+                 <>
+                   <Send className="mr-2 h-4 w-4" />
+                   Submit Query
+                 </>
+               )}
+             </Button>
+           </form>
           </CardContent>
-        </Card>
+         </Card>
 
-        {response && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <Card>
-              <CardHeader>
-                <CardTitle>AI Response</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="prose dark:prose-invert max-w-none">
-                  <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
-      </div>
-    </div>
-  );
-}
+         {response && (
+           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+             <Card>
+               <CardHeader>
+                 <CardTitle>AI Response</CardTitle>
+               </CardHeader>
+               <CardContent>
+                 <div className="prose dark:prose-invert max-w-none">
+                   <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
+                 </div>
+               </CardContent>
+             </Card>
+           </motion.div>
+         )}
+         
+         {error && (
+           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+             <Card>
+               <CardContent>
+                 <p className="text-red-600 dark:text-red-400">{error}</p>
+               </CardContent>
+             </Card>
+           </motion.div>
+         )}
+       </div>
+     </div>
+   );
+ }
