@@ -7,6 +7,10 @@ import logging
 
 logger = logging.getLogger(__name__)
 
+# Weighted scoring constants
+SEMANTIC_WEIGHT = 0.7
+KEYWORD_WEIGHT = 0.3
+
 async def hybrid_retrieval(
     query: str,
     topK: int = 10,
@@ -48,7 +52,7 @@ async def _merge_results(
     max_semantic = max((c.score for c in semantic_chunks), default=1.0)
     for chunk in semantic_chunks:
         normalized_score = chunk.score / max_semantic if max_semantic > 0 else 0
-        weighted_score = normalized_score * settings.SEMANTIC_WEIGHT
+        weighted_score = normalized_score * SEMANTIC_WEIGHT
         merged_scores[chunk.id] = {
             "chunk": chunk,
             "score": weighted_score,
@@ -59,7 +63,7 @@ async def _merge_results(
     max_keyword = max((c.score for c in keyword_chunks), default=1.0)
     for chunk in keyword_chunks:
         normalized_score = chunk.score / max_keyword if max_keyword > 0 else 0
-        weighted_score = normalized_score * settings.KEYWORD_WEIGHT
+        weighted_score = normalized_score * KEYWORD_WEIGHT
         
         if chunk.id in merged_scores:
             merged_scores[chunk.id]["score"] += weighted_score
