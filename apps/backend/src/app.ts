@@ -41,7 +41,7 @@ prisma.$connect()
     });
 
     // Start server
-    const PORT = CONFIG.PORT;
+    const PORT = CONFIG.PORT || 3001;
     httpServer.listen(PORT, () => {
       console.log(`Server running in ${CONFIG.NODE_ENV} mode on port ${PORT}`);
     });
