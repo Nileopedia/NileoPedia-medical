@@ -1,15 +1,11 @@
-from pinecone import Pinecone
-from app.core.config import settings
+from app.core.pinecone_client import index
 from app.models.schemas import DocumentChunk
 from typing import Optional
-
-pc = Pinecone(api_key=settings.PINECONE_API_KEY)
-index = pc.Index(settings.PINECONE_INDEX_NAME)
 
 async def semantic_search(query_embedding: list[float], topK: int = 10, namespace: str = None) -> list[DocumentChunk]:
     """Perform semantic search in Pinecone."""
     if namespace is None:
-        namespace = settings.PINECONE_NAMESPACE
+        namespace = "general"
 
     results = index.query(
         vector=query_embedding,
