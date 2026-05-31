@@ -23,13 +23,15 @@
     "zustand": "^5.0.14"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.2.6",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "autoprefixer": "^10.4.20",
+    "eslint": "^9.7.0",
+    "globals": "^15.0.0",
+    "postcss": "^8.4.31",
+    "tailwindcss": "^3",
+    "typescript": "^5",
+    "typescript-eslint": "^8.0.0"
   }
 }

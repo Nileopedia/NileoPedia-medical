@@ -2,8 +2,6 @@
 
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Button } from '../../../components/ui/Button';
 import { Bell, Shield, Save } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 
@@ -70,10 +68,10 @@ export default function ValidatorSettingsPage() {
         </div>
 
         <div className="flex justify-end">
-          <Button onClick={handleSave} className="gap-2">
+          <button onClick={handleSave} className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
             <Save size={16} />
             Save Settings
-          </Button>
+          </button>
         </div>
       </div>
     </AppLayout>

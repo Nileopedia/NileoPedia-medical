@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Badge } from '../../../components/ui/Badge';
-import { Bell, CheckCircle, AlertCircle, Clock, MessageCircle } from 'lucide-react';
+import { Bell, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react';
 import { Activity } from '../../../types';
 import { AppLayout } from '../../../components/layout/AppLayout';
 

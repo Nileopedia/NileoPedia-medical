@@ -8,39 +8,36 @@ import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
 
 export default function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [showPassword, setShowPassword] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const setUser = useAppStore((state) => state.setUser);
+   const [name, setName] = useState('');
+   const [email, setEmail] = useState('');
+   const [password, setPassword] = useState('');
+   const [confirmPassword, setConfirmPassword] = useState('');
+   const [showPassword, setShowPassword] = useState(false);
+   const [loading, setLoading] = useState(false);
+   const setUser = useAppStore((state) => state.setUser);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password !== confirmPassword) {
-      setError('Passwords do not match');
-      return;
-    }
-    setLoading(true);
-    setError(null);
-    try {
-      const result = await api.register(name, email, password, 'user');
-      localStorage.setItem('token', result.token);
-      setUser({
-        id: result.user.id,
-        name: result.user.name,
-        email: result.user.email,
-        role: result.user.role as 'user' | 'validator' | 'admin',
-      });
-      window.location.href = '/role-select';
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Registration failed');
-    } finally {
-      setLoading(false);
-    }
-  };
+   const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+     if (password !== confirmPassword) {
+       return;
+     }
+     setLoading(true);
+     try {
+       const result = await api.register(name, email, password, 'user');
+       localStorage.setItem('token', result.token);
+       setUser({
+         id: result.user.id,
+         name: result.user.name,
+         email: result.user.email,
+         role: result.user.role as 'user' | 'validator' | 'admin',
+       });
+       window.location.href = '/role-select';
+     } catch {
+       // Registration failed
+     } finally {
+       setLoading(false);
+     }
+   };
 
   const handleGoogleRegister = () => {
     window.location.href = 'http://localhost:3001/api/v1/auth/google/login';

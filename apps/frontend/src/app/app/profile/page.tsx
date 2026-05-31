@@ -4,7 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { Avatar } from '../../../components/ui/Avatar';
-import { User, Mail, Building2, Calendar, Edit3 } from 'lucide-react';
+import { Mail, Building2, Calendar, Edit3 } from 'lucide-react';
 import { useAppStore } from '../../../store/appStore';
 
 export default function ProfilePage() {

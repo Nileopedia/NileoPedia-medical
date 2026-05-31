@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Avatar } from '../../../components/ui/Avatar';
 import { User, Mail, BadgeCheck } from 'lucide-react';
 import { useAppStore } from '../../../store/appStore';

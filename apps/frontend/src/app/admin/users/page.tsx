@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Button } from '../../../components/ui/Button';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { User } from '../../../types';
 

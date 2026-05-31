@@ -1,4 +1,4 @@
-import { Query, AIResponse } from '../types';
+import { Query, AIResponse, User } from '../types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
 
@@ -41,18 +41,18 @@ class ApiClient {
     return this.request(`/questions/${questionId}`);
   }
 
-  async getHistory(): Promise<Query[]> {
+  async getHistory(): Promise<Array<{ id: string; questionText: string; category?: string; aiResponse?: { status?: string }; status?: string; createdAt: string; updatedAt: string; userId: string }>> {
     return this.request('/questions/history');
   }
 
-  async login(email: string, password: string): Promise<{ token: string; user: { id: string; name: string; email: string; role: string } }> {
+  async login(email: string, password: string): Promise<{ token: string; user: User }> {
     return this.request('/auth/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
     });
   }
 
-  async register(name: string, email: string, password: string, role: string): Promise<{ token: string; user: any }> {
+  async register(name: string, email: string, password: string, role: string): Promise<{ token: string; user: User }> {
     return this.request('/auth/register', {
       method: 'POST',
       body: JSON.stringify({ name, email, password, role }),
@@ -66,7 +66,7 @@ class ApiClient {
     });
   }
 
-  async verifyOtp(email: string, otp: string): Promise<{ token: string; user: any }> {
+  async verifyOtp(email: string, otp: string): Promise<{ token: string; user: User }> {
     return this.request('/auth/verify-otp', {
       method: 'POST',
       body: JSON.stringify({ email, otp }),

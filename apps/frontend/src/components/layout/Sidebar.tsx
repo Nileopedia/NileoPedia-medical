@@ -21,7 +21,6 @@ import {
   User,
   LogOut,
   Bot,
-  Bell,
 } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
 import { useAppStore } from '../../store/appStore';

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Badge } from '../../../components/ui/Badge';
 import { Bell, CheckCircle, AlertCircle, FileText } from 'lucide-react';
 import { Activity } from '../../../types';

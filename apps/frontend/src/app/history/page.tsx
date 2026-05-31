@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
+import { Card, CardHeader, CardContent } from '../../components/ui/Card';
 import { Search } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Query } from '../../types';
@@ -11,35 +11,32 @@ import { AppLayout } from '../../components/layout/AppLayout';
 export default function HistoryPage() {
   const [search, setSearch] = useState('');
   const [queries, setQueries] = useState<Query[]>([]);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchHistory = async () => {
       try {
         const data = await api.getHistory();
-        const formatted: Query[] = data.map((q: any) => ({
+        const formatted: Query[] = data.map((q) => ({
           id: q.id,
           question: q.questionText,
           category: q.category || 'General',
-          status: q.aiResponse?.status || q.status || 'pending',
+          status: (q.aiResponse?.status || q.status || 'pending') as 'pending' | 'approved' | 'rejected' | 'in_review',
           createdAt: new Date(q.createdAt).toLocaleDateString(),
           updatedAt: new Date(q.updatedAt).toLocaleDateString(),
           userId: q.userId,
         }));
         setQueries(formatted);
-      } catch (err) {
+      } catch {
         setQueries([
           { id: '1', question: 'What are the latest guidelines for AF management?', category: 'Cardiology', status: 'approved', createdAt: '2 min ago', updatedAt: '2 min ago', userId: '1' },
           { id: '2', question: 'How to manage acute asthma in children?', category: 'Pediatrics', status: 'pending', createdAt: '15 min ago', updatedAt: '15 min ago', userId: '1' },
         ]);
-      } finally {
-        setLoading(false);
       }
     };
     fetchHistory();
   }, []);
 
-  const filteredQueries = queries.filter(q => 
+  const filteredQueries = queries.filter(q =>
     q.question.toLowerCase().includes(search.toLowerCase()) ||
     q.category.toLowerCase().includes(search.toLowerCase())
   );
@@ -82,8 +79,8 @@ export default function HistoryPage() {
                     <td className="py-3 text-slate-500 dark:text-slate-400">{query.category}</td>
                     <td className="py-3">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                        query.status === 'approved' ? 'bg-emerald-100 text-emerald-700' : 
-                        query.status === 'pending' ? 'bg-amber-100 text-amber-700' : 
+                        query.status === 'approved' ? 'bg-emerald-100 text-emerald-700' :
+                        query.status === 'pending' ? 'bg-amber-100 text-amber-700' :
                         'bg-slate-100 text-slate-700'
                       }`}>
                         {query.status}
