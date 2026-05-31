@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
-import { useAppStore } from './store/appStore';
+import { useAppStore } from '../store/appStore';
 
 const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/verify'];
 

@@ -1,19 +1,19 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Send, Loader2 } from 'lucide-react';
+import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
 
 export default function AskPage() {
-  const [question, setQuestion] = React.useState('');
-  const [loading, setLoading] = React.useState(false);
-  const [response, setResponse] = React.useState<AIResponse | null>(null);
-  const [error, setError] = React.useState<string | null>(null);
+  const [question, setQuestion] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [response, setResponse] = useState<AIResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,18 +45,16 @@ export default function AskPage() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Ask AI</h1>
-        <p className="text-slate-600 dark:text-slate-400 mb-6">Submit your medical question for AI-powered evidence-based response</p>
-      </motion.div>
+    <AppLayout>
+      <div className="max-w-4xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Ask AI</h1>
+          <p className="text-slate-600 dark:text-slate-400 mb-6">Submit your medical question for AI-powered evidence-based response</p>
+        </motion.div>
 
-      <div className="space-y-6">
-        <Card>
-          <CardHeader>
-            <CardTitle>New Question</CardTitle>
-          </CardHeader>
-          <CardContent>
+        <div className="space-y-6">
+          <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+            <h2 className="text-lg font-semibold text-slate-900 mb-4">New Question</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -84,34 +82,26 @@ export default function AskPage() {
                 )}
               </Button>
             </form>
-          </CardContent>
-        </Card>
+          </div>
 
-        {response && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <Card>
-              <CardHeader>
-                <CardTitle>AI Response</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div className="prose dark:prose-invert max-w-none">
-                  <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
+          {response && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+                <h2 className="text-lg font-semibold text-slate-900 mb-4">AI Response</h2>
+                <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
+              </div>
+            </motion.div>
+          )}
 
-        {error && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <Card>
-              <CardContent>
+          {error && (
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+              <div className="bg-white rounded-xl border border-red-200 p-4">
                 <p className="text-red-600 dark:text-red-400">{error}</p>
-              </CardContent>
-            </Card>
-          </motion.div>
-        )}
+              </div>
+            </motion.div>
+          )}
+        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }

@@ -5,29 +5,27 @@ import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Badge } from '../../../components/ui/Badge';
 import { Users } from 'lucide-react';
+import { AppLayout } from '../../../components/layout/AppLayout';
 
 const validators = [
   { id: '1', name: 'Dr. Emily Davis', email: 'emily@nileopedia.com', status: 'active', reviews: 42, accuracy: '98%' },
   { id: '2', name: 'Dr. Michael Chen', email: 'michael@nileopedia.com', status: 'active', reviews: 38, accuracy: '96%' },
-  { id: '3', name: 'Dr. Sarah Wilson', email: 'sarah.wilson@nileopedia.com', status: 'inactive', reviews: 25, accuracy: '94%' },
 ];
 
 export default function AdminValidatorsPage() {
   return (
-    <div className="space-y-6">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Validators</h1>
-        <p className="text-slate-600 dark:text-slate-400">Manage medical validators</p>
-      </motion.div>
+    <AppLayout>
+      <div className="space-y-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Validators</h1>
+          <p className="text-slate-600 dark:text-slate-400">Manage medical validators</p>
+        </motion.div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 mb-4">
             <Users size={20} className="text-blue-600" />
             Validator Management
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+          </h2>
           <table className="w-full">
             <thead>
               <tr className="border-b border-slate-200 dark:border-slate-700">
@@ -54,8 +52,8 @@ export default function AdminValidatorsPage() {
               ))}
             </tbody>
           </table>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </AppLayout>
   );
 }

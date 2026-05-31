@@ -1,15 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
 import { TextArea } from '../../../components/ui/Input';
 import { Send } from 'lucide-react';
+import { AppLayout } from '../../../components/layout/AppLayout';
 
 export default function ValidatorFeedbackPage() {
-  const [feedback, setFeedback] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const [feedback, setFeedback] = React.useState('');
+  const [submitted, setSubmitted] = React.useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,17 +19,15 @@ export default function ValidatorFeedbackPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Feedback Reports</h1>
-        <p className="text-slate-600 dark:text-slate-400">Submit feedback on validated responses</p>
-      </motion.div>
+    <AppLayout>
+      <div className="space-y-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Feedback Reports</h1>
+          <p className="text-slate-600 dark:text-slate-400">Submit feedback on validated responses</p>
+        </motion.div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Submit Feedback</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-slate-900 mb-4">Submit Feedback</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
               <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
@@ -46,8 +45,8 @@ export default function ValidatorFeedbackPage() {
               {submitted ? 'Feedback Sent!' : 'Submit Feedback'}
             </Button>
           </form>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </AppLayout>
   );
 }

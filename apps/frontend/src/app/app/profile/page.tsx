@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { AppLayout } from '../../../components/layout/AppLayout';
 import { Avatar } from '../../../components/ui/Avatar';
 import { User, Mail, Building2, Calendar, Edit3 } from 'lucide-react';
 import { useAppStore } from '../../../store/appStore';
@@ -11,17 +11,15 @@ export default function ProfilePage() {
   const { user } = useAppStore();
 
   return (
-    <div className="space-y-6">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Profile</h1>
-        <p className="text-slate-600 dark:text-slate-400">Manage your account settings</p>
-      </motion.div>
+    <AppLayout>
+      <div className="space-y-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Profile</h1>
+          <p className="text-slate-600 dark:text-slate-400">Manage your account settings</p>
+        </motion.div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-slate-900 mb-4">Personal Information</h2>
           <div className="flex items-center gap-6 mb-6">
             <Avatar name={user?.name || 'User'} size="lg" />
             <div>
@@ -49,8 +47,8 @@ export default function ProfilePage() {
             <Edit3 size={16} />
             Edit Profile
           </button>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </AppLayout>
   );
 }

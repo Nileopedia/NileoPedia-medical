@@ -6,22 +6,21 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui
 import { Avatar } from '../../../components/ui/Avatar';
 import { User, Mail, BadgeCheck } from 'lucide-react';
 import { useAppStore } from '../../../store/appStore';
+import { AppLayout } from '../../../components/layout/AppLayout';
 
 export default function ValidatorProfilePage() {
   const { user } = useAppStore();
 
   return (
-    <div className="space-y-6">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Profile</h1>
-        <p className="text-slate-600 dark:text-slate-400">Your validator account information</p>
-      </motion.div>
+    <AppLayout>
+      <div className="space-y-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Profile</h1>
+          <p className="text-slate-600 dark:text-slate-400">Your validator account information</p>
+        </motion.div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-        </CardHeader>
-        <CardContent>
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-slate-900 mb-4">Personal Information</h2>
           <div className="flex items-center gap-6 mb-6">
             <Avatar name={user?.name || 'Validator'} size="lg" />
             <div>
@@ -43,8 +42,8 @@ export default function ValidatorProfilePage() {
               <span className="text-slate-700 dark:text-slate-300">Medical Professional</span>
             </div>
           </div>
-        </CardContent>
-      </Card>
-    </div>
+        </div>
+      </div>
+    </AppLayout>
   );
 }

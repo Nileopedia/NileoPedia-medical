@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Button } from '../../../components/ui/Button';
 import { Bell, Shield, Save } from 'lucide-react';
+import { AppLayout } from '../../../components/layout/AppLayout';
 
 export default function ValidatorSettingsPage() {
   const [settings, setSettings] = useState({
@@ -18,20 +19,18 @@ export default function ValidatorSettingsPage() {
   };
 
   return (
-    <div className="space-y-6">
-      <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Settings</h1>
-        <p className="text-slate-600 dark:text-slate-400">Customize your validator preferences</p>
-      </motion.div>
+    <AppLayout>
+      <div className="space-y-6">
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Settings</h1>
+          <p className="text-slate-600 dark:text-slate-400">Customize your validator preferences</p>
+        </motion.div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 mb-4">
             <Bell size={20} className="text-blue-600" />
             Notifications
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+          </h2>
           <div className="space-y-4">
             <label className="flex items-center justify-between">
               <span className="text-slate-700 dark:text-slate-300">Email notifications</span>
@@ -52,17 +51,13 @@ export default function ValidatorSettingsPage() {
               />
             </label>
           </div>
-        </CardContent>
-      </Card>
+        </div>
 
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
+        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 mb-4">
             <Shield size={20} className="text-blue-600" />
             Review Preferences
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
+          </h2>
           <label className="flex items-center justify-between">
             <span className="text-slate-700 dark:text-slate-300">Auto-assign reviews</span>
             <input
@@ -72,15 +67,15 @@ export default function ValidatorSettingsPage() {
               className="w-5 h-5 rounded border-slate-300 text-blue-600 focus:ring-blue-500"
             />
           </label>
-        </CardContent>
-      </Card>
+        </div>
 
-      <div className="flex justify-end">
-        <Button onClick={handleSave} className="gap-2">
-          <Save size={16} />
-          Save Settings
-        </Button>
+        <div className="flex justify-end">
+          <Button onClick={handleSave} className="gap-2">
+            <Save size={16} />
+            Save Settings
+          </Button>
+        </div>
       </div>
-    </div>
+    </AppLayout>
   );
 }
