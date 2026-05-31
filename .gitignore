@@ -1,5 +1,6 @@
-node_modules
 venv/
-.env
-*.pyc
+.venv/
 __pycache__/
+*.pyc
+.turbo/
+node_modules/
