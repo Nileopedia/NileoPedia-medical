@@ -1,19 +1,27 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, BookOpen, Shield, Brain, CheckCircle } from 'lucide-react';
 import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const setUser = useAppStore((state) => state.setUser);
+
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -23,13 +31,13 @@ export default function Login() {
     try {
       const result = await api.login(email, password);
       localStorage.setItem('token', result.token);
-      setUser({
-        id: result.user.id,
-        name: result.user.name,
-        email: result.user.email,
-        role: result.user.role as 'user' | 'validator' | 'admin',
-      });
-      window.location.href = '/role-select';
+      if (result.refreshToken) {
+        localStorage.setItem('refreshToken', result.refreshToken);
+      }
+      setUser(result.user);
+      const destination =
+        result.user.role === 'admin' ? '/admin' : result.user.role === 'validator' ? '/validator' : '/app';
+      router.push(destination);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed');
     } finally {
@@ -40,6 +48,8 @@ export default function Login() {
   const handleGoogleLogin = () => {
     window.location.href = 'http://localhost:3001/api/v1/auth/google/login';
   };
+
+  if (!mounted) return null;
 
   return (
     <div className="min-h-screen flex">
@@ -116,12 +126,12 @@ export default function Login() {
                 <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 font-medium">Forgot Password?</Link>
               </div>
             </div>
-<button type="submit" disabled={loading} className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
-               {loading ? 'Signing in...' : 'Sign In'}
-             </button>
-             {error && (
-               <p className="text-sm text-red-600 text-center">{error}</p>
-             )}
+            <button type="submit" disabled={loading} className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
+              {loading ? 'Signing in...' : 'Sign In'}
+            </button>
+            {error && (
+              <p className="text-sm text-red-600 text-center">{error}</p>
+            )}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-slate-200" />

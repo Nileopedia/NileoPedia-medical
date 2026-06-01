@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Providers } from "../components/Providers";
+import { AuthGuard } from "../components/AuthGuard";
 
 export const metadata: Metadata = {
   title: "NileoPedia",
@@ -16,7 +17,7 @@ export default function RootLayout({
     <html lang="en">
       <body className="min-h-screen flex flex-col">
         <Providers>
-          {children}
+          <AuthGuard>{children}</AuthGuard>
         </Providers>
       </body>
     </html>

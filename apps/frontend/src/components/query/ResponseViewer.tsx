@@ -1,98 +1,133 @@
+'use client';
+
 import React from 'react';
-import { Card, CardContent } from '../ui/Card';
-import { AIResponse } from '../../types';
-import { ValidationBadge } from './ValidationBadge';
-import { Bot, Clock, Target, FileText } from 'lucide-react';
+import { AIResponse } from '../../types'; // Assuming types.ts exists and defines AIResponse
+import { motion } from 'framer-motion';
+import { CheckCircle, XCircle, Info, ExternalLink } from 'lucide-react';
 
 interface ResponseViewerProps {
   response: AIResponse;
 }
 
 export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
+  if (!response) {
+    return null;
+  }
+
+  const getConfidenceColor = (score: number) => {
+    if (score >= 0.9) return 'text-green-600';
+    if (score >= 0.7) return 'text-lime-600';
+    if (score >= 0.5) return 'text-amber-600';
+    return 'text-red-600';
+  };
+
+  const renderStatus = () => {
+    if (response.status === 'pending') {
+      return (
+        <div className="flex items-center text-blue-500">
+          <Info size={18} className="mr-2" />
+          <span>Processing...</span>
+        </div>
+      );
+    } else if (response.status === 'completed') {
+      return (
+        <div className="flex items-center text-green-500">
+          <CheckCircle size={18} className="mr-2" />
+          <span>Completed</span>
+        </div>
+      );
+    } else if (response.status === 'failed') {
+      return (
+        <div className="flex items-center text-red-500">
+          <XCircle size={18} className="mr-2" />
+          <span>Failed</span>
+        </div>
+      );
+    }
+    return null;
+  };
+
   return (
-    <div className="space-y-6">
-      {/* Metadata bar */}
-      <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 bg-slate-50 dark:bg-slate-800/50 px-4 py-3 rounded-lg border border-slate-200 dark:border-slate-700">
-        <div className="flex items-center gap-1.5">
-          <Bot size={14} className="text-blue-600 dark:text-blue-400" />
-          <span className="font-medium text-slate-700 dark:text-slate-300">AI Generated</span>
-        </div>
-        <span className="text-slate-300 dark:text-slate-600">|</span>
-        <span>{response.model}</span>
-        <span className="text-slate-300 dark:text-slate-600">|</span>
-        <span>Confidence Score: <span className="font-medium text-emerald-600 dark:text-emerald-400">{response.confidenceScore}%</span></span>
-        <span className="text-slate-300 dark:text-slate-600">|</span>
-        <div className="flex items-center gap-1.5">
-          <Clock size={14} className="text-slate-400 dark:text-slate-500" />
-          <span>Generated: {response.generatedAt}</span>
-        </div>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white dark:bg-slate-800 shadow-lg rounded-lg p-6 border border-slate-200 dark:border-slate-700"
+    >
+      <div className="flex justify-between items-center mb-4">
+        <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">{response.title}</h2>
+        {renderStatus()}
       </div>
 
-      {/* Summary */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-2 mb-3">
-            <Target size={18} className="text-blue-600 dark:text-blue-400" />
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50">Summary</h3>
-          </div>
-          <p className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4">{response.summary}</p>
-          <ol className="list-decimal list-inside space-y-2 text-slate-700 dark:text-slate-300">
+      {response.status === 'pending' && (
+        <div className="text-slate-600 dark:text-slate-400">
+          <p>{response.summary}</p>
+          <ul className="list-disc list-inside mt-2">
             {response.keyFindings.map((finding, index) => (
-              <li key={index} className="leading-relaxed">{finding}</li>
+              <li key={index}>{finding}</li>
             ))}
-          </ol>
-          <p className="text-sm text-slate-500 dark:text-slate-400 mt-4">
-            These recommendations are supported by latest guidelines from ADA 2024, EASD 2023, and IDF 2023.
-          </p>
-        </CardContent>
-      </Card>
-
-      {/* Detailed Explanation */}
-      <Card>
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-2 mb-3">
-            <FileText size={18} className="text-blue-600 dark:text-blue-400" />
-            <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50">Detailed Explanation</h3>
-          </div>
-          <div className="prose prose-slate dark:prose-invert max-w-none">
-            {response.detailedExplanation.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="text-slate-700 dark:text-slate-300 leading-relaxed mb-4 last:mb-0">
-                {paragraph.split('\n').map((line, lineIndex) => (
-                  <span key={lineIndex}>
-                    {line}
-                    {lineIndex < paragraph.split('\n').length - 1 && <br />}
-                  </span>
-                ))}
-              </p>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
-
-      {/* Status bar */}
-      <div className="bg-slate-50 dark:bg-slate-800/50 border border-slate-200 dark:border-slate-700 rounded-lg p-4 flex flex-wrap items-center justify-between gap-4">
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center gap-2">
-            <span className="text-sm text-slate-600 dark:text-slate-400">Status:</span>
-            <ValidationBadge status={response.status} />
-          </div>
-          {response.assignedTo && (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-slate-600 dark:text-slate-400">Assigned to:</span>
-              <span className="text-sm font-medium text-slate-900 dark:text-slate-100">{response.assignedTo}</span>
-            </div>
-          )}
-          {response.dueDate && (
-            <div className="flex items-center gap-2">
-              <span className="text-sm text-slate-600 dark:text-slate-400">Due:</span>
-              <span className="text-sm font-medium text-slate-900 dark:text-slate-100">{response.dueDate}</span>
-            </div>
-          )}
+          </ul>
         </div>
-        <button className="px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition-colors">
-          View in Review Queue
-        </button>
-      </div>
-    </div>
+      )}
+
+      {response.status === 'completed' && (
+        <>
+          <div className="mb-4">
+            <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Summary</h3>
+            <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{response.summary}</p>
+          </div>
+
+          {response.keyFindings && response.keyFindings.length > 0 && (
+            <div className="mb-4">
+              <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Key Findings</h3>
+              <ul className="list-disc list-inside text-slate-700 dark:text-slate-300 space-y-1">
+                {response.keyFindings.map((finding, index) => (
+                  <li key={index}>{finding}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          {response.detailedExplanation && (
+            <div className="mb-4">
+              <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Detailed Explanation</h3>
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed">{response.detailedExplanation}</p>
+            </div>
+          )}
+
+          {response.citations && response.citations.length > 0 && (
+            <div className="mb-4">
+              <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Citations</h3>
+              <ul className="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-1">
+                {response.citations.map((citation, index) => (
+                  <li key={index}>
+                    {citation.text}
+                    {citation.url && (
+                      <a href={citation.url} target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-500 hover:underline">
+                        <ExternalLink size={14} className="inline-block ml-1" />
+                      </a>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+
+          <div className="flex items-center text-sm text-slate-600 dark:text-slate-400 mt-4">
+            <span className="mr-2">Confidence Score:</span>
+            <span className={`font-semibold ${getConfidenceColor(response.confidenceScore)}`}>
+              {(response.confidenceScore * 100).toFixed(0)}%
+            </span>
+            <span className="ml-4">Model: {response.model}</span>
+            <span className="ml-4">Generated At: {new Date(response.generatedAt).toLocaleString()}</span>
+          </div>
+        </>
+      )}
+
+      {response.status === 'failed' && (
+        <div className="text-red-600 dark:text-red-400">
+          <p>Failed to generate a response. Please try again later.</p>
+        </div>
+      )}
+    </motion.div>
   );
 };
