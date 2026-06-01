@@ -44,7 +44,7 @@ seed();
 cd ../..
 
 echo "Services ready. To start AI service and backend, run:"
-echo "  docker-compose up -d ai-service backend
+echo "  docker-compose up -d ai-service backend"
 
 # To test endpoints after setting OPENAI_API_KEY:
 # curl -X POST http://localhost:8000/ingest -d '{\"title\":\"WHO Hypertension Guidelines 2025\",\"content\":\"<medical content>\"}'
