@@ -1,9 +1,8 @@
 'use client';
 
 import React from 'react';
-import { AIResponse } from '../../types'; // Assuming types.ts exists and defines AIResponse
-import { motion } from 'framer-motion';
-import { CheckCircle, XCircle, Info, ExternalLink } from 'lucide-react';
+import { AIResponse } from '../../types';
+import { CheckCircle, Info } from 'lucide-react';
 
 interface ResponseViewerProps {
   response: AIResponse;
@@ -22,25 +21,18 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
   };
 
   const renderStatus = () => {
-    if (response.status === 'pending') {
+    if (response.status === 'pending' || response.status === 'in_review') {
       return (
         <div className="flex items-center text-blue-500">
           <Info size={18} className="mr-2" />
           <span>Processing...</span>
         </div>
       );
-    } else if (response.status === 'completed') {
+    } else if (response.status === 'approved') {
       return (
         <div className="flex items-center text-green-500">
           <CheckCircle size={18} className="mr-2" />
-          <span>Completed</span>
-        </div>
-      );
-    } else if (response.status === 'failed') {
-      return (
-        <div className="flex items-center text-red-500">
-          <XCircle size={18} className="mr-2" />
-          <span>Failed</span>
+          <span>Approved</span>
         </div>
       );
     }
@@ -48,28 +40,13 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-white dark:bg-slate-800 shadow-lg rounded-lg p-6 border border-slate-200 dark:border-slate-700"
-    >
+    <div className="bg-white dark:bg-slate-800 shadow-lg rounded-lg p-6 border border-slate-200 dark:border-slate-700">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">{response.title}</h2>
         {renderStatus()}
       </div>
 
-      {response.status === 'pending' && (
-        <div className="text-slate-600 dark:text-slate-400">
-          <p>{response.summary}</p>
-          <ul className="list-disc list-inside mt-2">
-            {response.keyFindings.map((finding, index) => (
-              <li key={index}>{finding}</li>
-            ))}
-          </ul>
-        </div>
-      )}
-
-      {response.status === 'completed' && (
+      {response.status === 'pending' || response.status === 'approved' || response.status === 'rejected' || response.status === 'in_review' ? (
         <>
           <div className="mb-4">
             <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Summary</h3>
@@ -100,12 +77,8 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
               <ul className="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-1">
                 {response.citations.map((citation, index) => (
                   <li key={index}>
-                    {citation.text}
-                    {citation.url && (
-                      <a href={citation.url} target="_blank" rel="noopener noreferrer" className="ml-2 text-blue-500 hover:underline">
-                        <ExternalLink size={14} className="inline-block ml-1" />
-                      </a>
-                    )}
+                    <span className="font-medium">{citation.title}</span>
+                    {citation.journal && <span className="text-sm text-slate-500 ml-1">({citation.journal})</span>}
                   </li>
                 ))}
               </ul>
@@ -121,13 +94,7 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
             <span className="ml-4">Generated At: {new Date(response.generatedAt).toLocaleString()}</span>
           </div>
         </>
-      )}
-
-      {response.status === 'failed' && (
-        <div className="text-red-600 dark:text-red-400">
-          <p>Failed to generate a response. Please try again later.</p>
-        </div>
-      )}
-    </motion.div>
+      ) : null}
+    </div>
   );
 };

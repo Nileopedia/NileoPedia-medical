@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { Card, CardHeader, CardContent } from '../../components/ui/Card';
 import { Search } from 'lucide-react';
 import { api } from '../../lib/api';
@@ -18,9 +17,9 @@ export default function HistoryPage() {
         const data = await api.getHistory();
         const formatted: Query[] = data.map((q) => ({
           id: q.id,
-          question: q.questionText,
+          question: q.question,
           category: q.category || 'General',
-          status: (q.aiResponse?.status || q.status || 'pending') as 'pending' | 'approved' | 'rejected' | 'in_review',
+          status: (q.status || 'pending') as 'pending' | 'approved' | 'rejected' | 'in_review',
           createdAt: new Date(q.createdAt).toLocaleDateString(),
           updatedAt: new Date(q.updatedAt).toLocaleDateString(),
           userId: q.userId,
@@ -44,10 +43,10 @@ export default function HistoryPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Query History</h1>
           <p className="text-slate-600 dark:text-slate-400">View all your previous medical queries</p>
-        </motion.div>
+        </div>
 
         <Card>
           <CardHeader>

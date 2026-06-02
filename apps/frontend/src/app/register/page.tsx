@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
 import { BookOpen, UserPlus, Mail, Lock, Building2, Stethoscope, ShieldCheck } from 'lucide-react';
 import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
@@ -13,7 +12,6 @@ type RegisterRole = 'MEDICAL_USER' | 'VALIDATOR' | 'ADMIN';
 export default function RegisterPage() {
   const router = useRouter();
   const setUser = useAppStore((state) => state.setUser);
-  const [mounted, setMounted] = useState(false);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -22,10 +20,6 @@ export default function RegisterPage() {
   const [specialization, setSpecialization] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,16 +43,9 @@ export default function RegisterPage() {
     }
   };
 
-  if (!mounted) return null;
-
   return (
     <div className="min-h-screen flex bg-slate-50">
-      <motion.div
-        initial={{ opacity: 0, x: -30 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.6 }}
-        className="hidden lg:flex lg:w-1/2 bg-slate-900 p-12 flex-col justify-between relative overflow-hidden"
-      >
+      <div className="hidden lg:flex lg:w-1/2 bg-slate-900 p-12 flex-col justify-between relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-20 left-20 w-64 h-64 bg-blue-500 rounded-full blur-3xl" />
           <div className="absolute bottom-20 right-20 w-96 h-96 bg-emerald-400 rounded-full blur-3xl" />
@@ -98,7 +85,7 @@ export default function RegisterPage() {
         <div className="relative z-10">
           <p className="text-slate-400 text-sm">© 2025 NileoPedia. All rights reserved.</p>
         </div>
-      </motion.div>
+      </div>
 
       <div className="flex-1 flex items-center justify-center p-8 bg-white">
         <div className="w-full max-w-md">

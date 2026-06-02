@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { BookOpen, Search, Shield, FileText, Lock, Users } from 'lucide-react';
+import { BookOpen, Search, FileText, Lock, Users } from 'lucide-react';
 
 export default function Home() {
   return (
