@@ -17,8 +17,8 @@ services:
     environment:
       - NODE_ENV=production
       - NEXT_PUBLIC_API_URL=http://localhost/api
-    expose:
-      - "3000"
+    ports:
+      - "3000:3000"
 
   backend:
     build:
@@ -31,8 +31,8 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - AI_SERVICE_URL=http://ai-service:8000
-    expose:
-      - "3001"
+    ports:
+      - "3001:3001"
     depends_on:
       - postgres
       - redis
@@ -67,8 +67,8 @@ services:
       - ELASTICSEARCH_URL=https://my-elasticsearch-project-dfcb85.es.us-east-1.aws.elastic.cloud:443
       - ELASTICSEARCH_API_KEY=RVdOWmQ1NEJXS3dGVUxyWkc2RUY6TVJuLTktbG1MYjFXYXhPTHdlcUxLUQ==
       - REDIS_URL=redis://redis:6379
-    expose:
-      - "8000"
+    ports:
+      - "8000:8000"
     depends_on:
       - postgres
       - redis
