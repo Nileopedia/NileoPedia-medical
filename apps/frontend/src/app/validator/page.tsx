@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { mockReviewQueue } from '../../data/mockData';
@@ -14,10 +13,8 @@ export default function ValidatorPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Pending Reviews</h1>
-          <p className="text-slate-600 dark:text-slate-400">Review AI-generated responses awaiting validation</p>
-        </motion.div>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Pending Reviews</h1>
+        <p className="text-slate-600 dark:text-slate-400">Review AI-generated responses awaiting validation</p>
 
         <div className="grid gap-4">
           {reviewQueue.map((item) => (
@@ -32,11 +29,9 @@ export default function ValidatorPage() {
                     {item.priority} priority
                   </span>
                 </div>
-                
                 <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
                   <span>Due: {item.dueDate}</span>
                 </div>
-                
                 <div className="flex gap-2">
                   <Button variant="success" size="sm">
                     <Check size={16} className="mr-1" />

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect } from 'react';
-import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Bookmark } from 'lucide-react';
 import { api } from '../../lib/api';
@@ -33,10 +32,8 @@ export default function SavedPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Saved Responses</h1>
-          <p className="text-slate-600 dark:text-slate-400">Your bookmarked medical responses</p>
-        </motion.div>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Saved Responses</h1>
+        <p className="text-slate-600 dark:text-slate-400">Your bookmarked medical responses</p>
 
         <Card>
           <CardHeader>

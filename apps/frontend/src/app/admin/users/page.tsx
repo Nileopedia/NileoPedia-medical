@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { User } from '../../../types';
 
@@ -19,10 +18,8 @@ export default function AdminUsersPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">User Management</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage platform users</p>
-        </motion.div>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">User Management</h1>
+        <p className="text-slate-600 dark:text-slate-400">Manage platform users</p>
 
         <div className="flex justify-end">
           <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
@@ -49,8 +46,8 @@ export default function AdminUsersPage() {
                   <td className="py-3 text-slate-600 dark:text-slate-400">{user.email}</td>
                   <td className="py-3 capitalize">
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                      user.role === 'admin' ? 'bg-blue-100 text-blue-700' : 
-                      user.role === 'validator' ? 'bg-amber-100 text-amber-700' : 
+                      user.role === 'admin' ? 'bg-blue-100 text-blue-700' :
+                      user.role === 'validator' ? 'bg-amber-100 text-amber-700' :
                       'bg-emerald-100 text-emerald-700'
                     }`}>
                       {user.role}

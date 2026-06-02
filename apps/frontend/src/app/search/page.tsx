@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Card, CardHeader, CardContent } from '../../components/ui/Card';
 import { Search as SearchIcon } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
@@ -28,10 +27,8 @@ export default function SearchPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Search</h1>
-          <p className="text-slate-600 dark:text-slate-400">Search medical literature and responses</p>
-        </motion.div>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Search</h1>
+        <p className="text-slate-600 dark:text-slate-400">Search medical literature and responses</p>
 
         <form onSubmit={handleSearch} className="relative">
           <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />

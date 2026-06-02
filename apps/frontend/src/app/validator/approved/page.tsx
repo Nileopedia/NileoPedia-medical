@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Badge } from '../../../components/ui/Badge';
 import { ClipboardCheck } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
@@ -23,10 +22,10 @@ export default function ValidatorApprovedPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Approved Responses</h1>
           <p className="text-slate-600 dark:text-slate-400">Previously validated responses</p>
-        </motion.div>
+        </div>
 
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
           <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 mb-4">

@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Send, Loader2 } from 'lucide-react';
@@ -18,7 +17,7 @@ export default function AskPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;
-    
+
     setLoading(true);
     setError(null);
     try {
@@ -47,10 +46,8 @@ export default function AskPage() {
   return (
     <AppLayout>
       <div className="max-w-4xl mx-auto">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Ask AI</h1>
-          <p className="text-slate-600 dark:text-slate-400 mb-6">Submit your medical question for AI-powered evidence-based response</p>
-        </motion.div>
+        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Ask AI</h1>
+        <p className="text-slate-600 dark:text-slate-400 mb-6">Submit your medical question for AI-powered evidence-based response</p>
 
         <div className="space-y-6">
           <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
@@ -85,20 +82,16 @@ export default function AskPage() {
           </div>
 
           {response && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-                <h2 className="text-lg font-semibold text-slate-900 mb-4">AI Response</h2>
-                <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
-              </div>
-            </motion.div>
+            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+              <h2 className="text-lg font-semibold text-slate-900 mb-4">AI Response</h2>
+              <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
+            </div>
           )}
 
           {error && (
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <div className="bg-white rounded-xl border border-red-200 p-4">
-                <p className="text-red-600 dark:text-red-400">{error}</p>
-              </div>
-            </motion.div>
+            <div className="bg-white rounded-xl border border-red-200 p-4">
+              <p className="text-red-600 dark:text-red-400">{error}</p>
+            </div>
           )}
         </div>
       </div>

@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
 import { Avatar } from '../../../components/ui/Avatar';
 import { User, Mail, BadgeCheck } from 'lucide-react';
 import { useAppStore } from '../../../store/appStore';
@@ -13,10 +12,10 @@ export default function ValidatorProfilePage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Profile</h1>
           <p className="text-slate-600 dark:text-slate-400">Your validator account information</p>
-        </motion.div>
+        </div>
 
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-900 mb-4">Personal Information</h2>
