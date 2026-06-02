@@ -1,11 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { Search as SearchIcon, Upload, FileText } from 'lucide-react';
+import { FileUpload, FilePreview } from '../../components/ui/FileUpload';
+import { Search as SearchIcon, FileText } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
+import { api } from '../../lib/api';
 
 interface Document {
   id: string;
@@ -16,42 +17,88 @@ interface Document {
   size: string;
 }
 
-const mockDocuments: Document[] = [
-  { id: '1', name: 'ADA_Standards_2024.pdf', type: 'Guideline', status: 'processed', uploadedAt: '2 days ago', size: '2.4 MB' },
-  { id: '2', name: 'EASD_Clinicall_Guidelines.pdf', type: 'Guideline', status: 'processing', uploadedAt: '1 hour ago', size: '1.8 MB' },
-];
-
 export default function DocumentsPage() {
   const [search, setSearch] = useState('');
-  const [documents] = useState<Document[]>(mockDocuments);
+  const [documents, setDocuments] = useState<Document[]>([]);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const [uploading, setUploading] = useState(false);
 
-  const filteredDocuments = documents.filter(d =>
-    d.name.toLowerCase().includes(search.toLowerCase())
-  );
+  const handleUpload = async () => {
+    if (selectedFiles.length === 0) return;
+    setUploading(true);
+    try {
+      for (const file of selectedFiles) {
+        await api.uploadDocument(file);
+        const newDoc: Document = {
+          id: Date.now().toString(),
+          name: file.name,
+          type: file.name.split('.').pop()?.toUpperCase() || 'PDF',
+          status: 'processing',
+          uploadedAt: 'Just now',
+          size: `${(file.size / 1024 / 1024).toFixed(2)} MB`,
+        };
+        setDocuments((prev) => [...prev, newDoc]);
+      }
+      setSelectedFiles([]);
+    } catch (err) {
+      console.error('Upload failed:', err);
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const handleFilesSelect = (files: File[]) => {
+    setSelectedFiles((prev) => [...prev, ...files]);
+  };
+
+  const removeFile = (index: number) => {
+    setSelectedFiles((prev) => prev.filter((_, i) => i !== index));
+  };
 
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Documents</h1>
           <p className="text-slate-600 dark:text-slate-400">Manage medical documents and knowledge base</p>
-        </motion.div>
+        </div>
 
-        <div className="flex gap-4">
-          <div className="relative flex-1">
-            <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input
-              type="text"
-              placeholder="Search documents..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-          <Button className="gap-2">
-            <Upload size={16} />
-            Upload Document
-          </Button>
+        {selectedFiles.length > 0 && (
+          <Card>
+            <CardHeader>
+              <CardTitle>Selected Files</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="space-y-3 mb-4">
+                {selectedFiles.map((file, index) => (
+                  <FilePreview key={index} file={file} onRemove={() => removeFile(index)} />
+                ))}
+              </div>
+              <Button onClick={handleUpload} loading={uploading} disabled={uploading} className="w-full">
+                Upload {selectedFiles.length} file{selectedFiles.length > 1 ? 's' : ''}
+              </Button>
+            </CardContent>
+          </Card>
+        )}
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Upload Document</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <FileUpload onUpload={handleFilesSelect} accept=".pdf,.doc,.docx,.txt" multiple />
+          </CardContent>
+        </Card>
+
+        <div className="relative flex-1">
+          <SearchIcon className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+          <input
+            type="text"
+            placeholder="Search documents..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         <Card>
@@ -60,7 +107,7 @@ export default function DocumentsPage() {
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
-              {filteredDocuments.map((doc) => (
+              {documents.map((doc) => (
                 <div key={doc.id} className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
@@ -73,8 +120,8 @@ export default function DocumentsPage() {
                   </div>
                   <div className="flex items-center gap-3">
                     <span className={`px-2 py-0.5 rounded text-xs font-medium ${
-                      doc.status === 'processed' ? 'bg-emerald-100 text-emerald-700' : 
-                      doc.status === 'processing' ? 'bg-amber-100 text-amber-700' : 
+                      doc.status === 'processed' ? 'bg-emerald-100 text-emerald-700' :
+                      doc.status === 'processing' ? 'bg-amber-100 text-amber-700' :
                       'bg-red-100 text-red-700'
                     }`}>
                       {doc.status}

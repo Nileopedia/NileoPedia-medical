@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { QueryInput } from '../../components/query/QueryInput';
 import { ResponseViewer } from '../../components/query/ResponseViewer';
@@ -102,18 +101,17 @@ export default function AppPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
+        <div>
           <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Welcome back, {user?.name?.split(' ')[0] || 'User'}</h1>
           <p className="text-slate-600 dark:text-slate-400">Ask medical questions and get evidence-based answers validated by experts</p>
-        </motion.div>
+        </div>
 
         {user?.role === 'admin' && (
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="bg-red-100 dark:bg-red-900 p-4 rounded-lg text-red-800 dark:text-red-200 border border-red-200 dark:border-red-700">
+          <div className="bg-red-100 dark:bg-red-900 p-4 rounded-lg text-red-800 dark:text-red-200 border border-red-200 dark:border-red-700">
             <p className="font-semibold">Admin Dashboard Access:</p>
             <p>As an administrator, you have elevated privileges. Access admin-specific tools and reports here.</p>
-            {/* Link to admin dashboard or specific admin features */}
             <Link href="/admin" className="text-red-600 hover:underline mt-2 block">Go to Admin Panel</Link>
-          </motion.div>
+          </div>
         )}
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

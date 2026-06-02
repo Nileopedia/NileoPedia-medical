@@ -320,6 +320,31 @@ class ApiClient {
 
     return history.filter((query) => savedIds.includes(query.id));
   }
+
+  async uploadDocument(file: File): Promise<{ documentId: string; status: string }> {
+    const formData = new FormData();
+    formData.append('document', file);
+    
+    const response = await fetch(`${API_BASE_URL}/documents`, {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${this.getAuthToken()}`,
+      },
+      body: formData,
+    });
+
+    const payload = await response.json();
+    if (!response.ok) {
+      throw new Error(payload.message || 'Upload failed');
+    }
+
+    return this.unwrap(payload);
+  }
+
+  async getNotifications(): Promise<Array<{ id: string; title: string; message: string; read: boolean; createdAt: string }>> {
+    const payload = await this.request<ApiEnvelope<Array<{ id: string; title: string; message: string; read: boolean; createdAt: string }>>>('/notifications');
+    return this.unwrap(payload);
+  }
 }
 
 export const api = new ApiClient();

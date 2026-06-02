@@ -1,7 +1,7 @@
 'use client';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { useSocket } from '../hooks/useSocket';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -18,11 +18,15 @@ interface ProvidersProps {
   children: React.ReactNode;
 }
 
+function SocketProvider({ children }: { children: React.ReactNode }) {
+  useSocket();
+  return <>{children}</>;
+}
+
 export function Providers({ children }: ProvidersProps) {
   return (
     <QueryClientProvider client={queryClient}>
-      {children}
-      <ReactQueryDevtools initialIsOpen={false} />
+      <SocketProvider>{children}</SocketProvider>
     </QueryClientProvider>
   );
 }

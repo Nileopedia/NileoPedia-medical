@@ -13,7 +13,11 @@
     "dev": "turbo run dev",
     "lint": "turbo run lint",
     "test": "turbo run test",
+    "mock-server": "node mock-server/server.cjs",
     "clean": "turbo run clean"
+  },
+  "dependencies": {
+    "socket.io": "^4.8.3"
   },
   "devDependencies": {
     "turbo": "^1.10.0"

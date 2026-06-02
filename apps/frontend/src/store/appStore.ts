@@ -1,6 +1,14 @@
 import { create } from 'zustand';
 import { User, Query, AIResponse, Activity } from '../types';
 
+interface Notification {
+  id: string;
+  title: string;
+  message: string;
+  read: boolean;
+  createdAt: string;
+}
+
 interface OtpState {
   needsOtp: boolean;
   email: string;
@@ -16,6 +24,7 @@ interface AppState {
   queries: Query[];
   responses: AIResponse[];
   activities: Activity[];
+  notifications: Notification[];
   initialize: () => void;
   setUser: (user: User | null) => void;
   setOtpState: (state: OtpState) => void;
@@ -23,6 +32,9 @@ interface AppState {
   toggleMobileNav: () => void;
   addQuery: (query: Query) => void;
   addResponse: (response: AIResponse) => void;
+  addNotification: (notification: Notification) => void;
+  markNotificationRead: (id: string) => void;
+  clearNotifications: () => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -34,6 +46,7 @@ export const useAppStore = create<AppState>((set) => ({
   queries: [],
   responses: [],
   activities: [],
+  notifications: [],
   initialize: () => {
     if (typeof window === 'undefined') return;
     const token = localStorage.getItem('token');
@@ -61,4 +74,15 @@ export const useAppStore = create<AppState>((set) => ({
   toggleMobileNav: () => set((state) => ({ isMobileNavOpen: !state.isMobileNavOpen })),
   addQuery: (query) => set((state) => ({ queries: [...state.queries, query] })),
   addResponse: (response) => set((state) => ({ responses: [...state.responses, response] })),
+  addNotification: (notification) =>
+    set((state) => ({
+      notifications: [notification, ...state.notifications],
+    })),
+  markNotificationRead: (id) =>
+    set((state) => ({
+      notifications: state.notifications.map((n) =>
+        n.id === id ? { ...n, read: true } : n
+      ),
+    })),
+  clearNotifications: () => set({ notifications: [] }),
 }));
