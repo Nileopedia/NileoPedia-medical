@@ -3,12 +3,14 @@ import { CONFIG } from '../../config/env';
 import prisma from '../../config/prisma';
 
 export class RetrievalService {
-  private pinecone: Pinecone;
-  private index: any;
+  private pinecone: Pinecone | null = null;
+  private index: any = null;
 
   constructor() {
-    this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
-    this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
+    if (CONFIG.PINECONE_API_KEY) {
+      this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
+      this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
+    }
   }
 
   async semanticSearch(query: string, topK = 10) {
