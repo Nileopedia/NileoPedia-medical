@@ -4,9 +4,11 @@ interface JwtPayload {
     email: string;
     role: string;
 }
-declare module 'express-serve-static-core' {
-    interface Request {
-        user?: JwtPayload;
+declare global {
+    namespace Express {
+        interface Request {
+            user?: JwtPayload;
+        }
     }
 }
 export declare const authenticate: (req: Request, res: Response, next: NextFunction) => Promise<Response<any, Record<string, any>> | undefined>;

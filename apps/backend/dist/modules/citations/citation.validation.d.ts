@@ -13,8 +13,8 @@ export declare const createCitationSchema: z.ZodObject<{
     pageNumber: z.ZodOptional<z.ZodNumber>;
     sectionTitle: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    title: string;
     aiResponseId: string;
+    title: string;
     source: string;
     authors?: string | undefined;
     publicationYear?: number | undefined;
@@ -26,8 +26,8 @@ export declare const createCitationSchema: z.ZodObject<{
     pageNumber?: number | undefined;
     sectionTitle?: string | undefined;
 }, {
-    title: string;
     aiResponseId: string;
+    title: string;
     source: string;
     authors?: string | undefined;
     publicationYear?: number | undefined;

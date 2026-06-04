@@ -2,7 +2,9 @@ import { Queue } from 'bullmq';
 import Redis from 'ioredis';
 import { CONFIG } from '../../config/env';
 
-const connection = new Redis(CONFIG.REDIS_URL as string);
+const connection = new Redis(CONFIG.REDIS_URL as string, {
+  maxRetriesPerRequest: null,
+});
 
 const createQueue = (name: string) => {
   return new Queue(name, { 

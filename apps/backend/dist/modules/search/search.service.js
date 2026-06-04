@@ -39,6 +39,9 @@ class SearchService {
         };
     }
     async semanticSearch(q, specialty, limit = 10) {
+        if (!this.retrievalService.pineconeClient) {
+            return [];
+        }
         const pineconeResults = await this.retrievalService.semanticSearch(q, limit);
         const results = [];
         for (const match of pineconeResults) {

@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.processEmail = processEmail;
+exports.processEmail = void 0;
 const nodemailer_1 = __importDefault(require("nodemailer"));
 const logger_1 = require("../../config/logger");
 const transporter = nodemailer_1.default.createTransport({
@@ -29,6 +29,7 @@ async function processEmail(job) {
         throw error;
     }
 }
+exports.processEmail = processEmail;
 async function renderTemplate(template, data) {
     const templates = {
         otp: `<p>Your verification code: <strong>${data.code}</strong></p>`,

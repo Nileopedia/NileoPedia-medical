@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.processAudit = processAudit;
+exports.processAudit = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const logger_1 = require("../../config/logger");
 async function processAudit(job) {
@@ -29,4 +29,5 @@ async function processAudit(job) {
         throw error;
     }
 }
+exports.processAudit = processAudit;
 //# sourceMappingURL=audit.processor.js.map

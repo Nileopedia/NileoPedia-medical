@@ -1,6 +1,5 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = authRoutes;
 const express_1 = require("express");
 const middleware_1 = require("../../../shared/middleware");
 const auth_validation_1 = require("../validators/auth.validation");
@@ -15,4 +14,5 @@ function authRoutes(authController) {
     router.get('/google/callback', authController.googleCallback);
     return router;
 }
+exports.default = authRoutes;
 //# sourceMappingURL=auth.routes.js.map

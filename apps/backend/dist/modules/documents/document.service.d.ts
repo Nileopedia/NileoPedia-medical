@@ -12,15 +12,15 @@ export declare class DocumentService {
             chunkText: string;
         }[];
     } & {
-        description: string | null;
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        title: string;
         source: string | null;
         publicationYear: number | null;
         documentType: string | null;
         specialty: string | null;
+        description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
@@ -30,15 +30,15 @@ export declare class DocumentService {
         isVerified: boolean;
     }) | null>;
     createDocument(data: CreateDocumentDto): Promise<{
-        description: string | null;
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        title: string;
         source: string | null;
         publicationYear: number | null;
         documentType: string | null;
         specialty: string | null;
+        description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
@@ -48,15 +48,15 @@ export declare class DocumentService {
         isVerified: boolean;
     }>;
     updateDocument(id: string, data: UpdateDocumentDto): Promise<{
-        description: string | null;
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        title: string;
         source: string | null;
         publicationYear: number | null;
         documentType: string | null;
         specialty: string | null;
+        description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
@@ -66,15 +66,15 @@ export declare class DocumentService {
         isVerified: boolean;
     }>;
     deleteDocument(id: string): Promise<{
-        description: string | null;
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        title: string;
         source: string | null;
         publicationYear: number | null;
         documentType: string | null;
         specialty: string | null;
+        description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
@@ -84,15 +84,15 @@ export declare class DocumentService {
         isVerified: boolean;
     }>;
     verifyDocument(id: string): Promise<{
-        description: string | null;
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        title: string;
         source: string | null;
         publicationYear: number | null;
         documentType: string | null;
         specialty: string | null;
+        description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
@@ -102,15 +102,15 @@ export declare class DocumentService {
         isVerified: boolean;
     }>;
     updateIngestionStatus(id: string, status: IngestionStatus): Promise<{
-        description: string | null;
-        title: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        title: string;
         source: string | null;
         publicationYear: number | null;
         documentType: string | null;
         specialty: string | null;
+        description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;

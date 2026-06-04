@@ -3,8 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.processNotification = processNotification;
-exports.processBulkNotifications = processBulkNotifications;
+exports.processBulkNotifications = exports.processNotification = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const logger_1 = require("../../config/logger");
 async function processNotification(job) {
@@ -27,6 +26,7 @@ async function processNotification(job) {
         throw error;
     }
 }
+exports.processNotification = processNotification;
 async function processBulkNotifications(jobs) {
     const count = await prisma_1.default.notification.createMany({
         data: jobs.map((job) => ({
@@ -39,4 +39,5 @@ async function processBulkNotifications(jobs) {
     });
     return { success: true, count: count.count };
 }
+exports.processBulkNotifications = processBulkNotifications;
 //# sourceMappingURL=notification.processor.js.map

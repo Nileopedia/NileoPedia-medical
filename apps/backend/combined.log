@@ -1,0 +1,25 @@
+2026-06-04T20:08:07.308Z [nileopedia-backend] info: GET / - ::1
+2026-06-04T20:08:24.883Z [nileopedia-backend] info: GET /api/v1/auth/login - ::1
+2026-06-04T20:08:59.973Z [nileopedia-backend] info: GET /health - ::1
+2026-06-04T20:40:32.971Z [nileopedia-backend] info: GET /health - ::1
+2026-06-04T20:46:32.062Z [nileopedia-backend] info: GET /health - ::1
+2026-06-04T20:46:32.122Z [nileopedia-backend] info: GET /api/v1/questions - ::1
+2026-06-04T20:47:00.052Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-04T20:47:00.096Z [nileopedia-backend] error: Error in register controller: Cannot read properties of undefined (reading 'authService')
+2026-06-04T20:53:04.863Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-04T20:53:22.155Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-04T20:55:06.860Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-04T20:57:05.488Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-04T21:05:06.941Z [nileopedia-backend] info: GET /health - ::1
+2026-06-04T21:05:07.018Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-04T21:09:58.120Z [nileopedia-backend] info: Schedulers initialized
+2026-06-04T21:09:58.318Z [nileopedia-backend] info: Processing AI generation job: 1
+2026-06-04T21:10:00.149Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-04T21:10:06.521Z [nileopedia-backend] error: AI generation failed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649 Request failed with status code 500
+2026-06-04T21:10:06.528Z [nileopedia-backend] error: AI generation job failed: 1 Request failed with status code 500
+2026-06-04T21:10:08.613Z [nileopedia-backend] info: Processing AI generation job: 1
+2026-06-04T21:10:10.703Z [nileopedia-backend] error: AI generation failed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649 Request failed with status code 500
+2026-06-04T21:10:10.707Z [nileopedia-backend] error: AI generation job failed: 1 Request failed with status code 500
+2026-06-04T21:10:14.737Z [nileopedia-backend] info: Processing AI generation job: 1
+2026-06-04T21:10:17.073Z [nileopedia-backend] error: AI generation failed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649 Request failed with status code 500
+2026-06-04T21:10:17.082Z [nileopedia-backend] error: AI generation job failed: 1 Request failed with status code 500

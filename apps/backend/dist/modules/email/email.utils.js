@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.systemAnnouncementSchema = exports.securityAlertSchema = exports.accountStatusSchema = exports.welcomeSchema = exports.passwordResetSchema = exports.validatorOtpSchema = exports.emailSchema = void 0;
-exports.validateEmail = validateEmail;
+exports.validateEmail = exports.systemAnnouncementSchema = exports.securityAlertSchema = exports.accountStatusSchema = exports.welcomeSchema = exports.passwordResetSchema = exports.validatorOtpSchema = exports.emailSchema = void 0;
 const zod_1 = require("zod");
 exports.emailSchema = zod_1.z.object({
     to: zod_1.z.string().email(),
@@ -49,4 +48,5 @@ function validateEmail(data) {
         return false;
     }
 }
+exports.validateEmail = validateEmail;
 //# sourceMappingURL=email.utils.js.map

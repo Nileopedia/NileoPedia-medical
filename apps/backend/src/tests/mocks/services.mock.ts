@@ -1,4 +1,4 @@
-export const mockPrismaClient = {
+export const mockPrismaClient: any = {
   $connect: jest.fn().mockResolvedValue(undefined),
   $disconnect: jest.fn().mockResolvedValue(undefined),
   $executeRawUnsafe: jest.fn().mockResolvedValue([]),

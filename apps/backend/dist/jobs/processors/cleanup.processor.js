@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.processCleanup = processCleanup;
+exports.processCleanup = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const logger_1 = require("../../config/logger");
 const fs_1 = __importDefault(require("fs"));
@@ -29,6 +29,7 @@ async function processCleanup(job) {
         throw error;
     }
 }
+exports.processCleanup = processCleanup;
 async function cleanupExpiredTokens() {
     const result = await prisma_1.default.session.deleteMany({
         where: { expiresAt: { lt: new Date() } },

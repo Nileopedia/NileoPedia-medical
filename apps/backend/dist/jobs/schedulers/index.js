@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setupSchedulers = setupSchedulers;
+exports.setupSchedulers = void 0;
 const queues_1 = require("../queues");
 const logger_1 = require("../../config/logger");
 function setupSchedulers() {
@@ -22,4 +22,5 @@ function setupSchedulers() {
     }, 60 * 60 * 1000);
     logger_1.logger.info('Schedulers initialized');
 }
+exports.setupSchedulers = setupSchedulers;
 //# sourceMappingURL=index.js.map

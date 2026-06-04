@@ -6,12 +6,12 @@ import { registerValidation, loginValidation, verifyOtpValidation, refreshTokenV
 export default function authRoutes(authController: any) {
   const router = Router();
 
-  router.post('/register', registerValidation, validate, authController.register);
-  router.post('/login', loginValidation, validate, authController.login);
-  router.post('/refresh-token', refreshTokenValidation, validate, authController.refreshToken);
-  router.post('/logout', authController.logout);
-  router.get('/google/login', authController.googleLogin);
-  router.get('/google/callback', authController.googleCallback);
+  router.post('/register', registerValidation, validate, authController.register.bind(authController));
+  router.post('/login', loginValidation, validate, authController.login.bind(authController));
+  router.post('/refresh-token', refreshTokenValidation, validate, authController.refreshToken.bind(authController));
+  router.post('/logout', authController.logout.bind(authController));
+  router.get('/google/login', authController.googleLogin.bind(authController));
+  router.get('/google/callback', authController.googleCallback.bind(authController));
 
   return router;
 }

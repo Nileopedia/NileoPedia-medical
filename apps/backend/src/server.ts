@@ -1,7 +1,2 @@
-import { app } from './app';
-
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+// Server entry point - the actual server is started in app.ts with Socket.io integration
+// This file is kept for potential future use or alternative server configurations

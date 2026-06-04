@@ -6,6 +6,10 @@ export class RetrievalService {
   private pinecone: Pinecone | null = null;
   private index: any = null;
 
+  get pineconeClient() {
+    return this.pinecone;
+  }
+
   constructor() {
     if (CONFIG.PINECONE_API_KEY) {
       this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });

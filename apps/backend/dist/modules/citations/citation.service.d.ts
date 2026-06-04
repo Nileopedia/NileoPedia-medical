@@ -1,11 +1,11 @@
 import { CreateCitationDto, UpdateCitationDto, SearchCitationsQuery, SearchCitationsResult } from './citation.types';
 export declare class CitationService {
     getCitationsForResponse(aiResponseId: string): Promise<{
-        title: string;
-        url: string | null;
         id: string;
         createdAt: Date;
+        url: string | null;
         aiResponseId: string;
+        title: string;
         source: string;
         authors: string | null;
         publicationYear: number | null;
@@ -18,11 +18,11 @@ export declare class CitationService {
         sectionTitle: string | null;
     }[]>;
     getCitationById(id: string): Promise<{
-        title: string;
-        url: string | null;
         id: string;
         createdAt: Date;
+        url: string | null;
         aiResponseId: string;
+        title: string;
         source: string;
         authors: string | null;
         publicationYear: number | null;
@@ -36,11 +36,11 @@ export declare class CitationService {
     } | null>;
     searchCitations(query: SearchCitationsQuery): Promise<SearchCitationsResult>;
     createCitation(data: CreateCitationDto): Promise<{
-        title: string;
-        url: string | null;
         id: string;
         createdAt: Date;
+        url: string | null;
         aiResponseId: string;
+        title: string;
         source: string;
         authors: string | null;
         publicationYear: number | null;
@@ -53,11 +53,11 @@ export declare class CitationService {
         sectionTitle: string | null;
     }>;
     updateCitation(id: string, data: UpdateCitationDto): Promise<{
-        title: string;
-        url: string | null;
         id: string;
         createdAt: Date;
+        url: string | null;
         aiResponseId: string;
+        title: string;
         source: string;
         authors: string | null;
         publicationYear: number | null;
@@ -70,11 +70,11 @@ export declare class CitationService {
         sectionTitle: string | null;
     }>;
     deleteCitation(id: string): Promise<{
-        title: string;
-        url: string | null;
         id: string;
         createdAt: Date;
+        url: string | null;
         aiResponseId: string;
+        title: string;
         source: string;
         authors: string | null;
         publicationYear: number | null;

@@ -7,11 +7,11 @@ export declare class QuestionsService {
     getHistory(userId: string): Promise<({
         aiResponse: ({
             citations: {
-                title: string;
-                url: string | null;
                 id: string;
                 createdAt: Date;
+                url: string | null;
                 aiResponseId: string;
+                title: string;
                 source: string;
                 authors: string | null;
                 publicationYear: number | null;
@@ -26,8 +26,8 @@ export declare class QuestionsService {
         } & {
             id: string;
             createdAt: Date;
-            questionId: string;
             updatedAt: Date;
+            questionId: string;
             summary: string;
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
@@ -35,18 +35,18 @@ export declare class QuestionsService {
         }) | null;
     } & {
         id: string;
-        questionText: string;
         createdAt: Date;
         userId: string;
+        questionText: string;
     })[]>;
     getQuestion(questionId: string): Promise<{
         aiResponse: ({
             citations: {
-                title: string;
-                url: string | null;
                 id: string;
                 createdAt: Date;
+                url: string | null;
                 aiResponseId: string;
+                title: string;
                 source: string;
                 authors: string | null;
                 publicationYear: number | null;
@@ -61,8 +61,8 @@ export declare class QuestionsService {
         } & {
             id: string;
             createdAt: Date;
-            questionId: string;
             updatedAt: Date;
+            questionId: string;
             summary: string;
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
@@ -70,9 +70,9 @@ export declare class QuestionsService {
         }) | null;
     } & {
         id: string;
-        questionText: string;
         createdAt: Date;
         userId: string;
+        questionText: string;
     }>;
     saveResponse(questionId: string, userId: string): Promise<void>;
     unsaveResponse(questionId: string, userId: string): Promise<void>;

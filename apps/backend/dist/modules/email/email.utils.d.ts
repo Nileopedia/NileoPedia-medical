@@ -17,12 +17,12 @@ export declare const validatorOtpSchema: z.ZodObject<{
     fullName: z.ZodString;
     otpCode: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
     otpCode: string;
 }, {
-    email: string;
     fullName: string;
+    email: string;
     otpCode: string;
 }>;
 export declare const passwordResetSchema: z.ZodObject<{
@@ -30,35 +30,35 @@ export declare const passwordResetSchema: z.ZodObject<{
     fullName: z.ZodString;
     resetLink: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
     resetLink: string;
 }, {
-    email: string;
     fullName: string;
+    email: string;
     resetLink: string;
 }>;
 export declare const welcomeSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
 }, {
-    email: string;
     fullName: string;
+    email: string;
 }>;
 export declare const accountStatusSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
     reason: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
     reason?: string | undefined;
 }, {
-    email: string;
     fullName: string;
+    email: string;
     reason?: string | undefined;
 }>;
 export declare const securityAlertSchema: z.ZodObject<{
@@ -68,16 +68,16 @@ export declare const securityAlertSchema: z.ZodObject<{
     description: z.ZodString;
     ipAddress: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
-    alertType: string;
+    email: string;
     description: string;
+    alertType: string;
     ipAddress?: string | undefined;
 }, {
-    email: string;
     fullName: string;
-    alertType: string;
+    email: string;
     description: string;
+    alertType: string;
     ipAddress?: string | undefined;
 }>;
 export declare const systemAnnouncementSchema: z.ZodObject<{
@@ -86,15 +86,15 @@ export declare const systemAnnouncementSchema: z.ZodObject<{
     title: z.ZodString;
     message: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    subject: string;
     message: string;
-    recipients: string[];
     title: string;
+    subject: string;
+    recipients: string[];
 }, {
-    subject: string;
     message: string;
-    recipients: string[];
     title: string;
+    subject: string;
+    recipients: string[];
 }>;
 export declare function validateEmail(data: unknown): boolean;
 //# sourceMappingURL=email.utils.d.ts.map

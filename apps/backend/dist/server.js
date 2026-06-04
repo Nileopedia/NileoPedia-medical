@@ -1,8 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const app_1 = require("./app");
-const PORT = process.env.PORT || 3000;
-app_1.app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
+// Server entry point - the actual server is started in app.ts with Socket.io integration
+// This file is kept for potential future use or alternative server configurations
 //# sourceMappingURL=server.js.map

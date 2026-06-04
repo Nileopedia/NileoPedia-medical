@@ -17,15 +17,15 @@ export declare class DocumentIngestionService {
         fileSize: number;
     }): Promise<{
         document: {
-            description: string | null;
-            title: string;
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            title: string;
             source: string | null;
             publicationYear: number | null;
             documentType: string | null;
             specialty: string | null;
+            description: string | null;
             fileName: string;
             fileUrl: string;
             fileType: string;

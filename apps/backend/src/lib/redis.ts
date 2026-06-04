@@ -1,6 +1,8 @@
 import Redis from 'ioredis';
 import { CONFIG } from '../config/env';
 
-const redis = new Redis(CONFIG.REDIS_URL as string);
+const redis = new Redis(CONFIG.REDIS_URL as string, {
+  maxRetriesPerRequest: null,
+});
 
 export { redis };

@@ -59,14 +59,14 @@ export declare const getDocumentsQuerySchema: z.ZodObject<{
     limit: number;
     page: number;
     search?: string | undefined;
-    ingestionStatus?: "PENDING" | "FAILED" | "PROCESSING" | "COMPLETED" | undefined;
+    ingestionStatus?: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED" | undefined;
     documentType?: string | undefined;
     publicationYear?: number | undefined;
 }, {
     page?: number | undefined;
     limit?: number | undefined;
     search?: string | undefined;
-    ingestionStatus?: "PENDING" | "FAILED" | "PROCESSING" | "COMPLETED" | undefined;
+    ingestionStatus?: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED" | undefined;
     documentType?: string | undefined;
     publicationYear?: number | undefined;
 }>;

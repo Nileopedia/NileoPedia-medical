@@ -4,9 +4,16 @@ exports.RetrievalService = void 0;
 const pinecone_1 = require("@pinecone-database/pinecone");
 const env_1 = require("../../config/env");
 class RetrievalService {
+    get pineconeClient() {
+        return this.pinecone;
+    }
     constructor() {
-        this.pinecone = new pinecone_1.Pinecone({ apiKey: env_1.CONFIG.PINECONE_API_KEY });
-        this.index = this.pinecone.index(env_1.CONFIG.PINECONE_INDEX_NAME);
+        this.pinecone = null;
+        this.index = null;
+        if (env_1.CONFIG.PINECONE_API_KEY) {
+            this.pinecone = new pinecone_1.Pinecone({ apiKey: env_1.CONFIG.PINECONE_API_KEY });
+            this.index = this.pinecone.index(env_1.CONFIG.PINECONE_INDEX_NAME);
+        }
     }
     async semanticSearch(query, topK = 10) {
         const embedding = await this.generateEmbedding(query);

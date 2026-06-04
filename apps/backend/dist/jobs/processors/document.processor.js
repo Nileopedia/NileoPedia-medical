@@ -3,7 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.processDocumentIngestion = processDocumentIngestion;
+exports.processDocumentIngestion = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const axios_1 = __importDefault(require("axios"));
 const logger_1 = require("../../config/logger");
@@ -53,4 +53,5 @@ async function processDocumentIngestion(job) {
         throw error;
     }
 }
+exports.processDocumentIngestion = processDocumentIngestion;
 //# sourceMappingURL=document.processor.js.map

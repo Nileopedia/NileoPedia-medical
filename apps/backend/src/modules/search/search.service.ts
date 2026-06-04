@@ -42,7 +42,7 @@ export class SearchService {
   }
 
   async semanticSearch(q: string, specialty?: string, limit: number = 10): Promise<SearchResult[]> {
-    if (!this.retrievalService.pinecone) {
+    if (!this.retrievalService.pineconeClient) {
       return [];
     }
     const pineconeResults = await this.retrievalService.semanticSearch(q, limit);
