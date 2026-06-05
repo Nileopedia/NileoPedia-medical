@@ -1,18 +1,46 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Send, Loader2 } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
+import { ResponseViewer } from '../../components/query/ResponseViewer';
 
 export default function AskPage() {
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [questionId, setQuestionId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!questionId) return;
+
+    const pollInterval = setInterval(async () => {
+      try {
+        const result = await api.getQuestion(questionId);
+        if (result.aiResponse) {
+          setResponse(result.aiResponse);
+          setLoading(false);
+          clearInterval(pollInterval);
+        }
+      } catch (err) {
+        // Continue polling
+      }
+    }, 2000);
+
+    const timeout = setTimeout(() => {
+      clearInterval(pollInterval);
+    }, 30000);
+
+    return () => {
+      clearInterval(pollInterval);
+      clearTimeout(timeout);
+    };
+  }, [questionId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,25 +48,14 @@ export default function AskPage() {
 
     setLoading(true);
     setError(null);
+    setResponse(null);
+    setQuestionId(null);
+
     try {
       const result = await api.askQuestion(question.trim());
-      setResponse({
-        id: `resp-${result.questionId}`,
-        queryId: result.questionId,
-        title: question,
-        summary: `Your question has been submitted for processing.`,
-        keyFindings: ['Question submitted successfully', 'Response will be generated shortly'],
-        detailedExplanation: '',
-        citations: [],
-        status: 'pending',
-        confidenceScore: 0,
-        model: 'Processing',
-        generatedAt: new Date().toISOString(),
-        tags: [],
-      });
+      setQuestionId(result.questionId);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to submit question');
-    } finally {
       setLoading(false);
     }
   };
@@ -84,7 +101,7 @@ export default function AskPage() {
           {response && (
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
               <h2 className="text-lg font-semibold text-slate-900 mb-4">AI Response</h2>
-              <p className="text-slate-700 dark:text-slate-300 whitespace-pre-wrap">{response.summary}</p>
+              <ResponseViewer response={response} />
             </div>
           )}
 

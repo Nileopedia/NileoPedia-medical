@@ -12,6 +12,7 @@ export declare const CONFIG: {
     readonly OPENAI_API_KEY: string;
     readonly OPENAI_MODEL: string;
     readonly REDIS_URL: string;
+    readonly AI_SERVICE_URL: string;
     readonly CORS_ORIGIN: string;
     readonly FRONTEND_URL: string;
     readonly GOOGLE_CLIENT_ID: string;

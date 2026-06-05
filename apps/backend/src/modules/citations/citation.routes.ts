@@ -1,10 +1,10 @@
-import { Router } from 'express';
+import { Router, RequestHandler } from 'express';
 import { CitationController } from './citation.controller';
 import { authenticate, authorize } from '../../shared/middleware/auth.middleware';
 
 const citationController = new CitationController();
 
-const router = Router();
+const router: Router = Router();
 
 // Protected routes - all users can view
 router.get('/response/:responseId', authenticate, citationController.getCitationsForResponse.bind(citationController));

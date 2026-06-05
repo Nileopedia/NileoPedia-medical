@@ -25,6 +25,7 @@ export declare class UserService {
     changePassword(userId: string, data: ChangePasswordDto): Promise<void>;
     getUserById(userId: string): Promise<{
         id: string;
+        createdAt: Date;
         fullName: string;
         email: string;
         role: import("@prisma/client").$Enums.UserRole;
@@ -33,7 +34,6 @@ export declare class UserService {
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        createdAt: Date;
     }>;
     getUsers(query: GetUsersQuery): Promise<GetUsersResult>;
     deactivateUser(userId: string): Promise<void>;

@@ -1,9 +1,9 @@
 import { z } from 'zod';
 
 export const createCitationSchema = z.object({
-  aiResponseId: z.string().uuid('Invalid AI response ID'),
-  title: z.string().min(1, 'Title is required'),
-  source: z.string().min(1, 'Source is required'),
+  aiResponseId: z.string().uuid('Invalid AI response ID').optional(),
+  title: z.string().min(1, 'Title is required').optional(),
+  source: z.string().min(1, 'Source is required').optional(),
   authors: z.string().optional(),
   publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
   doi: z.string().optional(),
@@ -29,8 +29,8 @@ export const updateCitationSchema = z.object({
 });
 
 export const searchCitationsQuerySchema = z.object({
-  page: z.coerce.number().min(1, 'Page must be at least 1').default(1),
-  limit: z.coerce.number().min(1, 'Limit must be at least 1').max(100, 'Limit cannot exceed 100').default(20),
+  page: z.coerce.number().min(1, 'Page must be at least 1').default(1) as any,
+  limit: z.coerce.number().min(1, 'Limit must be at least 1').max(100, 'Limit cannot exceed 100').default(20) as any,
   keyword: z.string().optional(),
   specialty: z.string().optional(),
   publicationYear: z.coerce.number().int().optional(),

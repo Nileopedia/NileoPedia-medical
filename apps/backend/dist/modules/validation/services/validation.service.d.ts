@@ -1,40 +1,42 @@
 export declare class ValidationService {
     getPending(): Promise<({
         question: {
+            userId: string;
             id: string;
             createdAt: Date;
-            userId: string;
             questionText: string;
         };
     } & {
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         questionId: string;
         summary: string;
         confidenceScore: number | null;
+        keyFindings: string[];
+        id: string;
         validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
+        createdAt: Date;
+        updatedAt: Date;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
     reject(responseId: string, validatorId: string, feedback: string): Promise<void>;
     getHistory(validatorId: string): Promise<({
         aiResponse: {
             question: {
+                userId: string;
                 id: string;
                 createdAt: Date;
-                userId: string;
                 questionText: string;
             };
         } & {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             questionId: string;
             summary: string;
             confidenceScore: number | null;
+            keyFindings: string[];
+            id: string;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            createdAt: Date;
+            updatedAt: Date;
         };
     } & {
         feedback: string | null;

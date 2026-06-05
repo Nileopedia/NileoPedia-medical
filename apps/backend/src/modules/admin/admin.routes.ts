@@ -4,7 +4,7 @@ import { authenticate, authorize } from '../../shared/middleware/auth.middleware
 
 const adminController = new AdminController();
 
-const router = Router();
+const router: Router = Router();
 
 router.get('/users', authenticate, authorize('ADMIN'), adminController.getUsers.bind(adminController));
 router.patch('/users/:userId/suspend', authenticate, authorize('ADMIN'), adminController.suspendUser.bind(adminController));

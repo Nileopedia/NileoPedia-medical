@@ -11,7 +11,7 @@ export class ValidationService {
   }
 
   async approve(responseId: string, validatorId: string, score: number, feedback: string) {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       await tx.aIResponse.update({
         where: { id: responseId },
         data: { validationStatus: 'APPROVED' },
@@ -30,7 +30,7 @@ export class ValidationService {
   }
 
   async reject(responseId: string, validatorId: string, feedback: string) {
-    await prisma.$transaction(async (tx) => {
+    await prisma.$transaction(async (tx: any) => {
       await tx.aIResponse.update({
         where: { id: responseId },
         data: { validationStatus: 'REJECTED' },

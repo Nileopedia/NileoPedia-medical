@@ -12,7 +12,7 @@ const upload = multer({
 
 const documentController = new DocumentController();
 
-const router = Router();
+const router: Router = Router();
 
 // Protected routes - all users can view
 router.get('/', authenticate, documentController.getAllDocuments.bind(documentController));

@@ -4,7 +4,7 @@ import { authenticate } from '../../shared/middleware/auth.middleware';
 
 const searchController = new SearchController();
 
-const router = Router();
+const router: Router = Router();
 
 // All search endpoints require authentication
 router.get('/', authenticate, searchController.globalSearch.bind(searchController));

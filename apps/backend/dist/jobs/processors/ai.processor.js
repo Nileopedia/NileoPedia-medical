@@ -16,11 +16,12 @@ async function processAiGeneration(job) {
             topK,
             specialty,
         });
-        const { summary, citations, confidenceScore } = response.data;
+        const { summary, citations, confidenceScore, keyFindings } = response.data;
         const aiResponse = await prisma_1.default.aIResponse.create({
             data: {
                 questionId,
                 summary,
+                keyFindings: keyFindings || [],
                 confidenceScore,
                 generatedBy: 'GPT-4o',
             },

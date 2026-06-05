@@ -4,7 +4,7 @@ import { authenticate } from '../../shared/middleware/auth.middleware';
 
 const questionsController = new QuestionsController();
 
-const router = Router();
+const router: Router = Router();
 
 router.post('/ask', authenticate, questionsController.askQuestion.bind(questionsController));
 router.get('/history', authenticate, questionsController.getHistory.bind(questionsController));

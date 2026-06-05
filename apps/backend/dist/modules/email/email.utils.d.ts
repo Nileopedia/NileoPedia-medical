@@ -86,13 +86,13 @@ export declare const systemAnnouncementSchema: z.ZodObject<{
     title: z.ZodString;
     message: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    message: string;
     title: string;
+    message: string;
     subject: string;
     recipients: string[];
 }, {
-    message: string;
     title: string;
+    message: string;
     subject: string;
     recipients: string[];
 }>;

@@ -1,8 +1,8 @@
 import { z } from 'zod';
 export declare const createCitationSchema: z.ZodObject<{
-    aiResponseId: z.ZodString;
-    title: z.ZodString;
-    source: z.ZodString;
+    aiResponseId: z.ZodOptional<z.ZodString>;
+    title: z.ZodOptional<z.ZodString>;
+    source: z.ZodOptional<z.ZodString>;
     authors: z.ZodOptional<z.ZodString>;
     publicationYear: z.ZodOptional<z.ZodNumber>;
     doi: z.ZodOptional<z.ZodString>;
@@ -13,9 +13,9 @@ export declare const createCitationSchema: z.ZodObject<{
     pageNumber: z.ZodOptional<z.ZodNumber>;
     sectionTitle: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    aiResponseId: string;
-    title: string;
-    source: string;
+    aiResponseId?: string | undefined;
+    title?: string | undefined;
+    source?: string | undefined;
     authors?: string | undefined;
     publicationYear?: number | undefined;
     doi?: string | undefined;
@@ -26,9 +26,9 @@ export declare const createCitationSchema: z.ZodObject<{
     pageNumber?: number | undefined;
     sectionTitle?: string | undefined;
 }, {
-    aiResponseId: string;
-    title: string;
-    source: string;
+    aiResponseId?: string | undefined;
+    title?: string | undefined;
+    source?: string | undefined;
     authors?: string | undefined;
     publicationYear?: number | undefined;
     doi?: string | undefined;
@@ -74,22 +74,22 @@ export declare const updateCitationSchema: z.ZodObject<{
     sectionTitle?: string | undefined;
 }>;
 export declare const searchCitationsQuerySchema: z.ZodObject<{
-    page: z.ZodDefault<z.ZodNumber>;
-    limit: z.ZodDefault<z.ZodNumber>;
+    page: any;
+    limit: any;
     keyword: z.ZodOptional<z.ZodString>;
     specialty: z.ZodOptional<z.ZodString>;
     publicationYear: z.ZodOptional<z.ZodNumber>;
     documentType: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    limit: number;
-    page: number;
+    page?: any;
+    limit?: any;
     keyword?: string | undefined;
     specialty?: string | undefined;
     publicationYear?: number | undefined;
     documentType?: string | undefined;
 }, {
-    page?: number | undefined;
-    limit?: number | undefined;
+    page?: any;
+    limit?: any;
     keyword?: string | undefined;
     specialty?: string | undefined;
     publicationYear?: number | undefined;

@@ -42,6 +42,8 @@ type BackendAiResponse = {
   id: string;
   questionId: string;
   summary: string;
+  keyFindings?: string[];
+  detailedExplanation?: string;
   confidenceScore?: number | null;
   validationStatus?: BackendValidationStatus;
   generatedBy?: string;
@@ -198,12 +200,8 @@ class ApiClient {
           queryId: question.id,
           title: question.questionText,
           summary: question.aiResponse.summary,
-          keyFindings: question.aiResponse.summary
-            .split('.')
-            .map((finding) => finding.trim())
-            .filter(Boolean)
-            .slice(0, 5),
-          detailedExplanation: question.aiResponse.summary,
+          keyFindings: question.aiResponse.keyFindings || [],
+          detailedExplanation: question.aiResponse.detailedExplanation || question.aiResponse.summary,
           citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
           status: this.normalizeStatus(question.aiResponse.validationStatus),
           confidenceScore: question.aiResponse.confidenceScore || 0,

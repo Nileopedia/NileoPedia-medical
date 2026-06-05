@@ -20,15 +20,19 @@ export interface Query {
 }
 
 export interface Citation {
-  id: string;
+  id?: string;
   title: string;
-  authors: string;
-  journal: string;
-  year: number;
+  source?: string;
+  authors?: string;
+  journal?: string;
+  year?: number;
   volume?: string;
   pages?: string;
-  type: 'Guideline' | 'Review' | 'Expert Opinion' | 'Study';
+  type?: 'Guideline' | 'Review' | 'Expert Opinion' | 'Study';
   organization?: string;
+  doi?: string;
+  url?: string;
+  publicationYear?: number;
 }
 
 export interface AIResponse {

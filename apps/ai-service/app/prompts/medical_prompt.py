@@ -16,7 +16,11 @@ QUESTION:
 {question}
 
 RESPONSE FORMAT:
-- Provide a clear, concise summary based ONLY on the context above
+Provide a clear, concise response based ONLY on the context above.
+
+Structure your response as follows:
+- Start with a brief summary paragraph
+- Then provide 3-5 key findings as bullet points (each finding on a new line starting with "KEY_FINDING: ")
 - Include inline citations in format [1], [2] where appropriate
 - If answering from context, cite the specific source
 - If context is insufficient, state: "Insufficient evidence to provide a complete answer."

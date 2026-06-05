@@ -1,1 +1,1 @@
-{"version":3,"file":"citation.routes.d.ts","sourceRoot":"","sources":["../../../src/modules/citations/citation.routes.ts"],"names":[],"mappings":"AAMA,QAAA,MAAM,MAAM,4CAAW,CAAC;AAYxB,eAAe,MAAM,CAAC"}
+{"version":3,"file":"citation.routes.d.ts","sourceRoot":"","sources":["../../../src/modules/citations/citation.routes.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,MAAM,EAAkB,MAAM,SAAS,CAAC;AAMjD,QAAA,MAAM,MAAM,EAAE,MAAiB,CAAC;AAYhC,eAAe,MAAM,CAAC"}

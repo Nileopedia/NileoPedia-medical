@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Express } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
 import { CONFIG } from './config/env';
@@ -7,7 +7,7 @@ import { setupMiddleware } from './shared/middleware';
 import { setupRoutes } from './routes';
 
 // Initialize Express app
-const app = express();
+const app: Express = express();
 const httpServer = createServer(app);
 const io = new Server(httpServer, {
   cors: {

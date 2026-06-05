@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from enum import Enum
+import re
 
 class RetrievalType(str, Enum):
     SEMANTIC = "semantic"
@@ -45,6 +46,7 @@ class GenerateRequest(BaseModel):
 
 class GenerateResponse(BaseModel):
     summary: str
+    keyFindings: List[str] = []
     citations: List[Citation]
     confidenceScore: float
     status: str = "pending"
@@ -67,3 +69,36 @@ class HealthResponse(BaseModel):
     status: str
     service: str
     version: str = "1.0.0"
+
+
+def extract_key_findings(text: str) -> List[str]:
+    """Extract key findings from AI response text."""
+    if not text:
+        return []
+    
+    # Split into lines and look for KEY_FINDING markers
+    findings = []
+    lines = text.split('\n')
+    
+    current_summary_lines = []
+    in_findings = False
+    
+    for line in lines:
+        stripped = line.strip()
+        if stripped.startswith('KEY_FINDING:'):
+            in_findings = True
+            finding = stripped.replace('KEY_FINDING:', '').strip()
+            if finding:
+                findings.append(finding)
+        elif in_findings and stripped:
+            # Continue collecting findings until we hit a non-bullet line
+            if stripped.startswith('•') or stripped.startswith('-'):
+                finding = stripped.lstrip('•-').strip()
+                if finding:
+                    findings.append(finding)
+            else:
+                in_findings = False
+        else:
+            current_summary_lines.append(line)
+    
+    return findings

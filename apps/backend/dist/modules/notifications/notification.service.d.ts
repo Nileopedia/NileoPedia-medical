@@ -2,23 +2,23 @@ import { CreateNotificationDto, CreateSystemNotificationDto, GetNotificationsQue
 export declare class NotificationService {
     getUserNotifications(userId: string, query: GetNotificationsQuery): Promise<GetNotificationsResult>;
     markAsRead(userId: string, notificationId: string): Promise<{
+        userId: string;
         id: string;
         createdAt: Date;
+        title: string;
         message: string;
         type: import("@prisma/client").$Enums.NotificationType;
-        userId: string;
-        title: string;
         isRead: boolean;
         metadata: import("@prisma/client/runtime/library").JsonValue;
     }>;
     markAllAsRead(userId: string): Promise<import("@prisma/client").Prisma.BatchPayload>;
     deleteNotification(userId: string, notificationId: string): Promise<{
+        userId: string;
         id: string;
         createdAt: Date;
+        title: string;
         message: string;
         type: import("@prisma/client").$Enums.NotificationType;
-        userId: string;
-        title: string;
         isRead: boolean;
         metadata: import("@prisma/client/runtime/library").JsonValue;
     }>;
@@ -26,12 +26,12 @@ export declare class NotificationService {
         count: number;
     }>;
     createNotification(data: CreateNotificationDto): Promise<{
+        userId: string;
         id: string;
         createdAt: Date;
+        title: string;
         message: string;
         type: import("@prisma/client").$Enums.NotificationType;
-        userId: string;
-        title: string;
         isRead: boolean;
         metadata: import("@prisma/client/runtime/library").JsonValue;
     }>;

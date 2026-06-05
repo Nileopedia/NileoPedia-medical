@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
 from app.core.config import settings
-from app.models.schemas import GenerateRequest, GenerateResponse
+from app.models.schemas import GenerateRequest, GenerateResponse, extract_key_findings
 from app.embeddings.service import generate_embedding
 from app.rag.pinecone_service import get_namespace_for_specialty
 from app.retrieval.service import hybrid_retrieval
@@ -26,6 +26,7 @@ async def generate_response(request: GenerateRequest):
         if not chunks:
             return GenerateResponse(
                 summary="Insufficient evidence to provide a complete answer. Please provide more specific medical terms or consult medical literature.",
+                keyFindings=[],
                 citations=[],
                 confidenceScore=0.0,
                 status="insufficient"
@@ -41,9 +42,19 @@ async def generate_response(request: GenerateRequest):
                 {"role": "system", "content": MEDICAL_AI_PROMPT.format(context=context, question=request.query)},
                 {"role": "user", "content": request.query}
             ],
-            max_tokens=1000,
+            max_tokens=1200,
             temperature=0.3
         )
+        
+        raw_content = response.choices[0].message.content or ""
+        
+        # Extract key findings from the response
+        key_findings = extract_key_findings(raw_content)
+        
+        # If no key findings found, create them from content
+        if not key_findings and raw_content:
+            sentences = [s.strip() for s in raw_content.split('.') if s.strip() and len(s.strip()) > 20]
+            key_findings = sentences[:5]
         
         # Extract citations
         citations = extract_citations(chunks)
@@ -52,7 +63,8 @@ async def generate_response(request: GenerateRequest):
         confidence = calculate_confidence(chunks, len(citations))
         
         return GenerateResponse(
-            summary=response.choices[0].message.content or "",
+            summary=raw_content,
+            keyFindings=key_findings,
             citations=citations,
             confidenceScore=confidence,
             status="pending"

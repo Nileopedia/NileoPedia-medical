@@ -29,9 +29,12 @@ export const CONFIG = {
   OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
   OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-4o',
   
-  // Redis
+// Redis
   REDIS_URL: process.env.REDIS_URL || '',
-  
+
+  // AI Service
+  AI_SERVICE_URL: process.env.AI_SERVICE_URL || 'http://localhost:8000',
+
   // CORS
   CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
   

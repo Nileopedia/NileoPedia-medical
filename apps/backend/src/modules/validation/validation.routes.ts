@@ -4,7 +4,7 @@ import { authenticate, authorize } from '../../shared/middleware/auth.middleware
 
 const validationController = new ValidationController();
 
-const router = Router();
+const router: ReturnType<typeof Router> = Router();
 
 router.get('/pending', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getPending.bind(validationController));
 router.post('/:responseId/approve', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.approve.bind(validationController));

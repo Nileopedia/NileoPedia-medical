@@ -4,7 +4,7 @@ import { registerValidation, loginValidation, verifyOtpValidation, refreshTokenV
 
 // Export a function that takes the controller instance and returns the router
 export default function authRoutes(authController: any) {
-  const router = Router();
+  const router: Router = Router();
 
   router.post('/register', registerValidation, validate, authController.register.bind(authController));
   router.post('/login', loginValidation, validate, authController.login.bind(authController));

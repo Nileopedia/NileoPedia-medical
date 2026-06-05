@@ -4,7 +4,7 @@ import { authenticate, authorize } from '../../shared/middleware/auth.middleware
 
 const auditController = new AuditController();
 
-const router = Router();
+const router: Router = Router();
 
 // All endpoints require ADMIN except validation activity
 router.get('/', authenticate, authorize('ADMIN'), auditController.getAuditLogs.bind(auditController));

@@ -24,7 +24,7 @@ export class AnalyticsService {
     });
 
     const avgScore = reviews.length > 0
-      ? reviews.reduce((sum, r) => sum + (r.score || 0), 0) / reviews.length
+      ? reviews.reduce((sum: number, r: { score: number | null }) => sum + (r.score || 0), 0) / reviews.length
       : 0;
 
     return {

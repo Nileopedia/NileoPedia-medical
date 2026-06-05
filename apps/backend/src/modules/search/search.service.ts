@@ -88,7 +88,7 @@ export class SearchService {
       take: limit,
     });
 
-    return documents.map((doc) => ({
+    return documents.map((doc: { id: string; title: string; description?: string | null; source?: string | null; specialty?: string | null; documentType?: string | null }) => ({
       id: doc.id,
       title: doc.title,
       snippet: doc.description || doc.title,
@@ -162,7 +162,7 @@ export class SearchService {
 
     return {
       query: q,
-      results: documents.map((doc) => ({
+      results: documents.map((doc: { id: string; title: string; description?: string | null; source?: string | null; specialty?: string | null; documentType?: string | null }) => ({
         id: doc.id,
         title: doc.title,
         snippet: doc.description || doc.title,
@@ -208,7 +208,7 @@ export class SearchService {
 
     return {
       query: q,
-      results: citations.map((cit) => ({
+      results: citations.map((cit: { id: string; title: string; source: string; specialty?: string | null }) => ({
         id: cit.id,
         title: cit.title,
         snippet: cit.title,

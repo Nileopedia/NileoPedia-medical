@@ -4,7 +4,7 @@ import { authenticate } from '../../shared/middleware/auth.middleware';
 
 const analyticsController = new AnalyticsController();
 
-const router = Router();
+const router: Router = Router();
 
 router.get('/dashboard', authenticate, analyticsController.getDashboard.bind(analyticsController));
 router.get('/validation', authenticate, analyticsController.getValidationMetrics.bind(analyticsController));

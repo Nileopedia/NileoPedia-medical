@@ -1,16 +1,15 @@
-import { Notification, NotificationType as PrismaNotificationType, UserRole } from '@prisma/client';
-export type NotificationType = PrismaNotificationType;
+import { Notification } from '@prisma/client';
 export interface CreateNotificationDto {
     userId: string;
     title: string;
     message: string;
-    type?: NotificationType;
+    type?: 'INFO' | 'SUCCESS' | 'WARNING' | 'ERROR' | 'VALIDATION' | 'SYSTEM';
     metadata?: Record<string, unknown>;
 }
 export interface CreateSystemNotificationDto {
     title: string;
     message: string;
-    targetRoles: UserRole[];
+    targetRoles: ('MEDICAL_USER' | 'VALIDATOR' | 'ADMIN')[];
     metadata?: Record<string, unknown>;
 }
 export interface GetNotificationsQuery {

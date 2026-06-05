@@ -4,7 +4,7 @@ import { authenticate, authorize } from '../../shared/middleware/auth.middleware
 
 const notificationController = new NotificationController();
 
-const router = Router();
+const router: ReturnType<typeof Router> = Router();
 
 // Protected routes (all users)
 router.get('/', authenticate, notificationController.getNotifications.bind(notificationController));

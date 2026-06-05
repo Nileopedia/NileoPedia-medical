@@ -6,7 +6,7 @@ export declare class RetrievalService {
     constructor();
     semanticSearch(query: string, topK?: number): Promise<any>;
     generateEmbedding(text: string): Promise<number[]>;
-    hybridSearch(query: string): Promise<any[]>;
+    hybridSearch(query: string, specialty?: string): Promise<any[]>;
     private rankResults;
 }
 //# sourceMappingURL=retrieval.service.d.ts.map

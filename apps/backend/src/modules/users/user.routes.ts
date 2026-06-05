@@ -4,7 +4,7 @@ import { authenticate, authorize } from '../../shared/middleware/auth.middleware
 
 const userController = new UserController();
 
-const router = Router();
+const router: Router = Router();
 
 // Protected routes (all users)
 router.get('/me', authenticate, userController.getCurrentUser.bind(userController));

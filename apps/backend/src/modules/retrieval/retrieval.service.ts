@@ -19,6 +19,8 @@ export class RetrievalService {
 
   async semanticSearch(query: string, topK = 10) {
     const embedding = await this.generateEmbedding(query);
+    if (!this.index) return [];
+
     const results = await this.index.query({
       vector: embedding,
       topK,
@@ -29,12 +31,38 @@ export class RetrievalService {
   }
 
   async generateEmbedding(text: string): Promise<number[]> {
-    return Array(1536).fill(0).map(() => Math.random());
+    // Call the ai-service for real embeddings
+    const axios = require('axios');
+    try {
+      const response = await axios.post(
+        `${CONFIG.AI_SERVICE_URL}/embeddings/`,
+        { text },
+        { timeout: 30000 }
+      );
+      return response.data.embedding || [];
+    } catch (error) {
+      console.error('Embedding generation failed:', error);
+      return [];
+    }
   }
 
-  async hybridSearch(query: string) {
-    const semanticResults = await this.semanticSearch(query);
-    return this.rankResults(semanticResults);
+  async hybridSearch(query: string, specialty?: string) {
+    const pineconeResults = await this.semanticSearch(query);
+
+    // Filter by specialty if provided
+    let results = pineconeResults;
+    if (specialty && this.index) {
+      const filtered = [];
+      for (const match of pineconeResults) {
+        const metadata = match.metadata || {};
+        if (metadata.specialty === specialty.toLowerCase() || !metadata.specialty) {
+          filtered.push(match);
+        }
+      }
+      results = filtered;
+    }
+
+    return this.rankResults(results);
   }
 
   private rankResults(results: any[]) {

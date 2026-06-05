@@ -1,15 +1,24 @@
+export interface Citation {
+    title: string;
+    source: string;
+    authors?: string;
+    publicationYear?: number;
+    doi?: string;
+    url?: string;
+    pageNumber?: number;
+    sectionTitle?: string;
+}
 export declare class AIService {
     private openai;
     constructor();
-    generateResponse(question: string, documents: string[]): Promise<{
+    generateResponse(question: string, chunks: Array<{
+        text: string;
+        metadata?: Record<string, any>;
+    }>): Promise<{
         summary: string;
-        citations: {
-            title: string;
-            source: string;
-            year: number;
-            authors: string;
-        }[];
+        citations: Citation[];
         confidenceScore: number;
     }>;
+    private calculateConfidence;
 }
 //# sourceMappingURL=ai.service.d.ts.map

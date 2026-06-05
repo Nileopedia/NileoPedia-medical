@@ -74,9 +74,9 @@ export class CitationService {
 
     return prisma.citation.create({
       data: {
-        aiResponseId: data.aiResponseId,
-        title: data.title,
-        source: data.source,
+        aiResponseId: data.aiResponseId!,
+        title: data.title!,
+        source: data.source!,
         authors: data.authors,
         publicationYear: data.publicationYear,
         doi: data.doi,

@@ -46,7 +46,7 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
         {renderStatus()}
       </div>
 
-      {response.status === 'pending' || response.status === 'approved' || response.status === 'rejected' || response.status === 'in_review' ? (
+      {(response.status === 'pending' || response.status === 'approved' || response.status === 'rejected' || response.status === 'in_review') ? (
         <>
           <div className="mb-4">
             <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Summary</h3>
@@ -74,11 +74,17 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
           {response.citations && response.citations.length > 0 && (
             <div className="mb-4">
               <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Citations</h3>
-              <ul className="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-1">
+              <ul className="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-2">
                 {response.citations.map((citation, index) => (
                   <li key={index}>
-                    <span className="font-medium">{citation.title}</span>
-                    {citation.journal && <span className="text-sm text-slate-500 ml-1">({citation.journal})</span>}
+                    <div className="flex flex-col">
+                      <span className="font-medium">{citation.title}</span>
+                      <span className="text-sm text-slate-500">
+                        {citation.authors && <span>Authors: {citation.authors}</span>}
+                        {citation.publicationYear && <span> ({citation.publicationYear})</span>}
+                        {citation.doi && <span> • DOI: {citation.doi}</span>}
+                      </span>
+                    </div>
                   </li>
                 ))}
               </ul>

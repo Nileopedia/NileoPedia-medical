@@ -20,7 +20,8 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   const [isDragging, setIsDragging] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const validateFiles = useCallback((files: FileList) => {
+  const validateFiles = useCallback((files: FileList | null) => {
+    if (!files) return null;
     const fileArray = Array.from(files);
     const invalidFiles = fileArray.filter(f => f.size > maxSizeMB * 1024 * 1024);
     

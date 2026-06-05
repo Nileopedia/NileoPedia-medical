@@ -15,12 +15,13 @@ export async function processAiGeneration(job: AiGenerationJob) {
       specialty,
     });
 
-    const { summary, citations, confidenceScore } = response.data;
+    const { summary, citations, confidenceScore, keyFindings } = response.data;
 
     const aiResponse = await prisma.aIResponse.create({
       data: {
         questionId,
         summary,
+        keyFindings: keyFindings || [],
         confidenceScore,
         generatedBy: 'GPT-4o',
       },

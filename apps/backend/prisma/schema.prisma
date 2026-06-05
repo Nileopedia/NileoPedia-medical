@@ -80,6 +80,7 @@ model AIResponse {
   id              String           @id @default(uuid())
   questionId      String           @unique
   summary         String           @db.Text
+  keyFindings     String[]         @default([])
   confidenceScore Float?
   validationStatus ValidationStatus @default(PENDING)
   generatedBy     String           @default("GPT-4o")
@@ -156,7 +157,7 @@ model MedicalDocument {
   ingestionStatus IngestionStatus @default(PENDING)
   isVerified      Boolean @default(false)
   createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  updatedAt       DateTime @default(now())
   embeddingMetadata EmbeddingMetadata[]
 }
 
