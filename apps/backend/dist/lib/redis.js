@@ -6,6 +6,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.redis = void 0;
 const ioredis_1 = __importDefault(require("ioredis"));
 const env_1 = require("../config/env");
-const redis = new ioredis_1.default(env_1.CONFIG.REDIS_URL);
+const redis = new ioredis_1.default(env_1.CONFIG.REDIS_URL, {
+    maxRetriesPerRequest: null,
+});
 exports.redis = redis;
 //# sourceMappingURL=redis.js.map

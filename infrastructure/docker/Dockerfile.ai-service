@@ -9,6 +9,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy source
 COPY apps/ai-service/ .
+COPY scripts/ingest_sample_documents.py /app/scripts/
+
+# Create data directory
+RUN mkdir -p /app/data
 
 EXPOSE 8000
 

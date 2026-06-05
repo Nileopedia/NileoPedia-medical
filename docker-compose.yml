@@ -1,15 +1,4 @@
 services:
-  nginx:
-    image: nginx:alpine
-    ports:
-      - "80:80"
-    volumes:
-      - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf
-    depends_on:
-      - frontend
-      - backend
-      - ai-service
-
   frontend:
     build:
       context: .
@@ -19,6 +8,9 @@ services:
       - NEXT_PUBLIC_API_URL=http://localhost/api
     ports:
       - "3000:3000"
+    restart: unless-stopped
+    depends_on:
+      - backend
 
   backend:
     build:
@@ -26,30 +18,14 @@ services:
       dockerfile: infrastructure/docker/Dockerfile.backend
     environment:
       - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/nileopedia
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/nileopedia
       - REDIS_URL=redis://redis:6379
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - AI_SERVICE_URL=http://ai-service:8000
     ports:
       - "3001:3001"
-    depends_on:
-      - postgres
-      - redis
-      - ai-service
-
-  worker:
-    build:
-      context: .
-      dockerfile: infrastructure/docker/Dockerfile.backend
-    command: npm run worker
-    environment:
-      - NODE_ENV=production
-      - DATABASE_URL=postgresql://postgres:password@postgres:5432/nileopedia
-      - REDIS_URL=redis://redis:6379
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
-      - PINECONE_API_KEY=${PINECONE_API_KEY}
-      - AI_SERVICE_URL=http://ai-service:8000
+    restart: unless-stopped
     depends_on:
       - postgres
       - redis
@@ -62,41 +38,60 @@ services:
     environment:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
-      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT:-us-west1-gcp}
+      - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT:-us-east-1}
       - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME:-nileopedia-medical}
-      - ELASTICSEARCH_URL=https://my-elasticsearch-project-dfcb85.es.us-east-1.aws.elastic.cloud:443
-      - ELASTICSEARCH_API_KEY=RVdOWmQ1NEJXS3dGVUxyWkc2RUY6TVJuLTktbG1MYjFXYXhPTHdlcUxLUQ==
       - REDIS_URL=redis://redis:6379
+      - ELASTICSEARCH_URL=${ELASTICSEARCH_URL}
+      - ELASTICSEARCH_API_KEY=${ELASTICSEARCH_API_KEY}
     ports:
       - "8000:8000"
+    restart: unless-stopped
     depends_on:
-      - postgres
       - redis
-      - elasticsearch
 
   postgres:
     image: postgres:16-alpine
     environment:
       - POSTGRES_DB=nileopedia
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=password
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
+    restart: unless-stopped
 
   redis:
     image: redis:7-alpine
     ports:
       - "6379:6379"
+    restart: unless-stopped
 
-  elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.12.2
-    environment:
-      - discovery.type=single-node
-      - xpack.security.enabled=false
+  nginx:
+    image: nginx:alpine
     ports:
-      - "9200:9200"
+      - "80:80"
+    volumes:
+      - ./infrastructure/nginx/nginx.conf:/etc/nginx/nginx.conf
+    restart: unless-stopped
+    depends_on:
+      - frontend
+      - backend
+      - ai-service
+
+  # One-shot init service to seed Pinecone on first run
+  pinecone-init:
+    build:
+      context: .
+      dockerfile: infrastructure/docker/Dockerfile.ai-service
+    command: >
+      /bin/sh -c "pip install requests && 
+      python3 /app/scripts/ingest_sample_documents.py"
+    environment:
+      - AI_SERVICE_URL=http://ai-service:8000
+    depends_on:
+      - ai-service
+    profiles: ["init"]
 
 volumes:
   postgres_data:

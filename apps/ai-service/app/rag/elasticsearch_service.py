@@ -9,10 +9,15 @@ logger = logging.getLogger(__name__)
 ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL", "")
 ELASTICSEARCH_API_KEY = os.getenv("ELASTICSEARCH_API_KEY", "")
 
-es = AsyncElasticsearch(
-    ELASTICSEARCH_URL if ELASTICSEARCH_URL else "http://localhost:9200",
-    api_key=ELASTICSEARCH_API_KEY if ELASTICSEARCH_API_KEY else None,
-) if ELASTICSEARCH_URL else None
+# Initialize Elasticsearch client - use cloud URL if provided, otherwise localhost
+if ELASTICSEARCH_URL:
+    es = AsyncElasticsearch(
+        ELASTICSEARCH_URL,
+        api_key=ELASTICSEARCH_API_KEY if ELASTICSEARCH_API_KEY else None,
+    )
+else:
+    es = AsyncElasticsearch("http://localhost:9200")
+    logger.warning("Elasticsearch using localhost - set ELASTICSEARCH_URL for production")
 
 async def keyword_search(query: str, topK: int = 10, specialty: str = None) -> list[DocumentChunk]:
     """Perform keyword search in Elasticsearch."""

@@ -3,26 +3,36 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Install pnpm
+RUN npm install -g pnpm
+
+# Copy root package files
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
+
 # Install dependencies
-COPY apps/frontend/package*.json ./apps/frontend/
-RUN cd apps/frontend && npm install
+RUN pnpm install --frozen-lockfile
 
 # Copy source and build
 COPY apps/frontend/ ./apps/frontend/
-RUN cd apps/frontend && npm run build
+COPY packages/ ./packages/
+RUN cd apps/frontend && pnpm run build
 
 # Runtime image
 FROM node:20-alpine AS runtime
 
 WORKDIR /app
 
-COPY apps/frontend/package*.json ./
-RUN npm install --omit=dev
+# Copy standalone build
+COPY --from=builder /app/apps/frontend/.next/standalone ./
+COPY --from=builder /app/apps/frontend/.next/static ./apps/frontend/.next/static
+COPY --from=builder /app/apps/frontend/public ./apps/frontend/public
+COPY --from=builder /app/apps/frontend/package.json ./package.json
+COPY --from=builder /app/node_modules ./node_modules
 
-COPY --from=builder /app/apps/frontend/.next ./.next
-COPY --from=builder /app/apps/frontend/public ./public
-COPY --from=builder /app/apps/frontend/node_modules ./node_modules
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOSTNAME=0.0.0.0
 
 EXPOSE 3000
 
-CMD ["npm", "run", "start"]
+CMD ["node", "server.js"]

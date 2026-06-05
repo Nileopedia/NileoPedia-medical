@@ -7,7 +7,9 @@ exports.aiQueue = exports.cleanupQueue = exports.auditQueue = exports.notificati
 const bullmq_1 = require("bullmq");
 const ioredis_1 = __importDefault(require("ioredis"));
 const env_1 = require("../../config/env");
-const connection = new ioredis_1.default(env_1.CONFIG.REDIS_URL);
+const connection = new ioredis_1.default(env_1.CONFIG.REDIS_URL, {
+    maxRetriesPerRequest: null,
+});
 const createQueue = (name) => {
     return new bullmq_1.Queue(name, {
         connection: connection,
