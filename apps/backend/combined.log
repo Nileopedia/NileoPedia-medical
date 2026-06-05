@@ -23,3 +23,6 @@
 2026-06-04T21:10:14.737Z [nileopedia-backend] info: Processing AI generation job: 1
 2026-06-04T21:10:17.073Z [nileopedia-backend] error: AI generation failed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649 Request failed with status code 500
 2026-06-04T21:10:17.082Z [nileopedia-backend] error: AI generation job failed: 1 Request failed with status code 500
+2026-06-04T21:47:48.200Z [nileopedia-backend] info: GET / - ::1
+2026-06-04T21:54:48.506Z [nileopedia-backend] info: GET / - ::1
+2026-06-04T21:55:20.281Z [nileopedia-backend] info: HEAD / - ::1
