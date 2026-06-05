@@ -5,13 +5,13 @@ export declare const createSystemNotificationSchema: z.ZodObject<{
     targetRoles: z.ZodArray<z.ZodEnum<["MEDICAL_USER", "VALIDATOR", "ADMIN"]>, "many">;
     metadata: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodUnknown>>;
 }, "strip", z.ZodTypeAny, {
-    title: string;
     message: string;
+    title: string;
     targetRoles: ("MEDICAL_USER" | "VALIDATOR" | "ADMIN")[];
     metadata?: Record<string, unknown> | undefined;
 }, {
-    title: string;
     message: string;
+    title: string;
     targetRoles: ("MEDICAL_USER" | "VALIDATOR" | "ADMIN")[];
     metadata?: Record<string, unknown> | undefined;
 }>;

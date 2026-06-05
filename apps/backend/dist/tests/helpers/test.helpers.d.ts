@@ -10,14 +10,14 @@ export declare const createTestUser: (data: {
     role?: UserRole;
     password?: string;
 }) => Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
     fullName: string;
     email: string;
     password: string;
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
@@ -25,14 +25,14 @@ export declare const createTestUser: (data: {
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
 }>;
 export declare const createTestAdmin: () => Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
     fullName: string;
     email: string;
     password: string;
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
@@ -40,14 +40,14 @@ export declare const createTestAdmin: () => Promise<{
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
 }>;
 export declare const createTestValidator: () => Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
     fullName: string;
     email: string;
     password: string;
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
@@ -55,14 +55,14 @@ export declare const createTestValidator: () => Promise<{
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
 }>;
 export declare const createTestMedicalUser: () => Promise<{
-    id: string;
-    createdAt: Date;
-    updatedAt: Date;
     fullName: string;
     email: string;
     password: string;
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
+    id: string;
+    createdAt: Date;
+    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;

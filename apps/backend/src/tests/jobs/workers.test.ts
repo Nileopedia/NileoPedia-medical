@@ -12,6 +12,7 @@ describe('Worker Queues', () => {
       const jobData: DocumentIngestionJob = {
         documentId: 'test-doc-id',
         fileUrl: '/uploads/test.pdf',
+        fileType: 'application/pdf',
         fileName: 'test.pdf',
         title: 'Test Document',
         uploadedById: 'user-test-id',

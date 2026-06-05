@@ -8,41 +8,71 @@ import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
 import { ResponseViewer } from '../../components/query/ResponseViewer';
+import { io } from 'socket.io-client';
+
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
 
 export default function AskPage() {
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
+  const [partialFindings, setPartialFindings] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<string | null>(null);
 
   useEffect(() => {
     if (!questionId) return;
 
-    setProcessing(true);
-    const pollInterval = setInterval(async () => {
-      try {
-        const result = await api.getQuestion(questionId);
+    const socket = io(SOCKET_URL, {
+      transports: ['websocket'],
+      reconnection: true,
+    });
+
+    socket.on('connect', () => {
+      socket.emit('stream-question', questionId);
+    });
+
+    socket.on('ai-status', (data: { status: string; message: string }) => {
+      setProcessing(true);
+    });
+
+    socket.on('ai-key-findings', (data: { keyFindings: string[] }) => {
+      setPartialFindings(data.keyFindings);
+    });
+
+    socket.on('ai-response-complete', (data: { responseId: string }) => {
+      setProcessing(false);
+      // Fetch the complete response
+      api.getQuestion(questionId).then(result => {
         if (result.aiResponse) {
           setResponse(result.aiResponse);
-          setLoading(false);
-          setProcessing(false);
-          clearInterval(pollInterval);
         }
-      } catch (err) {
-        // Continue polling on error
-      }
-    }, 2000);
+      }).catch(() => {
+        // Fallback to polling if socket fails
+        const pollInterval = setInterval(async () => {
+          try {
+            const result = await api.getQuestion(questionId);
+            if (result.aiResponse) {
+              setResponse(result.aiResponse);
+              setProcessing(false);
+              clearInterval(pollInterval);
+            }
+          } catch { /* continue polling */ }
+        }, 2000);
+        
+        setTimeout(() => clearInterval(pollInterval), 30000);
+      });
+    });
 
-    const timeout = setTimeout(() => {
-      clearInterval(pollInterval);
+    socket.on('ai-error', (data: { error: string }) => {
+      setError(data.error);
       setProcessing(false);
-    }, 30000);
+      setLoading(false);
+    });
 
     return () => {
-      clearInterval(pollInterval);
-      clearTimeout(timeout);
+      socket.disconnect();
     };
   }, [questionId]);
 
@@ -53,6 +83,7 @@ export default function AskPage() {
     setLoading(true);
     setError(null);
     setResponse(null);
+    setPartialFindings([]);
     setQuestionId(null);
 
     try {
@@ -106,8 +137,18 @@ export default function AskPage() {
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="mr-2 h-6 w-6 animate-spin text-blue-600" />
-                <span className="text-slate-600">Processing your query... Fetching evidence-based response</span>
+                <span className="text-slate-600">Processing your query... Streaming response</span>
               </div>
+              {partialFindings.length > 0 && (
+                <div className="mt-4">
+                  <h3 className="text-sm font-medium text-slate-700 mb-2">Key Findings (streaming):</h3>
+                  <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+                    {partialFindings.map((finding, i) => (
+                      <li key={i}>{finding}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
             </div>
           )}
 

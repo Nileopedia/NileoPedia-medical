@@ -1,6 +1,7 @@
 export interface DocumentIngestionJob {
     documentId: string;
     fileUrl: string;
+    fileType: string;
     fileName: string;
     title: string;
     specialty?: string;

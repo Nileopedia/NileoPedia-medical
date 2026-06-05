@@ -132,6 +132,7 @@ export class DocumentController {
       await documentQueue.add('ingest', {
         documentId: document.id,
         fileUrl: document.fileUrl,
+        fileType: document.fileType,
         fileName: document.fileName,
         title: document.title,
         specialty: document.specialty,

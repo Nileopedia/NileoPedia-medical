@@ -16,6 +16,13 @@ const io = new Server(httpServer, {
   },
 });
 
+// Make io accessible to other modules
+declare global {
+  // eslint-disable-next-line no-var
+  var io: Server;
+}
+global.io = io;
+
 // Connect to database and then setup everything
 prisma.$connect()
   .then(() => {
@@ -34,6 +41,16 @@ prisma.$connect()
     // Socket.IO connection handling
     io.on('connection', (socket) => {
       console.log('User connected:', socket.id);
+
+      // Join room for specific user to receive personalized notifications
+      socket.on('join-user', (userId: string) => {
+        socket.join(`user-${userId}`);
+      });
+
+      // Listen for question streaming
+      socket.on('stream-question', (questionId: string) => {
+        socket.join(`question-${questionId}`);
+      });
 
       socket.on('disconnect', () => {
         console.log('User disconnected:', socket.id);

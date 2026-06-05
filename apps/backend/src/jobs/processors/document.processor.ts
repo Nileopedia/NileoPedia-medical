@@ -5,11 +5,13 @@ import { logger } from '../../config/logger';
 import fs from 'fs';
 import path from 'path';
 import { IngestionStatus } from '@prisma/client';
+import pdf from 'pdf-parse';
+import * as mammoth from 'mammoth';
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
 
 export async function processDocumentIngestion(job: DocumentIngestionJob) {
-  const { documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear } = job;
+  const { documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear, fileType } = job;
 
   try {
     await prisma.medicalDocument.update({
@@ -18,12 +20,39 @@ export async function processDocumentIngestion(job: DocumentIngestionJob) {
     });
 
     const fullPath = path.join(process.cwd(), fileUrl);
-    let content = '';
-
-    if (fs.existsSync(fullPath)) {
-      content = fs.readFileSync(fullPath, 'utf-8');
-    } else {
+    
+    if (!fs.existsSync(fullPath)) {
       throw new Error(`File not found: ${fileUrl}`);
+    }
+
+    let content = '';
+    const buffer = fs.readFileSync(fullPath);
+
+    // Extract text based on file type
+    if (fileType === 'application/pdf' || fileName.toLowerCase().endsWith('.pdf')) {
+      try {
+        const pdfData = await pdf(buffer);
+        content = pdfData.text || '';
+      } catch (pdfError) {
+        logger.warn(`PDF parsing failed, falling back to text extraction:`, pdfError);
+        content = buffer.toString('utf-8');
+      }
+    } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || 
+               fileName.toLowerCase().endsWith('.docx')) {
+      try {
+        const docxResult = await mammoth.extractRawText({ buffer });
+        content = docxResult.value || '';
+      } catch (docxError) {
+        logger.warn(`DOCX parsing failed, falling back to text extraction:`, docxError);
+        content = buffer.toString('utf-8');
+      }
+    } else {
+      // Plain text files
+      content = buffer.toString('utf-8');
+    }
+
+    if (!content || !content.trim()) {
+      throw new Error('No content could be extracted from the file');
     }
 
     const ingestResponse = await axios.post(`${AI_SERVICE_URL}/ingest`, {
