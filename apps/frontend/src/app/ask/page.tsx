@@ -12,6 +12,7 @@ import { ResponseViewer } from '../../components/query/ResponseViewer';
 export default function AskPage() {
   const [question, setQuestion] = useState('');
   const [loading, setLoading] = useState(false);
+  const [processing, setProcessing] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<string | null>(null);
@@ -19,21 +20,24 @@ export default function AskPage() {
   useEffect(() => {
     if (!questionId) return;
 
+    setProcessing(true);
     const pollInterval = setInterval(async () => {
       try {
         const result = await api.getQuestion(questionId);
         if (result.aiResponse) {
           setResponse(result.aiResponse);
           setLoading(false);
+          setProcessing(false);
           clearInterval(pollInterval);
         }
       } catch (err) {
-        // Continue polling
+        // Continue polling on error
       }
     }, 2000);
 
     const timeout = setTimeout(() => {
       clearInterval(pollInterval);
+      setProcessing(false);
     }, 30000);
 
     return () => {
@@ -97,6 +101,15 @@ export default function AskPage() {
               </Button>
             </form>
           </div>
+
+          {processing && !response && (
+            <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="mr-2 h-6 w-6 animate-spin text-blue-600" />
+                <span className="text-slate-600">Processing your query... Fetching evidence-based response</span>
+              </div>
+            </div>
+          )}
 
           {response && (
             <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
