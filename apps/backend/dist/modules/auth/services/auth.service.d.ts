@@ -45,5 +45,19 @@ export declare class AuthService {
         refreshToken: string;
     }>;
     logout(userId: string): Promise<void>;
+    requiresOtp(email: string): Promise<boolean>;
+    verifyOtp(email: string, otp: string): Promise<{
+        user: {
+            id: string;
+            fullName: string;
+            email: string;
+            role: import("@prisma/client").$Enums.UserRole;
+            institution: string | null;
+            specialization: string | null;
+            accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        };
+        accessToken: string;
+        refreshToken: string;
+    }>;
 }
 //# sourceMappingURL=auth.service.d.ts.map

@@ -12,6 +12,7 @@ type RegisterRole = 'MEDICAL_USER' | 'VALIDATOR' | 'ADMIN';
 export default function RegisterPage() {
   const router = useRouter();
   const setUser = useAppStore((state) => state.setUser);
+  const setOtpState = useAppStore((state) => state.setOtpState);
   const [fullName, setFullName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -33,9 +34,14 @@ export default function RegisterPage() {
         localStorage.setItem('refreshToken', result.refreshToken);
       }
       setUser(result.user);
-      const destination =
-        result.user.role === 'admin' ? '/admin' : result.user.role === 'validator' ? '/validator' : '/app';
-      router.push(destination);
+      // Validators and admins require OTP verification
+      if (result.user.role === 'validator' || result.user.role === 'admin') {
+        setOtpState({ needsOtp: true, email, role: result.user.role });
+        router.push('/verify');
+      } else {
+        const destination = '/app';
+        router.push(destination);
+      }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Registration failed');
     } finally {

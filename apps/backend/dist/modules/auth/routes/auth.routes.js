@@ -8,6 +8,8 @@ function authRoutes(authController) {
     const router = (0, express_1.Router)();
     router.post('/register', auth_validation_1.registerValidation, middleware_1.validate, authController.register.bind(authController));
     router.post('/login', auth_validation_1.loginValidation, middleware_1.validate, authController.login.bind(authController));
+    router.post('/verify', authController.verifyEmail.bind(authController));
+    router.post('/verify-otp', auth_validation_1.verifyOtpValidation, middleware_1.validate, authController.verifyOtp.bind(authController));
     router.post('/refresh-token', auth_validation_1.refreshTokenValidation, middleware_1.validate, authController.refreshToken.bind(authController));
     router.post('/logout', authController.logout.bind(authController));
     router.get('/google/login', authController.googleLogin.bind(authController));

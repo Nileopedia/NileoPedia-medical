@@ -1,11 +1,8 @@
-'use client';
-
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '../ui/Button';
-import { Input } from '../ui/Input';
 import { useAppStore } from '../../store/appStore';
-import { currentUser } from '../../data/mockData';
+import { api } from '../../lib/api';
 import { Shield, Mail, Loader2 } from 'lucide-react';
 
 export const OtpVerification: React.FC = () => {
@@ -13,6 +10,7 @@ export const OtpVerification: React.FC = () => {
   const { otpState, setUser, setOtpState } = useAppStore();
   const [otp, setOtp] = useState('');
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [trustDevice, setTrustDevice] = useState(false);
   const [timer, setTimer] = useState(60);
   const [canResend, setCanResend] = useState(false);
@@ -33,34 +31,35 @@ export const OtpVerification: React.FC = () => {
   const handleVerify = async (e: React.FormEvent) => {
     e.preventDefault();
     if (otp.length !== 6) return;
-    
+
     setLoading(true);
-    // Simulate API verification
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    // Simulate successful verification (accept any 6 digit code for demo, e.g., '123456')
-    const mockUser = { 
-      ...currentUser, 
-      email: otpState.email, 
-      role: otpState.role,
-      title: otpState.role === 'admin' ? 'System Administrator' : 'Medical Validator'
-    };
-    
-    setUser(mockUser);
-    setOtpState({ needsOtp: false, email: '', role: 'validator' });
-    setLoading(false);
-    router.push('/app');
+    setError(null);
+    try {
+      const result = await api.verifyOtp(otpState.email, otp);
+      localStorage.setItem('token', result.token);
+      if (result.refreshToken) {
+        localStorage.setItem('refreshToken', result.refreshToken);
+      }
+      setUser(result.user);
+      setOtpState({ needsOtp: false, email: '', role: 'validator' });
+      const destination =
+        result.user.role === 'admin' ? '/admin' : result.user.role === 'validator' ? '/validator' : '/app';
+      router.push(destination);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Verification failed');
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleResend = () => {
     setTimer(60);
     setCanResend(false);
     setOtp('');
-    // In a real app, trigger API to resend OTP
   };
 
   if (!otpState.needsOtp) {
-    return null; // Or redirect to login
+    return null;
   }
 
   return (
@@ -96,12 +95,12 @@ export const OtpVerification: React.FC = () => {
 
           <form onSubmit={handleVerify} className="space-y-6">
             <div>
-              <Input
+              <input
                 type="text"
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="123456"
-                className="text-center text-2xl tracking-[0.5em] font-mono h-14"
+                className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg text-center text-2xl tracking-[0.5em] font-mono h-14 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 maxLength={6}
                 required
                 autoFocus
@@ -111,13 +110,15 @@ export const OtpVerification: React.FC = () => {
               </p>
             </div>
 
+            {error && <p className="text-sm text-red-600 text-center">{error}</p>}
+
             <div className="flex items-center gap-2">
-              <input 
-                type="checkbox" 
+              <input
+                type="checkbox"
                 id="trust-device"
                 checked={trustDevice}
                 onChange={(e) => setTrustDevice(e.target.checked)}
-                className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 bg-white dark:bg-slate-800" 
+                className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 bg-white dark:bg-slate-800"
               />
               <label htmlFor="trust-device" className="text-sm text-slate-600 dark:text-slate-400">
                 Trust this device for 30 days

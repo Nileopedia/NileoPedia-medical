@@ -8,6 +8,8 @@ export default function authRoutes(authController: any) {
 
   router.post('/register', registerValidation, validate, authController.register.bind(authController));
   router.post('/login', loginValidation, validate, authController.login.bind(authController));
+  router.post('/verify', authController.verifyEmail.bind(authController));
+  router.post('/verify-otp', verifyOtpValidation, validate, authController.verifyOtp.bind(authController));
   router.post('/refresh-token', refreshTokenValidation, validate, authController.refreshToken.bind(authController));
   router.post('/logout', authController.logout.bind(authController));
   router.get('/google/login', authController.googleLogin.bind(authController));

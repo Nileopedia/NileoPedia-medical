@@ -111,6 +111,47 @@ class AuthService {
     async logout(userId) {
         await this.authRepository.setRefreshToken(userId, null);
     }
+    async requiresOtp(email) {
+        const user = await this.authRepository.findByEmail(email);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        // Validators and admins require OTP verification
+        return user.role === 'VALIDATOR' || user.role === 'ADMIN';
+    }
+    async verifyOtp(email, otp) {
+        // In production, verify against stored OTP with expiry
+        // For demo purposes, accept any 6-digit code
+        if (!otp || otp.length !== 6) {
+            throw new Error('Invalid OTP');
+        }
+        const user = await this.authRepository.findByEmail(email);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        const accessToken = this.jwtService.generateAccessToken({
+            id: user.id,
+            email: user.email,
+            role: user.role,
+        });
+        const refreshToken = this.jwtService.generateRefreshToken({
+            id: user.id,
+        });
+        await this.authRepository.setRefreshToken(user.id, refreshToken);
+        return {
+            user: {
+                id: user.id,
+                fullName: user.fullName,
+                email: user.email,
+                role: user.role,
+                institution: user.institution,
+                specialization: user.specialization,
+                accountStatus: user.accountStatus,
+            },
+            accessToken,
+            refreshToken,
+        };
+    }
 }
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map

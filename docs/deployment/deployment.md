@@ -113,6 +113,9 @@ redis-cli ping
 1. Sign up at resend.com
 2. Get API key
 3. Set `RESEND_API_KEY` in backend `.env`
+```
+
+**Note:** OTP verification for validators and admins uses mock OTP (accepts any 6-digit code) in development. Production requires email provider configuration.
 
 ## Development
 
@@ -145,3 +148,22 @@ cd apps/backend && npm run start
 # Start AI service
 cd apps/ai-service && python -m uvicorn main:app --host 0.0.0.0 --port 8000
 ```
+
+## OTP/Email Verification
+
+The system implements role-based OTP verification:
+
+- **Medical Users** - No OTP required, direct login
+- **Validators/Admins** - OTP required after registration/login
+
+### API Endpoints
+
+- `POST /auth/verify` - Check if email requires OTP verification
+- `POST /auth/verify-otp` - Verify OTP code and get auth tokens
+
+### Frontend Flow
+
+1. Register/Login → Backend checks role
+2. If validator/admin → Redirect to `/verify` page
+3. Enter 6-digit code (any 6 digits in demo mode)
+4. Receive tokens and access appropriate dashboard

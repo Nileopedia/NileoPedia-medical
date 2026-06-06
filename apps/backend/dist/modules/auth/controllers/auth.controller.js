@@ -111,6 +111,42 @@ class AuthController {
             next(error);
         }
     }
+    async verifyEmail(req, res, next) {
+        try {
+            const { email } = req.body;
+            if (!email) {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Email is required',
+                });
+            }
+            const requiresOtp = await this.authService.requiresOtp(email);
+            res.status(200).json({
+                success: true,
+                message: 'Verification check complete',
+                data: { requiresOtp },
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in verifyEmail controller:', error);
+            next(error);
+        }
+    }
+    async verifyOtp(req, res, next) {
+        try {
+            const { email, otp } = req.body;
+            const result = await this.authService.verifyOtp(email, otp);
+            res.status(200).json({
+                success: true,
+                message: 'OTP verified successfully',
+                data: result,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in verifyOtp controller:', error);
+            next(error);
+        }
+    }
 }
 exports.AuthController = AuthController;
 //# sourceMappingURL=auth.controller.js.map

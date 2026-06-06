@@ -287,11 +287,18 @@ class ApiClient {
     });
   }
 
-  async verifyOtp(email: string, otp: string): Promise<{ token: string; user: User }> {
-    return this.request('/auth/verify-otp', {
+  async verifyOtp(email: string, otp: string): Promise<{ token: string; refreshToken?: string; user: User }> {
+    const payload = await this.request<ApiEnvelope<{ accessToken: string; refreshToken: string; user: BackendUser }>>('/auth/verify-otp', {
       method: 'POST',
       body: JSON.stringify({ email, otp }),
     });
+
+    const data = this.unwrap(payload);
+    return {
+      token: data.accessToken,
+      refreshToken: data.refreshToken,
+      user: this.normalizeUser(data.user),
+    };
   }
 
   async saveResponse(questionId: string): Promise<void> {
