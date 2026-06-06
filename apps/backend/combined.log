@@ -7,3 +7,38 @@
 2026-06-06T20:33:21.411Z [nileopedia-backend] info: GET /api/v1/auth/google/callback - ::1
 2026-06-06T20:33:22.060Z [nileopedia-backend] error: Google OAuth callback error: invalid_client
 2026-06-06T20:33:22.061Z [nileopedia-backend] error: Error in Google callback: invalid_client
+2026-06-06T20:44:09.458Z [nileopedia-backend] info: POST /api/v1/auth/forgot-password - ::1
+2026-06-06T20:50:04.477Z [nileopedia-backend] info: POST /api/v1/auth/forgot-password - ::1
+2026-06-06T20:50:04.737Z [nileopedia-backend] info: Password reset email sent to test123@test.com
+2026-06-06T20:51:17.792Z [nileopedia-backend] info: GET /health - ::1
+2026-06-06T20:51:43.276Z [nileopedia-backend] info: Schedulers initialized
+2026-06-06T20:51:43.510Z [nileopedia-backend] info: Processing AI generation job: 2
+2026-06-06T20:51:43.513Z [nileopedia-backend] info: Processing email job: 1
+2026-06-06T20:51:43.531Z [nileopedia-backend] info: Processing AI generation job: 3
+2026-06-06T20:51:43.532Z [nileopedia-backend] info: Processing email job: 2
+2026-06-06T20:51:43.578Z [nileopedia-backend] error: AI generation job failed: 2 io is not defined
+2026-06-06T20:51:43.579Z [nileopedia-backend] error: AI generation job failed: 3 io is not defined
+2026-06-06T20:51:43.605Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:43.608Z [nileopedia-backend] error: Email sending failed to test123@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:43.610Z [nileopedia-backend] error: Email job failed: 1 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:43.611Z [nileopedia-backend] error: Email job failed: 2 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:45.643Z [nileopedia-backend] info: Processing email job: 1
+2026-06-06T20:51:45.647Z [nileopedia-backend] info: Processing email job: 2
+2026-06-06T20:51:45.655Z [nileopedia-backend] info: Processing AI generation job: 2
+2026-06-06T20:51:45.656Z [nileopedia-backend] info: Processing AI generation job: 3
+2026-06-06T20:51:45.669Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:45.672Z [nileopedia-backend] error: Email sending failed to test123@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:45.676Z [nileopedia-backend] error: AI generation job failed: 2 io is not defined
+2026-06-06T20:51:45.677Z [nileopedia-backend] error: AI generation job failed: 3 io is not defined
+2026-06-06T20:51:45.678Z [nileopedia-backend] error: Email job failed: 1 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:45.682Z [nileopedia-backend] error: Email job failed: 2 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:49.760Z [nileopedia-backend] info: Processing email job: 1
+2026-06-06T20:51:49.765Z [nileopedia-backend] info: Processing email job: 2
+2026-06-06T20:51:49.769Z [nileopedia-backend] info: Processing AI generation job: 2
+2026-06-06T20:51:49.770Z [nileopedia-backend] info: Processing AI generation job: 3
+2026-06-06T20:51:49.782Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:49.785Z [nileopedia-backend] error: Email sending failed to test123@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:49.788Z [nileopedia-backend] error: AI generation job failed: 2 io is not defined
+2026-06-06T20:51:49.792Z [nileopedia-backend] error: AI generation job failed: 3 io is not defined
+2026-06-06T20:51:49.795Z [nileopedia-backend] error: Email job failed: 1 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-06T20:51:49.796Z [nileopedia-backend] error: Email job failed: 2 connect ECONNREFUSED 127.0.0.1:1025

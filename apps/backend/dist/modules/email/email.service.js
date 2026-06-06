@@ -101,13 +101,22 @@ class EmailService {
             await emailQueue.add('send', jobData);
         }
         catch (error) {
-            // Fallback to direct send when Redis/queue unavailable (demo mode)
-            logger_1.logger.warn('Redis queue unavailable, sending email directly');
-            await this.sendEmail(to, subject, html);
-            await prisma_1.default.emailLog.updateMany({
-                where: { recipient: to, subject },
-                data: { status: email_types_1.EmailStatus.SENT, sentAt: new Date() },
-            });
+            // Fallback: send directly via Resend when Redis/queue unavailable
+            logger_1.logger.warn('Queue unavailable, sending email directly via Resend');
+            try {
+                await this.sendViaResend(to, subject, html);
+                await prisma_1.default.emailLog.updateMany({
+                    where: { recipient: to, subject },
+                    data: { status: email_types_1.EmailStatus.SENT, sentAt: new Date() },
+                });
+            }
+            catch (sendError) {
+                await prisma_1.default.emailLog.updateMany({
+                    where: { recipient: to, subject },
+                    data: { status: email_types_1.EmailStatus.FAILED, error: String(sendError) },
+                });
+                throw sendError;
+            }
         }
     }
     static async sendEmail(to, subject, html) {
