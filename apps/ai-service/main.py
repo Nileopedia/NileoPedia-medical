@@ -35,3 +35,15 @@ app.include_router(generate.router, prefix="/generate", tags=["generate"])
 app.include_router(embeddings.router, prefix="/embeddings", tags=["embeddings"])
 app.include_router(retrieve.router, prefix="/retrieve", tags=["retrieve"])
 app.include_router(ingest.router, prefix="/ingest", tags=["ingest"])
+
+# Validate Elasticsearch configuration on startup
+@app.on_event("startup")
+async def validate_elasticsearch():
+    """Validate Elasticsearch configuration on startup."""
+    from app.rag.elasticsearch_service import init_elasticsearch
+    try:
+        init_elasticsearch()
+    except ValueError as e:
+        logger = logging.getLogger(__name__)
+        logger.error(f"Elasticsearch configuration invalid: {str(e)}")
+        raise RuntimeError(f"Elasticsearch not configured: {str(e)}") from e

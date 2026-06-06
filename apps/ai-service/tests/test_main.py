@@ -5,6 +5,14 @@ sys.path.insert(0, '/app')
 
 # Mock external services for testing
 from unittest.mock import AsyncMock, MagicMock, patch
+from httpx import AsyncClient
+
+# Mock Elasticsearch validation on startup
+@pytest.fixture(autouse=True)
+def mock_elasticsearch():
+    with patch('app.rag.elasticsearch_service.init_elasticsearch') as mock_init:
+        mock_init.return_value = MagicMock()
+        yield
 
 @pytest.mark.asyncio
 async def test_health_endpoint():

@@ -6,24 +6,52 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL", "")
+ELASTICSEARCH_URL = os.getenv("ELASTICSEARCH_URL")
 ELASTICSEARCH_API_KEY = os.getenv("ELASTICSEARCH_API_KEY", "")
 
-# Initialize Elasticsearch client - use cloud URL if provided, otherwise localhost
-if ELASTICSEARCH_URL:
+es: Optional[AsyncElasticsearch] = None
+
+def init_elasticsearch() -> AsyncElasticsearch:
+    """Initialize Elasticsearch client. Raises error if not properly configured."""
+    global es
+    
+    if not ELASTICSEARCH_URL:
+        raise ValueError(
+            "ELASTICSEARCH_URL environment variable is required. "
+            "Set it to your Elasticsearch cloud endpoint (e.g., https://your-project.es.region.cloud.com:443)"
+        )
+    
+    if not ELASTICSEARCH_API_KEY:
+        raise ValueError(
+            "ELASTICSEARCH_API_KEY environment variable is required for Elasticsearch authentication."
+        )
+    
     es = AsyncElasticsearch(
         ELASTICSEARCH_URL,
-        api_key=ELASTICSEARCH_API_KEY if ELASTICSEARCH_API_KEY else None,
+        api_key=ELASTICSEARCH_API_KEY,
+        request_timeout=30,
     )
-else:
-    es = AsyncElasticsearch("http://localhost:9200")
-    logger.warning("Elasticsearch using localhost - set ELASTICSEARCH_URL for production")
+    logger.info(f"Elasticsearch client initialized with URL: {ELASTICSEARCH_URL[:50]}...")
+    return es
+
+def get_elasticsearch() -> AsyncElasticsearch:
+    """Get Elasticsearch client, initializing if needed."""
+    global es
+    if es is None:
+        try:
+            es = init_elasticsearch()
+        except ValueError as e:
+            logger.error(str(e))
+            raise
+    return es
 
 async def keyword_search(query: str, topK: int = 10, specialty: str = None) -> list[DocumentChunk]:
     """Perform keyword search in Elasticsearch."""
-    if es is None:
-        logger.warning("Elasticsearch not configured - returning empty results")
-        return []
+    try:
+        es_client = get_elasticsearch()
+    except (ValueError, Exception) as e:
+        logger.error(f"Elasticsearch client not available: {str(e)}")
+        raise RuntimeError(f"Elasticsearch connection failed: {str(e)}") from e
     
     body = {
         "query": {
@@ -46,7 +74,7 @@ async def keyword_search(query: str, topK: int = 10, specialty: str = None) -> l
         ]
 
     try:
-        response = await es.search(index="medical_documents", body=body)
+        response = await es_client.search(index="medical_documents", body=body)
         
         chunks = []
         for hit in response["hits"]["hits"]:
@@ -66,14 +94,17 @@ async def keyword_search(query: str, topK: int = 10, specialty: str = None) -> l
         return chunks
     except Exception as e:
         logger.error(f"Elasticsearch search failed: {str(e)}")
-        return []
+        raise RuntimeError(f"Elasticsearch keyword search failed: {str(e)}") from e
 
 async def index_document(doc_id: str, document: dict) -> None:
     """Index document in Elasticsearch."""
-    if es is None:
-        return
     try:
-        await es.index(index="medical_documents", id=doc_id, document=document)
+        es_client = get_elasticsearch()
+    except (ValueError, Exception) as e:
+        logger.error(f"Elasticsearch client not available: {str(e)}")
+        raise RuntimeError(f"Elasticsearch connection failed: {str(e)}") from e
+    try:
+        await es_client.index(index="medical_documents", id=doc_id, document=document)
         logger.info(f"Indexed document {doc_id} in Elasticsearch")
     except Exception as e:
         logger.error(f"Elasticsearch indexing failed: {str(e)}")
@@ -81,8 +112,11 @@ async def index_document(doc_id: str, document: dict) -> None:
 
 async def search_citations(query: str, topK: int = 10) -> list[DocumentChunk]:
     """Search for citations by medical terms."""
-    if es is None:
-        return []
+    try:
+        es_client = get_elasticsearch()
+    except (ValueError, Exception) as e:
+        logger.error(f"Elasticsearch client not available: {str(e)}")
+        raise RuntimeError(f"Elasticsearch connection failed: {str(e)}") from e
     
     body = {
         "query": {
@@ -95,7 +129,7 @@ async def search_citations(query: str, topK: int = 10) -> list[DocumentChunk]:
         "size": topK
     }
     try:
-        response = await es.search(index="citations", body=body)
+        response = await es_client.search(index="citations", body=body)
         
         chunks = []
         for hit in response["hits"]["hits"]:
@@ -114,4 +148,4 @@ async def search_citations(query: str, topK: int = 10) -> list[DocumentChunk]:
         return chunks
     except Exception as e:
         logger.error(f"Elasticsearch citation search failed: {str(e)}")
-        return []
+        raise RuntimeError(f"Elasticsearch citation search failed: {str(e)}") from e

@@ -27,7 +27,11 @@ async def hybrid_retrieval(
     
     elif retrieval_type == RetrievalType.KEYWORD:
         logger.info(f"Performing keyword search for: {query}")
-        return await keyword_search(query, topK, specialty)
+        try:
+            return await keyword_search(query, topK, specialty)
+        except RuntimeError as e:
+            logger.error(f"Keyword search failed: {str(e)}")
+            raise RuntimeError(f"Elasticsearch connection required for keyword search. Set ELASTICSEARCH_URL and ELASTICSEARCH_API_KEY environment variables. Error: {str(e)}")
     
     else:  # HYBRID
         embedding = await generate_embedding(EmbeddingRequest(text=query, model="text-embedding-3-large"))
@@ -35,10 +39,13 @@ async def hybrid_retrieval(
         
         logger.info(f"Performing hybrid search, namespace: {namespace}")
         semantic_chunks = await semantic_search(embedding, topK, namespace)
-        keyword_chunks = await keyword_search(query, topK, specialty)
-        
-        logger.info(f"Semantic results: {len(semantic_chunks)}, Keyword results: {len(keyword_chunks)}")
-        return _merge_results(semantic_chunks, keyword_chunks, topK)
+        try:
+            keyword_chunks = await keyword_search(query, topK, specialty)
+            logger.info(f"Semantic results: {len(semantic_chunks)}, Keyword results: {len(keyword_chunks)}")
+            return _merge_results(semantic_chunks, keyword_chunks, topK)
+        except RuntimeError as e:
+            logger.warning(f"Keyword search unavailable, returning semantic-only results")
+            return semantic_chunks
 
 async def _merge_results(
     semantic_chunks: List[DocumentChunk],
