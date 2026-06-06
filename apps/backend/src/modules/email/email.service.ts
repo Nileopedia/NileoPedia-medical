@@ -82,10 +82,19 @@ export class EmailService {
       },
     });
 
-    const { emailQueue } = await import('../../jobs/queues');
-    const jobData: EmailJob = { to, subject, template, html };
-
-    await emailQueue.add('send', jobData);
+    try {
+      const { emailQueue } = await import('../../jobs/queues');
+      const jobData: EmailJob = { to, subject, template, html };
+      await emailQueue.add('send', jobData);
+    } catch (error) {
+      // Fallback to direct send when Redis/queue unavailable (demo mode)
+      logger.warn('Redis queue unavailable, sending email directly');
+      await this.sendEmail(to, subject, html);
+      await prisma.emailLog.updateMany({
+        where: { recipient: to, subject },
+        data: { status: EmailStatus.SENT, sentAt: new Date() },
+      });
+    }
   }
 
   static async sendEmail(to: string, subject: string, html: string): Promise<void> {

@@ -9,15 +9,15 @@ RUN npm install -g pnpm
 # Copy root package files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install dependencies
-RUN pnpm install --frozen-lockfile
+# Install dependencies with memory optimization
+RUN NODE_OPTIONS="--max-old-space-size=2048" pnpm install --frozen-lockfile
 
-# Copy source and build
+# Copy source and build with increased memory
 COPY apps/frontend/ ./apps/frontend/
 COPY packages/ ./packages/
-RUN cd apps/frontend && pnpm run build
+RUN cd apps/frontend && NODE_OPTIONS="--max-old-space-size=4096" pnpm run build
 
-# Runtime image
+# Runtime image (smaller footprint)
 FROM node:20-alpine AS runtime
 
 WORKDIR /app

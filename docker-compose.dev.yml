@@ -1,0 +1,36 @@
+# Development override with reduced resource usage
+services:
+  frontend:
+    environment:
+      - NODE_ENV=development
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+
+  backend:
+    environment:
+      - NODE_ENV=development
+    deploy:
+      resources:
+        limits:
+          memory: 768m
+
+  ai-service:
+    deploy:
+      resources:
+        limits:
+          memory: 1g
+
+  postgres:
+    deploy:
+      resources:
+        limits:
+          memory: 512m
+
+  redis:
+    command: redis-server --maxmemory 128mb --maxmemory-policy allkeys-lru
+    deploy:
+      resources:
+        limits:
+          memory: 256m

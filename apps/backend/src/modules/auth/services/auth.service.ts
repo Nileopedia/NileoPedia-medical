@@ -191,12 +191,25 @@ export class AuthService {
   }
 
   async forgotPassword(email: string) {
-    // In production, generate a reset token and send email
-    // For demo, just log and return (prevents email enumeration)
     const user = await this.authRepository.findByEmail(email);
     if (user) {
-      // In production: send email via Resend/SES/etc
-      logger.info(`Password reset requested for ${email}`);
+      // Generate reset token (in production, this would be stored with expiry)
+      const resetToken = Math.random().toString(36).substring(2, 15);
+      const resetLink = `${process.env.FRONTEND_URL}/reset-password?email=${encodeURIComponent(email)}&token=${resetToken}`;
+      
+      // Try to send email via queue worker, fallback to direct send for demo
+      try {
+        const EmailService = (await import('../../email/email.service')).EmailService;
+        await EmailService.sendPasswordReset({
+          email,
+          fullName: user.fullName,
+          resetLink,
+        });
+        logger.info(`Password reset email sent to ${email}`);
+      } catch (error) {
+        // In demo mode without Redis/worker, log the reset link
+        logger.info(`Reset link for ${email}: ${resetLink}`);
+      }
     }
     // Always return success to prevent email enumeration attacks
     return { success: true };

@@ -1,4 +1,27 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -154,12 +177,25 @@ class AuthService {
         };
     }
     async forgotPassword(email) {
-        // In production, generate a reset token and send email
-        // For demo, just log and return (prevents email enumeration)
         const user = await this.authRepository.findByEmail(email);
         if (user) {
-            // In production: send email via Resend/SES/etc
-            logger_1.logger.info(`Password reset requested for ${email}`);
+            // Generate reset token (in production, this would be stored with expiry)
+            const resetToken = Math.random().toString(36).substring(2, 15);
+            const resetLink = `${process.env.FRONTEND_URL}/reset-password?email=${encodeURIComponent(email)}&token=${resetToken}`;
+            // Try to send email via queue worker, fallback to direct send for demo
+            try {
+                const EmailService = (await Promise.resolve().then(() => __importStar(require('../../email/email.service')))).EmailService;
+                await EmailService.sendPasswordReset({
+                    email,
+                    fullName: user.fullName,
+                    resetLink,
+                });
+                logger_1.logger.info(`Password reset email sent to ${email}`);
+            }
+            catch (error) {
+                // In demo mode without Redis/worker, log the reset link
+                logger_1.logger.info(`Reset link for ${email}: ${resetLink}`);
+            }
         }
         // Always return success to prevent email enumeration attacks
         return { success: true };

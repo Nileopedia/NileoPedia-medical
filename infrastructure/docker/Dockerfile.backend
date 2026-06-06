@@ -9,18 +9,19 @@ RUN npm install -g pnpm
 # Copy workspace configuration
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-# Install all dependencies (needed for build)
-RUN pnpm install --frozen-lockfile
+# Install all dependencies (needed for build) with memory optimization
+RUN NODE_OPTIONS="--max-old-space-size=2048" pnpm install --frozen-lockfile
 
 # Copy source code
 COPY apps/backend/ ./apps/backend/
 COPY packages/ ./packages/
 
-# Build application
+# Build application with increased memory limit
 WORKDIR /app/apps/backend
-RUN pnpm prisma generate && pnpm run build
+RUN NODE_OPTIONS="--max-old-space-size=4096" pnpm prisma generate && \
+    NODE_OPTIONS="--max-old-space-size=4096" pnpm run build
 
-# Runtime image
+# Runtime image (smaller footprint)
 FROM node:20-alpine AS runtime
 
 WORKDIR /app/apps/backend

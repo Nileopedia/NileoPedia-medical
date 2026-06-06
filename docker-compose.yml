@@ -12,6 +12,10 @@ services:
     restart: unless-stopped
     depends_on:
       - backend
+    deploy:
+      resources:
+        limits:
+          memory: 1g
 
   backend:
     build:
@@ -24,6 +28,13 @@ services:
       - OPENAI_API_KEY=${OPENAI_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - AI_SERVICE_URL=http://ai-service:8000
+      - EMAIL_PROVIDER=${EMAIL_PROVIDER:-resend}
+      - RESEND_API_KEY=${RESEND_API_KEY}
+      - EMAIL_FROM=${EMAIL_FROM:-noreply@nileopedia.com}
+      - JWT_ACCESS_SECRET=${JWT_ACCESS_SECRET}
+      - JWT_REFRESH_SECRET=${JWT_REFRESH_SECRET}
+      - GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+      - GOOGLE_CLIENT_SECRET=${GOOGLE_CLIENT_SECRET}
     ports:
       - "3001:3001"
     restart: unless-stopped
@@ -31,6 +42,10 @@ services:
       - postgres
       - redis
       - ai-service
+    deploy:
+      resources:
+        limits:
+          memory: 1g
 
   ai-service:
     build:
@@ -49,6 +64,10 @@ services:
     restart: unless-stopped
     depends_on:
       - redis
+    deploy:
+      resources:
+        limits:
+          memory: 1.5g
 
   postgres:
     image: postgres:16-alpine

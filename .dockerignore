@@ -19,3 +19,11 @@
 # Environment files
 *.env
 !.env.example
+
+# Large data files
+**/data
+**/uploads
+**/*.pdf
+**/*.docx
+**/*.xlsx
+**/sample_documents

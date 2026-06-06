@@ -95,9 +95,20 @@ class EmailService {
                 status: email_types_1.EmailStatus.PENDING,
             },
         });
-        const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
-        const jobData = { to, subject, template, html };
-        await emailQueue.add('send', jobData);
+        try {
+            const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
+            const jobData = { to, subject, template, html };
+            await emailQueue.add('send', jobData);
+        }
+        catch (error) {
+            // Fallback to direct send when Redis/queue unavailable (demo mode)
+            logger_1.logger.warn('Redis queue unavailable, sending email directly');
+            await this.sendEmail(to, subject, html);
+            await prisma_1.default.emailLog.updateMany({
+                where: { recipient: to, subject },
+                data: { status: email_types_1.EmailStatus.SENT, sentAt: new Date() },
+            });
+        }
     }
     static async sendEmail(to, subject, html) {
         if (EMAIL_PROVIDER === 'resend') {

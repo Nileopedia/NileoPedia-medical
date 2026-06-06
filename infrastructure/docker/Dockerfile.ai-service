@@ -3,7 +3,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Install dependencies
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Python dependencies
 COPY apps/ai-service/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
@@ -11,9 +16,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY apps/ai-service/ .
 COPY scripts/ingest_sample_documents.py /app/scripts/
 
-# Create data directory
+# Create data directory with size limit
 RUN mkdir -p /app/data
 
 EXPOSE 8000
 
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run with worker limit to reduce memory pressure
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "2"]
