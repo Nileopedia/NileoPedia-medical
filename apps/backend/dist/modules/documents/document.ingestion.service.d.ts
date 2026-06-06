@@ -21,11 +21,11 @@ export declare class DocumentIngestionService {
             createdAt: Date;
             updatedAt: Date;
             title: string;
+            description: string | null;
             source: string | null;
             publicationYear: number | null;
             documentType: string | null;
             specialty: string | null;
-            description: string | null;
             fileName: string;
             fileUrl: string;
             fileType: string;

@@ -16,13 +16,13 @@ export declare const createTestUser: (data: {
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
-    createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    createdAt: Date;
+    updatedAt: Date;
 }>;
 export declare const createTestAdmin: () => Promise<{
     fullName: string;
@@ -31,13 +31,13 @@ export declare const createTestAdmin: () => Promise<{
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
-    createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    createdAt: Date;
+    updatedAt: Date;
 }>;
 export declare const createTestValidator: () => Promise<{
     fullName: string;
@@ -46,13 +46,13 @@ export declare const createTestValidator: () => Promise<{
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
-    createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    createdAt: Date;
+    updatedAt: Date;
 }>;
 export declare const createTestMedicalUser: () => Promise<{
     fullName: string;
@@ -61,13 +61,13 @@ export declare const createTestMedicalUser: () => Promise<{
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
-    createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    createdAt: Date;
+    updatedAt: Date;
 }>;
 export declare const createAuthHeader: (token: string) => {
     Authorization: string;

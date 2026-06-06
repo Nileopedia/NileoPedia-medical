@@ -147,6 +147,35 @@ class AuthController {
             next(error);
         }
     }
+    async forgotPassword(req, res, next) {
+        try {
+            const { email } = req.body;
+            await this.authService.forgotPassword(email);
+            res.status(200).json({
+                success: true,
+                message: 'If the email exists, a reset link has been sent',
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in forgotPassword controller:', error);
+            next(error);
+        }
+    }
+    async resetPassword(req, res, next) {
+        try {
+            const { email, token, newPassword } = req.body;
+            const result = await this.authService.resetPassword(email, token, newPassword);
+            res.status(200).json({
+                success: true,
+                message: 'Password reset successfully',
+                data: result,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in resetPassword controller:', error);
+            next(error);
+        }
+    }
 }
 exports.AuthController = AuthController;
 //# sourceMappingURL=auth.controller.js.map

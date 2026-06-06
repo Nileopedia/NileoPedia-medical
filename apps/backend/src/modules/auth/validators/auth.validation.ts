@@ -24,3 +24,15 @@ export const verifyOtpValidation = [
 export const refreshTokenValidation = [
   body('refreshToken').notEmpty().withMessage('Refresh token is required'),
 ];
+
+export const forgotPasswordValidation = [
+  body('email').isEmail().withMessage('Please provide a valid email'),
+];
+
+export const resetPasswordValidation = [
+  body('email').isEmail().withMessage('Please provide a valid email'),
+  body('token').notEmpty().withMessage('Reset token is required'),
+  body('newPassword')
+    .isLength({ min: 8 })
+    .withMessage('Password must be at least 8 characters long'),
+];

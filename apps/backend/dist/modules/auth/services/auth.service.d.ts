@@ -59,5 +59,11 @@ export declare class AuthService {
         accessToken: string;
         refreshToken: string;
     }>;
+    forgotPassword(email: string): Promise<{
+        success: boolean;
+    }>;
+    resetPassword(email: string, token: string, newPassword: string): Promise<{
+        success: boolean;
+    }>;
 }
 //# sourceMappingURL=auth.service.d.ts.map

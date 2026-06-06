@@ -28,12 +28,12 @@ export declare class UserService {
         email: string;
         role: import("@prisma/client").$Enums.UserRole;
         id: string;
-        createdAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
     getUsers(query: GetUsersQuery): Promise<GetUsersResult>;
     deactivateUser(userId: string): Promise<void>;

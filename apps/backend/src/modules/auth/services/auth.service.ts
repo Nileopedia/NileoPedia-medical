@@ -189,4 +189,37 @@ export class AuthService {
       refreshToken,
     };
   }
+
+  async forgotPassword(email: string) {
+    // In production, generate a reset token and send email
+    // For demo, just log and return (prevents email enumeration)
+    const user = await this.authRepository.findByEmail(email);
+    if (user) {
+      // In production: send email via Resend/SES/etc
+      logger.info(`Password reset requested for ${email}`);
+    }
+    // Always return success to prevent email enumeration attacks
+    return { success: true };
+  }
+
+  async resetPassword(email: string, token: string, newPassword: string) {
+    // In production, verify token matches and hasn't expired
+    if (!token || token.length < 6) {
+      throw new Error('Invalid or expired reset token');
+    }
+
+    const user = await this.authRepository.findByEmail(email);
+    if (!user) {
+      throw new Error('User not found');
+    }
+
+    // For demo, accept any token
+
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(newPassword, salt);
+
+    await this.authRepository.updatePassword(user.id, hashedPassword);
+
+    return { success: true };
+  }
 }

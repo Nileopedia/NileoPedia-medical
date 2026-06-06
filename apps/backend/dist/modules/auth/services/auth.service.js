@@ -7,6 +7,7 @@ exports.AuthService = void 0;
 const auth_repository_1 = require("../repositories/auth.repository");
 const jwt_service_1 = require("./jwt.service");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const logger_1 = require("../../../config/logger");
 class AuthService {
     constructor() {
         this.authRepository = new auth_repository_1.AuthRepository();
@@ -151,6 +152,32 @@ class AuthService {
             accessToken,
             refreshToken,
         };
+    }
+    async forgotPassword(email) {
+        // In production, generate a reset token and send email
+        // For demo, just log and return (prevents email enumeration)
+        const user = await this.authRepository.findByEmail(email);
+        if (user) {
+            // In production: send email via Resend/SES/etc
+            logger_1.logger.info(`Password reset requested for ${email}`);
+        }
+        // Always return success to prevent email enumeration attacks
+        return { success: true };
+    }
+    async resetPassword(email, token, newPassword) {
+        // In production, verify token matches and hasn't expired
+        if (!token || token.length < 6) {
+            throw new Error('Invalid or expired reset token');
+        }
+        const user = await this.authRepository.findByEmail(email);
+        if (!user) {
+            throw new Error('User not found');
+        }
+        // For demo, accept any token
+        const salt = await bcryptjs_1.default.genSalt(10);
+        const hashedPassword = await bcryptjs_1.default.hash(newPassword, salt);
+        await this.authRepository.updatePassword(user.id, hashedPassword);
+        return { success: true };
     }
 }
 exports.AuthService = AuthService;

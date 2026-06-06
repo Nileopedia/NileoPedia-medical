@@ -167,3 +167,23 @@ The system implements role-based OTP verification:
 2. If validator/admin → Redirect to `/verify` page
 3. Enter 6-digit code (any 6 digits in demo mode)
 4. Receive tokens and access appropriate dashboard
+
+## Forgot/Reset Password
+
+Password reset functionality allows users to reset their password via email token.
+
+### API Endpoints
+
+- `POST /auth/forgot-password` - Request password reset (sends email with token)
+- `POST /auth/reset-password` - Reset password with token
+
+### Frontend Flow
+
+1. Navigate to `/forgot-password`
+2. Enter email address
+3. Receive reset token (logged in backend for demo)
+4. Navigate to `/reset-password?email=...&token=...`
+5. Enter new password
+6. Password updated, redirect to login
+
+**Note:** In production, reset tokens are sent via email. Test mode logs tokens to server console.

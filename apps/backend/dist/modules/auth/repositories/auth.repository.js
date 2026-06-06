@@ -21,6 +21,9 @@ class AuthRepository {
     async setRefreshToken(id, refreshToken) {
         return prisma_1.default.user.update({ where: { id }, data: { refreshToken: refreshToken || undefined } });
     }
+    async updatePassword(id, password) {
+        return prisma_1.default.user.update({ where: { id }, data: { password } });
+    }
 }
 exports.AuthRepository = AuthRepository;
 //# sourceMappingURL=auth.repository.js.map

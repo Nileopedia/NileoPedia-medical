@@ -301,6 +301,20 @@ class ApiClient {
     };
   }
 
+  async forgotPassword(email: string): Promise<void> {
+    await this.request('/auth/forgot-password', {
+      method: 'POST',
+      body: JSON.stringify({ email }),
+    });
+  }
+
+  async resetPassword(email: string, token: string, newPassword: string): Promise<void> {
+    await this.request('/auth/reset-password', {
+      method: 'POST',
+      body: JSON.stringify({ email, token, newPassword }),
+    });
+  }
+
   async saveResponse(questionId: string): Promise<void> {
     await this.request(`/questions/${questionId}/save`, {
       method: 'POST',

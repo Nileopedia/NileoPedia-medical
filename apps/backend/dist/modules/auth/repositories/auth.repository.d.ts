@@ -1,33 +1,33 @@
 export declare class AuthRepository {
     findByEmail(email: string): Promise<{
+        id: string;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
-        refreshToken: string | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        refreshToken: string | null;
+        createdAt: Date;
+        updatedAt: Date;
     } | null>;
     findById(id: string): Promise<{
+        id: string;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
-        refreshToken: string | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        refreshToken: string | null;
+        createdAt: Date;
+        updatedAt: Date;
     } | null>;
     create(userData: {
         fullName: string;
@@ -37,19 +37,19 @@ export declare class AuthRepository {
         specialization?: string;
         institution?: string;
     }): Promise<{
+        id: string;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
-        refreshToken: string | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        refreshToken: string | null;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     update(id: string, userData: Partial<{
         fullName: string;
@@ -61,34 +61,49 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: 'ACTIVE' | 'SUSPENDED' | 'DISABLED';
     }>): Promise<{
+        id: string;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
-        refreshToken: string | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        refreshToken: string | null;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
     setRefreshToken(id: string, refreshToken: string | null): Promise<{
+        id: string;
         fullName: string;
         email: string;
         password: string;
         role: import("@prisma/client").$Enums.UserRole;
-        refreshToken: string | null;
-        id: string;
-        createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        refreshToken: string | null;
+        createdAt: Date;
+        updatedAt: Date;
+    }>;
+    updatePassword(id: string, password: string): Promise<{
+        id: string;
+        fullName: string;
+        email: string;
+        password: string;
+        role: import("@prisma/client").$Enums.UserRole;
+        specialization: string | null;
+        institution: string | null;
+        profileImage: string | null;
+        isEmailVerified: boolean;
+        accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        refreshToken: string | null;
+        createdAt: Date;
+        updatedAt: Date;
     }>;
 }
 //# sourceMappingURL=auth.repository.d.ts.map

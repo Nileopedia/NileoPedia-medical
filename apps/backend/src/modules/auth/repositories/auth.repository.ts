@@ -36,4 +36,8 @@ export class AuthRepository {
   async setRefreshToken(id: string, refreshToken: string | null) {
     return prisma.user.update({ where: { id }, data: { refreshToken: refreshToken || undefined } });
   }
+
+  async updatePassword(id: string, password: string) {
+    return prisma.user.update({ where: { id }, data: { password } });
+  }
 }

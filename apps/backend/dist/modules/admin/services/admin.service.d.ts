@@ -4,8 +4,8 @@ export declare class AdminService {
         email: string;
         role: import("@prisma/client").$Enums.UserRole;
         id: string;
-        createdAt: Date;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }[]>;
     suspendUser(userId: string): Promise<void>;
     activateUser(userId: string): Promise<void>;
