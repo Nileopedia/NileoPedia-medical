@@ -31,7 +31,6 @@ const email_types_1 = require("./email.types");
 const email_templates_1 = require("./email.templates");
 const email_utils_1 = require("./email.utils");
 const prisma_1 = __importDefault(require("../../config/prisma"));
-const email_types_2 = require("./email.types");
 const logger_1 = require("../../config/logger");
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@nileopedia.com';
@@ -47,27 +46,27 @@ async function getResendClient() {
 class EmailService {
     static async sendValidatorOtp(data) {
         const template = email_templates_1.emailTemplates.validatorOtp(data);
-        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.VALIDATOR_OTP);
+        await this.queueEmail(data.email, template.subject, template.html, 'otp');
     }
     static async sendPasswordReset(data) {
         const template = email_templates_1.emailTemplates.passwordReset(data);
-        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.PASSWORD_RESET);
+        await this.queueEmail(data.email, template.subject, template.html, 'passwordReset');
     }
     static async sendWelcome(data) {
         const template = email_templates_1.emailTemplates.welcome(data);
-        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.WELCOME);
+        await this.queueEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendAccountActivated(data) {
         const template = email_templates_1.emailTemplates.accountActivated(data);
-        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.ACCOUNT_ACTIVATED);
+        await this.queueEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendAccountDeactivated(data) {
         const template = email_templates_1.emailTemplates.accountDeactivated(data);
-        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.ACCOUNT_DEACTIVATED);
+        await this.queueEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendSecurityAlert(data) {
         const template = email_templates_1.emailTemplates.securityAlert({ ...data, ipAddress: data.ipAddress });
-        await this.queueEmail(data.email, template.subject, template.html, email_types_1.EmailType.SECURITY_ALERT);
+        await this.queueEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendSystemAnnouncement(recipients, subject, title, message) {
         const html = `
@@ -81,11 +80,11 @@ class EmailService {
         const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
         const jobs = recipients.map((email) => ({
             name: 'announcement',
-            data: { to: email, subject, html, type: email_types_1.EmailType.SYSTEM_ANNOUNCEMENT },
+            data: { to: email, subject, html, template: 'notification', data: { title, message } },
         }));
         await emailQueue.addBulk(jobs);
     }
-    static async queueEmail(to, subject, html, type) {
+    static async queueEmail(to, subject, html, template) {
         if (!(0, email_utils_1.validateEmail)({ to, subject, html })) {
             throw new Error('Invalid email data');
         }
@@ -93,11 +92,12 @@ class EmailService {
             data: {
                 recipient: to,
                 subject,
-                status: email_types_2.EmailStatus.PENDING,
+                status: email_types_1.EmailStatus.PENDING,
             },
         });
         const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
-        await emailQueue.add('send', { to, subject, html, type });
+        const jobData = { to, subject, template, html };
+        await emailQueue.add('send', jobData);
     }
     static async sendEmail(to, subject, html) {
         if (EMAIL_PROVIDER === 'resend') {

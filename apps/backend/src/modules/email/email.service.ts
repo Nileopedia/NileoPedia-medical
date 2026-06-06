@@ -1,9 +1,9 @@
-import { EmailType } from './email.types';
+import { EmailType, EmailStatus } from './email.types';
 import { emailTemplates } from './email.templates';
 import { validateEmail } from './email.utils';
 import prisma from '../../config/prisma';
-import { EmailStatus } from './email.types';
 import { logger } from '../../config/logger';
+import { EmailJob } from '../../jobs/types';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@nileopedia.com';
@@ -22,32 +22,32 @@ async function getResendClient() {
 export class EmailService {
   static async sendValidatorOtp(data: { email: string; fullName: string; otpCode: string }): Promise<void> {
     const template = emailTemplates.validatorOtp(data);
-    await this.queueEmail(data.email, template.subject, template.html, EmailType.VALIDATOR_OTP);
+    await this.queueEmail(data.email, template.subject, template.html, 'otp');
   }
 
   static async sendPasswordReset(data: { email: string; fullName: string; resetLink: string }): Promise<void> {
     const template = emailTemplates.passwordReset(data);
-    await this.queueEmail(data.email, template.subject, template.html, EmailType.PASSWORD_RESET);
+    await this.queueEmail(data.email, template.subject, template.html, 'passwordReset');
   }
 
   static async sendWelcome(data: { email: string; fullName: string }): Promise<void> {
     const template = emailTemplates.welcome(data);
-    await this.queueEmail(data.email, template.subject, template.html, EmailType.WELCOME);
+    await this.queueEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendAccountActivated(data: { email: string; fullName: string; reason?: string }): Promise<void> {
     const template = emailTemplates.accountActivated(data);
-    await this.queueEmail(data.email, template.subject, template.html, EmailType.ACCOUNT_ACTIVATED);
+    await this.queueEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendAccountDeactivated(data: { email: string; fullName: string; reason?: string }): Promise<void> {
     const template = emailTemplates.accountDeactivated(data);
-    await this.queueEmail(data.email, template.subject, template.html, EmailType.ACCOUNT_DEACTIVATED);
+    await this.queueEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendSecurityAlert(data: { email: string; fullName: string; alertType: string; description: string; ipAddress?: string }): Promise<void> {
     const template = emailTemplates.securityAlert({ ...data, ipAddress: data.ipAddress });
-    await this.queueEmail(data.email, template.subject, template.html, EmailType.SECURITY_ALERT);
+    await this.queueEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendSystemAnnouncement(recipients: string[], subject: string, title: string, message: string): Promise<void> {
@@ -63,13 +63,13 @@ export class EmailService {
     const { emailQueue } = await import('../../jobs/queues');
     const jobs = recipients.map((email) => ({
       name: 'announcement',
-      data: { to: email, subject, html, type: EmailType.SYSTEM_ANNOUNCEMENT },
+      data: { to: email, subject, html, template: 'notification', data: { title, message } },
     }));
     
     await emailQueue.addBulk(jobs);
   }
 
-  private static async queueEmail(to: string, subject: string, html: string, type: EmailType): Promise<void> {
+  private static async queueEmail(to: string, subject: string, html: string, template: string): Promise<void> {
     if (!validateEmail({ to, subject, html })) {
       throw new Error('Invalid email data');
     }
@@ -83,7 +83,9 @@ export class EmailService {
     });
 
     const { emailQueue } = await import('../../jobs/queues');
-    await emailQueue.add('send', { to, subject, html, type });
+    const jobData: EmailJob = { to, subject, template, html };
+
+    await emailQueue.add('send', jobData);
   }
 
   static async sendEmail(to: string, subject: string, html: string): Promise<void> {

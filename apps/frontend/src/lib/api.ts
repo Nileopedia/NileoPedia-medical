@@ -68,6 +68,29 @@ type QuestionDetail = {
   aiResponse?: AIResponse;
 };
 
+type SearchResult = {
+  id: string;
+  title: string;
+  snippet: string;
+  source: string;
+  relevanceScore: number;
+  specialty?: string;
+  citationCount?: number;
+  documentType?: string;
+};
+
+type SearchResultResponse = {
+  query: string;
+  results: SearchResult[];
+  pagination: {
+    total: number;
+    page: number;
+    limit: number;
+    totalPages: number;
+  };
+  searchType: 'semantic' | 'keyword' | 'hybrid';
+};
+
 class ApiClient {
   private getAuthToken(): string | null {
     if (typeof window === 'undefined') return null;
@@ -326,7 +349,7 @@ class ApiClient {
     });
   }
 
-  async unsaveResponse(questionId: string): Promise<void> {
+async unsaveResponse(questionId: string): Promise<void> {
     await this.request(`/questions/${questionId}/save`, {
       method: 'DELETE',
     });
@@ -334,8 +357,18 @@ class ApiClient {
 
   async getSavedResponses(): Promise<Query[]> {
     const history = await this.getHistory();
-    // Filter by isSaved flag from backend
     return history.filter((query) => query.isSaved);
+  }
+
+  async search(
+    query: string,
+    type: 'semantic' | 'keyword' | 'hybrid' = 'hybrid',
+    limit: number = 10,
+    page: number = 1
+  ): Promise<SearchResultResponse> {
+    const params = new URLSearchParams({ q: query, type, limit: String(limit), page: String(page) });
+    const payload = await this.request<ApiEnvelope<SearchResultResponse>>(`/search?${params.toString()}`);
+    return this.unwrap(payload);
   }
 
   async uploadDocument(file: File): Promise<{ documentId: string; status: string }> {

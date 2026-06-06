@@ -28,8 +28,9 @@ export interface AiGenerationJob {
 export interface EmailJob {
   to: string;
   subject: string;
-  template: string;
+  template?: string;
   data?: Record<string, unknown>;
+  html?: string;
 }
 
 export interface NotificationJob {

@@ -12,16 +12,16 @@ const transporter = nodemailer_1.default.createTransport({
     secure: false,
 });
 async function processEmail(job) {
-    const { to, subject, template, data } = job;
+    const { to, subject, html, template, data } = job;
     try {
-        const html = await renderTemplate(template, data || {});
+        const emailHtml = html || (template ? renderTemplate(template, data || {}) : '');
         await transporter.sendMail({
             from: process.env.EMAIL_FROM || 'noreply@nileopedia.test',
             to,
             subject,
-            html,
+            html: emailHtml,
         });
-        logger_1.logger.info(`Email sent to ${to} with template ${template}`);
+        logger_1.logger.info(`Email sent to ${to}`);
         return { success: true };
     }
     catch (error) {
@@ -30,11 +30,11 @@ async function processEmail(job) {
     }
 }
 exports.processEmail = processEmail;
-async function renderTemplate(template, data) {
+function renderTemplate(template, data) {
     const templates = {
-        otp: `<p>Your verification code: <strong>${data.code}</strong></p>`,
-        passwordReset: `<p>Click to reset: <a href="${data.resetLink}">Reset Password</a></p>`,
-        notification: `<h2>${data.title}</h2><p>${data.message}</p>`,
+        otp: `<p>Your verification code: <strong>${data.code || '------'}</strong></p>`,
+        passwordReset: `<p>Click to reset: <a href="${data.resetLink || '#'}">Reset Password</a></p>`,
+        notification: `<h2>${data.title || ''}</h2><p>${data.message || ''}</p>`,
     };
     return templates[template] || `<p>${JSON.stringify(data)}</p>`;
 }
