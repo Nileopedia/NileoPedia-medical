@@ -24,8 +24,9 @@ PINECONE_API_KEY="pcsk-..."
 PINECONE_INDEX_NAME="nileopedia-medical"
 PINECONE_ENVIRONMENT="us-east-1"
 
-# Elasticsearch (retrieval)
-ELASTICSEARCH_URL="http://localhost:9200"
+# Elasticsearch (retrieval) - REQUIRED (no localhost fallback)
+ELASTICSEARCH_URL="https://your-elasticsearch-project.es.region.cloud.es.io:443"
+ELASTICSEARCH_API_KEY="your-elasticsearch-api-key"
 
 # Google OAuth
 GOOGLE_CLIENT_ID="your-google-client-id"
@@ -212,3 +213,35 @@ npx prisma migrate dev --name add_isSaved_to_question
 2. Click bookmark icon to save/unsave
 3. Saved responses appear on `/saved` page
 4. Backend persists `isSaved` status in database
+
+## Elasticsearch
+
+Elasticsearch is **required** for keyword search functionality. There is no localhost fallback - the service will fail to start without proper configuration.
+
+### Configuration Requirements
+
+Both environment variables must be set:
+
+```bash
+ELASTICSEARCH_URL=https://your-elasticsearch-project.es.region.cloud.es.io:443
+ELASTICSEARCH_API_KEY=your_elasticsearch_api_key_here
+```
+
+### Test Elasticsearch Connectivity
+
+```bash
+cd apps/ai-service
+pip install -r requirements.txt
+python scripts/test_elasticsearch.py
+```
+
+The test script validates:
+1. Configuration variables are set
+2. Client initializes correctly
+3. Connection to Elasticsearch cluster works
+
+### Error Handling
+
+- **Missing configuration**: App fails to start with clear error message
+- **Connection failure**: Keyword search raises `RuntimeError`, hybrid search falls back to semantic-only
+- **API errors**: All errors logged with descriptive messages
