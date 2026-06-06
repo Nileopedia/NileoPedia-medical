@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Send, Loader2 } from 'lucide-react';
@@ -8,7 +8,9 @@ import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
 import { ResponseViewer } from '../../components/query/ResponseViewer';
-import { io } from 'socket.io-client';
+import { io, type Socket } from 'socket.io-client';
+import { useAppStore } from '../../store/appStore';
+import { useToast } from '../../components/ui/Toast';
 
 const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
 
@@ -18,38 +20,75 @@ export default function AskPage() {
   const [processing, setProcessing] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
   const [partialFindings, setPartialFindings] = useState<string[]>([]);
+  const [streamingVisible, setStreamingVisible] = useState<boolean[]>([]);
+  const [progress, setProgress] = useState(0);
+  const [socketConnected, setSocketConnected] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [questionId, setQuestionId] = useState<string | null>(null);
+  const user = useAppStore((state) => state.user);
+  const { addToast } = useToast();
+  const wasConnectedRef = useRef(false);
 
   useEffect(() => {
     if (!questionId) return;
 
-    const socket = io(SOCKET_URL, {
+    const socket: Socket = io(SOCKET_URL, {
       transports: ['websocket'],
       reconnection: true,
     });
 
     socket.on('connect', () => {
+      setSocketConnected(true);
+      if (wasConnectedRef.current) {
+        addToast({ type: 'success', title: 'Connection restored', duration: 2000 });
+      }
+      wasConnectedRef.current = true;
       socket.emit('stream-question', questionId);
+      if (user) {
+        socket.emit('join-user', user.id);
+      }
+    });
+
+    socket.on('disconnect', () => {
+      setSocketConnected(false);
+      addToast({ type: 'warning', title: 'Connection lost', duration: 2000 });
     });
 
     socket.on('ai-status', (data: { status: string; message: string }) => {
       setProcessing(true);
+      setStreamingVisible([]);
     });
 
     socket.on('ai-key-findings', (data: { keyFindings: string[] }) => {
       setPartialFindings(data.keyFindings);
+      setStreamingVisible(prev => {
+        const combined = Array(data.keyFindings.length).fill(false);
+        return combined;
+      });
+      // Staggered fade-in for each finding
+      data.keyFindings.forEach((_, idx) => {
+        setTimeout(() => {
+          setStreamingVisible(prev => {
+            const combined = [...prev];
+            combined[idx] = true;
+            return combined;
+          });
+        }, idx * 150);
+      });
+    });
+
+    socket.on('ai-progress', (data: { progress: number }) => {
+      setProgress(data.progress);
     });
 
     socket.on('ai-response-complete', (data: { responseId: string }) => {
       setProcessing(false);
-      // Fetch the complete response
+      setProgress(100);
       api.getQuestion(questionId).then(result => {
         if (result.aiResponse) {
           setResponse(result.aiResponse);
         }
       }).catch(() => {
-        // Fallback to polling if socket fails
         const pollInterval = setInterval(async () => {
           try {
             const result = await api.getQuestion(questionId);
@@ -69,12 +108,13 @@ export default function AskPage() {
       setError(data.error);
       setProcessing(false);
       setLoading(false);
+      addToast({ type: 'error', title: 'AI Processing Failed', message: data.error });
     });
 
     return () => {
       socket.disconnect();
     };
-  }, [questionId]);
+  }, [questionId, user, addToast]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,7 +138,14 @@ export default function AskPage() {
   return (
     <AppLayout>
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Ask AI</h1>
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Ask AI</h1>
+          <div className={`px-2 py-1 text-xs rounded-full ${
+            socketConnected ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
+          }`}>
+            {socketConnected ? 'Connected' : 'Disconnected'}
+          </div>
+        </div>
         <p className="text-slate-600 dark:text-slate-400 mb-6">Submit your medical question for AI-powered evidence-based response</p>
 
         <div className="space-y-6">
@@ -139,13 +186,35 @@ export default function AskPage() {
                 <Loader2 className="mr-2 h-6 w-6 animate-spin text-blue-600" />
                 <span className="text-slate-600">Processing your query... Streaming response</span>
               </div>
+              {progress > 0 && (
+                <div className="mt-4">
+                  <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                    <div 
+                      className="h-full bg-blue-600 transition-all duration-300" 
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <span className="text-xs text-slate-500 mt-1 block">{progress}%</span>
+                </div>
+              )}
               {partialFindings.length > 0 && (
                 <div className="mt-4">
                   <h3 className="text-sm font-medium text-slate-700 mb-2">Key Findings (streaming):</h3>
                   <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                    {partialFindings.map((finding, i) => (
-                      <li key={i}>{finding}</li>
-                    ))}
+                    {partialFindings.map((finding, i) => {
+                      const isVisible = streamingVisible[i];
+                      return (
+                        <li 
+                          key={i} 
+                          className={`transition-all duration-500 ease-out ${
+                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                          }`}
+                          style={{ transitionDelay: `${i * 100}ms` }}
+                        >
+                          {finding}
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               )}

@@ -36,10 +36,15 @@ export async function processAiGeneration(job: AiGenerationJob) {
     // Emit partial response (streaming chunks)
     if (io && keyFindings && keyFindings.length > 0) {
       for (let i = 0; i < keyFindings.length; i++) {
+        const progress = Math.round((i + 1) / keyFindings.length * 100);
+        io.to(`question-${questionId}`).emit('ai-progress', {
+          questionId,
+          progress
+        });
         io.to(`question-${questionId}`).emit('ai-key-findings', {
           questionId,
           keyFindings: keyFindings.slice(0, i + 1),
-          progress: Math.round((i + 1) / keyFindings.length * 100)
+          progress
         });
         // Small delay to simulate streaming
         await new Promise(resolve => setTimeout(resolve, 100));
