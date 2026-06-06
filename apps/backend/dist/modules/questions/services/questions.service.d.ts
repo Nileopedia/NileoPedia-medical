@@ -7,9 +7,9 @@ export declare class QuestionsService {
     getHistory(userId: string): Promise<({
         aiResponse: ({
             citations: {
+                url: string | null;
                 id: string;
                 createdAt: Date;
-                url: string | null;
                 aiResponseId: string;
                 title: string;
                 source: string;
@@ -26,8 +26,8 @@ export declare class QuestionsService {
         } & {
             id: string;
             createdAt: Date;
-            updatedAt: Date;
             questionId: string;
+            updatedAt: Date;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
@@ -36,16 +36,17 @@ export declare class QuestionsService {
         }) | null;
     } & {
         id: string;
-        createdAt: Date;
         userId: string;
         questionText: string;
+        isSaved: boolean;
+        createdAt: Date;
     })[]>;
     getQuestion(questionId: string): Promise<{
         aiResponse: ({
             citations: {
+                url: string | null;
                 id: string;
                 createdAt: Date;
-                url: string | null;
                 aiResponseId: string;
                 title: string;
                 source: string;
@@ -62,8 +63,8 @@ export declare class QuestionsService {
         } & {
             id: string;
             createdAt: Date;
-            updatedAt: Date;
             questionId: string;
+            updatedAt: Date;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
@@ -72,9 +73,10 @@ export declare class QuestionsService {
         }) | null;
     } & {
         id: string;
-        createdAt: Date;
         userId: string;
         questionText: string;
+        isSaved: boolean;
+        createdAt: Date;
     }>;
     saveResponse(questionId: string, userId: string): Promise<void>;
     unsaveResponse(questionId: string, userId: string): Promise<void>;

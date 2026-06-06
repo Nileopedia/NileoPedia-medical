@@ -1,9 +1,9 @@
 import { CreateCitationDto, UpdateCitationDto, SearchCitationsQuery, SearchCitationsResult } from './citation.types';
 export declare class CitationService {
     getCitationsForResponse(aiResponseId: string): Promise<{
+        url: string | null;
         id: string;
         createdAt: Date;
-        url: string | null;
         aiResponseId: string;
         title: string;
         source: string;
@@ -18,9 +18,9 @@ export declare class CitationService {
         citationIndex: number;
     }[]>;
     getCitationById(id: string): Promise<{
+        url: string | null;
         id: string;
         createdAt: Date;
-        url: string | null;
         aiResponseId: string;
         title: string;
         source: string;
@@ -36,9 +36,9 @@ export declare class CitationService {
     } | null>;
     searchCitations(query: SearchCitationsQuery): Promise<SearchCitationsResult>;
     createCitation(data: CreateCitationDto): Promise<{
+        url: string | null;
         id: string;
         createdAt: Date;
-        url: string | null;
         aiResponseId: string;
         title: string;
         source: string;
@@ -53,9 +53,9 @@ export declare class CitationService {
         citationIndex: number;
     }>;
     updateCitation(id: string, data: UpdateCitationDto): Promise<{
+        url: string | null;
         id: string;
         createdAt: Date;
-        url: string | null;
         aiResponseId: string;
         title: string;
         source: string;
@@ -70,9 +70,9 @@ export declare class CitationService {
         citationIndex: number;
     }>;
     deleteCitation(id: string): Promise<{
+        url: string | null;
         id: string;
         createdAt: Date;
-        url: string | null;
         aiResponseId: string;
         title: string;
         source: string;

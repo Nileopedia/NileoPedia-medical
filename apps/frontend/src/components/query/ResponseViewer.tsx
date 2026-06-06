@@ -1,14 +1,37 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { AIResponse } from '../../types';
-import { CheckCircle, Info } from 'lucide-react';
+import { CheckCircle, Info, Bookmark, BookmarkPlus } from 'lucide-react';
+import { api } from '../../lib/api';
 
 interface ResponseViewerProps {
   response: AIResponse;
+  onSaveChange?: (isSaved: boolean) => void;
 }
 
-export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
+export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSaveChange }) => {
+  const [isSaved, setIsSaved] = useState(response.isSaved || false);
+  const [saveLoading, setSaveLoading] = useState(false);
+
+  const handleSaveToggle = async () => {
+    setSaveLoading(true);
+    try {
+      if (isSaved) {
+        await api.unsaveResponse(response.queryId);
+        setIsSaved(false);
+      } else {
+        await api.saveResponse(response.queryId);
+        setIsSaved(true);
+      }
+      onSaveChange?.(isSaved);
+    } catch (err) {
+      console.error('Failed to update save status:', err);
+    } finally {
+      setSaveLoading(false);
+    }
+  };
+
   if (!response) {
     return null;
   }
@@ -43,7 +66,17 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response }) => {
     <div className="bg-white dark:bg-slate-800 shadow-lg rounded-lg p-6 border border-slate-200 dark:border-slate-700">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-semibold text-slate-900 dark:text-slate-50">{response.title}</h2>
-        {renderStatus()}
+        <div className="flex items-center gap-2">
+          {renderStatus()}
+          <button
+            onClick={handleSaveToggle}
+            disabled={saveLoading}
+            className={`p-2 rounded-lg transition-colors ${isSaved ? 'text-blue-600 bg-blue-50' : 'text-slate-400 hover:text-blue-600 hover:bg-slate-50'}`}
+            title={isSaved ? 'Unsave response' : 'Save response'}
+          >
+            {isSaved ? <Bookmark size={20} /> : <BookmarkPlus size={20} />}
+          </button>
+        </div>
       </div>
 
       {(response.status === 'pending' || response.status === 'approved' || response.status === 'rejected' || response.status === 'in_review') ? (

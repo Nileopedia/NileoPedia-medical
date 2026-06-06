@@ -17,6 +17,7 @@ export interface Query {
   userId: string;
   assignedTo?: string;
   dueDate?: string;
+  isSaved?: boolean;
 }
 
 export interface Citation {
@@ -50,6 +51,7 @@ export interface AIResponse {
   assignedTo?: string;
   dueDate?: string;
   tags: string[];
+  isSaved?: boolean;
 }
 
 export interface Activity {

@@ -187,3 +187,28 @@ Password reset functionality allows users to reset their password via email toke
 6. Password updated, redirect to login
 
 **Note:** In production, reset tokens are sent via email. Test mode logs tokens to server console.
+
+## Save/Unsave Responses
+
+Users can save AI responses for later reference.
+
+### Database Changes
+
+Run migration to add `isSaved` field to Question model:
+
+```bash
+cd apps/backend
+npx prisma migrate dev --name add_isSaved_to_question
+```
+
+### API Endpoints
+
+- `POST /questions/{id}/save` - Save a response (sets `isSaved=true`)
+- `DELETE /questions/{id}/save` - Unsave a response (sets `isSaved=false`)
+
+### Frontend Flow
+
+1. View AI response in `/ask` page or `/history`
+2. Click bookmark icon to save/unsave
+3. Saved responses appear on `/saved` page
+4. Backend persists `isSaved` status in database

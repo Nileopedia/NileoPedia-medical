@@ -16,12 +16,12 @@ export declare const createTestUser: (data: {
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
+    createdAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
-    createdAt: Date;
     updatedAt: Date;
 }>;
 export declare const createTestAdmin: () => Promise<{
@@ -31,12 +31,12 @@ export declare const createTestAdmin: () => Promise<{
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
+    createdAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
-    createdAt: Date;
     updatedAt: Date;
 }>;
 export declare const createTestValidator: () => Promise<{
@@ -46,12 +46,12 @@ export declare const createTestValidator: () => Promise<{
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
+    createdAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
-    createdAt: Date;
     updatedAt: Date;
 }>;
 export declare const createTestMedicalUser: () => Promise<{
@@ -61,12 +61,12 @@ export declare const createTestMedicalUser: () => Promise<{
     role: import("@prisma/client").$Enums.UserRole;
     refreshToken: string | null;
     id: string;
+    createdAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
-    createdAt: Date;
     updatedAt: Date;
 }>;
 export declare const createAuthHeader: (token: string) => {

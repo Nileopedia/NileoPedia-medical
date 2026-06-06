@@ -2,15 +2,16 @@ export declare class ValidationService {
     getPending(): Promise<({
         question: {
             id: string;
-            createdAt: Date;
             userId: string;
             questionText: string;
+            isSaved: boolean;
+            createdAt: Date;
         };
     } & {
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         questionId: string;
+        updatedAt: Date;
         summary: string;
         keyFindings: string[];
         confidenceScore: number | null;
@@ -23,15 +24,16 @@ export declare class ValidationService {
         aiResponse: {
             question: {
                 id: string;
-                createdAt: Date;
                 userId: string;
                 questionText: string;
+                isSaved: boolean;
+                createdAt: Date;
             };
         } & {
             id: string;
             createdAt: Date;
-            updatedAt: Date;
             questionId: string;
+            updatedAt: Date;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;

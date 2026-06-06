@@ -43,15 +43,33 @@ class QuestionsService {
         return question;
     }
     async saveResponse(questionId, userId) {
+        const question = await prisma_1.default.question.findUnique({
+            where: { id: questionId },
+        });
+        if (!question) {
+            throw new Error('Question not found');
+        }
+        if (question.userId !== userId) {
+            throw new Error('Unauthorized');
+        }
         await prisma_1.default.question.update({
-            where: { id: questionId, userId },
-            data: {},
+            where: { id: questionId },
+            data: { isSaved: true },
         });
     }
     async unsaveResponse(questionId, userId) {
+        const question = await prisma_1.default.question.findUnique({
+            where: { id: questionId },
+        });
+        if (!question) {
+            throw new Error('Question not found');
+        }
+        if (question.userId !== userId) {
+            throw new Error('Unauthorized');
+        }
         await prisma_1.default.question.update({
-            where: { id: questionId, userId },
-            data: {},
+            where: { id: questionId },
+            data: { isSaved: false },
         });
     }
 }

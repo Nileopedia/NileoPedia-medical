@@ -56,6 +56,7 @@ type BackendQuestion = {
   id: string;
   questionText: string;
   createdAt: string;
+  isSaved?: boolean;
   aiResponse?: BackendAiResponse | null;
 };
 
@@ -63,6 +64,7 @@ type QuestionDetail = {
   id: string;
   questionText: string;
   createdAt: string;
+  isSaved?: boolean;
   aiResponse?: AIResponse;
 };
 
@@ -190,6 +192,7 @@ class ApiClient {
       createdAt: new Date(question.createdAt).toLocaleString(),
       updatedAt: new Date(question.createdAt).toLocaleString(),
       userId: '',
+      isSaved: question.isSaved || false,
     };
   }
 
@@ -208,6 +211,7 @@ class ApiClient {
           model: question.aiResponse.generatedBy || 'GPT-4o',
           generatedAt: question.aiResponse.createdAt || question.createdAt,
           tags: [],
+          isSaved: question.isSaved || false,
         }
       : undefined;
 
@@ -215,6 +219,7 @@ class ApiClient {
       id: question.id,
       questionText: question.questionText,
       createdAt: question.createdAt,
+      isSaved: question.isSaved || false,
       aiResponse,
     };
   }
@@ -319,25 +324,18 @@ class ApiClient {
     await this.request(`/questions/${questionId}/save`, {
       method: 'POST',
     });
-    this.addSavedId(questionId);
   }
 
   async unsaveResponse(questionId: string): Promise<void> {
     await this.request(`/questions/${questionId}/save`, {
       method: 'DELETE',
     });
-    this.removeSavedId(questionId);
   }
 
   async getSavedResponses(): Promise<Query[]> {
     const history = await this.getHistory();
-    const savedIds = this.getSavedIds();
-
-    if (savedIds.length === 0) {
-      return [];
-    }
-
-    return history.filter((query) => savedIds.includes(query.id));
+    // Filter by isSaved flag from backend
+    return history.filter((query) => query.isSaved);
   }
 
   async uploadDocument(file: File): Promise<{ documentId: string; status: string }> {
