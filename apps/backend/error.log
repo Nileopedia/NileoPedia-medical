@@ -22,3 +22,7 @@
 2026-06-06T20:51:49.796Z [nileopedia-backend] error: Email job failed: 2 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-07T07:17:01.940Z [nileopedia-backend] error: Google OAuth callback error: invalid_client
 2026-06-07T07:17:01.942Z [nileopedia-backend] error: Error in Google callback: invalid_client
+2026-06-07T07:18:30.329Z [nileopedia-backend] error: Google OAuth callback error: invalid_client
+2026-06-07T07:18:30.331Z [nileopedia-backend] error: Error in Google callback: invalid_client
+2026-06-07T07:20:49.679Z [nileopedia-backend] error: Google OAuth callback error: invalid_client
+2026-06-07T07:20:49.680Z [nileopedia-backend] error: Error in Google callback: invalid_client

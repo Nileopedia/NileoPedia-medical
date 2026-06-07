@@ -10,9 +10,20 @@ class GoogleAuthService {
     constructor() {
         this.authRepository = new auth_repository_1.AuthRepository();
         this.jwtService = new jwt_service_1.JwtService();
-        this.oAuth2Client = new google_auth_library_1.OAuth2Client(env_1.CONFIG.GOOGLE_CLIENT_ID, env_1.CONFIG.GOOGLE_CLIENT_SECRET, env_1.CONFIG.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/v1/auth/google/callback');
+        // Only initialize OAuth client if valid credentials are provided
+        if (env_1.CONFIG.GOOGLE_CLIENT_ID && env_1.CONFIG.GOOGLE_CLIENT_SECRET &&
+            env_1.CONFIG.GOOGLE_CLIENT_ID !== '708680246824-93qk6apv262pepu8233nd77fufo1033a.apps.googleusercontent.com') {
+            this.oAuth2Client = new google_auth_library_1.OAuth2Client(env_1.CONFIG.GOOGLE_CLIENT_ID, env_1.CONFIG.GOOGLE_CLIENT_SECRET, env_1.CONFIG.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/v1/auth/google/callback');
+        }
+        else {
+            logger_1.logger.warn('Google OAuth credentials not configured - Google login disabled');
+            this.oAuth2Client = null;
+        }
     }
     async getAuthUrl() {
+        if (!this.oAuth2Client) {
+            throw new Error('Google OAuth is not configured. Please set valid GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.');
+        }
         const authUrl = this.oAuth2Client.generateAuthUrl({
             access_type: 'offline',
             scope: ['profile', 'email'],
@@ -20,6 +31,9 @@ class GoogleAuthService {
         return authUrl;
     }
     async handleGoogleCallback(code) {
+        if (!this.oAuth2Client) {
+            throw new Error('Google OAuth is not configured');
+        }
         try {
             const { tokens } = await this.oAuth2Client.getToken(code);
             this.oAuth2Client.setCredentials(tokens);
@@ -72,6 +86,10 @@ class GoogleAuthService {
             };
         }
         catch (error) {
+            if (error?.message?.includes('invalid_client')) {
+                logger_1.logger.error('Google OAuth credentials are invalid - please update .env with valid credentials');
+                throw new Error('Google OAuth not configured. Please contact the administrator.');
+            }
             logger_1.logger.error('Google OAuth callback error:', error);
             throw error;
         }
