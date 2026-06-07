@@ -20,3 +20,5 @@
 2026-06-06T20:51:49.792Z [nileopedia-backend] error: AI generation job failed: 3 io is not defined
 2026-06-06T20:51:49.795Z [nileopedia-backend] error: Email job failed: 1 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-06T20:51:49.796Z [nileopedia-backend] error: Email job failed: 2 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-07T07:17:01.940Z [nileopedia-backend] error: Google OAuth callback error: invalid_client
+2026-06-07T07:17:01.942Z [nileopedia-backend] error: Error in Google callback: invalid_client
