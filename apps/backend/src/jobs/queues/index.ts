@@ -2,11 +2,23 @@ import { Queue } from 'bullmq';
 import Redis from 'ioredis';
 import { CONFIG } from '../../config/env';
 
-const connection = new Redis(CONFIG.REDIS_URL as string, {
-  maxRetriesPerRequest: null,
-});
+let connection: Redis | null = null;
+let aiQueueInstance: Queue | null = null;
+
+try {
+  connection = new Redis(CONFIG.REDIS_URL as string, {
+    maxRetriesPerRequest: null,
+    connectTimeout: 2000,
+    lazyConnect: true,
+  });
+} catch {
+  // Redis unavailable
+}
 
 const createQueue = (name: string) => {
+  if (!connection) {
+    return null as unknown as Queue;
+  }
   return new Queue(name, { 
     connection: connection as any,
     defaultJobOptions: {

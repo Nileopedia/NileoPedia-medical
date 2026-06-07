@@ -143,14 +143,34 @@ class ApiClient {
       headers,
     });
 
-    const payload = await response.json().catch(async () => {
+    let payload: any;
+    try {
+      payload = await response.json();
+    } catch {
       const text = await response.text().catch(() => '');
-      return text ? { message: text } : {};
-    });
+      // Check if response is HTML (error page)
+      if (text?.includes('<!DOCTYPE html>') || text?.includes('<pre>Error:')) {
+        payload = { message: response.status === 401 ? 'Authentication required' : `Server error (${response.status})` };
+      } else {
+        payload = text ? { message: text } : { message: 'No response body' };
+      }
+    }
 
     if (!response.ok) {
       const apiError = payload as { message?: string; errors?: Array<{ msg?: string }> };
-      const fallbackMessage = apiError.errors?.[0]?.msg || apiError.message || 'Request failed';
+      const fallbackMessage = apiError.errors?.[0]?.msg || apiError.message || `Request failed (${response.status})`;
+      // Check for authentication errors
+      if (response.status === 401) {
+        throw new Error('Please sign in to ask questions');
+      }
+      // Check for service unavailable errors
+      if (response.status === 503 || response.status === 500) {
+        throw new Error('AI service temporarily unavailable. Please try again later.');
+      }
+      // Debug log
+      if (process.env.NODE_ENV !== 'test') {
+        console.warn(`API Error ${response.status}:`, apiError);
+      }
       throw new Error(fallbackMessage);
     }
 

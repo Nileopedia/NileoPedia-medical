@@ -33,3 +33,67 @@
 2026-06-07T09:03:27.711Z [nileopedia-backend] error: Error in Google callback: Google OAuth not configured. Please contact the administrator.
 2026-06-07T09:03:34.151Z [nileopedia-backend] error: Google OAuth credentials are invalid - please update .env with valid credentials
 2026-06-07T09:03:34.153Z [nileopedia-backend] error: Error in Google callback: Google OAuth not configured. Please contact the administrator.
+2026-06-07T09:30:16.267Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:6:44
+
+  3 
+  4 export class QuestionsService {
+  5   async askQuestion(userId: string, questionText: string) {
+→ 6     const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-07T09:30:26.676Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:6:44
+
+  3 
+  4 export class QuestionsService {
+  5   async askQuestion(userId: string, questionText: string) {
+→ 6     const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-07T09:34:47.893Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:6:44
+
+  3 
+  4 export class QuestionsService {
+  5   async askQuestion(userId: string, questionText: string) {
+→ 6     const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-07T14:45:08.402Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-07T15:27:19.551Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-07T15:27:19.552Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-07T15:28:37.795Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-07T15:28:37.798Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.

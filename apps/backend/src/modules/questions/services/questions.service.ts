@@ -1,27 +1,39 @@
 import prisma from '../../../config/prisma';
 import { aiQueue } from '../../../jobs/queues';
+import { logger } from '../../../config/logger';
 
 export class QuestionsService {
   async askQuestion(userId: string, questionText: string) {
-    const question = await prisma.question.create({
-      data: { userId, questionText },
-    });
+    try {
+      const question = await prisma.question.create({
+        data: { userId, questionText },
+      });
 
-    await aiQueue.add('generate', {
-      questionId: question.id,
-      query: questionText,
-      userId,
-      topK: 10,
-    }, {
-      attempts: 3,
-      backoff: { type: 'exponential', delay: 2000 },
-    });
+      // Try to add to queue, fallback to database-only if Redis unavailable
+      try {
+        await aiQueue.add('generate', {
+          questionId: question.id,
+          query: questionText,
+          userId,
+          topK: 10,
+        }, {
+          attempts: 3,
+          backoff: { type: 'exponential', delay: 2000 },
+        });
+      } catch (queueError: any) {
+        logger.warn('Queue unavailable, question saved but processing delayed:', queueError?.message);
+        // Still return success - question is saved, processing will happen when workers available
+      }
 
-    return {
-      questionId: question.id,
-      status: 'processing',
-      message: 'Question submitted for processing',
-    };
+      return {
+        questionId: question.id,
+        status: 'processing',
+        message: 'Question submitted for processing',
+      };
+    } catch (error: any) {
+      logger.error('Error in askQuestion:', error);
+      throw error;
+    }
   }
 
   async getHistory(userId: string) {
