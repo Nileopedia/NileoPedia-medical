@@ -26,3 +26,10 @@
 2026-06-07T07:18:30.331Z [nileopedia-backend] error: Error in Google callback: invalid_client
 2026-06-07T07:20:49.679Z [nileopedia-backend] error: Google OAuth callback error: invalid_client
 2026-06-07T07:20:49.680Z [nileopedia-backend] error: Error in Google callback: invalid_client
+2026-06-07T08:13:19.856Z [nileopedia-backend] error: Error generating Google auth URL: Google OAuth is not configured. Please set valid GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET.
+2026-06-07T08:57:14.544Z [nileopedia-backend] error: Google OAuth credentials are invalid - please update .env with valid credentials
+2026-06-07T08:57:14.561Z [nileopedia-backend] error: Error in Google callback: Google OAuth not configured. Please contact the administrator.
+2026-06-07T09:03:27.709Z [nileopedia-backend] error: Google OAuth credentials are invalid - please update .env with valid credentials
+2026-06-07T09:03:27.711Z [nileopedia-backend] error: Error in Google callback: Google OAuth not configured. Please contact the administrator.
+2026-06-07T09:03:34.151Z [nileopedia-backend] error: Google OAuth credentials are invalid - please update .env with valid credentials
+2026-06-07T09:03:34.153Z [nileopedia-backend] error: Error in Google callback: Google OAuth not configured. Please contact the administrator.
