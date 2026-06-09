@@ -27,6 +27,6 @@ exports.getDocumentsQuerySchema = zod_1.z.object({
     documentType: zod_1.z.string().optional(),
     publicationYear: zod_1.z.coerce.number().int().optional(),
 });
-exports.allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain'];
+exports.allowedMimeTypes = ['application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document', 'text/plain', 'text/html', 'application/xhtml+xml'];
 exports.maxFileSize = 25 * 1024 * 1024; // 25MB
 //# sourceMappingURL=document.validation.js.map

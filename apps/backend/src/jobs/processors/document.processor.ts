@@ -37,13 +37,23 @@ export async function processDocumentIngestion(job: DocumentIngestionJob) {
         logger.warn(`PDF parsing failed, falling back to text extraction:`, pdfError);
         content = buffer.toString('utf-8');
       }
-    } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || 
-               fileName.toLowerCase().endsWith('.docx')) {
+} else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' || 
+                fileName.toLowerCase().endsWith('.docx')) {
       try {
         const docxResult = await mammoth.extractRawText({ buffer });
         content = docxResult.value || '';
       } catch (docxError) {
         logger.warn(`DOCX parsing failed, falling back to text extraction:`, docxError);
+        content = buffer.toString('utf-8');
+      }
+    } else if (fileType === 'text/html' || fileName.toLowerCase().endsWith('.html') || fileName.toLowerCase().endsWith('.htm')) {
+      try {
+        const $ = (await import('cheerio')).load(buffer.toString('utf-8'));
+        $('script, style, nav, header, footer, aside').remove();
+        content = $('body').text() || $('html').text() || '';
+        content = content.replace(/\s+/g, ' ').trim();
+      } catch (htmlError) {
+        logger.warn(`HTML parsing failed, falling back to text extraction:`, htmlError);
         content = buffer.toString('utf-8');
       }
     } else {

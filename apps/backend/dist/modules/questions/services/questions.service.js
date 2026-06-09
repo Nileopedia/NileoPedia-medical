@@ -6,25 +6,39 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuestionsService = void 0;
 const prisma_1 = __importDefault(require("../../../config/prisma"));
 const queues_1 = require("../../../jobs/queues");
+const logger_1 = require("../../../config/logger");
 class QuestionsService {
     async askQuestion(userId, questionText) {
-        const question = await prisma_1.default.question.create({
-            data: { userId, questionText },
-        });
-        await queues_1.aiQueue.add('generate', {
-            questionId: question.id,
-            query: questionText,
-            userId,
-            topK: 10,
-        }, {
-            attempts: 3,
-            backoff: { type: 'exponential', delay: 2000 },
-        });
-        return {
-            questionId: question.id,
-            status: 'processing',
-            message: 'Question submitted for processing',
-        };
+        try {
+            const question = await prisma_1.default.question.create({
+                data: { userId, questionText },
+            });
+            // Try to add to queue, fallback to database-only if Redis unavailable
+            try {
+                await queues_1.aiQueue.add('generate', {
+                    questionId: question.id,
+                    query: questionText,
+                    userId,
+                    topK: 10,
+                }, {
+                    attempts: 3,
+                    backoff: { type: 'exponential', delay: 2000 },
+                });
+            }
+            catch (queueError) {
+                logger_1.logger.warn('Queue unavailable, question saved but processing delayed:', queueError?.message);
+                // Still return success - question is saved, processing will happen when workers available
+            }
+            return {
+                questionId: question.id,
+                status: 'processing',
+                message: 'Question submitted for processing',
+            };
+        }
+        catch (error) {
+            logger_1.logger.error('Error in askQuestion:', error);
+            throw error;
+        }
     }
     async getHistory(userId) {
         return prisma_1.default.question.findMany({

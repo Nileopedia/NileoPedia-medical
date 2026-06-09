@@ -9,6 +9,9 @@ class QuestionsController {
     }
     async askQuestion(req, res, next) {
         try {
+            if (!req.user) {
+                return res.status(401).json({ success: false, message: 'Authentication required' });
+            }
             const userId = req.user.id;
             const { question } = req.body;
             const result = await this.questionsService.askQuestion(userId, question);

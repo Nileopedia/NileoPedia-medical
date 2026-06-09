@@ -97,3 +97,75 @@ Invalid `prisma.question.create()` invocation in
   7     try {
 → 8       const question = await prisma.question.create(
 The column `isSaved` does not exist in the current database.
+2026-06-09T19:20:21.751Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:21.806Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:23.073Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:23.097Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:24.731Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:24.762Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:39.179Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.
+2026-06-09T19:20:39.200Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.question.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:40:28
+
+  37 }
+  38 
+  39 async getHistory(userId: string) {
+→ 40   return prisma.question.findMany(
+The column `Question.isSaved` does not exist in the current database.

@@ -71,6 +71,18 @@ async function processDocumentIngestion(job) {
                 content = buffer.toString('utf-8');
             }
         }
+        else if (fileType === 'text/html' || fileName.toLowerCase().endsWith('.html') || fileName.toLowerCase().endsWith('.htm')) {
+            try {
+                const $ = (await Promise.resolve().then(() => __importStar(require('cheerio')))).load(buffer.toString('utf-8'));
+                $('script, style, nav, header, footer, aside').remove();
+                content = $('body').text() || $('html').text() || '';
+                content = content.replace(/\s+/g, ' ').trim();
+            }
+            catch (htmlError) {
+                logger_1.logger.warn(`HTML parsing failed, falling back to text extraction:`, htmlError);
+                content = buffer.toString('utf-8');
+            }
+        }
         else {
             // Plain text files
             content = buffer.toString('utf-8');

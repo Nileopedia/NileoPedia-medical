@@ -23,6 +23,7 @@ export declare const CONFIG: {
     readonly RATE_LIMIT_MAX_REQUESTS: number;
     readonly MAX_FILE_SIZE: number;
     readonly UPLOAD_DIR: string;
+    readonly USE_MOCK_AI: boolean;
 };
 export type Config = typeof CONFIG;
 //# sourceMappingURL=env.d.ts.map

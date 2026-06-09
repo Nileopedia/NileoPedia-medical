@@ -34,6 +34,34 @@ prisma_1.default.$connect()
     const { AuthController } = require('./modules/auth/controllers/auth.controller');
     const authController = new AuthController();
     (0, routes_1.setupRoutes)(app, io, authController);
+    // Mock AI service endpoint for development/testing (when real AI service unavailable)
+    if (env_1.CONFIG.NODE_ENV === 'development' || env_1.CONFIG.USE_MOCK_AI) {
+        app.post('/api/v1/mock-ai/generate', (req, res) => {
+            const { query } = req.body;
+            // Generate mock medical response
+            const mockCitations = Array.from({ length: 3 }, (_, i) => ({
+                title: `Medical Reference ${i + 1}`,
+                source: 'PubMed',
+                authors: 'Dr. Smith et al.',
+                publicationYear: 2023,
+                doi: `10.1001/jama.${i}`,
+                url: `https://pubmed.ncbi.nlm.nih.gov/${i}`,
+            }));
+            setTimeout(() => {
+                res.json({
+                    summary: `Based on medical literature, here are the key insights for: "${query}"`,
+                    citations: mockCitations,
+                    confidenceScore: 0.85 + Math.random() * 0.1,
+                    keyFindings: [
+                        'Key finding 1: Relevant medical information identified',
+                        'Key finding 2: Evidence-based recommendations available',
+                        'Key finding 3: Clinical guidelines referenced',
+                    ],
+                });
+            }, 500);
+        });
+        console.log('Mock AI service endpoint enabled at /api/v1/mock-ai/generate');
+    }
     // Socket.IO connection handling
     io.on('connection', (socket) => {
         console.log('User connected:', socket.id);

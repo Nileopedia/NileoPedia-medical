@@ -4,13 +4,13 @@ export declare const emailSchema: z.ZodObject<{
     subject: z.ZodString;
     html: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    html: string;
     to: string;
     subject: string;
-    html: string;
 }, {
+    html: string;
     to: string;
     subject: string;
-    html: string;
 }>;
 export declare const validatorOtpSchema: z.ZodObject<{
     email: z.ZodString;
