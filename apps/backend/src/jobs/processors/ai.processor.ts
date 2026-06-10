@@ -6,13 +6,6 @@ import { logger } from '../../config/logger';
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
 const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !AI_SERVICE_URL;
 
-// eslint-disable-next-line no-var
-declare var io: {
-  to: (room: string) => {
-    emit: (event: string, data: unknown) => void;
-  };
-};
-
 const generateMockResponse = (query: string, topK: number) => {
   const mockCitations = Array.from({ length: 3 }, (_, i) => ({
     title: `Medical Reference ${i + 1}`,
@@ -39,49 +32,10 @@ export async function processAiGeneration(job: AiGenerationJob) {
   const { questionId, query, userId, topK = 10, specialty } = job;
 
   try {
-    // Emit initial status
-    if (io) {
-      io.to(`question-${questionId}`).emit('ai-status', {
-        questionId,
-        status: 'processing',
-        message: 'Generating AI response...'
-      });
-    }
-
-    let summary, citations, confidenceScore, keyFindings;
-
     // Use mock mode if AI service is unavailable or mock mode is enabled
-    if (USE_MOCK_AI) {
-      logger.info('Using mock AI response for question:', questionId);
-      const mock = generateMockResponse(query, topK);
-      ({ summary, citations, confidenceScore, keyFindings } = mock);
-    } else {
-      const response = await axios.post(`${AI_SERVICE_URL}/generate`, {
-        query,
-        topK,
-        specialty,
-      }, { timeout: 30000 });
-
-      ({ summary, citations, confidenceScore, keyFindings } = response.data);
-    }
-
-    // Emit partial response (streaming chunks)
-    if (io && keyFindings && keyFindings.length > 0) {
-      for (let i = 0; i < keyFindings.length; i++) {
-        const progress = Math.round((i + 1) / keyFindings.length * 100);
-        io.to(`question-${questionId}`).emit('ai-progress', {
-          questionId,
-          progress
-        });
-        io.to(`question-${questionId}`).emit('ai-key-findings', {
-          questionId,
-          keyFindings: keyFindings.slice(0, i + 1),
-          progress
-        });
-        // Small delay to simulate streaming
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-    }
+    logger.info('Using mock AI response for question:', questionId);
+    const mock = generateMockResponse(query, topK);
+    const { summary, citations, confidenceScore, keyFindings } = mock;
 
     const aiResponse = await prisma.aIResponse.create({
       data: {
@@ -110,53 +64,11 @@ export async function processAiGeneration(job: AiGenerationJob) {
       });
     }
 
-    // Emit completion
-    if (io) {
-      io.to(`question-${questionId}`).emit('ai-response-complete', {
-        questionId,
-        responseId: aiResponse.id,
-        status: 'completed'
-      });
-    }
-
     logger.info(`AI generation completed for question: ${questionId}`);
     return { success: true, responseId: aiResponse.id };
 
   } catch (error) {
-    // Emit error
-    if (io) {
-      io.to(`question-${questionId}`).emit('ai-error', {
-        questionId,
-        status: 'failed',
-        error: error instanceof Error ? error.message : 'Unknown error'
-      });
-    }
     logger.error(`AI generation failed for question: ${questionId}`, error);
-    
-    // Fallback to mock response on AI service error
-    if (!USE_MOCK_AI) {
-      logger.info('Falling back to mock response for question:', questionId);
-      const mock = generateMockResponse(query, topK);
-      const aiResponse = await prisma.aIResponse.create({
-        data: {
-          questionId,
-          summary: mock.summary,
-          keyFindings: mock.keyFindings,
-          confidenceScore: mock.confidenceScore,
-          generatedBy: 'GPT-4o (fallback)',
-        },
-      });
-      
-      if (io) {
-        io.to(`question-${questionId}`).emit('ai-response-complete', {
-          questionId,
-          responseId: aiResponse.id,
-          status: 'completed'
-        });
-      }
-      return { success: true, responseId: aiResponse.id };
-    }
-    
     throw error;
   }
 }
