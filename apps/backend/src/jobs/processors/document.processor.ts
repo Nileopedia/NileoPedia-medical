@@ -8,7 +8,7 @@ import { IngestionStatus } from '@prisma/client';
 import pdf from 'pdf-parse';
 import * as mammoth from 'mammoth';
 
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
+const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:3001/api/v1/mock-ai';
 
 export async function processDocumentIngestion(job: DocumentIngestionJob) {
   const { documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear, fileType } = job;

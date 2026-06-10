@@ -113,9 +113,10 @@ export class DocumentController {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fs.writeFileSync(fullPath, file.buffer as any);
 
-      // Create document record
-      const document = await this.documentService.createDocument({
-        title: body.title,
+// Create document record - use filename as title if not provided
+       const document = await this.documentService.createDocument({
+         title: body.title || file.originalname.replace(/\.[^/.]+$/, ''),
+         description: body.description,
         description: body.description,
         fileName,
         fileUrl,

@@ -94,7 +94,7 @@ export default function DocumentsPage() {
             <CardTitle>Upload Document</CardTitle>
           </CardHeader>
           <CardContent>
-            <FileUpload onUpload={handleFilesSelect} accept=".pdf,.doc,.docx,.txt" multiple />
+            <FileUpload onUpload={handleFilesSelect} accept=".pdf,.doc,.docx,.txt,.html" multiple />
           </CardContent>
         </Card>
 

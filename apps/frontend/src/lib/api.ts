@@ -311,7 +311,7 @@ class ApiClient {
     fullName: string,
     email: string,
     password: string,
-    role: 'MEDICAL_USER' | 'VALIDATOR' | 'ADMIN',
+    role: 'MEDICAL_USER' | 'VALIDATOR',
     institution?: string,
     specialization?: string,
   ): Promise<{ token: string; refreshToken?: string; user: User }> {
@@ -393,7 +393,7 @@ class ApiClient {
 
   async uploadDocument(file: File): Promise<{ documentId: string; status: string }> {
     const formData = new FormData();
-    formData.append('document', file);
+    formData.append('file', file);
     
     const token = this.getAuthToken();
     

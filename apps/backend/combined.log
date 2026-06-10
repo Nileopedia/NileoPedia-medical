@@ -298,3 +298,1140 @@ The column `Question.isSaved` does not exist in the current database.
 2026-06-09T22:31:20.216Z [nileopedia-backend] info: POST /api/v1/documents - ::1
 2026-06-09T22:31:26.487Z [nileopedia-backend] info: POST /api/v1/documents - ::1
 2026-06-09T22:31:32.020Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:38:26.485Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:38:29.577Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:38:35.771Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:40:03.997Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T22:40:04.057Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-09T22:40:34.603Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T22:40:52.508Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:40:52.578Z [nileopedia-backend] error: Error in uploadDocument controller: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.service.ts:65:35
+
+  62 }
+  63 
+  64 async createDocument(data: CreateDocumentDto) {
+→ 65   return prisma.medicalDocument.create({
+         data: {
+           description: undefined,
+           fileName: "1781044852546-6sw6oex6r7f.html",
+           fileUrl: "/uploads/1781044852546-6sw6oex6r7f.html",
+           fileType: "text/html",
+           fileSize: 103,
+           specialty: undefined,
+           documentType: undefined,
+           source: undefined,
+           publicationYear: undefined,
+           uploadedById: "40752e7c-84df-4bc1-b628-bb304b64bfcc",
+           ingestionStatus: "PENDING",
+       +   title: String
+         }
+       })
+
+Argument `title` is missing.
+2026-06-09T22:41:45.748Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:42:32.291Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:42:34.670Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:46:19.052Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:46:22.799Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T22:48:22.914Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T22:48:48.547Z [nileopedia-backend] info: POST /api/v1/auth/verify-otp - ::1
+2026-06-09T22:49:07.841Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:07:47.553Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:07:57.951Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T23:08:11.982Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:12:17.312Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:12:38.454Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:12:41.068Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:13:27.570Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:14:29.843Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:16:32.194Z [nileopedia-backend] info: GET /health - ::1
+2026-06-09T23:20:11.761Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:20:31.307Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:20:31.530Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:20:45.109Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T23:20:45.329Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:21:47.248Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:26:14.444Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:27:31.572Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:27:51.894Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T23:31:15.464Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:31:53.010Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:34:37.025Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:34:37.706Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-09T23:38:56.649Z [nileopedia-backend] info: GET /health - ::1
+2026-06-09T23:39:15.659Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:41:51.335Z [nileopedia-backend] info: GET /health - ::1
+2026-06-09T23:42:09.181Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-09T23:42:09.752Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T05:57:03.403Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T05:57:16.201Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:03:27.376Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T06:03:58.824Z [nileopedia-backend] info: GET /health - ::1
+2026-06-10T06:04:26.216Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T06:04:51.177Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T06:06:08.682Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T06:06:08.892Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:12:53.031Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:13:56.565Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T06:13:56.870Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:19:00.053Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T06:19:14.493Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:34.499Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:34.750Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:34.979Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:35.206Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:35.387Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:35.467Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:35.524Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:35.739Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:35.948Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.104Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.243Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.314Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.397Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.483Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.557Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.774Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:36.985Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:37.198Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:37.390Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:37.480Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:37.563Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:37.795Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:37.984Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:38.293Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:38.401Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:38.479Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:38.539Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:38.635Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:38.962Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:39.176Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:39.378Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:39.453Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:39.559Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:39.687Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:39.977Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.224Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.378Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.441Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.506Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.583Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.661Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:40.759Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:41.016Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:41.239Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:41.417Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:20:41.481Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T06:53:44.922Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T06:53:47.538Z [nileopedia-backend] info: Schedulers initialized
+2026-06-10T06:53:47.708Z [nileopedia-backend] info: Processing email job: 3
+2026-06-10T06:53:47.726Z [nileopedia-backend] info: Processing document ingestion job: 1
+2026-06-10T06:53:47.735Z [nileopedia-backend] info: Processing document ingestion job: 2
+2026-06-10T06:53:47.753Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:47.763Z [nileopedia-backend] error: Email job failed: 3 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:48.198Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.206Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.351Z [nileopedia-backend] error: Document ingestion failed: ffc9926c-0744-4598-8c23-2fd196aa398a Request failed with status code 404
+2026-06-10T06:53:48.353Z [nileopedia-backend] error: Document ingestion failed: 641b11a1-76f1-45b8-a7ea-efec70899775 Request failed with status code 404
+2026-06-10T06:53:48.356Z [nileopedia-backend] error: Document ingestion job failed: 2 Request failed with status code 404
+2026-06-10T06:53:48.357Z [nileopedia-backend] error: Document ingestion job failed: 1 Request failed with status code 404
+2026-06-10T06:53:48.358Z [nileopedia-backend] info: Processing document ingestion job: 3
+2026-06-10T06:53:48.359Z [nileopedia-backend] info: Processing document ingestion job: 4
+2026-06-10T06:53:48.370Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.375Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.386Z [nileopedia-backend] error: Document ingestion failed: eb792b15-595b-4621-a953-a40fbf70673d Request failed with status code 404
+2026-06-10T06:53:48.388Z [nileopedia-backend] error: Document ingestion failed: ff338d07-5875-40e6-9b01-d728fc955bf5 Request failed with status code 404
+2026-06-10T06:53:48.390Z [nileopedia-backend] error: Document ingestion job failed: 3 Request failed with status code 404
+2026-06-10T06:53:48.391Z [nileopedia-backend] info: Processing document ingestion job: 5
+2026-06-10T06:53:48.393Z [nileopedia-backend] error: Document ingestion job failed: 4 Request failed with status code 404
+2026-06-10T06:53:48.394Z [nileopedia-backend] info: Processing document ingestion job: 6
+2026-06-10T06:53:48.405Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.410Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.418Z [nileopedia-backend] error: Document ingestion failed: 6e4dd76b-692e-4309-954f-493b388ce692 Request failed with status code 404
+2026-06-10T06:53:48.421Z [nileopedia-backend] error: Document ingestion failed: 73c9735c-bb59-40d3-a949-149cd146e9d9 Request failed with status code 404
+2026-06-10T06:53:48.423Z [nileopedia-backend] error: Document ingestion job failed: 6 Request failed with status code 404
+2026-06-10T06:53:48.424Z [nileopedia-backend] info: Processing document ingestion job: 7
+2026-06-10T06:53:48.426Z [nileopedia-backend] error: Document ingestion job failed: 5 Request failed with status code 404
+2026-06-10T06:53:48.426Z [nileopedia-backend] info: Processing document ingestion job: 8
+2026-06-10T06:53:48.435Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.569Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.578Z [nileopedia-backend] error: Document ingestion failed: 637af5b1-9c83-42ec-a3ab-3cf448dc13ef Request failed with status code 404
+2026-06-10T06:53:48.585Z [nileopedia-backend] error: Document ingestion job failed: 7 Request failed with status code 404
+2026-06-10T06:53:48.586Z [nileopedia-backend] info: Processing document ingestion job: 9
+2026-06-10T06:53:48.588Z [nileopedia-backend] error: Document ingestion failed: ad4c283e-f49f-4f9b-9d7c-63e7b5e5f4f6 Request failed with status code 404
+2026-06-10T06:53:48.592Z [nileopedia-backend] error: Document ingestion job failed: 8 Request failed with status code 404
+2026-06-10T06:53:48.593Z [nileopedia-backend] info: Processing document ingestion job: 10
+2026-06-10T06:53:48.844Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:48.999Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:49.021Z [nileopedia-backend] error: Document ingestion failed: 0155f9e1-db12-48fb-bc8d-45269ddb9f00 Request failed with status code 404
+2026-06-10T06:53:49.023Z [nileopedia-backend] error: Document ingestion job failed: 9 Request failed with status code 404
+2026-06-10T06:53:49.024Z [nileopedia-backend] info: Processing document ingestion job: 11
+2026-06-10T06:53:49.025Z [nileopedia-backend] error: Document ingestion failed: c40d85eb-3137-4f5b-bded-40e9e69216fe Request failed with status code 404
+2026-06-10T06:53:49.027Z [nileopedia-backend] error: Document ingestion job failed: 10 Request failed with status code 404
+2026-06-10T06:53:49.028Z [nileopedia-backend] info: Processing document ingestion job: 12
+2026-06-10T06:53:49.149Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:49.318Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:49.326Z [nileopedia-backend] error: Document ingestion failed: 42140385-be91-4a02-b183-b6835a76052b Request failed with status code 404
+2026-06-10T06:53:49.334Z [nileopedia-backend] error: Document ingestion job failed: 11 Request failed with status code 404
+2026-06-10T06:53:49.334Z [nileopedia-backend] info: Processing document ingestion job: 13
+2026-06-10T06:53:49.519Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:49.339Z [nileopedia-backend] error: Document ingestion failed: 45f98831-d898-4971-a705-c45b9c7a7a6e Request failed with status code 404
+2026-06-10T06:53:49.519Z [nileopedia-backend] error: Document ingestion job failed: 12 Request failed with status code 404
+2026-06-10T06:53:49.519Z [nileopedia-backend] info: Processing document ingestion job: 14
+2026-06-10T06:53:49.680Z [nileopedia-backend] error: Document ingestion failed: 2ffd430e-776f-4226-ad7a-c035561f8f52 Request failed with status code 404
+2026-06-10T06:53:49.682Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:49.687Z [nileopedia-backend] error: Document ingestion job failed: 13 Request failed with status code 404
+2026-06-10T06:53:49.689Z [nileopedia-backend] info: Processing document ingestion job: 15
+2026-06-10T06:53:49.696Z [nileopedia-backend] error: Document ingestion failed: 41f60543-06ab-49ce-8b12-58035b643128 Request failed with status code 404
+2026-06-10T06:53:49.856Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:49.912Z [nileopedia-backend] error: Document ingestion job failed: 14 Request failed with status code 404
+2026-06-10T06:53:49.912Z [nileopedia-backend] info: Processing document ingestion job: 16
+2026-06-10T06:53:50.052Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:50.053Z [nileopedia-backend] error: Document ingestion failed: 7bbe1482-e6c3-4926-929c-0194f3e81ff1 Request failed with status code 404
+2026-06-10T06:53:50.058Z [nileopedia-backend] info: Processing email job: 3
+2026-06-10T06:53:50.064Z [nileopedia-backend] error: Document ingestion job failed: 15 Request failed with status code 404
+2026-06-10T06:53:50.065Z [nileopedia-backend] info: Processing document ingestion job: 17
+2026-06-10T06:53:50.070Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:50.072Z [nileopedia-backend] error: Email job failed: 3 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:50.247Z [nileopedia-backend] error: Document ingestion failed: 2a57c3e2-5e6e-4ca1-a374-c8f56b8840f3 Request failed with status code 404
+2026-06-10T06:53:50.248Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:50.249Z [nileopedia-backend] error: Document ingestion job failed: 16 Request failed with status code 404
+2026-06-10T06:53:50.250Z [nileopedia-backend] info: Processing document ingestion job: 18
+2026-06-10T06:53:50.342Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:50.341Z [nileopedia-backend] error: Document ingestion failed: 439465ce-7afa-462a-a6e4-e06eca968a54 Request failed with status code 404
+2026-06-10T06:53:50.429Z [nileopedia-backend] error: Document ingestion job failed: 17 Request failed with status code 404
+2026-06-10T06:53:50.429Z [nileopedia-backend] info: Processing document ingestion job: 19
+2026-06-10T06:53:50.547Z [nileopedia-backend] error: Document ingestion failed: d83f2621-a090-45c1-b8f7-6d2bd23053bf Request failed with status code 404
+2026-06-10T06:53:50.548Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:50.549Z [nileopedia-backend] error: Document ingestion job failed: 18 Request failed with status code 404
+2026-06-10T06:53:50.549Z [nileopedia-backend] info: Processing document ingestion job: 20
+2026-06-10T06:53:50.763Z [nileopedia-backend] error: Document ingestion failed: 10f014b3-6ea4-4b01-943c-3a00aa96ac5f Request failed with status code 404
+2026-06-10T06:53:50.765Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:50.769Z [nileopedia-backend] error: Document ingestion job failed: 19 Request failed with status code 404
+2026-06-10T06:53:50.775Z [nileopedia-backend] info: Processing document ingestion job: 21
+2026-06-10T06:53:51.052Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:51.051Z [nileopedia-backend] error: Document ingestion failed: abdb17d6-fed1-4eee-80d7-a13d14c2d33b Request failed with status code 404
+2026-06-10T06:53:51.061Z [nileopedia-backend] error: Document ingestion job failed: 20 Request failed with status code 404
+2026-06-10T06:53:51.062Z [nileopedia-backend] info: Processing document ingestion job: 22
+2026-06-10T06:53:51.166Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:51.066Z [nileopedia-backend] error: Document ingestion failed: 999e2744-5982-48fc-8e9f-bc9c1366fa57 Request failed with status code 404
+2026-06-10T06:53:51.167Z [nileopedia-backend] error: Document ingestion job failed: 21 Request failed with status code 404
+2026-06-10T06:53:51.168Z [nileopedia-backend] info: Processing document ingestion job: 23
+2026-06-10T06:53:51.393Z [nileopedia-backend] error: Document ingestion failed: 6e97f3bc-46f9-4d21-8033-f9004cd387b5 Request failed with status code 404
+2026-06-10T06:53:51.394Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:51.499Z [nileopedia-backend] error: Document ingestion job failed: 22 Request failed with status code 404
+2026-06-10T06:53:51.500Z [nileopedia-backend] info: Processing document ingestion job: 24
+2026-06-10T06:53:51.606Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:51.604Z [nileopedia-backend] error: Document ingestion failed: 15043071-e6c4-4fe2-85a0-8c1d6c3c1368 Request failed with status code 404
+2026-06-10T06:53:51.607Z [nileopedia-backend] error: Document ingestion job failed: 23 Request failed with status code 404
+2026-06-10T06:53:51.608Z [nileopedia-backend] info: Processing document ingestion job: 25
+2026-06-10T06:53:51.728Z [nileopedia-backend] error: Document ingestion failed: d6ba8084-de87-446a-992e-036bf9d862be Request failed with status code 404
+2026-06-10T06:53:51.729Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:51.817Z [nileopedia-backend] error: Document ingestion job failed: 24 Request failed with status code 404
+2026-06-10T06:53:51.817Z [nileopedia-backend] info: Processing document ingestion job: 26
+2026-06-10T06:53:51.944Z [nileopedia-backend] error: Document ingestion failed: 6ef7cf96-30cc-4c89-b6ae-d6719ed7e018 Request failed with status code 404
+2026-06-10T06:53:51.945Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:52.058Z [nileopedia-backend] error: Document ingestion job failed: 25 Request failed with status code 404
+2026-06-10T06:53:52.059Z [nileopedia-backend] info: Processing document ingestion job: 27
+2026-06-10T06:53:52.168Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:52.169Z [nileopedia-backend] error: Document ingestion failed: 68dd6ae6-90f8-41d0-b39b-0a4e5cd6c8ca Request failed with status code 404
+2026-06-10T06:53:52.178Z [nileopedia-backend] error: Document ingestion job failed: 26 Request failed with status code 404
+2026-06-10T06:53:52.184Z [nileopedia-backend] info: Processing document ingestion job: 28
+2026-06-10T06:53:52.186Z [nileopedia-backend] error: Document ingestion failed: 71d7a46d-45d0-40f2-8764-ff354dbf1b40 Request failed with status code 404
+2026-06-10T06:53:52.191Z [nileopedia-backend] error: Document ingestion job failed: 27 Request failed with status code 404
+2026-06-10T06:53:52.191Z [nileopedia-backend] info: Processing document ingestion job: 29
+2026-06-10T06:53:52.296Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:52.612Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:52.695Z [nileopedia-backend] error: Document ingestion failed: 9436dd89-5645-444a-a789-4adf6a931ea2 Request failed with status code 404
+2026-06-10T06:53:52.700Z [nileopedia-backend] error: Document ingestion failed: 3dcd8912-0aa4-4a11-b5de-2b9007aa9465 Request failed with status code 404
+2026-06-10T06:53:52.705Z [nileopedia-backend] error: Document ingestion job failed: 28 Request failed with status code 404
+2026-06-10T06:53:52.706Z [nileopedia-backend] error: Document ingestion job failed: 29 Request failed with status code 404
+2026-06-10T06:53:52.706Z [nileopedia-backend] info: Processing document ingestion job: 30
+2026-06-10T06:53:52.707Z [nileopedia-backend] info: Processing document ingestion job: 31
+2026-06-10T06:53:52.836Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:52.962Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:52.969Z [nileopedia-backend] error: Document ingestion failed: 5f4c2cdf-d514-4703-9a1a-c077c0729386 Request failed with status code 404
+2026-06-10T06:53:52.972Z [nileopedia-backend] error: Document ingestion failed: befec5f7-29c2-4d17-9ff0-4e98f4927632 Request failed with status code 404
+2026-06-10T06:53:52.974Z [nileopedia-backend] error: Document ingestion job failed: 31 Request failed with status code 404
+2026-06-10T06:53:52.974Z [nileopedia-backend] error: Document ingestion job failed: 30 Request failed with status code 404
+2026-06-10T06:53:52.975Z [nileopedia-backend] info: Processing document ingestion job: 32
+2026-06-10T06:53:52.976Z [nileopedia-backend] info: Processing document ingestion job: 33
+2026-06-10T06:53:53.072Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:53.340Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:53.347Z [nileopedia-backend] error: Document ingestion failed: c0553b50-1a32-45af-a418-d49a49ca744e Request failed with status code 404
+2026-06-10T06:53:53.349Z [nileopedia-backend] error: Document ingestion failed: 53a61479-1234-4998-99ca-bf45a49f6f39 Request failed with status code 404
+2026-06-10T06:53:53.352Z [nileopedia-backend] error: Document ingestion job failed: 32 Request failed with status code 404
+2026-06-10T06:53:53.352Z [nileopedia-backend] error: Document ingestion job failed: 33 Request failed with status code 404
+2026-06-10T06:53:53.353Z [nileopedia-backend] info: Processing document ingestion job: 34
+2026-06-10T06:53:53.353Z [nileopedia-backend] info: Processing document ingestion job: 35
+2026-06-10T06:53:53.426Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:53.481Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:53.550Z [nileopedia-backend] error: Document ingestion failed: f8b1853d-b85b-446e-b22f-140ed2bcc989 Request failed with status code 404
+2026-06-10T06:53:53.552Z [nileopedia-backend] error: Document ingestion job failed: 35 Request failed with status code 404
+2026-06-10T06:53:53.552Z [nileopedia-backend] info: Processing document ingestion job: 36
+2026-06-10T06:53:53.554Z [nileopedia-backend] error: Document ingestion failed: 6b5bfb66-37b1-4bd3-ba43-46c2bb4afa59 Request failed with status code 404
+2026-06-10T06:53:53.555Z [nileopedia-backend] error: Document ingestion job failed: 34 Request failed with status code 404
+2026-06-10T06:53:53.556Z [nileopedia-backend] info: Processing document ingestion job: 37
+2026-06-10T06:53:53.662Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:53.878Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:53.882Z [nileopedia-backend] error: Document ingestion failed: 120a8206-4acb-4db2-a8ed-a10d759227b4 Request failed with status code 404
+2026-06-10T06:53:53.883Z [nileopedia-backend] error: Document ingestion job failed: 36 Request failed with status code 404
+2026-06-10T06:53:53.884Z [nileopedia-backend] info: Processing document ingestion job: 38
+2026-06-10T06:53:53.885Z [nileopedia-backend] error: Document ingestion failed: bd8a6f06-3d79-4bca-8fa3-ee591e05da45 Request failed with status code 404
+2026-06-10T06:53:53.887Z [nileopedia-backend] error: Document ingestion job failed: 37 Request failed with status code 404
+2026-06-10T06:53:53.887Z [nileopedia-backend] info: Processing document ingestion job: 39
+2026-06-10T06:53:53.961Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.101Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.118Z [nileopedia-backend] error: Document ingestion failed: 481570ad-968f-4898-8f4e-ba47653d1cf9 Request failed with status code 404
+2026-06-10T06:53:54.121Z [nileopedia-backend] error: Document ingestion failed: 17ef2ce0-4b55-40f7-a877-a8f1051dc11b Request failed with status code 404
+2026-06-10T06:53:54.123Z [nileopedia-backend] error: Document ingestion job failed: 38 Request failed with status code 404
+2026-06-10T06:53:54.124Z [nileopedia-backend] info: Processing document ingestion job: 40
+2026-06-10T06:53:54.125Z [nileopedia-backend] error: Document ingestion job failed: 39 Request failed with status code 404
+2026-06-10T06:53:54.126Z [nileopedia-backend] info: Processing email job: 3
+2026-06-10T06:53:54.128Z [nileopedia-backend] info: Processing document ingestion job: 41
+2026-06-10T06:53:54.351Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.379Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.381Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:54.414Z [nileopedia-backend] error: Email job failed: 3 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:54.427Z [nileopedia-backend] error: Document ingestion failed: dd1841d5-27b0-4102-812f-d6aaf26ec94c Request failed with status code 404
+2026-06-10T06:53:54.435Z [nileopedia-backend] error: Document ingestion failed: f88fed97-cf66-4b82-85d3-65b6ce8f6e67 Request failed with status code 404
+2026-06-10T06:53:54.436Z [nileopedia-backend] error: Document ingestion job failed: 40 Request failed with status code 404
+2026-06-10T06:53:54.437Z [nileopedia-backend] info: Processing document ingestion job: 42
+2026-06-10T06:53:54.438Z [nileopedia-backend] error: Document ingestion job failed: 41 Request failed with status code 404
+2026-06-10T06:53:54.442Z [nileopedia-backend] info: Processing document ingestion job: 43
+2026-06-10T06:53:54.465Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.519Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.529Z [nileopedia-backend] error: Document ingestion failed: 08eddc05-e879-438f-bf67-417bd0487de8 Request failed with status code 404
+2026-06-10T06:53:54.533Z [nileopedia-backend] error: Document ingestion failed: 7bc840b1-1eb4-4146-9744-f630fb17e3bf Request failed with status code 404
+2026-06-10T06:53:54.535Z [nileopedia-backend] error: Document ingestion job failed: 42 Request failed with status code 404
+2026-06-10T06:53:54.536Z [nileopedia-backend] error: Document ingestion job failed: 43 Request failed with status code 404
+2026-06-10T06:53:54.537Z [nileopedia-backend] info: Processing document ingestion job: 44
+2026-06-10T06:53:54.537Z [nileopedia-backend] info: Processing document ingestion job: 45
+2026-06-10T06:53:54.658Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.764Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.767Z [nileopedia-backend] error: Document ingestion failed: d9865836-cae4-4249-88a6-ed1fb705033e Request failed with status code 404
+2026-06-10T06:53:54.769Z [nileopedia-backend] error: Document ingestion job failed: 45 Request failed with status code 404
+2026-06-10T06:53:54.770Z [nileopedia-backend] info: Processing document ingestion job: 46
+2026-06-10T06:53:54.773Z [nileopedia-backend] error: Document ingestion failed: b6766ed2-28ef-4544-82f2-878ab5d96fb4 Request failed with status code 404
+2026-06-10T06:53:54.927Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:54.926Z [nileopedia-backend] error: Document ingestion job failed: 44 Request failed with status code 404
+2026-06-10T06:53:54.932Z [nileopedia-backend] info: Processing document ingestion job: 47
+2026-06-10T06:53:55.106Z [nileopedia-backend] error: Document ingestion failed: 8f390f99-8747-41c3-bdf8-86755fade7e8 Request failed with status code 404
+2026-06-10T06:53:55.106Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.110Z [nileopedia-backend] error: Document ingestion job failed: 46 Request failed with status code 404
+2026-06-10T06:53:55.112Z [nileopedia-backend] info: Processing document ingestion job: 48
+2026-06-10T06:53:55.138Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.139Z [nileopedia-backend] error: Document ingestion failed: 78887cdd-626f-41d9-bf0d-75fdf267d7b5 Request failed with status code 404
+2026-06-10T06:53:55.144Z [nileopedia-backend] error: Document ingestion job failed: 47 Request failed with status code 404
+2026-06-10T06:53:55.148Z [nileopedia-backend] info: Processing document ingestion job: 49
+2026-06-10T06:53:55.152Z [nileopedia-backend] error: Document ingestion failed: 60555278-cdec-4b33-b000-6a2602ba9f4e Request failed with status code 404
+2026-06-10T06:53:55.177Z [nileopedia-backend] error: Document ingestion job failed: 48 Request failed with status code 404
+2026-06-10T06:53:55.177Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.177Z [nileopedia-backend] info: Processing document ingestion job: 50
+2026-06-10T06:53:55.272Z [nileopedia-backend] error: Document ingestion failed: 89299aa3-8cf3-4319-9945-63bbdba752a3 Request failed with status code 404
+2026-06-10T06:53:55.273Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.275Z [nileopedia-backend] error: Document ingestion job failed: 49 Request failed with status code 404
+2026-06-10T06:53:55.276Z [nileopedia-backend] info: Processing document ingestion job: 51
+2026-06-10T06:53:55.291Z [nileopedia-backend] error: Document ingestion failed: e4a56e4b-f323-4394-b685-168c3b614cf7 Request failed with status code 404
+2026-06-10T06:53:55.292Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.294Z [nileopedia-backend] error: Document ingestion job failed: 50 Request failed with status code 404
+2026-06-10T06:53:55.294Z [nileopedia-backend] info: Processing document ingestion job: 52
+2026-06-10T06:53:55.498Z [nileopedia-backend] error: Document ingestion failed: f0067e31-859f-4d21-bd73-5428caa8daab Request failed with status code 404
+2026-06-10T06:53:55.499Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.500Z [nileopedia-backend] error: Document ingestion job failed: 51 Request failed with status code 404
+2026-06-10T06:53:55.500Z [nileopedia-backend] info: Processing document ingestion job: 53
+2026-06-10T06:53:55.516Z [nileopedia-backend] error: Document ingestion failed: 70f56fc5-02f2-42cf-8422-c268b877ae5d Request failed with status code 404
+2026-06-10T06:53:55.517Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.521Z [nileopedia-backend] error: Document ingestion job failed: 52 Request failed with status code 404
+2026-06-10T06:53:55.521Z [nileopedia-backend] info: Processing document ingestion job: 54
+2026-06-10T06:53:55.523Z [nileopedia-backend] error: Document ingestion failed: 050d494a-c210-4d17-af0c-74f52e1061bb Request failed with status code 404
+2026-06-10T06:53:55.528Z [nileopedia-backend] error: Document ingestion job failed: 53 Request failed with status code 404
+2026-06-10T06:53:55.529Z [nileopedia-backend] info: Processing document ingestion job: 2
+2026-06-10T06:53:55.716Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.725Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.738Z [nileopedia-backend] error: Document ingestion failed: 969a9333-7316-4c96-9646-c0e26df1148c Request failed with status code 404
+2026-06-10T06:53:55.745Z [nileopedia-backend] error: Document ingestion failed: ffc9926c-0744-4598-8c23-2fd196aa398a Request failed with status code 404
+2026-06-10T06:53:55.748Z [nileopedia-backend] error: Document ingestion job failed: 54 Request failed with status code 404
+2026-06-10T06:53:55.748Z [nileopedia-backend] error: Document ingestion job failed: 2 Request failed with status code 404
+2026-06-10T06:53:55.748Z [nileopedia-backend] info: Processing document ingestion job: 1
+2026-06-10T06:53:55.749Z [nileopedia-backend] info: Processing document ingestion job: 3
+2026-06-10T06:53:55.765Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.770Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.781Z [nileopedia-backend] error: Document ingestion failed: 641b11a1-76f1-45b8-a7ea-efec70899775 Request failed with status code 404
+2026-06-10T06:53:55.783Z [nileopedia-backend] error: Document ingestion job failed: 1 Request failed with status code 404
+2026-06-10T06:53:55.783Z [nileopedia-backend] info: Processing document ingestion job: 4
+2026-06-10T06:53:55.801Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.795Z [nileopedia-backend] error: Document ingestion failed: eb792b15-595b-4621-a953-a40fbf70673d Request failed with status code 404
+2026-06-10T06:53:55.809Z [nileopedia-backend] error: Document ingestion job failed: 3 Request failed with status code 404
+2026-06-10T06:53:55.809Z [nileopedia-backend] info: Processing document ingestion job: 6
+2026-06-10T06:53:55.819Z [nileopedia-backend] error: Document ingestion failed: ff338d07-5875-40e6-9b01-d728fc955bf5 Request failed with status code 404
+2026-06-10T06:53:55.822Z [nileopedia-backend] error: Document ingestion job failed: 4 Request failed with status code 404
+2026-06-10T06:53:55.822Z [nileopedia-backend] info: Processing document ingestion job: 5
+2026-06-10T06:53:55.824Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.835Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.841Z [nileopedia-backend] error: Document ingestion failed: 6e4dd76b-692e-4309-954f-493b388ce692 Request failed with status code 404
+2026-06-10T06:53:55.843Z [nileopedia-backend] error: Document ingestion job failed: 6 Request failed with status code 404
+2026-06-10T06:53:55.845Z [nileopedia-backend] info: Processing document ingestion job: 7
+2026-06-10T06:53:55.846Z [nileopedia-backend] error: Document ingestion failed: 73c9735c-bb59-40d3-a949-149cd146e9d9 Request failed with status code 404
+2026-06-10T06:53:55.849Z [nileopedia-backend] error: Document ingestion job failed: 5 Request failed with status code 404
+2026-06-10T06:53:55.849Z [nileopedia-backend] info: Processing document ingestion job: 8
+2026-06-10T06:53:55.858Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.924Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:55.930Z [nileopedia-backend] error: Document ingestion failed: 637af5b1-9c83-42ec-a3ab-3cf448dc13ef Request failed with status code 404
+2026-06-10T06:53:55.935Z [nileopedia-backend] error: Document ingestion job failed: 7 Request failed with status code 404
+2026-06-10T06:53:55.936Z [nileopedia-backend] info: Processing document ingestion job: 9
+2026-06-10T06:53:55.938Z [nileopedia-backend] error: Document ingestion failed: ad4c283e-f49f-4f9b-9d7c-63e7b5e5f4f6 Request failed with status code 404
+2026-06-10T06:53:55.940Z [nileopedia-backend] error: Document ingestion job failed: 8 Request failed with status code 404
+2026-06-10T06:53:55.941Z [nileopedia-backend] info: Processing document ingestion job: 10
+2026-06-10T06:53:56.122Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:56.349Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:56.379Z [nileopedia-backend] error: Document ingestion failed: 0155f9e1-db12-48fb-bc8d-45269ddb9f00 Request failed with status code 404
+2026-06-10T06:53:56.392Z [nileopedia-backend] error: Document ingestion failed: c40d85eb-3137-4f5b-bded-40e9e69216fe Request failed with status code 404
+2026-06-10T06:53:56.416Z [nileopedia-backend] error: Document ingestion job failed: 9 Request failed with status code 404
+2026-06-10T06:53:56.417Z [nileopedia-backend] error: Document ingestion job failed: 10 Request failed with status code 404
+2026-06-10T06:53:56.417Z [nileopedia-backend] info: Processing document ingestion job: 11
+2026-06-10T06:53:56.430Z [nileopedia-backend] info: Processing document ingestion job: 12
+2026-06-10T06:53:56.625Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:56.701Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:56.711Z [nileopedia-backend] error: Document ingestion failed: 42140385-be91-4a02-b183-b6835a76052b Request failed with status code 404
+2026-06-10T06:53:56.715Z [nileopedia-backend] error: Document ingestion failed: 45f98831-d898-4971-a705-c45b9c7a7a6e Request failed with status code 404
+2026-06-10T06:53:56.718Z [nileopedia-backend] error: Document ingestion job failed: 11 Request failed with status code 404
+2026-06-10T06:53:56.719Z [nileopedia-backend] error: Document ingestion job failed: 12 Request failed with status code 404
+2026-06-10T06:53:56.719Z [nileopedia-backend] info: Processing document ingestion job: 13
+2026-06-10T06:53:56.719Z [nileopedia-backend] info: Processing document ingestion job: 14
+2026-06-10T06:53:56.910Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:56.992Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:56.997Z [nileopedia-backend] error: Document ingestion failed: 41f60543-06ab-49ce-8b12-58035b643128 Request failed with status code 404
+2026-06-10T06:53:56.998Z [nileopedia-backend] error: Document ingestion failed: 2ffd430e-776f-4226-ad7a-c035561f8f52 Request failed with status code 404
+2026-06-10T06:53:57.000Z [nileopedia-backend] error: Document ingestion job failed: 14 Request failed with status code 404
+2026-06-10T06:53:57.001Z [nileopedia-backend] info: Processing document ingestion job: 15
+2026-06-10T06:53:57.003Z [nileopedia-backend] error: Document ingestion job failed: 13 Request failed with status code 404
+2026-06-10T06:53:57.003Z [nileopedia-backend] info: Processing document ingestion job: 16
+2026-06-10T06:53:57.195Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:57.321Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:57.346Z [nileopedia-backend] error: Document ingestion failed: 7bbe1482-e6c3-4926-929c-0194f3e81ff1 Request failed with status code 404
+2026-06-10T06:53:57.349Z [nileopedia-backend] error: Document ingestion failed: 2a57c3e2-5e6e-4ca1-a374-c8f56b8840f3 Request failed with status code 404
+2026-06-10T06:53:57.352Z [nileopedia-backend] error: Document ingestion job failed: 15 Request failed with status code 404
+2026-06-10T06:53:57.353Z [nileopedia-backend] error: Document ingestion job failed: 16 Request failed with status code 404
+2026-06-10T06:53:57.353Z [nileopedia-backend] info: Processing document ingestion job: 17
+2026-06-10T06:53:57.353Z [nileopedia-backend] info: Processing document ingestion job: 18
+2026-06-10T06:53:57.463Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:57.546Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:57.599Z [nileopedia-backend] error: Document ingestion failed: 439465ce-7afa-462a-a6e4-e06eca968a54 Request failed with status code 404
+2026-06-10T06:53:57.601Z [nileopedia-backend] error: Document ingestion job failed: 17 Request failed with status code 404
+2026-06-10T06:53:57.602Z [nileopedia-backend] info: Processing document ingestion job: 19
+2026-06-10T06:53:57.605Z [nileopedia-backend] error: Document ingestion failed: d83f2621-a090-45c1-b8f7-6d2bd23053bf Request failed with status code 404
+2026-06-10T06:53:57.735Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:57.735Z [nileopedia-backend] error: Document ingestion job failed: 18 Request failed with status code 404
+2026-06-10T06:53:57.736Z [nileopedia-backend] info: Processing document ingestion job: 20
+2026-06-10T06:53:57.937Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:57.936Z [nileopedia-backend] error: Document ingestion failed: 10f014b3-6ea4-4b01-943c-3a00aa96ac5f Request failed with status code 404
+2026-06-10T06:53:57.946Z [nileopedia-backend] error: Document ingestion job failed: 19 Request failed with status code 404
+2026-06-10T06:53:57.947Z [nileopedia-backend] info: Processing document ingestion job: 21
+2026-06-10T06:53:57.952Z [nileopedia-backend] error: Document ingestion failed: abdb17d6-fed1-4eee-80d7-a13d14c2d33b Request failed with status code 404
+2026-06-10T06:53:57.954Z [nileopedia-backend] error: Document ingestion job failed: 20 Request failed with status code 404
+2026-06-10T06:53:57.955Z [nileopedia-backend] info: Processing document ingestion job: 22
+2026-06-10T06:53:58.181Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:58.301Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:58.305Z [nileopedia-backend] error: Document ingestion failed: 999e2744-5982-48fc-8e9f-bc9c1366fa57 Request failed with status code 404
+2026-06-10T06:53:58.307Z [nileopedia-backend] error: Document ingestion job failed: 21 Request failed with status code 404
+2026-06-10T06:53:58.308Z [nileopedia-backend] info: Processing document ingestion job: 23
+2026-06-10T06:53:58.309Z [nileopedia-backend] error: Document ingestion failed: 6e97f3bc-46f9-4d21-8033-f9004cd387b5 Request failed with status code 404
+2026-06-10T06:53:58.312Z [nileopedia-backend] error: Document ingestion job failed: 22 Request failed with status code 404
+2026-06-10T06:53:58.312Z [nileopedia-backend] info: Processing document ingestion job: 24
+2026-06-10T06:53:58.536Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:58.773Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:58.791Z [nileopedia-backend] error: Document ingestion failed: 15043071-e6c4-4fe2-85a0-8c1d6c3c1368 Request failed with status code 404
+2026-06-10T06:53:58.802Z [nileopedia-backend] error: Document ingestion failed: d6ba8084-de87-446a-992e-036bf9d862be Request failed with status code 404
+2026-06-10T06:53:58.807Z [nileopedia-backend] error: Document ingestion job failed: 23 Request failed with status code 404
+2026-06-10T06:53:58.811Z [nileopedia-backend] error: Document ingestion job failed: 24 Request failed with status code 404
+2026-06-10T06:53:58.812Z [nileopedia-backend] info: Processing document ingestion job: 25
+2026-06-10T06:53:58.813Z [nileopedia-backend] info: Processing document ingestion job: 26
+2026-06-10T06:53:59.056Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:59.194Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:59.207Z [nileopedia-backend] error: Document ingestion failed: 6ef7cf96-30cc-4c89-b6ae-d6719ed7e018 Request failed with status code 404
+2026-06-10T06:53:59.215Z [nileopedia-backend] error: Document ingestion failed: 68dd6ae6-90f8-41d0-b39b-0a4e5cd6c8ca Request failed with status code 404
+2026-06-10T06:53:59.220Z [nileopedia-backend] error: Document ingestion job failed: 25 Request failed with status code 404
+2026-06-10T06:53:59.221Z [nileopedia-backend] info: Processing document ingestion job: 27
+2026-06-10T06:53:59.222Z [nileopedia-backend] error: Document ingestion job failed: 26 Request failed with status code 404
+2026-06-10T06:53:59.227Z [nileopedia-backend] info: Processing document ingestion job: 28
+2026-06-10T06:53:59.384Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:59.600Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:59.606Z [nileopedia-backend] error: Document ingestion failed: 71d7a46d-45d0-40f2-8764-ff354dbf1b40 Request failed with status code 404
+2026-06-10T06:53:59.608Z [nileopedia-backend] error: Document ingestion job failed: 27 Request failed with status code 404
+2026-06-10T06:53:59.609Z [nileopedia-backend] info: Processing document ingestion job: 29
+2026-06-10T06:53:59.612Z [nileopedia-backend] error: Document ingestion failed: 9436dd89-5645-444a-a789-4adf6a931ea2 Request failed with status code 404
+2026-06-10T06:53:59.723Z [nileopedia-backend] error: Document ingestion job failed: 28 Request failed with status code 404
+2026-06-10T06:53:59.724Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:59.724Z [nileopedia-backend] info: Processing document ingestion job: 31
+2026-06-10T06:53:59.915Z [nileopedia-backend] error: Document ingestion failed: 3dcd8912-0aa4-4a11-b5de-2b9007aa9465 Request failed with status code 404
+2026-06-10T06:53:59.915Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:53:59.920Z [nileopedia-backend] error: Document ingestion job failed: 29 Request failed with status code 404
+2026-06-10T06:53:59.921Z [nileopedia-backend] info: Processing document ingestion job: 30
+2026-06-10T06:53:59.927Z [nileopedia-backend] error: Document ingestion failed: 5f4c2cdf-d514-4703-9a1a-c077c0729386 Request failed with status code 404
+2026-06-10T06:54:00.025Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.128Z [nileopedia-backend] error: Document ingestion job failed: 31 Request failed with status code 404
+2026-06-10T06:54:00.128Z [nileopedia-backend] info: Processing document ingestion job: 32
+2026-06-10T06:54:00.135Z [nileopedia-backend] error: Document ingestion failed: befec5f7-29c2-4d17-9ff0-4e98f4927632 Request failed with status code 404
+2026-06-10T06:54:00.139Z [nileopedia-backend] error: Document ingestion job failed: 30 Request failed with status code 404
+2026-06-10T06:54:00.140Z [nileopedia-backend] info: Processing document ingestion job: 33
+2026-06-10T06:54:00.263Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.362Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.463Z [nileopedia-backend] error: Document ingestion failed: c0553b50-1a32-45af-a418-d49a49ca744e Request failed with status code 404
+2026-06-10T06:54:00.464Z [nileopedia-backend] error: Document ingestion failed: 53a61479-1234-4998-99ca-bf45a49f6f39 Request failed with status code 404
+2026-06-10T06:54:00.468Z [nileopedia-backend] error: Document ingestion job failed: 32 Request failed with status code 404
+2026-06-10T06:54:00.468Z [nileopedia-backend] error: Document ingestion job failed: 33 Request failed with status code 404
+2026-06-10T06:54:00.468Z [nileopedia-backend] info: Processing document ingestion job: 35
+2026-06-10T06:54:00.469Z [nileopedia-backend] info: Processing document ingestion job: 34
+2026-06-10T06:54:00.580Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.749Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.763Z [nileopedia-backend] error: Document ingestion failed: f8b1853d-b85b-446e-b22f-140ed2bcc989 Request failed with status code 404
+2026-06-10T06:54:00.768Z [nileopedia-backend] error: Document ingestion failed: 6b5bfb66-37b1-4bd3-ba43-46c2bb4afa59 Request failed with status code 404
+2026-06-10T06:54:00.771Z [nileopedia-backend] error: Document ingestion job failed: 35 Request failed with status code 404
+2026-06-10T06:54:00.771Z [nileopedia-backend] error: Document ingestion job failed: 34 Request failed with status code 404
+2026-06-10T06:54:00.772Z [nileopedia-backend] info: Processing document ingestion job: 36
+2026-06-10T06:54:00.772Z [nileopedia-backend] info: Processing document ingestion job: 37
+2026-06-10T06:54:00.884Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.989Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:00.996Z [nileopedia-backend] error: Document ingestion failed: 120a8206-4acb-4db2-a8ed-a10d759227b4 Request failed with status code 404
+2026-06-10T06:54:00.998Z [nileopedia-backend] error: Document ingestion job failed: 36 Request failed with status code 404
+2026-06-10T06:54:00.999Z [nileopedia-backend] info: Processing document ingestion job: 38
+2026-06-10T06:54:01.000Z [nileopedia-backend] error: Document ingestion failed: bd8a6f06-3d79-4bca-8fa3-ee591e05da45 Request failed with status code 404
+2026-06-10T06:54:01.003Z [nileopedia-backend] error: Document ingestion job failed: 37 Request failed with status code 404
+2026-06-10T06:54:01.003Z [nileopedia-backend] info: Processing document ingestion job: 39
+2026-06-10T06:54:01.201Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.323Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.327Z [nileopedia-backend] error: Document ingestion failed: 17ef2ce0-4b55-40f7-a877-a8f1051dc11b Request failed with status code 404
+2026-06-10T06:54:01.328Z [nileopedia-backend] error: Document ingestion job failed: 39 Request failed with status code 404
+2026-06-10T06:54:01.329Z [nileopedia-backend] info: Processing document ingestion job: 40
+2026-06-10T06:54:01.330Z [nileopedia-backend] error: Document ingestion failed: 481570ad-968f-4898-8f4e-ba47653d1cf9 Request failed with status code 404
+2026-06-10T06:54:01.332Z [nileopedia-backend] error: Document ingestion job failed: 38 Request failed with status code 404
+2026-06-10T06:54:01.333Z [nileopedia-backend] info: Processing document ingestion job: 41
+2026-06-10T06:54:01.435Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.456Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.462Z [nileopedia-backend] error: Document ingestion failed: dd1841d5-27b0-4102-812f-d6aaf26ec94c Request failed with status code 404
+2026-06-10T06:54:01.464Z [nileopedia-backend] error: Document ingestion job failed: 40 Request failed with status code 404
+2026-06-10T06:54:01.465Z [nileopedia-backend] info: Processing document ingestion job: 42
+2026-06-10T06:54:01.466Z [nileopedia-backend] error: Document ingestion failed: f88fed97-cf66-4b82-85d3-65b6ce8f6e67 Request failed with status code 404
+2026-06-10T06:54:01.468Z [nileopedia-backend] error: Document ingestion job failed: 41 Request failed with status code 404
+2026-06-10T06:54:01.469Z [nileopedia-backend] info: Processing document ingestion job: 43
+2026-06-10T06:54:01.485Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.501Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.505Z [nileopedia-backend] error: Document ingestion failed: 08eddc05-e879-438f-bf67-417bd0487de8 Request failed with status code 404
+2026-06-10T06:54:01.601Z [nileopedia-backend] error: Document ingestion failed: 7bc840b1-1eb4-4146-9744-f630fb17e3bf Request failed with status code 404
+2026-06-10T06:54:01.602Z [nileopedia-backend] error: Document ingestion job failed: 42 Request failed with status code 404
+2026-06-10T06:54:01.602Z [nileopedia-backend] info: Processing document ingestion job: 45
+2026-06-10T06:54:01.604Z [nileopedia-backend] error: Document ingestion job failed: 43 Request failed with status code 404
+2026-06-10T06:54:01.604Z [nileopedia-backend] info: Processing document ingestion job: 44
+2026-06-10T06:54:01.716Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.879Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:01.889Z [nileopedia-backend] error: Document ingestion failed: b6766ed2-28ef-4544-82f2-878ab5d96fb4 Request failed with status code 404
+2026-06-10T06:54:01.890Z [nileopedia-backend] error: Document ingestion failed: d9865836-cae4-4249-88a6-ed1fb705033e Request failed with status code 404
+2026-06-10T06:54:01.905Z [nileopedia-backend] error: Document ingestion job failed: 44 Request failed with status code 404
+2026-06-10T06:54:01.905Z [nileopedia-backend] error: Document ingestion job failed: 45 Request failed with status code 404
+2026-06-10T06:54:01.906Z [nileopedia-backend] info: Processing document ingestion job: 46
+2026-06-10T06:54:01.906Z [nileopedia-backend] info: Processing document ingestion job: 47
+2026-06-10T06:54:02.083Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T06:54:02.288Z [nileopedia-backend] error: Document ingestion failed: 8f390f99-8747-41c3-bdf8-86755fade7e8 Request failed with status code 404
+2026-06-10T06:54:02.299Z [nileopedia-backend] error: Document ingestion failed: 78887cdd-626f-41d9-bf0d-75fdf267d7b5 Request failed with status code 429
+2026-06-10T06:54:02.305Z [nileopedia-backend] error: Document ingestion job failed: 46 Request failed with status code 404
+2026-06-10T06:54:02.305Z [nileopedia-backend] error: Document ingestion job failed: 47 Request failed with status code 429
+2026-06-10T06:54:02.306Z [nileopedia-backend] info: Processing document ingestion job: 48
+2026-06-10T06:54:02.306Z [nileopedia-backend] info: Processing document ingestion job: 49
+2026-06-10T06:54:02.395Z [nileopedia-backend] error: Document ingestion failed: 60555278-cdec-4b33-b000-6a2602ba9f4e Request failed with status code 429
+2026-06-10T06:54:02.396Z [nileopedia-backend] error: Document ingestion job failed: 48 Request failed with status code 429
+2026-06-10T06:54:02.397Z [nileopedia-backend] info: Processing document ingestion job: 50
+2026-06-10T06:54:02.400Z [nileopedia-backend] error: Document ingestion failed: 89299aa3-8cf3-4319-9945-63bbdba752a3 Request failed with status code 429
+2026-06-10T06:54:02.511Z [nileopedia-backend] error: Document ingestion job failed: 49 Request failed with status code 429
+2026-06-10T06:54:02.512Z [nileopedia-backend] info: Processing document ingestion job: 51
+2026-06-10T06:54:02.539Z [nileopedia-backend] error: Document ingestion failed: e4a56e4b-f323-4394-b685-168c3b614cf7 Request failed with status code 429
+2026-06-10T06:54:02.544Z [nileopedia-backend] error: Document ingestion job failed: 50 Request failed with status code 429
+2026-06-10T06:54:02.544Z [nileopedia-backend] info: Processing document ingestion job: 52
+2026-06-10T06:54:02.656Z [nileopedia-backend] error: Document ingestion failed: f0067e31-859f-4d21-bd73-5428caa8daab Request failed with status code 429
+2026-06-10T06:54:02.804Z [nileopedia-backend] error: Document ingestion job failed: 51 Request failed with status code 429
+2026-06-10T06:54:02.808Z [nileopedia-backend] info: Processing document ingestion job: 53
+2026-06-10T06:54:02.817Z [nileopedia-backend] error: Document ingestion failed: 70f56fc5-02f2-42cf-8422-c268b877ae5d Request failed with status code 429
+2026-06-10T06:54:02.818Z [nileopedia-backend] error: Document ingestion job failed: 52 Request failed with status code 429
+2026-06-10T06:54:02.821Z [nileopedia-backend] info: Processing document ingestion job: 54
+2026-06-10T06:54:03.050Z [nileopedia-backend] error: Document ingestion failed: 050d494a-c210-4d17-af0c-74f52e1061bb Request failed with status code 429
+2026-06-10T06:54:03.054Z [nileopedia-backend] error: Document ingestion job failed: 53 Request failed with status code 429
+2026-06-10T06:54:03.054Z [nileopedia-backend] info: Processing document ingestion job: 2
+2026-06-10T06:54:03.058Z [nileopedia-backend] error: Document ingestion failed: 969a9333-7316-4c96-9646-c0e26df1148c Request failed with status code 429
+2026-06-10T06:54:03.063Z [nileopedia-backend] error: Document ingestion job failed: 54 Request failed with status code 429
+2026-06-10T06:54:03.064Z [nileopedia-backend] info: Processing document ingestion job: 1
+2026-06-10T06:54:03.076Z [nileopedia-backend] error: Document ingestion failed: ffc9926c-0744-4598-8c23-2fd196aa398a Request failed with status code 429
+2026-06-10T06:54:03.082Z [nileopedia-backend] error: Document ingestion job failed: 2 Request failed with status code 429
+2026-06-10T06:54:03.082Z [nileopedia-backend] info: Processing document ingestion job: 3
+2026-06-10T06:54:03.083Z [nileopedia-backend] error: Document ingestion failed: 641b11a1-76f1-45b8-a7ea-efec70899775 Request failed with status code 429
+2026-06-10T06:54:03.090Z [nileopedia-backend] error: Document ingestion job failed: 1 Request failed with status code 429
+2026-06-10T06:54:03.091Z [nileopedia-backend] info: Processing document ingestion job: 4
+2026-06-10T06:54:03.109Z [nileopedia-backend] error: Document ingestion failed: eb792b15-595b-4621-a953-a40fbf70673d Request failed with status code 429
+2026-06-10T06:54:03.111Z [nileopedia-backend] error: Document ingestion job failed: 3 Request failed with status code 429
+2026-06-10T06:54:03.112Z [nileopedia-backend] info: Processing document ingestion job: 6
+2026-06-10T06:54:03.129Z [nileopedia-backend] error: Document ingestion failed: ff338d07-5875-40e6-9b01-d728fc955bf5 Request failed with status code 429
+2026-06-10T06:54:03.140Z [nileopedia-backend] error: Document ingestion job failed: 4 Request failed with status code 429
+2026-06-10T06:54:03.142Z [nileopedia-backend] info: Processing document ingestion job: 5
+2026-06-10T06:54:03.145Z [nileopedia-backend] error: Document ingestion failed: 6e4dd76b-692e-4309-954f-493b388ce692 Request failed with status code 429
+2026-06-10T06:54:03.149Z [nileopedia-backend] error: Document ingestion job failed: 6 Request failed with status code 429
+2026-06-10T06:54:03.150Z [nileopedia-backend] info: Processing document ingestion job: 7
+2026-06-10T06:54:03.157Z [nileopedia-backend] error: Document ingestion failed: 73c9735c-bb59-40d3-a949-149cd146e9d9 Request failed with status code 429
+2026-06-10T06:54:03.163Z [nileopedia-backend] error: Document ingestion job failed: 5 Request failed with status code 429
+2026-06-10T06:54:03.163Z [nileopedia-backend] info: Processing document ingestion job: 8
+2026-06-10T06:54:03.167Z [nileopedia-backend] error: Document ingestion failed: 637af5b1-9c83-42ec-a3ab-3cf448dc13ef Request failed with status code 429
+2026-06-10T06:54:03.212Z [nileopedia-backend] error: Document ingestion job failed: 7 Request failed with status code 429
+2026-06-10T06:54:03.213Z [nileopedia-backend] info: Processing document ingestion job: 9
+2026-06-10T06:54:03.342Z [nileopedia-backend] error: Document ingestion failed: ad4c283e-f49f-4f9b-9d7c-63e7b5e5f4f6 Request failed with status code 429
+2026-06-10T06:54:03.444Z [nileopedia-backend] error: Document ingestion job failed: 8 Request failed with status code 429
+2026-06-10T06:54:03.445Z [nileopedia-backend] info: Processing document ingestion job: 10
+2026-06-10T06:54:03.447Z [nileopedia-backend] error: Document ingestion failed: 0155f9e1-db12-48fb-bc8d-45269ddb9f00 Request failed with status code 429
+2026-06-10T06:54:03.553Z [nileopedia-backend] error: Document ingestion job failed: 9 Request failed with status code 429
+2026-06-10T06:54:03.554Z [nileopedia-backend] info: Processing document ingestion job: 11
+2026-06-10T06:54:03.737Z [nileopedia-backend] error: Document ingestion failed: c40d85eb-3137-4f5b-bded-40e9e69216fe Request failed with status code 429
+2026-06-10T06:54:03.740Z [nileopedia-backend] error: Document ingestion job failed: 10 Request failed with status code 429
+2026-06-10T06:54:03.741Z [nileopedia-backend] info: Processing document ingestion job: 12
+2026-06-10T06:54:03.892Z [nileopedia-backend] error: Document ingestion failed: 42140385-be91-4a02-b183-b6835a76052b Request failed with status code 429
+2026-06-10T06:54:03.910Z [nileopedia-backend] error: Document ingestion job failed: 11 Request failed with status code 429
+2026-06-10T06:54:03.910Z [nileopedia-backend] info: Processing document ingestion job: 14
+2026-06-10T06:54:04.079Z [nileopedia-backend] error: Document ingestion failed: 45f98831-d898-4971-a705-c45b9c7a7a6e Request failed with status code 429
+2026-06-10T06:54:04.083Z [nileopedia-backend] error: Document ingestion job failed: 12 Request failed with status code 429
+2026-06-10T06:54:04.084Z [nileopedia-backend] info: Processing document ingestion job: 13
+2026-06-10T06:54:04.087Z [nileopedia-backend] error: Document ingestion failed: 41f60543-06ab-49ce-8b12-58035b643128 Request failed with status code 429
+2026-06-10T06:54:04.191Z [nileopedia-backend] error: Document ingestion job failed: 14 Request failed with status code 429
+2026-06-10T06:54:04.192Z [nileopedia-backend] info: Processing document ingestion job: 15
+2026-06-10T06:54:04.421Z [nileopedia-backend] error: Document ingestion failed: 2ffd430e-776f-4226-ad7a-c035561f8f52 Request failed with status code 429
+2026-06-10T06:54:04.485Z [nileopedia-backend] error: Document ingestion job failed: 13 Request failed with status code 429
+2026-06-10T06:54:04.485Z [nileopedia-backend] info: Processing document ingestion job: 16
+2026-06-10T06:54:04.488Z [nileopedia-backend] error: Document ingestion failed: 7bbe1482-e6c3-4926-929c-0194f3e81ff1 Request failed with status code 429
+2026-06-10T06:54:04.611Z [nileopedia-backend] error: Document ingestion job failed: 15 Request failed with status code 429
+2026-06-10T06:54:04.612Z [nileopedia-backend] info: Processing document ingestion job: 17
+2026-06-10T06:54:04.710Z [nileopedia-backend] error: Document ingestion failed: 2a57c3e2-5e6e-4ca1-a374-c8f56b8840f3 Request failed with status code 429
+2026-06-10T06:54:04.798Z [nileopedia-backend] error: Document ingestion job failed: 16 Request failed with status code 429
+2026-06-10T06:54:04.799Z [nileopedia-backend] info: Processing document ingestion job: 18
+2026-06-10T06:54:04.801Z [nileopedia-backend] error: Document ingestion failed: 439465ce-7afa-462a-a6e4-e06eca968a54 Request failed with status code 429
+2026-06-10T06:54:04.804Z [nileopedia-backend] error: Document ingestion job failed: 17 Request failed with status code 429
+2026-06-10T06:54:04.804Z [nileopedia-backend] info: Processing document ingestion job: 19
+2026-06-10T06:54:05.088Z [nileopedia-backend] error: Document ingestion failed: d83f2621-a090-45c1-b8f7-6d2bd23053bf Request failed with status code 429
+2026-06-10T06:54:05.089Z [nileopedia-backend] error: Document ingestion failed: 10f014b3-6ea4-4b01-943c-3a00aa96ac5f Request failed with status code 429
+2026-06-10T06:54:05.091Z [nileopedia-backend] error: Document ingestion job failed: 18 Request failed with status code 429
+2026-06-10T06:54:05.092Z [nileopedia-backend] info: Processing document ingestion job: 20
+2026-06-10T06:54:05.094Z [nileopedia-backend] error: Document ingestion job failed: 19 Request failed with status code 429
+2026-06-10T06:54:05.095Z [nileopedia-backend] info: Processing document ingestion job: 21
+2026-06-10T06:54:05.414Z [nileopedia-backend] error: Document ingestion failed: abdb17d6-fed1-4eee-80d7-a13d14c2d33b Request failed with status code 429
+2026-06-10T06:54:05.420Z [nileopedia-backend] error: Document ingestion failed: 999e2744-5982-48fc-8e9f-bc9c1366fa57 Request failed with status code 429
+2026-06-10T06:54:05.426Z [nileopedia-backend] error: Document ingestion job failed: 20 Request failed with status code 429
+2026-06-10T06:54:05.431Z [nileopedia-backend] error: Document ingestion job failed: 21 Request failed with status code 429
+2026-06-10T06:54:05.431Z [nileopedia-backend] info: Processing document ingestion job: 22
+2026-06-10T06:54:05.432Z [nileopedia-backend] info: Processing document ingestion job: 23
+2026-06-10T06:54:05.713Z [nileopedia-backend] error: Document ingestion failed: 6e97f3bc-46f9-4d21-8033-f9004cd387b5 Request failed with status code 429
+2026-06-10T06:54:05.714Z [nileopedia-backend] error: Document ingestion failed: 15043071-e6c4-4fe2-85a0-8c1d6c3c1368 Request failed with status code 429
+2026-06-10T06:54:05.715Z [nileopedia-backend] error: Document ingestion job failed: 22 Request failed with status code 429
+2026-06-10T06:54:05.716Z [nileopedia-backend] info: Processing document ingestion job: 24
+2026-06-10T06:54:05.717Z [nileopedia-backend] error: Document ingestion job failed: 23 Request failed with status code 429
+2026-06-10T06:54:05.717Z [nileopedia-backend] info: Processing document ingestion job: 25
+2026-06-10T06:54:06.122Z [nileopedia-backend] error: Document ingestion failed: d6ba8084-de87-446a-992e-036bf9d862be Request failed with status code 429
+2026-06-10T06:54:06.124Z [nileopedia-backend] error: Document ingestion failed: 6ef7cf96-30cc-4c89-b6ae-d6719ed7e018 Request failed with status code 429
+2026-06-10T06:54:06.125Z [nileopedia-backend] error: Document ingestion job failed: 24 Request failed with status code 429
+2026-06-10T06:54:06.126Z [nileopedia-backend] info: Processing document ingestion job: 26
+2026-06-10T06:54:06.127Z [nileopedia-backend] error: Document ingestion job failed: 25 Request failed with status code 429
+2026-06-10T06:54:06.127Z [nileopedia-backend] info: Processing document ingestion job: 27
+2026-06-10T06:54:06.436Z [nileopedia-backend] error: Document ingestion failed: 68dd6ae6-90f8-41d0-b39b-0a4e5cd6c8ca Request failed with status code 429
+2026-06-10T06:54:06.438Z [nileopedia-backend] error: Document ingestion job failed: 26 Request failed with status code 429
+2026-06-10T06:54:06.438Z [nileopedia-backend] info: Processing document ingestion job: 28
+2026-06-10T06:54:06.439Z [nileopedia-backend] error: Document ingestion failed: 71d7a46d-45d0-40f2-8764-ff354dbf1b40 Request failed with status code 429
+2026-06-10T06:54:06.441Z [nileopedia-backend] error: Document ingestion job failed: 27 Request failed with status code 429
+2026-06-10T06:54:06.442Z [nileopedia-backend] info: Processing document ingestion job: 29
+2026-06-10T06:54:06.709Z [nileopedia-backend] error: Document ingestion failed: 9436dd89-5645-444a-a789-4adf6a931ea2 Request failed with status code 429
+2026-06-10T06:54:06.711Z [nileopedia-backend] error: Document ingestion failed: 3dcd8912-0aa4-4a11-b5de-2b9007aa9465 Request failed with status code 429
+2026-06-10T06:54:06.715Z [nileopedia-backend] error: Document ingestion job failed: 28 Request failed with status code 429
+2026-06-10T06:54:06.716Z [nileopedia-backend] info: Processing document ingestion job: 31
+2026-06-10T06:54:06.718Z [nileopedia-backend] error: Document ingestion job failed: 29 Request failed with status code 429
+2026-06-10T06:54:06.719Z [nileopedia-backend] info: Processing document ingestion job: 30
+2026-06-10T06:54:07.052Z [nileopedia-backend] error: Document ingestion failed: 5f4c2cdf-d514-4703-9a1a-c077c0729386 Request failed with status code 429
+2026-06-10T06:54:07.057Z [nileopedia-backend] error: Document ingestion job failed: 31 Request failed with status code 429
+2026-06-10T06:54:07.058Z [nileopedia-backend] info: Processing document ingestion job: 32
+2026-06-10T06:54:07.064Z [nileopedia-backend] error: Document ingestion failed: befec5f7-29c2-4d17-9ff0-4e98f4927632 Request failed with status code 429
+2026-06-10T06:54:07.219Z [nileopedia-backend] error: Document ingestion job failed: 30 Request failed with status code 429
+2026-06-10T06:54:07.220Z [nileopedia-backend] info: Processing document ingestion job: 33
+2026-06-10T06:54:07.330Z [nileopedia-backend] error: Document ingestion failed: c0553b50-1a32-45af-a418-d49a49ca744e Request failed with status code 429
+2026-06-10T06:54:07.335Z [nileopedia-backend] error: Document ingestion job failed: 32 Request failed with status code 429
+2026-06-10T06:54:07.336Z [nileopedia-backend] info: Processing document ingestion job: 35
+2026-06-10T06:54:07.340Z [nileopedia-backend] error: Document ingestion failed: 53a61479-1234-4998-99ca-bf45a49f6f39 Request failed with status code 429
+2026-06-10T06:54:07.499Z [nileopedia-backend] error: Document ingestion job failed: 33 Request failed with status code 429
+2026-06-10T06:54:07.499Z [nileopedia-backend] info: Processing document ingestion job: 34
+2026-06-10T06:54:07.645Z [nileopedia-backend] error: Document ingestion failed: f8b1853d-b85b-446e-b22f-140ed2bcc989 Request failed with status code 429
+2026-06-10T06:54:07.650Z [nileopedia-backend] error: Document ingestion job failed: 35 Request failed with status code 429
+2026-06-10T06:54:07.651Z [nileopedia-backend] info: Processing document ingestion job: 36
+2026-06-10T06:54:07.653Z [nileopedia-backend] error: Document ingestion failed: 6b5bfb66-37b1-4bd3-ba43-46c2bb4afa59 Request failed with status code 429
+2026-06-10T06:54:07.764Z [nileopedia-backend] error: Document ingestion job failed: 34 Request failed with status code 429
+2026-06-10T06:54:07.765Z [nileopedia-backend] info: Processing document ingestion job: 37
+2026-06-10T06:54:07.864Z [nileopedia-backend] error: Document ingestion failed: 120a8206-4acb-4db2-a8ed-a10d759227b4 Request failed with status code 429
+2026-06-10T06:54:07.946Z [nileopedia-backend] error: Document ingestion job failed: 36 Request failed with status code 429
+2026-06-10T06:54:07.947Z [nileopedia-backend] info: Processing document ingestion job: 39
+2026-06-10T06:54:07.955Z [nileopedia-backend] error: Document ingestion failed: bd8a6f06-3d79-4bca-8fa3-ee591e05da45 Request failed with status code 429
+2026-06-10T06:54:08.127Z [nileopedia-backend] error: Document ingestion job failed: 37 Request failed with status code 429
+2026-06-10T06:54:08.128Z [nileopedia-backend] info: Processing document ingestion job: 38
+2026-06-10T06:54:08.255Z [nileopedia-backend] error: Document ingestion failed: 17ef2ce0-4b55-40f7-a877-a8f1051dc11b Request failed with status code 429
+2026-06-10T06:54:08.264Z [nileopedia-backend] error: Document ingestion job failed: 39 Request failed with status code 429
+2026-06-10T06:54:08.266Z [nileopedia-backend] info: Processing document ingestion job: 40
+2026-06-10T06:54:08.267Z [nileopedia-backend] error: Document ingestion failed: 481570ad-968f-4898-8f4e-ba47653d1cf9 Request failed with status code 429
+2026-06-10T06:54:08.270Z [nileopedia-backend] error: Document ingestion job failed: 38 Request failed with status code 429
+2026-06-10T06:54:08.270Z [nileopedia-backend] info: Processing document ingestion job: 41
+2026-06-10T06:54:08.509Z [nileopedia-backend] error: Document ingestion failed: dd1841d5-27b0-4102-812f-d6aaf26ec94c Request failed with status code 429
+2026-06-10T06:54:08.511Z [nileopedia-backend] error: Document ingestion job failed: 40 Request failed with status code 429
+2026-06-10T06:54:08.511Z [nileopedia-backend] info: Processing document ingestion job: 42
+2026-06-10T06:54:08.512Z [nileopedia-backend] error: Document ingestion failed: f88fed97-cf66-4b82-85d3-65b6ce8f6e67 Request failed with status code 429
+2026-06-10T06:54:08.513Z [nileopedia-backend] error: Document ingestion job failed: 41 Request failed with status code 429
+2026-06-10T06:54:08.514Z [nileopedia-backend] info: Processing document ingestion job: 43
+2026-06-10T06:54:08.551Z [nileopedia-backend] error: Document ingestion failed: 08eddc05-e879-438f-bf67-417bd0487de8 Request failed with status code 429
+2026-06-10T06:54:08.553Z [nileopedia-backend] error: Document ingestion job failed: 42 Request failed with status code 429
+2026-06-10T06:54:08.554Z [nileopedia-backend] info: Processing document ingestion job: 44
+2026-06-10T06:54:08.557Z [nileopedia-backend] error: Document ingestion failed: 7bc840b1-1eb4-4146-9744-f630fb17e3bf Request failed with status code 429
+2026-06-10T06:54:08.560Z [nileopedia-backend] error: Document ingestion job failed: 43 Request failed with status code 429
+2026-06-10T06:54:08.561Z [nileopedia-backend] info: Processing document ingestion job: 45
+2026-06-10T06:54:08.900Z [nileopedia-backend] error: Document ingestion failed: b6766ed2-28ef-4544-82f2-878ab5d96fb4 Request failed with status code 429
+2026-06-10T06:54:08.902Z [nileopedia-backend] error: Document ingestion failed: d9865836-cae4-4249-88a6-ed1fb705033e Request failed with status code 429
+2026-06-10T06:54:08.903Z [nileopedia-backend] error: Document ingestion job failed: 44 Request failed with status code 429
+2026-06-10T06:54:08.904Z [nileopedia-backend] info: Processing document ingestion job: 46
+2026-06-10T06:54:08.907Z [nileopedia-backend] error: Document ingestion job failed: 45 Request failed with status code 429
+2026-06-10T06:54:08.907Z [nileopedia-backend] info: Processing document ingestion job: 47
+2026-06-10T06:54:09.169Z [nileopedia-backend] error: Document ingestion failed: 8f390f99-8747-41c3-bdf8-86755fade7e8 Request failed with status code 429
+2026-06-10T06:54:09.176Z [nileopedia-backend] error: Document ingestion failed: 78887cdd-626f-41d9-bf0d-75fdf267d7b5 Request failed with status code 429
+2026-06-10T06:54:09.178Z [nileopedia-backend] error: Document ingestion job failed: 46 Request failed with status code 429
+2026-06-10T06:54:09.178Z [nileopedia-backend] info: Processing document ingestion job: 48
+2026-06-10T06:54:09.179Z [nileopedia-backend] error: Document ingestion job failed: 47 Request failed with status code 429
+2026-06-10T06:54:09.180Z [nileopedia-backend] info: Processing document ingestion job: 49
+2026-06-10T06:54:09.239Z [nileopedia-backend] error: Document ingestion failed: 60555278-cdec-4b33-b000-6a2602ba9f4e Request failed with status code 429
+2026-06-10T06:54:09.241Z [nileopedia-backend] error: Document ingestion failed: 89299aa3-8cf3-4319-9945-63bbdba752a3 Request failed with status code 429
+2026-06-10T06:54:09.243Z [nileopedia-backend] error: Document ingestion job failed: 48 Request failed with status code 429
+2026-06-10T06:54:09.243Z [nileopedia-backend] info: Processing document ingestion job: 50
+2026-06-10T06:54:09.463Z [nileopedia-backend] error: Document ingestion job failed: 49 Request failed with status code 429
+2026-06-10T06:54:09.465Z [nileopedia-backend] info: Processing document ingestion job: 51
+2026-06-10T06:54:09.490Z [nileopedia-backend] error: Document ingestion failed: e4a56e4b-f323-4394-b685-168c3b614cf7 Request failed with status code 429
+2026-06-10T06:54:09.495Z [nileopedia-backend] error: Document ingestion job failed: 50 Request failed with status code 429
+2026-06-10T06:54:09.496Z [nileopedia-backend] info: Processing document ingestion job: 52
+2026-06-10T06:54:09.725Z [nileopedia-backend] error: Document ingestion failed: f0067e31-859f-4d21-bd73-5428caa8daab Request failed with status code 429
+2026-06-10T06:54:09.728Z [nileopedia-backend] error: Document ingestion job failed: 51 Request failed with status code 429
+2026-06-10T06:54:09.729Z [nileopedia-backend] info: Processing document ingestion job: 53
+2026-06-10T06:54:09.756Z [nileopedia-backend] error: Document ingestion failed: 70f56fc5-02f2-42cf-8422-c268b877ae5d Request failed with status code 429
+2026-06-10T06:54:09.763Z [nileopedia-backend] error: Document ingestion job failed: 52 Request failed with status code 429
+2026-06-10T06:54:09.763Z [nileopedia-backend] info: Processing document ingestion job: 54
+2026-06-10T06:54:09.771Z [nileopedia-backend] error: Document ingestion failed: 050d494a-c210-4d17-af0c-74f52e1061bb Request failed with status code 429
+2026-06-10T06:54:09.888Z [nileopedia-backend] error: Document ingestion job failed: 53 Request failed with status code 429
+2026-06-10T06:54:09.896Z [nileopedia-backend] error: Document ingestion failed: 969a9333-7316-4c96-9646-c0e26df1148c Request failed with status code 429
+2026-06-10T06:54:09.897Z [nileopedia-backend] error: Document ingestion job failed: 54 Request failed with status code 429
+2026-06-10T07:12:08.733Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::1
+2026-06-10T07:12:37.882Z [nileopedia-backend] info: Schedulers initialized
+2026-06-10T07:13:15.959Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:13:34.563Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:13:34.810Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:14:21.252Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:14:21.488Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T07:14:21.525Z [nileopedia-backend] info: Processing document ingestion job: 55
+2026-06-10T07:14:21.885Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T07:14:22.063Z [nileopedia-backend] error: Document ingestion failed: 825a5ace-a23c-455b-a3ab-18ecd9b32fb6 Request failed with status code 404
+2026-06-10T07:14:22.079Z [nileopedia-backend] error: Document ingestion job failed: 55 Request failed with status code 404
+2026-06-10T07:14:24.087Z [nileopedia-backend] info: Processing document ingestion job: 55
+2026-06-10T07:14:24.103Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T07:14:24.113Z [nileopedia-backend] error: Document ingestion failed: 825a5ace-a23c-455b-a3ab-18ecd9b32fb6 Request failed with status code 404
+2026-06-10T07:14:24.116Z [nileopedia-backend] error: Document ingestion job failed: 55 Request failed with status code 404
+2026-06-10T07:14:28.203Z [nileopedia-backend] info: Processing document ingestion job: 55
+2026-06-10T07:14:28.223Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate/ingest - ::ffff:127.0.0.1
+2026-06-10T07:14:28.241Z [nileopedia-backend] error: Document ingestion failed: 825a5ace-a23c-455b-a3ab-18ecd9b32fb6 Request failed with status code 404
+2026-06-10T07:14:28.247Z [nileopedia-backend] error: Document ingestion job failed: 55 Request failed with status code 404
+2026-06-10T07:14:56.148Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:18:40.722Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::1
+2026-06-10T07:25:33.545Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::1
+2026-06-10T07:25:51.979Z [nileopedia-backend] info: Schedulers initialized
+2026-06-10T07:28:38.808Z [nileopedia-backend] info: Schedulers initialized
+2026-06-10T07:29:17.205Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:29:17.469Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T07:29:17.512Z [nileopedia-backend] info: Processing document ingestion job: 56
+2026-06-10T07:29:17.849Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T07:29:17.970Z [nileopedia-backend] info: Document ingestion completed: 168c4e91-7ee5-4fbc-915d-5265c5189012
+2026-06-10T07:29:17.975Z [nileopedia-backend] info: Document ingestion job completed: 56
+2026-06-10T07:29:41.426Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:30:52.386Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:31:21.767Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:31:44.864Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:31:45.117Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:32:12.098Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:32:12.291Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:33:39.988Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:33:40.227Z [nileopedia-backend] info: GET /api/v1/documents/168c4e91-7ee5-4fbc-915d-5265c5189012 - ::1
+2026-06-10T07:36:08.307Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:36:08.377Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:18.788Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:36:18.795Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:20.324Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:36:20.328Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:21.202Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:36:21.211Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:21.384Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:36:21.392Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:48.971Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:37:19.637Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T07:37:19.661Z [nileopedia-backend] info: Processing document ingestion job: 57
+2026-06-10T07:37:19.943Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T07:37:20.051Z [nileopedia-backend] info: Document ingestion completed: 663dfd1b-4827-4c54-aeb1-f05c22e402b0
+2026-06-10T07:37:20.053Z [nileopedia-backend] info: Document ingestion job completed: 57
+2026-06-10T07:43:35.913Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:43:36.192Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:44:31.522Z [nileopedia-backend] info: GET /health - ::1
+2026-06-10T07:44:49.005Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:44:49.212Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:45:41.498Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:45:41.711Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:46:58.043Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:46:58.259Z [nileopedia-backend] info: GET /api/v1/documents/663dfd1b-4827-4c54-aeb1-f05c22e402b0 - ::1
+2026-06-10T07:47:16.375Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:47:16.603Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T07:57:12.031Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T07:59:55.513Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:06.250Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:24.028Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:00:34.129Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:34.149Z [nileopedia-backend] info: Processing document ingestion job: 58
+2026-06-10T08:00:34.457Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:34.564Z [nileopedia-backend] info: Document ingestion completed: bb2598bf-9277-4c48-82a0-7f5c8c711891
+2026-06-10T08:00:34.565Z [nileopedia-backend] info: Document ingestion job completed: 58
+2026-06-10T08:00:54.560Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:54.593Z [nileopedia-backend] info: Processing document ingestion job: 59
+2026-06-10T08:00:54.770Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:54.877Z [nileopedia-backend] info: Document ingestion completed: de25b1d7-4a0a-4c0e-b67a-26c97c025d9a
+2026-06-10T08:00:54.880Z [nileopedia-backend] info: Document ingestion job completed: 59
+2026-06-10T08:00:55.011Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:55.029Z [nileopedia-backend] info: Processing document ingestion job: 60
+2026-06-10T08:00:55.064Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:55.173Z [nileopedia-backend] info: Document ingestion completed: 4d601fcc-5689-48eb-9a5f-44d029ba848a
+2026-06-10T08:00:55.174Z [nileopedia-backend] info: Document ingestion job completed: 60
+2026-06-10T08:00:55.398Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:55.413Z [nileopedia-backend] info: Processing document ingestion job: 61
+2026-06-10T08:00:55.539Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:55.644Z [nileopedia-backend] info: Document ingestion completed: b27fd0b4-1ba8-49a4-9fdd-dc99329f0945
+2026-06-10T08:00:55.645Z [nileopedia-backend] info: Document ingestion job completed: 61
+2026-06-10T08:00:55.742Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:55.763Z [nileopedia-backend] info: Processing document ingestion job: 62
+2026-06-10T08:00:55.879Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:55.985Z [nileopedia-backend] info: Document ingestion completed: f8486520-4692-431a-bcba-b76b03a43c49
+2026-06-10T08:00:55.986Z [nileopedia-backend] info: Document ingestion job completed: 62
+2026-06-10T08:00:56.118Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:56.130Z [nileopedia-backend] info: Processing document ingestion job: 63
+2026-06-10T08:00:56.198Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:56.304Z [nileopedia-backend] info: Document ingestion completed: d27ad828-dac9-47f6-8006-daf705d99b90
+2026-06-10T08:00:56.305Z [nileopedia-backend] info: Document ingestion job completed: 63
+2026-06-10T08:00:56.519Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:56.536Z [nileopedia-backend] info: Processing document ingestion job: 64
+2026-06-10T08:00:56.659Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:56.764Z [nileopedia-backend] info: Document ingestion completed: 5d594f95-62d5-4475-88b2-f34e80d0efed
+2026-06-10T08:00:56.765Z [nileopedia-backend] info: Document ingestion job completed: 64
+2026-06-10T08:00:56.898Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:56.911Z [nileopedia-backend] info: Processing document ingestion job: 65
+2026-06-10T08:00:57.057Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:57.163Z [nileopedia-backend] info: Document ingestion completed: 56b0e7be-ed49-4301-899f-2916e73d818a
+2026-06-10T08:00:57.164Z [nileopedia-backend] info: Document ingestion job completed: 65
+2026-06-10T08:00:57.326Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:57.344Z [nileopedia-backend] info: Processing document ingestion job: 66
+2026-06-10T08:00:57.450Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:57.559Z [nileopedia-backend] info: Document ingestion completed: 6560e421-dd78-466f-9613-855ae7f4c658
+2026-06-10T08:00:57.562Z [nileopedia-backend] info: Document ingestion job completed: 66
+2026-06-10T08:00:57.838Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:57.865Z [nileopedia-backend] info: Processing document ingestion job: 67
+2026-06-10T08:00:58.043Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:58.150Z [nileopedia-backend] info: Document ingestion completed: 9269d50e-15c5-49b2-9f64-f21c7de73b24
+2026-06-10T08:00:58.151Z [nileopedia-backend] info: Document ingestion job completed: 67
+2026-06-10T08:00:58.301Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:58.311Z [nileopedia-backend] info: Processing document ingestion job: 68
+2026-06-10T08:00:58.329Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:58.434Z [nileopedia-backend] info: Document ingestion completed: 2a38ca82-2270-4a8a-b3d3-50d89965a502
+2026-06-10T08:00:58.435Z [nileopedia-backend] info: Document ingestion job completed: 68
+2026-06-10T08:00:58.653Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:58.667Z [nileopedia-backend] info: Processing document ingestion job: 69
+2026-06-10T08:00:58.813Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:58.918Z [nileopedia-backend] info: Document ingestion completed: 736ea61a-fe98-43ff-985c-1e054bb43f86
+2026-06-10T08:00:58.919Z [nileopedia-backend] info: Document ingestion job completed: 69
+2026-06-10T08:00:59.097Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:59.111Z [nileopedia-backend] info: Processing document ingestion job: 70
+2026-06-10T08:00:59.241Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:59.346Z [nileopedia-backend] info: Document ingestion completed: c01f57d7-4789-4d58-9ff2-b02c09bcb0d0
+2026-06-10T08:00:59.347Z [nileopedia-backend] info: Document ingestion job completed: 70
+2026-06-10T08:00:59.481Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:00:59.497Z [nileopedia-backend] info: Processing document ingestion job: 71
+2026-06-10T08:00:59.624Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:00:59.729Z [nileopedia-backend] info: Document ingestion completed: 884f9745-b87d-419e-b92b-79a29caf4904
+2026-06-10T08:00:59.730Z [nileopedia-backend] info: Document ingestion job completed: 71
+2026-06-10T08:01:00.016Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:00.044Z [nileopedia-backend] info: Processing document ingestion job: 72
+2026-06-10T08:01:00.148Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:00.252Z [nileopedia-backend] info: Document ingestion completed: caae3861-a268-449f-97ec-e7ce2a1fa197
+2026-06-10T08:01:00.253Z [nileopedia-backend] info: Document ingestion job completed: 72
+2026-06-10T08:01:00.433Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:00.440Z [nileopedia-backend] info: Processing document ingestion job: 73
+2026-06-10T08:01:00.459Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:00.582Z [nileopedia-backend] info: Document ingestion completed: 353f1994-0bcd-4a7a-862e-c90dc7770a94
+2026-06-10T08:01:00.587Z [nileopedia-backend] info: Document ingestion job completed: 73
+2026-06-10T08:01:00.903Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:00.919Z [nileopedia-backend] info: Processing document ingestion job: 74
+2026-06-10T08:01:01.040Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:01.144Z [nileopedia-backend] info: Document ingestion completed: 466e161e-8441-48f7-a8bc-893e4f05f26a
+2026-06-10T08:01:01.144Z [nileopedia-backend] info: Document ingestion job completed: 74
+2026-06-10T08:01:01.297Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:01.316Z [nileopedia-backend] info: Processing document ingestion job: 75
+2026-06-10T08:01:01.406Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:01.511Z [nileopedia-backend] info: Document ingestion completed: d21e6629-6d12-4929-bff2-4e4b68317e43
+2026-06-10T08:01:01.512Z [nileopedia-backend] info: Document ingestion job completed: 75
+2026-06-10T08:01:01.724Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:01.739Z [nileopedia-backend] info: Processing document ingestion job: 76
+2026-06-10T08:01:01.848Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:01.953Z [nileopedia-backend] info: Document ingestion completed: df5ca147-8db8-4228-bc04-17a4fc2f83b5
+2026-06-10T08:01:01.954Z [nileopedia-backend] info: Document ingestion job completed: 76
+2026-06-10T08:01:02.138Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:02.148Z [nileopedia-backend] info: Processing document ingestion job: 77
+2026-06-10T08:01:02.161Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:02.267Z [nileopedia-backend] info: Document ingestion completed: f818e64f-9a2d-48e1-8a11-c8ff0c36589e
+2026-06-10T08:01:02.269Z [nileopedia-backend] info: Document ingestion job completed: 77
+2026-06-10T08:01:02.506Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:02.521Z [nileopedia-backend] info: Processing document ingestion job: 78
+2026-06-10T08:01:02.609Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:02.716Z [nileopedia-backend] info: Document ingestion completed: e2683676-fec9-4ade-b1f7-1e58455c22b7
+2026-06-10T08:01:02.718Z [nileopedia-backend] info: Document ingestion job completed: 78
+2026-06-10T08:01:02.907Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:02.923Z [nileopedia-backend] info: Processing document ingestion job: 79
+2026-06-10T08:01:03.021Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:03.125Z [nileopedia-backend] info: Document ingestion completed: 6320efd4-5a49-49fe-9e01-610fdeaebfb4
+2026-06-10T08:01:03.126Z [nileopedia-backend] info: Document ingestion job completed: 79
+2026-06-10T08:01:03.359Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:03.371Z [nileopedia-backend] info: Processing document ingestion job: 80
+2026-06-10T08:01:03.463Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:03.567Z [nileopedia-backend] info: Document ingestion completed: 58b2b41c-24a2-4737-86e3-fc1f8c64b633
+2026-06-10T08:01:03.568Z [nileopedia-backend] info: Document ingestion job completed: 80
+2026-06-10T08:01:03.703Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:03.715Z [nileopedia-backend] info: Processing document ingestion job: 81
+2026-06-10T08:01:03.783Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:03.888Z [nileopedia-backend] info: Document ingestion completed: f47cbf88-7e9d-4708-aaf6-020e47d0055a
+2026-06-10T08:01:03.889Z [nileopedia-backend] info: Document ingestion job completed: 81
+2026-06-10T08:01:04.173Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:04.187Z [nileopedia-backend] info: Processing document ingestion job: 82
+2026-06-10T08:01:04.271Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:04.377Z [nileopedia-backend] info: Document ingestion completed: 3a5a2c57-46c5-42a7-8136-1f00f5bb972d
+2026-06-10T08:01:04.378Z [nileopedia-backend] info: Document ingestion job completed: 82
+2026-06-10T08:01:04.595Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:04.608Z [nileopedia-backend] info: Processing document ingestion job: 83
+2026-06-10T08:01:04.697Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:04.803Z [nileopedia-backend] info: Document ingestion completed: ecdd0f3a-61aa-4a55-a8c2-4a1b7ca66c17
+2026-06-10T08:01:04.804Z [nileopedia-backend] info: Document ingestion job completed: 83
+2026-06-10T08:01:05.074Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:05.098Z [nileopedia-backend] info: Processing document ingestion job: 84
+2026-06-10T08:01:05.208Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:05.311Z [nileopedia-backend] info: Document ingestion completed: 7196be19-bab9-4a5f-bd55-68f3aa9a140b
+2026-06-10T08:01:05.312Z [nileopedia-backend] info: Document ingestion job completed: 84
+2026-06-10T08:01:05.547Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:05.573Z [nileopedia-backend] info: Processing document ingestion job: 85
+2026-06-10T08:01:05.720Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:05.824Z [nileopedia-backend] info: Document ingestion completed: 4003bfeb-f16e-4944-a4ad-676f3d504d1a
+2026-06-10T08:01:05.825Z [nileopedia-backend] info: Document ingestion job completed: 85
+2026-06-10T08:01:05.985Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:05.994Z [nileopedia-backend] info: Processing document ingestion job: 86
+2026-06-10T08:01:06.014Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:06.119Z [nileopedia-backend] info: Document ingestion completed: c7197302-fd9e-4832-b582-0c92a68cc35b
+2026-06-10T08:01:06.120Z [nileopedia-backend] info: Document ingestion job completed: 86
+2026-06-10T08:01:06.404Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:06.417Z [nileopedia-backend] info: Processing document ingestion job: 87
+2026-06-10T08:01:06.516Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:06.621Z [nileopedia-backend] info: Document ingestion completed: 229967c6-5d8b-4e89-acab-fbe33a1968c9
+2026-06-10T08:01:06.622Z [nileopedia-backend] info: Document ingestion job completed: 87
+2026-06-10T08:01:06.873Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:06.883Z [nileopedia-backend] info: Processing document ingestion job: 88
+2026-06-10T08:01:06.901Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:07.007Z [nileopedia-backend] info: Document ingestion completed: 0f165b51-f0b4-4a58-988b-92d416b52613
+2026-06-10T08:01:07.008Z [nileopedia-backend] info: Document ingestion job completed: 88
+2026-06-10T08:01:07.248Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:07.263Z [nileopedia-backend] info: Processing document ingestion job: 89
+2026-06-10T08:01:07.340Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:07.445Z [nileopedia-backend] info: Document ingestion completed: f49795f0-5661-4717-b0d7-0fa703891328
+2026-06-10T08:01:07.446Z [nileopedia-backend] info: Document ingestion job completed: 89
+2026-06-10T08:01:07.716Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:07.733Z [nileopedia-backend] info: Processing document ingestion job: 90
+2026-06-10T08:01:07.888Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:07.994Z [nileopedia-backend] info: Document ingestion completed: 40c29ad6-0343-48e2-9738-f0363509d989
+2026-06-10T08:01:07.995Z [nileopedia-backend] info: Document ingestion job completed: 90
+2026-06-10T08:01:08.241Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:08.256Z [nileopedia-backend] info: Processing document ingestion job: 91
+2026-06-10T08:01:08.347Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:08.452Z [nileopedia-backend] info: Document ingestion completed: 1e670d4a-8af1-4615-859a-34ff32292076
+2026-06-10T08:01:08.453Z [nileopedia-backend] info: Document ingestion job completed: 91
+2026-06-10T08:01:08.613Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:08.640Z [nileopedia-backend] info: Processing document ingestion job: 92
+2026-06-10T08:01:08.744Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:08.863Z [nileopedia-backend] info: Document ingestion completed: 948d212f-1754-4fee-bffc-cd541a49ccb9
+2026-06-10T08:01:08.864Z [nileopedia-backend] info: Document ingestion job completed: 92
+2026-06-10T08:01:09.100Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:09.116Z [nileopedia-backend] info: Processing document ingestion job: 93
+2026-06-10T08:01:09.202Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:09.307Z [nileopedia-backend] info: Document ingestion completed: 8c0779e9-a388-478d-aec1-28684d9530d8
+2026-06-10T08:01:09.308Z [nileopedia-backend] info: Document ingestion job completed: 93
+2026-06-10T08:01:09.524Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:09.536Z [nileopedia-backend] info: Processing document ingestion job: 94
+2026-06-10T08:01:09.603Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:09.708Z [nileopedia-backend] info: Document ingestion completed: 2ce66da9-468e-404a-a95f-d334ffb60b48
+2026-06-10T08:01:09.709Z [nileopedia-backend] info: Document ingestion job completed: 94
+2026-06-10T08:01:09.821Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:09.834Z [nileopedia-backend] info: Processing document ingestion job: 95
+2026-06-10T08:01:09.926Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:10.030Z [nileopedia-backend] info: Document ingestion completed: 5cbae720-6e44-4993-88d3-e16242659cbb
+2026-06-10T08:01:10.032Z [nileopedia-backend] info: Document ingestion job completed: 95
+2026-06-10T08:01:10.273Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:10.284Z [nileopedia-backend] info: Processing document ingestion job: 96
+2026-06-10T08:01:10.372Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:10.477Z [nileopedia-backend] info: Document ingestion completed: a8bc48e0-1855-4ef1-bd15-ee31cac22b0e
+2026-06-10T08:01:10.478Z [nileopedia-backend] info: Document ingestion job completed: 96
+2026-06-10T08:01:10.910Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:10.923Z [nileopedia-backend] info: Processing document ingestion job: 97
+2026-06-10T08:01:11.034Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:11.140Z [nileopedia-backend] info: Document ingestion completed: b2af5b32-c768-4965-92d3-a476dc1f9fae
+2026-06-10T08:01:11.141Z [nileopedia-backend] info: Document ingestion job completed: 97
+2026-06-10T08:01:11.477Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:11.492Z [nileopedia-backend] info: Processing document ingestion job: 98
+2026-06-10T08:01:11.587Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:11.693Z [nileopedia-backend] info: Document ingestion completed: ac218fbc-4b70-4974-9d58-63e2e6d095f0
+2026-06-10T08:01:11.695Z [nileopedia-backend] info: Document ingestion job completed: 98
+2026-06-10T08:01:12.021Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:12.033Z [nileopedia-backend] info: Processing document ingestion job: 99
+2026-06-10T08:01:12.105Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:12.210Z [nileopedia-backend] info: Document ingestion completed: c6ef0da2-dd1f-40c0-86a4-52cffe4929ac
+2026-06-10T08:01:12.211Z [nileopedia-backend] info: Document ingestion job completed: 99
+2026-06-10T08:01:12.559Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:12.581Z [nileopedia-backend] info: Processing document ingestion job: 100
+2026-06-10T08:01:12.658Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:12.762Z [nileopedia-backend] info: Document ingestion completed: fceb9cfb-8084-4704-b060-73decd7e86c2
+2026-06-10T08:01:12.763Z [nileopedia-backend] info: Document ingestion job completed: 100
+2026-06-10T08:01:13.058Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:13.068Z [nileopedia-backend] info: Processing document ingestion job: 101
+2026-06-10T08:01:13.092Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:13.196Z [nileopedia-backend] info: Document ingestion completed: 3d4d2020-8130-47e3-9076-d7c910b3bc71
+2026-06-10T08:01:13.197Z [nileopedia-backend] info: Document ingestion job completed: 101
+2026-06-10T08:01:13.510Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:13.523Z [nileopedia-backend] info: Processing document ingestion job: 102
+2026-06-10T08:01:13.601Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:13.705Z [nileopedia-backend] info: Document ingestion completed: c3dbabb7-0dae-4255-950b-a0fa1b74fe17
+2026-06-10T08:01:13.706Z [nileopedia-backend] info: Document ingestion job completed: 102
+2026-06-10T08:01:14.008Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:14.021Z [nileopedia-backend] info: Processing document ingestion job: 103
+2026-06-10T08:01:14.111Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:14.216Z [nileopedia-backend] info: Document ingestion completed: bfa0502c-2896-4a66-9efe-b18271b2cdac
+2026-06-10T08:01:14.217Z [nileopedia-backend] info: Document ingestion job completed: 103
+2026-06-10T08:01:14.249Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:14.264Z [nileopedia-backend] info: Processing document ingestion job: 104
+2026-06-10T08:01:14.368Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:14.473Z [nileopedia-backend] info: Document ingestion completed: 2749d82f-4a3b-4a8f-a7fd-6437fe02e318
+2026-06-10T08:01:14.474Z [nileopedia-backend] info: Document ingestion job completed: 104
+2026-06-10T08:01:14.770Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:14.782Z [nileopedia-backend] info: Processing document ingestion job: 105
+2026-06-10T08:01:14.817Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:14.924Z [nileopedia-backend] info: Document ingestion completed: 7a14e6d0-d80d-4d88-9740-196ee2c8a721
+2026-06-10T08:01:14.925Z [nileopedia-backend] info: Document ingestion job completed: 105
+2026-06-10T08:01:15.278Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-06-10T08:01:15.289Z [nileopedia-backend] info: Processing document ingestion job: 106
+2026-06-10T08:01:15.413Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-10T08:01:15.517Z [nileopedia-backend] info: Document ingestion completed: 32a692d8-bc67-47e2-8641-f74f4551fa92
+2026-06-10T08:01:15.518Z [nileopedia-backend] info: Document ingestion job completed: 106
+2026-06-10T08:06:48.078Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:06:48.339Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T08:06:48.405Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:06:48.630Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T08:11:20.004Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:11:20.199Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-10T08:11:52.081Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:11:52.324Z [nileopedia-backend] info: GET /api/v1/search/documents - ::1
+2026-06-10T08:12:21.800Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:12:22.028Z [nileopedia-backend] info: GET /api/v1/search/documents - ::1
+2026-06-10T08:17:21.480Z [nileopedia-backend] info: GET /api/v1/auth/google/login - ::1
+2026-06-10T08:17:22.003Z [nileopedia-backend] info: GET /api/v1/auth/google/callback - ::1
+2026-06-10T08:17:47.235Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-10T08:17:47.306Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:17:47.307Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:18:13.359Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-10T08:18:13.376Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:18:13.377Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:22:43.689Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate - ::1
+2026-06-10T08:23:27.790Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:23:28.127Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-10T08:23:28.142Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:23:28.143Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:24:12.986Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:24:13.271Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-10T08:24:13.277Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:24:13.278Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:25:39.939Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-10T08:25:40.198Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-10T08:25:40.219Z [nileopedia-backend] info: Processing AI generation job: 4
+2026-06-10T08:25:40.259Z [nileopedia-backend] error: AI generation job failed: 4 io is not defined
+2026-06-10T08:25:42.315Z [nileopedia-backend] info: Processing AI generation job: 4
+2026-06-10T08:25:42.319Z [nileopedia-backend] error: AI generation job failed: 4 io is not defined
+2026-06-10T08:25:46.323Z [nileopedia-backend] info: Processing AI generation job: 4
+2026-06-10T08:25:46.327Z [nileopedia-backend] error: AI generation job failed: 4 io is not defined

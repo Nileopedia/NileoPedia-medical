@@ -177,3 +177,445 @@ The column `Question.isSaved` does not exist in the current database.
 2026-06-09T21:49:38.631Z [nileopedia-backend] error: Error in register controller: User already exists
 2026-06-09T22:04:07.700Z [nileopedia-backend] error: Error in register controller: User already exists
 2026-06-09T22:04:09.720Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T22:40:04.057Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-09T22:40:52.578Z [nileopedia-backend] error: Error in uploadDocument controller: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.service.ts:65:35
+
+  62 }
+  63 
+  64 async createDocument(data: CreateDocumentDto) {
+→ 65   return prisma.medicalDocument.create({
+         data: {
+           description: undefined,
+           fileName: "1781044852546-6sw6oex6r7f.html",
+           fileUrl: "/uploads/1781044852546-6sw6oex6r7f.html",
+           fileType: "text/html",
+           fileSize: 103,
+           specialty: undefined,
+           documentType: undefined,
+           source: undefined,
+           publicationYear: undefined,
+           uploadedById: "40752e7c-84df-4bc1-b628-bb304b64bfcc",
+           ingestionStatus: "PENDING",
+       +   title: String
+         }
+       })
+
+Argument `title` is missing.
+2026-06-10T06:53:47.753Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:47.763Z [nileopedia-backend] error: Email job failed: 3 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:48.351Z [nileopedia-backend] error: Document ingestion failed: ffc9926c-0744-4598-8c23-2fd196aa398a Request failed with status code 404
+2026-06-10T06:53:48.353Z [nileopedia-backend] error: Document ingestion failed: 641b11a1-76f1-45b8-a7ea-efec70899775 Request failed with status code 404
+2026-06-10T06:53:48.356Z [nileopedia-backend] error: Document ingestion job failed: 2 Request failed with status code 404
+2026-06-10T06:53:48.357Z [nileopedia-backend] error: Document ingestion job failed: 1 Request failed with status code 404
+2026-06-10T06:53:48.386Z [nileopedia-backend] error: Document ingestion failed: eb792b15-595b-4621-a953-a40fbf70673d Request failed with status code 404
+2026-06-10T06:53:48.388Z [nileopedia-backend] error: Document ingestion failed: ff338d07-5875-40e6-9b01-d728fc955bf5 Request failed with status code 404
+2026-06-10T06:53:48.390Z [nileopedia-backend] error: Document ingestion job failed: 3 Request failed with status code 404
+2026-06-10T06:53:48.393Z [nileopedia-backend] error: Document ingestion job failed: 4 Request failed with status code 404
+2026-06-10T06:53:48.418Z [nileopedia-backend] error: Document ingestion failed: 6e4dd76b-692e-4309-954f-493b388ce692 Request failed with status code 404
+2026-06-10T06:53:48.421Z [nileopedia-backend] error: Document ingestion failed: 73c9735c-bb59-40d3-a949-149cd146e9d9 Request failed with status code 404
+2026-06-10T06:53:48.423Z [nileopedia-backend] error: Document ingestion job failed: 6 Request failed with status code 404
+2026-06-10T06:53:48.426Z [nileopedia-backend] error: Document ingestion job failed: 5 Request failed with status code 404
+2026-06-10T06:53:48.578Z [nileopedia-backend] error: Document ingestion failed: 637af5b1-9c83-42ec-a3ab-3cf448dc13ef Request failed with status code 404
+2026-06-10T06:53:48.585Z [nileopedia-backend] error: Document ingestion job failed: 7 Request failed with status code 404
+2026-06-10T06:53:48.588Z [nileopedia-backend] error: Document ingestion failed: ad4c283e-f49f-4f9b-9d7c-63e7b5e5f4f6 Request failed with status code 404
+2026-06-10T06:53:48.592Z [nileopedia-backend] error: Document ingestion job failed: 8 Request failed with status code 404
+2026-06-10T06:53:49.021Z [nileopedia-backend] error: Document ingestion failed: 0155f9e1-db12-48fb-bc8d-45269ddb9f00 Request failed with status code 404
+2026-06-10T06:53:49.023Z [nileopedia-backend] error: Document ingestion job failed: 9 Request failed with status code 404
+2026-06-10T06:53:49.025Z [nileopedia-backend] error: Document ingestion failed: c40d85eb-3137-4f5b-bded-40e9e69216fe Request failed with status code 404
+2026-06-10T06:53:49.027Z [nileopedia-backend] error: Document ingestion job failed: 10 Request failed with status code 404
+2026-06-10T06:53:49.326Z [nileopedia-backend] error: Document ingestion failed: 42140385-be91-4a02-b183-b6835a76052b Request failed with status code 404
+2026-06-10T06:53:49.334Z [nileopedia-backend] error: Document ingestion job failed: 11 Request failed with status code 404
+2026-06-10T06:53:49.339Z [nileopedia-backend] error: Document ingestion failed: 45f98831-d898-4971-a705-c45b9c7a7a6e Request failed with status code 404
+2026-06-10T06:53:49.519Z [nileopedia-backend] error: Document ingestion job failed: 12 Request failed with status code 404
+2026-06-10T06:53:49.680Z [nileopedia-backend] error: Document ingestion failed: 2ffd430e-776f-4226-ad7a-c035561f8f52 Request failed with status code 404
+2026-06-10T06:53:49.687Z [nileopedia-backend] error: Document ingestion job failed: 13 Request failed with status code 404
+2026-06-10T06:53:49.696Z [nileopedia-backend] error: Document ingestion failed: 41f60543-06ab-49ce-8b12-58035b643128 Request failed with status code 404
+2026-06-10T06:53:49.912Z [nileopedia-backend] error: Document ingestion job failed: 14 Request failed with status code 404
+2026-06-10T06:53:50.053Z [nileopedia-backend] error: Document ingestion failed: 7bbe1482-e6c3-4926-929c-0194f3e81ff1 Request failed with status code 404
+2026-06-10T06:53:50.064Z [nileopedia-backend] error: Document ingestion job failed: 15 Request failed with status code 404
+2026-06-10T06:53:50.070Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:50.072Z [nileopedia-backend] error: Email job failed: 3 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:50.247Z [nileopedia-backend] error: Document ingestion failed: 2a57c3e2-5e6e-4ca1-a374-c8f56b8840f3 Request failed with status code 404
+2026-06-10T06:53:50.249Z [nileopedia-backend] error: Document ingestion job failed: 16 Request failed with status code 404
+2026-06-10T06:53:50.341Z [nileopedia-backend] error: Document ingestion failed: 439465ce-7afa-462a-a6e4-e06eca968a54 Request failed with status code 404
+2026-06-10T06:53:50.429Z [nileopedia-backend] error: Document ingestion job failed: 17 Request failed with status code 404
+2026-06-10T06:53:50.547Z [nileopedia-backend] error: Document ingestion failed: d83f2621-a090-45c1-b8f7-6d2bd23053bf Request failed with status code 404
+2026-06-10T06:53:50.549Z [nileopedia-backend] error: Document ingestion job failed: 18 Request failed with status code 404
+2026-06-10T06:53:50.763Z [nileopedia-backend] error: Document ingestion failed: 10f014b3-6ea4-4b01-943c-3a00aa96ac5f Request failed with status code 404
+2026-06-10T06:53:50.769Z [nileopedia-backend] error: Document ingestion job failed: 19 Request failed with status code 404
+2026-06-10T06:53:51.051Z [nileopedia-backend] error: Document ingestion failed: abdb17d6-fed1-4eee-80d7-a13d14c2d33b Request failed with status code 404
+2026-06-10T06:53:51.061Z [nileopedia-backend] error: Document ingestion job failed: 20 Request failed with status code 404
+2026-06-10T06:53:51.066Z [nileopedia-backend] error: Document ingestion failed: 999e2744-5982-48fc-8e9f-bc9c1366fa57 Request failed with status code 404
+2026-06-10T06:53:51.167Z [nileopedia-backend] error: Document ingestion job failed: 21 Request failed with status code 404
+2026-06-10T06:53:51.393Z [nileopedia-backend] error: Document ingestion failed: 6e97f3bc-46f9-4d21-8033-f9004cd387b5 Request failed with status code 404
+2026-06-10T06:53:51.499Z [nileopedia-backend] error: Document ingestion job failed: 22 Request failed with status code 404
+2026-06-10T06:53:51.604Z [nileopedia-backend] error: Document ingestion failed: 15043071-e6c4-4fe2-85a0-8c1d6c3c1368 Request failed with status code 404
+2026-06-10T06:53:51.607Z [nileopedia-backend] error: Document ingestion job failed: 23 Request failed with status code 404
+2026-06-10T06:53:51.728Z [nileopedia-backend] error: Document ingestion failed: d6ba8084-de87-446a-992e-036bf9d862be Request failed with status code 404
+2026-06-10T06:53:51.817Z [nileopedia-backend] error: Document ingestion job failed: 24 Request failed with status code 404
+2026-06-10T06:53:51.944Z [nileopedia-backend] error: Document ingestion failed: 6ef7cf96-30cc-4c89-b6ae-d6719ed7e018 Request failed with status code 404
+2026-06-10T06:53:52.058Z [nileopedia-backend] error: Document ingestion job failed: 25 Request failed with status code 404
+2026-06-10T06:53:52.169Z [nileopedia-backend] error: Document ingestion failed: 68dd6ae6-90f8-41d0-b39b-0a4e5cd6c8ca Request failed with status code 404
+2026-06-10T06:53:52.178Z [nileopedia-backend] error: Document ingestion job failed: 26 Request failed with status code 404
+2026-06-10T06:53:52.186Z [nileopedia-backend] error: Document ingestion failed: 71d7a46d-45d0-40f2-8764-ff354dbf1b40 Request failed with status code 404
+2026-06-10T06:53:52.191Z [nileopedia-backend] error: Document ingestion job failed: 27 Request failed with status code 404
+2026-06-10T06:53:52.695Z [nileopedia-backend] error: Document ingestion failed: 9436dd89-5645-444a-a789-4adf6a931ea2 Request failed with status code 404
+2026-06-10T06:53:52.700Z [nileopedia-backend] error: Document ingestion failed: 3dcd8912-0aa4-4a11-b5de-2b9007aa9465 Request failed with status code 404
+2026-06-10T06:53:52.705Z [nileopedia-backend] error: Document ingestion job failed: 28 Request failed with status code 404
+2026-06-10T06:53:52.706Z [nileopedia-backend] error: Document ingestion job failed: 29 Request failed with status code 404
+2026-06-10T06:53:52.969Z [nileopedia-backend] error: Document ingestion failed: 5f4c2cdf-d514-4703-9a1a-c077c0729386 Request failed with status code 404
+2026-06-10T06:53:52.972Z [nileopedia-backend] error: Document ingestion failed: befec5f7-29c2-4d17-9ff0-4e98f4927632 Request failed with status code 404
+2026-06-10T06:53:52.974Z [nileopedia-backend] error: Document ingestion job failed: 31 Request failed with status code 404
+2026-06-10T06:53:52.974Z [nileopedia-backend] error: Document ingestion job failed: 30 Request failed with status code 404
+2026-06-10T06:53:53.347Z [nileopedia-backend] error: Document ingestion failed: c0553b50-1a32-45af-a418-d49a49ca744e Request failed with status code 404
+2026-06-10T06:53:53.349Z [nileopedia-backend] error: Document ingestion failed: 53a61479-1234-4998-99ca-bf45a49f6f39 Request failed with status code 404
+2026-06-10T06:53:53.352Z [nileopedia-backend] error: Document ingestion job failed: 32 Request failed with status code 404
+2026-06-10T06:53:53.352Z [nileopedia-backend] error: Document ingestion job failed: 33 Request failed with status code 404
+2026-06-10T06:53:53.550Z [nileopedia-backend] error: Document ingestion failed: f8b1853d-b85b-446e-b22f-140ed2bcc989 Request failed with status code 404
+2026-06-10T06:53:53.552Z [nileopedia-backend] error: Document ingestion job failed: 35 Request failed with status code 404
+2026-06-10T06:53:53.554Z [nileopedia-backend] error: Document ingestion failed: 6b5bfb66-37b1-4bd3-ba43-46c2bb4afa59 Request failed with status code 404
+2026-06-10T06:53:53.555Z [nileopedia-backend] error: Document ingestion job failed: 34 Request failed with status code 404
+2026-06-10T06:53:53.882Z [nileopedia-backend] error: Document ingestion failed: 120a8206-4acb-4db2-a8ed-a10d759227b4 Request failed with status code 404
+2026-06-10T06:53:53.883Z [nileopedia-backend] error: Document ingestion job failed: 36 Request failed with status code 404
+2026-06-10T06:53:53.885Z [nileopedia-backend] error: Document ingestion failed: bd8a6f06-3d79-4bca-8fa3-ee591e05da45 Request failed with status code 404
+2026-06-10T06:53:53.887Z [nileopedia-backend] error: Document ingestion job failed: 37 Request failed with status code 404
+2026-06-10T06:53:54.118Z [nileopedia-backend] error: Document ingestion failed: 481570ad-968f-4898-8f4e-ba47653d1cf9 Request failed with status code 404
+2026-06-10T06:53:54.121Z [nileopedia-backend] error: Document ingestion failed: 17ef2ce0-4b55-40f7-a877-a8f1051dc11b Request failed with status code 404
+2026-06-10T06:53:54.123Z [nileopedia-backend] error: Document ingestion job failed: 38 Request failed with status code 404
+2026-06-10T06:53:54.125Z [nileopedia-backend] error: Document ingestion job failed: 39 Request failed with status code 404
+2026-06-10T06:53:54.381Z [nileopedia-backend] error: Email sending failed to mrnibras33@gmail.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:54.414Z [nileopedia-backend] error: Email job failed: 3 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-10T06:53:54.427Z [nileopedia-backend] error: Document ingestion failed: dd1841d5-27b0-4102-812f-d6aaf26ec94c Request failed with status code 404
+2026-06-10T06:53:54.435Z [nileopedia-backend] error: Document ingestion failed: f88fed97-cf66-4b82-85d3-65b6ce8f6e67 Request failed with status code 404
+2026-06-10T06:53:54.436Z [nileopedia-backend] error: Document ingestion job failed: 40 Request failed with status code 404
+2026-06-10T06:53:54.438Z [nileopedia-backend] error: Document ingestion job failed: 41 Request failed with status code 404
+2026-06-10T06:53:54.529Z [nileopedia-backend] error: Document ingestion failed: 08eddc05-e879-438f-bf67-417bd0487de8 Request failed with status code 404
+2026-06-10T06:53:54.533Z [nileopedia-backend] error: Document ingestion failed: 7bc840b1-1eb4-4146-9744-f630fb17e3bf Request failed with status code 404
+2026-06-10T06:53:54.535Z [nileopedia-backend] error: Document ingestion job failed: 42 Request failed with status code 404
+2026-06-10T06:53:54.536Z [nileopedia-backend] error: Document ingestion job failed: 43 Request failed with status code 404
+2026-06-10T06:53:54.767Z [nileopedia-backend] error: Document ingestion failed: d9865836-cae4-4249-88a6-ed1fb705033e Request failed with status code 404
+2026-06-10T06:53:54.769Z [nileopedia-backend] error: Document ingestion job failed: 45 Request failed with status code 404
+2026-06-10T06:53:54.773Z [nileopedia-backend] error: Document ingestion failed: b6766ed2-28ef-4544-82f2-878ab5d96fb4 Request failed with status code 404
+2026-06-10T06:53:54.926Z [nileopedia-backend] error: Document ingestion job failed: 44 Request failed with status code 404
+2026-06-10T06:53:55.106Z [nileopedia-backend] error: Document ingestion failed: 8f390f99-8747-41c3-bdf8-86755fade7e8 Request failed with status code 404
+2026-06-10T06:53:55.110Z [nileopedia-backend] error: Document ingestion job failed: 46 Request failed with status code 404
+2026-06-10T06:53:55.139Z [nileopedia-backend] error: Document ingestion failed: 78887cdd-626f-41d9-bf0d-75fdf267d7b5 Request failed with status code 404
+2026-06-10T06:53:55.144Z [nileopedia-backend] error: Document ingestion job failed: 47 Request failed with status code 404
+2026-06-10T06:53:55.152Z [nileopedia-backend] error: Document ingestion failed: 60555278-cdec-4b33-b000-6a2602ba9f4e Request failed with status code 404
+2026-06-10T06:53:55.177Z [nileopedia-backend] error: Document ingestion job failed: 48 Request failed with status code 404
+2026-06-10T06:53:55.272Z [nileopedia-backend] error: Document ingestion failed: 89299aa3-8cf3-4319-9945-63bbdba752a3 Request failed with status code 404
+2026-06-10T06:53:55.275Z [nileopedia-backend] error: Document ingestion job failed: 49 Request failed with status code 404
+2026-06-10T06:53:55.291Z [nileopedia-backend] error: Document ingestion failed: e4a56e4b-f323-4394-b685-168c3b614cf7 Request failed with status code 404
+2026-06-10T06:53:55.294Z [nileopedia-backend] error: Document ingestion job failed: 50 Request failed with status code 404
+2026-06-10T06:53:55.498Z [nileopedia-backend] error: Document ingestion failed: f0067e31-859f-4d21-bd73-5428caa8daab Request failed with status code 404
+2026-06-10T06:53:55.500Z [nileopedia-backend] error: Document ingestion job failed: 51 Request failed with status code 404
+2026-06-10T06:53:55.516Z [nileopedia-backend] error: Document ingestion failed: 70f56fc5-02f2-42cf-8422-c268b877ae5d Request failed with status code 404
+2026-06-10T06:53:55.521Z [nileopedia-backend] error: Document ingestion job failed: 52 Request failed with status code 404
+2026-06-10T06:53:55.523Z [nileopedia-backend] error: Document ingestion failed: 050d494a-c210-4d17-af0c-74f52e1061bb Request failed with status code 404
+2026-06-10T06:53:55.528Z [nileopedia-backend] error: Document ingestion job failed: 53 Request failed with status code 404
+2026-06-10T06:53:55.738Z [nileopedia-backend] error: Document ingestion failed: 969a9333-7316-4c96-9646-c0e26df1148c Request failed with status code 404
+2026-06-10T06:53:55.745Z [nileopedia-backend] error: Document ingestion failed: ffc9926c-0744-4598-8c23-2fd196aa398a Request failed with status code 404
+2026-06-10T06:53:55.748Z [nileopedia-backend] error: Document ingestion job failed: 54 Request failed with status code 404
+2026-06-10T06:53:55.748Z [nileopedia-backend] error: Document ingestion job failed: 2 Request failed with status code 404
+2026-06-10T06:53:55.781Z [nileopedia-backend] error: Document ingestion failed: 641b11a1-76f1-45b8-a7ea-efec70899775 Request failed with status code 404
+2026-06-10T06:53:55.783Z [nileopedia-backend] error: Document ingestion job failed: 1 Request failed with status code 404
+2026-06-10T06:53:55.795Z [nileopedia-backend] error: Document ingestion failed: eb792b15-595b-4621-a953-a40fbf70673d Request failed with status code 404
+2026-06-10T06:53:55.809Z [nileopedia-backend] error: Document ingestion job failed: 3 Request failed with status code 404
+2026-06-10T06:53:55.819Z [nileopedia-backend] error: Document ingestion failed: ff338d07-5875-40e6-9b01-d728fc955bf5 Request failed with status code 404
+2026-06-10T06:53:55.822Z [nileopedia-backend] error: Document ingestion job failed: 4 Request failed with status code 404
+2026-06-10T06:53:55.841Z [nileopedia-backend] error: Document ingestion failed: 6e4dd76b-692e-4309-954f-493b388ce692 Request failed with status code 404
+2026-06-10T06:53:55.843Z [nileopedia-backend] error: Document ingestion job failed: 6 Request failed with status code 404
+2026-06-10T06:53:55.846Z [nileopedia-backend] error: Document ingestion failed: 73c9735c-bb59-40d3-a949-149cd146e9d9 Request failed with status code 404
+2026-06-10T06:53:55.849Z [nileopedia-backend] error: Document ingestion job failed: 5 Request failed with status code 404
+2026-06-10T06:53:55.930Z [nileopedia-backend] error: Document ingestion failed: 637af5b1-9c83-42ec-a3ab-3cf448dc13ef Request failed with status code 404
+2026-06-10T06:53:55.935Z [nileopedia-backend] error: Document ingestion job failed: 7 Request failed with status code 404
+2026-06-10T06:53:55.938Z [nileopedia-backend] error: Document ingestion failed: ad4c283e-f49f-4f9b-9d7c-63e7b5e5f4f6 Request failed with status code 404
+2026-06-10T06:53:55.940Z [nileopedia-backend] error: Document ingestion job failed: 8 Request failed with status code 404
+2026-06-10T06:53:56.379Z [nileopedia-backend] error: Document ingestion failed: 0155f9e1-db12-48fb-bc8d-45269ddb9f00 Request failed with status code 404
+2026-06-10T06:53:56.392Z [nileopedia-backend] error: Document ingestion failed: c40d85eb-3137-4f5b-bded-40e9e69216fe Request failed with status code 404
+2026-06-10T06:53:56.416Z [nileopedia-backend] error: Document ingestion job failed: 9 Request failed with status code 404
+2026-06-10T06:53:56.417Z [nileopedia-backend] error: Document ingestion job failed: 10 Request failed with status code 404
+2026-06-10T06:53:56.711Z [nileopedia-backend] error: Document ingestion failed: 42140385-be91-4a02-b183-b6835a76052b Request failed with status code 404
+2026-06-10T06:53:56.715Z [nileopedia-backend] error: Document ingestion failed: 45f98831-d898-4971-a705-c45b9c7a7a6e Request failed with status code 404
+2026-06-10T06:53:56.718Z [nileopedia-backend] error: Document ingestion job failed: 11 Request failed with status code 404
+2026-06-10T06:53:56.719Z [nileopedia-backend] error: Document ingestion job failed: 12 Request failed with status code 404
+2026-06-10T06:53:56.997Z [nileopedia-backend] error: Document ingestion failed: 41f60543-06ab-49ce-8b12-58035b643128 Request failed with status code 404
+2026-06-10T06:53:56.998Z [nileopedia-backend] error: Document ingestion failed: 2ffd430e-776f-4226-ad7a-c035561f8f52 Request failed with status code 404
+2026-06-10T06:53:57.000Z [nileopedia-backend] error: Document ingestion job failed: 14 Request failed with status code 404
+2026-06-10T06:53:57.003Z [nileopedia-backend] error: Document ingestion job failed: 13 Request failed with status code 404
+2026-06-10T06:53:57.346Z [nileopedia-backend] error: Document ingestion failed: 7bbe1482-e6c3-4926-929c-0194f3e81ff1 Request failed with status code 404
+2026-06-10T06:53:57.349Z [nileopedia-backend] error: Document ingestion failed: 2a57c3e2-5e6e-4ca1-a374-c8f56b8840f3 Request failed with status code 404
+2026-06-10T06:53:57.352Z [nileopedia-backend] error: Document ingestion job failed: 15 Request failed with status code 404
+2026-06-10T06:53:57.353Z [nileopedia-backend] error: Document ingestion job failed: 16 Request failed with status code 404
+2026-06-10T06:53:57.599Z [nileopedia-backend] error: Document ingestion failed: 439465ce-7afa-462a-a6e4-e06eca968a54 Request failed with status code 404
+2026-06-10T06:53:57.601Z [nileopedia-backend] error: Document ingestion job failed: 17 Request failed with status code 404
+2026-06-10T06:53:57.605Z [nileopedia-backend] error: Document ingestion failed: d83f2621-a090-45c1-b8f7-6d2bd23053bf Request failed with status code 404
+2026-06-10T06:53:57.735Z [nileopedia-backend] error: Document ingestion job failed: 18 Request failed with status code 404
+2026-06-10T06:53:57.936Z [nileopedia-backend] error: Document ingestion failed: 10f014b3-6ea4-4b01-943c-3a00aa96ac5f Request failed with status code 404
+2026-06-10T06:53:57.946Z [nileopedia-backend] error: Document ingestion job failed: 19 Request failed with status code 404
+2026-06-10T06:53:57.952Z [nileopedia-backend] error: Document ingestion failed: abdb17d6-fed1-4eee-80d7-a13d14c2d33b Request failed with status code 404
+2026-06-10T06:53:57.954Z [nileopedia-backend] error: Document ingestion job failed: 20 Request failed with status code 404
+2026-06-10T06:53:58.305Z [nileopedia-backend] error: Document ingestion failed: 999e2744-5982-48fc-8e9f-bc9c1366fa57 Request failed with status code 404
+2026-06-10T06:53:58.307Z [nileopedia-backend] error: Document ingestion job failed: 21 Request failed with status code 404
+2026-06-10T06:53:58.309Z [nileopedia-backend] error: Document ingestion failed: 6e97f3bc-46f9-4d21-8033-f9004cd387b5 Request failed with status code 404
+2026-06-10T06:53:58.312Z [nileopedia-backend] error: Document ingestion job failed: 22 Request failed with status code 404
+2026-06-10T06:53:58.791Z [nileopedia-backend] error: Document ingestion failed: 15043071-e6c4-4fe2-85a0-8c1d6c3c1368 Request failed with status code 404
+2026-06-10T06:53:58.802Z [nileopedia-backend] error: Document ingestion failed: d6ba8084-de87-446a-992e-036bf9d862be Request failed with status code 404
+2026-06-10T06:53:58.807Z [nileopedia-backend] error: Document ingestion job failed: 23 Request failed with status code 404
+2026-06-10T06:53:58.811Z [nileopedia-backend] error: Document ingestion job failed: 24 Request failed with status code 404
+2026-06-10T06:53:59.207Z [nileopedia-backend] error: Document ingestion failed: 6ef7cf96-30cc-4c89-b6ae-d6719ed7e018 Request failed with status code 404
+2026-06-10T06:53:59.215Z [nileopedia-backend] error: Document ingestion failed: 68dd6ae6-90f8-41d0-b39b-0a4e5cd6c8ca Request failed with status code 404
+2026-06-10T06:53:59.220Z [nileopedia-backend] error: Document ingestion job failed: 25 Request failed with status code 404
+2026-06-10T06:53:59.222Z [nileopedia-backend] error: Document ingestion job failed: 26 Request failed with status code 404
+2026-06-10T06:53:59.606Z [nileopedia-backend] error: Document ingestion failed: 71d7a46d-45d0-40f2-8764-ff354dbf1b40 Request failed with status code 404
+2026-06-10T06:53:59.608Z [nileopedia-backend] error: Document ingestion job failed: 27 Request failed with status code 404
+2026-06-10T06:53:59.612Z [nileopedia-backend] error: Document ingestion failed: 9436dd89-5645-444a-a789-4adf6a931ea2 Request failed with status code 404
+2026-06-10T06:53:59.723Z [nileopedia-backend] error: Document ingestion job failed: 28 Request failed with status code 404
+2026-06-10T06:53:59.915Z [nileopedia-backend] error: Document ingestion failed: 3dcd8912-0aa4-4a11-b5de-2b9007aa9465 Request failed with status code 404
+2026-06-10T06:53:59.920Z [nileopedia-backend] error: Document ingestion job failed: 29 Request failed with status code 404
+2026-06-10T06:53:59.927Z [nileopedia-backend] error: Document ingestion failed: 5f4c2cdf-d514-4703-9a1a-c077c0729386 Request failed with status code 404
+2026-06-10T06:54:00.128Z [nileopedia-backend] error: Document ingestion job failed: 31 Request failed with status code 404
+2026-06-10T06:54:00.135Z [nileopedia-backend] error: Document ingestion failed: befec5f7-29c2-4d17-9ff0-4e98f4927632 Request failed with status code 404
+2026-06-10T06:54:00.139Z [nileopedia-backend] error: Document ingestion job failed: 30 Request failed with status code 404
+2026-06-10T06:54:00.463Z [nileopedia-backend] error: Document ingestion failed: c0553b50-1a32-45af-a418-d49a49ca744e Request failed with status code 404
+2026-06-10T06:54:00.464Z [nileopedia-backend] error: Document ingestion failed: 53a61479-1234-4998-99ca-bf45a49f6f39 Request failed with status code 404
+2026-06-10T06:54:00.468Z [nileopedia-backend] error: Document ingestion job failed: 32 Request failed with status code 404
+2026-06-10T06:54:00.468Z [nileopedia-backend] error: Document ingestion job failed: 33 Request failed with status code 404
+2026-06-10T06:54:00.763Z [nileopedia-backend] error: Document ingestion failed: f8b1853d-b85b-446e-b22f-140ed2bcc989 Request failed with status code 404
+2026-06-10T06:54:00.768Z [nileopedia-backend] error: Document ingestion failed: 6b5bfb66-37b1-4bd3-ba43-46c2bb4afa59 Request failed with status code 404
+2026-06-10T06:54:00.771Z [nileopedia-backend] error: Document ingestion job failed: 35 Request failed with status code 404
+2026-06-10T06:54:00.771Z [nileopedia-backend] error: Document ingestion job failed: 34 Request failed with status code 404
+2026-06-10T06:54:00.996Z [nileopedia-backend] error: Document ingestion failed: 120a8206-4acb-4db2-a8ed-a10d759227b4 Request failed with status code 404
+2026-06-10T06:54:00.998Z [nileopedia-backend] error: Document ingestion job failed: 36 Request failed with status code 404
+2026-06-10T06:54:01.000Z [nileopedia-backend] error: Document ingestion failed: bd8a6f06-3d79-4bca-8fa3-ee591e05da45 Request failed with status code 404
+2026-06-10T06:54:01.003Z [nileopedia-backend] error: Document ingestion job failed: 37 Request failed with status code 404
+2026-06-10T06:54:01.327Z [nileopedia-backend] error: Document ingestion failed: 17ef2ce0-4b55-40f7-a877-a8f1051dc11b Request failed with status code 404
+2026-06-10T06:54:01.328Z [nileopedia-backend] error: Document ingestion job failed: 39 Request failed with status code 404
+2026-06-10T06:54:01.330Z [nileopedia-backend] error: Document ingestion failed: 481570ad-968f-4898-8f4e-ba47653d1cf9 Request failed with status code 404
+2026-06-10T06:54:01.332Z [nileopedia-backend] error: Document ingestion job failed: 38 Request failed with status code 404
+2026-06-10T06:54:01.462Z [nileopedia-backend] error: Document ingestion failed: dd1841d5-27b0-4102-812f-d6aaf26ec94c Request failed with status code 404
+2026-06-10T06:54:01.464Z [nileopedia-backend] error: Document ingestion job failed: 40 Request failed with status code 404
+2026-06-10T06:54:01.466Z [nileopedia-backend] error: Document ingestion failed: f88fed97-cf66-4b82-85d3-65b6ce8f6e67 Request failed with status code 404
+2026-06-10T06:54:01.468Z [nileopedia-backend] error: Document ingestion job failed: 41 Request failed with status code 404
+2026-06-10T06:54:01.505Z [nileopedia-backend] error: Document ingestion failed: 08eddc05-e879-438f-bf67-417bd0487de8 Request failed with status code 404
+2026-06-10T06:54:01.601Z [nileopedia-backend] error: Document ingestion failed: 7bc840b1-1eb4-4146-9744-f630fb17e3bf Request failed with status code 404
+2026-06-10T06:54:01.602Z [nileopedia-backend] error: Document ingestion job failed: 42 Request failed with status code 404
+2026-06-10T06:54:01.604Z [nileopedia-backend] error: Document ingestion job failed: 43 Request failed with status code 404
+2026-06-10T06:54:01.889Z [nileopedia-backend] error: Document ingestion failed: b6766ed2-28ef-4544-82f2-878ab5d96fb4 Request failed with status code 404
+2026-06-10T06:54:01.890Z [nileopedia-backend] error: Document ingestion failed: d9865836-cae4-4249-88a6-ed1fb705033e Request failed with status code 404
+2026-06-10T06:54:01.905Z [nileopedia-backend] error: Document ingestion job failed: 44 Request failed with status code 404
+2026-06-10T06:54:01.905Z [nileopedia-backend] error: Document ingestion job failed: 45 Request failed with status code 404
+2026-06-10T06:54:02.288Z [nileopedia-backend] error: Document ingestion failed: 8f390f99-8747-41c3-bdf8-86755fade7e8 Request failed with status code 404
+2026-06-10T06:54:02.299Z [nileopedia-backend] error: Document ingestion failed: 78887cdd-626f-41d9-bf0d-75fdf267d7b5 Request failed with status code 429
+2026-06-10T06:54:02.305Z [nileopedia-backend] error: Document ingestion job failed: 46 Request failed with status code 404
+2026-06-10T06:54:02.305Z [nileopedia-backend] error: Document ingestion job failed: 47 Request failed with status code 429
+2026-06-10T06:54:02.395Z [nileopedia-backend] error: Document ingestion failed: 60555278-cdec-4b33-b000-6a2602ba9f4e Request failed with status code 429
+2026-06-10T06:54:02.396Z [nileopedia-backend] error: Document ingestion job failed: 48 Request failed with status code 429
+2026-06-10T06:54:02.400Z [nileopedia-backend] error: Document ingestion failed: 89299aa3-8cf3-4319-9945-63bbdba752a3 Request failed with status code 429
+2026-06-10T06:54:02.511Z [nileopedia-backend] error: Document ingestion job failed: 49 Request failed with status code 429
+2026-06-10T06:54:02.539Z [nileopedia-backend] error: Document ingestion failed: e4a56e4b-f323-4394-b685-168c3b614cf7 Request failed with status code 429
+2026-06-10T06:54:02.544Z [nileopedia-backend] error: Document ingestion job failed: 50 Request failed with status code 429
+2026-06-10T06:54:02.656Z [nileopedia-backend] error: Document ingestion failed: f0067e31-859f-4d21-bd73-5428caa8daab Request failed with status code 429
+2026-06-10T06:54:02.804Z [nileopedia-backend] error: Document ingestion job failed: 51 Request failed with status code 429
+2026-06-10T06:54:02.817Z [nileopedia-backend] error: Document ingestion failed: 70f56fc5-02f2-42cf-8422-c268b877ae5d Request failed with status code 429
+2026-06-10T06:54:02.818Z [nileopedia-backend] error: Document ingestion job failed: 52 Request failed with status code 429
+2026-06-10T06:54:03.050Z [nileopedia-backend] error: Document ingestion failed: 050d494a-c210-4d17-af0c-74f52e1061bb Request failed with status code 429
+2026-06-10T06:54:03.054Z [nileopedia-backend] error: Document ingestion job failed: 53 Request failed with status code 429
+2026-06-10T06:54:03.058Z [nileopedia-backend] error: Document ingestion failed: 969a9333-7316-4c96-9646-c0e26df1148c Request failed with status code 429
+2026-06-10T06:54:03.063Z [nileopedia-backend] error: Document ingestion job failed: 54 Request failed with status code 429
+2026-06-10T06:54:03.076Z [nileopedia-backend] error: Document ingestion failed: ffc9926c-0744-4598-8c23-2fd196aa398a Request failed with status code 429
+2026-06-10T06:54:03.082Z [nileopedia-backend] error: Document ingestion job failed: 2 Request failed with status code 429
+2026-06-10T06:54:03.083Z [nileopedia-backend] error: Document ingestion failed: 641b11a1-76f1-45b8-a7ea-efec70899775 Request failed with status code 429
+2026-06-10T06:54:03.090Z [nileopedia-backend] error: Document ingestion job failed: 1 Request failed with status code 429
+2026-06-10T06:54:03.109Z [nileopedia-backend] error: Document ingestion failed: eb792b15-595b-4621-a953-a40fbf70673d Request failed with status code 429
+2026-06-10T06:54:03.111Z [nileopedia-backend] error: Document ingestion job failed: 3 Request failed with status code 429
+2026-06-10T06:54:03.129Z [nileopedia-backend] error: Document ingestion failed: ff338d07-5875-40e6-9b01-d728fc955bf5 Request failed with status code 429
+2026-06-10T06:54:03.140Z [nileopedia-backend] error: Document ingestion job failed: 4 Request failed with status code 429
+2026-06-10T06:54:03.145Z [nileopedia-backend] error: Document ingestion failed: 6e4dd76b-692e-4309-954f-493b388ce692 Request failed with status code 429
+2026-06-10T06:54:03.149Z [nileopedia-backend] error: Document ingestion job failed: 6 Request failed with status code 429
+2026-06-10T06:54:03.157Z [nileopedia-backend] error: Document ingestion failed: 73c9735c-bb59-40d3-a949-149cd146e9d9 Request failed with status code 429
+2026-06-10T06:54:03.163Z [nileopedia-backend] error: Document ingestion job failed: 5 Request failed with status code 429
+2026-06-10T06:54:03.167Z [nileopedia-backend] error: Document ingestion failed: 637af5b1-9c83-42ec-a3ab-3cf448dc13ef Request failed with status code 429
+2026-06-10T06:54:03.212Z [nileopedia-backend] error: Document ingestion job failed: 7 Request failed with status code 429
+2026-06-10T06:54:03.342Z [nileopedia-backend] error: Document ingestion failed: ad4c283e-f49f-4f9b-9d7c-63e7b5e5f4f6 Request failed with status code 429
+2026-06-10T06:54:03.444Z [nileopedia-backend] error: Document ingestion job failed: 8 Request failed with status code 429
+2026-06-10T06:54:03.447Z [nileopedia-backend] error: Document ingestion failed: 0155f9e1-db12-48fb-bc8d-45269ddb9f00 Request failed with status code 429
+2026-06-10T06:54:03.553Z [nileopedia-backend] error: Document ingestion job failed: 9 Request failed with status code 429
+2026-06-10T06:54:03.737Z [nileopedia-backend] error: Document ingestion failed: c40d85eb-3137-4f5b-bded-40e9e69216fe Request failed with status code 429
+2026-06-10T06:54:03.740Z [nileopedia-backend] error: Document ingestion job failed: 10 Request failed with status code 429
+2026-06-10T06:54:03.892Z [nileopedia-backend] error: Document ingestion failed: 42140385-be91-4a02-b183-b6835a76052b Request failed with status code 429
+2026-06-10T06:54:03.910Z [nileopedia-backend] error: Document ingestion job failed: 11 Request failed with status code 429
+2026-06-10T06:54:04.079Z [nileopedia-backend] error: Document ingestion failed: 45f98831-d898-4971-a705-c45b9c7a7a6e Request failed with status code 429
+2026-06-10T06:54:04.083Z [nileopedia-backend] error: Document ingestion job failed: 12 Request failed with status code 429
+2026-06-10T06:54:04.087Z [nileopedia-backend] error: Document ingestion failed: 41f60543-06ab-49ce-8b12-58035b643128 Request failed with status code 429
+2026-06-10T06:54:04.191Z [nileopedia-backend] error: Document ingestion job failed: 14 Request failed with status code 429
+2026-06-10T06:54:04.421Z [nileopedia-backend] error: Document ingestion failed: 2ffd430e-776f-4226-ad7a-c035561f8f52 Request failed with status code 429
+2026-06-10T06:54:04.485Z [nileopedia-backend] error: Document ingestion job failed: 13 Request failed with status code 429
+2026-06-10T06:54:04.488Z [nileopedia-backend] error: Document ingestion failed: 7bbe1482-e6c3-4926-929c-0194f3e81ff1 Request failed with status code 429
+2026-06-10T06:54:04.611Z [nileopedia-backend] error: Document ingestion job failed: 15 Request failed with status code 429
+2026-06-10T06:54:04.710Z [nileopedia-backend] error: Document ingestion failed: 2a57c3e2-5e6e-4ca1-a374-c8f56b8840f3 Request failed with status code 429
+2026-06-10T06:54:04.798Z [nileopedia-backend] error: Document ingestion job failed: 16 Request failed with status code 429
+2026-06-10T06:54:04.801Z [nileopedia-backend] error: Document ingestion failed: 439465ce-7afa-462a-a6e4-e06eca968a54 Request failed with status code 429
+2026-06-10T06:54:04.804Z [nileopedia-backend] error: Document ingestion job failed: 17 Request failed with status code 429
+2026-06-10T06:54:05.088Z [nileopedia-backend] error: Document ingestion failed: d83f2621-a090-45c1-b8f7-6d2bd23053bf Request failed with status code 429
+2026-06-10T06:54:05.089Z [nileopedia-backend] error: Document ingestion failed: 10f014b3-6ea4-4b01-943c-3a00aa96ac5f Request failed with status code 429
+2026-06-10T06:54:05.091Z [nileopedia-backend] error: Document ingestion job failed: 18 Request failed with status code 429
+2026-06-10T06:54:05.094Z [nileopedia-backend] error: Document ingestion job failed: 19 Request failed with status code 429
+2026-06-10T06:54:05.414Z [nileopedia-backend] error: Document ingestion failed: abdb17d6-fed1-4eee-80d7-a13d14c2d33b Request failed with status code 429
+2026-06-10T06:54:05.420Z [nileopedia-backend] error: Document ingestion failed: 999e2744-5982-48fc-8e9f-bc9c1366fa57 Request failed with status code 429
+2026-06-10T06:54:05.426Z [nileopedia-backend] error: Document ingestion job failed: 20 Request failed with status code 429
+2026-06-10T06:54:05.431Z [nileopedia-backend] error: Document ingestion job failed: 21 Request failed with status code 429
+2026-06-10T06:54:05.713Z [nileopedia-backend] error: Document ingestion failed: 6e97f3bc-46f9-4d21-8033-f9004cd387b5 Request failed with status code 429
+2026-06-10T06:54:05.714Z [nileopedia-backend] error: Document ingestion failed: 15043071-e6c4-4fe2-85a0-8c1d6c3c1368 Request failed with status code 429
+2026-06-10T06:54:05.715Z [nileopedia-backend] error: Document ingestion job failed: 22 Request failed with status code 429
+2026-06-10T06:54:05.717Z [nileopedia-backend] error: Document ingestion job failed: 23 Request failed with status code 429
+2026-06-10T06:54:06.122Z [nileopedia-backend] error: Document ingestion failed: d6ba8084-de87-446a-992e-036bf9d862be Request failed with status code 429
+2026-06-10T06:54:06.124Z [nileopedia-backend] error: Document ingestion failed: 6ef7cf96-30cc-4c89-b6ae-d6719ed7e018 Request failed with status code 429
+2026-06-10T06:54:06.125Z [nileopedia-backend] error: Document ingestion job failed: 24 Request failed with status code 429
+2026-06-10T06:54:06.127Z [nileopedia-backend] error: Document ingestion job failed: 25 Request failed with status code 429
+2026-06-10T06:54:06.436Z [nileopedia-backend] error: Document ingestion failed: 68dd6ae6-90f8-41d0-b39b-0a4e5cd6c8ca Request failed with status code 429
+2026-06-10T06:54:06.438Z [nileopedia-backend] error: Document ingestion job failed: 26 Request failed with status code 429
+2026-06-10T06:54:06.439Z [nileopedia-backend] error: Document ingestion failed: 71d7a46d-45d0-40f2-8764-ff354dbf1b40 Request failed with status code 429
+2026-06-10T06:54:06.441Z [nileopedia-backend] error: Document ingestion job failed: 27 Request failed with status code 429
+2026-06-10T06:54:06.709Z [nileopedia-backend] error: Document ingestion failed: 9436dd89-5645-444a-a789-4adf6a931ea2 Request failed with status code 429
+2026-06-10T06:54:06.711Z [nileopedia-backend] error: Document ingestion failed: 3dcd8912-0aa4-4a11-b5de-2b9007aa9465 Request failed with status code 429
+2026-06-10T06:54:06.715Z [nileopedia-backend] error: Document ingestion job failed: 28 Request failed with status code 429
+2026-06-10T06:54:06.718Z [nileopedia-backend] error: Document ingestion job failed: 29 Request failed with status code 429
+2026-06-10T06:54:07.052Z [nileopedia-backend] error: Document ingestion failed: 5f4c2cdf-d514-4703-9a1a-c077c0729386 Request failed with status code 429
+2026-06-10T06:54:07.057Z [nileopedia-backend] error: Document ingestion job failed: 31 Request failed with status code 429
+2026-06-10T06:54:07.064Z [nileopedia-backend] error: Document ingestion failed: befec5f7-29c2-4d17-9ff0-4e98f4927632 Request failed with status code 429
+2026-06-10T06:54:07.219Z [nileopedia-backend] error: Document ingestion job failed: 30 Request failed with status code 429
+2026-06-10T06:54:07.330Z [nileopedia-backend] error: Document ingestion failed: c0553b50-1a32-45af-a418-d49a49ca744e Request failed with status code 429
+2026-06-10T06:54:07.335Z [nileopedia-backend] error: Document ingestion job failed: 32 Request failed with status code 429
+2026-06-10T06:54:07.340Z [nileopedia-backend] error: Document ingestion failed: 53a61479-1234-4998-99ca-bf45a49f6f39 Request failed with status code 429
+2026-06-10T06:54:07.499Z [nileopedia-backend] error: Document ingestion job failed: 33 Request failed with status code 429
+2026-06-10T06:54:07.645Z [nileopedia-backend] error: Document ingestion failed: f8b1853d-b85b-446e-b22f-140ed2bcc989 Request failed with status code 429
+2026-06-10T06:54:07.650Z [nileopedia-backend] error: Document ingestion job failed: 35 Request failed with status code 429
+2026-06-10T06:54:07.653Z [nileopedia-backend] error: Document ingestion failed: 6b5bfb66-37b1-4bd3-ba43-46c2bb4afa59 Request failed with status code 429
+2026-06-10T06:54:07.764Z [nileopedia-backend] error: Document ingestion job failed: 34 Request failed with status code 429
+2026-06-10T06:54:07.864Z [nileopedia-backend] error: Document ingestion failed: 120a8206-4acb-4db2-a8ed-a10d759227b4 Request failed with status code 429
+2026-06-10T06:54:07.946Z [nileopedia-backend] error: Document ingestion job failed: 36 Request failed with status code 429
+2026-06-10T06:54:07.955Z [nileopedia-backend] error: Document ingestion failed: bd8a6f06-3d79-4bca-8fa3-ee591e05da45 Request failed with status code 429
+2026-06-10T06:54:08.127Z [nileopedia-backend] error: Document ingestion job failed: 37 Request failed with status code 429
+2026-06-10T06:54:08.255Z [nileopedia-backend] error: Document ingestion failed: 17ef2ce0-4b55-40f7-a877-a8f1051dc11b Request failed with status code 429
+2026-06-10T06:54:08.264Z [nileopedia-backend] error: Document ingestion job failed: 39 Request failed with status code 429
+2026-06-10T06:54:08.267Z [nileopedia-backend] error: Document ingestion failed: 481570ad-968f-4898-8f4e-ba47653d1cf9 Request failed with status code 429
+2026-06-10T06:54:08.270Z [nileopedia-backend] error: Document ingestion job failed: 38 Request failed with status code 429
+2026-06-10T06:54:08.509Z [nileopedia-backend] error: Document ingestion failed: dd1841d5-27b0-4102-812f-d6aaf26ec94c Request failed with status code 429
+2026-06-10T06:54:08.511Z [nileopedia-backend] error: Document ingestion job failed: 40 Request failed with status code 429
+2026-06-10T06:54:08.512Z [nileopedia-backend] error: Document ingestion failed: f88fed97-cf66-4b82-85d3-65b6ce8f6e67 Request failed with status code 429
+2026-06-10T06:54:08.513Z [nileopedia-backend] error: Document ingestion job failed: 41 Request failed with status code 429
+2026-06-10T06:54:08.551Z [nileopedia-backend] error: Document ingestion failed: 08eddc05-e879-438f-bf67-417bd0487de8 Request failed with status code 429
+2026-06-10T06:54:08.553Z [nileopedia-backend] error: Document ingestion job failed: 42 Request failed with status code 429
+2026-06-10T06:54:08.557Z [nileopedia-backend] error: Document ingestion failed: 7bc840b1-1eb4-4146-9744-f630fb17e3bf Request failed with status code 429
+2026-06-10T06:54:08.560Z [nileopedia-backend] error: Document ingestion job failed: 43 Request failed with status code 429
+2026-06-10T06:54:08.900Z [nileopedia-backend] error: Document ingestion failed: b6766ed2-28ef-4544-82f2-878ab5d96fb4 Request failed with status code 429
+2026-06-10T06:54:08.902Z [nileopedia-backend] error: Document ingestion failed: d9865836-cae4-4249-88a6-ed1fb705033e Request failed with status code 429
+2026-06-10T06:54:08.903Z [nileopedia-backend] error: Document ingestion job failed: 44 Request failed with status code 429
+2026-06-10T06:54:08.907Z [nileopedia-backend] error: Document ingestion job failed: 45 Request failed with status code 429
+2026-06-10T06:54:09.169Z [nileopedia-backend] error: Document ingestion failed: 8f390f99-8747-41c3-bdf8-86755fade7e8 Request failed with status code 429
+2026-06-10T06:54:09.176Z [nileopedia-backend] error: Document ingestion failed: 78887cdd-626f-41d9-bf0d-75fdf267d7b5 Request failed with status code 429
+2026-06-10T06:54:09.178Z [nileopedia-backend] error: Document ingestion job failed: 46 Request failed with status code 429
+2026-06-10T06:54:09.179Z [nileopedia-backend] error: Document ingestion job failed: 47 Request failed with status code 429
+2026-06-10T06:54:09.239Z [nileopedia-backend] error: Document ingestion failed: 60555278-cdec-4b33-b000-6a2602ba9f4e Request failed with status code 429
+2026-06-10T06:54:09.241Z [nileopedia-backend] error: Document ingestion failed: 89299aa3-8cf3-4319-9945-63bbdba752a3 Request failed with status code 429
+2026-06-10T06:54:09.243Z [nileopedia-backend] error: Document ingestion job failed: 48 Request failed with status code 429
+2026-06-10T06:54:09.463Z [nileopedia-backend] error: Document ingestion job failed: 49 Request failed with status code 429
+2026-06-10T06:54:09.490Z [nileopedia-backend] error: Document ingestion failed: e4a56e4b-f323-4394-b685-168c3b614cf7 Request failed with status code 429
+2026-06-10T06:54:09.495Z [nileopedia-backend] error: Document ingestion job failed: 50 Request failed with status code 429
+2026-06-10T06:54:09.725Z [nileopedia-backend] error: Document ingestion failed: f0067e31-859f-4d21-bd73-5428caa8daab Request failed with status code 429
+2026-06-10T06:54:09.728Z [nileopedia-backend] error: Document ingestion job failed: 51 Request failed with status code 429
+2026-06-10T06:54:09.756Z [nileopedia-backend] error: Document ingestion failed: 70f56fc5-02f2-42cf-8422-c268b877ae5d Request failed with status code 429
+2026-06-10T06:54:09.763Z [nileopedia-backend] error: Document ingestion job failed: 52 Request failed with status code 429
+2026-06-10T06:54:09.771Z [nileopedia-backend] error: Document ingestion failed: 050d494a-c210-4d17-af0c-74f52e1061bb Request failed with status code 429
+2026-06-10T06:54:09.888Z [nileopedia-backend] error: Document ingestion job failed: 53 Request failed with status code 429
+2026-06-10T06:54:09.896Z [nileopedia-backend] error: Document ingestion failed: 969a9333-7316-4c96-9646-c0e26df1148c Request failed with status code 429
+2026-06-10T06:54:09.897Z [nileopedia-backend] error: Document ingestion job failed: 54 Request failed with status code 429
+2026-06-10T07:14:22.063Z [nileopedia-backend] error: Document ingestion failed: 825a5ace-a23c-455b-a3ab-18ecd9b32fb6 Request failed with status code 404
+2026-06-10T07:14:22.079Z [nileopedia-backend] error: Document ingestion job failed: 55 Request failed with status code 404
+2026-06-10T07:14:24.113Z [nileopedia-backend] error: Document ingestion failed: 825a5ace-a23c-455b-a3ab-18ecd9b32fb6 Request failed with status code 404
+2026-06-10T07:14:24.116Z [nileopedia-backend] error: Document ingestion job failed: 55 Request failed with status code 404
+2026-06-10T07:14:28.241Z [nileopedia-backend] error: Document ingestion failed: 825a5ace-a23c-455b-a3ab-18ecd9b32fb6 Request failed with status code 404
+2026-06-10T07:14:28.247Z [nileopedia-backend] error: Document ingestion job failed: 55 Request failed with status code 404
+2026-06-10T07:36:08.377Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:18.795Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:20.328Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:21.211Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T07:36:21.392Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-10T08:17:47.306Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:17:47.307Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:18:13.376Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:18:13.377Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:23:28.142Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:23:28.143Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:24:13.277Z [nileopedia-backend] error: Error in askQuestion: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:24:13.278Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:8:46
+
+  5 export class QuestionsService {
+  6   async askQuestion(userId: string, questionText: string) {
+  7     try {
+→ 8       const question = await prisma.question.create(
+The column `isSaved` does not exist in the current database.
+2026-06-10T08:25:40.259Z [nileopedia-backend] error: AI generation job failed: 4 io is not defined
+2026-06-10T08:25:42.319Z [nileopedia-backend] error: AI generation job failed: 4 io is not defined
+2026-06-10T08:25:46.327Z [nileopedia-backend] error: AI generation job failed: 4 io is not defined

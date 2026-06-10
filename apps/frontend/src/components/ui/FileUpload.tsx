@@ -12,7 +12,7 @@ interface FileUploadProps {
 
 export const FileUpload: React.FC<FileUploadProps> = ({
   onUpload,
-  accept = '.pdf,.doc,.docx,.txt',
+  accept = '.pdf,.doc,.docx,.txt,.html',
   multiple = false,
   maxSizeMB = 10,
   className,
@@ -76,7 +76,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
           Drop files here or click to upload
         </p>
         <p className="text-xs text-slate-500 dark:text-slate-400">
-          PDF, DOC, DOCX, TXT (max {maxSizeMB}MB{multiple ? ' each' : ''})
+          PDF, DOC, DOCX, TXT, HTML (max {maxSizeMB}MB{multiple ? ' each' : ''})
         </p>
       </label>
       {error && (

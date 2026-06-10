@@ -7,7 +7,7 @@ import { BookOpen, UserPlus, Mail, Lock, Building2, Stethoscope, ShieldCheck } f
 import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
 
-type RegisterRole = 'MEDICAL_USER' | 'VALIDATOR' | 'ADMIN';
+type RegisterRole = 'MEDICAL_USER' | 'VALIDATOR';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -161,7 +161,6 @@ export default function RegisterPage() {
               >
                 <option value="MEDICAL_USER">Medical User</option>
                 <option value="VALIDATOR">Validator</option>
-                <option value="ADMIN">Admin</option>
               </select>
             </div>
 

@@ -6,7 +6,15 @@ export const registerValidation = [
   body('password')
     .isLength({ min: 8 })
     .withMessage('Password must be at least 8 characters long'),
-  body('role').notEmpty().withMessage('Role is required'),
+  body('role')
+    .notEmpty()
+    .withMessage('Role is required')
+    .custom((value) => {
+      if (value === 'ADMIN') {
+        throw new Error('ADMIN registration is not allowed through this endpoint');
+      }
+      return true;
+    }),
 ];
 
 export const loginValidation = [
