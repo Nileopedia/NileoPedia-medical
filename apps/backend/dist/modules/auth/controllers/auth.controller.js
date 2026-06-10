@@ -25,6 +25,10 @@ class AuthController {
         }
         catch (error) {
             logger_1.logger.error('Error in register controller:', error);
+            // Return proper status for duplicate email
+            if (error instanceof Error && error.message === 'User already exists') {
+                return res.status(409).json({ success: false, message: 'Email already exists' });
+            }
             next(error);
         }
     }

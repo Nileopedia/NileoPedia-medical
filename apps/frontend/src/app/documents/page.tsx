@@ -41,7 +41,15 @@ export default function DocumentsPage() {
       }
       setSelectedFiles([]);
     } catch (err) {
-      console.error('Upload failed:', err);
+      const error = err instanceof Error ? err.message : 'Upload failed';
+      // Check if unauthorized (need admin role)
+      if (error.includes('401') || error.includes('Unauthorized') || error.includes('sign in')) {
+        alert('Document upload requires admin privileges. Please sign in as an admin user.');
+      } else if (error.includes('403') || error.includes('Forbidden')) {
+        alert('You do not have permission to upload documents. Admin role required.');
+      } else {
+        console.error('Upload failed:', error);
+      }
     } finally {
       setUploading(false);
     }

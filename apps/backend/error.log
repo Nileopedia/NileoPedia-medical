@@ -169,3 +169,11 @@ Invalid `prisma.question.findMany()` invocation in
   39 async getHistory(userId: string) {
 → 40   return prisma.question.findMany(
 The column `Question.isSaved` does not exist in the current database.
+2026-06-09T21:42:15.625Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:01.125Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:03.105Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:04.543Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:05.811Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:49:38.631Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T22:04:07.700Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T22:04:09.720Z [nileopedia-backend] error: Error in register controller: User already exists

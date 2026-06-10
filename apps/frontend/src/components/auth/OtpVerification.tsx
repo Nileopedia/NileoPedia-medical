@@ -91,6 +91,9 @@ export const OtpVerification: React.FC = () => {
             <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1 flex items-center justify-center gap-1">
               <Mail size={14} className="text-slate-400 dark:text-slate-500" /> {otpState.email}
             </p>
+            <p className="text-xs text-amber-600 dark:text-amber-400 mt-2 font-medium">
+              Demo mode: Enter any 6 digits (e.g., 123456) to verify
+            </p>
           </div>
 
           <form onSubmit={handleVerify} className="space-y-6">
@@ -105,9 +108,9 @@ export const OtpVerification: React.FC = () => {
                 required
                 autoFocus
               />
-              <p className="text-xs text-center text-slate-400 mt-2">
-                Code expires in 5 minutes. (Demo: use any 6 digits)
-              </p>
+<p className="text-xs text-center text-slate-400 mt-2">
+                 Demo mode - enter any 6 digits
+               </p>
             </div>
 
             {error && <p className="text-sm text-red-600 text-center">{error}</p>}
@@ -144,11 +147,12 @@ export const OtpVerification: React.FC = () => {
               Didn&apos;t receive the code?{' '}
               {canResend ? (
                 <button onClick={handleResend} className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
-                  Resend Code
+                  Use Demo Code (123456)
                 </button>
               ) : (
                 <span className="text-slate-400 dark:text-slate-500">Resend in {timer}s</span>
               )}
+              <span className="block text-xs text-slate-400 mt-1">(Demo: email verification skipped)</span>
             </p>
           </div>
         </div>

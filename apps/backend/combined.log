@@ -268,3 +268,33 @@ The column `Question.isSaved` does not exist in the current database.
 2026-06-09T21:36:47.199Z [nileopedia-backend] info: GET /health - ::1
 2026-06-09T21:38:31.554Z [nileopedia-backend] info: GET /health - ::1
 2026-06-09T21:38:31.606Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:42:15.568Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:42:15.625Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:46:28.673Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:48:01.037Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:48:01.125Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:03.092Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:48:03.105Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:04.533Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:48:04.543Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:48:05.801Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:48:05.811Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T21:49:38.620Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T21:49:38.631Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T22:04:07.600Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T22:04:07.700Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T22:04:09.706Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T22:04:09.720Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-09T22:05:15.015Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-09T22:16:01.756Z [nileopedia-backend] info: POST /api/v1/auth/verify-otp - ::1
+2026-06-09T22:19:38.267Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:19:41.240Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:19:52.860Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:21:00.064Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:21:01.129Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:26:26.034Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:26:31.994Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:26:36.162Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:31:20.216Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:31:26.487Z [nileopedia-backend] info: POST /api/v1/documents - ::1
+2026-06-09T22:31:32.020Z [nileopedia-backend] info: POST /api/v1/documents - ::1

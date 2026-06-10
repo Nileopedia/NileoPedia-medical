@@ -161,11 +161,11 @@ class ApiClient {
       const fallbackMessage = apiError.errors?.[0]?.msg || apiError.message || `Request failed (${response.status})`;
       // Check for authentication errors
       if (response.status === 401) {
-        throw new Error('Please sign in to ask questions');
+        throw new Error('Please sign in to continue');
       }
-      // Check for service unavailable errors
-      if (response.status === 503 || response.status === 500) {
-        throw new Error('AI service temporarily unavailable. Please try again later.');
+      // Check for conflict (duplicate email)
+      if (response.status === 409) {
+        throw new Error('Email already registered');
       }
       // Debug log
       if (process.env.NODE_ENV !== 'test') {
@@ -369,7 +369,7 @@ class ApiClient {
     });
   }
 
-async unsaveResponse(questionId: string): Promise<void> {
+  async unsaveResponse(questionId: string): Promise<void> {
     await this.request(`/questions/${questionId}/save`, {
       method: 'DELETE',
     });
@@ -395,17 +395,32 @@ async unsaveResponse(questionId: string): Promise<void> {
     const formData = new FormData();
     formData.append('document', file);
     
-    const response = await fetch(`${API_BASE_URL}/documents`, {
+    const token = this.getAuthToken();
+    
+    const response = await fetch(`${API_BASE_URL}/documents/upload`, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${this.getAuthToken()}`,
+        Authorization: token ? `Bearer ${token}` : '',
       },
       body: formData,
     });
 
-    const payload = await response.json();
+    // Handle non-JSON responses (HTML error pages)
+    let payload: any;
+    try {
+      const contentType = response.headers.get('content-type');
+      if (contentType && contentType.includes('application/json')) {
+        payload = await response.json();
+      } else {
+        payload = { message: `Server error (${response.status})` };
+      }
+    } catch {
+      payload = { message: `Request failed (${response.status})` };
+    }
+
     if (!response.ok) {
-      throw new Error(payload.message || 'Upload failed');
+      const errorMessage = payload?.message || `Upload failed (${response.status})`;
+      throw new Error(errorMessage);
     }
 
     return this.unwrap(payload);
