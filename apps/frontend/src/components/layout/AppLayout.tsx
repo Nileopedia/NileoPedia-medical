@@ -3,14 +3,17 @@ import { Sidebar } from './Sidebar';
 import { Navbar } from './Navbar';
 import { useAppStore } from '../../store/appStore';
 import { cn } from '../../utils/cn';
-import { X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 
 interface AppLayoutProps {
   children: React.ReactNode;
 }
 
 export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
-  const { isMobileNavOpen, toggleMobileNav } = useAppStore();
+  const { isMobileNavOpen, toggleMobileNav, isSidebarOpen } = useAppStore();
+
+  // Calculate main content margin based on sidebar state
+  const mainMargin = isSidebarOpen ? 'lg:ml-64' : 'lg:ml-16';
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
@@ -24,7 +27,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
         />
       )}
 
-      {/* Mobile sidebar */}
+      {/* Mobile sidebar - slide-in drawer behavior */}
       <div
         className={cn(
           'fixed left-0 top-0 h-screen w-64 bg-slate-900 z-30 transform transition-transform duration-300 lg:hidden',
@@ -43,7 +46,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       </div>
 
       {/* Main content */}
-      <div className="lg:ml-64">
+      <div className={cn(mainMargin, 'transition-all duration-300 ease-in-out')}>
         <Navbar />
         <main className="p-6">{children}</main>
       </div>
