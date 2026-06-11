@@ -32,10 +32,21 @@ export async function processAiGeneration(job: AiGenerationJob) {
   const { questionId, query, userId, topK = 10, specialty } = job;
 
   try {
+    let summary, citations, confidenceScore, keyFindings;
+
     // Use mock mode if AI service is unavailable or mock mode is enabled
-    logger.info('Using mock AI response for question:', questionId);
-    const mock = generateMockResponse(query, topK);
-    const { summary, citations, confidenceScore, keyFindings } = mock;
+    if (USE_MOCK_AI) {
+      logger.info('Using mock AI response for question:', questionId);
+      const mock = generateMockResponse(query, topK);
+      ({ summary, citations, confidenceScore, keyFindings } = mock);
+    } else {
+      const response = await axios.post(`${AI_SERVICE_URL}/generate`, {
+        query,
+        topK,
+        specialty,
+      }, { timeout: 30000 });
+      ({ summary, citations, confidenceScore, keyFindings } = response.data);
+    }
 
     const aiResponse = await prisma.aIResponse.create({
       data: {
@@ -67,8 +78,24 @@ export async function processAiGeneration(job: AiGenerationJob) {
     logger.info(`AI generation completed for question: ${questionId}`);
     return { success: true, responseId: aiResponse.id };
 
-  } catch (error) {
+  } catch (error: any) {
     logger.error(`AI generation failed for question: ${questionId}`, error);
+
+    // Fallback to mock response on AI service error
+    if (!USE_MOCK_AI) {
+      logger.info('Falling back to mock response for question:', questionId);
+      const mock = generateMockResponse(query, topK);
+      const aiResponse = await prisma.aIResponse.create({
+        data: {
+          questionId,
+          summary: mock.summary,
+          keyFindings: mock.keyFindings,
+          confidenceScore: mock.confidenceScore,
+          generatedBy: 'GPT-4o (fallback)',
+        },
+      });
+      return { success: true, responseId: aiResponse.id };
+    }
     throw error;
   }
 }

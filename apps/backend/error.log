@@ -623,3 +623,9 @@ The column `isSaved` does not exist in the current database.
 2026-06-10T09:19:49.278Z [nileopedia-backend] error: Error in register controller: User already exists
 2026-06-10T19:09:01.602Z [nileopedia-backend] error: Error in login controller: Invalid credentials
 2026-06-10T20:28:48.442Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-11T07:57:50.591Z [nileopedia-backend] error: AI generation job failed: 5 io is not defined
+2026-06-11T07:57:52.618Z [nileopedia-backend] error: AI generation job failed: 5 io is not defined
+2026-06-11T07:57:56.642Z [nileopedia-backend] error: AI generation job failed: 5 io is not defined
+2026-06-11T07:58:10.461Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
+2026-06-11T07:58:12.526Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
+2026-06-11T07:58:16.536Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined

@@ -1777,3 +1777,45 @@ The column `isSaved` does not exist in the current database.
 2026-06-11T06:43:25.551Z [nileopedia-backend] info: GET /api/v1/questions/f2a7a9f5-fb5f-49a6-8e46-b92b4aba391e - ::1
 2026-06-11T06:43:28.555Z [nileopedia-backend] info: GET /api/v1/questions/f2a7a9f5-fb5f-49a6-8e46-b92b4aba391e - ::1
 2026-06-11T06:43:31.550Z [nileopedia-backend] info: GET /api/v1/questions/f2a7a9f5-fb5f-49a6-8e46-b92b4aba391e - ::1
+2026-06-11T07:36:43.514Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T07:49:51.345Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T07:50:20.659Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T07:57:50.358Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T07:57:50.565Z [nileopedia-backend] info: Processing AI generation job: 5
+2026-06-11T07:57:50.591Z [nileopedia-backend] error: AI generation job failed: 5 io is not defined
+2026-06-11T07:57:52.612Z [nileopedia-backend] info: Processing AI generation job: 5
+2026-06-11T07:57:52.618Z [nileopedia-backend] error: AI generation job failed: 5 io is not defined
+2026-06-11T07:57:56.631Z [nileopedia-backend] info: Processing AI generation job: 5
+2026-06-11T07:57:56.642Z [nileopedia-backend] error: AI generation job failed: 5 io is not defined
+2026-06-11T07:58:10.360Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T07:58:10.456Z [nileopedia-backend] info: Processing AI generation job: 6
+2026-06-11T07:58:10.461Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
+2026-06-11T07:58:12.517Z [nileopedia-backend] info: Processing AI generation job: 6
+2026-06-11T07:58:12.526Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
+2026-06-11T07:58:16.530Z [nileopedia-backend] info: Processing AI generation job: 6
+2026-06-11T07:58:16.536Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
+2026-06-11T08:00:09.899Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T08:01:59.807Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T08:06:32.533Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T08:07:12.335Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T12:09:17.366Z [nileopedia-backend] info: GET /api/v1/questions/be9d2af6-14b7-4c7a-9ade-75876aab3d3b - ::1
+2026-06-11T12:10:00.845Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T12:10:01.139Z [nileopedia-backend] info: GET /api/v1/questions/be9d2af6-14b7-4c7a-9ade-75876aab3d3b - ::1
+2026-06-11T12:26:37.314Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T12:27:17.946Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T12:27:18.144Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T12:27:18.181Z [nileopedia-backend] info: Processing AI generation job: 7
+2026-06-11T12:27:18.183Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T12:27:18.392Z [nileopedia-backend] info: AI generation completed for question: cc94aaa0-c7eb-4686-82ae-599c7fcd1d01
+2026-06-11T12:27:18.397Z [nileopedia-backend] info: AI generation job completed: 7
+2026-06-11T12:27:51.040Z [nileopedia-backend] info: GET /api/v1/questions/cc94aaa0-c7eb-4686-82ae-599c7fcd1d01 - ::1
+2026-06-11T12:28:17.142Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T12:28:18.296Z [nileopedia-backend] info: GET /api/v1/questions/cc94aaa0-c7eb-4686-82ae-599c7fcd1d01 - ::1
+2026-06-11T12:38:56.936Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T12:38:57.084Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T12:38:57.099Z [nileopedia-backend] info: Processing AI generation job: 8
+2026-06-11T12:38:57.100Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T12:38:57.157Z [nileopedia-backend] info: AI generation completed for question: acacf581-b865-4f50-a1de-b8777fba8092
+2026-06-11T12:38:57.162Z [nileopedia-backend] info: AI generation job completed: 8
+2026-06-11T12:39:27.357Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T12:39:27.532Z [nileopedia-backend] info: GET /api/v1/questions/acacf581-b865-4f50-a1de-b8777fba8092 - ::1

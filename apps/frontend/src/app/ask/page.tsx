@@ -32,76 +32,70 @@ export default function AskPage() {
   useEffect(() => {
     if (!questionId) return;
 
+    // Poll for response since worker runs in separate process
+    let pollInterval: NodeJS.Timeout;
+    let attempts = 0;
+    const maxAttempts = 60;
+
+    const pollForResponse = async () => {
+      try {
+        const data = await api.getQuestion(questionId);
+        
+        if (data.aiResponse) {
+          setResponse(data.aiResponse);
+          setProcessing(false);
+          setProgress(100);
+          setPartialFindings(data.aiResponse.keyFindings || []);
+          setStreamingVisible((data.aiResponse.keyFindings || []).map(() => true));
+          clearInterval(pollInterval);
+        } else if (attempts < maxAttempts) {
+          attempts++;
+          setProcessing(true);
+          setProgress(Math.min(90, attempts * 15));
+        }
+      } catch {
+        if (attempts < maxAttempts) {
+          attempts++;
+          setProgress(Math.min(90, attempts * 15));
+        }
+      }
+    };
+
+    // Start polling immediately
+    setProcessing(true);
+    setProgress(5);
+    pollForResponse();
+    pollInterval = setInterval(pollForResponse, 1500);
+
+    // Also try socket for real-time updates (will only work if in same process)
     const socket: Socket = io(SOCKET_URL, {
       transports: ['websocket'],
-      reconnection: true,
+      reconnection: false,
     });
 
     socket.on('connect', () => {
       setSocketConnected(true);
-      if (wasConnectedRef.current) {
-        addToast({ type: 'success', title: 'Connection restored', duration: 2000 });
-      }
-      wasConnectedRef.current = true;
-      socket.emit('stream-question', questionId);
-      if (user) {
-        socket.emit('join-user', user.id);
-      }
     });
 
     socket.on('disconnect', () => {
       setSocketConnected(false);
-      addToast({ type: 'warning', title: 'Connection lost', duration: 2000 });
     });
 
     socket.on('ai-status', (data: { status: string; message: string }) => {
       setProcessing(true);
-      setStreamingVisible([]);
     });
 
     socket.on('ai-key-findings', (data: { keyFindings: string[] }) => {
       setPartialFindings(data.keyFindings);
-      setStreamingVisible(prev => {
-        const combined = Array(data.keyFindings.length).fill(false);
-        return combined;
-      });
-      // Staggered fade-in for each finding
-      data.keyFindings.forEach((_, idx) => {
-        setTimeout(() => {
-          setStreamingVisible(prev => {
-            const combined = [...prev];
-            combined[idx] = true;
-            return combined;
-          });
-        }, idx * 150);
-      });
     });
 
     socket.on('ai-progress', (data: { progress: number }) => {
       setProgress(data.progress);
     });
 
-    socket.on('ai-response-complete', (data: { responseId: string }) => {
+    socket.on('ai-response-complete', () => {
       setProcessing(false);
       setProgress(100);
-      api.getQuestion(questionId).then(result => {
-        if (result.aiResponse) {
-          setResponse(result.aiResponse);
-        }
-      }).catch(() => {
-        const pollInterval = setInterval(async () => {
-          try {
-            const result = await api.getQuestion(questionId);
-            if (result.aiResponse) {
-              setResponse(result.aiResponse);
-              setProcessing(false);
-              clearInterval(pollInterval);
-            }
-          } catch { /* continue polling */ }
-        }, 2000);
-        
-        setTimeout(() => clearInterval(pollInterval), 30000);
-      });
     });
 
     socket.on('ai-error', (data: { error: string }) => {
@@ -111,7 +105,13 @@ export default function AskPage() {
       addToast({ type: 'error', title: 'AI Processing Failed', message: data.error });
     });
 
+    // Join the question room after a small delay to ensure question exists
+    setTimeout(() => {
+      socket.emit('stream-question', questionId);
+    }, 100);
+
     return () => {
+      clearInterval(pollInterval);
       socket.disconnect();
     };
   }, [questionId, user, addToast]);
