@@ -629,3 +629,33 @@ The column `isSaved` does not exist in the current database.
 2026-06-11T07:58:10.461Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
 2026-06-11T07:58:12.526Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
 2026-06-11T07:58:16.536Z [nileopedia-backend] error: AI generation job failed: 6 io is not defined
+2026-06-11T14:06:59.852Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.857Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.873Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.874Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.976Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.976Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.009Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.013Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.137Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.137Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.166Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.171Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.339Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.339Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.370Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.375Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.592Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.593Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.622Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.631Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.898Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.898Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.924Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.944Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.250Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.250Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.276Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.297Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.652Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.653Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379

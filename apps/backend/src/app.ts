@@ -73,28 +73,78 @@ prisma.$connect()
     // Mock AI service endpoint for development/testing (when real AI service unavailable)
     if (CONFIG.NODE_ENV === 'development' || CONFIG.USE_MOCK_AI) {
       app.post('/api/v1/mock-ai/generate', (req, res) => {
-        const { query } = req.body;
+        const { query, specialty } = req.body;
         
-        // Generate mock medical response
-        const mockCitations = Array.from({ length: 3 }, (_, i) => ({
-          title: `Medical Reference ${i + 1}`,
-          source: 'PubMed',
-          authors: 'Dr. Smith et al.',
-          publicationYear: 2023,
-          doi: `10.1001/jama.${i}`,
-          url: `https://pubmed.ncbi.nlm.nih.gov/${i}`,
-        }));
-
-        setTimeout(() => {
-          res.json({
-            summary: `Based on medical literature, here are the key insights for: "${query}"`,
-            citations: mockCitations,
-            confidenceScore: 0.85 + Math.random() * 0.1,
+        // Specialty-specific mock content
+        const specialtyContent: Record<string, { keywords: string[], keyFindings: string[] }> = {
+          cardiology: {
+            keywords: ['heart', 'cardiac', 'cardiovascular'],
+            keyFindings: [
+              'Cardiology finding 1: ACE inhibitors improve cardiac function',
+              'Cardiology finding 2: Beta-blockers reduce mortality post-MI',
+              'Cardiology finding 3: Statins provide cardiovascular protection',
+            ],
+          },
+          endocrinology: {
+            keywords: ['diabetes', 'hormone', 'endocrine'],
+            keyFindings: [
+              'Endocrinology finding 1: Metformin is first-line for T2DM',
+              'Endocrinology finding 2: GLP-1 agonists provide cardiovascular benefit',
+              'Endocrinology finding 3: HbA1c target <7% for most patients',
+            ],
+          },
+          oncology: {
+            keywords: ['cancer', 'tumor', 'malignant'],
+            keyFindings: [
+              'Oncology finding 1: Immunotherapy improves survival in certain cancers',
+              'Oncology finding 2: Precision oncology targets specific mutations',
+              'Oncology finding 3: Multimodal treatment shows best outcomes',
+            ],
+          },
+          neurology: {
+            keywords: ['brain', 'neurological', 'nerve'],
+            keyFindings: [
+              'Neurology finding 1: Cholinesterase inhibitors improve cognition',
+              'Neurology finding 2: Mechanical thrombectomy within 24 hours',
+              'Neurology finding 3: Disease-modifying therapies in development',
+            ],
+          },
+          gastroenterology: {
+            keywords: ['liver', 'intestine', 'digestive'],
+            keyFindings: [
+              'Gastroenterology finding 1: H. pylori eradication prevents ulcers',
+              'Gastroenterology finding 2: Anti-TNF agents for IBD',
+              'Gastroenterology finding 3: Colonoscopy screening reduces CRC',
+            ],
+          },
+          general: {
+            keywords: [],
             keyFindings: [
               'Key finding 1: Relevant medical information identified',
               'Key finding 2: Evidence-based recommendations available',
               'Key finding 3: Clinical guidelines referenced',
             ],
+          },
+        };
+        
+        const content = specialtyContent[specialty] || specialtyContent.general;
+        const specialtyName = specialty ? specialty.charAt(0).toUpperCase() + specialty.slice(1).toLowerCase() : 'General';
+        
+        const mockCitations = Array.from({ length: 3 }, (_, i) => ({
+          title: `${specialtyName} Reference ${i + 1}`,
+          source: 'PubMed',
+          authors: 'Dr. Smith et al.',
+          publicationYear: 2024,
+          doi: `10.1001/${specialty || 'jama'}.${i}`,
+          url: `https://pubmed.ncbi.nlm.nih.gov/${i}`,
+        }));
+
+        setTimeout(() => {
+          res.json({
+            summary: `Based on ${specialtyName} medical literature, here are the key insights for: "${query}"`,
+            citations: mockCitations,
+            confidenceScore: 0.85 + Math.random() * 0.1,
+            keyFindings: content.keyFindings,
           });
         }, 500);
       });

@@ -15,9 +15,9 @@ export class QuestionsController {
         return res.status(401).json({ success: false, message: 'Authentication required' });
       }
       const userId = req.user!.id;
-      const { question } = req.body;
+      const { question, specialty } = req.body;
 
-      const result = await this.questionsService.askQuestion(userId, question);
+      const result = await this.questionsService.askQuestion(userId, question, specialty);
 
       res.status(201).json({
         success: true,

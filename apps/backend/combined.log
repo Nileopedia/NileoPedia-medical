@@ -1819,3 +1819,93 @@ The column `isSaved` does not exist in the current database.
 2026-06-11T12:38:57.162Z [nileopedia-backend] info: AI generation job completed: 8
 2026-06-11T12:39:27.357Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
 2026-06-11T12:39:27.532Z [nileopedia-backend] info: GET /api/v1/questions/acacf581-b865-4f50-a1de-b8777fba8092 - ::1
+2026-06-11T14:06:59.852Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.857Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.873Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.874Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.976Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:06:59.976Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.009Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.013Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.137Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.137Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.166Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.171Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.339Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.339Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.370Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.375Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.592Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.593Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.622Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.631Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.898Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.898Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.924Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:00.944Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.250Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.250Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.276Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.297Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.652Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T14:07:01.653Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-11T18:27:23.247Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:27:23.500Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T18:27:46.876Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:27:47.077Z [nileopedia-backend] info: GET /api/v1/questions/af281c5e-279f-4e4a-a08c-217baf37143b - ::1
+2026-06-11T18:28:44.476Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T18:28:44.620Z [nileopedia-backend] info: Processing AI generation job: 9
+2026-06-11T18:28:44.621Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T18:28:44.771Z [nileopedia-backend] info: AI generation completed for question: af281c5e-279f-4e4a-a08c-217baf37143b
+2026-06-11T18:28:44.779Z [nileopedia-backend] info: AI generation job completed: 9
+2026-06-11T18:29:13.904Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:29:14.260Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T18:29:14.270Z [nileopedia-backend] info: Processing AI generation job: 10
+2026-06-11T18:29:14.271Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T18:29:14.287Z [nileopedia-backend] info: AI generation completed for question: acec24e1-0273-4f4c-a4b4-468e6735a5e1
+2026-06-11T18:29:14.289Z [nileopedia-backend] info: AI generation job completed: 10
+2026-06-11T18:29:15.294Z [nileopedia-backend] info: GET /api/v1/questions/af281c5e-279f-4e4a-a08c-217baf37143b - ::1
+2026-06-11T18:29:43.232Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:29:43.476Z [nileopedia-backend] info: GET /api/v1/questions/acec24e1-0273-4f4c-a4b4-468e6735a5e1 - ::1
+2026-06-11T18:45:42.715Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T18:49:52.786Z [nileopedia-backend] info: Schedulers initialized
+2026-06-11T18:50:23.428Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:50:23.738Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T18:50:23.788Z [nileopedia-backend] info: Processing AI generation job: 11
+2026-06-11T18:50:23.791Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T18:50:24.065Z [nileopedia-backend] info: AI generation completed for question: 57d94eed-7549-4808-9978-9aa28b187410
+2026-06-11T18:50:24.069Z [nileopedia-backend] info: AI generation job completed: 11
+2026-06-11T18:50:25.816Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T18:50:25.829Z [nileopedia-backend] info: Processing AI generation job: 12
+2026-06-11T18:50:25.829Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T18:50:25.846Z [nileopedia-backend] info: AI generation completed for question: b4910136-38c6-492b-8823-7d18f3e870a9
+2026-06-11T18:50:25.848Z [nileopedia-backend] info: AI generation job completed: 12
+2026-06-11T18:50:25.850Z [nileopedia-backend] info: GET /api/v1/questions/b4910136-38c6-492b-8823-7d18f3e870a9 - ::1
+2026-06-11T18:50:51.902Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:50:52.188Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T18:50:52.199Z [nileopedia-backend] info: Processing AI generation job: 13
+2026-06-11T18:50:52.200Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T18:50:52.221Z [nileopedia-backend] info: AI generation completed for question: bbe9e98b-855f-46d1-a22d-c3e79b0f5cf6
+2026-06-11T18:50:52.223Z [nileopedia-backend] info: AI generation job completed: 13
+2026-06-11T18:50:54.223Z [nileopedia-backend] info: GET /api/v1/questions/57d94eed-7549-4808-9978-9aa28b187410 - ::1
+2026-06-11T18:51:15.968Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T18:51:16.201Z [nileopedia-backend] info: GET /api/v1/questions/bbe9e98b-855f-46d1-a22d-c3e79b0f5cf6 - ::1
+2026-06-11T18:57:34.354Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T18:57:34.470Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T18:57:34.583Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T18:57:34.697Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T18:57:34.807Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T18:57:34.914Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T18:57:35.021Z [nileopedia-backend] info: POST /api/v1/mock-ai/ingest - ::ffff:127.0.0.1
+2026-06-11T19:07:38.456Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-11T19:07:38.820Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T19:07:38.833Z [nileopedia-backend] info: Processing AI generation job: 14
+2026-06-11T19:07:38.833Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T19:07:38.909Z [nileopedia-backend] info: AI generation completed for question: f4ca453c-b89e-4aa7-8194-2451ae981d8f
+2026-06-11T19:07:38.911Z [nileopedia-backend] info: AI generation job completed: 14
+2026-06-11T19:07:39.868Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-11T19:07:39.878Z [nileopedia-backend] info: Processing AI generation job: 15
+2026-06-11T19:07:39.878Z [nileopedia-backend] info: Using mock AI response for question:
+2026-06-11T19:07:39.894Z [nileopedia-backend] info: AI generation completed for question: 37ea0e4c-72dd-450c-ab66-d7d6ae542f33
+2026-06-11T19:07:39.898Z [nileopedia-backend] info: AI generation job completed: 15
+2026-06-11T19:07:39.902Z [nileopedia-backend] info: GET /api/v1/questions/37ea0e4c-72dd-450c-ab66-d7d6ae542f33 - ::1

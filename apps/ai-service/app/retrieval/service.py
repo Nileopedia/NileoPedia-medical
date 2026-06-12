@@ -4,8 +4,19 @@ from app.embeddings.service import generate_embedding
 from app.models.schemas import DocumentChunk, RetrievalType, EmbeddingRequest
 from typing import List
 import logging
+import hashlib
+import random
 
 logger = logging.getLogger(__name__)
+
+# Demo mode: use deterministic embeddings for testing
+def generate_demo_embedding(text: str, model: str = "text-embedding-3-large") -> list:
+    """Generate deterministic embedding for demo/testing without OpenAI."""
+    h = int(hashlib.sha256(text.encode()).hexdigest()[:16], 16)
+    random.seed(h)
+    vec = [random.gauss(0, 1) for _ in range(3072)]
+    norm = sum(x*x for x in vec) ** 0.5
+    return [x/norm for x in vec] if norm > 0 else vec
 
 # Weighted scoring constants
 SEMANTIC_WEIGHT = 0.7
@@ -19,9 +30,15 @@ async def hybrid_retrieval(
 ) -> List[DocumentChunk]:
     """Perform hybrid retrieval combining semantic and keyword search."""
     
-    if retrieval_type == RetrievalType.SEMANTIC:
+    try:
         embedding = await generate_embedding(EmbeddingRequest(text=query, model="text-embedding-3-large"))
-        namespace = get_namespace_for_specialty(specialty) if specialty else "general"
+    except Exception as e:
+        logger.warning(f"OpenAI embedding failed, using demo mode: {e}")
+        embedding = generate_demo_embedding(query)
+    
+    namespace = get_namespace_for_specialty(specialty) if specialty else "general"
+    
+    if retrieval_type == RetrievalType.SEMANTIC:
         logger.info(f"Generated query embedding, searching in namespace: {namespace}")
         return await semantic_search(embedding, topK, namespace)
     
@@ -31,12 +48,9 @@ async def hybrid_retrieval(
             return await keyword_search(query, topK, specialty)
         except RuntimeError as e:
             logger.error(f"Keyword search failed: {str(e)}")
-            raise RuntimeError(f"Elasticsearch connection required for keyword search. Set ELASTICSEARCH_URL and ELASTICSEARCH_API_KEY environment variables. Error: {str(e)}")
+            raise RuntimeError(f"Elasticsearch connection required for keyword search. Set ELASTICSEARCH_URL and ELASTICSEARCH_API_KEY environment variables. Error: {str(e)}") from e
     
     else:  # HYBRID
-        embedding = await generate_embedding(EmbeddingRequest(text=query, model="text-embedding-3-large"))
-        namespace = get_namespace_for_specialty(specialty) if specialty else "general"
-        
         logger.info(f"Performing hybrid search, namespace: {namespace}")
         semantic_chunks = await semantic_search(embedding, topK, namespace)
         try:

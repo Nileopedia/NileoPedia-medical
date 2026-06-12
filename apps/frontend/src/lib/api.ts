@@ -267,10 +267,10 @@ class ApiClient {
     };
   }
 
-  async askQuestion(question: string): Promise<{ questionId: string; status: string; message: string }> {
+  async askQuestion(question: string, specialty?: string): Promise<{ questionId: string; status: string; message: string }> {
     const payload = await this.request<ApiEnvelope<{ questionId: string; status: string; message: string }>>('/questions/ask', {
       method: 'POST',
-      body: JSON.stringify({ question }),
+      body: JSON.stringify({ question, specialty }),
     });
 
     return this.unwrap(payload);

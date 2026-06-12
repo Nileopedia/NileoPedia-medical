@@ -3,7 +3,7 @@ import { aiQueue } from '../../../jobs/queues';
 import { logger } from '../../../config/logger';
 
 export class QuestionsService {
-  async askQuestion(userId: string, questionText: string) {
+  async askQuestion(userId: string, questionText: string, specialty?: string) {
     try {
       const question = await prisma.question.create({
         data: { userId, questionText },
@@ -16,6 +16,7 @@ export class QuestionsService {
           query: questionText,
           userId,
           topK: 10,
+          specialty: specialty || null,
         }, {
           attempts: 3,
           backoff: { type: 'exponential', delay: 2000 },

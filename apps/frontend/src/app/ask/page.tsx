@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
-import { Send, Loader2 } from 'lucide-react';
+import { Send, Loader2, Stethoscope } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
@@ -16,6 +16,7 @@ const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001'
 
 export default function AskPage() {
   const [question, setQuestion] = useState('');
+  const [specialty, setSpecialty] = useState<string>('general');
   const [loading, setLoading] = useState(false);
   const [processing, setProcessing] = useState(false);
   const [response, setResponse] = useState<AIResponse | null>(null);
@@ -27,7 +28,6 @@ export default function AskPage() {
   const [questionId, setQuestionId] = useState<string | null>(null);
   const user = useAppStore((state) => state.user);
   const { addToast } = useToast();
-  const wasConnectedRef = useRef(false);
 
   useEffect(() => {
     if (!questionId) return;
@@ -127,7 +127,7 @@ export default function AskPage() {
     setQuestionId(null);
 
     try {
-      const result = await api.askQuestion(question.trim());
+      const result = await api.askQuestion(question.trim(), specialty === 'general' ? undefined : specialty);
       setQuestionId(result.questionId);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to submit question');
@@ -152,6 +152,26 @@ export default function AskPage() {
           <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
             <h2 className="text-lg font-semibold text-slate-900 mb-4">New Question</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                  Specialty (Optional)
+                </label>
+                <div className="relative">
+                  <Stethoscope className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
+                  <select
+                    value={specialty}
+                    onChange={(e) => setSpecialty(e.target.value)}
+                    className="w-full pl-10 pr-4 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  >
+                    <option value="general">General Medicine</option>
+                    <option value="cardiology">Cardiology</option>
+                    <option value="endocrinology">Endocrinology</option>
+                    <option value="oncology">Oncology</option>
+                    <option value="neurology">Neurology</option>
+                    <option value="gastroenterology">Gastroenterology</option>
+                  </select>
+                </div>
+              </div>
               <div>
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Medical Question
