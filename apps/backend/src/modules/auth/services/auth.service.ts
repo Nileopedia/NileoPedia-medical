@@ -147,21 +147,43 @@ export class AuthService {
     if (!user) {
       throw new Error('User not found');
     }
-    // Validators and admins require OTP verification
     return user.role === 'VALIDATOR' || user.role === 'ADMIN';
   }
 
+  async generateOtp(email: string): Promise<string> {
+    const otp = Math.floor(100000 + Math.random() * 900000).toString();
+    const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes expiry
+    
+    await this.authRepository.createOtp(email, otp, expiresAt);
+    
+    try {
+      const EmailService = (await import('../../email/email.service')).EmailService;
+      const user = await this.authRepository.findByEmail(email);
+      await EmailService.sendOtp({ email, fullName: user?.fullName || 'User', otp });
+      logger.info(`OTP email sent to ${email}`);
+    } catch (error) {
+      logger.info(`OTP for ${email}: ${otp}`);
+    }
+    
+    return otp;
+  }
+
   async verifyOtp(email: string, otp: string) {
-    // In production, verify against stored OTP with expiry
-    // For demo purposes, accept any 6-digit code
     if (!otp || otp.length !== 6) {
       throw new Error('Invalid OTP');
+    }
+
+    const otpRecord = await this.authRepository.findOtp(email, otp);
+    if (!otpRecord) {
+      throw new Error('Invalid or expired OTP');
     }
 
     const user = await this.authRepository.findByEmail(email);
     if (!user) {
       throw new Error('User not found');
     }
+
+    await this.authRepository.markOtpUsed(otpRecord.id);
 
     const accessToken = this.jwtService.generateAccessToken({
       id: user.id,
@@ -193,11 +215,13 @@ export class AuthService {
   async forgotPassword(email: string) {
     const user = await this.authRepository.findByEmail(email);
     if (user) {
-      // Generate reset token (in production, this would be stored with expiry)
-      const resetToken = Math.random().toString(36).substring(2, 15);
+      const resetToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+      const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour expiry
+      
+      await this.authRepository.createPasswordReset(email, resetToken, expiresAt);
+      
       const resetLink = `${process.env.FRONTEND_URL}/reset-password?email=${encodeURIComponent(email)}&token=${resetToken}`;
       
-      // Try to send email via queue worker, fallback to direct send for demo
       try {
         const EmailService = (await import('../../email/email.service')).EmailService;
         await EmailService.sendPasswordReset({
@@ -207,18 +231,32 @@ export class AuthService {
         });
         logger.info(`Password reset email sent to ${email}`);
       } catch (error) {
-        // In demo mode without Redis/worker, log the reset link
         logger.info(`Reset link for ${email}: ${resetLink}`);
       }
     }
-    // Always return success to prevent email enumeration attacks
     return { success: true };
   }
 
   async resetPassword(email: string, token: string, newPassword: string) {
-    // In production, verify token matches and hasn't expired
     if (!token || token.length < 6) {
       throw new Error('Invalid or expired reset token');
+    }
+
+    const resetRecord = await this.authRepository.findPasswordReset(token);
+    if (!resetRecord) {
+      throw new Error('Invalid or expired reset token');
+    }
+
+    if (resetRecord.email !== email) {
+      throw new Error('Invalid or expired reset token');
+    }
+
+    if (resetRecord.expiresAt < new Date()) {
+      throw new Error('Reset token has expired');
+    }
+
+    if (resetRecord.used) {
+      throw new Error('Reset token has already been used');
     }
 
     const user = await this.authRepository.findByEmail(email);
@@ -226,12 +264,11 @@ export class AuthService {
       throw new Error('User not found');
     }
 
-    // For demo, accept any token
-
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(newPassword, salt);
 
     await this.authRepository.updatePassword(user.id, hashedPassword);
+    await this.authRepository.markPasswordResetUsed(resetRecord.id);
 
     return { success: true };
   }

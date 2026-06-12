@@ -17,6 +17,24 @@ export const emailTemplates = {
     `,
   }),
 
+  otpLogin: (data: { fullName: string; otp: string }): { subject: string; html: string } => ({
+    subject: 'Your NileoPedia Login Verification Code',
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+        <h2>Login Verification</h2>
+        <p>Hello ${data.fullName},</p>
+        <p>Your login verification code is:</p>
+        <div style="background: #f0f0f0; padding: 20px; text-align: center; font-size: 32px; font-weight: bold; letter-spacing: 8px;">
+          ${data.otp}
+        </div>
+        <p style="color: #666;">This code expires in 10 minutes.</p>
+        <p>If you did not attempt to login, please ignore this email.</p>
+        <hr>
+        <p style="font-size: 12px; color: #999;">NileoPedia Security Team</p>
+      </div>
+    `,
+  }),
+
   passwordReset: (data: { fullName: string; resetLink: string }): { subject: string; html: string } => ({
     subject: 'Reset Your NileoPedia Password',
     html: `

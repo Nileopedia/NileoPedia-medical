@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { redis } from './lib/redis';
 import { CONFIG } from './config/env';
 import prisma from './config/prisma';
 import { setupMiddleware } from './shared/middleware';
@@ -8,17 +9,19 @@ import { setupRoutes } from './routes';
 import bcrypt from 'bcryptjs';
 import { UserRole } from '@prisma/client';
 
-// Initialize Express app
 const app: Express = express();
 const httpServer = createServer(app);
+
 const io = new Server(httpServer, {
   cors: {
     origin: CONFIG.CORS_ORIGIN,
     methods: ['GET', 'POST'],
   },
+  connectionStateRecovery: {
+    maxDisconnectionDuration: 2 * 60 * 1000,
+  },
 });
 
-// Make io accessible to other modules
 declare global {
   // eslint-disable-next-line no-var
   var io: Server;
@@ -164,18 +167,22 @@ prisma.$connect()
       });
     }
 
-    // Socket.IO connection handling
+    // Socket.IO connection handling with Redis pub/sub for real-time streaming
     io.on('connection', (socket) => {
       console.log('User connected:', socket.id);
 
-      // Join room for specific user to receive personalized notifications
       socket.on('join-user', (userId: string) => {
         socket.join(`user-${userId}`);
       });
 
-      // Listen for question streaming
       socket.on('stream-question', (questionId: string) => {
         socket.join(`question-${questionId}`);
+        // Send existing data if available
+        redis.get(`question-progress:${questionId}`).then(data => {
+          if (data) {
+            socket.emit('ai-progress', JSON.parse(data));
+          }
+        });
       });
 
       socket.on('disconnect', () => {

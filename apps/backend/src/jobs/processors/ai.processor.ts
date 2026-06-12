@@ -2,6 +2,7 @@ import prisma from '../../config/prisma';
 import axios from 'axios';
 import { AiGenerationJob } from '../types';
 import { logger } from '../../config/logger';
+import { redis } from '../../lib/redis';
 
 const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
 const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !AI_SERVICE_URL;
@@ -87,7 +88,26 @@ export async function processAiGeneration(job: AiGenerationJob) {
     // Use mock mode if AI service is unavailable or mock mode is enabled
     if (USE_MOCK_AI) {
       logger.info(`Using mock AI response for question:`, questionId, `specialty:`, specialty);
+      
       const mock = generateMockResponse(query, topK, specialty || undefined);
+      
+      // Stream progress for real-time updates via Redis pub/sub
+      const progressEvents = [
+        { progress: 25, status: 'analyzing' },
+        { progress: 50, keyFindings: mock.keyFindings.slice(0, 1) },
+        { progress: 75, keyFindings: mock.keyFindings.slice(0, 2) },
+        { progress: 100, keyFindings: mock.keyFindings },
+      ];
+      
+      for (const event of progressEvents) {
+        await redis.publish('ai-progress', JSON.stringify({
+          questionId,
+          ...event,
+        }));
+        await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({ questionId, ...event }));
+        await new Promise(resolve => setTimeout(resolve, 200));
+      }
+      
       ({ summary, citations, confidenceScore, keyFindings } = mock);
     } else {
       logger.info(`Calling AI service for question:`, questionId);
@@ -97,6 +117,13 @@ export async function processAiGeneration(job: AiGenerationJob) {
         specialty,
       }, { timeout: 30000 });
       ({ summary, citations, confidenceScore, keyFindings } = response.data);
+      
+      // Store progress for late-joining clients
+      await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+        questionId,
+        progress: 100,
+        keyFindings,
+      }));
     }
 
     const aiResponse = await prisma.aIResponse.create({

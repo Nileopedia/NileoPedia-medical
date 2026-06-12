@@ -69,6 +69,21 @@ export interface CategoryStat {
   color: string;
 }
 
+export interface ValidationReview {
+  id: string;
+  aiResponseId: string;
+  aiResponse: {
+    title: string;
+    question: {
+      questionText: string;
+    };
+  };
+  status: 'pending' | 'approved' | 'rejected' | 'in_review';
+  reviewedAt: string;
+  score?: number;
+  feedback?: string;
+}
+
 export interface ValidationStat {
   approved: number;
   pending: number;

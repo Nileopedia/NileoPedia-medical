@@ -25,6 +25,11 @@ export class EmailService {
     await this.queueEmail(data.email, template.subject, template.html, 'otp');
   }
 
+  static async sendOtp(data: { email: string; fullName: string; otp: string }): Promise<void> {
+    const template = emailTemplates.otpLogin(data);
+    await this.queueEmail(data.email, template.subject, template.html, 'otp');
+  }
+
   static async sendPasswordReset(data: { email: string; fullName: string; resetLink: string }): Promise<void> {
     const template = emailTemplates.passwordReset(data);
     await this.queueEmail(data.email, template.subject, template.html, 'passwordReset');

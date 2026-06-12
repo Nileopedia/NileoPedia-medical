@@ -91,6 +91,30 @@ type SearchResultResponse = {
   searchType: 'semantic' | 'keyword' | 'hybrid';
 };
 
+type BackendValidationReview = {
+  id: string;
+  aiResponseId: string;
+  status: 'APPROVED' | 'REJECTED' | 'PENDING';
+  reviewedAt: string;
+  score?: number;
+  feedback?: string;
+  aiResponse: {
+    summary: string;
+    question: {
+      questionText: string;
+    };
+  };
+};
+
+type BackendPendingResponse = {
+  id: string;
+  summary: string;
+  createdAt: string;
+  question: {
+    questionText: string;
+  };
+};
+
 class ApiClient {
   private getAuthToken(): string | null {
     if (typeof window === 'undefined') return null;
@@ -429,6 +453,72 @@ class ApiClient {
   async getNotifications(): Promise<Array<{ id: string; title: string; message: string; read: boolean; createdAt: string }>> {
     const payload = await this.request<ApiEnvelope<Array<{ id: string; title: string; message: string; read: boolean; createdAt: string }>>>('/notifications');
     return this.unwrap(payload);
+  }
+
+  async getPendingReviews(): Promise<Array<{ id: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string; status: string }>> {
+    const payload = await this.request<ApiEnvelope<BackendPendingResponse[]>>('/validation/pending');
+    const items = this.unwrap(payload);
+    return items.map((item) => ({
+      id: item.id,
+      title: item.question?.questionText || item.summary.substring(0, 50),
+      category: 'General',
+      submittedAt: item.createdAt,
+      dueDate: '',
+      priority: 'medium',
+      status: 'pending',
+    }));
+  }
+
+  async getValidationHistory(): Promise<ValidationReview[]> {
+    const payload = await this.request<ApiEnvelope<BackendValidationReview[]>>('/validation/history');
+    const items = this.unwrap(payload);
+    return items.map((item) => ({
+      id: item.id,
+      aiResponseId: item.aiResponseId,
+      aiResponse: {
+        title: item.aiResponse?.question?.questionText || 'Untitled',
+        question: {
+          questionText: item.aiResponse?.question?.questionText || 'Unknown query',
+        },
+      },
+      status: this.normalizeStatus(item.status),
+      reviewedAt: item.reviewedAt,
+      score: item.score,
+      feedback: item.feedback,
+    }));
+  }
+
+  async approveReview(responseId: string, score: number, feedback: string): Promise<void> {
+    await this.request(`/validation/${responseId}/approve`, {
+      method: 'POST',
+      body: JSON.stringify({ score, feedback }),
+    });
+  }
+
+  async rejectReview(responseId: string, feedback: string): Promise<void> {
+    await this.request(`/validation/${responseId}/reject`, {
+      method: 'POST',
+      body: JSON.stringify({ feedback }),
+    });
+  }
+
+  async runScheduledIngestion(): Promise<void> {
+    await this.request('/admin/ingestion/run', {
+      method: 'POST',
+    });
+  }
+
+  async getIngestionStatus(): Promise<{ isRunning: boolean; isActive: boolean; sources: number }> {
+    const payload = await this.request<{ success: boolean; data: { isRunning: boolean; isActive: boolean; sources: number } }>(
+      '/admin/ingestion/status'
+    );
+    return payload.data;
+  }
+
+  async runIncrementalRefresh(): Promise<void> {
+    await this.request('/admin/ingestion/refresh', {
+      method: 'POST',
+    });
   }
 }
 

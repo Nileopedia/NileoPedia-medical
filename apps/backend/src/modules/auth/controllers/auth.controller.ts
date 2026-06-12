@@ -135,9 +135,14 @@ export class AuthController {
       }
 
       const requiresOtp = await this.authService.requiresOtp(email);
+      
+      if (requiresOtp) {
+        await this.authService.generateOtp(email);
+      }
+      
       res.status(200).json({
         success: true,
-        message: 'Verification check complete',
+        message: requiresOtp ? 'OTP sent to your email' : 'Verification check complete',
         data: { requiresOtp },
       });
     } catch (error) {

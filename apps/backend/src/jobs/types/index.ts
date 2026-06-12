@@ -1,3 +1,8 @@
+export interface ScheduledIngestionJob {
+  source: { name: string; specialty: string };
+  type: 'scheduled';
+}
+
 export interface DocumentIngestionJob {
   documentId: string;
   fileUrl: string;

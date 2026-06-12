@@ -57,6 +57,9 @@ export const CONFIG = {
 
   // Mock AI mode
   USE_MOCK_AI: process.env.USE_MOCK_AI === 'true',
+
+  // Scheduled Ingestion
+  SCHEDULED_INGESTION_ENABLED: process.env.SCHEDULED_INGESTION_ENABLED ?? 'true',
 } as const;
 
 export type Config = typeof CONFIG;
