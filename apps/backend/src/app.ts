@@ -55,6 +55,18 @@ async function initializeAdmin(): Promise<void> {
   }
 }
 
+// Seed demo knowledge base on startup (FR-20)
+async function seedKnowledgeBase(): Promise<void> {
+  const { refreshKnowledgeBase } = require('./jobs/processors/document.processor');
+  
+  const demoCount = await prisma.medicalDocument.count();
+  if (demoCount === 0) {
+    console.log('Seeding demo knowledge base...');
+    await refreshKnowledgeBase(false);
+    console.log('Demo knowledge base seeded');
+  }
+}
+
 // Connect to database and then setup everything
 prisma.$connect()
   .then(async () => {
@@ -62,6 +74,9 @@ prisma.$connect()
     
     // Initialize admin account
     await initializeAdmin();
+    
+    // Seed knowledge base if empty
+    await seedKnowledgeBase();
     
     // Setup middleware (cors, helmet, body parser, etc.)
     setupMiddleware(app);

@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { RefreshCw, CheckCircle, AlertCircle, RefreshCcw } from 'lucide-react';
+import { RefreshCw, CheckCircle, AlertCircle, RefreshCcw, WifiOff } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
@@ -13,23 +13,23 @@ export default function AdminPage() {
     isRunning: boolean;
     isActive: boolean;
     sources: number;
-  }>({ isRunning: false, isActive: false, sources: 0 });
+  }>({ isRunning: false, isActive: false, sources: 9 });
   const [loading, setLoading] = useState(false);
   const [refreshLoading, setRefreshLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const user = useAppStore((state) => state.user);
 
   useEffect(() => {
-    if (user?.role === 'admin') {
-      fetchStatus();
-    }
-  }, [user]);
+    fetchStatus();
+  }, []);
 
   const fetchStatus = async () => {
     try {
       const status = await api.getIngestionStatus();
       setIngestionStatus(status);
+      setError(null);
     } catch (error) {
-      console.error('Failed to fetch ingestion status:', error);
+      setError(error instanceof Error ? error.message : 'Connection failed');
     }
   };
 
@@ -39,7 +39,8 @@ export default function AdminPage() {
       await api.runScheduledIngestion();
       await fetchStatus();
     } catch (error) {
-      console.error('Failed to run ingestion:', error);
+      const msg = error instanceof Error ? error.message : 'Failed to run ingestion';
+      setError(msg);
     } finally {
       setLoading(false);
     }
@@ -51,7 +52,8 @@ export default function AdminPage() {
       await api.runIncrementalRefresh();
       await fetchStatus();
     } catch (error) {
-      console.error('Failed to run incremental refresh:', error);
+      const msg = error instanceof Error ? error.message : 'Failed to run incremental refresh';
+      setError(msg);
     } finally {
       setRefreshLoading(false);
     }
@@ -75,6 +77,13 @@ export default function AdminPage() {
           <p className="text-slate-600 dark:text-slate-400">Manage system ingestion and knowledge base</p>
         </div>
 
+        {error && (
+          <div className="p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-lg flex items-center gap-2">
+            <WifiOff className="text-amber-600" size={16} />
+            <p className="text-sm text-amber-700">{error}</p>
+          </div>
+        )}
+
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
@@ -95,6 +104,7 @@ export default function AdminPage() {
               <p>Status: {ingestionStatus.isRunning ? 'Running' : 'Idle'}</p>
               <p>Data Sources: {ingestionStatus.sources} journals configured</p>
               <p>Schedule: Daily at 2 AM UTC (full), Sundays at 3 AM UTC (incremental)</p>
+              <p className="text-xs text-slate-500">Note: Run ingestion to populate knowledge base with demo documents</p>
             </div>
 
             <div className="flex gap-2">

@@ -176,13 +176,18 @@ export default function AskPage() {
                 <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
                   Medical Question
                 </label>
-                <TextArea
-                  placeholder="Enter your medical question... (e.g., What are the latest guidelines for hypertension management in elderly patients?)"
-                  value={question}
-                  onChange={(e) => setQuestion(e.target.value)}
-                  rows={5}
-                  required
-                />
+<TextArea
+                   placeholder="Enter your medical question... (e.g., What are the latest guidelines for hypertension management in elderly patients?)"
+                   value={question}
+                   onChange={(e) => setQuestion(e.target.value)}
+                   onKeyDown={(e) => {
+                     if ((e.ctrlKey || e.metaKey) && e.key === 'Enter' && question.trim()) {
+                       handleSubmit(e as any);
+                     }
+                   }}
+                   rows={5}
+                   required
+                 />
               </div>
               <Button type="submit" disabled={loading || !question.trim()}>
                 {loading ? (

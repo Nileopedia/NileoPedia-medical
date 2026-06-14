@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'next/navigation';
 import { Card, CardHeader, CardContent } from '../../components/ui/Card';
 import { Search as SearchIcon, Loader2 } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
@@ -33,23 +34,34 @@ export default function SearchPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [searchType, setSearchType] = useState<'semantic' | 'keyword' | 'hybrid'>('hybrid');
+  const searchParams = useSearchParams();
 
-  const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!query.trim()) return;
+  useEffect(() => {
+    const initialQuery = searchParams.get('q');
+    if (initialQuery) {
+      setQuery(initialQuery);
+      performSearch(initialQuery);
+    }
+  }, [searchParams]);
 
+  const performSearch = async (searchQuery: string) => {
+    if (!searchQuery.trim()) return;
     setLoading(true);
     setError(null);
     setResults([]);
-
     try {
-      const response = await api.search(query, searchType, 10);
+      const response = await api.search(searchQuery, searchType, 10);
       setResults(response.results);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Search failed');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await performSearch(query);
   };
 
   return (

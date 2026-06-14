@@ -3,7 +3,6 @@ import React from 'react';
 import { vi } from 'vitest';
 import { ToastProvider } from '../components/ui/Toast';
 
-// Mock socket.io-client
 vi.mock('socket.io-client', () => ({
   io: vi.fn(() => ({
     on: vi.fn((event: string) => {}),
@@ -13,7 +12,7 @@ vi.mock('socket.io-client', () => ({
 }));
 
 vi.mock('../../store/appStore', () => ({
-  useAppStore: () => ({ user: { id: 'test-user-id' } }),
+  useAppStore: () => ({ user: { id: 'test-user-id' }, toggleMobileNav: vi.fn() }),
 }));
 
 vi.mock('../../lib/api', () => ({
@@ -29,6 +28,10 @@ vi.mock('../../components/query/ResponseViewer', () => ({
 
 vi.mock('../../components/layout/AppLayout', () => ({
   AppLayout: ({ children }: { children: React.ReactNode }) => <div>{children}</div>,
+}));
+
+vi.mock('../../components/layout/Navbar', () => ({
+  Navbar: () => <div data-testid="navbar">Navbar</div>,
 }));
 
 describe('Ask Page - Socket.IO Streaming', () => {

@@ -5,7 +5,6 @@ import { updateDocumentSchema, getDocumentsQuerySchema } from './document.valida
 import { allowedMimeTypes, maxFileSize } from './document.validation';
 import path from 'path';
 import fs from 'fs';
-import { documentQueue } from '../../jobs/queues';
 import { IngestionStatus } from '@prisma/client';
 
 export class DocumentController {
@@ -74,7 +73,7 @@ export class DocumentController {
     }
   }
 
-  async uploadDocument(req: Request, res: Response, next: NextFunction) {
+async uploadDocument(req: Request, res: Response, next: NextFunction) {
     try {
       const file = req.file as Express.Multer.File | undefined;
       const body = req.body;
@@ -110,13 +109,11 @@ export class DocumentController {
         fs.mkdirSync(path.join(process.cwd(), uploadDir), { recursive: true });
       }
 
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       fs.writeFileSync(fullPath, file.buffer as any);
 
-// Create document record - use filename as title if not provided
-       const document = await this.documentService.createDocument({
-         title: body.title || file.originalname.replace(/\.[^/.]+$/, ''),
-         description: body.description,
+      // FR-21: Create document pending verification
+      const document = await this.documentService.createDocument({
+        title: body.title || file.originalname.replace(/\.[^/.]+$/, ''),
         description: body.description,
         fileName,
         fileUrl,
@@ -129,26 +126,11 @@ export class DocumentController {
         uploadedById: req.user!.id,
       });
 
-      // Queue document ingestion job
-      await documentQueue.add('ingest', {
-        documentId: document.id,
-        fileUrl: document.fileUrl,
-        fileType: document.fileType,
-        fileName: document.fileName,
-        title: document.title,
-        specialty: document.specialty,
-        documentType: document.documentType,
-        uploadedById: req.user!.id,
-        source: document.source,
-        publicationYear: document.publicationYear,
-      }, {
-        attempts: 3,
-        backoff: { type: 'exponential', delay: 2000 },
-      });
+      // DO NOT queue for ingestion yet - requires admin approval (FR-21)
 
       res.status(201).json({
         success: true,
-        message: 'Document uploaded successfully. Processing started.',
+        message: 'Document uploaded successfully. Awaiting admin approval for indexing.',
         data: document,
       });
     } catch (error) {

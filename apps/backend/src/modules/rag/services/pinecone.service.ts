@@ -1,17 +1,25 @@
 import { Pinecone } from '@pinecone-database/pinecone';
 import { CONFIG } from '../../../config/env';
+import { logger } from '../../../config/logger';
 import { DocumentChunk } from './chunking.service';
 
+const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_API_KEY;
+
 export class PineconeService {
-  private pinecone: Pinecone;
+  private pinecone: Pinecone | null = null;
   private index: any;
 
   constructor() {
-    this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
-    this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
+    if (!USE_MOCK_AI && CONFIG.PINECONE_API_KEY) {
+      this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
+      this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
+    } else {
+      logger.info('Using mock search mode (Pinecone not configured)');
+    }
   }
 
   async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>) {
+    if (!this.pinecone || !this.index) return;
     const batchSize = 100;
     
     for (let i = 0; i < vectors.length; i += batchSize) {
@@ -21,6 +29,9 @@ export class PineconeService {
   }
 
   async query(vector: number[], topK = 10, filter?: Record<string, any>) {
+    if (!this.pinecone || !this.index) {
+      return [];
+    }
     const queryRequest = {
       vector,
       topK,
@@ -33,6 +44,7 @@ export class PineconeService {
   }
 
   async deleteVectors(ids: string[]) {
+    if (!this.pinecone || !this.index) return;
     await this.index.delete(ids);
   }
 
@@ -53,6 +65,9 @@ export class PineconeService {
   }
 
   async searchSimilar(query: string, embeddingService: any, topK = 10, filter?: Record<string, any>) {
+    if (!this.pinecone || !this.index) {
+      return [];
+    }
     const queryEmbedding = await embeddingService.generateEmbedding(query);
     return this.query(queryEmbedding, topK, filter);
   }

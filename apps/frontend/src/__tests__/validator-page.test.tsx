@@ -22,6 +22,10 @@ vi.mock('../../components/layout/AppLayout', () => ({
   AppLayout: ({ children }: { children: React.ReactNode }) => <div data-testid="app-layout">{children}</div>,
 }));
 
+vi.mock('../../components/layout/Navbar', () => ({
+  Navbar: () => <div data-testid="navbar">Navbar</div>,
+}));
+
 describe('Validator Page - FR-19', () => {
   beforeEach(() => {
     vi.clearAllMocks();

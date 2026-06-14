@@ -1,14 +1,9 @@
 import prisma from '../../config/prisma';
-import axios from 'axios';
-import { DocumentIngestionJob, ScheduledIngestionJob } from '../types';
-import { logger } from '../../config/logger';
-import fs from 'fs';
 import path from 'path';
+import fs from 'fs';
 import { IngestionStatus } from '@prisma/client';
-import pdf from 'pdf-parse';
-import * as mammoth from 'mammoth';
-
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:3001/api/v1/mock-ai';
+import { DocumentIngestionService } from '../../modules/documents/document.ingestion.service';
+import { logger } from '../../config/logger';
 
 interface KbSource {
   name: string;
@@ -48,7 +43,7 @@ async function createDemoDocuments(source: { name: string; specialty: string }, 
     });
 
     if (!existing) {
-      await prisma.medicalDocument.create({
+      const doc = await prisma.medicalDocument.create({
         data: {
           title: documentTitle,
           description: `Demo document from ${source.name} for ${source.specialty} specialty`,
@@ -66,6 +61,16 @@ async function createDemoDocuments(source: { name: string; specialty: string }, 
         },
       });
       count++;
+      
+      // Create embedding metadata for demo documents
+      await prisma.embeddingMetadata.create({
+        data: {
+          documentId: doc.id,
+          pineconeVectorId: `${doc.id}_chunk_0`,
+          chunkIndex: 0,
+          chunkText: `${documentTitle}: Evidence-based clinical guidelines and recommendations.`,
+        },
+      });
     } else if (isIncremental) {
       await prisma.medicalDocument.update({
         where: { id: existing.id },
@@ -100,7 +105,7 @@ export async function refreshKnowledgeBase(isIncremental = false) {
   return results;
 }
 
-export async function processDocumentIngestion(job: DocumentIngestionJob | ScheduledIngestionJob) {
+export async function processDocumentIngestion(job: any) {
   if ('source' in job && 'type' in job && job.type === 'scheduled') {
     return createDemoDocuments(job.source);
   }
@@ -124,7 +129,8 @@ export async function processDocumentIngestion(job: DocumentIngestionJob | Sched
 
     if (fileType === 'application/pdf' || fileName.toLowerCase().endsWith('.pdf')) {
       try {
-        const pdfData = await pdf(buffer);
+        const pdf = await import('pdf-parse');
+        const pdfData = await pdf.default(buffer);
         content = pdfData.text || '';
       } catch (pdfError) {
         logger.warn(`PDF parsing failed, falling back to text extraction:`, pdfError);
@@ -133,6 +139,7 @@ export async function processDocumentIngestion(job: DocumentIngestionJob | Sched
     } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
                    fileName.toLowerCase().endsWith('.docx')) {
       try {
+        const mammoth = await import('mammoth');
         const docxResult = await mammoth.extractRawText({ buffer });
         content = docxResult.value || '';
       } catch (docxError) {
@@ -141,7 +148,8 @@ export async function processDocumentIngestion(job: DocumentIngestionJob | Sched
       }
     } else if (fileType === 'text/html' || fileName.toLowerCase().endsWith('.html') || fileName.toLowerCase().endsWith('.htm')) {
       try {
-        const $ = (await import('cheerio')).load(buffer.toString('utf-8'));
+        const cheerio = await import('cheerio');
+        const $ = cheerio.load(buffer.toString('utf-8'));
         $('script, style, nav, header, footer, aside').remove();
         content = $('body').text() || $('html').text() || '';
         content = content.replace(/\s+/g, ' ').trim();
@@ -157,25 +165,23 @@ export async function processDocumentIngestion(job: DocumentIngestionJob | Sched
       throw new Error('No content could be extracted from the file');
     }
 
-    const ingestResponse = await axios.post(`${AI_SERVICE_URL}/ingest`, {
+    const ingestionService = new DocumentIngestionService();
+    await ingestionService.ingestDocument({
       title,
       content,
       specialty,
       documentType,
       source,
       publicationYear,
-    });
-
-    await prisma.medicalDocument.update({
-      where: { id: documentId },
-      data: {
-        ingestionStatus: IngestionStatus.COMPLETED,
-        updatedAt: new Date(),
-      },
+      uploadedById,
+      fileName,
+      fileUrl,
+      fileType,
+      fileSize: 0,
     });
 
     logger.info(`Document ingestion completed: ${documentId}`);
-    return ingestResponse.data;
+    return { success: true };
 
   } catch (error) {
     await prisma.medicalDocument.update({

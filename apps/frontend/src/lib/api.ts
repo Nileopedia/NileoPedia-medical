@@ -162,10 +162,17 @@ class ApiClient {
       headers.set('Content-Type', 'application/json');
     }
 
-    const response = await fetch(`${API_BASE_URL}${endpoint}`, {
-      ...options,
-      headers,
-    });
+    let response: Response;
+    try {
+      response = await fetch(`${API_BASE_URL}${endpoint}`, {
+        ...options,
+        headers,
+      });
+    } catch (networkError: any) {
+      // Handle network errors (server not running, etc.)
+      const errorMessage = networkError?.message || 'Network error';
+      throw new Error(`Cannot connect to server. Please ensure backend is running. (${errorMessage})`);
+    }
 
     let payload: any;
     try {

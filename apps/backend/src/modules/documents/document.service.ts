@@ -103,7 +103,130 @@ export class DocumentService {
     });
   }
 
+  // FR-21: Approval before indexing - triggers ingestion after verification
   async verifyDocument(id: string) {
+    const document = await prisma.medicalDocument.findUnique({ where: { id } });
+    if (!document) {
+      throw new Error('Document not found');
+    }
+
+    if (document.ingestionStatus !== IngestionStatus.PENDING) {
+      throw new Error('Document is not pending verification');
+    }
+
+    // Mark as verified and trigger indexing
+    await prisma.medicalDocument.update({
+      where: { id },
+      data: { isVerified: true, ingestionStatus: IngestionStatus.PROCESSING },
+    });
+
+    // Add to ingestion queue
+    const { documentQueue } = await import('../../../jobs/queues');
+    if (document.fileUrl) {
+      await documentQueue.add('ingest', {
+        documentId: id,
+        fileUrl: document.fileUrl,
+        fileType: document.fileType,
+        fileName: document.fileName,
+        title: document.title,
+        specialty: document.specialty,
+        documentType: document.documentType,
+        uploadedById: document.uploadedById,
+        source: document.source,
+        publicationYear: document.publicationYear,
+      });
+    }
+
+    return prisma.medicalDocument.findUnique({ where: { id } });
+  }
+
+  async updateIngestionStatus(id: string, status: IngestionStatus) {
+    return prisma.medicalDocument.update({
+      where: { id },
+      data: { ingestionStatus: status },
+    });
+  }
+
+  async getIngestionStatus(id: string) {
+    const document = await prisma.medicalDocument.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        ingestionStatus: true,
+        embeddingMetadata: {
+          select: { id: true },
+        },
+      },
+    });
+
+    if (!document) {
+      throw new Error('Document not found');
+    }
+
+    return {
+      documentId: document.id,
+      ingestionStatus: document.ingestionStatus,
+      chunksProcessed: document.embeddingMetadata.length,
+      vectorsStored: document.embeddingMetadata.length,
+    };
+  }
+}
+
+    if (ingestionStatus) where.ingestionStatus = ingestionStatus as IngestionStatus;
+    if (documentType) where.documentType = documentType;
+    if (publicationYear) where.publicationYear = publicationYear;
+
+    const [documents, total] = await Promise.all([
+      prisma.medicalDocument.findMany({
+        where,
+        skip,
+        take: limit,
+        orderBy: { createdAt: 'desc' },
+        include: {
+          embeddingMetadata: true,
+        },
+      }),
+      prisma.medicalDocument.count({ where }),
+    ]);
+
+    return {
+      documents,
+      total,
+      page,
+      limit,
+      totalPages: Math.ceil(total / limit),
+    };
+  }
+
+  async getDocumentById(id: string) {
+    return prisma.medicalDocument.findUnique({
+      where: { id },
+      include: {
+        embeddingMetadata: true,
+      },
+    });
+  }
+
+  async createDocument(data: CreateDocumentDto) {
+    return prisma.medicalDocument.create({
+      data: {
+        title: data.title,
+        description: data.description,
+        fileName: data.fileName,
+        fileUrl: data.fileUrl,
+        fileType: data.fileType,
+        fileSize: data.fileSize,
+        specialty: data.specialty,
+        documentType: data.documentType,
+        source: data.source,
+        publicationYear: data.publicationYear,
+        uploadedById: data.uploadedById,
+        ingestionStatus: IngestionStatus.PENDING,
+      },
+    });
+  }
+
+  async updateDocument(id: string, data: UpdateDocumentDto) {
     const document = await prisma.medicalDocument.findUnique({ where: { id } });
     if (!document) {
       throw new Error('Document not found');
@@ -111,8 +234,58 @@ export class DocumentService {
 
     return prisma.medicalDocument.update({
       where: { id },
-      data: { isVerified: true },
+      data,
     });
+  }
+
+  async deleteDocument(id: string) {
+    const document = await prisma.medicalDocument.findUnique({ where: { id } });
+    if (!document) {
+      throw new Error('Document not found');
+    }
+
+    return prisma.medicalDocument.delete({
+      where: { id },
+    });
+  }
+
+  async verifyDocument(id: string) {
+    const document = await prisma.medicalDocument.findUnique({ where: { id } });
+    if (!document) {
+      throw new Error('Document not found');
+    }
+
+    // FR-21: Approval before indexing - when verified, set status to processing
+    const updated = await prisma.medicalDocument.update({
+      where: { id },
+      data: { isVerified: true, ingestionStatus: IngestionStatus.PROCESSING },
+    });
+
+    // Trigger knowledge base indexing after approval (FR-22)
+    const { documentQueue } = await import('../../../jobs/queues');
+    const fullPath = require('path').join(process.cwd(), document.fileUrl);
+    
+    if (require('fs').existsSync(fullPath)) {
+      await documentQueue.add('ingest', {
+        documentId: document.id,
+        fileUrl: document.fileUrl,
+        fileType: document.fileType,
+        fileName: document.fileName,
+        title: document.title,
+        specialty: document.specialty,
+        documentType: document.documentType,
+        uploadedById: document.uploadedById,
+        source: document.source,
+        publicationYear: document.publicationYear,
+      });
+    } else {
+      await prisma.medicalDocument.update({
+        where: { id },
+        data: { ingestionStatus: IngestionStatus.FAILED },
+      });
+    }
+
+    return updated;
   }
 
   async updateIngestionStatus(id: string, status: IngestionStatus) {

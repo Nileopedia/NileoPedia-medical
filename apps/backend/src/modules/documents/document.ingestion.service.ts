@@ -3,16 +3,21 @@ import { IngestionStatus } from '@prisma/client';
 import { EmbeddingService } from '../rag/services/embedding.service';
 import { ChunkingService } from '../rag/services/chunking.service';
 import { PineconeService } from '../rag/services/pinecone.service';
+import { logger } from '../../../config/logger';
+
+const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_API_KEY;
 
 export class DocumentIngestionService {
   private embeddingService: EmbeddingService;
   private chunkingService: ChunkingService;
-  private pineconeService: PineconeService;
+  private pineconeService: PineconeService | null = null;
 
   constructor() {
     this.embeddingService = new EmbeddingService();
     this.chunkingService = new ChunkingService();
-    this.pineconeService = new PineconeService();
+    if (!USE_MOCK_AI && process.env.PINECONE_API_KEY) {
+      this.pineconeService = new PineconeService();
+    }
   }
 
   async ingestDocument(input: {
@@ -52,11 +57,15 @@ export class DocumentIngestionService {
 
     const embeddedChunks = await this.chunkingService.generateEmbeddings(chunks);
     
-    await this.pineconeService.storeChunks(
-      chunks,
-      embeddedChunks.map(e => e.embedding),
-      document.id
-    );
+    if (this.pineconeService && process.env.PINECONE_API_KEY) {
+      await this.pineconeService.storeChunks(
+        chunks,
+        embeddedChunks.map(e => e.embedding),
+        document.id
+      );
+    } else {
+      logger.info(`Mock mode: Skipping Pinecone storage for document ${document.id}`);
+    }
 
     for (let i = 0; i < chunks.length; i++) {
       await prisma.embeddingMetadata.create({
