@@ -75,12 +75,7 @@ export const mockPrismaClient: any = {
   },
 };
 
-export const mockOpenAI = {
-  embeddings: {
-    create: jest.fn().mockResolvedValue({
-      data: [{ embedding: Array(1536).fill(0).map(() => Math.random()) }],
-    }),
-  },
+export const mockGroq = {
   chat: {
     completions: {
       create: jest.fn().mockResolvedValue({
@@ -89,6 +84,8 @@ export const mockOpenAI = {
     },
   },
 };
+
+export const mockOpenAI = mockGroq; // Legacy alias
 
 export const mockPinecone = {
   index: jest.fn().mockReturnValue({

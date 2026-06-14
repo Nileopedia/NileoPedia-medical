@@ -25,16 +25,16 @@ export const CONFIG = {
   PINECONE_ENVIRONMENT: process.env.PINECONE_ENVIRONMENT || '',
   PINECONE_INDEX_NAME: process.env.PINECONE_INDEX_NAME || 'nileopedia-medical',
   
-  // OpenAI
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY || '',
-  OPENAI_MODEL: process.env.OPENAI_MODEL || 'gpt-4o',
-  
+  // Groq (replaces OpenAI)
+  GROQ_API_KEY: process.env.GROQ_API_KEY || '',
+  GROQ_MODEL: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
+
 // Redis
   REDIS_URL: process.env.REDIS_URL || '',
-
+  
   // AI Service
   AI_SERVICE_URL: process.env.AI_SERVICE_URL || 'http://localhost:8000',
-
+  
   // CORS
   CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
   
@@ -54,10 +54,10 @@ export const CONFIG = {
   // File Upload
   MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10), // 10MB
   UPLOAD_DIR: process.env.UPLOAD_DIR || './uploads',
-
+  
   // Mock AI mode
   USE_MOCK_AI: process.env.USE_MOCK_AI === 'true',
-
+  
   // Scheduled Ingestion
   SCHEDULED_INGESTION_ENABLED: process.env.SCHEDULED_INGESTION_ENABLED ?? 'true',
 } as const;

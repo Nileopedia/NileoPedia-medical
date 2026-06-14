@@ -1,11 +1,11 @@
 import prisma from '../../config/prisma';
-import axios from 'axios';
+import { Groq } from 'groq-sdk';
 import { AiGenerationJob } from '../types';
 import { logger } from '../../config/logger';
 import { redis } from '../../lib/redis';
 
-const AI_SERVICE_URL = process.env.AI_SERVICE_URL || 'http://localhost:8000';
-const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !AI_SERVICE_URL;
+const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true';
+const GROQ_MODEL = process.env.GROQ_MODEL || 'llama-3.3-70b-versatile';
 
 const generateMockResponse = (query: string, topK: number, specialty?: string) => {
   const specialtyContent: Record<string, { keywords: string[], keyFindings: string[] }> = {
@@ -79,14 +79,16 @@ const generateMockResponse = (query: string, topK: number, specialty?: string) =
   };
 };
 
+const groq = USE_MOCK_AI ? null : (process.env.GROQ_API_KEY ? new Groq({ apiKey: process.env.GROQ_API_KEY }) : null);
+
 export async function processAiGeneration(job: AiGenerationJob) {
   const { questionId, query, userId, topK = 10, specialty } = job;
 
   try {
-    let summary, citations, confidenceScore, keyFindings;
+    let summary, citations, confidenceScore, keyFindings, generatedBy;
 
     // Use mock mode if AI service is unavailable or mock mode is enabled
-    if (USE_MOCK_AI) {
+    if (USE_MOCK_AI || !groq) {
       logger.info(`Using mock AI response for question:`, questionId, `specialty:`, specialty);
       
       const mock = generateMockResponse(query, topK, specialty || undefined);
@@ -109,14 +111,18 @@ export async function processAiGeneration(job: AiGenerationJob) {
       }
       
       ({ summary, citations, confidenceScore, keyFindings } = mock);
+      generatedBy = 'Llama-3.3-70b (mock)';
     } else {
-      logger.info(`Calling AI service for question:`, questionId);
-      const response = await axios.post(`${AI_SERVICE_URL}/generate`, {
-        query,
-        topK,
-        specialty,
-      }, { timeout: 30000 });
+      logger.info(`Calling Groq for question:`, questionId);
+      const response = await groq.chat.completions.create({
+        model: GROQ_MODEL,
+        messages: [
+          { role: 'system', content: 'You are a medical AI assistant providing evidence-based answers. Always cite your sources.' },
+          { role: 'user', content: query },
+        ],
+      });
       ({ summary, citations, confidenceScore, keyFindings } = response.data);
+      generatedBy = 'Llama-3.3-70b';
       
       // Store progress for late-joining clients
       await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
@@ -132,7 +138,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
         summary,
         keyFindings: keyFindings || [],
         confidenceScore,
-        generatedBy: 'GPT-4o',
+        generatedBy,
       },
     });
 
@@ -169,7 +175,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
           summary: mock.summary,
           keyFindings: mock.keyFindings,
           confidenceScore: mock.confidenceScore,
-          generatedBy: 'GPT-4o (fallback)',
+          generatedBy: 'Llama-3.3-70b (fallback)',
         },
       });
       return { success: true, responseId: aiResponse.id };

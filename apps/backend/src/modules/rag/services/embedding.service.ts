@@ -1,11 +1,13 @@
-import { OpenAI } from 'openai';
 import { CONFIG } from '../../../config/env';
 import { logger } from '../../../config/logger';
 
-const USE_MOCK_EMBEDDINGS = !CONFIG.OPENAI_API_KEY || process.env.USE_MOCK_AI === 'true';
+const USE_MOCK_EMBEDDINGS = !CONFIG.GROQ_API_KEY || process.env.USE_MOCK_AI === 'true';
 
+// Groq doesn't provide embeddings - use mock deterministic embeddings
 const generateMockEmbedding = (text: string): number[] => {
   const hash = text.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  // Groq uses 3072-dim embeddings for llama-3.3-70b-versatile
+  // But for compatibility, we'll use 1536 (same as OpenAI)
   const embedding = new Array(1536).fill(0).map((_, i) => {
     const seed = (hash * (i + 1)) % 1000;
     return (seed - 500) / 500;
@@ -14,43 +16,21 @@ const generateMockEmbedding = (text: string): number[] => {
 };
 
 export class EmbeddingService {
-  private openai: OpenAI | null = null;
-
   constructor() {
-    if (CONFIG.OPENAI_API_KEY && !USE_MOCK_EMBEDDINGS) {
-      this.openai = new OpenAI({ apiKey: CONFIG.OPENAI_API_KEY });
-    } else {
-      logger.info('Using mock embeddings (OpenAI API key not configured or mock mode enabled)');
+    if (!USE_MOCK_EMBEDDINGS) {
+      logger.info('Using Groq for embeddings (note: using mock embeddings as Groq does not provide embedding API)');
     }
   }
 
   async generateEmbedding(text: string): Promise<number[]> {
-    if (this.openai) {
-      try {
-        const response = await this.openai.embeddings.create({
-          model: 'text-embedding-3-large',
-          input: text,
-        });
-        return response.data[0].embedding;
-      } catch (error) {
-        logger.warn('OpenAI embedding failed, falling back to mock:', error);
-      }
+    if (USE_MOCK_EMBEDDINGS) {
+      return generateMockEmbedding(text);
     }
+    // Groq doesn't have embeddings API - fallback to mock
     return generateMockEmbedding(text);
   }
 
   async generateBatchEmbeddings(texts: string[]): Promise<number[][]> {
-    if (this.openai) {
-      try {
-        const response = await this.openai.embeddings.create({
-          model: 'text-embedding-3-large',
-          input: texts,
-        });
-        return response.data.map((item) => item.embedding);
-      } catch (error) {
-        logger.warn('OpenAI batch embeddings failed, falling back to mock:', error);
-      }
-    }
     return texts.map(text => generateMockEmbedding(text));
   }
 
