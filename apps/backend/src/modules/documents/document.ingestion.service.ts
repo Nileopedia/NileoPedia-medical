@@ -4,8 +4,7 @@ import { EmbeddingService } from '../rag/services/embedding.service';
 import { ChunkingService } from '../rag/services/chunking.service';
 import { PineconeService } from '../rag/services/pinecone.service';
 import { logger } from '../../../config/logger';
-
-const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_API_KEY;
+import { CONFIG } from '../../../config/env';
 
 export class DocumentIngestionService {
   private embeddingService: EmbeddingService;
@@ -15,7 +14,7 @@ export class DocumentIngestionService {
   constructor() {
     this.embeddingService = new EmbeddingService();
     this.chunkingService = new ChunkingService();
-    if (!USE_MOCK_AI && process.env.PINECONE_API_KEY) {
+    if (CONFIG.PINECONE_API_KEY && !CONFIG.USE_MOCK_EMBEDDINGS) {
       this.pineconeService = new PineconeService();
     }
   }
@@ -27,6 +26,7 @@ export class DocumentIngestionService {
     content: string;
     publicationYear?: number;
     specialty?: string;
+    documentType?: string;
     uploadedById: string;
     fileName: string;
     fileUrl: string;
@@ -40,6 +40,7 @@ export class DocumentIngestionService {
         source: input.source,
         publicationYear: input.publicationYear,
         specialty: input.specialty,
+        documentType: input.documentType,
         uploadedById: input.uploadedById,
         fileName: input.fileName,
         fileUrl: input.fileUrl,
@@ -57,7 +58,7 @@ export class DocumentIngestionService {
 
     const embeddedChunks = await this.chunkingService.generateEmbeddings(chunks);
     
-    if (this.pineconeService && process.env.PINECONE_API_KEY) {
+    if (this.pineconeService && CONFIG.PINECONE_API_KEY) {
       await this.pineconeService.storeChunks(
         chunks,
         embeddedChunks.map(e => e.embedding),

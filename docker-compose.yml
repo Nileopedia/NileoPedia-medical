@@ -25,7 +25,8 @@ services:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgres:5432/nileopedia
       - REDIS_URL=redis://redis:6379
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - HF_API_KEY=${HF_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - AI_SERVICE_URL=http://ai-service:8000
       - EMAIL_PROVIDER=${EMAIL_PROVIDER:-resend}
@@ -52,7 +53,8 @@ services:
       context: .
       dockerfile: infrastructure/docker/Dockerfile.ai-service
     environment:
-      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - HF_API_KEY=${HF_API_KEY}
       - PINECONE_API_KEY=${PINECONE_API_KEY}
       - PINECONE_ENVIRONMENT=${PINECONE_ENVIRONMENT:-us-east-1}
       - PINECONE_INDEX_NAME=${PINECONE_INDEX_NAME:-nileopedia-medical}

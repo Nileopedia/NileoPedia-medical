@@ -43,16 +43,6 @@ export function setupSchedulers() {
         }
         logger.info('Incremental KB refresh jobs added to queue');
       }
-    }
-  }, 60 * 60 * 1000);
-
-  logger.info('Schedulers initialized');
-}
-        logger.info('Scheduled ingestion jobs added to queue');
-      }
-    }
-
-    if (hour === 3 && now.getDay() === 0) {
       // Archive audit logs on Sunday at 3 AM
       await documentQueue.add('archive-audit-logs', { type: 'audit_logs' }, {
         jobId: `archive-audit-${now.toISOString().split('T')[0]}`,

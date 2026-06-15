@@ -1,18 +1,16 @@
 import { CONFIG } from '../../../config/env';
 import { logger } from '../../../config/logger';
 
-const USE_MOCK_EMBEDDINGS = process.env.USE_MOCK_EMBEDDINGS === 'true' || !process.env.HF_API_KEY;
-const HF_API_KEY = process.env.HF_API_KEY || '';
-const HF_EMBEDDING_MODEL = process.env.HF_EMBEDDING_MODEL || 'sentence-transformers/all-MiniLM-L6-v2';
+const hfApiKey = CONFIG.HF_API_KEY;
+const hfEmbeddingModel = CONFIG.HF_EMBEDDING_MODEL;
 
-// Hugging Face inference API for embeddings
 async function hfEmbedding(text: string): Promise<number[]> {
   const response = await fetch(
-    `https://api-inference.huggingface.co/pipeline/feature-extraction/${HF_EMBEDDING_MODEL}`,
+    `https://api-inference.huggingface.co/pipeline/feature-extraction/${hfEmbeddingModel}`,
     {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${HF_API_KEY}`,
+        'Authorization': `Bearer ${hfApiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ inputs: text }),
@@ -24,22 +22,21 @@ async function hfEmbedding(text: string): Promise<number[]> {
   }
 
   const data = await response.json();
-  // Flatten nested arrays from HF response
   const flatten = (arr: any[]): number[] => arr.flat(Infinity);
   return flatten(data);
 }
 
 export class EmbeddingService {
   constructor() {
-    if (USE_MOCK_EMBEDDINGS) {
+    if (!hfApiKey || CONFIG.USE_MOCK_EMBEDDINGS) {
       logger.info('Using mock embeddings (set HF_API_KEY to enable real Hugging Face embeddings)');
     } else {
-      logger.info(`Using Hugging Face embeddings: ${HF_EMBEDDING_MODEL}`);
+      logger.info(`Using Hugging Face embeddings: ${hfEmbeddingModel}`);
     }
   }
 
   async generateEmbedding(text: string): Promise<number[]> {
-    if (USE_MOCK_EMBEDDINGS) {
+    if (!hfApiKey || CONFIG.USE_MOCK_EMBEDDINGS) {
       return this.generateMockEmbedding(text);
     }
     try {
@@ -52,7 +49,7 @@ export class EmbeddingService {
   }
 
   async generateBatchEmbeddings(texts: string[]): Promise<number[][]> {
-    if (USE_MOCK_EMBEDDINGS) {
+    if (!hfApiKey || CONFIG.USE_MOCK_EMBEDDINGS) {
       return texts.map(text => this.generateMockEmbedding(text));
     }
     const embeddings = await Promise.all(
@@ -63,7 +60,6 @@ export class EmbeddingService {
 
   private generateMockEmbedding(text: string): number[] {
     const hash = text.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    // MiniLM produces 384-dim embeddings
     const embedding = new Array(384).fill(0).map((_, i) => {
       const seed = (hash * (i + 1)) % 1000;
       return (seed - 500) / 500;

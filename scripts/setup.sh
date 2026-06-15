@@ -6,7 +6,8 @@
 echo "Setting up NileoPedia services..."
 
 # 1. Set required environment variables
-export OPENAI_API_KEY="${OPENAI_API_KEY:-}"
+export GROQ_API_KEY="${GROQ_API_KEY:-}"
+export HF_API_KEY="${HF_API_KEY:-}"
 export PINECONE_API_KEY="${PINECONE_API_KEY:-}"
 export PINECONE_ENVIRONMENT="${PINECONE_ENVIRONMENT:-us-east-1-aws}"
 
@@ -46,6 +47,6 @@ cd ../..
 echo "Services ready. To start AI service and backend, run:"
 echo "  docker-compose up -d ai-service backend"
 
-# To test endpoints after setting OPENAI_API_KEY:
-# curl -X POST http://localhost:8000/ingest -d '{\"title\":\"WHO Hypertension Guidelines 2025\",\"content\":\"<medical content>\"}'
-# curl -X POST http://localhost:8000/generate -d '{\"query\":\"What are the latest WHO hypertension guidelines?\"}'
+# To test endpoints after setting GROQ_API_KEY and HF_API_KEY:
+# curl -X POST http://localhost:8000/ingest -d '{"title":"WHO Hypertension Guidelines 2025","content":"<medical content>"}'
+# curl -X POST http://localhost:8000/generate -d '{"query":"What are the latest WHO hypertension guidelines?"}'

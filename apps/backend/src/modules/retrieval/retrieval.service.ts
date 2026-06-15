@@ -4,8 +4,6 @@ import prisma from '../../config/prisma';
 import { logger } from '../../config/logger';
 import { EmbeddingService } from '../rag/services/embedding.service';
 
-const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_API_KEY;
-
 export class RetrievalService {
   private pinecone: Pinecone | null = null;
   private index: any = null;
@@ -17,7 +15,7 @@ export class RetrievalService {
 
   constructor() {
     this.embeddingService = new EmbeddingService();
-    if (!USE_MOCK_AI && CONFIG.PINECONE_API_KEY) {
+    if (CONFIG.PINECONE_API_KEY && !CONFIG.USE_MOCK_EMBEDDINGS) {
       this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
       this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
     } else {

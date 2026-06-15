@@ -84,7 +84,7 @@ model AIResponse {
   keyFindings     String[]         @default([])
   confidenceScore Float?
   validationStatus ValidationStatus @default(PENDING)
-  generatedBy     String           @default("GPT-4o")
+  generatedBy     String           @default("Llama-3.3-70b")
 
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
