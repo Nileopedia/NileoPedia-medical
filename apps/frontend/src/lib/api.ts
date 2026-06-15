@@ -282,7 +282,7 @@ class ApiClient {
           citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
           status: this.normalizeStatus(question.aiResponse.validationStatus),
           confidenceScore: question.aiResponse.confidenceScore || 0,
-          model: question.aiResponse.generatedBy || 'GPT-4o',
+          model: question.aiResponse.generatedBy || 'Llama-3.3-70b',
           generatedAt: question.aiResponse.createdAt || question.createdAt,
           tags: [],
           isSaved: question.isSaved || false,

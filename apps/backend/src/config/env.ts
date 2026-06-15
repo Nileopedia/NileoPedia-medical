@@ -25,11 +25,15 @@ export const CONFIG = {
   PINECONE_ENVIRONMENT: process.env.PINECONE_ENVIRONMENT || '',
   PINECONE_INDEX_NAME: process.env.PINECONE_INDEX_NAME || 'nileopedia-medical',
   
-  // Groq (replaces OpenAI)
+  // Groq (for chat completions)
   GROQ_API_KEY: process.env.GROQ_API_KEY || '',
   GROQ_MODEL: process.env.GROQ_MODEL || 'llama-3.3-70b-versatile',
 
-// Redis
+  // Hugging Face (for embeddings)
+  HF_API_KEY: process.env.HF_API_KEY || '',
+  HF_EMBEDDING_MODEL: process.env.HF_EMBEDDING_MODEL || 'sentence-transformers/all-MiniLM-L6-v2',
+
+  // Redis
   REDIS_URL: process.env.REDIS_URL || '',
   
   // AI Service
@@ -57,6 +61,9 @@ export const CONFIG = {
   
   // Mock AI mode
   USE_MOCK_AI: process.env.USE_MOCK_AI === 'true',
+
+  // Mock Embeddings mode
+  USE_MOCK_EMBEDDINGS: process.env.USE_MOCK_EMBEDDINGS === 'true',
   
   // Scheduled Ingestion
   SCHEDULED_INGESTION_ENABLED: process.env.SCHEDULED_INGESTION_ENABLED ?? 'true',

@@ -2,18 +2,21 @@ import { Pinecone } from '@pinecone-database/pinecone';
 import { CONFIG } from '../../config/env';
 import prisma from '../../config/prisma';
 import { logger } from '../../config/logger';
+import { EmbeddingService } from '../rag/services/embedding.service';
 
 const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_API_KEY;
 
 export class RetrievalService {
   private pinecone: Pinecone | null = null;
   private index: any = null;
+  private embeddingService: EmbeddingService;
 
   get pineconeClient() {
     return this.pinecone;
   }
 
   constructor() {
+    this.embeddingService = new EmbeddingService();
     if (!USE_MOCK_AI && CONFIG.PINECONE_API_KEY) {
       this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
       this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
@@ -23,11 +26,11 @@ export class RetrievalService {
   }
 
   async semanticSearch(query: string, topK = 10) {
-    const embedding = await this.generateEmbedding(query);
     if (!this.index) {
       return this.getMockResults(query, topK);
     }
-
+    
+    const embedding = await this.embeddingService.generateEmbedding(query);
     const results = await this.index.query({
       vector: embedding,
       topK,
@@ -35,14 +38,6 @@ export class RetrievalService {
     });
 
     return results.matches || [];
-  }
-
-  async generateEmbedding(text: string): Promise<number[]> {
-    const hash = text.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-    return new Array(1536).fill(0).map((_, i) => {
-      const seed = (hash * (i + 1)) % 1000;
-      return (seed - 500) / 500;
-    });
   }
 
   private getMockResults(query: string, topK = 10) {

@@ -1,5 +1,5 @@
 # NileoPedia-medical
-AI-powered medical knowledge platform using RAG, GPT-4o, Pinecone, and Elasticsearch to deliver evidence-based, source-grounded clinical information with citation-backed responses.
+AI-powered medical knowledge platform using RAG, Groq Llama-3.3, Pinecone, and Elasticsearch to deliver evidence-based, source-grounded clinical information with citation-backed responses.
 
 ## Production Deployment
 
@@ -16,7 +16,8 @@ cp .env.example .env
 
 2. Fill in your values in `.env`:
 - `POSTGRES_PASSWORD` - PostgreSQL password
-- `OPENAI_API_KEY` - OpenAI API key
+- `GROQ_API_KEY` - Groq API key
+- `HF_API_KEY` - Hugging Face API key (for embeddings)
 - `PINECONE_API_KEY` - Pinecone API key
 - `PINECONE_ENVIRONMENT` - Pinecone environment (default: us-east-1)
 - `PINECONE_INDEX_NAME` - Pinecone index name (default: nileopedia-medical)

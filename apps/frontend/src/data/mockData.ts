@@ -113,7 +113,7 @@ Hypoglycemia prevention is critical in elderly patients. Sulfonylureas and insul
   citations: mockCitations,
   status: 'in_review',
   confidenceScore: 92,
-  model: 'GPT-4o + RAG',
+  model: 'Llama-3.3-70b + RAG',
   generatedAt: 'May 29, 2025 10:30 AM',
   assignedTo: 'Dr. Emily Davis',
   dueDate: 'May 31, 2025',

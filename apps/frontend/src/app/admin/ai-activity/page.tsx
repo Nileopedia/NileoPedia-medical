@@ -6,8 +6,8 @@ import { Bot } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 
 const aiActivities = [
-  { id: '1', model: 'GPT-4o', action: 'Query processed', timestamp: '2 minutes ago', tokens: 1250 },
-  { id: '2', model: 'GPT-4o', action: 'Response generated', timestamp: '5 minutes ago', tokens: 850 },
+  { id: '1', model: 'Llama-3.3-70b', action: 'Query processed', timestamp: '2 minutes ago', tokens: 1250 },
+  { id: '2', model: 'Llama-3.3-70b', action: 'Response generated', timestamp: '5 minutes ago', tokens: 850 },
 ];
 
 export default function AdminAiActivityPage() {

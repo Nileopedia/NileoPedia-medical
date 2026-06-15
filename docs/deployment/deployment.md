@@ -15,9 +15,13 @@ DATABASE_URL="postgresql://user:password@localhost:5432/nileopedia"
 # Redis (for BullMQ queue)
 REDIS_URL="redis://localhost:6379"
 
-# OpenAI (for AI generation)
-OPENAI_API_KEY="sk-..."
-OPENAI_MODEL="gpt-4o"
+# Groq (for AI generation)
+GROQ_API_KEY="gsk-..."
+GROQ_MODEL="llama-3.3-70b-versatile"
+
+# Hugging Face (for embeddings)
+HF_API_KEY="hf-..."
+HF_EMBEDDING_MODEL="sentence-transformers/all-MiniLM-L6-v2"
 
 # Pinecone (vector database)
 PINECONE_API_KEY="pcsk-..."
@@ -90,16 +94,23 @@ sudo systemctl enable redis-server
 redis-cli ping
 ```
 
-### OpenAI
+### Groq
 
-1. Create account at platform.openai.com
-2. Generate API key with billing enabled
-3. Set `OPENAI_API_KEY` in backend `.env`
+1. Create account at console.groq.com
+2. Generate API key
+3. Set `GROQ_API_KEY` in backend `.env`
+
+### Hugging Face (for embeddings)
+
+1. Create account at huggingface.co
+2. Generate API key from Settings > Access Tokens
+3. Set `HF_API_KEY` in backend `.env`
+4. Recreate Pinecone index with **384 dimensions** (MiniLM embedding size)
 
 ### Pinecone
 
 1. Create account at pinecone.io
-2. Create index named `nileopedia-medical`
+2. Create index named `nileopedia-medical` with 384 dimensions
 3. Get API key and set in backend `.env`
 
 ### Google OAuth
