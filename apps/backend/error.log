@@ -1307,3 +1307,23 @@ Invalid `prisma.medicalDocument.create()` invocation in
   45 if (!existing) {
 → 46   const doc = await prisma.medicalDocument.create(
 Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-16T06:22:20.457Z [nileopedia-backend] error: AI generation failed for question: test-q-123 
+Invalid `prisma_1.default.aIResponse.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/dist/jobs/processors/ai.processor.js:159:62
+
+  156         keyFindings,
+  157     }));
+  158 }
+→ 159 const aiResponse = await prisma_1.default.aIResponse.create(
+Foreign key constraint violated: `AIResponse_questionId_fkey (index)`
+2026-06-16T06:49:09.976Z [nileopedia-backend] error: AI generation failed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649 
+Invalid `prisma_1.default.aIResponse.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/dist/jobs/processors/ai.processor.js:159:62
+
+  156         keyFindings,
+  157     }));
+  158 }
+→ 159 const aiResponse = await prisma_1.default.aIResponse.create(
+Unique constraint failed on the fields: (`questionId`)
+2026-06-16T07:01:13.606Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-16T07:02:41.068Z [nileopedia-backend] error: Error in login controller: Invalid credentials

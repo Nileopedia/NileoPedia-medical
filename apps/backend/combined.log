@@ -2597,3 +2597,717 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-06-16T05:05:25.817Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
 2026-06-16T05:22:28.597Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
 2026-06-16T05:22:29.221Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T05:57:47.328Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T05:57:47.332Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T05:58:29.127Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T05:58:29.132Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:04:42.125Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:10:45.002Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:10:45.584Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:13:58.404Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:15:13.262Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:15:13.265Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:17:01.062Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:17:01.065Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:18:47.005Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:18:47.010Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:19:51.274Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:20:47.133Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:20:47.139Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:21:50.484Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:21:50.491Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:21:51.395Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:21:51.527Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:22:14.647Z [nileopedia-backend] info: Calling Groq for question:
+2026-06-16T06:22:14.652Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:22:15.466Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:22:20.457Z [nileopedia-backend] error: AI generation failed for question: test-q-123 
+Invalid `prisma_1.default.aIResponse.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/dist/jobs/processors/ai.processor.js:159:62
+
+  156         keyFindings,
+  157     }));
+  158 }
+→ 159 const aiResponse = await prisma_1.default.aIResponse.create(
+Foreign key constraint violated: `AIResponse_questionId_fkey (index)`
+2026-06-16T06:22:20.457Z [nileopedia-backend] info: Falling back to mock response for question:
+2026-06-16T06:25:48.394Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:25:49.473Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:30:10.715Z [nileopedia-backend] info: Calling Groq for question:
+2026-06-16T06:30:10.719Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:30:11.818Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:30:17.339Z [nileopedia-backend] info: AI generation completed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649
+2026-06-16T06:43:22.125Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:43:52.331Z [nileopedia-backend] info: GET /api/v1/health - ::1
+2026-06-16T06:44:34.842Z [nileopedia-backend] info: GET /health - ::1
+2026-06-16T06:45:00.939Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-16T06:45:00.972Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-16T06:45:35.519Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:45:35.808Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-16T06:46:05.348Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:46:05.624Z [nileopedia-backend] info: GET /api/v1/questions/f308f5fc-0693-484c-b145-ae412af0691f - ::1
+2026-06-16T06:46:37.830Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:46:38.047Z [nileopedia-backend] info: GET /api/v1/questions/f308f5fc-0693-484c-b145-ae412af0691f - ::1
+2026-06-16T06:49:02.300Z [nileopedia-backend] info: Calling Groq for question:
+2026-06-16T06:49:02.304Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:49:03.789Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:49:09.976Z [nileopedia-backend] error: AI generation failed for question: 3db56ee6-412f-4ca3-9888-0d580ce12649 
+Invalid `prisma_1.default.aIResponse.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/dist/jobs/processors/ai.processor.js:159:62
+
+  156         keyFindings,
+  157     }));
+  158 }
+→ 159 const aiResponse = await prisma_1.default.aIResponse.create(
+Unique constraint failed on the fields: (`questionId`)
+2026-06-16T06:49:09.976Z [nileopedia-backend] info: Falling back to mock response for question:
+2026-06-16T06:53:34.364Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:54:17.205Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:54:17.460Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-16T06:54:17.496Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:54:17.777Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-16T06:55:20.709Z [nileopedia-backend] info: Calling Groq for question:
+2026-06-16T06:55:20.713Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:55:21.808Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:55:27.958Z [nileopedia-backend] info: AI generation completed for question: 32a44bab-fe91-4f61-8ea2-32859d0d647a
+2026-06-16T06:55:27.958Z [nileopedia-backend] info: Calling Groq for question:
+2026-06-16T06:55:27.959Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:55:28.518Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T06:55:29.745Z [nileopedia-backend] info: AI generation completed for question: d9321aee-63cc-4a38-add3-88b3fb144dbe
+2026-06-16T06:58:02.065Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-16T06:58:02.301Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:58:02.542Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T06:58:02.796Z [nileopedia-backend] info: POST /api/v1/auth/logout - ::1
+2026-06-16T07:00:01.583Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:00:01.589Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:01:13.353Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T07:01:13.606Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-16T07:01:13.648Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-16T07:01:13.683Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-16T07:02:40.887Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T07:02:41.068Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-16T07:02:41.092Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T07:03:21.341Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T07:03:21.600Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-16T07:03:21.635Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-16T07:20:04.395Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:20:04.399Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:25:13.536Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:25:13.541Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:28:43.790Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:28:43.797Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:28:45.118Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.192Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.287Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.370Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.453Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.524Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.611Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.769Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.853Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:45.933Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:49.866Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:49.946Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.022Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.139Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.217Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.297Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.376Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.445Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.517Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:50.585Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.274Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.354Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.543Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.606Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.693Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.790Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.868Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:51.944Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:52.210Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:52.325Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.075Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.164Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.224Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.294Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.701Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.765Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.847Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:53.917Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:54.210Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:54.295Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:28:55.223Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:29:51.469Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:30:46.518Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-16T07:30:46.792Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-16T07:30:51.880Z [nileopedia-backend] info: GET /api/v1/questions/90d9ddc7-b79c-4e34-a1aa-4ff6ff96143e - ::1
+2026-06-16T07:45:57.333Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:45:57.344Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:45:58.705Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:58.805Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:58.914Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.032Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.162Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.416Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.517Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.616Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.716Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.828Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:45:59.937Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:00.038Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:00.127Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:00.228Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:00.329Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:07.616Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:07.727Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:07.840Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:07.935Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.045Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.225Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.308Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.413Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.506Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.789Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:08.896Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:09.025Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:09.128Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:09.247Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:09.368Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:10.526Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:10.626Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:10.690Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:10.817Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:10.897Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:10.979Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:11.069Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:11.166Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:11.273Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:11.433Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:11.891Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:12.156Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:12.524Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:12.589Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:12.919Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.034Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.115Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.224Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.323Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.408Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.500Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.641Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.731Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:14.840Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:15.008Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:15.119Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:15.258Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:15.371Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:15.472Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:15.581Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:17.276Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:17.399Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:17.484Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:17.578Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:17.713Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.197Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.327Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.540Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.635Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.728Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.822Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:18.927Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:19.092Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:19.202Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:19.940Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:21.781Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:22.032Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:22.140Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:22.396Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:22.502Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:22.822Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:22.956Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:23.031Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:23.146Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:23.240Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:23.362Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:23.472Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:23.731Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:24.138Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:24.392Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:25.771Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:25.856Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:25.935Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.011Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.231Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.321Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.437Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.547Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.621Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.806Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:26.932Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:27.042Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:27.131Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:27.212Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:27.293Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:28.871Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:28.970Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.060Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.160Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.260Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.381Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.480Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.581Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.671Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:29.761Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:30.333Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:30.451Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:30.540Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:30.675Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:30.811Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:32.537Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:32.610Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:32.686Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:32.770Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:32.866Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:32.965Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.067Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.199Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.297Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.413Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.575Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.677Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.749Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.848Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:33.938Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:34.800Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:34.888Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:34.995Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.229Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.316Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.389Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.461Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.550Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.621Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.731Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.840Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:35.921Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:36.013Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:36.108Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:36.198Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.139Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.216Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.287Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.370Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.448Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.564Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.790Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.868Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:37.965Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:38.060Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:38.170Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:38.299Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:38.388Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:38.451Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:38.540Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.348Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.416Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.488Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.617Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.706Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.807Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.912Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:39.997Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.078Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.225Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.299Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.453Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.577Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.664Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:40.764Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:41.971Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.059Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.226Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.324Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.434Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.513Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.612Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.875Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:42.957Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:43.038Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:43.152Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:43.241Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:43.327Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:43.417Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:43.557Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.271Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.355Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.436Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.505Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.579Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.695Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.764Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.836Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:44.905Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:45.003Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:45.094Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:45.174Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:45.256Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:45.423Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:45.504Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.234Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.315Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.382Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.445Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.535Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.670Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.755Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.843Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:46.927Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:47.004Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:47.075Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:47.156Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:47.304Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:47.397Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:47.484Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.175Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.246Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.328Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.433Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.621Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.694Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.759Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.825Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.895Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:48.985Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:49.074Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:49.211Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:49.276Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:49.344Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:49.414Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:50.215Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:50.645Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:50.725Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:50.795Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:50.884Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:50.997Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.218Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.306Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.374Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.444Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.514Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.584Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.665Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.776Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.846Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:51.925Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:52.812Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:52.893Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:52.990Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.067Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.155Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.232Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.314Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.406Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.486Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.563Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.653Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.744Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.843Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:53.922Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:54.014Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:54.934Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.013Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.085Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.155Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.226Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.297Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.375Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.456Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.573Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.656Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.734Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.815Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.904Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:55.974Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:46:56.046Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:05.946Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:48:05.952Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:48:06.912Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:06.996Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:07.084Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:07.181Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:07.459Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:07.535Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:07.621Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:08.012Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:08.100Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:08.187Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:08.281Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:08.363Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.083Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.153Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.234Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.304Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.424Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.504Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.584Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.652Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.714Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.792Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:12.882Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:13.224Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.125Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.194Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.294Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.374Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.455Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.533Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.593Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.673Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.753Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.824Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:14.943Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:15.003Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:15.694Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:15.783Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:15.854Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:15.935Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.014Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.121Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.234Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.359Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.424Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.504Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.600Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:16.684Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:17.422Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:17.573Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:17.661Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:17.755Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:17.846Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:17.918Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:18.020Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:18.413Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:18.527Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:18.635Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:18.801Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:18.896Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:19.741Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:20.365Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:20.500Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:20.579Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:20.691Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:20.981Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:21.100Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:21.208Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:21.383Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:21.479Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:21.592Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:21.731Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:22.100Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:23.092Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:23.226Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:23.334Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:23.694Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:23.818Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:23.955Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:24.107Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:24.195Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:24.276Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:24.356Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:24.428Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:24.527Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:25.486Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:25.575Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:25.637Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:25.726Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:26.030Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:26.107Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:27.117Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:27.206Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:27.280Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:27.364Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:27.436Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:27.498Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.378Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.473Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.565Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.645Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.725Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.795Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:28.891Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:29.019Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:29.105Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:29.203Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:29.294Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:29.376Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.136Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.207Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.427Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.495Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.567Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.649Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.716Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.796Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.860Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:30.997Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:31.077Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:31.418Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.138Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.255Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.337Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.431Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.516Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.587Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.668Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:32.747Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:33.000Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:33.066Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:33.144Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:33.235Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:33.936Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.285Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.362Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.444Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.533Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.615Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.676Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.775Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.847Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.911Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:34.979Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:35.057Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:35.783Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:35.856Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:35.935Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.055Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.146Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.222Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.296Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.370Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.454Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.516Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.777Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:36.857Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:37.563Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:37.658Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:37.727Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:37.790Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:37.857Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:37.974Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:38.048Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:38.125Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:38.205Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:38.289Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:38.359Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:38.436Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.249Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.340Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.432Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.507Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.578Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.648Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.727Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.798Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.917Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:39.988Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:40.058Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:40.126Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:40.797Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:40.885Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.000Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.088Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.215Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.289Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.367Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.458Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.528Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.863Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:41.938Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:42.007Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:42.717Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:42.788Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:42.866Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:42.928Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.008Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.128Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.208Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.289Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.359Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.427Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.488Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:43.576Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:44.817Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:44.898Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.017Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.114Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.176Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.274Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.335Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.401Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.489Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.576Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.797Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:45.878Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:46.649Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:46.736Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:46.798Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:46.910Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:46.979Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.052Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.128Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.223Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.306Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.378Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.458Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:47.595Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.417Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.497Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.575Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.647Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.736Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.847Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:48.927Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:49.007Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:49.089Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:49.175Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:49.248Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:49.318Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:50.164Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:50.707Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:50.815Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:50.898Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:50.985Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.071Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.155Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.227Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.297Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.416Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.488Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.557Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:51.627Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:52.362Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:52.614Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:52.717Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:52.788Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:52.867Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:52.948Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:53.018Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:53.097Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:53.168Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:53.240Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:53.347Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:53.418Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.189Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.267Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.337Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.408Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.478Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.585Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.662Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.749Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:54.827Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:55.106Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:55.187Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:55.287Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:56.105Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:48:56.562Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed

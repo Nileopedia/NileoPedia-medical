@@ -20,11 +20,15 @@ export class PineconeService {
 
   async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>) {
     if (!this.pinecone || !this.index) return;
-    const batchSize = 100;
+    const batchSize = 20; // Smaller batch size to avoid Pinecone timeouts
     
     for (let i = 0; i < vectors.length; i += batchSize) {
       const batch = vectors.slice(i, i + batchSize);
-      await this.index.upsert(batch);
+      try {
+        await this.index.upsert(batch);
+      } catch (error) {
+        logger.error('Pinecone upsert batch failed:', { batchStart: i, error });
+      }
     }
   }
 

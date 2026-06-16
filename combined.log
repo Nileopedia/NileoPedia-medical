@@ -7,3 +7,5 @@
 2026-06-15T14:43:31.390Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
 2026-06-15T14:43:31.402Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
 2026-06-15T14:43:41.991Z [nileopedia-backend] error: Document ingestion failed: 4662c944-0472-4870-8923-eebe3eddfc7c Vector dimension 384 does not match the dimension of the index 3072
+2026-06-16T06:11:22.201Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T06:11:22.860Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
