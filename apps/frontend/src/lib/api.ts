@@ -106,6 +106,21 @@ type BackendValidationReview = {
   };
 };
 
+export type ValidationReview = {
+  id: string;
+  aiResponseId: string;
+  aiResponse?: {
+    title: string;
+    question: {
+      questionText: string;
+    };
+  };
+  status: string;
+  reviewedAt: string;
+  score?: number;
+  feedback?: string;
+};
+
 type BackendPendingResponse = {
   id: string;
   summary: string;
@@ -483,7 +498,7 @@ class ApiClient {
       id: item.id,
       aiResponseId: item.aiResponseId,
       aiResponse: {
-        title: item.aiResponse?.question?.questionText || 'Untitled',
+        title: item.aiResponse?.summary?.substring(0, 50) || 'Untitled',
         question: {
           questionText: item.aiResponse?.question?.questionText || 'Unknown query',
         },

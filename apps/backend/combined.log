@@ -2593,3 +2593,7 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-06-15T09:37:11.032Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
 2026-06-15T09:37:24.544Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
 2026-06-15T09:40:32.298Z [nileopedia-backend] info: POST /api/v1/mock-ai/generate - ::1
+2026-06-16T05:05:25.049Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T05:05:25.817Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T05:22:28.597Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T05:22:29.221Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed

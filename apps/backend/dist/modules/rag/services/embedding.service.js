@@ -6,7 +6,7 @@ const logger_1 = require("../../../config/logger");
 const hfApiKey = env_1.CONFIG.HF_API_KEY;
 const hfEmbeddingModel = env_1.CONFIG.HF_EMBEDDING_MODEL;
 async function hfEmbedding(text) {
-    const response = await fetch(`https://api-inference.huggingface.co/pipeline/feature-extraction/${hfEmbeddingModel}`, {
+    const response = await fetch(`https://api-inference.huggingface.co/models/${hfEmbeddingModel}`, {
         method: 'POST',
         headers: {
             'Authorization': `Bearer ${hfApiKey}`,

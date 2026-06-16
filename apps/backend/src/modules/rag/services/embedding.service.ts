@@ -6,7 +6,7 @@ const hfEmbeddingModel = CONFIG.HF_EMBEDDING_MODEL;
 
 async function hfEmbedding(text: string): Promise<number[]> {
   const response = await fetch(
-    `https://api-inference.huggingface.co/pipeline/feature-extraction/${hfEmbeddingModel}`,
+    `https://api-inference.huggingface.co/models/${hfEmbeddingModel}`,
     {
       method: 'POST',
       headers: {

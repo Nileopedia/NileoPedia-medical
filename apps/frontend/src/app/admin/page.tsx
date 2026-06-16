@@ -111,7 +111,7 @@ export default function AdminPage() {
               <Button
                 onClick={handleRunIngestion}
                 disabled={loading || ingestionStatus.isRunning}
-                variant="default"
+                variant="primary"
               >
                 <RefreshCw size={16} className="mr-2" />
                 {loading ? 'Running...' : 'Full Ingestion'}
