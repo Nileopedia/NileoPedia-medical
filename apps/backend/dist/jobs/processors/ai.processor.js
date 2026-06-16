@@ -81,7 +81,11 @@ const generateMockResponse = (query, topK, specialty) => {
 async function processAiGeneration(job) {
     const { questionId, query, userId, topK = 10, specialty } = job;
     try {
-        let summary, citations, confidenceScore, keyFindings, generatedBy;
+        let summary = '';
+        let citations = [];
+        let confidenceScore = 0;
+        let keyFindings = [];
+        let generatedBy = '';
         if (env_1.CONFIG.USE_MOCK_AI) {
             logger_1.logger.info(`Using mock AI response for question:`, questionId, `specialty:`, specialty);
             const mock = generateMockResponse(query, topK, specialty || undefined);
@@ -142,11 +146,9 @@ async function processAiGeneration(job) {
                     sectionTitle: metadata.sectionTitle,
                 });
             }
-            ({ citations, confidenceScore, keyFindings } = {
-                citations: extractedCitations.slice(0, 5),
-                confidenceScore: 0.85 + Math.random() * 0.1,
-                keyFindings: [summary.substring(0, 150)]
-            });
+            citations = extractedCitations.slice(0, 5);
+            confidenceScore = 0.85 + Math.random() * 0.1;
+            keyFindings = [summary.substring(0, 150)];
             generatedBy = 'Llama-3.3-70b';
             await redis_1.redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
                 questionId,

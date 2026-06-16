@@ -11,6 +11,9 @@ PINECONE_API_KEY = os.getenv("PINECONE_API_KEY", "")
 PINECONE_INDEX_NAME = os.getenv("PINECONE_INDEX_NAME", "nileopedia-medical")
 PINECONE_ENVIRONMENT = os.getenv("PINECONE_ENVIRONMENT", "us-east-1-aws")
 
+# MiniLM-L6-v2 produces 384-dimensional embeddings
+EMBEDDING_DIMENSION = 384
+
 # Sample medical documents for each specialty
 SAMPLE_DOCUMENTS = {
     "general": [
@@ -73,7 +76,7 @@ def get_namespace_for_specialty(specialty: str) -> str:
     }
     return namespace_map.get(specialty.lower(), "general")
 
-def generate_fake_embedding(text: str, dim: int = 3072) -> list:
+def generate_fake_embedding(text: str, dim: int = EMBEDDING_DIMENSION) -> list:
     """Generate deterministic fake embedding for demo purposes."""
     h = hashlib.md5(text.encode()).hexdigest()
     random.seed(int(h[:8], 16))
@@ -100,13 +103,13 @@ def seed_pinecone():
     # Create index if it doesn't exist
     existing_indexes = [idx.name for idx in pc.list_indexes()]
     if PINECONE_INDEX_NAME not in existing_indexes:
-        print(f"Creating Pinecone index: {PINECONE_INDEX_NAME}")
+        print(f"Creating Pinecone index: {PINECONE_INDEX_NAME} with {EMBEDDING_DIMENSION} dimensions")
         parts = PINECONE_ENVIRONMENT.split("-")
         region = "-".join(parts[:2]) if len(parts) >= 2 else "us-east-1"
         cloud = parts[-1] if len(parts) >= 3 else "aws"
         pc.create_index(
             name=PINECONE_INDEX_NAME,
-            dimension=3072,
+            dimension=EMBEDDING_DIMENSION,
             metric="cosine",
             spec=ServerlessSpec(cloud=cloud, region=region)
         )

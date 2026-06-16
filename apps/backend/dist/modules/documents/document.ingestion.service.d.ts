@@ -10,6 +10,7 @@ export declare class DocumentIngestionService {
         content: string;
         publicationYear?: number;
         specialty?: string;
+        documentType?: string;
         uploadedById: string;
         fileName: string;
         fileUrl: string;
@@ -17,22 +18,22 @@ export declare class DocumentIngestionService {
         fileSize: number;
     }): Promise<{
         document: {
-            ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
-            documentType: string | null;
-            publicationYear: number | null;
-            description: string | null;
-            title: string;
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            title: string;
+            source: string | null;
+            publicationYear: number | null;
+            documentType: string | null;
+            specialty: string | null;
+            description: string | null;
             fileName: string;
             fileUrl: string;
             fileType: string;
             fileSize: number;
-            specialty: string | null;
-            source: string | null;
             uploadedById: string;
+            ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
             isVerified: boolean;
-            createdAt: Date;
-            updatedAt: Date;
         };
         chunksCount: number;
     }>;

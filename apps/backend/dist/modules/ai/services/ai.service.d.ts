@@ -15,7 +15,7 @@ export declare class AIService {
         text: string;
         metadata?: Record<string, any>;
     }>): Promise<{
-        summary: any;
+        summary: string;
         citations: Citation[];
         confidenceScore: number;
     }>;

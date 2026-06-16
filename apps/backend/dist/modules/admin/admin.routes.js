@@ -1,0 +1,19 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const admin_controller_1 = require("./controllers/admin.controller");
+const auth_middleware_1 = require("../../shared/middleware/auth.middleware");
+const ingestion_controller_1 = require("./controllers/ingestion.controller");
+const adminController = new admin_controller_1.AdminController();
+const ingestionController = new ingestion_controller_1.IngestionController();
+const router = (0, express_1.Router)();
+router.get('/users', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getUsers.bind(adminController));
+router.patch('/users/:userId/suspend', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.suspendUser.bind(adminController));
+router.patch('/users/:userId/activate', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.activateUser.bind(adminController));
+router.delete('/users/:userId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.deleteUser.bind(adminController));
+router.get('/analytics', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getAnalytics.bind(adminController));
+router.post('/ingestion/run', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.runManualIngestion.bind(ingestionController));
+router.post('/ingestion/refresh', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.runIncrementalRefresh.bind(ingestionController));
+router.get('/ingestion/status', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.getStatus.bind(ingestionController));
+exports.default = router;
+//# sourceMappingURL=admin.routes.js.map

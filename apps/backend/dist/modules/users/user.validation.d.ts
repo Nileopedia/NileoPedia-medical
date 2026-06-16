@@ -30,8 +30,8 @@ export declare const getUsersQuerySchema: z.ZodObject<{
     limit: z.ZodDefault<z.ZodNumber>;
     search: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    page: number;
     limit: number;
+    page: number;
     search?: string | undefined;
 }, {
     page?: number | undefined;

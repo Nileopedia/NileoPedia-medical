@@ -88,8 +88,8 @@ prisma.$connect()
     
     setupRoutes(app, io, authController);
 
-    // Mock AI service endpoint for development/testing (when real AI service unavailable)
-    if (CONFIG.NODE_ENV === 'development' || CONFIG.USE_MOCK_AI) {
+    // Mock AI service endpoint (only when explicitly enabled)
+    if (CONFIG.USE_MOCK_AI) {
       app.post('/api/v1/mock-ai/generate', (req, res) => {
         const { query, specialty } = req.body;
         

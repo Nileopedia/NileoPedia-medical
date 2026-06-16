@@ -118,7 +118,7 @@ export class DocumentService {
       data: { isVerified: true, ingestionStatus: IngestionStatus.PROCESSING },
     });
 
-    const { documentQueue } = await import('../../../jobs/queues');
+    const { documentQueue } = await import('../../jobs/queues');
     if (document.fileUrl) {
       await documentQueue.add('ingest', {
         documentId: id,

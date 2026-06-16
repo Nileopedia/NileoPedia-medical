@@ -3,8 +3,8 @@ import { IngestionStatus } from '@prisma/client';
 import { EmbeddingService } from '../rag/services/embedding.service';
 import { ChunkingService } from '../rag/services/chunking.service';
 import { PineconeService } from '../rag/services/pinecone.service';
-import { logger } from '../../../config/logger';
-import { CONFIG } from '../../../config/env';
+import { logger } from '../../config/logger';
+import { CONFIG } from '../../config/env';
 
 export class DocumentIngestionService {
   private embeddingService: EmbeddingService;

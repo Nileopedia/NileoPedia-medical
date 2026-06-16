@@ -123,7 +123,7 @@ class DocumentService {
             where: { id },
             data: { isVerified: true, ingestionStatus: client_1.IngestionStatus.PROCESSING },
         });
-        const { documentQueue } = await Promise.resolve().then(() => __importStar(require('../../../jobs/queues')));
+        const { documentQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
         if (document.fileUrl) {
             await documentQueue.add('ingest', {
                 documentId: id,

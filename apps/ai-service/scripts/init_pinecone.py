@@ -17,16 +17,19 @@ pc = Pinecone(api_key=PINECONE_API_KEY)
 index_name = PINECONE_INDEX_NAME
 existing_indexes = [idx.name for idx in pc.list_indexes()]
 
+# MiniLM-L6-v2 produces 384-dimensional embeddings
+EMBEDDING_DIMENSION = 384
+
 if index_name not in existing_indexes:
     # Parse region from environment
     parts = PINECONE_ENVIRONMENT.split("-")
     region = "-".join(parts[:2]) if len(parts) >= 2 else "us-east-1"
     cloud = parts[-1] if len(parts) >= 3 else "aws"
     
-    print(f"Creating Pinecone index: {index_name}")
+    print(f"Creating Pinecone index: {index_name} with {EMBEDDING_DIMENSION} dimensions")
     pc.create_index(
         name=index_name,
-        dimension=3072,
+        dimension=EMBEDDING_DIMENSION,
         metric="cosine",
         spec=ServerlessSpec(cloud=cloud, region=region)
     )

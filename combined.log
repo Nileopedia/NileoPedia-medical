@@ -1,0 +1,9 @@
+2026-06-15T09:48:11.852Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15T09:48:11.855Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15T09:48:24.555Z [nileopedia-backend] error: Document ingestion failed: 4662c944-0472-4870-8923-eebe3eddfc7c Vector dimension 384 does not match the dimension of the index 3072
+2026-06-15T14:39:25.678Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15T14:39:25.680Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15T14:39:30.906Z [nileopedia-backend] error: Document ingestion failed: 2f03e4a9-56a4-4d4c-a791-b12180c77f23 A call to https://api.pinecone.io/indexes/nileopedia-med returned HTTP status 404.
+2026-06-15T14:43:31.390Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15T14:43:31.402Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-15T14:43:41.991Z [nileopedia-backend] error: Document ingestion failed: 4662c944-0472-4870-8923-eebe3eddfc7c Vector dimension 384 does not match the dimension of the index 3072
