@@ -3311,3 +3311,24 @@ Unique constraint failed on the fields: (`questionId`)
 2026-06-16T07:48:55.287Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
 2026-06-16T07:48:56.105Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
 2026-06-16T07:48:56.562Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T07:58:39.535Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T07:58:40.803Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
+2026-06-16T20:13:02.070Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T20:13:03.705Z [nileopedia-backend] info: Using Hugging Face embeddings: sentence-transformers/all-MiniLM-L6-v2
+2026-06-16T20:13:04.408Z [nileopedia-backend] error: HF embedding failed, falling back to mock:
+2026-06-16T20:33:25.260Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T20:42:43.855Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T20:42:44.494Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T20:46:10.963Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T20:53:10.392Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T20:53:11.284Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:01:52.518Z [nileopedia-backend] info: GET /api/admin/embedding-test - ::1
+2026-06-16T21:15:53.058Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:15:54.047Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:16:24.787Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:16:25.744Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:17:26.755Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:17:49.987Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:18:20.633Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:18:20.636Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-16T21:18:23.860Z [nileopedia-backend] error: Pinecone upsert batch failed:

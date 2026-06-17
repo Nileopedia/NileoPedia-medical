@@ -67,6 +67,31 @@ async function seedKnowledgeBase(): Promise<void> {
   }
 }
 
+// Verify embedding service on startup
+async function verifyEmbeddings(): Promise<void> {
+  const { EmbeddingService } = require('./modules/rag/services/embedding.service');
+  const embeddingService = new EmbeddingService();
+  
+  console.log('\n========== EMBEDDING SERVICE VERIFICATION ==========');
+  console.log('HF_API_KEY configured:', !!CONFIG.HF_API_KEY);
+  console.log('USE_MOCK_EMBEDDINGS:', CONFIG.USE_MOCK_EMBEDDINGS);
+  console.log('isRealEmbeddings:', embeddingService.isRealEmbeddings);
+  
+  if (!embeddingService.isRealEmbeddings) {
+    console.warn('\n[INFO] Using mock embeddings - no embedding service available');
+    console.warn('[INFO] Install @xenova/transformers for local embeddings\n');
+  } else {
+    console.log('\n[INFO] Real embeddings active:', embeddingService.embeddingSource);
+    try {
+      const testEmbedding = await embeddingService.generateEmbedding('startup test');
+      console.log('[INFO] Test embedding generated:', testEmbedding.length, 'dimensions');
+    } catch (e: any) {
+      console.error('[ERROR] Failed to generate test embedding:', e?.message || e);
+    }
+  }
+  console.log('===================================================\n');
+}
+
 // Connect to database and then setup everything
 prisma.$connect()
   .then(async () => {
@@ -74,6 +99,9 @@ prisma.$connect()
     
     // Initialize admin account
     await initializeAdmin();
+    
+    // Verify embedding service at startup (non-blocking)
+    setImmediate(() => verifyEmbeddings());
     
     // Seed knowledge base if empty
     await seedKnowledgeBase();

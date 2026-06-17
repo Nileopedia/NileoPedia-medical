@@ -1,8 +1,12 @@
 export declare class EmbeddingService {
+    private mockMode;
+    private useLocal;
     constructor();
+    get isRealEmbeddings(): boolean;
+    get embeddingSource(): string;
     generateEmbedding(text: string): Promise<number[]>;
     generateBatchEmbeddings(texts: string[]): Promise<number[][]>;
     private generateMockEmbedding;
     preprocessText(text: string): Promise<string>;
 }
-//# sourceMappingURL=embedding.service.d.ts.map
+//# sourceMappingURL=embedding.service.d.ts.mapcurl http://localhost:3001/health

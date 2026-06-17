@@ -17,12 +17,12 @@ export declare const createTestUser: (data: {
     refreshToken: string | null;
     id: string;
     createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    updatedAt: Date;
 }>;
 export declare const createTestAdmin: () => Promise<{
     fullName: string;
@@ -32,12 +32,12 @@ export declare const createTestAdmin: () => Promise<{
     refreshToken: string | null;
     id: string;
     createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    updatedAt: Date;
 }>;
 export declare const createTestValidator: () => Promise<{
     fullName: string;
@@ -47,12 +47,12 @@ export declare const createTestValidator: () => Promise<{
     refreshToken: string | null;
     id: string;
     createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    updatedAt: Date;
 }>;
 export declare const createTestMedicalUser: () => Promise<{
     fullName: string;
@@ -62,12 +62,12 @@ export declare const createTestMedicalUser: () => Promise<{
     refreshToken: string | null;
     id: string;
     createdAt: Date;
-    updatedAt: Date;
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
+    updatedAt: Date;
 }>;
 export declare const createAuthHeader: (token: string) => {
     Authorization: string;

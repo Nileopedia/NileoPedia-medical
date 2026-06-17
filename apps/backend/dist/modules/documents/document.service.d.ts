@@ -14,17 +14,17 @@ export declare class DocumentService {
     } & {
         id: string;
         createdAt: Date;
+        specialty: string | null;
         updatedAt: Date;
-        title: string;
         source: string | null;
         publicationYear: number | null;
-        documentType: string | null;
-        specialty: string | null;
+        title: string;
         description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
         fileSize: number;
+        documentType: string | null;
         uploadedById: string;
         ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
         isVerified: boolean;
@@ -32,17 +32,17 @@ export declare class DocumentService {
     createDocument(data: CreateDocumentDto): Promise<{
         id: string;
         createdAt: Date;
+        specialty: string | null;
         updatedAt: Date;
-        title: string;
         source: string | null;
         publicationYear: number | null;
-        documentType: string | null;
-        specialty: string | null;
+        title: string;
         description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
         fileSize: number;
+        documentType: string | null;
         uploadedById: string;
         ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
         isVerified: boolean;
@@ -50,17 +50,17 @@ export declare class DocumentService {
     updateDocument(id: string, data: UpdateDocumentDto): Promise<{
         id: string;
         createdAt: Date;
+        specialty: string | null;
         updatedAt: Date;
-        title: string;
         source: string | null;
         publicationYear: number | null;
-        documentType: string | null;
-        specialty: string | null;
+        title: string;
         description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
         fileSize: number;
+        documentType: string | null;
         uploadedById: string;
         ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
         isVerified: boolean;
@@ -68,17 +68,17 @@ export declare class DocumentService {
     deleteDocument(id: string): Promise<{
         id: string;
         createdAt: Date;
+        specialty: string | null;
         updatedAt: Date;
-        title: string;
         source: string | null;
         publicationYear: number | null;
-        documentType: string | null;
-        specialty: string | null;
+        title: string;
         description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
         fileSize: number;
+        documentType: string | null;
         uploadedById: string;
         ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
         isVerified: boolean;
@@ -86,17 +86,17 @@ export declare class DocumentService {
     verifyDocument(id: string): Promise<{
         id: string;
         createdAt: Date;
+        specialty: string | null;
         updatedAt: Date;
-        title: string;
         source: string | null;
         publicationYear: number | null;
-        documentType: string | null;
-        specialty: string | null;
+        title: string;
         description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
         fileSize: number;
+        documentType: string | null;
         uploadedById: string;
         ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
         isVerified: boolean;
@@ -104,17 +104,17 @@ export declare class DocumentService {
     updateIngestionStatus(id: string, status: IngestionStatus): Promise<{
         id: string;
         createdAt: Date;
+        specialty: string | null;
         updatedAt: Date;
-        title: string;
         source: string | null;
         publicationYear: number | null;
-        documentType: string | null;
-        specialty: string | null;
+        title: string;
         description: string | null;
         fileName: string;
         fileUrl: string;
         fileType: string;
         fileSize: number;
+        documentType: string | null;
         uploadedById: string;
         ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
         isVerified: boolean;

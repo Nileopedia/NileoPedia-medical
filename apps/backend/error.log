@@ -1327,3 +1327,5 @@ Invalid `prisma_1.default.aIResponse.create()` invocation in
 Unique constraint failed on the fields: (`questionId`)
 2026-06-16T07:01:13.606Z [nileopedia-backend] error: Error in login controller: Invalid credentials
 2026-06-16T07:02:41.068Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-16T20:13:04.408Z [nileopedia-backend] error: HF embedding failed, falling back to mock:
+2026-06-16T21:18:23.860Z [nileopedia-backend] error: Pinecone upsert batch failed:

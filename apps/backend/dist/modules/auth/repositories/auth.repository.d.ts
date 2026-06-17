@@ -7,12 +7,12 @@ export declare class AuthRepository {
         refreshToken: string | null;
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        updatedAt: Date;
     } | null>;
     findById(id: string): Promise<{
         fullName: string;
@@ -22,12 +22,12 @@ export declare class AuthRepository {
         refreshToken: string | null;
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        updatedAt: Date;
     } | null>;
     create(userData: {
         fullName: string;
@@ -44,12 +44,12 @@ export declare class AuthRepository {
         refreshToken: string | null;
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        updatedAt: Date;
     }>;
     update(id: string, userData: Partial<{
         fullName: string;
@@ -68,12 +68,12 @@ export declare class AuthRepository {
         refreshToken: string | null;
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        updatedAt: Date;
     }>;
     setRefreshToken(id: string, refreshToken: string | null): Promise<{
         fullName: string;
@@ -83,12 +83,12 @@ export declare class AuthRepository {
         refreshToken: string | null;
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        updatedAt: Date;
     }>;
     updatePassword(id: string, password: string): Promise<{
         fullName: string;
@@ -98,12 +98,12 @@ export declare class AuthRepository {
         refreshToken: string | null;
         id: string;
         createdAt: Date;
-        updatedAt: Date;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        updatedAt: Date;
     }>;
     createPasswordReset(email: string, token: string, expiresAt: Date): Promise<{
         email: string;

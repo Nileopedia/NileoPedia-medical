@@ -61,4 +61,44 @@ export class AdminController {
       next(error);
     }
   }
+
+  async testEmbeddings(req: Request, res: Response, next: NextFunction) {
+    try {
+      // Use a simpler test that doesn't block on model download
+      const { EmbeddingService } = await import('../../rag/services/embedding.service');
+      const embeddingService = new EmbeddingService();
+      
+      // Get config info without blocking on embedding generation
+      const source = embeddingService.embeddingSource;
+      const model = 'all-MiniLM-L6-v2';
+      
+      // Try to generate embedding - may fall back to mock if network unavailable
+      let embedding: number[] = [];
+      let dimensions = 384;
+      let actualSource = source;
+      
+      try {
+        embedding = await embeddingService.generateEmbedding('What is diabetes?');
+        dimensions = embedding.length;
+        actualSource = embeddingService.embeddingSource;
+      } catch (e) {
+        // If generation fails, still report configured source
+        console.warn('Embedding test fallback to mock:', e);
+        actualSource = 'mock';
+      }
+      
+      res.status(200).json({
+        success: true,
+        model,
+        dimensions,
+        source: actualSource,
+        embedding: embedding.slice(0, 5),
+      });
+    } catch (error: any) {
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
 }

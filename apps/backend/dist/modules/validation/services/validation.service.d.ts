@@ -11,12 +11,12 @@ export declare class ValidationService {
         questionId: string;
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         summary: string;
         keyFindings: string[];
         confidenceScore: number | null;
         validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
-        updatedAt: Date;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
     reject(responseId: string, validatorId: string, feedback: string): Promise<void>;
@@ -33,12 +33,12 @@ export declare class ValidationService {
             questionId: string;
             id: string;
             createdAt: Date;
+            updatedAt: Date;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
-            updatedAt: Date;
         };
     } & {
         feedback: string | null;
