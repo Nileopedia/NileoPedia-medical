@@ -3332,3 +3332,7 @@ Unique constraint failed on the fields: (`questionId`)
 2026-06-16T21:18:20.633Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-06-16T21:18:20.636Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-06-16T21:18:23.860Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-06-17T07:17:47.591Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-17T07:18:44.841Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-17T07:18:44.846Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-17T07:23:21.049Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
