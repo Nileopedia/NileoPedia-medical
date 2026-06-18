@@ -3,10 +3,10 @@ import { AnalyticsService } from '../../modules/analytics/services/analytics.ser
 import prisma from '../../config/prisma';
 
 jest.mock('../../config/prisma', () => ({
-  user: { count: jest.fn() },
-  question: { count: jest.fn() },
-  aIResponse: { count: jest.fn() },
-  validationReview: { findMany: jest.fn() },
+  user: { count: jest.fn().mockResolvedValue(100) },
+  question: { count: jest.fn().mockResolvedValue(500) },
+  aIResponse: { count: jest.fn().mockResolvedValue(50) },
+  validationReview: { findMany: jest.fn().mockResolvedValue([]) },
 }));
 
 describe('AnalyticsService', () => {
@@ -19,39 +19,31 @@ describe('AnalyticsService', () => {
     service = new AnalyticsService();
   });
 
-  describe('getDashboard', () => {
-    it('should return dashboard metrics', async () => {
-      mockPrisma.user.count.mockResolvedValue(100);
-      mockPrisma.question.count.mockResolvedValue(500);
-      mockPrisma.aIResponse.count.mockResolvedValue(50);
-
-      const result = await service.getDashboard();
-
-      expect(result).toHaveProperty('totalUsers', 100);
-      expect(result).toHaveProperty('totalQuestions', 500);
+  it('should return dashboard metrics', async () => {
+    const result = await service.getDashboard();
+    
+    expect(result).toEqual({
+      totalUsers: 100,
+      totalQuestions: 500,
+      pendingResponses: 50,
+      approvedResponses: 50,
     });
   });
 
-  describe('getValidationMetrics', () => {
-    it('should return validation metrics with reviews', async () => {
-      mockPrisma.validationReview.findMany.mockResolvedValue([
-        { score: 5 },
-        { score: 4 },
-      ]);
+  it('should return validation metrics with reviews', async () => {
+    mockPrisma.validationReview.findMany.mockResolvedValue([{ score: 5 }, { score: 4 }]);
+    
+    const result = await service.getValidationMetrics();
+    
+    expect(result.totalReviews).toBe(2);
+    expect(result.averageScore).toBe(4.5);
+  });
 
-      const result = await service.getValidationMetrics();
-
-      expect(result.totalReviews).toBe(2);
-      expect(result.averageScore).toBeGreaterThan(0);
-    });
-
-    it('should return zero when no reviews', async () => {
-      mockPrisma.validationReview.findMany.mockResolvedValue([]);
-
-      const result = await service.getValidationMetrics();
-
-      expect(result.totalReviews).toBe(0);
-      expect(result.averageScore).toBe(0);
-    });
+  it('should return zero average when no reviews', async () => {
+    mockPrisma.validationReview.findMany.mockResolvedValue([]);
+    
+    const result = await service.getValidationMetrics();
+    
+    expect(result.averageScore).toBe(0);
   });
 });

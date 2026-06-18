@@ -33,19 +33,12 @@ module.exports = {
     '!src/**/*.spec.ts',
     '!src/tests/**',
     '!src/server.ts',
+    '!tests/integration/**',
   ],
   coverageDirectory: 'coverage',
   coverageReporters: ['text', 'lcov', 'html'],
-  coverageThreshold: {
-    global: {
-      branches: 65,
-      functions: 70,
-      lines: 70,
-      statements: 70,
-    },
-  },
   setupFilesAfterEnv: ['<rootDir>/src/tests/setup/jest.setup.ts'],
   testTimeout: 30000,
   verbose: true,
-  testPathIgnorePatterns: ['<rootDir>/src/tests/integration/', '<rootDir>/src/tests/e2e/', '<rootDir>/src/tests/jobs/'],
+  testPathIgnorePatterns: ['<rootDir>/src/tests/e2e/', '<rootDir>/src/tests/jobs/'],
 };

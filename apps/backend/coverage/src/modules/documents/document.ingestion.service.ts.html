@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">52% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>13/25</span>
+                <span class='fraction'>0/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>3/9</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">33.33% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/3</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">54.16% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>13/24</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line low'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -151,24 +151,24 @@
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
 <a name='L88'></a><a href='#L88'>88</a>
-<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L89'></a><a href='#L89'>89</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -239,24 +239,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import prisma from '../../config/prisma';
-import { IngestionStatus } from '@prisma/client';
-import { EmbeddingService } from '../rag/services/embedding.service';
-import { ChunkingService } from '../rag/services/chunking.service';
-import { PineconeService } from '../rag/services/pinecone.service';
-import { logger } from '../../config/logger';
-import { CONFIG } from '../../config/env';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import prisma from '../../config/prisma';</span>
+<span class="cstat-no" title="statement not covered" >import { IngestionStatus } from '@prisma/client';</span>
+<span class="cstat-no" title="statement not covered" >import { EmbeddingService } from '../rag/services/embedding.service';</span>
+<span class="cstat-no" title="statement not covered" >import { ChunkingService } from '../rag/services/chunking.service';</span>
+<span class="cstat-no" title="statement not covered" >import { PineconeService } from '../rag/services/pinecone.service';</span>
+<span class="cstat-no" title="statement not covered" >import { logger } from '../../config/logger';</span>
+<span class="cstat-no" title="statement not covered" >import { CONFIG } from '../../config/env';</span>
 &nbsp;
-export class DocumentIngestionService {
+<span class="cstat-no" title="statement not covered" >export class D</span>ocumentIngestionService {
   private embeddingService: EmbeddingService;
   private chunkingService: ChunkingService;
-  private pineconeService: PineconeService | null = null;
+  private <span class="cstat-no" title="statement not covered" >pineconeService: PineconeService | null = null;</span>
 &nbsp;
-  constructor() {
-    this.embeddingService = new EmbeddingService();
-    this.chunkingService = new ChunkingService();
-    if (CONFIG.PINECONE_API_KEY &amp;&amp; !CONFIG.USE_MOCK_EMBEDDINGS) {
-      this.pineconeService = new PineconeService();
+<span class="fstat-no" title="function not covered" >  constructor() {</span>
+<span class="cstat-no" title="statement not covered" >    this.embeddingService = new EmbeddingService();</span>
+<span class="cstat-no" title="statement not covered" >    this.chunkingService = new ChunkingService();</span>
+<span class="cstat-no" title="statement not covered" >    <span class="missing-if-branch" title="if path not taken" >I</span>if (CONFIG.PINECONE_API_KEY &amp;&amp; !CONFIG.USE_MOCK_EMBEDDINGS) {</span>
+<span class="cstat-no" title="statement not covered" >      this.pineconeService = new PineconeService();</span>
     }
   }
 &nbsp;
@@ -334,7 +334,7 @@ export class DocumentIngestionService {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-06-17T22:57:54.884Z
+                at 2026-06-18T04:33:42.196Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

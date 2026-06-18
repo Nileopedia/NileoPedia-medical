@@ -1,10 +1,21 @@
 import { CONFIG } from '../../../config/env';
 import { logger } from '../../../config/logger';
 
+// Dynamic fetch import to support ES modules and CommonJS
+let fetch: any;
+async function getFetch() {
+  if (!fetch) {
+    fetch = (await import('node-fetch')).default || (await import('node-fetch'));
+  }
+  return fetch;
+}
+
 const HF_API_KEY = CONFIG.HF_API_KEY;
 const HF_EMBEDDING_MODEL = CONFIG.HF_EMBEDDING_MODEL;
 const EXPECTED_DIMENSIONS = 384;
-const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false';
+// Force mock mode in test environment to avoid network calls and dynamic imports
+const IS_TEST = process.env.NODE_ENV === 'test';
+const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false' && !IS_TEST;
 
 // Log environment on module load
 console.log('[EmbeddingService] Configuration check:', {
@@ -52,7 +63,8 @@ async function hfEmbedding(text: string): Promise<number[]> {
   
   try {
     console.log(`[HF] Requesting embedding from: ${requestUrl}`);
-    const response = await fetch(
+    const fetchFn = await getFetch();
+    const response = await fetchFn(
       requestUrl,
       {
         method: 'POST',
@@ -103,7 +115,7 @@ export class EmbeddingService {
   private useLocal: boolean = false;
   
   constructor() {
-    this.mockMode = !HF_API_KEY && !LOCAL_EMBEDDING_ENABLED;
+    this.mockMode = IS_TEST || !HF_API_KEY && !LOCAL_EMBEDDING_ENABLED;
     
     if (this.mockMode) {
       logger.warn('Using mock embeddings - no embedding service available');

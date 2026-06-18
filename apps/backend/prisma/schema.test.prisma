@@ -1,0 +1,12 @@
+// SQLite-compatible test schema (extends main schema)
+// Run: npx prisma migrate dev --schema=prisma/schema.test.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["postgresqlExtensions"]
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./test.db"
+}
