@@ -24,3 +24,14 @@ declare module 'mammoth' {
   };
   export = mammoth;
 }
+
+declare module 'node-fetch' {
+  export interface Response {
+    ok: boolean;
+    status: number;
+    statusText: string;
+    text(): Promise<string>;
+    json(): Promise<any>;
+  }
+  export default function fetch(url: string, options?: any): Promise<Response>;
+}

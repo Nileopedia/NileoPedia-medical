@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Bookmark } from 'lucide-react';
+import { Bookmark, Eye, Trash2 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Query } from '../../types';
 import { AppLayout } from '../../components/layout/AppLayout';
@@ -32,12 +32,17 @@ export default function SavedPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Saved Responses</h1>
-        <p className="text-slate-600 dark:text-slate-400">Your bookmarked medical responses</p>
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Saved Responses</h1>
+          <p className="text-slate-600 dark:text-slate-400">Your bookmarked medical responses</p>
+        </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Saved Items</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <Bookmark size={20} className="text-blue-600" />
+              Saved Items
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <table className="w-full">
@@ -46,7 +51,7 @@ export default function SavedPage() {
                   <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Title</th>
                   <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Category</th>
                   <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Date</th>
-                  <th className="w-20 py-2 font-medium text-slate-700 dark:text-slate-300">Actions</th>
+                  <th className="w-20 py-2 font-medium text-slate-700 dark:text-slate-300 text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -55,9 +60,12 @@ export default function SavedPage() {
                     <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{item.question}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-400">{item.category}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-400">{item.createdAt}</td>
-                    <td>
-                      <button className="text-blue-600 hover:text-blue-700">
-                        <Bookmark size={16} />
+                    <td className="py-3 text-center space-x-2">
+                      <button className="text-blue-600 hover:text-blue-700" title="View">
+                        <Eye size={16} />
+                      </button>
+                      <button className="text-red-600 hover:text-red-700" title="Remove">
+                        <Trash2 size={16} />
                       </button>
                     </td>
                   </tr>

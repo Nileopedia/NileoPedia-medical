@@ -10,6 +10,14 @@ const logger_1 = require("../../config/logger");
 const redis_1 = require("../../lib/redis");
 const env_1 = require("../../config/env");
 const retrieval_service_1 = require("../../modules/retrieval/retrieval.service");
+function logPerformance(metrics) {
+    console.log(`[PERF] Embedding: ${metrics.embedding_ms} ms`);
+    console.log(`[PERF] Pinecone: ${metrics.pinecone_ms} ms`);
+    console.log(`[PERF] Groq: ${metrics.groq_ms} ms`);
+    console.log(`[PERF] Ranking: ${metrics.ranking_ms} ms`);
+    console.log(`[PERF] Save: ${metrics.save_ms} ms`);
+    console.log(`[PERF] Total: ${metrics.total_ms} ms`);
+}
 const generateMockResponse = (query, topK, specialty) => {
     const specialtyContent = {
         cardiology: {
@@ -80,6 +88,15 @@ const generateMockResponse = (query, topK, specialty) => {
 };
 async function processAiGeneration(job) {
     const { questionId, query, userId, topK = 10, specialty } = job;
+    const totalStart = Date.now();
+    const metrics = {
+        embedding_ms: 0,
+        pinecone_ms: 0,
+        groq_ms: 0,
+        ranking_ms: 0,
+        save_ms: 0,
+        total_ms: 0,
+    };
     try {
         let summary = '';
         let citations = [];
@@ -88,7 +105,11 @@ async function processAiGeneration(job) {
         let generatedBy = '';
         if (env_1.CONFIG.USE_MOCK_AI) {
             logger_1.logger.info(`Using mock AI response for question:`, questionId, `specialty:`, specialty);
+            const mockStart = Date.now();
             const mock = generateMockResponse(query, topK, specialty || undefined);
+            metrics.embedding_ms = Date.now() - mockStart;
+            metrics.pinecone_ms = 0;
+            metrics.ranking_ms = 0;
             ({ summary, citations, confidenceScore, keyFindings } = mock);
             generatedBy = 'Llama-3.3-70b (mock)';
             const progressEvents = [
@@ -108,54 +129,95 @@ async function processAiGeneration(job) {
         }
         else {
             logger_1.logger.info(`Calling Groq for question:`, questionId);
+            const embeddingStart = Date.now();
             const retrievalService = new retrieval_service_1.RetrievalService();
-            const pineconeResults = await retrievalService.hybridSearch(query, specialty || undefined);
+            let pineconeResults = [];
+            let pineconeSuccess = false;
+            try {
+                const embeddingPromise = retrievalService.hybridSearch(query, specialty || undefined);
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Pinecone timeout after 10000ms')), 10000);
+                });
+                pineconeResults = await Promise.race([embeddingPromise, timeoutPromise]);
+                pineconeSuccess = true;
+                metrics.embedding_ms = Date.now() - embeddingStart;
+                metrics.pinecone_ms = Date.now() - embeddingStart;
+            }
+            catch (pineconeError) {
+                metrics.embedding_ms = Date.now() - embeddingStart;
+                metrics.pinecone_ms = Date.now() - embeddingStart;
+                console.error(`[TIMEOUT] Pinecone retrieval failed: ${pineconeError.message}`);
+                logger_1.logger.warn('Pinecone retrieval failed, continuing with empty context', pineconeError);
+                pineconeResults = [];
+            }
+            const rankingStart = Date.now();
             const chunks = pineconeResults.map((match) => ({
                 text: match.metadata?.textPreview || match.metadata?.text || '',
                 metadata: match.metadata,
             }));
             const context = chunks.map((c) => c.text).join('\n\n');
+            metrics.ranking_ms = Date.now() - rankingStart;
+            const groqStart = Date.now();
             const groq = env_1.CONFIG.GROQ_API_KEY ? new groq_sdk_1.Groq({ apiKey: env_1.CONFIG.GROQ_API_KEY }) : null;
             if (!groq) {
                 throw new Error('Groq API key not configured');
             }
-            const completion = await groq.chat.completions.create({
-                model: env_1.CONFIG.GROQ_MODEL,
-                messages: [
-                    { role: 'system', content: 'You are a medical AI assistant providing evidence-based answers. Always cite your sources.' },
-                    { role: 'user', content: `Question: ${query}\n\nContext:\n${context}` },
-                ],
-            });
-            summary = completion.choices[0]?.message?.content || '';
-            const extractedCitations = [];
-            const seenTitles = new Set();
-            for (const chunk of chunks) {
-                const metadata = chunk.metadata || {};
-                const title = metadata.title || metadata.source || 'Unknown Source';
-                if (seenTitles.has(title))
-                    continue;
-                seenTitles.add(title);
-                extractedCitations.push({
-                    title,
-                    source: metadata.source || '',
-                    authors: metadata.authors,
-                    publicationYear: metadata.publicationYear,
-                    doi: metadata.doi,
-                    url: metadata.url,
-                    pageNumber: metadata.pageNumber,
-                    sectionTitle: metadata.sectionTitle,
+            let groqSuccess = false;
+            try {
+                const groqPromise = groq.chat.completions.create({
+                    model: env_1.CONFIG.GROQ_MODEL,
+                    messages: [
+                        { role: 'system', content: 'You are a medical AI assistant providing evidence-based answers. Always cite your sources.' },
+                        { role: 'user', content: `Question: ${query}\n\nContext:\n${context}` },
+                    ],
                 });
+                const timeoutPromise = new Promise((_, reject) => {
+                    setTimeout(() => reject(new Error('Groq timeout after 30000ms')), 30000);
+                });
+                const completion = await Promise.race([groqPromise, timeoutPromise]);
+                groqSuccess = true;
+                metrics.groq_ms = Date.now() - groqStart;
+                summary = completion.choices[0]?.message?.content || '';
+                const extractedCitations = [];
+                const seenTitles = new Set();
+                for (const chunk of chunks) {
+                    const metadata = chunk.metadata || {};
+                    const title = metadata.title || metadata.source || 'Unknown Source';
+                    if (seenTitles.has(title))
+                        continue;
+                    seenTitles.add(title);
+                    extractedCitations.push({
+                        title,
+                        source: metadata.source || '',
+                        authors: metadata.authors,
+                        publicationYear: metadata.publicationYear,
+                        doi: metadata.doi,
+                        url: metadata.url,
+                        pageNumber: metadata.pageNumber,
+                        sectionTitle: metadata.sectionTitle,
+                    });
+                }
+                citations = extractedCitations.slice(0, 5);
+                confidenceScore = 0.85 + Math.random() * 0.1;
+                keyFindings = [summary.substring(0, 150)];
+                generatedBy = 'Llama-3.3-70b';
+                await redis_1.redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+                    questionId,
+                    progress: 100,
+                    keyFindings,
+                }));
             }
-            citations = extractedCitations.slice(0, 5);
-            confidenceScore = 0.85 + Math.random() * 0.1;
-            keyFindings = [summary.substring(0, 150)];
-            generatedBy = 'Llama-3.3-70b';
-            await redis_1.redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
-                questionId,
-                progress: 100,
-                keyFindings,
-            }));
+            catch (groqError) {
+                metrics.groq_ms = Date.now() - groqStart;
+                console.error(`[TIMEOUT] Groq response generation failed: ${groqError.message}`);
+                logger_1.logger.warn('Groq generation failed, falling back to mock', groqError);
+                const mock = generateMockResponse(query, topK, specialty || undefined);
+                ({ summary, citations, confidenceScore, keyFindings } = mock);
+                generatedBy = 'Llama-3.3-70b (fallback)';
+            }
+            logPerformance(metrics);
         }
+        const saveStart = Date.now();
         const aiResponse = await prisma_1.default.aIResponse.create({
             data: {
                 questionId,
@@ -165,6 +227,7 @@ async function processAiGeneration(job) {
                 generatedBy,
             },
         });
+        metrics.save_ms = Date.now() - saveStart;
         for (let i = 0; i < citations.length; i++) {
             const citation = citations[i];
             await prisma_1.default.citation.create({
@@ -180,6 +243,8 @@ async function processAiGeneration(job) {
                 },
             });
         }
+        metrics.total_ms = Date.now() - totalStart;
+        logPerformance(metrics);
         logger_1.logger.info(`AI generation completed for question: ${questionId}`);
         return { success: true, responseId: aiResponse.id };
     }
@@ -187,17 +252,24 @@ async function processAiGeneration(job) {
         logger_1.logger.error(`AI generation failed for question: ${questionId}`, error);
         if (!env_1.CONFIG.USE_MOCK_AI) {
             logger_1.logger.info('Falling back to mock response for question:', questionId);
-            const mock = generateMockResponse(query, topK, specialty || undefined);
-            const aiResponse = await prisma_1.default.aIResponse.create({
-                data: {
-                    questionId,
-                    summary: mock.summary,
-                    keyFindings: mock.keyFindings,
-                    confidenceScore: mock.confidenceScore,
-                    generatedBy: 'Llama-3.3-70b (fallback)',
-                },
-            });
-            return { success: true, responseId: aiResponse.id };
+            try {
+                const mock = generateMockResponse(query, topK, specialty || undefined);
+                const aiResponse = await prisma_1.default.aIResponse.create({
+                    data: {
+                        questionId,
+                        summary: mock.summary,
+                        keyFindings: mock.keyFindings,
+                        confidenceScore: mock.confidenceScore,
+                        generatedBy: 'Llama-3.3-70b (fallback)',
+                    },
+                });
+                metrics.total_ms = Date.now() - totalStart;
+                logPerformance(metrics);
+                return { success: true, responseId: aiResponse.id };
+            }
+            catch (dbError) {
+                logger_1.logger.error('Failed to save fallback response:', dbError);
+            }
         }
         throw error;
     }

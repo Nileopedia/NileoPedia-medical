@@ -63,6 +63,45 @@ async function seedKnowledgeBase() {
         console.log('Demo knowledge base seeded');
     }
 }
+// Warm up AI services on startup (FR-38)
+async function warmupAiServices() {
+    console.log('\n========== AI SERVICES WARMUP ==========');
+    // Warmup EmbeddingService
+    try {
+        const { EmbeddingService } = require('./modules/rag/services/embedding.service');
+        const embeddingService = new EmbeddingService();
+        console.log('[WARMUP] Initializing EmbeddingService...');
+        const warmupStart = Date.now();
+        try {
+            await embeddingService.generateEmbedding('warmup test');
+            console.log(`[WARMUP] EmbeddingService warmed up in ${Date.now() - warmupStart}ms`);
+        }
+        catch (e) {
+            console.log('[WARMUP] EmbeddingService using mock mode (warmup fallback)');
+        }
+    }
+    catch (e) {
+        console.error('[WARMUP] Failed to initialize EmbeddingService:', e);
+    }
+    // Warmup Pinecone
+    try {
+        const { RetrievalService } = require('./modules/retrieval/retrieval.service');
+        const retrievalService = new RetrievalService();
+        console.log('[WARMUP] Initializing RetrievalService...');
+        const warmupStart = Date.now();
+        try {
+            await retrievalService.hybridSearch('warmup');
+            console.log(`[WARMUP] Pinecone warmed up in ${Date.now() - warmupStart}ms`);
+        }
+        catch (e) {
+            console.log('[WARMUP] Pinecone using mock mode (warmup fallback)');
+        }
+    }
+    catch (e) {
+        console.error('[WARMUP] Failed to initialize RetrievalService:', e);
+    }
+    console.log('[WARMUP] AI services warmup complete\n');
+}
 // Verify embedding service on startup
 async function verifyEmbeddings() {
     const { EmbeddingService } = require('./modules/rag/services/embedding.service');
@@ -93,6 +132,8 @@ prisma_1.default.$connect()
     console.log('Database connected successfully');
     // Initialize admin account
     await initializeAdmin();
+    // Warmup AI services at startup
+    await warmupAiServices();
     // Verify embedding service at startup (non-blocking)
     setImmediate(() => verifyEmbeddings());
     // Seed knowledge base if empty

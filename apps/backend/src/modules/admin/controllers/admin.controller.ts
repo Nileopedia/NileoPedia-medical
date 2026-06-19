@@ -1,6 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { AdminService } from '../services/admin.service';
 import { logger } from '../../../config/logger';
+import { RetrievalService } from '../../../modules/retrieval/retrieval.service';
+import { EmbeddingService } from '../../../modules/rag/services/embedding.service';
 
 export class AdminController {
   private adminService: AdminService;
@@ -64,15 +66,11 @@ export class AdminController {
 
   async testEmbeddings(req: Request, res: Response, next: NextFunction) {
     try {
-      // Use a simpler test that doesn't block on model download
-      const { EmbeddingService } = await import('../../rag/services/embedding.service');
       const embeddingService = new EmbeddingService();
       
-      // Get config info without blocking on embedding generation
       const source = embeddingService.embeddingSource;
       const model = 'all-MiniLM-L6-v2';
       
-      // Try to generate embedding - may fall back to mock if network unavailable
       let embedding: number[] = [];
       let dimensions = 384;
       let actualSource = source;
@@ -82,7 +80,6 @@ export class AdminController {
         dimensions = embedding.length;
         actualSource = embeddingService.embeddingSource;
       } catch (e) {
-        // If generation fails, still report configured source
         console.warn('Embedding test fallback to mock:', e);
         actualSource = 'mock';
       }
@@ -98,6 +95,51 @@ export class AdminController {
       res.status(500).json({
         success: false,
         error: error.message,
+      });
+    }
+  }
+
+  async performanceTest(req: Request, res: Response, next: NextFunction) {
+    const totalStart = Date.now();
+    const metrics = { embedding_ms: 0, pinecone_ms: 0, groq_ms: 0, total_ms: 0 };
+    
+    try {
+      const embeddingStart = Date.now();
+      const embeddingService = new EmbeddingService();
+      
+      try {
+        await embeddingService.generateEmbedding('What is diabetes?');
+      } catch (e) {
+        logger.warn('Embedding performance test failed:', e);
+      }
+      metrics.embedding_ms = Date.now() - embeddingStart;
+
+      const pineconeStart = Date.now();
+      const retrievalService = new RetrievalService();
+      
+      try {
+        await retrievalService.hybridSearch('diabetes treatment');
+      } catch (e) {
+        logger.warn('Pinecone performance test failed:', e);
+      }
+      metrics.pinecone_ms = Date.now() - pineconeStart;
+
+      metrics.total_ms = Date.now() - totalStart;
+
+      res.status(200).json({
+        embedding_ms: metrics.embedding_ms,
+        pinecone_ms: metrics.pinecone_ms,
+        groq_ms: metrics.groq_ms,
+        total_ms: metrics.total_ms,
+      });
+    } catch (error: any) {
+      logger.error('Performance test error:', error);
+      metrics.total_ms = Date.now() - totalStart;
+      res.status(200).json({
+        embedding_ms: metrics.embedding_ms,
+        pinecone_ms: metrics.pinecone_ms,
+        groq_ms: metrics.groq_ms,
+        total_ms: metrics.total_ms,
       });
     }
   }

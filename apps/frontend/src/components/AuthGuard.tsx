@@ -4,7 +4,7 @@ import { useEffect, type ReactNode } from 'react';
 import { useRouter, usePathname } from 'next/navigation';
 import { useAppStore } from '../store/appStore';
 
-const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/verify'];
+const PUBLIC_ROUTES = ['/', '/login', '/register', '/forgot-password', '/verify', '/auth/google/callback'];
 
 export function AuthGuard({ children }: { children: ReactNode }) {
   const router = useRouter();

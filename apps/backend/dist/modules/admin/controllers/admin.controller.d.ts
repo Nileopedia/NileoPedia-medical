@@ -8,5 +8,6 @@ export declare class AdminController {
     deleteUser(req: Request, res: Response, next: NextFunction): Promise<void>;
     getAnalytics(req: Request, res: Response, next: NextFunction): Promise<void>;
     testEmbeddings(req: Request, res: Response, next: NextFunction): Promise<void>;
+    performanceTest(req: Request, res: Response, next: NextFunction): Promise<void>;
 }
 //# sourceMappingURL=admin.controller.d.ts.map

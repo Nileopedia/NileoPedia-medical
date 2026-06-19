@@ -15,7 +15,7 @@ export class GoogleAuthService {
     
     // Only initialize OAuth client if valid credentials are provided
     if (CONFIG.GOOGLE_CLIENT_ID && CONFIG.GOOGLE_CLIENT_SECRET && 
-        CONFIG.GOOGLE_CLIENT_ID !== '708680246824-93qk6apv262pepu8233nd77fufo1033a.apps.googleusercontent.com') {
+        CONFIG.GOOGLE_CLIENT_ID.length > 20) { // Real Google client IDs are ~70+ chars
       this.oAuth2Client = new OAuth2Client(
         CONFIG.GOOGLE_CLIENT_ID,
         CONFIG.GOOGLE_CLIENT_SECRET,

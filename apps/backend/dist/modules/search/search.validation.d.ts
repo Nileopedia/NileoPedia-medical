@@ -29,8 +29,8 @@ export declare const semanticSearchSchema: z.ZodObject<{
     topK: z.ZodDefault<z.ZodNumber>;
     specialty: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    q: string;
     topK: number;
+    q: string;
     specialty?: string | undefined;
 }, {
     q: string;

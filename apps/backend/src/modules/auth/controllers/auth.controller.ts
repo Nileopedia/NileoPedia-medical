@@ -78,7 +78,7 @@ export class AuthController {
       const result = await this.googleAuthService.handleGoogleCallback(code);
       
       // Redirect to frontend with tokens (you might want to use a different approach)
-      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:5173';
+      const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
       res.redirect(`${frontendUrl}/auth/google/callback?access_token=${result.accessToken}&refresh_token=${result.refreshToken}`);
     } catch (error) {
       logger.error('Error in Google callback:', error);

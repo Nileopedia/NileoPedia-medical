@@ -1,8 +1,8 @@
 import { CreateAuditLogDto, GetAuditLogsQuery, GetAuditLogsResult, SecurityEventFilters } from './audit.types';
 export declare class AuditService {
     createAuditLog(data: CreateAuditLogDto): Promise<{
-        id: string;
         userId: string | null;
+        id: string;
         createdAt: Date;
         description: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
@@ -15,14 +15,14 @@ export declare class AuditService {
     getAuditLogs(query: GetAuditLogsQuery): Promise<GetAuditLogsResult>;
     getAuditLogById(id: string): Promise<({
         user: {
+            id: string;
             fullName: string;
             email: string;
             role: import("@prisma/client").$Enums.UserRole;
-            id: string;
         } | null;
     } & {
-        id: string;
         userId: string | null;
+        id: string;
         createdAt: Date;
         description: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
@@ -37,8 +37,8 @@ export declare class AuditService {
         limit: number;
     }): Promise<{
         logs: {
-            id: string;
             userId: string | null;
+            id: string;
             createdAt: Date;
             description: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
@@ -59,14 +59,14 @@ export declare class AuditService {
     }): Promise<{
         logs: ({
             user: {
+                id: string;
                 fullName: string;
                 email: string;
                 role: import("@prisma/client").$Enums.UserRole;
-                id: string;
             } | null;
         } & {
-            id: string;
             userId: string | null;
+            id: string;
             createdAt: Date;
             description: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
@@ -84,14 +84,14 @@ export declare class AuditService {
     getSecurityEvents(query: SecurityEventFilters): Promise<{
         logs: ({
             user: {
+                id: string;
                 fullName: string;
                 email: string;
                 role: import("@prisma/client").$Enums.UserRole;
-                id: string;
             } | null;
         } & {
-            id: string;
             userId: string | null;
+            id: string;
             createdAt: Date;
             description: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;

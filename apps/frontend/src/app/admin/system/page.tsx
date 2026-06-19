@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Activity, Cpu, Database, HardDrive } from 'lucide-react';
+import { Activity, Cpu, Database, HardDrive, CheckCircle } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 
 const systemStats = {
@@ -16,62 +16,67 @@ export default function AdminSystemPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">System Health</h1>
-        <p className="text-slate-600 dark:text-slate-400">Monitor system status and performance</p>
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">System Health</h1>
+          <p className="text-slate-600 dark:text-slate-400">Monitor system status and performance</p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
           <Card>
             <CardHeader>
-              <CardTitle>CPU Usage</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2">
                 <Cpu size={20} className="text-blue-600" />
-                <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.cpuUsage}</span>
-              </div>
+                CPU Usage
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.cpuUsage}</span>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Memory</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2">
                 <Database size={20} className="text-blue-600" />
-                <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.memoryUsage}</span>
-              </div>
+                Memory
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.memoryUsage}</span>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Disk Space</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="flex items-center gap-2">
+              <CardTitle className="flex items-center gap-2">
                 <HardDrive size={20} className="text-blue-600" />
-                <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.diskUsage}</span>
-              </div>
+                Disk Space
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.diskUsage}</span>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle>Uptime</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Activity size={20} className="text-emerald-600" />
+                Uptime
+              </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="flex items-center gap-2">
-                <Activity size={20} className="text-emerald-600" />
-                <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.uptime}</span>
-              </div>
+              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.uptime}</span>
             </CardContent>
           </Card>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Service Status</CardTitle>
+            <CardTitle className="flex items-center gap-2">
+              <CheckCircle size={20} className="text-emerald-600" />
+              Service Status
+            </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">

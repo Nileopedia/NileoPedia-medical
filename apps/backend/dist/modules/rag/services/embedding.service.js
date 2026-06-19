@@ -26,10 +26,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.EmbeddingService = void 0;
 const env_1 = require("../../../config/env");
 const logger_1 = require("../../../config/logger");
+// Dynamic fetch import to support ES modules and CommonJS
+let fetch;
+async function getFetch() {
+    if (!fetch) {
+        fetch = (await Promise.resolve().then(() => __importStar(require('node-fetch')))).default || (await Promise.resolve().then(() => __importStar(require('node-fetch'))));
+    }
+    return fetch;
+}
 const HF_API_KEY = env_1.CONFIG.HF_API_KEY;
 const HF_EMBEDDING_MODEL = env_1.CONFIG.HF_EMBEDDING_MODEL;
 const EXPECTED_DIMENSIONS = 384;
-const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false';
+// Force mock mode in test environment to avoid network calls and dynamic imports
+const IS_TEST = process.env.NODE_ENV === 'test';
+const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false' && !IS_TEST;
 // Log environment on module load
 console.log('[EmbeddingService] Configuration check:', {
     HF_API_KEY_EXISTS: !!HF_API_KEY,
@@ -72,7 +82,8 @@ async function hfEmbedding(text) {
     const timeoutId = setTimeout(() => controller.abort(), 15000);
     try {
         console.log(`[HF] Requesting embedding from: ${requestUrl}`);
-        const response = await fetch(requestUrl, {
+        const fetchFn = await getFetch();
+        const response = await fetchFn(requestUrl, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${HF_API_KEY}`,
@@ -118,7 +129,7 @@ async function hfEmbedding(text) {
 class EmbeddingService {
     constructor() {
         this.useLocal = false;
-        this.mockMode = !HF_API_KEY && !LOCAL_EMBEDDING_ENABLED;
+        this.mockMode = IS_TEST || !HF_API_KEY && !LOCAL_EMBEDDING_ENABLED;
         if (this.mockMode) {
             logger_1.logger.warn('Using mock embeddings - no embedding service available');
             console.warn('[EmbeddingService] Mock embeddings active - 384 dimensions');

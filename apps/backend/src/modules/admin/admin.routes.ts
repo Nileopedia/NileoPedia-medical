@@ -16,6 +16,6 @@ router.get('/analytics', authenticate, authorize('ADMIN'), adminController.getAn
 router.post('/ingestion/run', authenticate, authorize('ADMIN'), ingestionController.runManualIngestion.bind(ingestionController));
 router.post('/ingestion/refresh', authenticate, authorize('ADMIN'), ingestionController.runIncrementalRefresh.bind(ingestionController));
 router.get('/ingestion/status', authenticate, authorize('ADMIN'), ingestionController.getStatus.bind(ingestionController));
-router.get('/embedding-test', authenticate, authorize('ADMIN'), adminController.testEmbeddings.bind(adminController));
+router.get('/performance-test', authenticate, authorize('ADMIN'), adminController.performanceTest.bind(adminController));
 
 export default router;

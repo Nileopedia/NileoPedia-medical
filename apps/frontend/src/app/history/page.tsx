@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardHeader, CardContent } from '../../components/ui/Card';
-import { Search } from 'lucide-react';
+import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
+import { Search, FileText, ExternalLink } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Query } from '../../types';
 import { AppLayout } from '../../components/layout/AppLayout';
@@ -65,10 +65,11 @@ export default function HistoryPage() {
             <table className="w-full">
               <thead>
                 <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Question</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Category</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Status</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Date</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Question</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Category</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Status</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Date</th>
+                  <th className="w-16 py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400 text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -86,6 +87,11 @@ export default function HistoryPage() {
                       </span>
                     </td>
                     <td className="py-3 text-slate-500 dark:text-slate-400">{query.createdAt}</td>
+                    <td className="py-3 text-right">
+                      <button className="text-blue-600 hover:text-blue-700" title="View details">
+                        <ExternalLink size={16} />
+                      </button>
+                    </td>
                   </tr>
                 ))}
               </tbody>

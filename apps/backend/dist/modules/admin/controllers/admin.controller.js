@@ -1,31 +1,10 @@
 "use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const admin_service_1 = require("../services/admin.service");
 const logger_1 = require("../../../config/logger");
+const retrieval_service_1 = require("../../../modules/retrieval/retrieval.service");
+const embedding_service_1 = require("../../../modules/rag/services/embedding.service");
 class AdminController {
     constructor() {
         this.adminService = new admin_service_1.AdminService();
@@ -85,13 +64,9 @@ class AdminController {
     }
     async testEmbeddings(req, res, next) {
         try {
-            // Use a simpler test that doesn't block on model download
-            const { EmbeddingService } = await Promise.resolve().then(() => __importStar(require('../../rag/services/embedding.service')));
-            const embeddingService = new EmbeddingService();
-            // Get config info without blocking on embedding generation
+            const embeddingService = new embedding_service_1.EmbeddingService();
             const source = embeddingService.embeddingSource;
             const model = 'all-MiniLM-L6-v2';
-            // Try to generate embedding - may fall back to mock if network unavailable
             let embedding = [];
             let dimensions = 384;
             let actualSource = source;
@@ -101,7 +76,6 @@ class AdminController {
                 actualSource = embeddingService.embeddingSource;
             }
             catch (e) {
-                // If generation fails, still report configured source
                 console.warn('Embedding test fallback to mock:', e);
                 actualSource = 'mock';
             }
@@ -117,6 +91,47 @@ class AdminController {
             res.status(500).json({
                 success: false,
                 error: error.message,
+            });
+        }
+    }
+    async performanceTest(req, res, next) {
+        const totalStart = Date.now();
+        const metrics = { embedding_ms: 0, pinecone_ms: 0, groq_ms: 0, total_ms: 0 };
+        try {
+            const embeddingStart = Date.now();
+            const embeddingService = new embedding_service_1.EmbeddingService();
+            try {
+                await embeddingService.generateEmbedding('What is diabetes?');
+            }
+            catch (e) {
+                logger_1.logger.warn('Embedding performance test failed:', e);
+            }
+            metrics.embedding_ms = Date.now() - embeddingStart;
+            const pineconeStart = Date.now();
+            const retrievalService = new retrieval_service_1.RetrievalService();
+            try {
+                await retrievalService.hybridSearch('diabetes treatment');
+            }
+            catch (e) {
+                logger_1.logger.warn('Pinecone performance test failed:', e);
+            }
+            metrics.pinecone_ms = Date.now() - pineconeStart;
+            metrics.total_ms = Date.now() - totalStart;
+            res.status(200).json({
+                embedding_ms: metrics.embedding_ms,
+                pinecone_ms: metrics.pinecone_ms,
+                groq_ms: metrics.groq_ms,
+                total_ms: metrics.total_ms,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Performance test error:', error);
+            metrics.total_ms = Date.now() - totalStart;
+            res.status(200).json({
+                embedding_ms: metrics.embedding_ms,
+                pinecone_ms: metrics.pinecone_ms,
+                groq_ms: metrics.groq_ms,
+                total_ms: metrics.total_ms,
             });
         }
     }

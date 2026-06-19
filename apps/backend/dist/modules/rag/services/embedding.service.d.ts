@@ -9,4 +9,4 @@ export declare class EmbeddingService {
     private generateMockEmbedding;
     preprocessText(text: string): Promise<string>;
 }
-//# sourceMappingURL=embedding.service.d.ts.mapcurl http://localhost:3001/health
+//# sourceMappingURL=embedding.service.d.ts.map

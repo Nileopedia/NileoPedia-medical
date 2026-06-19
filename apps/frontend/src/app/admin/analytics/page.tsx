@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { BarChart3 } from 'lucide-react';
+import { BarChart3, MessageCircleQuestion, Users, Brain } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 
 const analyticsData = [
@@ -15,13 +15,18 @@ export default function AdminAnalyticsPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Analytics</h1>
-        <p className="text-slate-600 dark:text-slate-400">Platform analytics and metrics</p>
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Analytics</h1>
+          <p className="text-slate-600 dark:text-slate-400">Platform analytics and metrics</p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card>
             <CardHeader>
-              <CardTitle>Total Queries</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <MessageCircleQuestion size={20} className="text-blue-600" />
+                Total Queries
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">532</p>
@@ -29,7 +34,10 @@ export default function AdminAnalyticsPage() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>Active Users</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Users size={20} className="text-emerald-600" />
+                Active Users
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">84</p>
@@ -37,7 +45,10 @@ export default function AdminAnalyticsPage() {
           </Card>
           <Card>
             <CardHeader>
-              <CardTitle>AI Accuracy</CardTitle>
+              <CardTitle className="flex items-center gap-2">
+                <Brain size={20} className="text-purple-600" />
+                AI Accuracy
+              </CardTitle>
             </CardHeader>
             <CardContent>
               <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">96%</p>

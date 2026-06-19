@@ -1,6 +1,6 @@
 /* eslint-env jest */
 // Test environment configuration - ensures all external services are mocked
-import { CONFIG } from '../config/env';
+import { CONFIG } from '../../config/env';
 
 // Override for test environment
 (process.env as any).USE_MOCK_EMBEDDINGS = 'true';

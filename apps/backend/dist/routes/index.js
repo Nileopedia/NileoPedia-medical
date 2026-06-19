@@ -55,6 +55,7 @@ const setupRoutes = (app, io, authController) => {
                     'GET /api/v1/admin/ingestion/status': 'Get ingestion status',
                     'GET /api/v1/admin/users': 'List all users',
                     'GET /api/v1/admin/analytics': 'Get system analytics',
+                    'GET /api/v1/admin/performance-test': 'Get AI performance timing metrics',
                 },
                 documents: {
                     'POST /api/v1/documents/upload': 'Upload medical document (ADMIN)',

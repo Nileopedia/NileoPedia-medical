@@ -47,9 +47,9 @@ exports.CONFIG = {
     MAX_FILE_SIZE: parseInt(process.env.MAX_FILE_SIZE || '10485760', 10),
     UPLOAD_DIR: process.env.UPLOAD_DIR || './uploads',
     // Mock AI mode
-    USE_MOCK_AI: process.env.USE_MOCK_AI === 'true',
-    // Mock Embeddings mode
-    USE_MOCK_EMBEDDINGS: process.env.USE_MOCK_EMBEDDINGS === 'true',
+    USE_MOCK_AI: process.env.USE_MOCK_AI === 'true' || process.env.NODE_ENV === 'test',
+    // Mock Embeddings mode  
+    USE_MOCK_EMBEDDINGS: process.env.USE_MOCK_EMBEDDINGS === 'true' || process.env.NODE_ENV === 'test',
     // Scheduled Ingestion
     SCHEDULED_INGESTION_ENABLED: process.env.SCHEDULED_INGESTION_ENABLED ?? 'true',
 };

@@ -7,76 +7,76 @@ export declare class QuestionsService {
     getHistory(userId: string): Promise<({
         aiResponse: ({
             citations: {
-                url: string | null;
+                specialty: string | null;
                 id: string;
                 createdAt: Date;
-                specialty: string | null;
                 aiResponseId: string;
-                source: string;
-                publicationYear: number | null;
                 title: string;
-                documentType: string | null;
+                source: string;
                 authors: string | null;
+                publicationYear: number | null;
                 doi: string | null;
+                url: string | null;
+                citationIndex: number;
+                documentType: string | null;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
-                citationIndex: number;
             }[];
         } & {
             questionId: string;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             summary: string;
-            keyFindings: string[];
             confidenceScore: number | null;
+            keyFindings: string[];
+            id: string;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            createdAt: Date;
+            updatedAt: Date;
         }) | null;
     } & {
-        id: string;
         userId: string;
+        id: string;
+        createdAt: Date;
         questionText: string;
         isSaved: boolean;
-        createdAt: Date;
     })[]>;
     getQuestion(questionId: string): Promise<{
         aiResponse: ({
             citations: {
-                url: string | null;
+                specialty: string | null;
                 id: string;
                 createdAt: Date;
-                specialty: string | null;
                 aiResponseId: string;
-                source: string;
-                publicationYear: number | null;
                 title: string;
-                documentType: string | null;
+                source: string;
                 authors: string | null;
+                publicationYear: number | null;
                 doi: string | null;
+                url: string | null;
+                citationIndex: number;
+                documentType: string | null;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
-                citationIndex: number;
             }[];
         } & {
             questionId: string;
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
             summary: string;
-            keyFindings: string[];
             confidenceScore: number | null;
+            keyFindings: string[];
+            id: string;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            createdAt: Date;
+            updatedAt: Date;
         }) | null;
     } & {
-        id: string;
         userId: string;
+        id: string;
+        createdAt: Date;
         questionText: string;
         isSaved: boolean;
-        createdAt: Date;
     }>;
     saveResponse(questionId: string, userId: string): Promise<void>;
     unsaveResponse(questionId: string, userId: string): Promise<void>;
