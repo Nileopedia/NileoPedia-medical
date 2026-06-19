@@ -1,9 +1,9 @@
 import { CreateAuditLogDto, GetAuditLogsQuery, GetAuditLogsResult, SecurityEventFilters } from './audit.types';
 export declare class AuditService {
     createAuditLog(data: CreateAuditLogDto): Promise<{
-        userId: string | null;
         id: string;
         createdAt: Date;
+        userId: string | null;
         description: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
@@ -21,9 +21,9 @@ export declare class AuditService {
             role: import("@prisma/client").$Enums.UserRole;
         } | null;
     } & {
-        userId: string | null;
         id: string;
         createdAt: Date;
+        userId: string | null;
         description: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
@@ -37,9 +37,9 @@ export declare class AuditService {
         limit: number;
     }): Promise<{
         logs: {
-            userId: string | null;
             id: string;
             createdAt: Date;
+            userId: string | null;
             description: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
@@ -65,9 +65,9 @@ export declare class AuditService {
                 role: import("@prisma/client").$Enums.UserRole;
             } | null;
         } & {
-            userId: string | null;
             id: string;
             createdAt: Date;
+            userId: string | null;
             description: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
@@ -90,9 +90,9 @@ export declare class AuditService {
                 role: import("@prisma/client").$Enums.UserRole;
             } | null;
         } & {
-            userId: string | null;
             id: string;
             createdAt: Date;
+            userId: string | null;
             description: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;

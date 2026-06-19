@@ -40,11 +40,24 @@ async function loadLocalEmbedding() {
   try {
     const { pipeline } = await import('@xenova/transformers');
     localEmbeddingPipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-    console.log('[EmbeddingService] Local embedding model loaded');
+    console.log('[STARTUP] Embedding model loaded');
     return localEmbeddingPipeline;
   } catch (e) {
-    console.warn('[EmbeddingService] Local embedding model unavailable:', e);
+    console.error('[STARTUP] Local embedding model unavailable:', e);
     return null;
+  }
+}
+
+// Preload embedding model for startup warmup
+export async function preloadEmbeddingModel(): Promise<void> {
+  if (!LOCAL_EMBEDDING_ENABLED) {
+    console.log('[STARTUP] Skipping embedding preload (local embeddings disabled)');
+    return;
+  }
+  try {
+    await loadLocalEmbedding();
+  } catch (e) {
+    console.error('[STARTUP] Failed to preload embedding model:', e);
   }
 }
 

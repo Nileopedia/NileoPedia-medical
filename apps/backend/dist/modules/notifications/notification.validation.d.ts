@@ -7,12 +7,12 @@ export declare const createSystemNotificationSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     title: string;
     message: string;
-    targetRoles: ("ADMIN" | "MEDICAL_USER" | "VALIDATOR")[];
+    targetRoles: ("MEDICAL_USER" | "VALIDATOR" | "ADMIN")[];
     metadata?: Record<string, unknown> | undefined;
 }, {
     title: string;
     message: string;
-    targetRoles: ("ADMIN" | "MEDICAL_USER" | "VALIDATOR")[];
+    targetRoles: ("MEDICAL_USER" | "VALIDATOR" | "ADMIN")[];
     metadata?: Record<string, unknown> | undefined;
 }>;
 export declare const getNotificationsQuerySchema: z.ZodObject<{

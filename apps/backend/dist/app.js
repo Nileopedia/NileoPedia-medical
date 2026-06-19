@@ -66,18 +66,20 @@ async function seedKnowledgeBase() {
 // Warm up AI services on startup (FR-38)
 async function warmupAiServices() {
     console.log('\n========== AI SERVICES WARMUP ==========');
-    // Warmup EmbeddingService
+    // Warmup EmbeddingService with preloaded model
     try {
-        const { EmbeddingService } = require('./modules/rag/services/embedding.service');
+        const { EmbeddingService, preloadEmbeddingModel } = require('./modules/rag/services/embedding.service');
         const embeddingService = new EmbeddingService();
         console.log('[WARMUP] Initializing EmbeddingService...');
         const warmupStart = Date.now();
         try {
-            await embeddingService.generateEmbedding('warmup test');
-            console.log(`[WARMUP] EmbeddingService warmed up in ${Date.now() - warmupStart}ms`);
+            // Preload the model before first use
+            await preloadEmbeddingModel();
+            await embeddingService.generateEmbedding('medical test query');
+            console.log(`[STARTUP] Embedding model loaded in ${Date.now() - warmupStart}ms`);
         }
         catch (e) {
-            console.log('[WARMUP] EmbeddingService using mock mode (warmup fallback)');
+            console.log('[WARMUP] EmbeddingService using mock mode (warmup fallback):', e);
         }
     }
     catch (e) {
@@ -90,17 +92,17 @@ async function warmupAiServices() {
         console.log('[WARMUP] Initializing RetrievalService...');
         const warmupStart = Date.now();
         try {
-            await retrievalService.hybridSearch('warmup');
-            console.log(`[WARMUP] Pinecone warmed up in ${Date.now() - warmupStart}ms`);
+            await retrievalService.hybridSearch('diabetes');
+            console.log(`[STARTUP] Pinecone ready in ${Date.now() - warmupStart}ms`);
         }
         catch (e) {
-            console.log('[WARMUP] Pinecone using mock mode (warmup fallback)');
+            console.log('[WARMUP] Pinecone using mock mode (warmup fallback):', e);
         }
     }
     catch (e) {
         console.error('[WARMUP] Failed to initialize RetrievalService:', e);
     }
-    console.log('[WARMUP] AI services warmup complete\n');
+    console.log('[STARTUP] Warmup complete\n');
 }
 // Verify embedding service on startup
 async function verifyEmbeddings() {
@@ -132,8 +134,16 @@ prisma_1.default.$connect()
     console.log('Database connected successfully');
     // Initialize admin account
     await initializeAdmin();
-    // Warmup AI services at startup
-    await warmupAiServices();
+    const warmupPromise = warmupAiServices();
+    const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Warmup timeout after 20000ms')), 20000);
+    });
+    try {
+        await Promise.race([warmupPromise, timeoutPromise]);
+    }
+    catch (e) {
+        console.warn(`[STARTUP] Warmup timeout or error (continuing startup): ${e.message}`);
+    }
     // Verify embedding service at startup (non-blocking)
     setImmediate(() => verifyEmbeddings());
     // Seed knowledge base if empty

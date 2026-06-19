@@ -1,3 +1,4 @@
+export declare function preloadEmbeddingModel(): Promise<void>;
 export declare class EmbeddingService {
     private mockMode;
     private useLocal;

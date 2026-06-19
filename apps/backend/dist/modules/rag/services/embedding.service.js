@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmbeddingService = void 0;
+exports.EmbeddingService = exports.preloadEmbeddingModel = void 0;
 const env_1 = require("../../../config/env");
 const logger_1 = require("../../../config/logger");
 // Dynamic fetch import to support ES modules and CommonJS
@@ -61,14 +61,28 @@ async function loadLocalEmbedding() {
     try {
         const { pipeline } = await Promise.resolve().then(() => __importStar(require('@xenova/transformers')));
         localEmbeddingPipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
-        console.log('[EmbeddingService] Local embedding model loaded');
+        console.log('[STARTUP] Embedding model loaded');
         return localEmbeddingPipeline;
     }
     catch (e) {
-        console.warn('[EmbeddingService] Local embedding model unavailable:', e);
+        console.error('[STARTUP] Local embedding model unavailable:', e);
         return null;
     }
 }
+// Preload embedding model for startup warmup
+async function preloadEmbeddingModel() {
+    if (!LOCAL_EMBEDDING_ENABLED) {
+        console.log('[STARTUP] Skipping embedding preload (local embeddings disabled)');
+        return;
+    }
+    try {
+        await loadLocalEmbedding();
+    }
+    catch (e) {
+        console.error('[STARTUP] Failed to preload embedding model:', e);
+    }
+}
+exports.preloadEmbeddingModel = preloadEmbeddingModel;
 async function localEmbedding(text) {
     const pipeline = await loadLocalEmbedding();
     if (!pipeline)
