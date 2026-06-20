@@ -60,8 +60,12 @@ export default function SettingsPage() {
       });
       setQrCodeUrl(response.data.qrCodeUrl);
       setShowQrCode(true);
-    } catch (error) {
-      addToast({ type: 'error', title: 'Failed to enable 2FA' });
+    } catch (error: any) {
+      if (error.message?.includes('404')) {
+        addToast({ type: 'info', title: '2FA feature coming soon' });
+      } else {
+        addToast({ type: 'error', title: 'Failed to enable 2FA' });
+      }
     } finally {
       setTwoFactorLoading(false);
     }

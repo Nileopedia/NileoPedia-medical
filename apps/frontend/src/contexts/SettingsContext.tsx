@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useAppStore } from '../store/appStore';
 import { api } from '../lib/api';
-import { useToast } from '../components/ui/Toast';
 
 type Theme = 'light' | 'dark' | 'system';
 type Language = 'en' | 'am' | 'om';
@@ -44,12 +43,11 @@ const SettingsContext = createContext<SettingsContextValue>({
 });
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
-  const { addToast } = useToast();
+   const [settings, setSettings] = useState<Settings>(defaultSettings);
 
-  useEffect(() => {
-    loadSettings();
-  }, []);
+   useEffect(() => {
+     loadSettings();
+   }, []);
 
   useEffect(() => {
     const html = document.documentElement;
@@ -79,7 +77,9 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const loadSettings = useCallback(async () => {
     if (typeof window === 'undefined') return;
     
+    const token = localStorage.getItem('token');
     const saved = localStorage.getItem('settings');
+    
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
@@ -87,11 +87,15 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         if (parsed.sidebarCollapsed) {
           useAppStore.getState().toggleSidebar();
         }
-      } catch {}
+      } catch {
+        // Ignore parse errors, use defaults
+      }
     }
 
+    if (!token) return;
+
     try {
-      const backendPrefs = await api.request<{ success: boolean; data: Partial<Settings> }>('/user/preferences');
+      const backendPrefs = await api.request<{ success: boolean; data: Partial<Settings> }>('/users/preferences');
       if (backendPrefs.data) {
         setSettings((prev) => {
           const merged = { ...prev, ...backendPrefs.data };
@@ -100,7 +104,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
         });
       }
     } catch (err) {
-      // Backend not available, using localStorage values
+      // Backend not available or error, using localStorage values
     }
   }, []);
 
@@ -108,11 +112,14 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     const handler = setTimeout(() => {
       localStorage.setItem('settings', JSON.stringify(settings));
       
-      api.request('/user/preferences', {
+      const token = localStorage.getItem('token');
+      if (!token) return;
+      
+      api.request('/users/preferences', {
         method: 'PUT',
         body: JSON.stringify(settings),
-      }).catch((err) => {
-        console.error('Failed to save preferences:', err);
+      }).catch(() => {
+        // Silently fail for background sync
       });
     }, 500);
 
