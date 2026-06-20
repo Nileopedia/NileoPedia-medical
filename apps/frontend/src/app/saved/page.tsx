@@ -18,6 +18,11 @@ export default function SavedPage() {
 
   useEffect(() => {
     const fetchSaved = async () => {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      if (!token) {
+        setSavedItems(mockSavedItems);
+        return;
+      }
       try {
         const data = await api.getSavedResponses();
         setSavedItems(data);

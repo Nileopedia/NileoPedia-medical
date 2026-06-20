@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import React from 'react';
-import { vi } from 'vitest';
 import { ToastProvider, useToast } from '../components/ui/Toast';
 
 const TestComponent = () => {

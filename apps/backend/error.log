@@ -2845,3 +2845,21 @@ Unique constraint failed on the fields: (`questionId`)
 2026-06-20T04:28:59.757Z [nileopedia-backend] error: Email job failed: 215 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-20T04:28:59.771Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
 2026-06-20T04:28:59.775Z [nileopedia-backend] error: Email job failed: 216 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:11.695Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:11.697Z [nileopedia-backend] error: Email job failed: 217 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:11.704Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:11.707Z [nileopedia-backend] error: Email job failed: 218 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:11.723Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:11.727Z [nileopedia-backend] error: Email job failed: 219 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:13.727Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:13.728Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:13.730Z [nileopedia-backend] error: Email job failed: 217 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:13.732Z [nileopedia-backend] error: Email job failed: 218 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:13.734Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:13.735Z [nileopedia-backend] error: Email job failed: 219 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:17.743Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:17.744Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:17.745Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:17.748Z [nileopedia-backend] error: Email job failed: 217 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:17.748Z [nileopedia-backend] error: Email job failed: 218 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-20T05:16:17.748Z [nileopedia-backend] error: Email job failed: 219 connect ECONNREFUSED 127.0.0.1:1025

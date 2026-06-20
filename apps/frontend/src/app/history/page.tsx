@@ -13,6 +13,14 @@ export default function HistoryPage() {
 
   useEffect(() => {
     const fetchHistory = async () => {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      if (!token) {
+        setQueries([
+          { id: '1', question: 'What are the latest guidelines for AF management?', category: 'Cardiology', status: 'approved', createdAt: '2 min ago', updatedAt: '2 min ago', userId: '1' },
+          { id: '2', question: 'How to manage acute asthma in children?', category: 'Pediatrics', status: 'pending', createdAt: '15 min ago', updatedAt: '15 min ago', userId: '1' },
+        ]);
+        return;
+      }
       try {
         const data = await api.getHistory();
         const formatted: Query[] = data.map((q) => ({

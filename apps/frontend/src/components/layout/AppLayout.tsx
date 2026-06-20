@@ -3,7 +3,7 @@ import { Sidebar } from './Sidebar';
 import { Navbar } from './Navbar';
 import { useAppStore } from '../../store/appStore';
 import { cn } from '../../utils/cn';
-import { Menu, X } from 'lucide-react';
+import { X } from 'lucide-react';
 
 interface AppLayoutProps {
   children: React.ReactNode;

@@ -5,6 +5,7 @@ interface Notification {
   id: string;
   title: string;
   message: string;
+  type: 'document' | 'validation' | 'ai' | 'alert' | 'security' | 'system';
   read: boolean;
   createdAt: string;
 }
