@@ -13,15 +13,15 @@ export declare class QuestionsService {
                 title: string;
                 documentType: string | null;
                 source: string;
-                url: string | null;
-                aiResponseId: string;
                 publicationYear: number | null;
+                aiResponseId: string;
                 authors: string | null;
                 doi: string | null;
+                url: string | null;
+                citationIndex: number;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
-                citationIndex: number;
             }[];
         } & {
             id: string;
@@ -29,8 +29,8 @@ export declare class QuestionsService {
             updatedAt: Date;
             questionId: string;
             summary: string;
-            keyFindings: string[];
             confidenceScore: number | null;
+            keyFindings: string[];
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
         }) | null;
@@ -50,15 +50,15 @@ export declare class QuestionsService {
                 title: string;
                 documentType: string | null;
                 source: string;
-                url: string | null;
-                aiResponseId: string;
                 publicationYear: number | null;
+                aiResponseId: string;
                 authors: string | null;
                 doi: string | null;
+                url: string | null;
+                citationIndex: number;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
-                citationIndex: number;
             }[];
         } & {
             id: string;
@@ -66,8 +66,8 @@ export declare class QuestionsService {
             updatedAt: Date;
             questionId: string;
             summary: string;
-            keyFindings: string[];
             confidenceScore: number | null;
+            keyFindings: string[];
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
         }) | null;

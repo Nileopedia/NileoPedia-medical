@@ -228,9 +228,16 @@ async function processAiGeneration(job) {
             logPerformance(metrics);
         }
         const saveStart = Date.now();
-        const aiResponse = await prisma_1.default.aIResponse.create({
-            data: {
+        const aiResponse = await prisma_1.default.aIResponse.upsert({
+            where: { questionId },
+            create: {
                 questionId,
+                summary,
+                keyFindings: keyFindings || [],
+                confidenceScore,
+                generatedBy,
+            },
+            update: {
                 summary,
                 keyFindings: keyFindings || [],
                 confidenceScore,
@@ -261,9 +268,16 @@ async function processAiGeneration(job) {
     catch (error) {
         logger_1.logger.error(`AI generation failed for question: ${questionId}`, error);
         const mock = generateMockResponse(query, topK, specialty || undefined);
-        const aiResponse = await prisma_1.default.aIResponse.create({
-            data: {
+        const aiResponse = await prisma_1.default.aIResponse.upsert({
+            where: { questionId },
+            create: {
                 questionId,
+                summary: mock.summary,
+                keyFindings: mock.keyFindings,
+                confidenceScore: mock.confidenceScore,
+                generatedBy: 'Llama-3.3-70b (emergency fallback)',
+            },
+            update: {
                 summary: mock.summary,
                 keyFindings: mock.keyFindings,
                 confidenceScore: mock.confidenceScore,

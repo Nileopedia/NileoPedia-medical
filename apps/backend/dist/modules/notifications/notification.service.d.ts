@@ -8,8 +8,8 @@ export declare class NotificationService {
         type: import("@prisma/client").$Enums.NotificationType;
         message: string;
         userId: string;
-        isRead: boolean;
         metadata: import("@prisma/client/runtime/library").JsonValue;
+        isRead: boolean;
     }>;
     markAllAsRead(userId: string): Promise<import("@prisma/client").Prisma.BatchPayload>;
     deleteNotification(userId: string, notificationId: string): Promise<{
@@ -19,8 +19,8 @@ export declare class NotificationService {
         type: import("@prisma/client").$Enums.NotificationType;
         message: string;
         userId: string;
-        isRead: boolean;
         metadata: import("@prisma/client/runtime/library").JsonValue;
+        isRead: boolean;
     }>;
     createSystemNotification(data: CreateSystemNotificationDto): Promise<{
         count: number;
@@ -32,8 +32,8 @@ export declare class NotificationService {
         type: import("@prisma/client").$Enums.NotificationType;
         message: string;
         userId: string;
-        isRead: boolean;
         metadata: import("@prisma/client/runtime/library").JsonValue;
+        isRead: boolean;
     }>;
     createBulkNotification(userIds: string[], data: Omit<CreateNotificationDto, 'userId'>): Promise<{
         count: number;

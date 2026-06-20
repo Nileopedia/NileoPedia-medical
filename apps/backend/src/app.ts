@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import './jobs/worker';
 import { redis } from './lib/redis';
 import { CONFIG } from './config/env';
 import prisma from './config/prisma';

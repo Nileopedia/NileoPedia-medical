@@ -7,6 +7,7 @@ exports.io = exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
+require("./jobs/worker");
 const redis_1 = require("./lib/redis");
 const env_1 = require("./config/env");
 const prisma_1 = __importDefault(require("./config/prisma"));

@@ -7,15 +7,15 @@ export declare class CitationService {
         title: string;
         documentType: string | null;
         source: string;
-        url: string | null;
-        aiResponseId: string;
         publicationYear: number | null;
+        aiResponseId: string;
         authors: string | null;
         doi: string | null;
+        url: string | null;
+        citationIndex: number;
         chunkId: string | null;
         pageNumber: number | null;
         sectionTitle: string | null;
-        citationIndex: number;
     }[]>;
     getCitationById(id: string): Promise<{
         id: string;
@@ -24,15 +24,15 @@ export declare class CitationService {
         title: string;
         documentType: string | null;
         source: string;
-        url: string | null;
-        aiResponseId: string;
         publicationYear: number | null;
+        aiResponseId: string;
         authors: string | null;
         doi: string | null;
+        url: string | null;
+        citationIndex: number;
         chunkId: string | null;
         pageNumber: number | null;
         sectionTitle: string | null;
-        citationIndex: number;
     } | null>;
     searchCitations(query: SearchCitationsQuery): Promise<SearchCitationsResult>;
     createCitation(data: CreateCitationDto): Promise<{
@@ -42,15 +42,15 @@ export declare class CitationService {
         title: string;
         documentType: string | null;
         source: string;
-        url: string | null;
-        aiResponseId: string;
         publicationYear: number | null;
+        aiResponseId: string;
         authors: string | null;
         doi: string | null;
+        url: string | null;
+        citationIndex: number;
         chunkId: string | null;
         pageNumber: number | null;
         sectionTitle: string | null;
-        citationIndex: number;
     }>;
     updateCitation(id: string, data: UpdateCitationDto): Promise<{
         id: string;
@@ -59,15 +59,15 @@ export declare class CitationService {
         title: string;
         documentType: string | null;
         source: string;
-        url: string | null;
-        aiResponseId: string;
         publicationYear: number | null;
+        aiResponseId: string;
         authors: string | null;
         doi: string | null;
+        url: string | null;
+        citationIndex: number;
         chunkId: string | null;
         pageNumber: number | null;
         sectionTitle: string | null;
-        citationIndex: number;
     }>;
     deleteCitation(id: string): Promise<{
         id: string;
@@ -76,15 +76,15 @@ export declare class CitationService {
         title: string;
         documentType: string | null;
         source: string;
-        url: string | null;
-        aiResponseId: string;
         publicationYear: number | null;
+        aiResponseId: string;
         authors: string | null;
         doi: string | null;
+        url: string | null;
+        citationIndex: number;
         chunkId: string | null;
         pageNumber: number | null;
         sectionTitle: string | null;
-        citationIndex: number;
     }>;
 }
 //# sourceMappingURL=citation.service.d.ts.map

@@ -13,8 +13,8 @@ export declare class ValidationService {
         updatedAt: Date;
         questionId: string;
         summary: string;
-        keyFindings: string[];
         confidenceScore: number | null;
+        keyFindings: string[];
         validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
     })[]>;
@@ -35,26 +35,26 @@ export declare class ValidationService {
             updatedAt: Date;
             questionId: string;
             summary: string;
-            keyFindings: string[];
             confidenceScore: number | null;
+            keyFindings: string[];
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
         };
     } & {
         feedback: string | null;
         id: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     })[]>;
     getReview(responseId: string): Promise<{
         feedback: string | null;
         id: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     } | null>;
