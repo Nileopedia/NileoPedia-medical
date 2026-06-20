@@ -214,6 +214,16 @@ async function processAiGeneration(job) {
                 const mock = generateMockResponse(query, topK, specialty || undefined);
                 ({ summary, citations, confidenceScore, keyFindings } = mock);
                 generatedBy = 'Llama-3.3-70b (fallback)';
+                await redis_1.redis.publish('ai-progress', JSON.stringify({
+                    questionId,
+                    progress: 100,
+                    keyFindings: mock.keyFindings,
+                }));
+                await redis_1.redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+                    questionId,
+                    progress: 100,
+                    keyFindings: mock.keyFindings,
+                }));
             }
             logPerformance(metrics);
         }
@@ -250,28 +260,29 @@ async function processAiGeneration(job) {
     }
     catch (error) {
         logger_1.logger.error(`AI generation failed for question: ${questionId}`, error);
-        if (!env_1.CONFIG.USE_MOCK_AI) {
-            logger_1.logger.info('Falling back to mock response for question:', questionId);
-            try {
-                const mock = generateMockResponse(query, topK, specialty || undefined);
-                const aiResponse = await prisma_1.default.aIResponse.create({
-                    data: {
-                        questionId,
-                        summary: mock.summary,
-                        keyFindings: mock.keyFindings,
-                        confidenceScore: mock.confidenceScore,
-                        generatedBy: 'Llama-3.3-70b (fallback)',
-                    },
-                });
-                metrics.total_ms = Date.now() - totalStart;
-                logPerformance(metrics);
-                return { success: true, responseId: aiResponse.id };
-            }
-            catch (dbError) {
-                logger_1.logger.error('Failed to save fallback response:', dbError);
-            }
-        }
-        throw error;
+        const mock = generateMockResponse(query, topK, specialty || undefined);
+        const aiResponse = await prisma_1.default.aIResponse.create({
+            data: {
+                questionId,
+                summary: mock.summary,
+                keyFindings: mock.keyFindings,
+                confidenceScore: mock.confidenceScore,
+                generatedBy: 'Llama-3.3-70b (emergency fallback)',
+            },
+        });
+        await redis_1.redis.publish('ai-progress', JSON.stringify({
+            questionId,
+            progress: 100,
+            keyFindings: mock.keyFindings,
+        }));
+        await redis_1.redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+            questionId,
+            progress: 100,
+            keyFindings: mock.keyFindings,
+        }));
+        metrics.total_ms = Date.now() - totalStart;
+        logPerformance(metrics);
+        return { success: true, responseId: aiResponse.id };
     }
 }
 exports.processAiGeneration = processAiGeneration;

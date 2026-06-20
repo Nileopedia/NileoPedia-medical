@@ -254,6 +254,17 @@ export async function processAiGeneration(job: AiGenerationJob) {
         const mock = generateMockResponse(query, topK, specialty || undefined);
         ({ summary, citations, confidenceScore, keyFindings } = mock);
         generatedBy = 'Llama-3.3-70b (fallback)';
+
+        await redis.publish('ai-progress', JSON.stringify({
+          questionId,
+          progress: 100,
+          keyFindings: mock.keyFindings,
+        }));
+        await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+          questionId,
+          progress: 100,
+          keyFindings: mock.keyFindings,
+        }));
       }
 
       logPerformance(metrics);
@@ -296,26 +307,30 @@ export async function processAiGeneration(job: AiGenerationJob) {
   } catch (error: any) {
     logger.error(`AI generation failed for question: ${questionId}`, error);
     
-    if (!CONFIG.USE_MOCK_AI) {
-      logger.info('Falling back to mock response for question:', questionId);
-      try {
-        const mock = generateMockResponse(query, topK, specialty || undefined);
-        const aiResponse = await prisma.aIResponse.create({
-          data: {
-            questionId,
-            summary: mock.summary,
-            keyFindings: mock.keyFindings,
-            confidenceScore: mock.confidenceScore,
-            generatedBy: 'Llama-3.3-70b (fallback)',
-          },
-        });
-        metrics.total_ms = Date.now() - totalStart;
-        logPerformance(metrics);
-        return { success: true, responseId: aiResponse.id };
-      } catch (dbError) {
-        logger.error('Failed to save fallback response:', dbError);
-      }
-    }
-    throw error;
+    const mock = generateMockResponse(query, topK, specialty || undefined);
+    const aiResponse = await prisma.aIResponse.create({
+      data: {
+        questionId,
+        summary: mock.summary,
+        keyFindings: mock.keyFindings,
+        confidenceScore: mock.confidenceScore,
+        generatedBy: 'Llama-3.3-70b (emergency fallback)',
+      },
+    });
+    
+    await redis.publish('ai-progress', JSON.stringify({
+      questionId,
+      progress: 100,
+      keyFindings: mock.keyFindings,
+    }));
+    await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+      questionId,
+      progress: 100,
+      keyFindings: mock.keyFindings,
+    }));
+    
+    metrics.total_ms = Date.now() - totalStart;
+    logPerformance(metrics);
+    return { success: true, responseId: aiResponse.id };
   }
 }

@@ -32,8 +32,7 @@ export default function AskPage() {
   useEffect(() => {
     if (!questionId) return;
 
-    // Poll for response since worker runs in separate process
-    let pollInterval: NodeJS.Timeout;
+    let pollInterval: ReturnType<typeof setInterval> | undefined;
     let attempts = 0;
     const maxAttempts = 60;
 
@@ -47,13 +46,20 @@ export default function AskPage() {
           setProgress(100);
           setPartialFindings(data.aiResponse.keyFindings || []);
           setStreamingVisible((data.aiResponse.keyFindings || []).map(() => true));
-          clearInterval(pollInterval);
+          if (pollInterval) clearInterval(pollInterval);
         } else if (attempts < maxAttempts) {
           attempts++;
           setProcessing(true);
           setProgress(Math.min(90, attempts * 15));
         }
-      } catch {
+      } catch (err: any) {
+        if (err?.message?.includes('HTTP_429') || err?.message?.includes('Too Many Requests')) {
+          console.warn('Rate limit hit, stopping polling');
+          if (pollInterval) clearInterval(pollInterval);
+          setError('Rate limit reached. Please wait a moment and try again.');
+          setLoading(false);
+          return;
+        }
         if (attempts < maxAttempts) {
           attempts++;
           setProgress(Math.min(90, attempts * 15));
@@ -61,13 +67,11 @@ export default function AskPage() {
       }
     };
 
-    // Start polling immediately
     setProcessing(true);
     setProgress(5);
     pollForResponse();
     pollInterval = setInterval(pollForResponse, 1500);
 
-    // Also try socket for real-time updates (will only work if in same process)
     const socket: Socket = io(SOCKET_URL, {
       transports: ['websocket'],
       reconnection: false,
@@ -105,13 +109,12 @@ export default function AskPage() {
       addToast({ type: 'error', title: 'AI Processing Failed', message: data.error });
     });
 
-    // Join the question room after a small delay to ensure question exists
     setTimeout(() => {
       socket.emit('stream-question', questionId);
     }, 100);
 
     return () => {
-      clearInterval(pollInterval);
+      if (pollInterval) clearInterval(pollInterval);
       socket.disconnect();
     };
   }, [questionId, user, addToast]);
