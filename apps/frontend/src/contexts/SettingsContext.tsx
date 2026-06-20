@@ -1,0 +1,135 @@
+import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
+import { useAppStore } from '../store/appStore';
+import { api } from '../lib/api';
+import { useToast } from '../components/ui/Toast';
+
+type Theme = 'light' | 'dark' | 'system';
+type Language = 'en' | 'am' | 'om';
+type ResponseStyle = 'concise' | 'normal' | 'detailed';
+
+interface Settings {
+  theme: Theme;
+  language: Language;
+  sidebarCollapsed: boolean;
+  responseStyle: ResponseStyle;
+  citationEnabled: boolean;
+  emailNotifications: boolean;
+  systemNotifications: boolean;
+  uploadNotifications: boolean;
+  validationNotifications: boolean;
+}
+
+interface SettingsContextValue {
+  settings: Settings;
+  updateSettings: (key: keyof Settings, value: Settings[keyof Settings]) => void;
+  loadSettings: () => Promise<void>;
+}
+
+const defaultSettings: Settings = {
+  theme: 'system',
+  language: 'en',
+  sidebarCollapsed: false,
+  responseStyle: 'normal',
+  citationEnabled: true,
+  emailNotifications: true,
+  systemNotifications: true,
+  uploadNotifications: true,
+  validationNotifications: true,
+};
+
+const SettingsContext = createContext<SettingsContextValue>({
+  settings: defaultSettings,
+  updateSettings: () => {},
+  loadSettings: async () => {},
+});
+
+export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
+  useEffect(() => {
+    const html = document.documentElement;
+    const body = document.body;
+    
+    const applyTheme = (theme: Theme) => {
+      if (theme === 'system') {
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        html.classList.toggle('dark', prefersDark);
+        body.classList.toggle('dark', prefersDark);
+      } else {
+        html.classList.toggle('dark', theme === 'dark');
+        body.classList.toggle('dark', theme === 'dark');
+      }
+    };
+
+    applyTheme(settings.theme);
+
+    if (settings.theme === 'system') {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      const handler = () => applyTheme('system');
+      mediaQuery.addEventListener('change', handler);
+      return () => mediaQuery.removeEventListener('change', handler);
+    }
+  }, [settings.theme]);
+
+  const loadSettings = useCallback(async () => {
+    if (typeof window === 'undefined') return;
+    
+    const saved = localStorage.getItem('settings');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setSettings({ ...defaultSettings, ...parsed });
+        if (parsed.sidebarCollapsed) {
+          useAppStore.getState().toggleSidebar();
+        }
+      } catch {}
+    }
+
+    try {
+      const backendPrefs = await api.request<{ success: boolean; data: Partial<Settings> }>('/user/preferences');
+      if (backendPrefs.data) {
+        setSettings((prev) => {
+          const merged = { ...prev, ...backendPrefs.data };
+          localStorage.setItem('settings', JSON.stringify(merged));
+          return merged;
+        });
+      }
+    } catch (err) {
+      // Backend not available, using localStorage values
+    }
+  }, []);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      localStorage.setItem('settings', JSON.stringify(settings));
+      
+      api.request('/user/preferences', {
+        method: 'PUT',
+        body: JSON.stringify(settings),
+      }).catch((err) => {
+        console.error('Failed to save preferences:', err);
+      });
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [settings]);
+
+  const updateSettings = useCallback((key: keyof Settings, value: Settings[keyof Settings]) => {
+    setSettings((prev) => ({ ...prev, [key]: value }));
+  }, []);
+
+  return (
+    <SettingsContext.Provider value={{ settings, updateSettings, loadSettings }}>
+      {children}
+    </SettingsContext.Provider>
+  );
+};
+
+export const useSettings = () => useContext(SettingsContext);
+
+export { Settings };

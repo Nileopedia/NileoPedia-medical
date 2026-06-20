@@ -314,10 +314,10 @@ class ApiClient {
     };
   }
 
-  async askQuestion(question: string, specialty?: string): Promise<{ questionId: string; status: string; message: string }> {
+  async askQuestion(question: string, specialty?: string, responseStyle?: string): Promise<{ questionId: string; status: string; message: string }> {
     const payload = await this.request<ApiEnvelope<{ questionId: string; status: string; message: string }>>('/questions/ask', {
       method: 'POST',
-      body: JSON.stringify({ question, specialty }),
+      body: JSON.stringify({ question, specialty, responseStyle }),
     });
 
     return this.unwrap(payload);
@@ -541,6 +541,13 @@ class ApiClient {
   async runIncrementalRefresh(): Promise<void> {
     await this.request('/admin/ingestion/refresh', {
       method: 'POST',
+    });
+  }
+
+  async changePassword(currentPassword: string, newPassword: string): Promise<void> {
+    await this.request('/users/change-password', {
+      method: 'PATCH',
+      body: JSON.stringify({ currentPassword, newPassword }),
     });
   }
 }

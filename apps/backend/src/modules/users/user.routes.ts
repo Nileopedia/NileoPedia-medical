@@ -10,6 +10,8 @@ const router: Router = Router();
 router.get('/me', authenticate, userController.getCurrentUser.bind(userController));
 router.patch('/profile', authenticate, userController.updateProfile.bind(userController));
 router.patch('/change-password', authenticate, userController.changePassword.bind(userController));
+router.get('/preferences', authenticate, userController.getPreferences.bind(userController));
+router.put('/preferences', authenticate, userController.updatePreferences.bind(userController));
 
 // Admin-only routes
 router.get('/', authenticate, authorize('ADMIN'), userController.getUsers.bind(userController));

@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { AIResponse } from '../../types';
 import { CheckCircle, Info, Bookmark, BookmarkPlus } from 'lucide-react';
 import { api } from '../../lib/api';
+import { useSettings } from '../../contexts/SettingsContext';
 
 interface ResponseViewerProps {
   response: AIResponse;
@@ -13,6 +14,7 @@ interface ResponseViewerProps {
 export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSaveChange }) => {
   const [isSaved, setIsSaved] = useState(response.isSaved || false);
   const [saveLoading, setSaveLoading] = useState(false);
+  const { settings } = useSettings();
 
   const handleSaveToggle = async () => {
     setSaveLoading(true);
@@ -104,25 +106,25 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSave
             </div>
           )}
 
-          {response.citations && response.citations.length > 0 && (
-            <div className="mb-4">
-              <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Citations</h3>
-              <ul className="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-2">
-                {response.citations.map((citation, index) => (
-                  <li key={index}>
-                    <div className="flex flex-col">
-                      <span className="font-medium">{citation.title}</span>
-                      <span className="text-sm text-slate-500">
-                        {citation.authors && <span>Authors: {citation.authors}</span>}
-                        {citation.publicationYear && <span> ({citation.publicationYear})</span>}
-                        {citation.doi && <span> • DOI: {citation.doi}</span>}
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+{settings.citationEnabled && response.citations && response.citations.length > 0 && (
+             <div className="mb-4">
+               <h3 className="text-lg font-medium text-slate-800 dark:text-slate-100 mb-2">Citations</h3>
+               <ul className="list-decimal list-inside text-slate-700 dark:text-slate-300 space-y-2">
+                 {response.citations.map((citation, index) => (
+                   <li key={index}>
+                     <div className="flex flex-col">
+                       <span className="font-medium">{citation.title}</span>
+                       <span className="text-sm text-slate-500">
+                         {citation.authors && <span>Authors: {citation.authors}</span>}
+                         {citation.publicationYear && <span> ({citation.publicationYear})</span>}
+                         {citation.doi && <span> • DOI: {citation.doi}</span>}
+                       </span>
+                     </div>
+                   </li>
+                 ))}
+               </ul>
+             </div>
+           )}
 
           <div className="flex items-center text-sm text-slate-600 dark:text-slate-400 mt-4">
             <span className="mr-2">Confidence Score:</span>

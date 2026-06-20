@@ -1,54 +1,102 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { cn } from '../../utils/cn';
-import { Globe, MessageSquare, Shield, User, Lock, ChevronRight } from 'lucide-react';
+import { Globe, MessageSquare, Shield, User, Lock, ChevronRight, Clock, Monitor } from 'lucide-react';
+import { useSettings } from '../../contexts/SettingsContext';
+import { api } from '../../lib/api';
+import { useToast } from '../../components/ui/Toast';
 
 type SettingsTab = 'general' | 'ai' | 'notifications' | 'account';
 
-interface Settings {
-  darkMode: boolean;
-  language: string;
-  sidebarCollapsed: boolean;
-  responseLength: 'concise' | 'normal' | 'detailed';
-  citationMode: boolean;
-  emailNotifications: boolean;
-  systemNotifications: boolean;
-  uploadNotifications: boolean;
-}
-
-const defaultSettings: Settings = {
-  darkMode: false,
-  language: 'en',
-  sidebarCollapsed: false,
-  responseLength: 'normal',
-  citationMode: true,
-  emailNotifications: true,
-  systemNotifications: true,
-  uploadNotifications: true,
-};
-
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState<SettingsTab>('general');
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const { settings, updateSettings } = useSettings();
+  const { addToast } = useToast();
 
-  useEffect(() => {
-    const saved = localStorage.getItem('settings');
-    if (saved) {
-      try {
-        setSettings(JSON.parse(saved));
-      } catch (e) {
-        console.error('Failed to load settings', e);
-      }
+  // Change password state
+  const [currentPassword, setCurrentPassword] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
+  const [changingPassword, setChangingPassword] = useState(false);
+
+  // 2FA state
+  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
+  const [showQrCode, setShowQrCode] = useState(false);
+  const [qrCodeUrl, setQrCodeUrl] = useState('');
+  const [otpCode, setOtpCode] = useState('');
+  const [twoFactorLoading, setTwoFactorLoading] = useState(false);
+
+  // Security info
+  const [lastLogin] = useState('2024-06-15 14:30:00');
+  const [activeSessions] = useState(1);
+
+  const handleChangePassword = async () => {
+    if (newPassword !== confirmPassword) {
+      addToast({ type: 'error', title: 'Passwords do not match' });
+      return;
     }
-  }, []);
+    setChangingPassword(true);
+    try {
+      await api.changePassword(currentPassword, newPassword);
+      addToast({ type: 'success', title: 'Password changed successfully' });
+      setCurrentPassword('');
+      setNewPassword('');
+      setConfirmPassword('');
+    } catch (error) {
+      addToast({ type: 'error', title: 'Failed to change password' });
+    } finally {
+      setChangingPassword(false);
+    }
+  };
 
-  const updateSettings = <K extends keyof Settings>(key: K, value: Settings[K]) => {
-    const newSettings = { ...settings, [key]: value };
-    setSettings(newSettings);
-    localStorage.setItem('settings', JSON.stringify(newSettings));
+  const handleEnable2FA = async () => {
+    setTwoFactorLoading(true);
+    try {
+      const response = await api.request<{ success: boolean; data: { qrCodeUrl: string } }>('/auth/2fa/enable', {
+        method: 'POST',
+      });
+      setQrCodeUrl(response.data.qrCodeUrl);
+      setShowQrCode(true);
+    } catch (error) {
+      addToast({ type: 'error', title: 'Failed to enable 2FA' });
+    } finally {
+      setTwoFactorLoading(false);
+    }
+  };
+
+  const handleVerify2FA = async () => {
+    setTwoFactorLoading(true);
+    try {
+      await api.request('/auth/2fa/verify', {
+        method: 'POST',
+        body: JSON.stringify({ code: otpCode }),
+      });
+      setTwoFactorEnabled(true);
+      setShowQrCode(false);
+      addToast({ type: 'success', title: '2FA enabled successfully' });
+    } catch (error) {
+      addToast({ type: 'error', title: 'Invalid verification code' });
+    } finally {
+      setTwoFactorLoading(false);
+    }
+  };
+
+  const handleDisable2FA = async () => {
+    setTwoFactorLoading(true);
+    try {
+      await api.request('/auth/2fa/disable', {
+        method: 'POST',
+      });
+      setTwoFactorEnabled(false);
+      addToast({ type: 'success', title: '2FA disabled' });
+    } catch (error) {
+      addToast({ type: 'error', title: 'Failed to disable 2FA' });
+    } finally {
+      setTwoFactorLoading(false);
+    }
   };
 
   return (
@@ -102,18 +150,18 @@ export default function SettingsPage() {
                         <p className="text-xs text-slate-500 dark:text-slate-400">Toggle interface theme</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('darkMode', !settings.darkMode)}
+                        onClick={() => updateSettings('theme', settings.theme === 'dark' ? 'light' : 'dark')}
                         className={cn(
                           'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-                          settings.darkMode ? 'bg-blue-600' : 'bg-slate-300'
+                          settings.theme === 'dark' ? 'bg-blue-600' : 'bg-slate-300'
                         )}
                         role="switch"
-                        aria-checked={settings.darkMode}
+                        aria-checked={settings.theme === 'dark'}
                       >
                         <span
                           className={cn(
                             'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform',
-                            settings.darkMode ? 'translate-x-5' : 'translate-x-1'
+                            settings.theme === 'dark' ? 'translate-x-5' : 'translate-x-1'
                           )}
                         />
                       </button>
@@ -126,12 +174,12 @@ export default function SettingsPage() {
                       </div>
                       <select
                         value={settings.language}
-                        onChange={(e) => updateSettings('language', e.target.value)}
+                        onChange={(e) => updateSettings('language', e.target.value as 'en' | 'am' | 'om')}
                         className="text-sm border border-slate-200 dark:border-slate-600 rounded-lg px-2 py-1 bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-200"
                       >
                         <option value="en">English</option>
-                        <option value="es">Spanish</option>
-                        <option value="fr">French</option>
+                        <option value="am">Amharic</option>
+                        <option value="om">Oromo</option>
                       </select>
                     </div>
 
@@ -168,10 +216,10 @@ export default function SettingsPage() {
                         {(['concise', 'normal', 'detailed'] as const).map((length) => (
                           <button
                             key={length}
-                            onClick={() => updateSettings('responseLength', length)}
+                            onClick={() => updateSettings('responseStyle', length)}
                             className={cn(
                               'px-3 py-1.5 text-xs rounded-lg border transition-colors',
-                              settings.responseLength === length
+                              settings.responseStyle === length
                                 ? 'bg-blue-600 text-white border-blue-600'
                                 : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600'
                             )}
@@ -188,18 +236,18 @@ export default function SettingsPage() {
                         <p className="text-xs text-slate-500 dark:text-slate-400">Show citations in responses</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('citationMode', !settings.citationMode)}
+                        onClick={() => updateSettings('citationEnabled', !settings.citationEnabled)}
                         className={cn(
                           'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-                          settings.citationMode ? 'bg-blue-600' : 'bg-slate-300'
+                          settings.citationEnabled ? 'bg-blue-600' : 'bg-slate-300'
                         )}
                         role="switch"
-                        aria-checked={settings.citationMode}
+                        aria-checked={settings.citationEnabled}
                       >
                         <span
                           className={cn(
                             'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform',
-                            settings.citationMode ? 'translate-x-5' : 'translate-x-1'
+                            settings.citationEnabled ? 'translate-x-5' : 'translate-x-1'
                           )}
                         />
                       </button>
@@ -277,43 +325,128 @@ export default function SettingsPage() {
                         />
                       </button>
                     </div>
+
+                    <div className="flex items-center justify-between py-3">
+                      <div>
+                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Validation Notifications</p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">Alerts for validation tasks</p>
+                      </div>
+                      <button
+                        onClick={() => updateSettings('validationNotifications', !settings.validationNotifications)}
+                        className={cn(
+                          'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
+                          settings.validationNotifications ? 'bg-blue-600' : 'bg-slate-300'
+                        )}
+                        role="switch"
+                        aria-checked={settings.validationNotifications}
+                      >
+                        <span
+                          className={cn(
+                            'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform',
+                            settings.validationNotifications ? 'translate-x-5' : 'translate-x-1'
+                          )}
+                        />
+                      </button>
+                    </div>
                   </>
                 )}
 
                 {activeTab === 'account' && (
-                  <div className="space-y-3">
-                    <button
-                      onClick={() => {}}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Lock size={16} />
-                        <span>Change password</span>
+                  <div className="space-y-6">
+                    <div>
+                      <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Change Password</h4>
+                      <div className="space-y-3">
+                        <input
+                          type="password"
+                          placeholder="Current password"
+                          value={currentPassword}
+                          onChange={(e) => setCurrentPassword(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm"
+                        />
+                        <input
+                          type="password"
+                          placeholder="New password"
+                          value={newPassword}
+                          onChange={(e) => setNewPassword(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm"
+                        />
+                        <input
+                          type="password"
+                          placeholder="Confirm new password"
+                          value={confirmPassword}
+                          onChange={(e) => setConfirmPassword(e.target.value)}
+                          className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm"
+                        />
+                        <button
+                          onClick={handleChangePassword}
+                          disabled={changingPassword || !currentPassword || !newPassword}
+                          className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                        >
+                          {changingPassword ? 'Changing...' : 'Change Password'}
+                        </button>
                       </div>
-                      <ChevronRight size={16} />
-                    </button>
+                    </div>
 
-                    <button
-                      onClick={() => {}}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700"
-                    >
-                      <div className="flex items-center gap-3">
-                        <Shield size={16} />
-                        <span>Security settings</span>
+                    <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                      <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Security Settings</h4>
+                      <div className="space-y-2 text-sm">
+                        <div className="flex justify-between">
+                          <span className="text-slate-500 dark:text-slate-400">Last login</span>
+                          <span className="text-slate-700 dark:text-slate-300">{lastLogin}</span>
+                        </div>
+                        <div className="flex justify-between">
+                          <span className="text-slate-500 dark:text-slate-400">Active sessions</span>
+                          <span className="text-slate-700 dark:text-slate-300">{activeSessions}</span>
+                        </div>
                       </div>
-                      <ChevronRight size={16} />
-                    </button>
+                    </div>
 
-                    <button
-                      onClick={() => {}}
-                      className="w-full flex items-center justify-between px-4 py-3 text-sm text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700"
-                    >
-                      <div className="flex items-center gap-3">
-                        <User size={16} />
-                        <span>Two-factor authentication</span>
-                      </div>
-                      <ChevronRight size={16} />
-                    </button>
+                    <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+                      <h4 className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-3">Two-Factor Authentication</h4>
+                      {!twoFactorEnabled && !showQrCode && (
+                        <button
+                          onClick={handleEnable2FA}
+                          disabled={twoFactorLoading}
+                          className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                        >
+                          Enable 2FA
+                        </button>
+                      )}
+                      {showQrCode && (
+                        <div className="space-y-3">
+                          <div className="flex justify-center">
+                            <img src={qrCodeUrl} alt="2FA QR Code" className="w-48 h-48" />
+                          </div>
+                          <input
+                            type="text"
+                            placeholder="Enter 6-digit code"
+                            value={otpCode}
+                            onChange={(e) => setOtpCode(e.target.value)}
+                            className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm"
+                            maxLength={6}
+                          />
+                          <button
+                            onClick={handleVerify2FA}
+                            disabled={twoFactorLoading || otpCode.length < 6}
+                            className="px-4 py-2 text-sm text-white bg-green-600 rounded-lg hover:bg-green-700 disabled:opacity-50"
+                          >
+                            {twoFactorLoading ? 'Verifying...' : 'Verify Code'}
+                          </button>
+                        </div>
+                      )}
+                      {twoFactorEnabled && (
+                        <div className="space-y-3">
+                          <p className="text-sm text-green-600">2FA is enabled</p>
+                          <button
+                            onClick={handleDisable2FA}
+                            disabled={twoFactorLoading}
+                            className="px-4 py-2 text-sm text-red-600 border border-red-200 rounded-lg hover:bg-red-50"
+                          >
+                            Disable 2FA
+                          </button>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </CardContent>

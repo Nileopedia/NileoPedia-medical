@@ -3,6 +3,7 @@
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useSocket } from '../hooks/useSocket';
 import { ToastProvider } from './ui/Toast';
+import { SettingsProvider } from '../contexts/SettingsContext';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,7 +29,9 @@ export function Providers({ children }: ProvidersProps) {
   return (
     <QueryClientProvider client={queryClient}>
       <SocketProvider>
-        <ToastProvider>{children}</ToastProvider>
+        <ToastProvider>
+          <SettingsProvider>{children}</SettingsProvider>
+        </ToastProvider>
       </SocketProvider>
     </QueryClientProvider>
   );

@@ -61,6 +61,7 @@ model User {
   notifications   Notification[]
   auditLogs       AuditLog[]
   medicalDocuments MedicalDocument[]
+  preferences     UserPreferences?
 }
 
 // Medical Questions
@@ -247,6 +248,25 @@ model EmailLog {
   error     String?
   sentAt    DateTime?
   createdAt DateTime     @default(now())
+}
+
+model UserPreferences {
+  id                  String   @id @default(uuid())
+  userId              String   @unique
+  theme               String   @default("system")
+  language            String   @default("en")
+  sidebarCollapsed    Boolean  @default(false)
+  responseStyle       String   @default("normal")
+  citationEnabled     Boolean  @default(true)
+  emailNotifications  Boolean  @default(true)
+  systemNotifications Boolean  @default(true)
+  uploadNotifications Boolean  @default(true)
+  validationNotifications Boolean @default(true)
+
+  createdAt           DateTime @default(now())
+  updatedAt           DateTime @updatedAt
+
+  user                User     @relation(fields: [userId], references: [id])
 }
 
 model PasswordReset {
