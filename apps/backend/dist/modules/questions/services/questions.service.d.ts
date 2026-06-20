@@ -9,11 +9,11 @@ export declare class QuestionsService {
             citations: {
                 id: string;
                 createdAt: Date;
+                source: string;
+                publicationYear: number | null;
                 specialty: string | null;
                 title: string;
                 documentType: string | null;
-                source: string;
-                publicationYear: number | null;
                 aiResponseId: string;
                 authors: string | null;
                 doi: string | null;
@@ -46,11 +46,11 @@ export declare class QuestionsService {
             citations: {
                 id: string;
                 createdAt: Date;
+                source: string;
+                publicationYear: number | null;
                 specialty: string | null;
                 title: string;
                 documentType: string | null;
-                source: string;
-                publicationYear: number | null;
                 aiResponseId: string;
                 authors: string | null;
                 doi: string | null;

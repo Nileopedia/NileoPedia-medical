@@ -27,6 +27,24 @@ const authenticate = async (req, res, next) => {
     }
 };
 exports.authenticate = authenticate;
+exports.authenticate.optional = async (req, res, next) => {
+    try {
+        const authHeader = req.headers.authorization;
+        if (!authHeader || !authHeader.startsWith('Bearer ')) {
+            return next();
+        }
+        const token = authHeader.split(' ')[1];
+        const decoded = jsonwebtoken_1.default.verify(token, env_1.CONFIG.JWT_ACCESS_SECRET);
+        const user = await prisma_1.default.user.findUnique({ where: { id: decoded.id } });
+        if (user) {
+            req.user = decoded;
+        }
+        next();
+    }
+    catch {
+        next();
+    }
+};
 const authorize = (...roles) => {
     return (req, res, next) => {
         if (!req.user || !roles.includes(req.user.role)) {

@@ -3,11 +3,11 @@ export declare class CitationService {
     getCitationsForResponse(aiResponseId: string): Promise<{
         id: string;
         createdAt: Date;
+        source: string;
+        publicationYear: number | null;
         specialty: string | null;
         title: string;
         documentType: string | null;
-        source: string;
-        publicationYear: number | null;
         aiResponseId: string;
         authors: string | null;
         doi: string | null;
@@ -20,11 +20,11 @@ export declare class CitationService {
     getCitationById(id: string): Promise<{
         id: string;
         createdAt: Date;
+        source: string;
+        publicationYear: number | null;
         specialty: string | null;
         title: string;
         documentType: string | null;
-        source: string;
-        publicationYear: number | null;
         aiResponseId: string;
         authors: string | null;
         doi: string | null;
@@ -38,11 +38,11 @@ export declare class CitationService {
     createCitation(data: CreateCitationDto): Promise<{
         id: string;
         createdAt: Date;
+        source: string;
+        publicationYear: number | null;
         specialty: string | null;
         title: string;
         documentType: string | null;
-        source: string;
-        publicationYear: number | null;
         aiResponseId: string;
         authors: string | null;
         doi: string | null;
@@ -55,11 +55,11 @@ export declare class CitationService {
     updateCitation(id: string, data: UpdateCitationDto): Promise<{
         id: string;
         createdAt: Date;
+        source: string;
+        publicationYear: number | null;
         specialty: string | null;
         title: string;
         documentType: string | null;
-        source: string;
-        publicationYear: number | null;
         aiResponseId: string;
         authors: string | null;
         doi: string | null;
@@ -72,11 +72,11 @@ export declare class CitationService {
     deleteCitation(id: string): Promise<{
         id: string;
         createdAt: Date;
+        source: string;
+        publicationYear: number | null;
         specialty: string | null;
         title: string;
         documentType: string | null;
-        source: string;
-        publicationYear: number | null;
         aiResponseId: string;
         authors: string | null;
         doi: string | null;

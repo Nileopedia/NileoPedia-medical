@@ -19,9 +19,11 @@ export const QueryInput: React.FC<QueryInputProps> = ({ onSubmit, loading }) => 
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+    if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
       handleSubmit();
     }
+    // Shift+Enter allows new line (default textarea behavior)
   };
 
   return (
@@ -36,7 +38,7 @@ export const QueryInput: React.FC<QueryInputProps> = ({ onSubmit, loading }) => 
         className="mb-4"
       />
       <div className="flex items-center justify-between">
-        <p className="text-xs text-slate-400">Press Ctrl+Enter to submit</p>
+        <p className="text-xs text-slate-400">Press Enter to submit, Shift+Enter for new line</p>
         <Button
           onClick={handleSubmit}
           disabled={!query.trim() || loading}
