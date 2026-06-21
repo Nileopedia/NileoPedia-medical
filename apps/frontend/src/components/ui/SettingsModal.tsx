@@ -101,28 +101,28 @@ export const SettingsModal: React.FC<SettingsModalProps> = ({ isOpen, onClose })
               <div className="space-y-6">
                 <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50 mb-4">General Settings</h3>
                 
-                <div className="flex items-center justify-between py-3">
-                  <div>
-                    <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Dark/Light Mode</p>
-                    <p className="text-xs text-slate-500 dark:text-slate-400">Toggle interface theme</p>
-                  </div>
-                  <button
-                    onClick={() => updateSettings('theme', settings.theme === 'dark' ? 'light' : 'dark')}
-                    className={cn(
-                      'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-                      settings.theme === 'dark' ? 'bg-blue-600' : 'bg-slate-300'
-                    )}
-                    role="switch"
-                    aria-checked={settings.theme === 'dark'}
-                  >
-                    <span
-                      className={cn(
-                        'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform',
-                        settings.theme === 'dark' ? 'translate-x-5' : 'translate-x-1'
-                      )}
-                    />
-                  </button>
-                </div>
+<div className="flex items-center justify-between py-3">
+                   <div>
+                     <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Theme</p>
+                     <p className="text-xs text-slate-500 dark:text-slate-400">Interface appearance</p>
+                   </div>
+                   <div className="flex gap-1">
+                     {(['light', 'dark', 'system'] as const).map((themeOption) => (
+                       <button
+                         key={themeOption}
+                         onClick={() => updateSettings('theme', themeOption)}
+                         className={cn(
+                           'px-3 py-1.5 text-xs rounded-lg border transition-colors',
+                           settings.theme === themeOption
+                             ? 'bg-blue-600 text-white border-blue-600'
+                             : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600'
+                         )}
+                       >
+                         {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
+                       </button>
+                     ))}
+                   </div>
+                 </div>
 
                 <div className="flex items-center justify-between py-3">
                   <div>

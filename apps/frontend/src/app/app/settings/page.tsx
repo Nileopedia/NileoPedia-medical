@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { cn } from '../../utils/cn';
-import { Globe, MessageSquare, Shield, User, Lock, ChevronRight, Clock, Monitor } from 'lucide-react';
+import { Globe, MessageSquare, Shield, User } from 'lucide-react';
 import { useSettings } from '../../contexts/SettingsContext';
 import { api } from '../../lib/api';
 import { useToast } from '../../components/ui/Toast';
@@ -45,7 +45,7 @@ export default function SettingsPage() {
       setCurrentPassword('');
       setNewPassword('');
       setConfirmPassword('');
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', title: 'Failed to change password' });
     } finally {
       setChangingPassword(false);
@@ -60,7 +60,7 @@ export default function SettingsPage() {
       });
       setQrCodeUrl(response.data.qrCodeUrl);
       setShowQrCode(true);
-    } catch (error: any) {
+    } catch (error: Error) {
       if (error.message?.includes('404')) {
         addToast({ type: 'info', title: '2FA feature coming soon' });
       } else {
@@ -81,7 +81,7 @@ export default function SettingsPage() {
       setTwoFactorEnabled(true);
       setShowQrCode(false);
       addToast({ type: 'success', title: '2FA enabled successfully' });
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', title: 'Invalid verification code' });
     } finally {
       setTwoFactorLoading(false);
@@ -96,7 +96,7 @@ export default function SettingsPage() {
       });
       setTwoFactorEnabled(false);
       addToast({ type: 'success', title: '2FA disabled' });
-    } catch (error) {
+    } catch {
       addToast({ type: 'error', title: 'Failed to disable 2FA' });
     } finally {
       setTwoFactorLoading(false);
@@ -148,28 +148,28 @@ export default function SettingsPage() {
               <CardContent className="space-y-4">
                 {activeTab === 'general' && (
                   <>
-                    <div className="flex items-center justify-between py-3">
-                      <div>
-                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Dark Mode</p>
-                        <p className="text-xs text-slate-500 dark:text-slate-400">Toggle interface theme</p>
-                      </div>
-                      <button
-                        onClick={() => updateSettings('theme', settings.theme === 'dark' ? 'light' : 'dark')}
-                        className={cn(
-                          'relative inline-flex h-6 w-11 items-center rounded-full transition-colors',
-                          settings.theme === 'dark' ? 'bg-blue-600' : 'bg-slate-300'
-                        )}
-                        role="switch"
-                        aria-checked={settings.theme === 'dark'}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform',
-                            settings.theme === 'dark' ? 'translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
+<div className="flex items-center justify-between py-3">
+                       <div>
+                         <p className="text-sm font-medium text-slate-700 dark:text-slate-300">Theme</p>
+                         <p className="text-xs text-slate-500 dark:text-slate-400">Interface appearance</p>
+                       </div>
+                       <div className="flex gap-2">
+                         {(['light', 'dark', 'system'] as const).map((themeOption) => (
+                           <button
+                             key={themeOption}
+                             onClick={() => updateSettings('theme', themeOption)}
+                             className={cn(
+                               'px-3 py-1.5 text-xs rounded-lg border transition-colors',
+                               settings.theme === themeOption
+                                 ? 'bg-blue-600 text-white border-blue-600'
+                                 : 'bg-white dark:bg-slate-700 text-slate-700 dark:text-slate-300 border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600'
+                             )}
+                           >
+                             {themeOption.charAt(0).toUpperCase() + themeOption.slice(1)}
+                           </button>
+                         ))}
+                       </div>
+                     </div>
 
                     <div className="flex items-center justify-between py-3">
                       <div>

@@ -1,3 +1,5 @@
+'use client';
+
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useAppStore } from '../store/appStore';
 import { api } from '../lib/api';
@@ -43,16 +45,16 @@ const SettingsContext = createContext<SettingsContextValue>({
 });
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-   const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const [settings, setSettings] = useState<Settings>(defaultSettings);
 
-   useEffect(() => {
-     loadSettings();
-   }, []);
+  useEffect(() => {
+    loadSettings();
+  }, []);
 
   useEffect(() => {
     const html = document.documentElement;
     const body = document.body;
-    
+
     const applyTheme = (theme: Theme) => {
       if (theme === 'system') {
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -103,7 +105,7 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
           return merged;
         });
       }
-    } catch (err) {
+    } catch {
       // Backend not available or error, using localStorage values
     }
   }, []);
@@ -138,5 +140,3 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
 };
 
 export const useSettings = () => useContext(SettingsContext);
-
-export { Settings };
