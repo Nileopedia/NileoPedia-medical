@@ -2923,3 +2923,151 @@ Unique constraint failed on the fields: (`questionId`)
 2026-06-20T09:10:40.849Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-20T09:10:40.941Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-20T09:10:40.942Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-21T17:44:10.221Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:15.398Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:20.854Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:27.666Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:32.402Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:39.184Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:46.509Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T17:44:49.362Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-21T18:27:40.331Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-21T18:27:40.364Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-21T18:27:40.418Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-21T18:27:40.422Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-22T04:39:21.393Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T04:39:27.385Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T04:50:45.491Z [nileopedia-backend] error: Error in getPreferences controller: 
+Invalid `prisma.userPreferences.findUnique()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:169:54
+
+  166 }
+  167 
+  168 async getPreferences(userId: string) {
+→ 169   const preferences = await prisma.userPreferences.findUnique(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T04:50:46.052Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T04:52:32.719Z [nileopedia-backend] error: Error in getPreferences controller: 
+Invalid `prisma.userPreferences.findUnique()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:169:54
+
+  166 }
+  167 
+  168 async getPreferences(userId: string) {
+→ 169   const preferences = await prisma.userPreferences.findUnique(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T04:52:33.292Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T06:42:08.490Z [nileopedia-backend] error: Error in getPreferences controller: 
+Invalid `prisma.userPreferences.findUnique()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:169:54
+
+  166 }
+  167 
+  168 async getPreferences(userId: string) {
+→ 169   const preferences = await prisma.userPreferences.findUnique(
+The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T06:42:08.990Z [nileopedia-backend] error: Error in updatePreferences controller: 
+Invalid `prisma.userPreferences.upsert()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/users/user.service.ts:201:54
+
+  198   uploadNotifications?: boolean;
+  199   validationNotifications?: boolean;
+  200 }) {
+→ 201   const preferences = await prisma.userPreferences.upsert(
+The table `public.UserPreferences` does not exist in the current database.

@@ -16,8 +16,8 @@ export default function AdminValidatorsPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Validators</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage medical validators</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Validators</h1>
+          <p className="text-muted-foreground">Manage medical validators</p>
         </div>
 
         <div className="flex justify-end">
@@ -37,26 +37,26 @@ export default function AdminValidatorsPage() {
           <CardContent>
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Name</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Email</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Reviews</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Accuracy</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Status</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 font-medium text-foreground">Name</th>
+                  <th className="text-left py-2 font-medium text-foreground">Email</th>
+                  <th className="text-left py-2 font-medium text-foreground">Reviews</th>
+                  <th className="text-left py-2 font-medium text-foreground">Accuracy</th>
+                  <th className="text-left py-2 font-medium text-foreground">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {validators.map((validator) => (
                   <tr key={validator.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 font-medium text-slate-900 dark:text-slate-50">
+                    <td className="py-3 font-medium text-foreground">
                       <div className="flex items-center gap-2">
                         <CheckCircle size={16} className="text-emerald-500" />
                         {validator.name}
                       </div>
                     </td>
-                    <td className="py-3 text-slate-600 dark:text-slate-400">{validator.email}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-400">{validator.reviews}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-400">{validator.accuracy}</td>
+                    <td className="py-3 text-muted-foreground">{validator.email}</td>
+                    <td className="py-3 text-muted-foreground">{validator.reviews}</td>
+                    <td className="py-3 text-muted-foreground">{validator.accuracy}</td>
                     <td className="py-3">
                       <Badge variant={validator.status === 'active' ? 'success' : 'default'}>
                         {validator.status}

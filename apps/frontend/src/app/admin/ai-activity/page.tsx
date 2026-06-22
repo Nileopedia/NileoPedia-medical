@@ -14,8 +14,8 @@ export default function AdminAiActivityPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">AI Activity</h1>
-        <p className="text-slate-600 dark:text-slate-400">Monitor AI model activity and usage</p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">AI Activity</h1>
+        <p className="text-muted-foreground">Monitor AI model activity and usage</p>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           <Card>
@@ -23,7 +23,7 @@ export default function AdminAiActivityPage() {
               <CardTitle>Total Queries Today</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">1,248</p>
+              <p className="text-3xl font-bold text-foreground">1,248</p>
             </CardContent>
           </Card>
           <Card>
@@ -31,7 +31,7 @@ export default function AdminAiActivityPage() {
               <CardTitle>Tokens Used</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">45.2K</p>
+              <p className="text-3xl font-bold text-foreground">45.2K</p>
             </CardContent>
           </Card>
           <Card>
@@ -39,7 +39,7 @@ export default function AdminAiActivityPage() {
               <CardTitle>Avg Response Time</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">2.4s</p>
+              <p className="text-3xl font-bold text-foreground">2.4s</p>
             </CardContent>
           </Card>
         </div>
@@ -54,11 +54,11 @@ export default function AdminAiActivityPage() {
           <CardContent>
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Model</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Action</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Timestamp</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Tokens</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 font-medium text-foreground">Model</th>
+                  <th className="text-left py-2 font-medium text-foreground">Action</th>
+                  <th className="text-left py-2 font-medium text-foreground">Timestamp</th>
+                  <th className="text-left py-2 font-medium text-foreground">Tokens</th>
                 </tr>
               </thead>
               <tbody>
@@ -67,10 +67,10 @@ export default function AdminAiActivityPage() {
                     <td className="py-3">
                       <div className="flex items-center gap-2">
                         <Bot size={16} className="text-blue-600" />
-                        <span className="text-slate-900 dark:text-slate-50">{activity.model}</span>
+                        <span className="text-foreground">{activity.model}</span>
                       </div>
                     </td>
-                    <td className="py-3 text-slate-600 dark:text-slate-400">{activity.action}</td>
+                    <td className="py-3 text-muted-foreground">{activity.action}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-500">{activity.timestamp}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-500">{activity.tokens || '-'}</td>
                   </tr>

@@ -11,14 +11,14 @@ export const TopCategories: React.FC<TopCategoriesProps> = ({ categories }) => {
     <Card>
       <CardHeader className="flex flex-row items-center justify-between">
         <CardTitle>Top Categories</CardTitle>
-        <button className="text-sm text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">View all</button>
+        <button className="text-sm text-primary hover:text-primary/80 font-medium">View all</button>
       </CardHeader>
       <CardContent>
         <div className="space-y-4">
           {categories.map((category) => (
             <div key={category.name} className="flex items-center gap-4">
-              <span className="text-sm text-slate-600 dark:text-slate-400 w-28 flex-shrink-0">{category.name}</span>
-              <div className="flex-1 h-2 bg-slate-100 dark:bg-slate-700 rounded-full overflow-hidden">
+              <span className="text-sm text-muted-foreground w-28 flex-shrink-0">{category.name}</span>
+              <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
                 <div
                   className="h-full rounded-full transition-all duration-500"
                   style={{
@@ -27,7 +27,7 @@ export const TopCategories: React.FC<TopCategoriesProps> = ({ categories }) => {
                   }}
                 />
               </div>
-              <span className="text-sm font-medium text-slate-900 dark:text-slate-100 w-10 text-right">{category.value}%</span>
+              <span className="text-sm font-medium text-foreground w-10 text-right">{category.value}%</span>
             </div>
           ))}
         </div>

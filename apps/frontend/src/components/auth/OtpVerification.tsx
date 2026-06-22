@@ -72,8 +72,8 @@ export const OtpVerification: React.FC = () => {
               <span className="text-white font-bold text-lg">N</span>
             </div>
             <div className="text-left">
-              <h1 className="text-xl font-bold text-slate-900 dark:text-slate-50">NileoPedia</h1>
-              <p className="text-xs text-slate-500 dark:text-slate-400">Medical Intelligence Platform</p>
+              <h1 className="text-xl font-bold text-foreground">NileoPedia</h1>
+              <p className="text-xs text-muted-foreground">Medical Intelligence Platform</p>
             </div>
           </div>
         </div>
@@ -84,12 +84,12 @@ export const OtpVerification: React.FC = () => {
             <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-4">
               <Shield size={24} className="text-blue-600 dark:text-blue-400" />
             </div>
-            <h2 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-2">Verification Required</h2>
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <h2 className="text-xl font-bold text-foreground mb-2">Verification Required</h2>
+            <p className="text-sm text-muted-foreground">
               Enter the 6-digit verification code sent to:
             </p>
-            <p className="text-sm font-medium text-slate-900 dark:text-slate-100 mt-1 flex items-center justify-center gap-1">
-              <Mail size={14} className="text-slate-400 dark:text-slate-500" /> {otpState.email}
+            <p className="text-sm font-medium text-foreground mt-1 flex items-center justify-center gap-1">
+              <Mail size={14} className="text-muted-foreground/70" /> {otpState.email}
             </p>
             <p className="text-xs text-amber-600 dark:text-amber-400 mt-2 font-medium">
               Demo mode: Enter any 6 digits (e.g., 123456) to verify
@@ -103,7 +103,7 @@ export const OtpVerification: React.FC = () => {
                 value={otp}
                 onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
                 placeholder="123456"
-                className="w-full px-4 py-3 border border-slate-300 dark:border-slate-600 rounded-lg text-center text-2xl tracking-[0.5em] font-mono h-14 text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-border rounded-lg text-center text-2xl tracking-[0.5em] font-mono h-14 text-foreground placeholder-slate-400 dark:placeholder-slate-500 bg-card focus:outline-none focus:ring-2 focus:ring-blue-500"
                 maxLength={6}
                 required
                 autoFocus
@@ -121,9 +121,9 @@ export const OtpVerification: React.FC = () => {
                 id="trust-device"
                 checked={trustDevice}
                 onChange={(e) => setTrustDevice(e.target.checked)}
-                className="w-4 h-4 rounded border-slate-300 dark:border-slate-600 text-blue-600 focus:ring-blue-500 bg-white dark:bg-slate-800"
+                className="w-4 h-4 rounded border-border text-blue-600 focus:ring-blue-500 bg-card"
               />
-              <label htmlFor="trust-device" className="text-sm text-slate-600 dark:text-slate-400">
+              <label htmlFor="trust-device" className="text-sm text-muted-foreground">
                 Trust this device for 30 days
               </label>
             </div>
@@ -143,14 +143,14 @@ export const OtpVerification: React.FC = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-sm text-slate-500 dark:text-slate-400">
+            <p className="text-sm text-muted-foreground">
               Didn&apos;t receive the code?{' '}
               {canResend ? (
                 <button onClick={handleResend} className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium">
                   Use Demo Code (123456)
                 </button>
               ) : (
-                <span className="text-slate-400 dark:text-slate-500">Resend in {timer}s</span>
+                <span className="text-muted-foreground/70">Resend in {timer}s</span>
               )}
               <span className="block text-xs text-slate-400 mt-1">(Demo: email verification skipped)</span>
             </p>

@@ -44,8 +44,8 @@ export default function ProfilePage() {
     <AppLayout>
       <div className="space-y-6 max-w-2xl">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Profile</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage your account information</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Profile</h1>
+          <p className="text-muted-foreground">Manage your account information</p>
         </div>
 
         <Card>
@@ -56,7 +56,7 @@ export default function ProfilePage() {
             <div className="flex items-center gap-4">
               <Avatar name={user.name} size="lg" />
               <div>
-                <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">{user.name}</h2>
+                <h2 className="text-lg font-semibold text-foreground">{user.name}</h2>
                 <span
                   className={cn(
                     'inline-block text-xs px-2 py-0.5 rounded-full mt-1 font-medium',
@@ -70,30 +70,30 @@ export default function ProfilePage() {
 
             <div className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Full Name</label>
+                <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   disabled={!editing}
-                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-700 disabled:bg-slate-50 disabled:text-slate-500 dark:disabled:bg-slate-800"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-input disabled:bg-slate-50 disabled:text-slate-500 dark:disabled:bg-slate-800"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Email</label>
+                <label className="block text-sm font-medium text-foreground mb-1">Email</label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={!editing}
-                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-white dark:bg-slate-700 disabled:bg-slate-50 disabled:text-slate-500 dark:disabled:bg-slate-800"
+                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-input disabled:bg-slate-50 disabled:text-slate-500 dark:disabled:bg-slate-800"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">Role</label>
-                <p className="text-sm text-slate-600 dark:text-slate-400">{roleLabels[user.role]}</p>
+                <label className="block text-sm font-medium text-foreground mb-1">Role</label>
+                <p className="text-sm text-muted-foreground">{roleLabels[user.role]}</p>
               </div>
             </div>
 
@@ -105,7 +105,7 @@ export default function ProfilePage() {
                       setEditing(false);
                       setFormData({ name: user.name, email: user.email });
                     }}
-                    className="px-4 py-2 text-sm text-slate-600 dark:text-slate-400 border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700"
+                    className="px-4 py-2 text-sm text-muted-foreground border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700"
                   >
                     Cancel
                   </button>

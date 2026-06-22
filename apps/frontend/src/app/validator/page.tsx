@@ -80,11 +80,11 @@ export default function ValidatorPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Validation Center</h1>
-          <p className="text-slate-600 dark:text-slate-400">Review and validate AI-generated responses</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Validation Center</h1>
+          <p className="text-muted-foreground">Review and validate AI-generated responses</p>
         </div>
 
-        <div className="flex gap-2 border-b border-slate-200 dark:border-slate-700">
+        <div className="flex gap-2 border-b border-border">
           <button
             onClick={() => setActiveTab('pending')}
             className={`px-4 py-2 text-sm font-medium border-b-2 transition-colors ${
@@ -123,8 +123,8 @@ export default function ValidatorPage() {
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-1">{item.title}</h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                        <h3 className="text-lg font-semibold text-foreground mb-1">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground">
                           {item.category} &bull; Submitted {formatDate(item.submittedAt)}
                         </p>
                       </div>
@@ -136,7 +136,7 @@ export default function ValidatorPage() {
                         {item.priority} priority
                       </span>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                       <span>Due: {item.dueDate || 'No due date'}</span>
                     </div>
                     <div className="flex gap-2">
@@ -181,10 +181,10 @@ export default function ValidatorPage() {
                   <CardContent className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h3 className="text-lg font-semibold text-slate-900 dark:text-slate-50 mb-1">
+                        <h3 className="text-lg font-semibold text-foreground mb-1">
                           {item.aiResponse?.title || 'Untitled Response'}
                         </h3>
-                        <p className="text-sm text-slate-500 dark:text-slate-400">
+                        <p className="text-sm text-muted-foreground">
                           {item.aiResponse?.question?.questionText || 'Unknown query'}
                         </p>
                       </div>
@@ -200,7 +200,7 @@ export default function ValidatorPage() {
                         {item.status}
                       </span>
                     </div>
-                    <div className="flex items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-4">
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-4">
                       <span>Reviewed: {formatDate(item.reviewedAt)}</span>
                       {item.score && <span>Score: {item.score}/5</span>}
                     </div>

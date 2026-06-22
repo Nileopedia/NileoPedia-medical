@@ -18,15 +18,15 @@ export default function ValidatorFeedbackPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Feedback Reports</h1>
-          <p className="text-slate-600 dark:text-slate-400">Submit feedback on validated responses</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Feedback Reports</h1>
+          <p className="text-muted-foreground">Submit feedback on validated responses</p>
         </div>
 
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-900 mb-4">Submit Feedback</h2>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Your Feedback
               </label>
               <TextArea

@@ -30,20 +30,20 @@ export const RecentQueries: React.FC<RecentQueriesProps> = ({ queries }) => {
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="border-b border-slate-200 dark:border-slate-700">
-                <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Question</th>
-                <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Category</th>
-                <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Status</th>
-                <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Date</th>
+              <tr className="border-b border-border">
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Question</th>
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Category</th>
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Status</th>
+                <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Date</th>
               </tr>
             </thead>
             <tbody>
               {queries.map((query) => (
-                <tr key={query.id} className="border-b border-slate-100 dark:border-slate-700/50 last:border-0">
-                  <td className="py-3 px-2 text-sm text-slate-900 dark:text-slate-100 max-w-xs truncate">{query.question}</td>
-                  <td className="py-3 px-2 text-sm text-slate-600 dark:text-slate-400">{query.category}</td>
+                <tr key={query.id} className="border-b border-border/50 last:border-0">
+                  <td className="py-3 px-2 text-sm text-foreground max-w-xs truncate">{query.question}</td>
+                  <td className="py-3 px-2 text-sm text-muted-foreground">{query.category}</td>
                   <td className="py-3 px-2">{getStatusBadge(query.status)}</td>
-                  <td className="py-3 px-2 text-sm text-slate-500 dark:text-slate-400">{query.createdAt}</td>
+                  <td className="py-3 px-2 text-sm text-muted-foreground">{query.createdAt}</td>
                 </tr>
               ))}
             </tbody>

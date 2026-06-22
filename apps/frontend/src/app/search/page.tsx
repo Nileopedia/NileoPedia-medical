@@ -66,15 +66,15 @@ function SearchContent() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Search</h1>
-      <p className="text-slate-600 dark:text-slate-400">Search medical literature and responses</p>
+      <h1 className="text-2xl font-bold text-foreground mb-2">Search</h1>
+      <p className="text-muted-foreground">Search medical literature and responses</p>
 
       <form onSubmit={handleSearch} className="relative">
         <div className="flex gap-2 mb-3">
           <select
             value={searchType}
             onChange={(e) => setSearchType(e.target.value as 'semantic' | 'keyword' | 'hybrid')}
-            className="px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
+            className="px-3 py-2 border border-border rounded-lg bg-card text-foreground"
           >
             <option value="hybrid">Hybrid Search</option>
             <option value="semantic">Semantic Only</option>
@@ -88,7 +88,7 @@ function SearchContent() {
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search medical knowledge..."
-          className="w-full pl-12 pr-32 py-4 border border-slate-300 dark:border-slate-600 rounded-xl text-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full pl-12 pr-32 py-4 border border-border rounded-xl text-lg bg-card text-foreground focus:outline-none focus:ring-2 focus:ring-blue-500"
           disabled={loading}
         />
         <button 
@@ -116,17 +116,17 @@ function SearchContent() {
       {results.length > 0 && (
         <Card>
           <CardHeader>
-            <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">
+            <h2 className="text-lg font-semibold text-foreground">
               Search Results ({results.length})
             </h2>
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
               {results.map((result) => (
-                <div key={result.id} className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
-                  <h3 className="font-medium text-slate-900 dark:text-slate-50">{result.title}</h3>
-                  <p className="text-sm text-slate-600 dark:text-slate-400 mt-1">{result.snippet}</p>
-                  <div className="flex items-center gap-2 mt-2 text-xs text-slate-500 dark:text-slate-400">
+                <div key={result.id} className="p-4 border border-border rounded-lg">
+                  <h3 className="font-medium text-foreground">{result.title}</h3>
+                  <p className="text-sm text-muted-foreground mt-1">{result.snippet}</p>
+                  <div className="flex items-center gap-2 mt-2 text-xs text-muted-foreground">
                     <span>{result.source}</span>
                     {result.specialty && (
                       <>

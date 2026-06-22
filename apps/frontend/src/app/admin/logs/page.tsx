@@ -13,8 +13,8 @@ export default function AdminLogsPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">System Logs</h1>
-        <p className="text-slate-600 dark:text-slate-400">View system logs and audit trail</p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">System Logs</h1>
+        <p className="text-muted-foreground">View system logs and audit trail</p>
 
         <Card>
           <CardHeader>
@@ -23,18 +23,18 @@ export default function AdminLogsPage() {
           <CardContent>
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Action</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">User</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Timestamp</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">IP Address</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 font-medium text-foreground">Action</th>
+                  <th className="text-left py-2 font-medium text-foreground">User</th>
+                  <th className="text-left py-2 font-medium text-foreground">Timestamp</th>
+                  <th className="text-left py-2 font-medium text-foreground">IP Address</th>
                 </tr>
               </thead>
               <tbody>
                 {logs.map((log) => (
                   <tr key={log.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 text-slate-900 dark:text-slate-50">{log.action}</td>
-                    <td className="py-3 text-slate-600 dark:text-slate-400">{log.user}</td>
+                    <td className="py-3 text-foreground">{log.action}</td>
+                    <td className="py-3 text-muted-foreground">{log.user}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-500">{log.timestamp}</td>
                     <td className="py-3 text-slate-500 dark:text-slate-500">{log.ip}</td>
                   </tr>

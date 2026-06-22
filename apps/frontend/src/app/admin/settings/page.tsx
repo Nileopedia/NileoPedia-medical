@@ -21,8 +21,8 @@ export default function AdminSettingsPage() {
   return (
     <AppLayout>
       <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">System Settings</h1>
-        <p className="text-slate-600 dark:text-slate-400">Configure platform-wide settings</p>
+        <h1 className="text-2xl font-bold text-foreground mb-2">System Settings</h1>
+        <p className="text-muted-foreground">Configure platform-wide settings</p>
 
         <Card>
           <CardHeader>
@@ -34,7 +34,7 @@ export default function AdminSettingsPage() {
           <CardContent>
             <div className="space-y-4">
               <label className="flex items-center justify-between">
-                <span className="text-slate-700 dark:text-slate-300">System notifications</span>
+                <span className="text-foreground">System notifications</span>
                 <input
                   type="checkbox"
                   checked={settings.systemNotifications}
@@ -43,7 +43,7 @@ export default function AdminSettingsPage() {
                 />
               </label>
               <label className="flex items-center justify-between">
-                <span className="text-slate-700 dark:text-slate-300">Email alerts for admins</span>
+                <span className="text-foreground">Email alerts for admins</span>
                 <input
                   type="checkbox"
                   checked={settings.emailAlerts}
@@ -65,7 +65,7 @@ export default function AdminSettingsPage() {
           <CardContent>
             <div className="space-y-4">
               <label className="flex items-center justify-between">
-                <span className="text-slate-700 dark:text-slate-300">Automatic backups</span>
+                <span className="text-foreground">Automatic backups</span>
                 <input
                   type="checkbox"
                   checked={settings.autoBackup}
@@ -74,7 +74,7 @@ export default function AdminSettingsPage() {
                 />
               </label>
               <label className="flex items-center justify-between">
-                <span className="text-slate-700 dark:text-slate-300">Maintenance mode</span>
+                <span className="text-foreground">Maintenance mode</span>
                 <input
                   type="checkbox"
                   checked={settings.maintenanceMode}
@@ -94,17 +94,17 @@ export default function AdminSettingsPage() {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-slate-600 dark:text-slate-400 mb-4">SMTP settings for notifications</p>
+            <p className="text-muted-foreground mb-4">SMTP settings for notifications</p>
             <div className="space-y-3">
               <input
                 type="text"
                 placeholder="SMTP Host"
-                className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
+                className="w-full px-3 py-2 border border-border rounded-lg bg-card text-foreground"
               />
               <input
                 type="text"
                 placeholder="SMTP Port"
-                className="w-full px-3 py-2 border border-slate-300 dark:border-slate-600 rounded-lg bg-white dark:bg-slate-800 text-slate-900 dark:text-slate-100"
+                className="w-full px-3 py-2 border border-border rounded-lg bg-card text-foreground"
               />
             </div>
           </CardContent>

@@ -30,7 +30,7 @@ interface TabsListProps {
 }
 
 export const TabsList: React.FC<TabsListProps> = ({ children, className }) => (
-  <div className={cn('flex border-b border-slate-200 dark:border-slate-700', className)}>{children}</div>
+  <div className={cn('flex border-b border-border', className)}>{children}</div>
 );
 
 interface TabsTriggerProps {
@@ -51,8 +51,8 @@ export const TabsTrigger: React.FC<TabsTriggerProps> = ({ value, children, class
       className={cn(
         'px-4 py-2.5 text-sm font-medium border-b-2 transition-all duration-200',
         isActive
-          ? 'border-blue-600 text-blue-600 dark:text-blue-400'
-          : 'border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 hover:border-slate-300 dark:hover:border-slate-600',
+          ? 'border-primary text-primary'
+          : 'border-transparent text-muted-foreground hover:text-foreground hover:border-border',
         className
       )}
     >

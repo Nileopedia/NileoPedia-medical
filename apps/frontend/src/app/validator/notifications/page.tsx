@@ -38,8 +38,8 @@ export default function ValidatorNotificationsPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Notifications</h1>
-          <p className="text-slate-600 dark:text-slate-400">Review assignments and system updates</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Notifications</h1>
+          <p className="text-muted-foreground">Review assignments and system updates</p>
         </div>
 
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
@@ -62,13 +62,13 @@ export default function ValidatorNotificationsPage() {
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-medium text-slate-900 dark:text-slate-50">{notification.title}</h3>
+                      <h3 className="font-medium text-foreground">{notification.title}</h3>
                       <Badge variant={notification.status === 'approved' ? 'success' : notification.status === 'rejected' ? 'default' : 'default'} className="text-xs">
                         {notification.status}
                       </Badge>
                     </div>
-                    <p className="text-sm text-slate-600 dark:text-slate-400">{notification.description}</p>
-                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">{notification.timestamp}</p>
+                    <p className="text-sm text-muted-foreground">{notification.description}</p>
+                    <p className="text-xs text-muted-foreground/70 mt-1">{notification.timestamp}</p>
                   </div>
                 </div>
               );

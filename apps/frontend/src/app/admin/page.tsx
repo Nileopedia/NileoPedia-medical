@@ -73,8 +73,8 @@ export default function AdminPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Admin Dashboard</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage system ingestion and knowledge base</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Admin Dashboard</h1>
+          <p className="text-muted-foreground">Manage system ingestion and knowledge base</p>
         </div>
 
         {error && (
@@ -87,7 +87,7 @@ export default function AdminPage() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-50">Document Ingestion</h2>
+              <h2 className="text-lg font-semibold text-foreground">Document Ingestion</h2>
               <div className="flex items-center gap-2">
                 {ingestionStatus.isActive ? (
                   <CheckCircle className="text-green-500" size={20} />
@@ -130,7 +130,7 @@ export default function AdminPage() {
 
         <Card>
           <CardContent className="p-6">
-            <h3 className="font-medium text-slate-900 dark:text-slate-50 mb-2">Configured Sources</h3>
+            <h3 className="font-medium text-foreground mb-2">Configured Sources</h3>
             <ul className="text-sm text-slate-600 dark:text-slate-300 space-y-1">
               <li>• PubMed Central (General)</li>
               <li>• NEJM (General)</li>

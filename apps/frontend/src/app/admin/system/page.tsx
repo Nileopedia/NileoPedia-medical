@@ -17,8 +17,8 @@ export default function AdminSystemPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">System Health</h1>
-          <p className="text-slate-600 dark:text-slate-400">Monitor system status and performance</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">System Health</h1>
+          <p className="text-muted-foreground">Monitor system status and performance</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -30,7 +30,7 @@ export default function AdminSystemPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.cpuUsage}</span>
+              <span className="text-2xl font-bold text-foreground">{systemStats.cpuUsage}</span>
             </CardContent>
           </Card>
 
@@ -42,7 +42,7 @@ export default function AdminSystemPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.memoryUsage}</span>
+              <span className="text-2xl font-bold text-foreground">{systemStats.memoryUsage}</span>
             </CardContent>
           </Card>
 
@@ -54,7 +54,7 @@ export default function AdminSystemPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.diskUsage}</span>
+              <span className="text-2xl font-bold text-foreground">{systemStats.diskUsage}</span>
             </CardContent>
           </Card>
 
@@ -66,7 +66,7 @@ export default function AdminSystemPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{systemStats.uptime}</span>
+              <span className="text-2xl font-bold text-foreground">{systemStats.uptime}</span>
             </CardContent>
           </Card>
         </div>
@@ -82,7 +82,7 @@ export default function AdminSystemPage() {
             <div className="space-y-4">
               {['API Server', 'Database', 'Redis Cache', 'AI Service'].map((service) => (
                 <div key={service} className="flex items-center justify-between py-2 border-b border-slate-100 dark:border-slate-800 last:border-0">
-                  <span className="text-slate-700 dark:text-slate-300">{service}</span>
+                  <span className="text-foreground">{service}</span>
                   <span className="px-2 py-1 bg-emerald-100 text-emerald-700 rounded text-xs font-medium">
                     operational
                   </span>

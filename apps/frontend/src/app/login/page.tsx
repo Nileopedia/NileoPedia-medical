@@ -58,31 +58,31 @@ export default function Login() {
           </div>
           <div>
             <h2 className="text-4xl font-bold text-white mb-4">Welcome Back</h2>
-            <p className="text-slate-300 text-lg mb-12">Sign in to your account and continue your work.</p>
+            <p className="text-muted-foreground text-lg mb-12">Sign in to your account and continue your work.</p>
             <div className="space-y-6">
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center">
                   <Brain size={20} className="text-blue-400" />
                 </div>
-                <span className="text-slate-200">AI-powered medical insights</span>
+                <span className="text-foreground">AI-powered medical insights</span>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center">
                   <Shield size={20} className="text-blue-400" />
                 </div>
-                <span className="text-slate-200">Trusted by medical experts</span>
+                <span className="text-foreground">Trusted by medical experts</span>
               </div>
               <div className="flex items-center gap-4">
                 <div className="w-10 h-10 bg-blue-600/20 rounded-lg flex items-center justify-center">
                   <CheckCircle size={20} className="text-blue-400" />
                 </div>
-                <span className="text-slate-200">Secure and private platform</span>
+                <span className="text-foreground">Secure and private platform</span>
               </div>
             </div>
           </div>
         </div>
         <div className="relative z-10">
-          <p className="text-slate-400 text-sm">© 2025 NileoPedia. All rights reserved.</p>
+          <p className="text-muted-foreground/70 text-sm">© 2025 NileoPedia. All rights reserved.</p>
         </div>
       </div>
 
@@ -92,29 +92,29 @@ export default function Login() {
             <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
               <BookOpen size={22} className="text-white" />
             </div>
-            <span className="text-2xl font-bold text-slate-900">NileoPedia</span>
+            <span className="text-2xl font-bold text-foreground">NileoPedia</span>
           </div>
-          <h2 className="text-2xl font-bold text-slate-900 mb-2">Sign In</h2>
-          <p className="text-slate-500 mb-8">Enter your credentials to access your account</p>
+          <h2 className="text-2xl font-bold text-foreground mb-2">Sign In</h2>
+          <p className="text-muted-foreground mb-8">Enter your credentials to access your account</p>
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+              <label className="block text-sm font-medium text-foreground mb-2">Email Address</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" className="w-full pl-10 pr-4 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+                <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Enter your email" className="w-full pl-10 pr-4 py-3 border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
               </div>
             </div>
             <div>
-              <label className="block text-sm font-medium text-slate-700 mb-2">Password</label>
+              <label className="block text-sm font-medium text-foreground mb-2">Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" className="w-full pl-10 pr-12 py-3 border border-slate-300 rounded-lg text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
-                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
+                <input type={showPassword ? 'text' : 'password'} value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Enter your password" className="w-full pl-10 pr-12 py-3 border border-border rounded-lg text-foreground placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all" required />
+                <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-slate-600">
                   {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
                 </button>
               </div>
               <div className="flex justify-end mt-2">
-                <Link href="/forgot-password" className="text-sm text-blue-600 hover:text-blue-700 font-medium">Forgot Password?</Link>
+                <Link href="/forgot-password" className="text-sm text-primary hover:text-primary/80 font-medium">Forgot Password?</Link>
               </div>
             </div>
             <button type="submit" disabled={loading} className="w-full py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed">
@@ -125,13 +125,13 @@ export default function Login() {
             )}
             <div className="relative my-6">
               <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-slate-200" />
+                <div className="w-full border-t border-border" />
               </div>
               <div className="relative flex justify-center text-sm">
                 <span className="px-4 bg-white text-slate-500">or continue with</span>
               </div>
             </div>
-            <button type="button" onClick={handleGoogleLogin} className="w-full py-3 bg-white border border-slate-300 text-slate-700 font-medium rounded-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
+            <button type="button" onClick={handleGoogleLogin} className="w-full py-3 bg-white border border-slate-300 text-foreground font-medium rounded-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-2">
               <svg className="w-5 h-5" viewBox="0 0 24 24">
                 <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
                 <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
@@ -143,7 +143,7 @@ export default function Login() {
           </form>
           <p className="text-center mt-8 text-sm text-slate-500">
             Don&apos;t have an account?{' '}
-            <Link href="/register" className="text-blue-600 hover:text-blue-700 font-medium">Sign up</Link>
+            <Link href="/register" className="text-primary hover:text-primary/80 font-medium">Sign up</Link>
           </p>
         </div>
       </div>

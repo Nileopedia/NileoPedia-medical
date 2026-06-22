@@ -17,6 +17,6 @@ describe('Button component', () => {
 
   it('applies variant classes', () => {
     const { container } = render(<Button variant="secondary">Click</Button>);
-    expect(container.firstChild).toHaveClass('bg-slate-100');
+    expect(container.firstChild).toHaveClass('bg-muted');
   });
 });

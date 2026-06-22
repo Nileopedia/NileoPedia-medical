@@ -85,17 +85,17 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 animate-fadeIn" role="dialog" aria-modal="true" aria-labelledby="help-title">
       <div
         ref={modalRef}
-        className="bg-white dark:bg-slate-800 rounded-xl shadow-xl w-full max-w-lg max-h-[80vh] overflow-hidden transform transition-all duration-300 ease-out"
+        className="bg-card rounded-xl shadow-xl w-full max-w-lg max-h-[80vh] overflow-hidden transform transition-all duration-300 ease-out"
         style={{ animation: 'slideIn 0.3s ease-out' }}
       >
-        <div className="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-slate-700">
-          <h2 id="help-title" className="text-lg font-semibold text-slate-900 dark:text-slate-50">
+        <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+          <h2 id="help-title" className="text-lg font-semibold text-foreground">
             Help & Support
           </h2>
           <button
             ref={firstFocusableRef}
             onClick={onClose}
-            className="p-1.5 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-700"
+            className="p-1.5 text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted"
             aria-label="Close help"
           >
             <X size={18} />
@@ -107,11 +107,11 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
             <div key={section.id} className="mb-6 last:mb-0">
               <div className="flex items-center gap-2 mb-3">
                 <section.icon size={16} className="text-blue-600" />
-                <h3 className="font-medium text-slate-900 dark:text-slate-50">{section.title}</h3>
+                <h3 className="font-medium text-foreground">{section.title}</h3>
               </div>
               <ul className="space-y-2 pl-6">
                 {section.items.map((item, index) => (
-                  <li key={index} className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
+                  <li key={index} className="flex items-center gap-2 text-sm text-muted-foreground">
                     <item.icon size={14} className="text-slate-400" />
                     <span>{item.text}</span>
                   </li>
@@ -123,21 +123,21 @@ export const HelpModal: React.FC<HelpModalProps> = ({ isOpen, onClose }) => {
           <div className="mb-6">
             <div className="flex items-center gap-2 mb-3">
               <Keyboard size={16} className="text-blue-600" />
-              <h3 className="font-medium text-slate-900 dark:text-slate-50">Shortcuts</h3>
+              <h3 className="font-medium text-foreground">Shortcuts</h3>
             </div>
             <ul className="space-y-2 pl-6">
-              <li className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                <kbd className="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-700 rounded">Ctrl + K</kbd>
+              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                <kbd className="px-1.5 py-0.5 text-xs bg-muted rounded">Ctrl + K</kbd>
                 <span className="ml-2">→ Search</span>
               </li>
-              <li className="flex items-center gap-2 text-sm text-slate-600 dark:text-slate-400">
-                <kbd className="px-1.5 py-0.5 text-xs bg-slate-100 dark:bg-slate-700 rounded">Ctrl + /</kbd>
+              <li className="flex items-center gap-2 text-sm text-muted-foreground">
+                <kbd className="px-1.5 py-0.5 text-xs bg-muted rounded">Ctrl + /</kbd>
                 <span className="ml-2">→ Help</span>
               </li>
             </ul>
           </div>
 
-          <div className="pt-4 border-t border-slate-200 dark:border-slate-700">
+          <div className="pt-4 border-t border-border">
             <div className="space-y-2">
               <a href="#" className="block text-sm text-blue-600 hover:text-blue-700 dark:text-blue-400">
                 Documentation

@@ -16,8 +16,8 @@ export default function AdminAnalyticsPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Analytics</h1>
-          <p className="text-slate-600 dark:text-slate-400">Platform analytics and metrics</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Analytics</h1>
+          <p className="text-muted-foreground">Platform analytics and metrics</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -29,7 +29,7 @@ export default function AdminAnalyticsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">532</p>
+              <p className="text-3xl font-bold text-foreground">532</p>
             </CardContent>
           </Card>
           <Card>
@@ -40,7 +40,7 @@ export default function AdminAnalyticsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">84</p>
+              <p className="text-3xl font-bold text-foreground">84</p>
             </CardContent>
           </Card>
           <Card>
@@ -51,7 +51,7 @@ export default function AdminAnalyticsPage() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-3xl font-bold text-slate-900 dark:text-slate-50">96%</p>
+              <p className="text-3xl font-bold text-foreground">96%</p>
             </CardContent>
           </Card>
         </div>
@@ -67,7 +67,7 @@ export default function AdminAnalyticsPage() {
             <div className="space-y-4">
               {analyticsData.map((item) => (
                 <div key={item.name} className="flex items-center gap-4">
-                  <span className="w-10 text-slate-600 dark:text-slate-400">{item.name}</span>
+                  <span className="w-10 text-muted-foreground">{item.name}</span>
                   <div className="flex-1">
                     <div className="flex items-center gap-2">
                       <span className="text-xs text-slate-500">Queries</span>

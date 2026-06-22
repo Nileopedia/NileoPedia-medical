@@ -49,14 +49,14 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
 
   return (
     <div className="py-2 w-64">
-      <div className="px-4 py-3 border-b border-slate-100 dark:border-slate-700">
+      <div className="px-4 py-3 border-b border-border">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-full bg-blue-600 text-white flex items-center justify-center font-medium">
             {getInitials(userName)}
           </div>
           <div>
-            <p className="text-sm font-medium text-slate-900 dark:text-slate-50">{userName}</p>
-            <p className="text-xs text-slate-500 dark:text-slate-400">{userEmail}</p>
+            <p className="text-sm font-medium text-foreground">{userName}</p>
+            <p className="text-xs text-muted-foreground">{userEmail}</p>
             <span
               className={cn(
                 'inline-block text-xs px-2 py-0.5 rounded-full mt-1 font-medium',
@@ -72,7 +72,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
       <div className="py-1">
         <button
           onClick={() => router.push('/app/profile')}
-          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
           role="menuitem"
         >
           <User size={16} />
@@ -81,7 +81,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
 
         <button
           onClick={() => router.push('/app/settings')}
-          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
           role="menuitem"
         >
           <Edit size={16} />
@@ -90,7 +90,7 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
 
         <button
           onClick={() => router.push('/app/activity')}
-          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-slate-700 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-700 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-foreground hover:bg-muted transition-colors"
           role="menuitem"
         >
           <Activity size={16} />
@@ -98,10 +98,10 @@ export const ProfileDropdown: React.FC<ProfileDropdownProps> = ({
         </button>
       </div>
 
-      <div className="border-t border-slate-100 dark:border-slate-700 py-1">
+      <div className="border-t border-border py-1">
         <button
           onClick={handleLogout}
-          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors"
+          className="w-full flex items-center gap-3 px-4 py-2 text-sm text-red-600 hover:bg-muted/50 transition-colors"
           role="menuitem"
         >
           <LogOut size={16} />

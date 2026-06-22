@@ -47,11 +47,11 @@ export const RecentActivity: React.FC<RecentActivityProps> = ({ activities }) =>
               <div className="mt-0.5 flex-shrink-0">{getActivityIcon(activity.type)}</div>
               <div className="flex-1 min-w-0">
                 <div className="flex items-center justify-between gap-2">
-                  <p className="text-sm font-medium text-slate-900 dark:text-slate-100">{activity.title}</p>
+                  <p className="text-sm font-medium text-foreground">{activity.title}</p>
                   {getStatusBadge(activity.status)}
                 </div>
-                <p className="text-sm text-slate-500 dark:text-slate-400 truncate">{activity.description}</p>
-                <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">{activity.timestamp}</p>
+                <p className="text-sm text-muted-foreground truncate">{activity.description}</p>
+                <p className="text-xs text-muted-foreground/70 mt-0.5">{activity.timestamp}</p>
               </div>
             </div>
           ))}

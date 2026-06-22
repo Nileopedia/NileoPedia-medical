@@ -19,8 +19,8 @@ export default function ValidatorSettingsPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Settings</h1>
-          <p className="text-slate-600 dark:text-slate-400">Customize your validator preferences</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Settings</h1>
+          <p className="text-muted-foreground">Customize your validator preferences</p>
         </div>
 
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
@@ -30,7 +30,7 @@ export default function ValidatorSettingsPage() {
           </h2>
           <div className="space-y-4">
             <label className="flex items-center justify-between">
-              <span className="text-slate-700 dark:text-slate-300">Email notifications</span>
+              <span className="text-foreground">Email notifications</span>
               <input
                 type="checkbox"
                 checked={settings.emailNotifications}
@@ -39,7 +39,7 @@ export default function ValidatorSettingsPage() {
               />
             </label>
             <label className="flex items-center justify-between">
-              <span className="text-slate-700 dark:text-slate-300">Review assignments</span>
+              <span className="text-foreground">Review assignments</span>
               <input
                 type="checkbox"
                 checked={settings.reviewAssignments}
@@ -56,7 +56,7 @@ export default function ValidatorSettingsPage() {
             Review Preferences
           </h2>
           <label className="flex items-center justify-between">
-            <span className="text-slate-700 dark:text-slate-300">Auto-assign reviews</span>
+            <span className="text-foreground">Auto-assign reviews</span>
             <input
               type="checkbox"
               checked={settings.autoAssign}

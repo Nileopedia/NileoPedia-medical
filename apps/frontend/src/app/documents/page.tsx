@@ -67,8 +67,8 @@ export default function DocumentsPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Documents</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage medical documents and knowledge base</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Documents</h1>
+          <p className="text-muted-foreground">Manage medical documents and knowledge base</p>
         </div>
 
         {selectedFiles.length > 0 && (
@@ -105,7 +105,7 @@ export default function DocumentsPage() {
             placeholder="Search documents..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-foreground placeholder-slate-400 dark:placeholder-slate-500 bg-card focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
@@ -116,14 +116,14 @@ export default function DocumentsPage() {
           <CardContent>
             <div className="space-y-3">
               {documents.map((doc) => (
-                <div key={doc.id} className="flex items-center justify-between p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+                <div key={doc.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 bg-blue-100 dark:bg-blue-900/30 rounded-lg flex items-center justify-center">
                       <FileText size={20} className="text-blue-600" />
                     </div>
                     <div>
-                      <p className="font-medium text-slate-900 dark:text-slate-50">{doc.name}</p>
-                      <p className="text-sm text-slate-500 dark:text-slate-400">{doc.type} &bull; {doc.size}</p>
+                      <p className="font-medium text-foreground">{doc.name}</p>
+                      <p className="text-sm text-muted-foreground">{doc.type} &bull; {doc.size}</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -134,7 +134,7 @@ export default function DocumentsPage() {
                     }`}>
                       {doc.status}
                     </span>
-                    <span className="text-sm text-slate-500 dark:text-slate-400">{doc.uploadedAt}</span>
+                    <span className="text-sm text-muted-foreground">{doc.uploadedAt}</span>
                   </div>
                 </div>
               ))}

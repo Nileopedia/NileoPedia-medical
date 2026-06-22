@@ -27,8 +27,8 @@ export default function ActivityPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">My Activity</h1>
-          <p className="text-slate-600 dark:text-slate-400">Your recent actions and system events</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">My Activity</h1>
+          <p className="text-muted-foreground">Your recent actions and system events</p>
         </div>
 
         <Card>
@@ -39,7 +39,7 @@ export default function ActivityPage() {
             {activities.length === 0 ? (
               <div className="text-center py-8">
                 <Clock className="w-8 h-8 text-slate-300 mx-auto mb-2" />
-                <p className="text-sm text-slate-500 dark:text-slate-400">No recent activity</p>
+                <p className="text-sm text-muted-foreground">No recent activity</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -49,9 +49,9 @@ export default function ActivityPage() {
                     <div key={activity.id} className="flex gap-4 pb-4 border-b border-slate-100 dark:border-slate-700 last:border-0">
                       <Icon className={`w-5 h-5 mt-0.5 ${activityColors[activity.type]}`} />
                       <div className="flex-1">
-                        <p className="text-sm font-medium text-slate-900 dark:text-slate-50">{activity.title}</p>
-                        <p className="text-xs text-slate-600 dark:text-slate-400">{activity.description}</p>
-                        <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">{activity.timestamp}</p>
+                        <p className="text-sm font-medium text-foreground">{activity.title}</p>
+                        <p className="text-xs text-muted-foreground">{activity.description}</p>
+                        <p className="text-xs text-muted-foreground/70 mt-1">{activity.timestamp}</p>
                       </div>
                     </div>
                   );

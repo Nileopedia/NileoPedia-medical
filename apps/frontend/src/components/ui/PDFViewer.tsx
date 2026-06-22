@@ -13,11 +13,11 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ documentId, title, onDownl
 
   return (
     <div className={className}>
-      <div className="bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 shadow-sm">
-        <div className="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700">
+      <div className="bg-card rounded-lg border border-border shadow-sm">
+        <div className="flex items-center justify-between p-4 border-b border-border">
           <div className="flex items-center gap-3">
             <FileText className="h-6 w-6 text-blue-600" />
-            <h3 className="font-semibold text-slate-900 dark:text-slate-100">{title || 'Document Viewer'}</h3>
+            <h3 className="font-semibold text-foreground">{title || 'Document Viewer'}</h3>
           </div>
           <div className="flex gap-2">
             {onDownload && (
@@ -43,7 +43,7 @@ export const PDFViewer: React.FC<PDFViewerProps> = ({ documentId, title, onDownl
         <div className="p-4">
           <iframe
             src={pdfUrl}
-            className="w-full h-96 rounded-lg border border-slate-200 dark:border-slate-700"
+            className="w-full h-96 rounded-lg border border-border"
             title={title || 'PDF Document'}
           />
         </div>
@@ -64,12 +64,12 @@ export const DocumentList: React.FC<DocumentListProps> = ({ documents, onSelect 
         <button
           key={doc.id}
           onClick={() => onSelect(doc.id)}
-          className="w-full flex items-center gap-4 p-4 bg-white dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-blue-300 dark:hover:border-blue-700 transition-all"
+          className="w-full flex items-center gap-4 p-4 bg-card rounded-lg border border-border hover:border-blue-300 dark:hover:border-blue-700 transition-all"
         >
           <FileText className="h-8 w-8 text-blue-600 flex-shrink-0" />
           <div className="flex-1 text-left">
-            <p className="font-medium text-slate-900 dark:text-slate-100">{doc.title}</p>
-            <p className="text-sm text-slate-500 dark:text-slate-400">Uploaded {doc.createdAt}</p>
+            <p className="font-medium text-foreground">{doc.title}</p>
+            <p className="text-sm text-muted-foreground">Uploaded {doc.createdAt}</p>
           </div>
           <span className={`px-2 py-1 text-xs font-medium rounded ${
             doc.status === 'processed' ? 'bg-emerald-100 text-emerald-700' :

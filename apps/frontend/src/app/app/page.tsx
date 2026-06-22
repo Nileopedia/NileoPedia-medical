@@ -102,8 +102,8 @@ export default function AppPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Welcome back, {user?.name?.split(' ')[0] || 'User'}</h1>
-          <p className="text-slate-600 dark:text-slate-400">Ask medical questions and get evidence-based answers validated by experts</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Welcome back, {user?.name?.split(' ')[0] || 'User'}</h1>
+          <p className="text-muted-foreground">Ask medical questions and get evidence-based answers validated by experts</p>
         </div>
 
         {user?.role === 'admin' && (

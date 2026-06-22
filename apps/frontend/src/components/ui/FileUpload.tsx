@@ -54,7 +54,7 @@ export const FileUpload: React.FC<FileUploadProps> = ({
   return (
     <div
       className={cn(
-        'border-2 border-dashed border-slate-300 dark:border-slate-600 rounded-lg p-6 text-center transition-all',
+        'border-2 border-dashed border-border rounded-lg p-6 text-center transition-all',
         isDragging && 'border-blue-500 bg-blue-50/50 dark:bg-blue-900/20',
         className
       )}
@@ -72,10 +72,10 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       />
       <label htmlFor="file-upload" className="cursor-pointer">
         <Upload className="mx-auto h-12 w-12 text-slate-400 mb-4" />
-        <p className="text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+        <p className="text-sm font-medium text-foreground mb-1">
           Drop files here or click to upload
         </p>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
+        <p className="text-xs text-muted-foreground">
           PDF, DOC, DOCX, TXT, HTML (max {maxSizeMB}MB{multiple ? ' each' : ''})
         </p>
       </label>
@@ -96,11 +96,11 @@ interface FilePreviewProps {
 
 export const FilePreview: React.FC<FilePreviewProps> = ({ file, onRemove }) => {
   return (
-    <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-slate-200 dark:border-slate-700">
+    <div className="flex items-center gap-3 p-3 bg-slate-50 dark:bg-slate-800 rounded-lg border border-border">
       <FileText className="h-8 w-8 text-blue-600 flex-shrink-0" />
       <div className="flex-1 min-w-0">
-        <p className="text-sm font-medium text-slate-900 dark:text-slate-100 truncate">{file.name}</p>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
+        <p className="text-sm font-medium text-foreground truncate">{file.name}</p>
+        <p className="text-xs text-muted-foreground">
           {(file.size / 1024 / 1024).toFixed(2)} MB
         </p>
       </div>

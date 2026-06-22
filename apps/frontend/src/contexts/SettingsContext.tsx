@@ -3,6 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useAppStore } from '../store/appStore';
 import { api } from '../lib/api';
+import { useTheme } from 'next-themes';
 
 type Theme = 'light' | 'dark' | 'system';
 type Language = 'en' | 'am' | 'om';
@@ -46,35 +47,17 @@ const SettingsContext = createContext<SettingsContextValue>({
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const { setTheme: setNextTheme, theme: nextTheme } = useTheme();
 
   useEffect(() => {
     loadSettings();
   }, []);
 
   useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
-
-    const applyTheme = (theme: Theme) => {
-      if (theme === 'system') {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        html.classList.toggle('dark', prefersDark);
-        body.classList.toggle('dark', prefersDark);
-      } else {
-        html.classList.toggle('dark', theme === 'dark');
-        body.classList.toggle('dark', theme === 'dark');
-      }
-    };
-
-    applyTheme(settings.theme);
-
-    if (settings.theme === 'system') {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      const handler = () => applyTheme('system');
-      mediaQuery.addEventListener('change', handler);
-      return () => mediaQuery.removeEventListener('change', handler);
+    if (settings.theme !== nextTheme) {
+      setNextTheme(settings.theme);
     }
-  }, [settings.theme]);
+  }, [settings.theme, nextTheme]);
 
   const loadSettings = useCallback(async () => {
     if (typeof window === 'undefined') return;

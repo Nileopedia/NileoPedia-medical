@@ -38,8 +38,8 @@ export default function SavedPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Saved Responses</h1>
-          <p className="text-slate-600 dark:text-slate-400">Your bookmarked medical responses</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Saved Responses</h1>
+          <p className="text-muted-foreground">Your bookmarked medical responses</p>
         </div>
 
         <Card>
@@ -52,19 +52,19 @@ export default function SavedPage() {
           <CardContent>
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Title</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Category</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Date</th>
-                  <th className="w-20 py-2 font-medium text-slate-700 dark:text-slate-300 text-center">Actions</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 font-medium text-foreground">Title</th>
+                  <th className="text-left py-2 font-medium text-foreground">Category</th>
+                  <th className="text-left py-2 font-medium text-foreground">Date</th>
+                  <th className="w-20 py-2 font-medium text-foreground text-center">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {savedItems.map((item) => (
                   <tr key={item.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{item.question}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-400">{item.category}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-400">{item.createdAt}</td>
+                    <td className="py-3 font-medium text-foreground">{item.question}</td>
+                    <td className="py-3 text-muted-foreground">{item.category}</td>
+                    <td className="py-3 text-muted-foreground">{item.createdAt}</td>
                     <td className="py-3 text-center space-x-2">
                       <button className="text-blue-600 hover:text-blue-700" title="View">
                         <Eye size={16} />

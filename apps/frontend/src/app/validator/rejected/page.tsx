@@ -13,8 +13,8 @@ export default function ValidatorRejectedPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Rejected Responses</h1>
-          <p className="text-slate-600 dark:text-slate-400">Previously rejected responses</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Rejected Responses</h1>
+          <p className="text-muted-foreground">Previously rejected responses</p>
         </div>
 
         <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
@@ -24,12 +24,12 @@ export default function ValidatorRejectedPage() {
           </h2>
           <div className="space-y-4">
             {rejectedItems.map((item) => (
-              <div key={item.id} className="p-4 border border-slate-200 dark:border-slate-700 rounded-lg">
+              <div key={item.id} className="p-4 border border-border rounded-lg">
                 <div className="flex items-start gap-3">
                   <XCircle size={20} className="text-red-600 flex-shrink-0 mt-0.5" />
                   <div>
-                    <p className="font-medium text-slate-900 dark:text-slate-50">{item.title}</p>
-                    <p className="text-sm text-slate-500 dark:text-slate-400">{item.category}</p>
+                    <p className="font-medium text-foreground">{item.title}</p>
+                    <p className="text-sm text-muted-foreground">{item.category}</p>
                     <p className="text-xs text-red-600 mt-1">Reason: {item.reason}</p>
                   </div>
                 </div>

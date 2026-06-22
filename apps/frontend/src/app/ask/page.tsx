@@ -142,21 +142,21 @@ export default function AskPage() {
     <AppLayout>
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-2">
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50">Ask AI</h1>
+          <h1 className="text-2xl font-bold text-foreground">Ask AI</h1>
           <div className={`px-2 py-1 text-xs rounded-full ${
             socketConnected ? 'bg-green-100 text-green-700' : 'bg-slate-100 text-slate-500'
           }`}>
             {socketConnected ? 'Connected' : 'Disconnected'}
           </div>
         </div>
-        <p className="text-slate-600 dark:text-slate-400 mb-6">Submit your medical question for AI-powered evidence-based response</p>
+        <p className="text-muted-foreground mb-6">Submit your medical question for AI-powered evidence-based response</p>
 
         <div className="space-y-6">
           <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
             <h2 className="text-lg font-semibold text-slate-900 mb-4">New Question</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Specialty (Optional)
                 </label>
                 <div className="relative">
@@ -164,7 +164,7 @@ export default function AskPage() {
                   <select
                     value={specialty}
                     onChange={(e) => setSpecialty(e.target.value)}
-                    className="w-full pl-10 pr-4 py-2.5 border border-slate-300 dark:border-slate-600 rounded-lg text-slate-900 dark:text-slate-100 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                    className="w-full pl-10 pr-4 py-2.5 border border-border rounded-lg text-foreground bg-card focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
                   >
                     <option value="general">General Medicine</option>
                     <option value="cardiology">Cardiology</option>
@@ -176,7 +176,7 @@ export default function AskPage() {
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Medical Question
                 </label>
                 <TextArea

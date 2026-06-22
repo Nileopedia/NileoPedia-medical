@@ -43,16 +43,16 @@ export const ValidationOverview: React.FC<ValidationOverviewProps> = ({ stats })
               </PieChart>
             </ResponsiveContainer>
             <div className="absolute inset-0 flex flex-col items-center justify-center">
-              <span className="text-2xl font-bold text-slate-900 dark:text-slate-50">{stats.approvalRate}%</span>
-              <span className="text-xs text-slate-500 dark:text-slate-400">Approval Rate</span>
+              <span className="text-2xl font-bold text-foreground">{stats.approvalRate}%</span>
+              <span className="text-xs text-muted-foreground">Approval Rate</span>
             </div>
           </div>
           <div className="flex-1 space-y-3">
             {data.map((item, index) => (
               <div key={item.name} className="flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full" style={{ backgroundColor: COLORS[index] }} />
-                <span className="text-sm text-slate-600 dark:text-slate-400 flex-1">{item.name}</span>
-                <span className="text-sm font-medium text-slate-900 dark:text-slate-100">
+                <span className="text-sm text-muted-foreground flex-1">{item.name}</span>
+                <span className="text-sm font-medium text-foreground">
                   {item.value.toLocaleString()} ({item.percentage}%)
                 </span>
               </div>

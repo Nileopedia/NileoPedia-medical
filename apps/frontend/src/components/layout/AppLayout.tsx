@@ -16,7 +16,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
   const mainMargin = isSidebarOpen ? 'lg:ml-64' : 'lg:ml-16';
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div className="min-h-screen bg-background text-foreground transition-colors duration-300">
       <Sidebar />
       
       {/* Mobile overlay */}
@@ -30,14 +30,14 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       {/* Mobile sidebar - slide-in drawer behavior */}
       <div
         className={cn(
-          'fixed left-0 top-0 h-screen w-64 bg-slate-900 z-30 transform transition-transform duration-300 lg:hidden',
+          'fixed left-0 top-0 h-screen w-64 bg-sidebar z-30 transform transition-transform duration-300 lg:hidden',
           isMobileNavOpen ? 'translate-x-0' : '-translate-x-full'
         )}
       >
         <div className="flex justify-end p-3">
           <button
             onClick={toggleMobileNav}
-            className="p-2 text-slate-400 hover:text-white"
+            className="p-2 text-muted-foreground hover:text-foreground transition-colors duration-300"
           >
             <X size={20} />
           </button>

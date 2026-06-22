@@ -28,9 +28,9 @@ export default function ForgotPasswordPage() {
   if (sent) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900">
-        <div className="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg w-full max-w-md text-center">
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-50 mb-4">Check Your Email</h1>
-          <p className="text-slate-600 dark:text-slate-400 mb-6">
+        <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+          <h1 className="text-3xl font-bold text-foreground mb-4">Check Your Email</h1>
+          <p className="text-muted-foreground mb-6">
             We've sent a password reset link to {email}. Please check your inbox.
           </p>
           <Link href="/login" className="text-blue-600 hover:underline">
@@ -43,9 +43,9 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900">
-      <div className="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center text-slate-900 dark:text-slate-50 mb-6">Forgot Password?</h1>
-        <p className="text-center text-slate-600 dark:text-slate-400 mb-8">
+      <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-3xl font-bold text-center text-foreground mb-6">Forgot Password?</h1>
+        <p className="text-center text-muted-foreground mb-8">
           Enter your email to receive a reset link.
         </p>
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -56,7 +56,7 @@ export default function ForgotPasswordPage() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-slate-300 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-slate-300 rounded-lg text-foreground placeholder-slate-400 dark:placeholder-slate-500 bg-card focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
           </div>
@@ -69,7 +69,7 @@ export default function ForgotPasswordPage() {
             {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
         </form>
-        <p className="mt-6 text-center text-slate-600 dark:text-slate-400">
+        <p className="mt-6 text-center text-muted-foreground">
           Remembered your password?{' '}
           <Link href="/login" className="text-blue-600 hover:underline">
             Log in

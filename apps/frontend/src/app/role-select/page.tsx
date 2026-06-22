@@ -29,15 +29,15 @@ export default function RoleSelectPage() {
     <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-950 p-4">
       <div className="w-full max-w-2xl">
         <div className="flex items-center mb-8">
-          <Link href="/login" className="flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-100">
+          <Link href="/login" className="flex items-center gap-2 text-muted-foreground hover:text-slate-900 dark:hover:text-slate-100">
             <ArrowLeft size={18} />
             Back to Login
           </Link>
         </div>
         
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-slate-900 dark:text-slate-100 mb-2">Select Your Role</h1>
-          <p className="text-slate-600 dark:text-slate-400">Choose the role that best describes your work</p>
+          <h1 className="text-3xl font-bold text-foreground mb-2">Select Your Role</h1>
+          <p className="text-muted-foreground">Choose the role that best describes your work</p>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
@@ -45,13 +45,13 @@ export default function RoleSelectPage() {
             <button
               key={role.id}
               onClick={() => handleSelectRole(role.id as Role)}
-              className="bg-white dark:bg-slate-800 p-6 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-slate-300 dark:hover:border-slate-600 hover:shadow-md transition-all group"
+              className="bg-card p-6 rounded-xl border border-border hover:border-border hover:shadow-md transition-all group"
             >
               <div className={`w-12 h-12 bg-gradient-to-br ${role.color} rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}>
                 <role.icon size={24} className="text-white" />
               </div>
-              <h3 className="font-semibold text-slate-900 dark:text-slate-100 mb-2">{role.label}</h3>
-              <p className="text-sm text-slate-500 dark:text-slate-400">{role.description}</p>
+              <h3 className="font-semibold text-foreground mb-2">{role.label}</h3>
+              <p className="text-sm text-muted-foreground">{role.description}</p>
             </button>
           ))}
         </div>

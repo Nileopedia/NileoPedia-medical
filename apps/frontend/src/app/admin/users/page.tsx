@@ -21,8 +21,8 @@ export default function AdminUsersPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">User Management</h1>
-          <p className="text-slate-600 dark:text-slate-400">Manage platform users</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">User Management</h1>
+          <p className="text-muted-foreground">Manage platform users</p>
         </div>
 
         <div className="flex justify-end">
@@ -42,19 +42,19 @@ export default function AdminUsersPage() {
           <CardContent>
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Name</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Email</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Role</th>
-                  <th className="text-left py-2 font-medium text-slate-700 dark:text-slate-300">Status</th>
-                  <th className="w-24 text-right py-2 font-medium text-slate-700 dark:text-slate-300">Actions</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-2 font-medium text-foreground">Name</th>
+                  <th className="text-left py-2 font-medium text-foreground">Email</th>
+                  <th className="text-left py-2 font-medium text-foreground">Role</th>
+                  <th className="text-left py-2 font-medium text-foreground">Status</th>
+                  <th className="w-24 text-right py-2 font-medium text-foreground">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {users.map((user) => (
                   <tr key={user.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{user.name}</td>
-                    <td className="py-3 text-slate-600 dark:text-slate-400">{user.email}</td>
+                    <td className="py-3 font-medium text-foreground">{user.name}</td>
+                    <td className="py-3 text-muted-foreground">{user.email}</td>
                     <td className="py-3 capitalize">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1 w-fit ${
                         user.role === 'admin' ? 'bg-blue-100 text-blue-700' :

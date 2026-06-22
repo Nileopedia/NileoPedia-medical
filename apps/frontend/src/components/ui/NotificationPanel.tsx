@@ -48,8 +48,8 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
 
   return (
     <div className="py-2">
-      <div className="px-4 py-2 border-b border-slate-100 dark:border-slate-700 flex items-center justify-between">
-        <h3 className="text-sm font-semibold text-slate-900 dark:text-slate-50">Notifications</h3>
+      <div className="px-4 py-2 border-b border-border flex items-center justify-between">
+        <h3 className="text-sm font-semibold text-foreground">Notifications</h3>
         {unreadCount > 0 && (
           <button
             onClick={onMarkAllRead}
@@ -63,7 +63,7 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
       {notifications.length === 0 ? (
         <div className="px-4 py-8 text-center">
           <Bell className="mx-auto w-8 h-8 text-slate-300 mb-2" />
-          <p className="text-sm text-slate-500 dark:text-slate-400">No notifications</p>
+          <p className="text-sm text-muted-foreground">No notifications</p>
         </div>
       ) : (
         <div className="max-h-96 overflow-y-auto">
@@ -73,7 +73,7 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
               <div
                 key={notification.id}
                 className={cn(
-                  'px-4 py-3 border-b border-slate-100 dark:border-slate-700 last:border-0 hover:bg-slate-50 dark:hover:bg-slate-700/50 cursor-pointer transition-colors',
+                  'px-4 py-3 border-b border-border last:border-0 hover:bg-muted cursor-pointer transition-colors',
                   !notification.read && 'bg-blue-50/50 dark:bg-blue-900/10'
                 )}
                 onClick={() => onMarkRead(notification.id)}
@@ -82,13 +82,13 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
                 <div className="flex gap-3">
                   <Icon className={cn('w-4 h-4 flex-shrink-0 mt-0.5', notificationColors[notification.type])} />
                   <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-slate-900 dark:text-slate-50 truncate">
+                    <p className="text-sm font-medium text-foreground truncate">
                       {notification.title}
                     </p>
-                    <p className="text-xs text-slate-600 dark:text-slate-400 mt-0.5 line-clamp-2">
+                    <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">
                       {notification.message}
                     </p>
-                    <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
+                    <p className="text-xs text-muted-foreground/70 mt-1">
                       {notification.createdAt}
                     </p>
                   </div>
@@ -103,7 +103,7 @@ export const NotificationPanel: React.FC<NotificationPanelProps> = ({
       )}
 
       {notifications.length > 0 && (
-        <div className="px-4 py-2 border-t border-slate-100 dark:border-slate-700">
+        <div className="px-4 py-2 border-t border-border">
           <button
             onClick={onClose}
             className="text-xs text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-slate-200 w-full text-center"

@@ -97,23 +97,23 @@ export const Sidebar: React.FC = () => {
   return (
     <aside 
       className={cn(
-        'bg-slate-900 dark:bg-slate-950 flex flex-col h-screen fixed left-0 top-0 z-30 border-r border-slate-800 dark:border-slate-900 transition-all duration-300 ease-in-out',
+        'bg-sidebar flex flex-col h-screen fixed left-0 top-0 z-30 border-r border-border transition-all duration-300 ease-in-out',
         isSidebarOpen ? 'w-64' : 'w-16'
       )}
     >
       {/* Logo / Hamburger Toggle */}
-      <div className="px-3 py-4 border-b border-slate-800 flex items-center">
+      <div className="px-3 py-4 border-b border-border flex items-center transition-colors duration-300">
         {isSidebarOpen ? (
           <button
             onClick={toggleSidebar}
             className="flex items-center gap-2 w-full hover:opacity-80 transition-opacity"
           >
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-              <span className="text-white font-bold text-sm">N</span>
+            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center flex-shrink-0">
+              <span className="text-primary-foreground font-bold text-sm">N</span>
             </div>
             <div className="transition-opacity duration-200">
-              <h1 className="text-white font-bold text-base leading-tight">NileoPedia</h1>
-              <p className="text-slate-400 text-xs">Medical Intelligence Platform</p>
+              <h1 className="text-foreground font-bold text-base leading-tight">NileoPedia</h1>
+              <p className="text-muted-foreground text-xs">Medical Intelligence Platform</p>
             </div>
           </button>
         ) : (
@@ -122,7 +122,7 @@ export const Sidebar: React.FC = () => {
             className="w-full flex justify-center py-2 hover:opacity-80 transition-opacity"
             aria-label="Expand sidebar"
           >
-            <Menu size={20} className="text-slate-400" />
+            <Menu size={20} className="text-muted-foreground" />
           </button>
         )}
       </div>
@@ -132,7 +132,7 @@ export const Sidebar: React.FC = () => {
         {navSections.map((section, sectionIndex) => (
           <div key={sectionIndex} className="mb-6">
             {isSidebarOpen && section.title && (
-              <p className="px-3 mb-2 text-xs font-semibold text-slate-500 uppercase tracking-wider transition-opacity duration-200">
+              <p className="px-3 mb-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider transition-opacity duration-200">
                 {section.title}
               </p>
             )}
@@ -146,13 +146,13 @@ export const Sidebar: React.FC = () => {
                       className={cn(
                         'flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200',
                         isActive
-                          ? 'bg-blue-600 text-white'
-                          : 'text-slate-300 hover:bg-slate-800 hover:text-white',
+                          ? 'bg-primary text-primary-foreground'
+                          : 'text-foreground hover:bg-muted hover:text-foreground',
                         !isSidebarOpen && 'justify-center px-2'
                       )}
                       title={!isSidebarOpen ? item.label : undefined}
                     >
-                      <span className={cn('flex-shrink-0', isActive ? 'text-white' : 'text-slate-400')}>
+                      <span className={cn('flex-shrink-0', isActive ? 'text-primary-foreground' : 'text-muted-foreground')}>
                         {item.icon}
                       </span>
                       {isSidebarOpen && <span className="flex-1 transition-opacity duration-200">{item.label}</span>}
@@ -171,13 +171,13 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       {/* User & Logout */}
-      <div className="border-t border-slate-800 p-3">
+      <div className="border-t border-border p-3 transition-colors duration-300">
         {isSidebarOpen && (
           <div className="flex items-center gap-3 px-3 py-2 mb-2 transition-opacity duration-200">
             <Avatar name={user?.name || 'User'} size="sm" />
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white truncate">{user?.name || 'User'}</p>
-              <p className="text-xs text-slate-400 truncate capitalize">{user?.role || 'Medical User'}</p>
+              <p className="text-sm font-medium text-foreground truncate">{user?.name || 'User'}</p>
+              <p className="text-xs text-muted-foreground truncate capitalize">{user?.role || 'Medical User'}</p>
             </div>
           </div>
         )}
@@ -189,12 +189,12 @@ export const Sidebar: React.FC = () => {
         <button
           onClick={() => setUser(null)}
           className={cn(
-            'flex items-center gap-3 px-3 py-2 w-full rounded-lg text-sm font-medium text-slate-300 hover:bg-slate-800 hover:text-white transition-all duration-200',
+            'flex items-center gap-3 px-3 py-2 w-full rounded-lg text-sm font-medium text-foreground hover:bg-muted hover:text-foreground transition-all duration-200',
             !isSidebarOpen && 'justify-center px-2'
           )}
           title={!isSidebarOpen ? 'Logout' : undefined}
         >
-          <LogOut size={18} className="text-slate-400" />
+          <LogOut size={18} className="text-muted-foreground" />
           {isSidebarOpen && <span className="flex-1 transition-opacity duration-200">Logout</span>}
         </button>
       </div>

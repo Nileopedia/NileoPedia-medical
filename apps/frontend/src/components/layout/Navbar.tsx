@@ -98,17 +98,17 @@ export const Navbar: React.FC = () => {
 
   return (
     <>
-      <header className="h-16 bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between px-6 sticky top-0 z-20 transition-colors duration-200">
+      <header className="h-16 bg-card border-b border-border flex items-center justify-between px-6 sticky top-0 z-20 transition-colors duration-300">
         <div className="flex items-center gap-4 flex-1">
           <button
             onClick={toggleMobileNav}
-            className="lg:hidden p-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            className="lg:hidden p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
             aria-label="Toggle mobile menu"
           >
             <Menu size={20} />
           </button>
           <div className="relative max-w-xl w-full hidden md:block">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-500" size={18} />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={18} />
             <form onSubmit={handleSearch} className="relative">
               <input
                 ref={searchRef}
@@ -121,16 +121,16 @@ export const Navbar: React.FC = () => {
                     handleSearch(e);
                   }
                 }}
-                className="w-full pl-10 pr-20 py-2 border border-slate-200 dark:border-slate-700 rounded-lg text-sm text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-20 py-2 border border-border rounded-lg text-sm text-foreground placeholder-muted-foreground bg-input focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-300"
                 aria-label="Search medical topics"
               />
-              <kbd className="absolute right-10 top-1/2 -translate-y-1/2 text-xs text-slate-400 dark:text-slate-500 bg-slate-100 dark:bg-slate-700 px-1.5 py-0.5 rounded border border-slate-200 dark:border-slate-600">
+              <kbd className="absolute right-10 top-1/2 -translate-y-1/2 text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded border border-border">
                 ⌘K
               </kbd>
               <button
                 type="submit"
                 disabled={!searchQuery.trim()}
-                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-slate-400 hover:text-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="absolute right-2 top-1/2 -translate-y-1/2 p-1 text-muted-foreground hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Search"
               >
                 <ArrowRight size={16} />
@@ -142,7 +142,7 @@ export const Navbar: React.FC = () => {
           <div className="relative" ref={notificationRef}>
             <button
               onClick={() => setNotificationOpen(!notificationOpen)}
-              className="p-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+              className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
               aria-label="Notifications"
               aria-expanded={notificationOpen}
             >
@@ -167,7 +167,7 @@ export const Navbar: React.FC = () => {
 
           <button
             onClick={() => setHelpOpen(true)}
-            className="p-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
             aria-label="Help"
           >
             <HelpCircle size={20} />
@@ -175,7 +175,7 @@ export const Navbar: React.FC = () => {
 
           <button
             onClick={() => setSettingsOpen(true)}
-            className="p-2 text-slate-500 hover:text-slate-700 dark:hover:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg transition-colors"
+            className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors"
             aria-label="Settings"
           >
             <Settings size={20} />
@@ -184,7 +184,7 @@ export const Navbar: React.FC = () => {
           <div className="relative" ref={profileRef}>
             <button
               onClick={() => setProfileOpen(!profileOpen)}
-              className="ml-2 focus:outline-none focus:ring-2 focus:ring-blue-500 rounded-full"
+              className="ml-2 focus:outline-none focus:ring-2 focus:ring-primary rounded-full"
               aria-label="Profile menu"
               aria-expanded={profileOpen}
             >

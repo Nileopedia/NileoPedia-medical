@@ -52,8 +52,8 @@ export default function HistoryPage() {
     <AppLayout>
       <div className="space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-50 mb-2">Query History</h1>
-          <p className="text-slate-600 dark:text-slate-400">View all your previous medical queries</p>
+          <h1 className="text-2xl font-bold text-foreground mb-2">Query History</h1>
+          <p className="text-muted-foreground">View all your previous medical queries</p>
         </div>
 
         <Card>
@@ -65,26 +65,26 @@ export default function HistoryPage() {
                 placeholder="Search queries..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-slate-900 dark:text-slate-100 placeholder-slate-400 dark:placeholder-slate-500 bg-white dark:bg-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg text-foreground placeholder-slate-400 dark:placeholder-slate-500 bg-card focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
           </CardHeader>
           <CardContent>
             <table className="w-full">
               <thead>
-                <tr className="border-b border-slate-200 dark:border-slate-700">
-                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Question</th>
-                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Category</th>
-                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Status</th>
-                  <th className="text-left py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400">Date</th>
-                  <th className="w-16 py-3 px-2 text-sm font-medium text-slate-600 dark:text-slate-400 text-right">Actions</th>
+                <tr className="border-b border-border">
+                  <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Question</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Category</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Status</th>
+                  <th className="text-left py-3 px-2 text-sm font-medium text-muted-foreground">Date</th>
+                  <th className="w-16 py-3 px-2 text-sm font-medium text-muted-foreground text-right">Actions</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredQueries.map((query) => (
                   <tr key={query.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 font-medium text-slate-900 dark:text-slate-50">{query.question}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-400">{query.category}</td>
+                    <td className="py-3 font-medium text-foreground">{query.question}</td>
+                    <td className="py-3 text-muted-foreground">{query.category}</td>
                     <td className="py-3">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium ${
                         query.status === 'approved' ? 'bg-emerald-100 text-emerald-700' :
@@ -94,7 +94,7 @@ export default function HistoryPage() {
                         {query.status}
                       </span>
                     </td>
-                    <td className="py-3 text-slate-500 dark:text-slate-400">{query.createdAt}</td>
+                    <td className="py-3 text-muted-foreground">{query.createdAt}</td>
                     <td className="py-3 text-right">
                       <button className="text-blue-600 hover:text-blue-700" title="View details">
                         <ExternalLink size={16} />
