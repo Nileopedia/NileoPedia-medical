@@ -145,6 +145,44 @@ class UserService {
             data: { accountStatus: client_1.AccountStatus.ACTIVE },
         });
     }
+    async getPreferences(userId) {
+        const preferences = await prisma_1.default.userPreferences.findUnique({
+            where: { userId },
+        });
+        if (!preferences) {
+            return {
+                theme: 'system',
+                language: 'en',
+                sidebarCollapsed: false,
+                responseStyle: 'normal',
+                citationEnabled: true,
+                emailNotifications: true,
+                systemNotifications: true,
+                uploadNotifications: true,
+                validationNotifications: true,
+            };
+        }
+        return preferences;
+    }
+    async updatePreferences(userId, data) {
+        const preferences = await prisma_1.default.userPreferences.upsert({
+            where: { userId },
+            update: data,
+            create: {
+                userId,
+                theme: data.theme || 'system',
+                language: data.language || 'en',
+                sidebarCollapsed: data.sidebarCollapsed ?? false,
+                responseStyle: data.responseStyle || 'normal',
+                citationEnabled: data.citationEnabled ?? true,
+                emailNotifications: data.emailNotifications ?? true,
+                systemNotifications: data.systemNotifications ?? true,
+                uploadNotifications: data.uploadNotifications ?? true,
+                validationNotifications: data.validationNotifications ?? true,
+            },
+        });
+        return preferences;
+    }
 }
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

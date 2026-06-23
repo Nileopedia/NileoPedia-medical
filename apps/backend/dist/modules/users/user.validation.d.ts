@@ -19,19 +19,19 @@ export declare const changePasswordSchema: z.ZodObject<{
     currentPassword: z.ZodString;
     newPassword: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    newPassword: string;
     currentPassword: string;
+    newPassword: string;
 }, {
-    newPassword: string;
     currentPassword: string;
+    newPassword: string;
 }>;
 export declare const getUsersQuerySchema: z.ZodObject<{
     page: z.ZodDefault<z.ZodNumber>;
     limit: z.ZodDefault<z.ZodNumber>;
     search: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    limit: number;
     page: number;
+    limit: number;
     search?: string | undefined;
 }, {
     page?: number | undefined;

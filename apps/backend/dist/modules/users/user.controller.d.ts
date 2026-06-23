@@ -9,5 +9,7 @@ export declare class UserController {
     getUsers(req: Request, res: Response, next: NextFunction): Promise<void>;
     deactivateUser(req: Request, res: Response, next: NextFunction): Promise<void>;
     activateUser(req: Request, res: Response, next: NextFunction): Promise<void>;
+    getPreferences(req: Request, res: Response, next: NextFunction): Promise<void>;
+    updatePreferences(req: Request, res: Response, next: NextFunction): Promise<void>;
 }
 //# sourceMappingURL=user.controller.d.ts.map

@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 export declare const mockPrismaClient: any;
 export declare const mockGroq: {
     chat: {

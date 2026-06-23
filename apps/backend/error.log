@@ -3071,3 +3071,7 @@ Invalid `prisma.userPreferences.upsert()` invocation in
   200 }) {
 → 201   const preferences = await prisma.userPreferences.upsert(
 The table `public.UserPreferences` does not exist in the current database.
+2026-06-22T10:38:27.860Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-22T10:38:27.863Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-22T10:38:27.868Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-22T10:38:27.870Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379

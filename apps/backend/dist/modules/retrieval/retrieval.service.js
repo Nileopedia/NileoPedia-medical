@@ -14,8 +14,13 @@ class RetrievalService {
         this.index = null;
         this.embeddingService = new embedding_service_1.EmbeddingService();
         if (env_1.CONFIG.PINECONE_API_KEY && !env_1.CONFIG.USE_MOCK_EMBEDDINGS) {
-            this.pinecone = new pinecone_1.Pinecone({ apiKey: env_1.CONFIG.PINECONE_API_KEY });
-            this.index = this.pinecone.index(env_1.CONFIG.PINECONE_INDEX_NAME);
+            try {
+                this.pinecone = new pinecone_1.Pinecone({ apiKey: env_1.CONFIG.PINECONE_API_KEY });
+                this.index = this.pinecone.index(env_1.CONFIG.PINECONE_INDEX_NAME);
+            }
+            catch (e) {
+                logger_1.logger.warn('Pinecone initialization failed, using mock mode');
+            }
         }
         else {
             logger_1.logger.info('Using mock search mode');
@@ -25,13 +30,19 @@ class RetrievalService {
         if (!this.index) {
             return this.getMockResults(query, topK);
         }
-        const embedding = await this.embeddingService.generateEmbedding(query);
-        const results = await this.index.query({
-            vector: embedding,
-            topK,
-            includeMetadata: true,
-        });
-        return results.matches || [];
+        try {
+            const embedding = await this.embeddingService.generateEmbedding(query);
+            const results = await this.index.query({
+                vector: embedding,
+                topK,
+                includeMetadata: true,
+            });
+            return results.matches || [];
+        }
+        catch (error) {
+            logger_1.logger.warn('Pinecone query failed, using mock results:', error);
+            return this.getMockResults(query, topK);
+        }
     }
     getMockResults(query, topK = 10) {
         const demoChunks = [

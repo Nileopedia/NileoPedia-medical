@@ -1,3 +1,4 @@
+/// <reference types="jest" />
 declare const mockPrisma: {
     $connect: jest.Mock<any, any, any>;
     $disconnect: jest.Mock<any, any, any>;

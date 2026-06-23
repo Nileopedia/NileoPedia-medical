@@ -115,6 +115,35 @@ class UserController {
             next(error);
         }
     }
+    async getPreferences(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const preferences = await this.userService.getPreferences(userId);
+            res.status(200).json({
+                success: true,
+                data: preferences,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in getPreferences controller:', error);
+            next(error);
+        }
+    }
+    async updatePreferences(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const preferences = await this.userService.updatePreferences(userId, req.body);
+            res.status(200).json({
+                success: true,
+                message: 'Preferences updated successfully',
+                data: preferences,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in updatePreferences controller:', error);
+            next(error);
+        }
+    }
 }
 exports.UserController = UserController;
 //# sourceMappingURL=user.controller.js.map

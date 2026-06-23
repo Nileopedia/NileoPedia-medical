@@ -25,6 +25,7 @@ export declare class UserService {
     changePassword(userId: string, data: ChangePasswordDto): Promise<void>;
     getUserById(userId: string): Promise<{
         id: string;
+        createdAt: Date;
         fullName: string;
         email: string;
         role: import("@prisma/client").$Enums.UserRole;
@@ -33,10 +34,59 @@ export declare class UserService {
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        createdAt: Date;
     }>;
     getUsers(query: GetUsersQuery): Promise<GetUsersResult>;
     deactivateUser(userId: string): Promise<void>;
     activateUser(userId: string): Promise<void>;
+    getPreferences(userId: string): Promise<{
+        id: string;
+        userId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        theme: string;
+        language: string;
+        sidebarCollapsed: boolean;
+        responseStyle: string;
+        citationEnabled: boolean;
+        emailNotifications: boolean;
+        systemNotifications: boolean;
+        uploadNotifications: boolean;
+        validationNotifications: boolean;
+    } | {
+        theme: string;
+        language: string;
+        sidebarCollapsed: boolean;
+        responseStyle: string;
+        citationEnabled: boolean;
+        emailNotifications: boolean;
+        systemNotifications: boolean;
+        uploadNotifications: boolean;
+        validationNotifications: boolean;
+    }>;
+    updatePreferences(userId: string, data: {
+        theme?: string;
+        language?: string;
+        sidebarCollapsed?: boolean;
+        responseStyle?: string;
+        citationEnabled?: boolean;
+        emailNotifications?: boolean;
+        systemNotifications?: boolean;
+        uploadNotifications?: boolean;
+        validationNotifications?: boolean;
+    }): Promise<{
+        id: string;
+        userId: string;
+        createdAt: Date;
+        updatedAt: Date;
+        theme: string;
+        language: string;
+        sidebarCollapsed: boolean;
+        responseStyle: string;
+        citationEnabled: boolean;
+        emailNotifications: boolean;
+        systemNotifications: boolean;
+        uploadNotifications: boolean;
+        validationNotifications: boolean;
+    }>;
 }
 //# sourceMappingURL=user.service.d.ts.map

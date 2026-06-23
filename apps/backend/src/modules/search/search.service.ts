@@ -1,6 +1,7 @@
 import { RetrievalService } from '../retrieval/retrieval.service';
 import prisma from '../../config/prisma';
 import { SearchType, SearchResult, SearchQuery, SearchResultResponse } from './search.types';
+import { logger } from '../../config/logger';
 
 export class SearchService {
   private retrievalService: RetrievalService;
@@ -56,109 +57,124 @@ export class SearchService {
   }
 
   async semanticSearch(q: string, specialty?: string, limit: number = 10): Promise<SearchResult[]> {
-    const pineconeResults = await this.retrievalService.semanticSearch(q, limit);
-    
-    if (!this.retrievalService.pineconeClient) {
-      return this.getMockResults(q, specialty, limit);
-    }
+    try {
+      const pineconeResults = await this.retrievalService.semanticSearch(q, limit);
+      
+      if (!this.retrievalService.pineconeClient) {
+        return this.getMockResults(q, specialty, limit);
+      }
 
-    const results: SearchResult[] = [];
-    for (const match of pineconeResults) {
-      if (match.metadata?.documentId) {
-        const doc = await prisma.medicalDocument.findUnique({
-          where: { id: match.metadata.documentId as string },
-        });
-        if (doc && (!specialty || doc.specialty === specialty)) {
-          results.push({
-            id: match.id,
-            title: doc.title,
-            snippet: (match.metadata?.textPreview as string) || doc.title,
-            source: doc.source || 'Medical Document',
-            relevanceScore: match.score || 0,
-            specialty: doc.specialty || undefined,
-            documentType: doc.documentType || undefined,
+      const results: SearchResult[] = [];
+      for (const match of pineconeResults) {
+        if (match.metadata?.documentId) {
+          const doc = await prisma.medicalDocument.findUnique({
+            where: { id: match.metadata.documentId as string },
           });
+          if (doc && (!specialty || doc.specialty === specialty)) {
+            results.push({
+              id: match.id,
+              title: doc.title,
+              snippet: (match.metadata?.textPreview as string) || doc.title,
+              source: doc.source || 'Medical Document',
+              relevanceScore: match.score || 0,
+              specialty: doc.specialty || undefined,
+              documentType: doc.documentType || undefined,
+            });
+          }
         }
       }
-    }
 
-    if (results.length === 0) {
+      if (results.length === 0) {
+        return this.getMockResults(q, specialty, limit);
+      }
+
+      return results.sort((a, b) => b.relevanceScore - a.relevanceScore);
+    } catch (error) {
+      logger.warn('Semantic search failed, using mock results:', error);
       return this.getMockResults(q, specialty, limit);
     }
-
-    return results.sort((a, b) => b.relevanceScore - a.relevanceScore);
   }
 
   async keywordSearch(q: string, specialty?: string, limit: number = 20): Promise<SearchResult[]> {
-    const where: {
-      OR?: Array<{ title?: { contains: string; mode: 'insensitive' }; description?: { contains: string; mode: 'insensitive' } }>;
-      specialty?: string;
-    } = {};
+    try {
+      const where: {
+        OR?: Array<{ title?: { contains: string; mode: 'insensitive' }; description?: { contains: string; mode: 'insensitive' } }>;
+        specialty?: string;
+      } = {};
 
-    if (q) {
-      where.OR = [
-        { title: { contains: q, mode: 'insensitive' } },
-        { description: { contains: q, mode: 'insensitive' } },
-      ];
-    }
+      if (q) {
+        where.OR = [
+          { title: { contains: q, mode: 'insensitive' } },
+          { description: { contains: q, mode: 'insensitive' } },
+        ];
+      }
 
-    if (specialty) where.specialty = specialty;
+      if (specialty) where.specialty = specialty;
 
-    const documents = await prisma.medicalDocument.findMany({
-      where,
-      take: limit,
-    });
+      const documents = await prisma.medicalDocument.findMany({
+        where,
+        take: limit,
+      });
 
-    const results = documents.map((doc) => ({
-      id: doc.id,
-      title: doc.title,
-      snippet: doc.description || doc.title,
-      source: doc.source || 'Medical Document',
-      relevanceScore: 0.8,
-      specialty: doc.specialty || undefined,
-      documentType: doc.documentType || undefined,
-      citationCount: 0,
-    }));
+      const results = documents.map((doc) => ({
+        id: doc.id,
+        title: doc.title,
+        snippet: doc.description || doc.title,
+        source: doc.source || 'Medical Document',
+        relevanceScore: 0.8,
+        specialty: doc.specialty || undefined,
+        documentType: doc.documentType || undefined,
+        citationCount: 0,
+      }));
 
-    if (results.length === 0) {
+      if (results.length === 0) {
+        return this.getMockResults(q, specialty, limit);
+      }
+
+      return results;
+    } catch (error) {
+      logger.warn('Keyword search failed, using mock results:', error);
       return this.getMockResults(q, specialty, limit);
     }
-
-    return results;
   }
 
   async hybridSearch(q: string, specialty?: string, limit: number = 20): Promise<SearchResult[]> {
-    const [semanticResults, keywordResults] = await Promise.all([
-      this.semanticSearch(q, specialty, Math.floor(limit * 0.7)),
-      this.keywordSearch(q, specialty, Math.floor(limit * 0.3)),
-    ]);
+    try {
+      const [semanticResults, keywordResults] = await Promise.all([
+        this.semanticSearch(q, specialty, Math.floor(limit * 0.7)),
+        this.keywordSearch(q, specialty, Math.floor(limit * 0.3)),
+      ]);
 
-    const mergedMap = new Map<string, SearchResult>();
-    
-    for (const result of semanticResults) {
-      result.relevanceScore = (result.relevanceScore || 0) * 0.7;
-      mergedMap.set(result.id, result);
-    }
-
-    for (const result of keywordResults) {
-      const existing = mergedMap.get(result.id);
-      if (existing) {
-        existing.relevanceScore = ((existing.relevanceScore || 0) + (result.relevanceScore || 0) * 0.3);
-      } else {
-        result.relevanceScore = (result.relevanceScore || 0) * 0.3;
+      const mergedMap = new Map<string, SearchResult>();
+      
+      for (const result of semanticResults) {
+        result.relevanceScore = (result.relevanceScore || 0) * 0.7;
         mergedMap.set(result.id, result);
       }
-    }
 
-    const mergedResults = Array.from(mergedMap.values())
-      .sort((a, b) => b.relevanceScore - a.relevanceScore)
-      .slice(0, limit);
+      for (const result of keywordResults) {
+        const existing = mergedMap.get(result.id);
+        if (existing) {
+          existing.relevanceScore = ((existing.relevanceScore || 0) + (result.relevanceScore || 0) * 0.3);
+        } else {
+          result.relevanceScore = (result.relevanceScore || 0) * 0.3;
+          mergedMap.set(result.id, result);
+        }
+      }
 
-    if (mergedResults.length === 0 && q) {
+      const mergedResults = Array.from(mergedMap.values())
+        .sort((a, b) => b.relevanceScore - a.relevanceScore)
+        .slice(0, limit);
+
+      if (mergedResults.length === 0 && q) {
+        return this.getMockResults(q, specialty, limit);
+      }
+
+      return mergedResults;
+    } catch (error) {
+      logger.warn('Hybrid search failed, using mock results:', error);
       return this.getMockResults(q, specialty, limit);
     }
-
-    return mergedResults;
   }
 
   async searchDocuments(query: SearchQuery) {

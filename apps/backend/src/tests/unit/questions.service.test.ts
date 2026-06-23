@@ -10,6 +10,12 @@ jest.mock('../../config/prisma', () => ({
     findUnique: jest.fn(),
     update: jest.fn(),
   },
+  aIResponse: {
+    upsert: jest.fn(),
+  },
+  citation: {
+    create: jest.fn(),
+  },
 }));
 
 jest.mock('../../jobs/queues', () => ({
@@ -43,14 +49,16 @@ describe('QuestionsService', () => {
       expect(result.status).toBe('processing');
     });
 
-    it('should handle queue error gracefully', async () => {
-      mockPrisma.question.create.mockResolvedValue({ id: 'q-2' });
-      (aiQueue.add as jest.Mock).mockRejectedValue(new Error('Redis unavailable'));
+it('should handle queue error gracefully', async () => {
+       mockPrisma.question.create.mockResolvedValue({ id: 'q-2' });
+       (aiQueue.add as jest.Mock).mockRejectedValue(new Error('Redis unavailable'));
+       mockPrisma.aIResponse.upsert.mockResolvedValue({ id: 'resp-q-2', questionId: 'q-2' });
 
-      const result = await service.askQuestion('user-1', 'test');
+       const result = await service.askQuestion('user-1', 'test');
 
-      expect(result.status).toBe('processing');
-    });
+       expect(result.status).toBe('processing');
+       expect(mockPrisma.aIResponse.upsert).toHaveBeenCalled();
+     });
 
     it('should include specialty in queue job', async () => {
       mockPrisma.question.create.mockResolvedValue({ id: 'q-3' });
