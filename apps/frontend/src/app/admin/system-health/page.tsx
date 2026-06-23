@@ -21,15 +21,12 @@ export default function AdminSystemHealthPage() {
   const [lastChecked, setLastChecked] = useState<string | null>(null);
 
   const fetchStatus = async () => {
-    setLoading(true);
     try {
       const data = await api.getSystemStatus();
       setStatus(data);
       setLastChecked(new Date().toLocaleTimeString());
     } catch (error) {
       console.error('Failed to fetch system status:', error);
-    } finally {
-      setLoading(false);
     }
   };
 
