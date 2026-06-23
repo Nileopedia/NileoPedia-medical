@@ -1,13 +1,12 @@
 import { Pinecone } from '@pinecone-database/pinecone';
 import { CONFIG } from '../../config/env';
-import prisma from '../../config/prisma';
 import { logger } from '../../config/logger';
 import { EmbeddingService } from '../rag/services/embedding.service';
 
 export class RetrievalService {
   private pinecone: Pinecone | null = null;
   private index: any = null;
-  private embeddingService: EmbeddingService;
+  public embeddingService: EmbeddingService;
 
   get pineconeClient() {
     return this.pinecone;
@@ -20,40 +19,25 @@ export class RetrievalService {
         this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
         this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
       } catch (e) {
-        logger.warn('Pinecone initialization failed, using mock mode');
+        logger.error('[ERROR] Pinecone unavailable');
       }
-    } else {
-      logger.info('Using mock search mode');
     }
   }
 
   async semanticSearch(query: string, topK = 10) {
     if (!this.index) {
-      return this.getMockResults(query, topK);
+      logger.error('[ERROR] Pinecone unavailable');
+      return [];
     }
     
-    try {
-      const embedding = await this.embeddingService.generateEmbedding(query);
-      const results = await this.index.query({
-        vector: embedding,
-        topK,
-        includeMetadata: true,
-      });
+    const embedding = await this.embeddingService.generateEmbedding(query);
+    const results = await this.index.query({
+      vector: embedding,
+      topK,
+      includeMetadata: true,
+    });
 
-      return results.matches || [];
-    } catch (error) {
-      logger.warn('Pinecone query failed, using mock results:', error);
-      return this.getMockResults(query, topK);
-    }
-  }
-
-  private getMockResults(query: string, topK = 10) {
-    const demoChunks = [
-      { id: 'mock-1', score: 0.95, metadata: { documentId: 'demo-doc-1', textPreview: `Medical guideline for ${query}: Evidence-based recommendation`, specialty: 'general' } },
-      { id: 'mock-2', score: 0.88, metadata: { documentId: 'demo-doc-2', textPreview: `Clinical study: ${query} treatment protocols`, specialty: 'general' } },
-      { id: 'mock-3', score: 0.82, metadata: { documentId: 'demo-doc-3', textPreview: `Research findings: ${query} outcomes`, specialty: 'cardiology' } },
-    ];
-    return demoChunks.slice(0, topK);
+    return results.matches || [];
   }
 
   async hybridSearch(query: string, specialty?: string) {

@@ -12,6 +12,20 @@ jest.mock('../../modules/rag/services/embedding.service', () => ({
         generateEmbedding: jest.fn().mockResolvedValue(Array(384).fill(0)),
     })),
 }));
+jest.mock('../../modules/retrieval/retrieval.service', () => ({
+    RetrievalService: jest.fn().mockImplementation(() => ({
+        pineconeClient: { index: jest.fn() },
+        hybridSearch: jest.fn().mockResolvedValue([]),
+        embeddingService: { generateEmbedding: jest.fn() },
+    })),
+}));
+jest.mock('../../config/env', () => ({
+    CONFIG: { GROQ_API_KEY: 'test-key' },
+}));
+jest.mock('../../config/prisma', () => ({
+    medicalDocument: { count: jest.fn().mockResolvedValue(100) },
+    embeddingMetadata: { count: jest.fn().mockResolvedValue(500) },
+}));
 describe('AdminController', () => {
     let controller;
     let mockAdminService;

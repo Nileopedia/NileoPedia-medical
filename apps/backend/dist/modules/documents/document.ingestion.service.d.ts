@@ -18,6 +18,7 @@ export declare class DocumentIngestionService {
         fileSize: number;
     }): Promise<{
         document: {
+            specialty: string | null;
             id: string;
             createdAt: Date;
             updatedAt: Date;
@@ -25,7 +26,6 @@ export declare class DocumentIngestionService {
             source: string | null;
             publicationYear: number | null;
             documentType: string | null;
-            specialty: string | null;
             description: string | null;
             fileName: string;
             fileUrl: string;

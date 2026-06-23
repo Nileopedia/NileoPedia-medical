@@ -10,12 +10,6 @@ jest.mock('../../config/prisma', () => ({
     findUnique: jest.fn(),
     update: jest.fn(),
   },
-  aIResponse: {
-    upsert: jest.fn(),
-  },
-  citation: {
-    create: jest.fn(),
-  },
 }));
 
 jest.mock('../../jobs/queues', () => ({
@@ -49,16 +43,16 @@ describe('QuestionsService', () => {
       expect(result.status).toBe('processing');
     });
 
-it('should handle queue error gracefully', async () => {
-       mockPrisma.question.create.mockResolvedValue({ id: 'q-2' });
-       (aiQueue.add as jest.Mock).mockRejectedValue(new Error('Redis unavailable'));
-       mockPrisma.aIResponse.upsert.mockResolvedValue({ id: 'resp-q-2', questionId: 'q-2' });
+    it('should handle queue error gracefully without mock fallback', async () => {
+      mockPrisma.question.create.mockResolvedValue({ id: 'q-2' });
+      (aiQueue.add as jest.Mock).mockRejectedValue(new Error('Redis unavailable'));
 
-       const result = await service.askQuestion('user-1', 'test');
+      const result = await service.askQuestion('user-1', 'test');
 
-       expect(result.status).toBe('processing');
-       expect(mockPrisma.aIResponse.upsert).toHaveBeenCalled();
-     });
+      // Should return processing status but no mock response is generated
+      expect(result.status).toBe('processing');
+      expect(result.message).toBe('Question submitted for processing');
+    });
 
     it('should include specialty in queue job', async () => {
       mockPrisma.question.create.mockResolvedValue({ id: 'q-3' });
@@ -97,19 +91,46 @@ it('should handle queue error gracefully', async () => {
   });
 
   describe('getQuestion', () => {
-    it('should return question by id', async () => {
-      const mockQuestion = { id: 'q-1', questionText: 'test question' };
+    it('should return question by id with aiResponse if present', async () => {
+      const mockQuestion = { 
+        id: 'q-1', 
+        questionText: 'test question',
+        aiResponse: {
+          id: 'resp-1',
+          questionId: 'q-1',
+          summary: 'Test summary',
+          keyFindings: ['Finding 1'],
+          confidenceScore: 0.9,
+          generatedBy: 'Llama-3.3-70b',
+        },
+      };
       mockPrisma.question.findUnique.mockResolvedValue(mockQuestion);
 
       const result = await service.getQuestion('q-1');
 
-      expect(result).toEqual(mockQuestion);
+      expect(result.id).toBe('q-1');
+      expect(result.aiResponse).toBeDefined();
+      expect(result.aiResponse?.summary).toBe('Test summary');
     });
 
     it('should throw error when question not found', async () => {
       mockPrisma.question.findUnique.mockResolvedValue(null);
 
       await expect(service.getQuestion('nonexistent')).rejects.toThrow('Question not found');
+    });
+
+    it('should return unavailable message when no AI response', async () => {
+      const mockQuestion = { 
+        id: 'q-1', 
+        questionText: 'test question',
+        aiResponse: null,
+      };
+      mockPrisma.question.findUnique.mockResolvedValue(mockQuestion);
+
+      const result = await service.getQuestion('q-1');
+
+      expect(result).toHaveProperty('aiResponse');
+      expect(result.aiResponse).toHaveProperty('summary', 'I could not find supporting medical information in the knowledge base.');
     });
   });
 

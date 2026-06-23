@@ -17,5 +17,6 @@ router.post('/ingestion/run', authenticate, authorize('ADMIN'), ingestionControl
 router.post('/ingestion/refresh', authenticate, authorize('ADMIN'), ingestionController.runIncrementalRefresh.bind(ingestionController));
 router.get('/ingestion/status', authenticate, authorize('ADMIN'), ingestionController.getStatus.bind(ingestionController));
 router.get('/performance-test', authenticate, authorize('ADMIN'), adminController.performanceTest.bind(adminController));
+router.get('/system-status', authenticate, authorize('ADMIN'), adminController.getSystemStatus.bind(adminController));
 
 export default router;

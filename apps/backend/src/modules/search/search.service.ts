@@ -3,6 +3,11 @@ import prisma from '../../config/prisma';
 import { SearchType, SearchResult, SearchQuery, SearchResultResponse } from './search.types';
 import { logger } from '../../config/logger';
 
+export interface SearchErrorResponse {
+  success: false;
+  error: string;
+}
+
 export class SearchService {
   private retrievalService: RetrievalService;
 
@@ -10,11 +15,12 @@ export class SearchService {
     this.retrievalService = new RetrievalService();
   }
 
-  async globalSearch(query: SearchQuery): Promise<SearchResultResponse> {
+  async globalSearch(query: SearchQuery): Promise<SearchResultResponse | SearchErrorResponse> {
     const { q, type, specialty, limit, page } = query;
     const skip = (page - 1) * limit;
 
     let results: SearchResult[] = [];
+    let error: string | null = null;
 
     switch (type) {
       case 'semantic':
@@ -27,6 +33,14 @@ export class SearchService {
       default:
         results = await this.hybridSearch(q, specialty, limit);
         break;
+    }
+
+    // Check if Pinecone is unavailable
+    if (!this.retrievalService.pineconeClient) {
+      return {
+        success: false,
+        error: 'Real search unavailable',
+      };
     }
 
     return {
@@ -42,27 +56,15 @@ export class SearchService {
     };
   }
 
-  private getMockResults(q: string, specialty?: string, limit: number = 10): SearchResult[] {
-    const specialties = specialty ? [specialty] : ['general', 'cardiology', 'endocrinology', 'oncology', 'neurology', 'gastroenterology'];
-    const sources = ['PubMed Central', 'NEJM', 'The Lancet', 'JAMA', 'Circulation', 'Diabetes Care'];
-    
-    return Array.from({ length: Math.min(limit, 20) }, (_, i) => ({
-      id: `mock-search-${Date.now()}-${i}`,
-      title: `${specialties[i % specialties.length].charAt(0).toUpperCase() + specialties[i % specialties.length].slice(1)}: ${q}`,
-      snippet: `Evidence-based medical information related to "${q}". Peer-reviewed findings from clinical studies.`,
-      source: sources[i % sources.length],
-      relevanceScore: 0.9 - (i * 0.03),
-      specialty: specialties[i % specialties.length],
-    }));
-  }
-
   async semanticSearch(q: string, specialty?: string, limit: number = 10): Promise<SearchResult[]> {
+    // Check if Pinecone is available
+    if (!this.retrievalService.pineconeClient) {
+      logger.error('[ERROR] Pinecone unavailable');
+      return [];
+    }
+
     try {
       const pineconeResults = await this.retrievalService.semanticSearch(q, limit);
-      
-      if (!this.retrievalService.pineconeClient) {
-        return this.getMockResults(q, specialty, limit);
-      }
 
       const results: SearchResult[] = [];
       for (const match of pineconeResults) {
@@ -84,14 +86,10 @@ export class SearchService {
         }
       }
 
-      if (results.length === 0) {
-        return this.getMockResults(q, specialty, limit);
-      }
-
       return results.sort((a, b) => b.relevanceScore - a.relevanceScore);
     } catch (error) {
-      logger.warn('Semantic search failed, using mock results:', error);
-      return this.getMockResults(q, specialty, limit);
+      logger.error('[ERROR] Pinecone unavailable:', error);
+      return [];
     }
   }
 
@@ -116,7 +114,7 @@ export class SearchService {
         take: limit,
       });
 
-      const results = documents.map((doc) => ({
+      return documents.map((doc) => ({
         id: doc.id,
         title: doc.title,
         snippet: doc.description || doc.title,
@@ -126,19 +124,19 @@ export class SearchService {
         documentType: doc.documentType || undefined,
         citationCount: 0,
       }));
-
-      if (results.length === 0) {
-        return this.getMockResults(q, specialty, limit);
-      }
-
-      return results;
     } catch (error) {
-      logger.warn('Keyword search failed, using mock results:', error);
-      return this.getMockResults(q, specialty, limit);
+      logger.error('[ERROR] Keyword search failed:', error);
+      return [];
     }
   }
 
   async hybridSearch(q: string, specialty?: string, limit: number = 20): Promise<SearchResult[]> {
+    // Check if Pinecone is available
+    if (!this.retrievalService.pineconeClient) {
+      logger.error('[ERROR] Pinecone unavailable');
+      return [];
+    }
+
     try {
       const [semanticResults, keywordResults] = await Promise.all([
         this.semanticSearch(q, specialty, Math.floor(limit * 0.7)),
@@ -162,18 +160,12 @@ export class SearchService {
         }
       }
 
-      const mergedResults = Array.from(mergedMap.values())
+      return Array.from(mergedMap.values())
         .sort((a, b) => b.relevanceScore - a.relevanceScore)
         .slice(0, limit);
-
-      if (mergedResults.length === 0 && q) {
-        return this.getMockResults(q, specialty, limit);
-      }
-
-      return mergedResults;
     } catch (error) {
-      logger.warn('Hybrid search failed, using mock results:', error);
-      return this.getMockResults(q, specialty, limit);
+      logger.error('[ERROR] Hybrid search failed:', error);
+      return [];
     }
   }
 
@@ -254,23 +246,6 @@ export class SearchService {
       }),
       prisma.citation.count({ where }),
     ]);
-
-    if (citations.length === 0 && q) {
-      return {
-        query: q,
-        results: Array.from({ length: 5 }, (_, i) => ({
-          id: `mock-citation-${i}`,
-          title: `Medical Reference ${i + 1}: ${q}`,
-          snippet: `Peer-reviewed study findings on ${q}`,
-          source: ['PubMed', 'NEJM', 'JAMA', 'The Lancet', 'Circulation'][i],
-          relevanceScore: 0.9 - (i * 0.02),
-          specialty: undefined,
-          citationCount: 1,
-        })),
-        pagination: { total: 5, page, limit, totalPages: 1 },
-        searchType: 'keyword' as SearchType,
-      };
-    }
 
     return {
       query: q,

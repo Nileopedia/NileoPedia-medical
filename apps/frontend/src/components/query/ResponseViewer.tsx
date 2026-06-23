@@ -16,6 +16,53 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSave
   const [saveLoading, setSaveLoading] = useState(false);
   const { settings } = useSettings();
 
+  const getSourceIndicator = () => {
+    if (response.source === 'real') {
+      return (
+        <div className="flex items-center text-green-600 mb-4">
+          <CheckCircle size={16} className="mr-2" />
+          <span className="text-sm font-medium">AI Source: Real Knowledge Base</span>
+        </div>
+      );
+    }
+    return (
+      <div className="flex items-center text-red-600 mb-4">
+        <Info size={16} className="mr-2" />
+        <span className="text-sm font-medium">AI Source: Unavailable</span>
+      </div>
+    );
+  };
+
+  const getMetadataDisplay = () => {
+    if (response.source !== 'real') return null;
+
+    return (
+      <div className="bg-muted/30 rounded-lg p-4 mb-4 border border-border">
+        <h3 className="text-sm font-semibold text-foreground mb-2">Knowledge Source</h3>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
+          <div>
+            <span className="text-muted-foreground">Knowledge source:</span>
+            <span className="ml-1 font-medium text-foreground">Real Knowledge Base</span>
+          </div>
+          <div>
+            <span className="text-muted-foreground">Documents used:</span>
+            <span className="ml-1 font-medium text-foreground">{response.documentsUsed ?? 0}</span>
+          </div>
+          <div>
+            <span className="text-muted-foreground">Model:</span>
+            <span className="ml-1 font-medium text-foreground">{response.model}</span>
+          </div>
+          <div>
+            <span className="text-muted-foreground">Response time:</span>
+            <span className="ml-1 font-medium text-foreground">
+              {response.processingTime ? `${(response.processingTime / 1000).toFixed(1)}s` : 'N/A'}
+            </span>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
   const handleSaveToggle = async () => {
     setSaveLoading(true);
     try {
@@ -66,7 +113,7 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSave
 
   return (
     <div className="bg-card shadow-lg rounded-lg p-6 border border-border">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between items-center mb-2">
         <h2 className="text-xl font-semibold text-foreground">{response.title}</h2>
         <div className="flex items-center gap-2">
           {renderStatus()}
@@ -80,6 +127,9 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSave
           </button>
         </div>
       </div>
+
+      {getSourceIndicator()}
+      {getMetadataDisplay()}
 
       {(response.status === 'pending' || response.status === 'approved' || response.status === 'rejected' || response.status === 'in_review') ? (
         <>
@@ -99,7 +149,7 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSave
             </div>
           )}
 
-{response.detailedExplanation && (
+          {response.detailedExplanation && (
             <div className="mb-4">
               <h3 className="text-lg font-medium text-foreground mb-2">Detailed Explanation</h3>
               <p className="text-foreground leading-relaxed">{response.detailedExplanation}</p>

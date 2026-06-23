@@ -1,10 +1,15 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const admin_service_1 = require("../services/admin.service");
 const logger_1 = require("../../../config/logger");
 const retrieval_service_1 = require("../../../modules/retrieval/retrieval.service");
 const embedding_service_1 = require("../../../modules/rag/services/embedding.service");
+const env_1 = require("../../../config/env");
+const prisma_1 = __importDefault(require("../../../config/prisma"));
 class AdminController {
     constructor() {
         this.adminService = new admin_service_1.AdminService();
@@ -133,6 +138,95 @@ class AdminController {
                 groq_ms: metrics.groq_ms,
                 total_ms: metrics.total_ms,
             });
+        }
+    }
+    async getSystemStatus(req, res, next) {
+        try {
+            const embeddingService = new embedding_service_1.EmbeddingService();
+            const retrievalService = new retrieval_service_1.RetrievalService();
+            const [embeddingOk, pineconeOk, documentsCount, vectorsCount] = await Promise.all([
+                this.testEmbeddingAvailability(embeddingService),
+                this.testPineconeAvailability(retrievalService),
+                this.getDocumentsCount(),
+                this.getVectorsCount(),
+            ]);
+            res.status(200).json({
+                embeddings: embeddingOk,
+                pinecone: pineconeOk,
+                groq: !!env_1.CONFIG.GROQ_API_KEY,
+                redis: this.testRedisAvailability(),
+                totalDocuments: documentsCount,
+                totalVectors: vectorsCount,
+                latency: {
+                    embedding_ms: 0,
+                    pinecone_ms: 0,
+                    groq_ms: 0,
+                    total_ms: 0,
+                },
+                lastChecked: new Date().toISOString(),
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('System status check error:', error);
+            res.status(500).json({
+                embeddings: false,
+                pinecone: false,
+                groq: false,
+                redis: false,
+                totalDocuments: 0,
+                totalVectors: 0,
+                error: error.message,
+                lastChecked: new Date().toISOString(),
+            });
+        }
+    }
+    async testEmbeddingAvailability(embeddingService) {
+        try {
+            const testEmbedding = await embeddingService.generateEmbedding('test');
+            return testEmbedding.length > 0;
+        }
+        catch {
+            return false;
+        }
+    }
+    async testPineconeAvailability(retrievalService) {
+        try {
+            if (!retrievalService.pineconeClient) {
+                return false;
+            }
+            const results = await retrievalService.hybridSearch('test');
+            return true;
+        }
+        catch {
+            return false;
+        }
+    }
+    async getDocumentsCount() {
+        try {
+            const count = await prisma_1.default.medicalDocument.count();
+            return count;
+        }
+        catch {
+            return 0;
+        }
+    }
+    async getVectorsCount() {
+        try {
+            const count = await prisma_1.default.embeddingMetadata.count();
+            return count;
+        }
+        catch {
+            return 0;
+        }
+    }
+    testRedisAvailability() {
+        try {
+            const redis = require('../../../lib/redis').redis;
+            redis.ping();
+            return true;
+        }
+        catch {
+            return false;
         }
     }
 }

@@ -56,8 +56,8 @@ export declare const getDocumentsQuerySchema: z.ZodObject<{
     documentType: z.ZodOptional<z.ZodString>;
     publicationYear: z.ZodOptional<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    page: number;
     limit: number;
+    page: number;
     search?: string | undefined;
     ingestionStatus?: "PENDING" | "PROCESSING" | "COMPLETED" | "FAILED" | undefined;
     documentType?: string | undefined;

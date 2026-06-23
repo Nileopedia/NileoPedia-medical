@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 export declare class SearchController {
     private searchService;
     constructor();
-    globalSearch(req: Request, res: Response, next: NextFunction): Promise<void>;
+    globalSearch(req: Request, res: Response, next: NextFunction): Promise<Response<any, Record<string, any>> | undefined>;
     semanticSearch(req: Request, res: Response, next: NextFunction): Promise<void>;
     keywordSearch(req: Request, res: Response, next: NextFunction): Promise<void>;
     hybridSearch(req: Request, res: Response, next: NextFunction): Promise<void>;

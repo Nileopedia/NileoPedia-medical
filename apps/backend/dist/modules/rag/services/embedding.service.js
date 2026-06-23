@@ -65,7 +65,7 @@ async function loadLocalEmbedding() {
         return localEmbeddingPipeline;
     }
     catch (e) {
-        console.error('[STARTUP] Local embedding model unavailable:', e);
+        console.error('[ERROR] Local embedding model unavailable:', e);
         return null;
     }
 }
@@ -85,8 +85,10 @@ async function preloadEmbeddingModel() {
 exports.preloadEmbeddingModel = preloadEmbeddingModel;
 async function localEmbedding(text) {
     const pipeline = await loadLocalEmbedding();
-    if (!pipeline)
-        throw new Error('Local embedding pipeline not available');
+    if (!pipeline) {
+        logger_1.logger.error('[ERROR] Pinecone unavailable');
+        throw new Error('Embedding service unavailable');
+    }
     const output = await pipeline(text, { pooling: 'mean', normalize: true });
     return Array.from(output.data);
 }
@@ -123,16 +125,16 @@ async function hfEmbedding(text) {
     catch (error) {
         // Detailed error logging
         if (error.name === 'AbortError') {
-            console.error('[HF EMBEDDING ERROR] Timeout after 15000ms');
+            console.error('[ERROR] Embedding service unavailable');
         }
         else if (error.message?.includes('fetch failed')) {
-            console.error('[HF EMBEDDING ERROR] Network error - Hugging Face API unreachable');
+            console.error('[ERROR] Embedding service unavailable');
         }
         else if (error.message?.includes('401')) {
-            console.error('[HF EMBEDDING ERROR] Authorization failed - check HF_API_KEY');
+            console.error('[ERROR] Embedding service unavailable');
         }
         else {
-            console.error('[HF EMBEDDING ERROR]', error.message || error);
+            console.error('[ERROR] Embedding service unavailable:', error.message || error);
         }
         throw error;
     }
@@ -167,17 +169,14 @@ class EmbeddingService {
         return 'huggingface';
     }
     async generateEmbedding(text) {
-        if (this.mockMode) {
-            console.warn('[EmbeddingService] Using mock embedding for:', text.substring(0, 50));
-            return this.generateMockEmbedding(text);
-        }
         // Try local embeddings first if enabled
         if (this.useLocal) {
             try {
                 return await localEmbedding(text);
             }
             catch (e) {
-                console.error('Local embedding failed, trying Hugging Face:', e.message);
+                logger_1.logger.error('[ERROR] Embedding service unavailable');
+                throw new Error('Embedding service unavailable');
             }
         }
         // Try Hugging Face API
@@ -186,16 +185,17 @@ class EmbeddingService {
                 return await hfEmbedding(text);
             }
             catch (e) {
-                console.warn('HF embedding failed, using mock fallback');
+                logger_1.logger.error('[ERROR] Embedding service unavailable');
+                throw new Error('Embedding service unavailable');
             }
         }
-        // Fallback to mock
-        console.warn('All embedding sources failed, using mock');
-        return this.generateMockEmbedding(text);
+        // No embedding service available
+        logger_1.logger.error('[ERROR] Embedding service unavailable');
+        throw new Error('Embedding service unavailable');
     }
     async generateBatchEmbeddings(texts) {
         if (this.mockMode) {
-            return texts.map(text => this.generateMockEmbedding(text));
+            throw new Error('Embedding service unavailable');
         }
         const results = [];
         for (const text of texts) {
@@ -208,18 +208,10 @@ class EmbeddingService {
                     error: error.message,
                     textPreview: text.substring(0, 30),
                 });
-                results.push(this.generateMockEmbedding(text));
+                throw error;
             }
         }
         return results;
-    }
-    generateMockEmbedding(text) {
-        const hash = text.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-        const embedding = new Array(EXPECTED_DIMENSIONS).fill(0).map((_, i) => {
-            const seed = (hash * (i + 1)) % 1000;
-            return (seed - 500) / 500;
-        });
-        return embedding;
     }
     async preprocessText(text) {
         let cleaned = text.replace(/\s+/g, ' ').trim();

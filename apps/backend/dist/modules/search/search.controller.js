@@ -20,6 +20,13 @@ class SearchController {
                 publicationYear: validatedQuery.publicationYear,
                 documentType: validatedQuery.documentType,
             });
+            // Handle error response (Pinecone unavailable)
+            if ('success' in result && result.success === false) {
+                return res.status(503).json({
+                    success: false,
+                    error: result.error,
+                });
+            }
             res.status(200).json({
                 success: true,
                 data: result,

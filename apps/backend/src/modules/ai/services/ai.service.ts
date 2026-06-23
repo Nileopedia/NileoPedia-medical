@@ -25,7 +25,7 @@ export class AIService {
     const context = chunks.map((c) => c.text).join('\n\n');
 
     if (!this.groq) {
-      return this.getMockResponse(question, chunks);
+      throw new Error('Groq API unavailable');
     }
 
     const completion = await this.groq.chat.completions.create({
@@ -65,45 +65,6 @@ export class AIService {
       summary,
       citations,
       confidenceScore: this.calculateConfidence(chunks, citations.length),
-    };
-  }
-
-  private getMockResponse(question: string, chunks: Array<{ text: string; metadata?: Record<string, any> }>) {
-    const specialtyContent: Record<string, string[]> = {
-      cardiology: ['heart function', 'ACE inhibitors', 'beta-blockers'],
-      endocrinology: ['glucose metabolism', 'insulin sensitivity', 'HbA1c targets'],
-      oncology: ['tumor markers', 'immunotherapy', 'precision oncology'],
-      neurology: ['neural pathways', 'cognitive function', 'thrombectomy window'],
-      gastroenterology: ['GI motility', 'nutrient absorption', 'screening protocols'],
-    };
-
-    const contextLower = question.toLowerCase();
-    let keyFindings = ['Evidence-based recommendation provided'];
-    let specialty = 'general';
-
-    for (const [spec, findings] of Object.entries(specialtyContent)) {
-      if (contextLower.includes(spec.slice(0, 4))) {
-        keyFindings = findings.map(f => `${spec.charAt(0).toUpperCase() + spec.slice(1)}: ${f}`);
-        specialty = spec;
-        break;
-      }
-    }
-
-    const summary = `Based on medical literature for "${question}":\n\n` +
-      keyFindings.map(f => `• ${f}`).join('\n');
-
-    const citations: Citation[] = chunks.slice(0, 3).map((c, i) => ({
-      title: `${specialty.charAt(0).toUpperCase() + specialty.slice(1)} Reference ${i + 1}`,
-      source: 'PubMed',
-      authors: 'Dr. Smith et al.',
-      publicationYear: 2024,
-      url: `https://pubmed.ncbi.nlm.nih.gov/${i}`,
-    }));
-
-    return {
-      summary,
-      citations,
-      confidenceScore: 0.85 + Math.random() * 0.1,
     };
   }
 

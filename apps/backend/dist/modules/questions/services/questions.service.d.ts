@@ -4,10 +4,10 @@ export declare class QuestionsService {
         status: string;
         message: string;
     }>;
-    private generateMockResponse;
     getHistory(userId: string): Promise<({
         aiResponse: ({
             citations: {
+                specialty: string | null;
                 id: string;
                 createdAt: Date;
                 aiResponseId: string;
@@ -19,32 +19,32 @@ export declare class QuestionsService {
                 url: string | null;
                 citationIndex: number;
                 documentType: string | null;
-                specialty: string | null;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
             }[];
         } & {
-            id: string;
-            createdAt: Date;
             questionId: string;
+            id: string;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            createdAt: Date;
             updatedAt: Date;
         }) | null;
     } & {
-        id: string;
         userId: string;
+        id: string;
+        createdAt: Date;
         questionText: string;
         isSaved: boolean;
-        createdAt: Date;
     })[]>;
-    getQuestion(questionId: string): Promise<{
+    getQuestion(questionId: string): Promise<({
         aiResponse: ({
             citations: {
+                specialty: string | null;
                 id: string;
                 createdAt: Date;
                 aiResponseId: string;
@@ -56,28 +56,40 @@ export declare class QuestionsService {
                 url: string | null;
                 citationIndex: number;
                 documentType: string | null;
-                specialty: string | null;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
             }[];
         } & {
-            id: string;
-            createdAt: Date;
             questionId: string;
+            id: string;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            createdAt: Date;
             updatedAt: Date;
         }) | null;
     } & {
-        id: string;
         userId: string;
+        id: string;
+        createdAt: Date;
         questionText: string;
         isSaved: boolean;
+    }) | {
+        aiResponse: {
+            summary: string;
+            keyFindings: never[];
+            detailedExplanation: string;
+            confidenceScore: number;
+            generatedBy: string;
+        };
+        userId: string;
+        id: string;
         createdAt: Date;
+        questionText: string;
+        isSaved: boolean;
     }>;
     saveResponse(questionId: string, userId: string): Promise<void>;
     unsaveResponse(questionId: string, userId: string): Promise<void>;

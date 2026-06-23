@@ -287,6 +287,10 @@ class ApiClient {
   }
 
   private normalizeAiResponse(question: BackendQuestion): QuestionDetail {
+    const hasRealResponse = !!(question.aiResponse && 
+      question.aiResponse.summary && 
+      question.aiResponse.summary !== 'I could not find supporting medical information in the knowledge base.');
+    
     const aiResponse = question.aiResponse
       ? {
           id: question.aiResponse.id,
@@ -302,8 +306,24 @@ class ApiClient {
           generatedAt: question.aiResponse.createdAt || question.createdAt,
           tags: [],
           isSaved: question.isSaved || false,
+          source: hasRealResponse ? 'real' : 'unavailable' as const,
         }
-      : undefined;
+      : {
+          id: `resp-${question.id}`,
+          queryId: question.id,
+          title: question.questionText,
+          summary: 'I could not find supporting medical information in the knowledge base.',
+          keyFindings: [],
+          detailedExplanation: '',
+          citations: [],
+          status: 'pending' as const,
+          confidenceScore: 0,
+          model: 'Unavailable',
+          generatedAt: new Date().toISOString(),
+          tags: [],
+          isSaved: false,
+          source: 'unavailable' as const,
+        };
 
     return {
       id: question.id,
@@ -435,7 +455,14 @@ class ApiClient {
   ): Promise<SearchResultResponse> {
     const params = new URLSearchParams({ q: query, type, limit: String(limit), page: String(page) });
     const payload = await this.request<ApiEnvelope<SearchResultResponse>>(`/search?${params.toString()}`);
-    return this.unwrap(payload);
+    const data = this.unwrap(payload);
+    
+    // Handle error response (Pinecone unavailable)
+    if ('success' in data && data.success === false) {
+      throw new Error(data.error || 'Real search unavailable');
+    }
+    
+    return data;
   }
 
   async uploadDocument(file: File): Promise<{ documentId: string; status: string }> {
@@ -548,6 +575,12 @@ class ApiClient {
     await this.request('/users/change-password', {
       method: 'PATCH',
       body: JSON.stringify({ currentPassword, newPassword }),
+    });
+  }
+
+  async getSystemStatus(): Promise<{ embeddings: boolean; pinecone: boolean; groq: boolean; redis: boolean; totalDocuments: number; totalVectors: number }> {
+    return this.request('/admin/system-status', {
+      method: 'GET',
     });
   }
 }

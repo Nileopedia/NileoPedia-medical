@@ -2,8 +2,8 @@ export declare class AdminService {
     getUsers(): Promise<{
         id: string;
         createdAt: Date;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
     }[]>;

@@ -9,5 +9,11 @@ export declare class AdminController {
     getAnalytics(req: Request, res: Response, next: NextFunction): Promise<void>;
     testEmbeddings(req: Request, res: Response, next: NextFunction): Promise<void>;
     performanceTest(req: Request, res: Response, next: NextFunction): Promise<void>;
+    getSystemStatus(req: Request, res: Response, next: NextFunction): Promise<void>;
+    private testEmbeddingAvailability;
+    private testPineconeAvailability;
+    private getDocumentsCount;
+    private getVectorsCount;
+    private testRedisAvailability;
 }
 //# sourceMappingURL=admin.controller.d.ts.map

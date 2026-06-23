@@ -1,12 +1,12 @@
 import { Pinecone } from '@pinecone-database/pinecone';
+import { EmbeddingService } from '../rag/services/embedding.service';
 export declare class RetrievalService {
     private pinecone;
     private index;
-    private embeddingService;
+    embeddingService: EmbeddingService;
     get pineconeClient(): Pinecone | null;
     constructor();
     semanticSearch(query: string, topK?: number): Promise<any>;
-    private getMockResults;
     hybridSearch(query: string, specialty?: string): Promise<any[]>;
     private rankResults;
 }

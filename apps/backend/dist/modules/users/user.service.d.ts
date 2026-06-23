@@ -2,8 +2,8 @@ import { UpdateProfileDto, ChangePasswordDto, GetUsersQuery, GetUsersResult } fr
 export declare class UserService {
     getCurrentUser(userId: string): Promise<{
         id: string;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -13,8 +13,8 @@ export declare class UserService {
     }>;
     updateProfile(userId: string, data: UpdateProfileDto): Promise<{
         id: string;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -26,8 +26,8 @@ export declare class UserService {
     getUserById(userId: string): Promise<{
         id: string;
         createdAt: Date;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -39,8 +39,8 @@ export declare class UserService {
     deactivateUser(userId: string): Promise<void>;
     activateUser(userId: string): Promise<void>;
     getPreferences(userId: string): Promise<{
-        id: string;
         userId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
         theme: string;
@@ -74,8 +74,8 @@ export declare class UserService {
         uploadNotifications?: boolean;
         validationNotifications?: boolean;
     }): Promise<{
-        id: string;
         userId: string;
+        id: string;
         createdAt: Date;
         updatedAt: Date;
         theme: string;

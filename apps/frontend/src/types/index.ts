@@ -52,6 +52,10 @@ export interface AIResponse {
   dueDate?: string;
   tags: string[];
   isSaved?: boolean;
+  source: 'real' | 'unavailable';
+  documentsUsed?: number;
+  embeddingModel?: string;
+  processingTime?: number;
 }
 
 export interface Activity {

@@ -7774,3 +7774,55 @@ The table `public.UserPreferences` does not exist in the current database.
 2026-06-22T12:52:00.523Z [nileopedia-backend] info: GET /api/v1/questions/5c9a1f2c-5056-4026-afb8-0fe1234d151e - ::1
 2026-06-22T14:13:36.344Z [nileopedia-backend] info: Schedulers initialized
 2026-06-22T14:13:37.569Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-23T08:56:01.286Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T08:56:01.301Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-06-23T08:56:01.329Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T08:56:01.334Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-06-23T08:56:01.340Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T08:56:01.346Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-06-23T08:56:01.349Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T08:56:01.353Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-06-23T08:56:01.356Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T08:56:01.360Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-06-23T08:56:01.362Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T08:56:01.366Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-06-23T09:07:53.373Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:07:53.381Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:07:53.401Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:07:53.405Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:07:53.408Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:07:53.412Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:07:53.414Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:07:53.417Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:07:53.418Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:07:53.421Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:17:35.830Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:17:35.842Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:17:35.848Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:17:35.853Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:17:35.856Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:17:35.861Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:17:35.863Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:17:35.866Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:17:35.868Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:17:35.871Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:18:24.146Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:18:24.208Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:18:24.222Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:18:24.240Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:18:24.246Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:18:24.266Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:18:24.271Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:18:24.281Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:18:24.287Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:18:24.298Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:25:26.791Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:25:26.823Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:25:26.829Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:25:26.866Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:25:26.880Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:25:26.909Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:25:26.911Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:25:26.950Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T09:25:26.960Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-23T09:25:26.994Z [nileopedia-backend] error: [ERROR] Embedding service unavailable

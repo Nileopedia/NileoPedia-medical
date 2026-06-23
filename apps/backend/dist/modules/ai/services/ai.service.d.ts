@@ -19,7 +19,6 @@ export declare class AIService {
         citations: Citation[];
         confidenceScore: number;
     }>;
-    private getMockResponse;
     private calculateConfidence;
 }
 //# sourceMappingURL=ai.service.d.ts.map

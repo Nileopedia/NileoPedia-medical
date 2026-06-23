@@ -1,21 +1,21 @@
 export declare class ValidationService {
     getPending(): Promise<({
         question: {
-            id: string;
             userId: string;
+            id: string;
+            createdAt: Date;
             questionText: string;
             isSaved: boolean;
-            createdAt: Date;
         };
     } & {
-        id: string;
-        createdAt: Date;
         questionId: string;
+        id: string;
         summary: string;
         keyFindings: string[];
         confidenceScore: number | null;
         validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
+        createdAt: Date;
         updatedAt: Date;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
@@ -23,29 +23,29 @@ export declare class ValidationService {
     getHistory(validatorId: string): Promise<({
         aiResponse: {
             question: {
-                id: string;
                 userId: string;
+                id: string;
+                createdAt: Date;
                 questionText: string;
                 isSaved: boolean;
-                createdAt: Date;
             };
         } & {
-            id: string;
-            createdAt: Date;
             questionId: string;
+            id: string;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            createdAt: Date;
             updatedAt: Date;
         };
     } & {
         feedback: string | null;
         id: string;
         aiResponseId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         validatorId: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     })[]>;
@@ -53,8 +53,8 @@ export declare class ValidationService {
         feedback: string | null;
         id: string;
         aiResponseId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         validatorId: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     } | null>;

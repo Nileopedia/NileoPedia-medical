@@ -1,9 +1,12 @@
 import { SearchType, SearchResult, SearchQuery, SearchResultResponse } from './search.types';
+export interface SearchErrorResponse {
+    success: false;
+    error: string;
+}
 export declare class SearchService {
     private retrievalService;
     constructor();
-    globalSearch(query: SearchQuery): Promise<SearchResultResponse>;
-    private getMockResults;
+    globalSearch(query: SearchQuery): Promise<SearchResultResponse | SearchErrorResponse>;
     semanticSearch(q: string, specialty?: string, limit?: number): Promise<SearchResult[]>;
     keywordSearch(q: string, specialty?: string, limit?: number): Promise<SearchResult[]>;
     hybridSearch(q: string, specialty?: string, limit?: number): Promise<SearchResult[]>;

@@ -3,6 +3,8 @@ import { AdminService } from '../services/admin.service';
 import { logger } from '../../../config/logger';
 import { RetrievalService } from '../../../modules/retrieval/retrieval.service';
 import { EmbeddingService } from '../../../modules/rag/services/embedding.service';
+import { CONFIG } from '../../../config/env';
+import prisma from '../../../config/prisma';
 
 export class AdminController {
   private adminService: AdminService;
@@ -141,6 +143,97 @@ export class AdminController {
         groq_ms: metrics.groq_ms,
         total_ms: metrics.total_ms,
       });
+    }
+  }
+
+  async getSystemStatus(req: Request, res: Response, next: NextFunction) {
+    try {
+      const embeddingService = new EmbeddingService();
+      const retrievalService = new RetrievalService();
+      
+      const [embeddingOk, pineconeOk, documentsCount, vectorsCount] = await Promise.all([
+        this.testEmbeddingAvailability(embeddingService),
+        this.testPineconeAvailability(retrievalService),
+        this.getDocumentsCount(),
+        this.getVectorsCount(),
+      ]);
+
+      res.status(200).json({
+        embeddings: embeddingOk,
+        pinecone: pineconeOk,
+        groq: !!CONFIG.GROQ_API_KEY,
+        redis: this.testRedisAvailability(),
+        totalDocuments: documentsCount,
+        totalVectors: vectorsCount,
+        latency: {
+          embedding_ms: 0,
+          pinecone_ms: 0,
+          groq_ms: 0,
+          total_ms: 0,
+        },
+        lastChecked: new Date().toISOString(),
+      });
+    } catch (error: any) {
+      logger.error('System status check error:', error);
+      res.status(500).json({
+        embeddings: false,
+        pinecone: false,
+        groq: false,
+        redis: false,
+        totalDocuments: 0,
+        totalVectors: 0,
+        error: error.message,
+        lastChecked: new Date().toISOString(),
+      });
+    }
+  }
+
+  private async testEmbeddingAvailability(embeddingService: EmbeddingService): Promise<boolean> {
+    try {
+      const testEmbedding = await embeddingService.generateEmbedding('test');
+      return testEmbedding.length > 0;
+    } catch {
+      return false;
+    }
+  }
+
+  private async testPineconeAvailability(retrievalService: RetrievalService): Promise<boolean> {
+    try {
+      if (!retrievalService.pineconeClient) {
+        return false;
+      }
+      const results = await retrievalService.hybridSearch('test');
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  private async getDocumentsCount(): Promise<number> {
+    try {
+      const count = await prisma.medicalDocument.count();
+      return count;
+    } catch {
+      return 0;
+    }
+  }
+
+  private async getVectorsCount(): Promise<number> {
+    try {
+      const count = await prisma.embeddingMetadata.count();
+      return count;
+    } catch {
+      return 0;
+    }
+  }
+
+  private testRedisAvailability(): boolean {
+    try {
+      const redis = require('../../../lib/redis').redis;
+      redis.ping();
+      return true;
+    } catch {
+      return false;
     }
   }
 }

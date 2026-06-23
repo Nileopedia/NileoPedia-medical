@@ -32,6 +32,19 @@ export interface AiGenerationJob {
     topK?: number;
     specialty?: string;
 }
+export interface PipelineError {
+    success: false;
+    stage: 'embeddings' | 'retrieval' | 'llm' | 'database';
+    message: string;
+}
+export interface MetadataResponse {
+    answer: string;
+    source: 'real' | 'unavailable';
+    documentsUsed: number;
+    model: string;
+    embeddingModel: string;
+    processingTime: number;
+}
 export interface EmailJob {
     to: string;
     subject: string;

@@ -19,38 +19,22 @@ class RetrievalService {
                 this.index = this.pinecone.index(env_1.CONFIG.PINECONE_INDEX_NAME);
             }
             catch (e) {
-                logger_1.logger.warn('Pinecone initialization failed, using mock mode');
+                logger_1.logger.error('[ERROR] Pinecone unavailable');
             }
-        }
-        else {
-            logger_1.logger.info('Using mock search mode');
         }
     }
     async semanticSearch(query, topK = 10) {
         if (!this.index) {
-            return this.getMockResults(query, topK);
+            logger_1.logger.error('[ERROR] Pinecone unavailable');
+            return [];
         }
-        try {
-            const embedding = await this.embeddingService.generateEmbedding(query);
-            const results = await this.index.query({
-                vector: embedding,
-                topK,
-                includeMetadata: true,
-            });
-            return results.matches || [];
-        }
-        catch (error) {
-            logger_1.logger.warn('Pinecone query failed, using mock results:', error);
-            return this.getMockResults(query, topK);
-        }
-    }
-    getMockResults(query, topK = 10) {
-        const demoChunks = [
-            { id: 'mock-1', score: 0.95, metadata: { documentId: 'demo-doc-1', textPreview: `Medical guideline for ${query}: Evidence-based recommendation`, specialty: 'general' } },
-            { id: 'mock-2', score: 0.88, metadata: { documentId: 'demo-doc-2', textPreview: `Clinical study: ${query} treatment protocols`, specialty: 'general' } },
-            { id: 'mock-3', score: 0.82, metadata: { documentId: 'demo-doc-3', textPreview: `Research findings: ${query} outcomes`, specialty: 'cardiology' } },
-        ];
-        return demoChunks.slice(0, topK);
+        const embedding = await this.embeddingService.generateEmbedding(query);
+        const results = await this.index.query({
+            vector: embedding,
+            topK,
+            includeMetadata: true,
+        });
+        return results.matches || [];
     }
     async hybridSearch(query, specialty) {
         const pineconeResults = await this.semanticSearch(query);

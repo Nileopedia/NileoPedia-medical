@@ -16,5 +16,6 @@ router.post('/ingestion/run', auth_middleware_1.authenticate, (0, auth_middlewar
 router.post('/ingestion/refresh', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.runIncrementalRefresh.bind(ingestionController));
 router.get('/ingestion/status', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.getStatus.bind(ingestionController));
 router.get('/performance-test', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.performanceTest.bind(adminController));
+router.get('/system-status', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getSystemStatus.bind(adminController));
 exports.default = router;
 //# sourceMappingURL=admin.routes.js.map
