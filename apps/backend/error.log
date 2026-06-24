@@ -3319,3 +3319,49 @@ The table `public.UserPreferences` does not exist in the current database.
 2026-06-23T11:25:03.894Z [nileopedia-backend] error: Email job failed: 251 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-23T11:25:03.895Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
 2026-06-23T11:25:03.901Z [nileopedia-backend] error: Email job failed: 252 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:49.695Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T19:09:49.710Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T19:09:49.719Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T19:09:49.728Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T19:09:49.734Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-23T19:09:49.852Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:49.855Z [nileopedia-backend] error: Email job failed: 253 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:49.859Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:49.861Z [nileopedia-backend] error: Email job failed: 254 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:49.879Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:49.881Z [nileopedia-backend] error: Email job failed: 255 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:51.893Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:51.894Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:51.895Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:51.898Z [nileopedia-backend] error: Email job failed: 253 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:51.898Z [nileopedia-backend] error: Email job failed: 254 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:51.898Z [nileopedia-backend] error: Email job failed: 255 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:55.908Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:55.909Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:55.910Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:55.911Z [nileopedia-backend] error: Email job failed: 253 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:55.911Z [nileopedia-backend] error: Email job failed: 254 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-23T19:09:55.912Z [nileopedia-backend] error: Email job failed: 255 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:34.688Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:34.698Z [nileopedia-backend] error: Email job failed: 256 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:34.707Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:34.715Z [nileopedia-backend] error: Email job failed: 257 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:34.728Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:34.733Z [nileopedia-backend] error: Email job failed: 258 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:36.732Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:36.736Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:36.743Z [nileopedia-backend] error: Email job failed: 256 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:36.746Z [nileopedia-backend] error: Email job failed: 257 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:36.761Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:36.769Z [nileopedia-backend] error: Email job failed: 258 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:37.243Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T02:11:37.262Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T02:11:37.287Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T02:11:37.297Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T02:11:37.305Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T02:11:40.795Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:40.811Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:40.825Z [nileopedia-backend] error: Email job failed: 256 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:40.830Z [nileopedia-backend] error: Email job failed: 257 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:40.852Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T02:11:40.856Z [nileopedia-backend] error: Email job failed: 258 connect ECONNREFUSED 127.0.0.1:1025

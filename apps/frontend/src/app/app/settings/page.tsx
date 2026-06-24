@@ -1,13 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { AppLayout } from '../../components/layout/AppLayout';
-import { cn } from '../../utils/cn';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { cn } from '@/utils/cn';
 import { Globe, MessageSquare, Shield, User, Check, Monitor, Moon, Sun } from 'lucide-react';
-import { useSettings } from '../../contexts/SettingsContext';
-import { api } from '../../lib/api';
-import { useToast } from '../../components/ui/Toast';
+import { useSettings } from '@/contexts/SettingsContext';
+import { api } from '@/lib/api';
+import { useToast } from '@/components/ui/Toast';
 import { useTheme } from 'next-themes';
 
 type SettingsTab = 'general' | 'ai' | 'notifications' | 'account';

@@ -47,6 +47,7 @@ export default function AppPage() {
         model: 'Processing',
         generatedAt: new Date().toISOString(),
         tags: [],
+        source: 'real' as const,
       };
       setResponse(aiResponse);
       setShowResponse(true);

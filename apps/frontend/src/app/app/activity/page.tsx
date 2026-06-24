@@ -1,9 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { AppLayout } from '../../components/layout/AppLayout';
-import { useAppStore } from '../../store/appStore';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { useAppStore } from '@/store/appStore';
 import { FileText, Search, Clock, CheckCircle } from 'lucide-react';
 
 const activityIcons = {

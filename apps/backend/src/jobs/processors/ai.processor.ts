@@ -146,12 +146,14 @@ export async function processAiGeneration(job: AiGenerationJob) {
         keyFindings,
         confidenceScore,
         generatedBy,
+        validationStatus: 'APPROVED',
       },
       update: {
         summary,
         keyFindings,
         confidenceScore,
         generatedBy,
+        validationStatus: 'APPROVED',
       },
     });
 

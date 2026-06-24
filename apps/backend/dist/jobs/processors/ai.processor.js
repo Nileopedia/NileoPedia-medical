@@ -120,12 +120,14 @@ async function processAiGeneration(job) {
                 keyFindings,
                 confidenceScore,
                 generatedBy,
+                validationStatus: 'APPROVED',
             },
             update: {
                 summary,
                 keyFindings,
                 confidenceScore,
                 generatedBy,
+                validationStatus: 'APPROVED',
             },
         });
         for (let i = 0; i < citations.length; i++) {

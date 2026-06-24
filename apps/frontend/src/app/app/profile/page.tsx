@@ -1,11 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { AppLayout } from '../../components/layout/AppLayout';
-import { Avatar } from '../../components/ui/Avatar';
-import { useAppStore } from '../../store/appStore';
-import { cn } from '../../utils/cn';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { Avatar } from '@/components/ui/Avatar';
+import { useAppStore } from '@/store/appStore';
+import { cn } from '@/utils/cn';
 
 const roleLabels = {
   user: 'Medical User',
