@@ -74,21 +74,25 @@ export const Sidebar: React.FC = () => {
           ],
         }
       );
-    } else if (user?.role === 'admin') {
-      sections.push({
-        items: [
-          { icon: <LayoutDashboard size={18} />, label: 'Dashboard', path: '/admin' },
-          { icon: <Users size={18} />, label: 'Users', path: '/admin/users' },
-          { icon: <ClipboardCheck size={18} />, label: 'Validators', path: '/admin/validators' },
-          { icon: <BarChart3 size={18} />, label: 'Analytics', path: '/admin/analytics' },
-          { icon: <Activity size={18} />, label: 'System Health', path: '/admin/system' },
-          { icon: <Bot size={18} />, label: 'AI Activity', path: '/admin/ai-activity' },
-          { icon: <FileText size={18} />, label: 'Documents', path: '/documents' },
-          { icon: <FileText size={18} />, label: 'Logs', path: '/admin/logs' },
-          { icon: <Settings size={18} />, label: 'Settings', path: '/admin/settings' },
-        ],
-      });
-    }
+} else if (user?.role === 'admin') {
+       sections.push({
+         items: [
+           { icon: <LayoutDashboard size={18} />, label: 'Dashboard', path: '/admin' },
+           { icon: <ClipboardCheck size={18} />, label: 'Pending Reviews', path: '/validator' },
+           { icon: <CheckCircle2 size={18} />, label: 'Approved Responses', path: '/validator/approved' },
+           { icon: <XCircle size={18} />, label: 'Rejected Responses', path: '/validator/rejected' },
+           { icon: <Clock size={18} />, label: 'Validation History', path: '/validator/history' },
+           { icon: <Users size={18} />, label: 'Users', path: '/admin/users' },
+           { icon: <Users size={18} />, label: 'Validators', path: '/admin/validators' },
+           { icon: <BarChart3 size={18} />, label: 'Analytics', path: '/admin/analytics' },
+           { icon: <Activity size={18} />, label: 'System Health', path: '/admin/system' },
+           { icon: <Bot size={18} />, label: 'AI Activity', path: '/admin/ai-activity' },
+           { icon: <FileText size={18} />, label: 'Documents', path: '/documents' },
+           { icon: <FileText size={18} />, label: 'Logs', path: '/admin/logs' },
+           { icon: <Settings size={18} />, label: 'Settings', path: '/admin/settings' },
+         ],
+       });
+     }
     return sections;
   };
 

@@ -68,8 +68,9 @@ export default function SettingsPage() {
       });
       setQrCodeUrl(response.data.qrCodeUrl);
       setShowQrCode(true);
-    } catch (error: Error) {
-      if (error.message?.includes('404')) {
+    } catch (error: unknown) {
+      const err = error as Error;
+      if (err.message?.includes('404')) {
         addToast({ type: 'info', title: '2FA feature coming soon' });
       } else {
         addToast({ type: 'error', title: 'Failed to enable 2FA' });

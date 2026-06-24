@@ -183,6 +183,40 @@ class UserService {
         });
         return preferences;
     }
+    async createValidator(data) {
+        const existingUser = await prisma_1.default.user.findUnique({
+            where: { email: data.email },
+        });
+        if (existingUser) {
+            throw new Error('Email already exists');
+        }
+        const defaultPassword = data.password || Math.random().toString(36).slice(-8);
+        const salt = await bcryptjs_1.default.genSalt(10);
+        const hashedPassword = await bcryptjs_1.default.hash(defaultPassword, salt);
+        const user = await prisma_1.default.user.create({
+            data: {
+                fullName: data.fullName,
+                email: data.email,
+                password: hashedPassword,
+                role: 'VALIDATOR',
+                specialization: data.specialization,
+                institution: data.institution,
+                isEmailVerified: true,
+                accountStatus: 'ACTIVE',
+            },
+            select: {
+                id: true,
+                fullName: true,
+                email: true,
+                role: true,
+                specialization: true,
+                institution: true,
+                accountStatus: true,
+                createdAt: true,
+            },
+        });
+        return user;
+    }
 }
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map

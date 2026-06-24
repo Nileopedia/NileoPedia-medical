@@ -165,7 +165,7 @@ class ApiClient {
     this.setSavedIds(ids);
   }
 
-  private async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+  async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
     const token = this.getAuthToken();
     const headers = new Headers(options.headers);
 
@@ -306,7 +306,7 @@ class ApiClient {
           generatedAt: question.aiResponse.createdAt || question.createdAt,
           tags: [],
           isSaved: question.isSaved || false,
-          source: hasRealResponse ? 'real' : 'unavailable' as const,
+          source: (hasRealResponse ? 'real' : 'unavailable') as 'real' | 'unavailable',
         }
       : {
           id: `resp-${question.id}`,
@@ -459,7 +459,8 @@ class ApiClient {
     
     // Handle error response (Pinecone unavailable)
     if ('success' in data && data.success === false) {
-      throw new Error(data.error || 'Real search unavailable');
+      const errorData = data as { success: false; error?: string };
+      throw new Error(errorData.error || 'Real search unavailable');
     }
     
     return data;
@@ -582,6 +583,20 @@ class ApiClient {
     return this.request('/admin/system-status', {
       method: 'GET',
     });
+  }
+
+  async createValidator(data: {
+    fullName: string;
+    email: string;
+    password?: string;
+    specialization?: string;
+    institution?: string;
+  }): Promise<{ id: string; fullName: string; email: string; role: string }> {
+    const payload = await this.request<{ success: boolean; data: { id: string; fullName: string; email: string; role: string } }>('/users/validator', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    });
+    return payload.data;
   }
 }
 

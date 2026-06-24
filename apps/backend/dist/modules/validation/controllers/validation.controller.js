@@ -46,7 +46,8 @@ class ValidationController {
     async getHistory(req, res, next) {
         try {
             const validatorId = req.user.id;
-            const history = await this.validationService.getHistory(validatorId);
+            const userRole = req.user.role;
+            const history = await this.validationService.getHistory(validatorId, userRole);
             res.status(200).json({ success: true, data: history });
         }
         catch (error) {

@@ -217,4 +217,49 @@ export class UserService {
 
     return preferences;
   }
+
+  async createValidator(data: {
+    fullName: string;
+    email: string;
+    password?: string;
+    specialization?: string;
+    institution?: string;
+  }) {
+    const existingUser = await prisma.user.findUnique({
+      where: { email: data.email },
+    });
+
+    if (existingUser) {
+      throw new Error('Email already exists');
+    }
+
+    const defaultPassword = data.password || Math.random().toString(36).slice(-8);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(defaultPassword, salt);
+
+    const user = await prisma.user.create({
+      data: {
+        fullName: data.fullName,
+        email: data.email,
+        password: hashedPassword,
+        role: 'VALIDATOR',
+        specialization: data.specialization,
+        institution: data.institution,
+        isEmailVerified: true,
+        accountStatus: 'ACTIVE',
+      },
+      select: {
+        id: true,
+        fullName: true,
+        email: true,
+        role: true,
+        specialization: true,
+        institution: true,
+        accountStatus: true,
+        createdAt: true,
+      },
+    });
+
+    return user;
+  }
 }

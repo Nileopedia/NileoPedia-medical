@@ -2,17 +2,17 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { AppLayout } from '../../components/layout/AppLayout';
-import { QueryInput } from '../../components/query/QueryInput';
-import { ResponseViewer } from '../../components/query/ResponseViewer';
-import { StatCard } from '../../components/dashboard/StatCard';
-import { TopCategories } from '../../components/dashboard/TopCategories';
-import { RecentActivity } from '../../components/dashboard/RecentActivity';
-import { useAppStore } from '../../store/appStore';
-import { mockCategoryStats, mockActivities } from '../../data/mockData';
+import { AppLayout } from '@/components/layout/AppLayout';
+import { QueryInput } from '@/components/query/QueryInput';
+import { ResponseViewer } from '@/components/query/ResponseViewer';
+import { StatCard } from '@/components/dashboard/StatCard';
+import { TopCategories } from '@/components/dashboard/TopCategories';
+import { RecentActivity } from '@/components/dashboard/RecentActivity';
+import { useAppStore } from '@/store/appStore';
+import { mockCategoryStats, mockActivities } from '@/data/mockData';
 import { MessageCircleQuestion, History, Bookmark, Clock } from 'lucide-react';
-import { api } from '../../lib/api';
-import { AIResponse } from '../../types';
+import { api } from '@/lib/api';
+import type { AIResponse } from '@/types';
 
 export default function AppPage() {
   const user = useAppStore((state) => state.user);

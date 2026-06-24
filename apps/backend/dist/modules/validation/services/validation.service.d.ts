@@ -1,60 +1,60 @@
 export declare class ValidationService {
     getPending(): Promise<({
         question: {
-            userId: string;
             id: string;
             createdAt: Date;
+            userId: string;
             questionText: string;
             isSaved: boolean;
         };
     } & {
-        questionId: string;
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
+        questionId: string;
         summary: string;
         keyFindings: string[];
         confidenceScore: number | null;
         validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
-        createdAt: Date;
-        updatedAt: Date;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
     reject(responseId: string, validatorId: string, feedback: string): Promise<void>;
-    getHistory(validatorId: string): Promise<({
+    getHistory(validatorId: string, userRole?: string): Promise<({
         aiResponse: {
             question: {
-                userId: string;
                 id: string;
                 createdAt: Date;
+                userId: string;
                 questionText: string;
                 isSaved: boolean;
             };
         } & {
-            questionId: string;
             id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            questionId: string;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
-            createdAt: Date;
-            updatedAt: Date;
         };
     } & {
         feedback: string | null;
         id: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     })[]>;
     getReview(responseId: string): Promise<{
         feedback: string | null;
         id: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     } | null>;

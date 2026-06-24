@@ -156,4 +156,19 @@ export class UserController {
       next(error);
     }
   }
+
+  async createValidator(req: Request, res: Response, next: NextFunction) {
+    try {
+      const user = await this.userService.createValidator(req.body);
+
+      res.status(201).json({
+        success: true,
+        message: 'Validator created successfully',
+        data: user,
+      });
+    } catch (error) {
+      logger.error('Error in createValidator controller:', error);
+      next(error);
+    }
+  }
 }

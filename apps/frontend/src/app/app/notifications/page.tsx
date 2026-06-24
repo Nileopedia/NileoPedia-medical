@@ -1,11 +1,11 @@
 'use client';
 
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Badge } from '../../../components/ui/Badge';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Badge } from '@/components/ui/Badge';
 import { Bell, CheckCircle, AlertCircle, MessageCircle } from 'lucide-react';
-import { Activity } from '../../../types';
-import { AppLayout } from '../../../components/layout/AppLayout';
+import type { Activity } from '@/types';
+import { AppLayout } from '@/components/layout/AppLayout';
 
 const mockNotifications: Activity[] = [
   {

@@ -11,5 +11,6 @@ export declare class UserController {
     activateUser(req: Request, res: Response, next: NextFunction): Promise<void>;
     getPreferences(req: Request, res: Response, next: NextFunction): Promise<void>;
     updatePreferences(req: Request, res: Response, next: NextFunction): Promise<void>;
+    createValidator(req: Request, res: Response, next: NextFunction): Promise<void>;
 }
 //# sourceMappingURL=user.controller.d.ts.map

@@ -8626,3 +8626,203 @@ The table `public.UserPreferences` does not exist in the current database.
 2026-06-24T02:41:28.689Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
 2026-06-24T02:46:35.011Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
 2026-06-24T02:46:36.264Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-24T02:52:34.535Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-24T02:52:35.990Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-24T02:52:36.529Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-24T03:21:05.813Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-24T03:21:06.604Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-24T03:36:53.006Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-24T03:36:55.201Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-24T03:36:55.213Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-24T03:41:04.749Z [nileopedia-backend] info: Schedulers initialized
+2026-06-24T03:41:05.323Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:06.104Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:06.905Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:21.550Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:47.533Z [nileopedia-backend] info: Schedulers initialized
+2026-06-24T03:41:47.811Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:48.320Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:48.878Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:41:59.729Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T03:43:05.116Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T03:43:05.136Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T03:43:05.152Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T03:43:05.159Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T03:43:05.166Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T03:43:05.172Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T03:43:05.174Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T03:43:05.180Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T03:43:05.185Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T03:43:05.193Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T03:43:05.376Z [nileopedia-backend] info: Processing email job: 259
+2026-06-24T03:43:05.396Z [nileopedia-backend] info: Processing email job: 260
+2026-06-24T03:43:05.401Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:05.409Z [nileopedia-backend] error: Email job failed: 259 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:05.413Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:05.416Z [nileopedia-backend] error: Email job failed: 260 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:05.419Z [nileopedia-backend] info: Processing email job: 261
+2026-06-24T03:43:05.428Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:05.432Z [nileopedia-backend] error: Email job failed: 261 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:07.475Z [nileopedia-backend] info: Processing email job: 259
+2026-06-24T03:43:07.476Z [nileopedia-backend] info: Processing email job: 260
+2026-06-24T03:43:07.478Z [nileopedia-backend] info: Processing email job: 261
+2026-06-24T03:43:07.483Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:07.485Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:07.487Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:07.488Z [nileopedia-backend] error: Email job failed: 259 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:07.489Z [nileopedia-backend] error: Email job failed: 260 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:07.489Z [nileopedia-backend] error: Email job failed: 261 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:11.493Z [nileopedia-backend] info: Processing email job: 259
+2026-06-24T03:43:11.495Z [nileopedia-backend] info: Processing email job: 260
+2026-06-24T03:43:11.496Z [nileopedia-backend] info: Processing email job: 261
+2026-06-24T03:43:11.510Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:11.518Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:11.521Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:11.531Z [nileopedia-backend] error: Email job failed: 259 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:11.532Z [nileopedia-backend] error: Email job failed: 260 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:43:11.532Z [nileopedia-backend] error: Email job failed: 261 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T03:58:07.154Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-24T03:58:08.479Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-24T04:01:23.669Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:01:23.811Z [nileopedia-backend] info: Processing email job: 262
+2026-06-24T04:01:23.821Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:23.824Z [nileopedia-backend] error: Email job failed: 262 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:23.829Z [nileopedia-backend] info: Processing email job: 263
+2026-06-24T04:01:23.834Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:23.845Z [nileopedia-backend] error: Email job failed: 263 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:23.865Z [nileopedia-backend] info: Processing email job: 264
+2026-06-24T04:01:23.869Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:23.871Z [nileopedia-backend] error: Email job failed: 264 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:23.688Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:01:23.696Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:01:23.703Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:01:23.711Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:01:23.718Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:01:23.723Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:01:23.735Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:01:23.741Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:01:23.749Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:01:25.894Z [nileopedia-backend] info: Processing email job: 262
+2026-06-24T04:01:25.897Z [nileopedia-backend] info: Processing email job: 263
+2026-06-24T04:01:25.899Z [nileopedia-backend] info: Processing email job: 264
+2026-06-24T04:01:25.904Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:25.907Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:25.908Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:25.910Z [nileopedia-backend] error: Email job failed: 262 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:25.910Z [nileopedia-backend] error: Email job failed: 263 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:25.911Z [nileopedia-backend] error: Email job failed: 264 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:30.013Z [nileopedia-backend] info: Processing email job: 262
+2026-06-24T04:01:30.019Z [nileopedia-backend] info: Processing email job: 263
+2026-06-24T04:01:30.020Z [nileopedia-backend] info: Processing email job: 264
+2026-06-24T04:01:30.026Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:30.030Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:30.033Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:30.045Z [nileopedia-backend] error: Email job failed: 262 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:30.060Z [nileopedia-backend] error: Email job failed: 263 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:01:30.060Z [nileopedia-backend] error: Email job failed: 264 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:12:30.162Z [nileopedia-backend] info: Schedulers initialized
+2026-06-24T04:12:30.650Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:12:31.269Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:12:32.272Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:12:36.396Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:01.772Z [nileopedia-backend] info: Schedulers initialized
+2026-06-24T04:13:02.261Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:03.180Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:03.861Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:07.038Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:42.537Z [nileopedia-backend] info: Schedulers initialized
+2026-06-24T04:13:42.921Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:43.618Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:13:44.329Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:14:01.038Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-24T04:14:39.580Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-24T04:14:40.533Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-24T04:19:11.729Z [nileopedia-backend] info: Processing email job: 265
+2026-06-24T04:19:11.783Z [nileopedia-backend] info: Processing email job: 266
+2026-06-24T04:19:11.797Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:11.814Z [nileopedia-backend] error: Email job failed: 265 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:11.821Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:11.827Z [nileopedia-backend] error: Email job failed: 266 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:11.827Z [nileopedia-backend] info: Processing email job: 267
+2026-06-24T04:19:11.833Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:11.836Z [nileopedia-backend] error: Email job failed: 267 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:11.851Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:19:11.871Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:19:11.877Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:19:11.885Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:19:11.889Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:19:11.893Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:19:11.895Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:19:11.899Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:19:11.900Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:19:11.908Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:19:13.862Z [nileopedia-backend] info: Processing email job: 265
+2026-06-24T04:19:13.864Z [nileopedia-backend] info: Processing email job: 266
+2026-06-24T04:19:13.865Z [nileopedia-backend] info: Processing email job: 267
+2026-06-24T04:19:13.869Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:13.871Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:13.873Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:13.876Z [nileopedia-backend] error: Email job failed: 265 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:13.877Z [nileopedia-backend] error: Email job failed: 266 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:13.877Z [nileopedia-backend] error: Email job failed: 267 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:17.877Z [nileopedia-backend] info: Processing email job: 265
+2026-06-24T04:19:17.878Z [nileopedia-backend] info: Processing email job: 266
+2026-06-24T04:19:17.879Z [nileopedia-backend] info: Processing email job: 267
+2026-06-24T04:19:17.883Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:17.887Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:17.889Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:17.891Z [nileopedia-backend] error: Email job failed: 265 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:17.892Z [nileopedia-backend] error: Email job failed: 266 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:17.892Z [nileopedia-backend] error: Email job failed: 267 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:19:46.504Z [nileopedia-backend] info: POST /api/v1/users/validator - ::1
+2026-06-24T04:19:58.561Z [nileopedia-backend] info: POST /api/v1/users/validator - ::1
+2026-06-24T04:20:17.328Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-24T04:20:18.667Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-24T04:20:18.688Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-24T04:21:50.154Z [nileopedia-backend] info: POST /api/v1/users/validator - ::1
+2026-06-24T04:22:24.865Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-24T04:22:28.569Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-24T04:22:28.621Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-24T04:22:28.682Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-24T04:22:28.720Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-24T04:23:38.216Z [nileopedia-backend] info: POST /api/v1/validation/b6058b76-f888-422f-89ed-e2ba4cd4258a/approve - ::1
+2026-06-24T04:23:39.381Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-24T04:23:40.857Z [nileopedia-backend] info: POST /api/v1/validation/46eba9ce-84ce-4680-8193-a66c967272a9/approve - ::1
+2026-06-24T04:23:41.923Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-24T04:24:31.482Z [nileopedia-backend] info: Processing email job: 268
+2026-06-24T04:24:31.497Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:31.501Z [nileopedia-backend] error: Email job failed: 268 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:31.511Z [nileopedia-backend] info: Processing email job: 269
+2026-06-24T04:24:31.519Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:31.521Z [nileopedia-backend] error: Email job failed: 269 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:31.557Z [nileopedia-backend] info: Processing email job: 270
+2026-06-24T04:24:31.577Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:31.583Z [nileopedia-backend] error: Email job failed: 270 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:31.957Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:24:31.965Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:24:31.969Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:24:31.972Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:24:31.974Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:24:31.978Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:24:31.979Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:24:31.983Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:24:31.984Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-24T04:24:31.987Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-24T04:24:33.561Z [nileopedia-backend] info: Processing email job: 268
+2026-06-24T04:24:33.562Z [nileopedia-backend] info: Processing email job: 269
+2026-06-24T04:24:33.566Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:33.567Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:33.569Z [nileopedia-backend] error: Email job failed: 268 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:33.569Z [nileopedia-backend] error: Email job failed: 269 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:33.659Z [nileopedia-backend] info: Processing email job: 270
+2026-06-24T04:24:33.664Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:33.666Z [nileopedia-backend] error: Email job failed: 270 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:37.573Z [nileopedia-backend] info: Processing email job: 268
+2026-06-24T04:24:37.574Z [nileopedia-backend] info: Processing email job: 269
+2026-06-24T04:24:37.575Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:37.576Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:37.577Z [nileopedia-backend] error: Email job failed: 268 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:37.579Z [nileopedia-backend] error: Email job failed: 269 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:37.672Z [nileopedia-backend] info: Processing email job: 270
+2026-06-24T04:24:37.675Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-24T04:24:37.676Z [nileopedia-backend] error: Email job failed: 270 connect ECONNREFUSED 127.0.0.1:1025

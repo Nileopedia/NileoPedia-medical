@@ -18,5 +18,6 @@ router.get('/', authenticate, authorize('ADMIN'), userController.getUsers.bind(u
 router.get('/:id', authenticate, authorize('ADMIN'), userController.getUserById.bind(userController));
 router.patch('/:id/deactivate', authenticate, authorize('ADMIN'), userController.deactivateUser.bind(userController));
 router.patch('/:id/activate', authenticate, authorize('ADMIN'), userController.activateUser.bind(userController));
+router.post('/validator', authenticate, authorize('ADMIN'), userController.createValidator.bind(userController));
 
 export default router;

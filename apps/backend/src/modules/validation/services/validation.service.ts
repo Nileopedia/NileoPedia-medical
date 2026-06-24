@@ -47,9 +47,10 @@ export class ValidationService {
     });
   }
 
-  async getHistory(validatorId: string) {
+  async getHistory(validatorId: string, userRole?: string) {
+    const where = userRole === 'ADMIN' ? {} : { validatorId };
     const reviews = await prisma.validationReview.findMany({
-      where: { validatorId },
+      where,
       include: { aiResponse: { include: { question: true } } },
       orderBy: { reviewedAt: 'desc' },
     });

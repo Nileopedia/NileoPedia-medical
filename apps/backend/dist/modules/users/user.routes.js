@@ -16,5 +16,6 @@ router.get('/', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)
 router.get('/:id', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), userController.getUserById.bind(userController));
 router.patch('/:id/deactivate', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), userController.deactivateUser.bind(userController));
 router.patch('/:id/activate', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), userController.activateUser.bind(userController));
+router.post('/validator', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), userController.createValidator.bind(userController));
 exports.default = router;
 //# sourceMappingURL=user.routes.js.map

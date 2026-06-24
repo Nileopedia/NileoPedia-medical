@@ -8,10 +8,10 @@ export declare const searchQuerySchema: z.ZodObject<{
     publicationYear: z.ZodOptional<z.ZodNumber>;
     documentType: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    page: number;
+    limit: number;
     type: "keyword" | "semantic" | "hybrid";
     q: string;
-    limit: number;
-    page: number;
     specialty?: string | undefined;
     publicationYear?: number | undefined;
     documentType?: string | undefined;
@@ -29,8 +29,8 @@ export declare const semanticSearchSchema: z.ZodObject<{
     topK: z.ZodDefault<z.ZodNumber>;
     specialty: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    topK: number;
     q: string;
+    topK: number;
     specialty?: string | undefined;
 }, {
     q: string;
@@ -42,8 +42,8 @@ export declare const keywordSearchSchema: z.ZodObject<{
     limit: z.ZodDefault<z.ZodNumber>;
     specialty: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    q: string;
     limit: number;
+    q: string;
     specialty?: string | undefined;
 }, {
     q: string;

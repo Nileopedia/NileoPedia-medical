@@ -2,8 +2,8 @@ import { UpdateProfileDto, ChangePasswordDto, GetUsersQuery, GetUsersResult } fr
 export declare class UserService {
     getCurrentUser(userId: string): Promise<{
         id: string;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -13,8 +13,8 @@ export declare class UserService {
     }>;
     updateProfile(userId: string, data: UpdateProfileDto): Promise<{
         id: string;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -25,24 +25,24 @@ export declare class UserService {
     changePassword(userId: string, data: ChangePasswordDto): Promise<void>;
     getUserById(userId: string): Promise<{
         id: string;
-        createdAt: Date;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
     getUsers(query: GetUsersQuery): Promise<GetUsersResult>;
     deactivateUser(userId: string): Promise<void>;
     activateUser(userId: string): Promise<void>;
     getPreferences(userId: string): Promise<{
-        userId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         theme: string;
         language: string;
         sidebarCollapsed: boolean;
@@ -74,10 +74,10 @@ export declare class UserService {
         uploadNotifications?: boolean;
         validationNotifications?: boolean;
     }): Promise<{
-        userId: string;
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        userId: string;
         theme: string;
         language: string;
         sidebarCollapsed: boolean;
@@ -87,6 +87,22 @@ export declare class UserService {
         systemNotifications: boolean;
         uploadNotifications: boolean;
         validationNotifications: boolean;
+    }>;
+    createValidator(data: {
+        fullName: string;
+        email: string;
+        password?: string;
+        specialization?: string;
+        institution?: string;
+    }): Promise<{
+        id: string;
+        fullName: string;
+        email: string;
+        role: import("@prisma/client").$Enums.UserRole;
+        specialization: string | null;
+        institution: string | null;
+        accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
 }
 //# sourceMappingURL=user.service.d.ts.map
