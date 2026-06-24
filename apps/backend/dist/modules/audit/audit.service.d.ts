@@ -3,8 +3,8 @@ export declare class AuditService {
     createAuditLog(data: CreateAuditLogDto): Promise<{
         id: string;
         createdAt: Date;
-        userId: string | null;
         description: string | null;
+        userId: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
         entityType: string;
@@ -23,8 +23,8 @@ export declare class AuditService {
     } & {
         id: string;
         createdAt: Date;
-        userId: string | null;
         description: string | null;
+        userId: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
         entityType: string;
@@ -39,8 +39,8 @@ export declare class AuditService {
         logs: {
             id: string;
             createdAt: Date;
-            userId: string | null;
             description: string | null;
+            userId: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
@@ -67,8 +67,8 @@ export declare class AuditService {
         } & {
             id: string;
             createdAt: Date;
-            userId: string | null;
             description: string | null;
+            userId: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
@@ -92,8 +92,8 @@ export declare class AuditService {
         } & {
             id: string;
             createdAt: Date;
-            userId: string | null;
             description: string | null;
+            userId: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;

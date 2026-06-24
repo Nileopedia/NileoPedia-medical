@@ -263,6 +263,9 @@ prisma_1.default.$connect()
             console.log('User disconnected:', socket.id);
         });
     });
+    // Global error handler
+    const { errorHandler } = require('./shared/middleware');
+    app.use(errorHandler);
     // Start server
     const PORT = env_1.CONFIG.PORT || 3001;
     httpServer.listen(PORT, () => {

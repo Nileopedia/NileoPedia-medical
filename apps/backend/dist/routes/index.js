@@ -57,6 +57,9 @@ const setupRoutes = (app, io, authController) => {
                     'GET /api/v1/admin/analytics': 'Get system analytics',
                     'GET /api/v1/admin/performance-test': 'Get AI performance timing metrics',
                 },
+                users: {
+                    'POST /api/v1/users/validator': 'Create a new validator (ADMIN only)',
+                },
                 documents: {
                     'POST /api/v1/documents/upload': 'Upload medical document (ADMIN)',
                     'GET /api/v1/documents': 'List documents',

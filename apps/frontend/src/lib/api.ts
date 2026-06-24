@@ -506,11 +506,12 @@ class ApiClient {
     return this.unwrap(payload);
   }
 
-  async getPendingReviews(): Promise<Array<{ id: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string; status: string }>> {
+  async getPendingReviews(): Promise<Array<{ id: string; aiResponseId: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string; status: string }>> {
     const payload = await this.request<ApiEnvelope<BackendPendingResponse[]>>('/validation/pending');
     const items = this.unwrap(payload);
     return items.map((item) => ({
       id: item.id,
+      aiResponseId: item.id,
       title: item.question?.questionText || item.summary.substring(0, 50),
       category: 'General',
       submittedAt: item.createdAt,

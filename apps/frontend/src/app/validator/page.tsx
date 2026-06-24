@@ -7,9 +7,10 @@ import { Check, X } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api, ValidationReview } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
+import Link from 'next/link';
 
 export default function ValidatorPage() {
-  const [reviewQueue, setReviewQueue] = useState<Array<{ id: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string }>>([]);
+  const [reviewQueue, setReviewQueue] = useState<Array<{ id: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string; aiResponseId?: string }>>([]);
   const [validationHistory, setValidationHistory] = useState<ValidationReview[]>([]);
   const [activeTab, setActiveTab] = useState<'pending' | 'history'>('pending');
   const [loading, setLoading] = useState(false);
@@ -158,9 +159,9 @@ export default function ValidatorPage() {
                         <X size={16} className="mr-1" />
                         {actionLoading === item.id ? 'Processing...' : 'Reject'}
                       </Button>
-                      <Button variant="outline" size="sm">
-                        View Details
-                      </Button>
+<Button variant="outline" size="sm" onClick={() => window.location.href = `/validator/${item.id}`}>
+                         View Details
+                       </Button>
                     </div>
                   </CardContent>
                 </Card>

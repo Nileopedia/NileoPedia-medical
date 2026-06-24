@@ -288,6 +288,10 @@ prisma.$connect()
       });
     });
 
+    // Global error handler
+    const { errorHandler } = require('./shared/middleware');
+    app.use(errorHandler);
+
     // Start server
     const PORT = CONFIG.PORT || 3001;
     httpServer.listen(PORT, () => {

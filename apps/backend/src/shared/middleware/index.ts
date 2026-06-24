@@ -41,5 +41,11 @@ export const setupMiddleware = (app: express.Application) => {
   });
 };
 
+// Global error handler middleware
+export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
+  logger.error('Error handler caught:', err);
+  res.status(500).json({ success: false, message: err.message || 'Internal server error' });
+};
+
 // Export validation middleware
 export { validate };
