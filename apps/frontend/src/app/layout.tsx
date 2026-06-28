@@ -7,6 +7,7 @@ import { ThemeProvider } from "next-themes";
 export const metadata: Metadata = {
   title: "NileoPedia",
   description: "Medical Intelligence Platform",
+  viewport: "width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover",
 };
 
 export default function RootLayout({

@@ -25,6 +25,7 @@ export declare class UserService {
     changePassword(userId: string, data: ChangePasswordDto): Promise<void>;
     getUserById(userId: string): Promise<{
         id: string;
+        createdAt: Date;
         fullName: string;
         email: string;
         role: import("@prisma/client").$Enums.UserRole;
@@ -33,16 +34,15 @@ export declare class UserService {
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        createdAt: Date;
     }>;
     getUsers(query: GetUsersQuery): Promise<GetUsersResult>;
     deactivateUser(userId: string): Promise<void>;
     activateUser(userId: string): Promise<void>;
     getPreferences(userId: string): Promise<{
         id: string;
+        userId: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
         theme: string;
         language: string;
         sidebarCollapsed: boolean;
@@ -75,9 +75,9 @@ export declare class UserService {
         validationNotifications?: boolean;
     }): Promise<{
         id: string;
+        userId: string;
         createdAt: Date;
         updatedAt: Date;
-        userId: string;
         theme: string;
         language: string;
         sidebarCollapsed: boolean;
@@ -96,13 +96,13 @@ export declare class UserService {
         institution?: string;
     }): Promise<{
         id: string;
+        createdAt: Date;
         fullName: string;
         email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
-        createdAt: Date;
     }>;
 }
 //# sourceMappingURL=user.service.d.ts.map

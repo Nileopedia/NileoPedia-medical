@@ -6,8 +6,15 @@ import {
   GetDocumentsQuery,
   GetDocumentsResult,
 } from './document.types';
+import { DocumentMetadataService } from './metadata.service';
 
 export class DocumentService {
+  private metadataService: DocumentMetadataService;
+
+  constructor() {
+    this.metadataService = new DocumentMetadataService();
+  }
+
   async getAllDocuments(query: GetDocumentsQuery): Promise<GetDocumentsResult> {
     const { page, limit, search, ingestionStatus, documentType, publicationYear } = query;
     const skip = (page - 1) * limit;
@@ -38,13 +45,17 @@ export class DocumentService {
         orderBy: { createdAt: 'desc' },
         include: {
           embeddingMetadata: true,
+          documentMetadata: true,
         },
       }),
       prisma.medicalDocument.count({ where }),
     ]);
 
     return {
-      documents,
+      documents: documents.map(doc => ({
+        ...doc,
+        metadata: doc.documentMetadata || undefined,
+      })),
       total,
       page,
       limit,
@@ -57,6 +68,7 @@ export class DocumentService {
       where: { id },
       include: {
         embeddingMetadata: true,
+        documentMetadata: true,
       },
     });
   }
@@ -98,7 +110,11 @@ export class DocumentService {
       throw new Error('Document not found');
     }
 
-    return prisma.medicalDocument.delete({
+    await prisma.documentMetadata.deleteMany({
+      where: { documentId: id },
+    });
+
+    await prisma.medicalDocument.delete({
       where: { id },
     });
   }
@@ -153,6 +169,7 @@ export class DocumentService {
         embeddingMetadata: {
           select: { id: true },
         },
+        documentMetadata: true,
       },
     });
 
@@ -165,6 +182,7 @@ export class DocumentService {
       ingestionStatus: document.ingestionStatus,
       chunksProcessed: document.embeddingMetadata.length,
       vectorsStored: document.embeddingMetadata.length,
+      metadata: document.documentMetadata || undefined,
     };
   }
 }

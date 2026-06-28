@@ -29,7 +29,9 @@ export interface GetDocumentsQuery {
     publicationYear?: number;
 }
 export interface GetDocumentsResult {
-    documents: MedicalDocument[];
+    documents: (MedicalDocument & {
+        metadata?: any;
+    })[];
     total: number;
     page: number;
     limit: number;

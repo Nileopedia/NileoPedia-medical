@@ -1,47 +1,51 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Search, FileText, ExternalLink } from 'lucide-react';
+import { Card, CardHeader, CardContent } from '../../components/ui/Card';
+import { Search, ExternalLink } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Query } from '../../types';
 import { AppLayout } from '../../components/layout/AppLayout';
+import { useRouter } from 'next/navigation';
 
 export default function HistoryPage() {
-  const [search, setSearch] = useState('');
-  const [queries, setQueries] = useState<Query[]>([]);
+   const [search, setSearch] = useState('');
+   const [queries, setQueries] = useState<Query[]>([]);
+   const router = useRouter();
+   const mockQueries: Query[] = [
+     { id: '1', question: 'What are the latest guidelines for AF management?', category: 'Cardiology', status: 'approved', createdAt: '2 min ago', updatedAt: '2 min ago', userId: '1' },
+     { id: '2', question: 'How to manage acute asthma in children?', category: 'Pediatrics', status: 'pending', createdAt: '15 min ago', updatedAt: '15 min ago', userId: '1' },
+   ];
 
-  useEffect(() => {
-    const fetchHistory = async () => {
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-      if (!token) {
-        setQueries([
-          { id: '1', question: 'What are the latest guidelines for AF management?', category: 'Cardiology', status: 'approved', createdAt: '2 min ago', updatedAt: '2 min ago', userId: '1' },
-          { id: '2', question: 'How to manage acute asthma in children?', category: 'Pediatrics', status: 'pending', createdAt: '15 min ago', updatedAt: '15 min ago', userId: '1' },
-        ]);
-        return;
-      }
-      try {
-        const data = await api.getHistory();
-        const formatted: Query[] = data.map((q) => ({
-          id: q.id,
-          question: q.question,
-          category: q.category || 'General',
-          status: (q.status || 'pending') as 'pending' | 'approved' | 'rejected' | 'in_review',
-          createdAt: new Date(q.createdAt).toLocaleDateString(),
-          updatedAt: new Date(q.updatedAt).toLocaleDateString(),
-          userId: q.userId,
-        }));
-        setQueries(formatted);
-      } catch {
-        setQueries([
-          { id: '1', question: 'What are the latest guidelines for AF management?', category: 'Cardiology', status: 'approved', createdAt: '2 min ago', updatedAt: '2 min ago', userId: '1' },
-          { id: '2', question: 'How to manage acute asthma in children?', category: 'Pediatrics', status: 'pending', createdAt: '15 min ago', updatedAt: '15 min ago', userId: '1' },
-        ]);
-      }
-    };
-    fetchHistory();
-  }, []);
+   useEffect(() => {
+     const fetchHistory = async () => {
+       const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+       if (!token) {
+         setQueries(mockQueries);
+         return;
+       }
+       try {
+         const data = await api.getHistory();
+         const formatted: Query[] = data.map((q) => ({
+           id: q.id,
+           question: q.question,
+           category: q.category || 'General',
+           status: (q.status || 'pending') as 'pending' | 'approved' | 'rejected' | 'in_review',
+           createdAt: new Date(q.createdAt).toLocaleDateString(),
+           updatedAt: new Date(q.updatedAt).toLocaleDateString(),
+           userId: q.userId,
+         }));
+         setQueries(formatted);
+       } catch (error) {
+         if (error instanceof Error && error.message === 'Please sign in to continue') {
+           router.push('/login');
+         } else {
+           setQueries(mockQueries);
+         }
+       }
+     };
+     fetchHistory();
+   }, [router]);
 
   const filteredQueries = queries.filter(q =>
     q.question.toLowerCase().includes(search.toLowerCase()) ||

@@ -29,7 +29,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DocumentService = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const client_1 = require("@prisma/client");
+const metadata_service_1 = require("./metadata.service");
 class DocumentService {
+    constructor() {
+        this.metadataService = new metadata_service_1.DocumentMetadataService();
+    }
     async getAllDocuments(query) {
         const { page, limit, search, ingestionStatus, documentType, publicationYear } = query;
         const skip = (page - 1) * limit;
@@ -54,12 +58,16 @@ class DocumentService {
                 orderBy: { createdAt: 'desc' },
                 include: {
                     embeddingMetadata: true,
+                    documentMetadata: true,
                 },
             }),
             prisma_1.default.medicalDocument.count({ where }),
         ]);
         return {
-            documents,
+            documents: documents.map(doc => ({
+                ...doc,
+                metadata: doc.documentMetadata || undefined,
+            })),
             total,
             page,
             limit,
@@ -71,6 +79,7 @@ class DocumentService {
             where: { id },
             include: {
                 embeddingMetadata: true,
+                documentMetadata: true,
             },
         });
     }
@@ -107,7 +116,10 @@ class DocumentService {
         if (!document) {
             throw new Error('Document not found');
         }
-        return prisma_1.default.medicalDocument.delete({
+        await prisma_1.default.documentMetadata.deleteMany({
+            where: { documentId: id },
+        });
+        await prisma_1.default.medicalDocument.delete({
             where: { id },
         });
     }
@@ -155,6 +167,7 @@ class DocumentService {
                 embeddingMetadata: {
                     select: { id: true },
                 },
+                documentMetadata: true,
             },
         });
         if (!document) {
@@ -165,6 +178,7 @@ class DocumentService {
             ingestionStatus: document.ingestionStatus,
             chunksProcessed: document.embeddingMetadata.length,
             vectorsStored: document.embeddingMetadata.length,
+            metadata: document.documentMetadata || undefined,
         };
     }
 }

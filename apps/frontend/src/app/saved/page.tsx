@@ -6,6 +6,7 @@ import { Bookmark, Eye, Trash2 } from 'lucide-react';
 import { api } from '../../lib/api';
 import { Query } from '../../types';
 import { AppLayout } from '../../components/layout/AppLayout';
+import { useRouter } from 'next/navigation';
 
 const mockSavedItems: Query[] = [
   { id: '1', question: 'Type 2 Diabetes Management in Elderly', category: 'Endocrinology', status: 'approved', createdAt: '2 days ago', updatedAt: '2 days ago', userId: '1' },
@@ -15,6 +16,7 @@ const mockSavedItems: Query[] = [
 
 export default function SavedPage() {
   const [savedItems, setSavedItems] = React.useState<Query[]>([]);
+  const router = useRouter();
 
   useEffect(() => {
     const fetchSaved = async () => {
@@ -27,12 +29,16 @@ export default function SavedPage() {
         const data = await api.getSavedResponses();
         setSavedItems(data);
       } catch (err) {
-        console.error('Failed to load saved responses:', err);
-        setSavedItems(mockSavedItems);
+        if (err instanceof Error && err.message === 'Please sign in to continue') {
+          router.push('/login');
+        } else {
+          console.error('Failed to load saved responses:', err);
+          setSavedItems(mockSavedItems);
+        }
       }
     };
     fetchSaved();
-  }, []);
+  }, [router]);
 
   return (
     <AppLayout>

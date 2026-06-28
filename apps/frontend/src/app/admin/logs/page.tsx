@@ -1,46 +1,151 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
 import { AppLayout } from '../../../components/layout/AppLayout';
+import { api } from '../../../lib/api';
 
-const logs = [
-  { id: '1', action: 'User registration', user: 'Dr. John Smith', timestamp: '2 hours ago', ip: '192.168.1.1' },
-  { id: '2', action: 'Query submitted', user: 'Dr. Sarah Johnson', timestamp: '3 hours ago', ip: '192.168.1.2' },
-];
+interface AuditLog {
+  id: string;
+  action: string;
+  entityType?: string;
+  description?: string;
+  ipAddress?: string;
+  createdAt: string;
+  user?: {
+    id: string;
+    fullName: string;
+    email: string;
+    role: string;
+  };
+}
 
 export default function AdminLogsPage() {
+  const [logs, setLogs] = useState<AuditLog[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  useEffect(() => {
+    loadLogs();
+  }, [page]);
+
+  const loadLogs = async () => {
+    setLoading(true);
+    try {
+      const result = await api.getAuditLogs({ page, limit: 20 });
+      setLogs(result.logs);
+      setTotalPages(result.totalPages);
+    } catch (error) {
+      console.error('Failed to load audit logs:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const getActionColor = (action: string) => {
+    if (action.includes('SUSPEND') || action.includes('REJECTED') || action.includes('FAILED')) {
+      return 'text-red-600 bg-red-50';
+    }
+    if (action.includes('ACTIVATE') || action.includes('APPROVED') || action.includes('SUCCESS')) {
+      return 'text-green-600 bg-green-50';
+    }
+    if (action.includes('LOGIN') || action.includes('LOGOUT')) {
+      return 'text-blue-600 bg-blue-50';
+    }
+    return 'text-gray-600 bg-gray-50';
+  };
+
   return (
     <AppLayout>
-      <div className="space-y-6">
-        <h1 className="text-2xl font-bold text-foreground mb-2">System Logs</h1>
-        <p className="text-muted-foreground">View system logs and audit trail</p>
+      <div className="space-y-4 sm:space-y-6">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">System Logs</h1>
+            <p className="text-sm text-muted-foreground">View system logs and audit trail</p>
+          </div>
+          <button
+            onClick={loadLogs}
+            className="px-4 py-2 text-sm border border-border rounded-lg hover:bg-muted transition-colors"
+          >
+            Refresh
+          </button>
+        </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
+            <CardTitle className="text-base sm:text-lg">Recent Activity</CardTitle>
           </CardHeader>
           <CardContent>
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 font-medium text-foreground">Action</th>
-                  <th className="text-left py-2 font-medium text-foreground">User</th>
-                  <th className="text-left py-2 font-medium text-foreground">Timestamp</th>
-                  <th className="text-left py-2 font-medium text-foreground">IP Address</th>
-                </tr>
-              </thead>
-              <tbody>
-                {logs.map((log) => (
-                  <tr key={log.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 text-foreground">{log.action}</td>
-                    <td className="py-3 text-muted-foreground">{log.user}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-500">{log.timestamp}</td>
-                    <td className="py-3 text-slate-500 dark:text-slate-500">{log.ip}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+            {loading ? (
+              <div className="flex items-center justify-center py-8">
+                <div className="w-6 h-6 border-2 border-primary border-t-transparent rounded-full animate-spin mr-2" />
+                <span className="text-muted-foreground">Loading logs...</span>
+              </div>
+            ) : logs.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                No audit logs found
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Action</TableHead>
+                      <TableHead>User</TableHead>
+                      <TableHead>Timestamp</TableHead>
+                      <TableHead>IP Address</TableHead>
+                    </TableRow>
+                  </TableHeader>
+                  <TableBody>
+                    {logs.map((log) => (
+                      <TableRow key={log.id}>
+                        <TableCell>
+                          <span className={`inline-flex items-center px-2 py-1 rounded text-xs font-medium ${getActionColor(log.action)}`}>
+                            {log.action}
+                          </span>
+                          {log.description && (
+                            <p className="text-xs text-muted-foreground mt-1">{log.description}</p>
+                          )}
+                        </TableCell>
+                        <TableCell className="text-muted-foreground">
+                          {log.user?.fullName || log.user?.email || 'System'}
+                        </TableCell>
+                        <TableCell className="text-slate-500">
+                          {new Date(log.createdAt).toLocaleString()}
+                        </TableCell>
+                        <TableCell className="text-slate-500">
+                          {log.ipAddress || '-'}
+                        </TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </div>
+            )}
+            
+            {totalPages > 1 && (
+              <div className="flex items-center justify-between mt-4 pt-4 border-t border-border">
+                <button
+                  onClick={() => setPage(p => Math.max(1, p - 1))}
+                  disabled={page === 1}
+                  className="px-3 py-1 text-sm border border-border rounded-lg hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Previous
+                </button>
+                <span className="text-sm text-muted-foreground">
+                  Page {page} of {totalPages}
+                </span>
+                <button
+                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                  disabled={page === totalPages}
+                  className="px-3 py-1 text-sm border border-border rounded-lg hover:bg-muted transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  Next
+                </button>
+              </div>
+            )}
           </CardContent>
         </Card>
       </div>

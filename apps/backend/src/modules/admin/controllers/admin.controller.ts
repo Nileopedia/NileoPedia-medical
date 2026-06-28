@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { AdminService } from '../services/admin.service';
+import { AuditLogger } from '../../audit/audit.logger';
 import { logger } from '../../../config/logger';
 import { RetrievalService } from '../../../modules/retrieval/retrieval.service';
 import { EmbeddingService } from '../../../modules/rag/services/embedding.service';
@@ -16,6 +17,11 @@ export class AdminController {
   async getUsers(req: Request, res: Response, next: NextFunction) {
     try {
       const users = await this.adminService.getUsers();
+      await AuditLogger.log(req, {
+        action: 'ADMIN_VIEW_USERS',
+        entityType: 'User',
+        description: 'Admin viewed users list',
+      });
       res.status(200).json({ success: true, data: users });
     } catch (error) {
       logger.error('Error in getUsers controller:', error);
@@ -27,6 +33,13 @@ export class AdminController {
     try {
       const { userId } = req.params;
       await this.adminService.suspendUser(userId);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_USER_SUSPENDED',
+        entityType: 'User',
+        entityId: userId,
+        description: 'Admin suspended a user',
+        metadata: { targetUserId: userId },
+      });
       res.status(200).json({ success: true, message: 'User suspended' });
     } catch (error) {
       logger.error('Error in suspendUser controller:', error);
@@ -38,6 +51,13 @@ export class AdminController {
     try {
       const { userId } = req.params;
       await this.adminService.activateUser(userId);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_USER_ACTIVATED',
+        entityType: 'User',
+        entityId: userId,
+        description: 'Admin activated a user',
+        metadata: { targetUserId: userId },
+      });
       res.status(200).json({ success: true, message: 'User activated' });
     } catch (error) {
       logger.error('Error in activateUser controller:', error);
@@ -49,6 +69,13 @@ export class AdminController {
     try {
       const { userId } = req.params;
       await this.adminService.deleteUser(userId);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_USER_DELETED',
+        entityType: 'User',
+        entityId: userId,
+        description: 'Admin deleted a user',
+        metadata: { targetUserId: userId },
+      });
       res.status(200).json({ success: true, message: 'User deleted' });
     } catch (error) {
       logger.error('Error in deleteUser controller:', error);
@@ -59,6 +86,11 @@ export class AdminController {
   async getAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
       const analytics = await this.adminService.getAnalytics();
+      await AuditLogger.log(req, {
+        action: 'ADMIN_VIEW_ANALYTICS',
+        entityType: 'Analytics',
+        description: 'Admin viewed analytics dashboard',
+      });
       res.status(200).json({ success: true, data: analytics });
     } catch (error) {
       logger.error('Error in getAnalytics controller:', error);
@@ -85,6 +117,12 @@ export class AdminController {
         console.warn('Embedding test fallback to mock:', e);
         actualSource = 'mock';
       }
+      
+      await AuditLogger.log(req, {
+        action: 'ADIN_TEST_EMBEDDINGS',
+        entityType: 'System',
+        description: 'Admin ran embedding test',
+      });
       
       res.status(200).json({
         success: true,
@@ -128,6 +166,13 @@ export class AdminController {
 
       metrics.total_ms = Date.now() - totalStart;
 
+      await AuditLogger.log(req, {
+        action: 'ADMIN_PERFORMANCE_TEST',
+        entityType: 'System',
+        description: 'Admin ran performance test',
+        metadata: metrics,
+      });
+      
       res.status(200).json({
         embedding_ms: metrics.embedding_ms,
         pinecone_ms: metrics.pinecone_ms,
@@ -158,6 +203,12 @@ export class AdminController {
         this.getVectorsCount(),
       ]);
 
+      await AuditLogger.log(req, {
+        action: 'ADMIN_VIEW_SYSTEM_STATUS',
+        entityType: 'System',
+        description: 'Admin viewed system status',
+      });
+      
       res.status(200).json({
         embeddings: embeddingOk,
         pinecone: pineconeOk,

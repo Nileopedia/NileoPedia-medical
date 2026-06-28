@@ -7,57 +7,71 @@ import { RefreshCw, CheckCircle, AlertCircle, RefreshCcw, WifiOff } from 'lucide
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
+import { useRouter } from 'next/navigation';
 
 export default function AdminPage() {
-  const [ingestionStatus, setIngestionStatus] = useState<{
-    isRunning: boolean;
-    isActive: boolean;
-    sources: number;
-  }>({ isRunning: false, isActive: false, sources: 9 });
-  const [loading, setLoading] = useState(false);
-  const [refreshLoading, setRefreshLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const user = useAppStore((state) => state.user);
+   const [ingestionStatus, setIngestionStatus] = useState<{
+     isRunning: boolean;
+     isActive: boolean;
+     sources: number;
+   }>({ isRunning: false, isActive: false, sources: 9 });
+   const [loading, setLoading] = useState(false);
+   const [refreshLoading, setRefreshLoading] = useState(false);
+   const [error, setError] = useState<string | null>(null);
+   const router = useRouter();
+   const user = useAppStore((state) => state.user);
 
-  useEffect(() => {
-    fetchStatus();
-  }, []);
+   useEffect(() => {
+     fetchStatus();
+   }, []);
 
-  const fetchStatus = async () => {
-    try {
-      const status = await api.getIngestionStatus();
-      setIngestionStatus(status);
-      setError(null);
-    } catch (error) {
-      setError(error instanceof Error ? error.message : 'Connection failed');
-    }
-  };
+   const fetchStatus = async () => {
+     try {
+       const status = await api.getIngestionStatus();
+       setIngestionStatus(status);
+       setError(null);
+     } catch (error) {
+       if (error instanceof Error && error.message === 'Please sign in to continue') {
+         router.push('/login');
+       } else {
+         setError(error instanceof Error ? error.message : 'Connection failed');
+       }
+     }
+   };
 
-  const handleRunIngestion = async () => {
-    setLoading(true);
-    try {
-      await api.runScheduledIngestion();
-      await fetchStatus();
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : 'Failed to run ingestion';
-      setError(msg);
-    } finally {
-      setLoading(false);
-    }
-  };
+   const handleRunIngestion = async () => {
+     setLoading(true);
+     try {
+       await api.runScheduledIngestion();
+       await fetchStatus();
+     } catch (error) {
+       const msg = error instanceof Error ? error.message : 'Failed to run ingestion';
+       if (msg === 'Please sign in to continue') {
+         router.push('/login');
+       } else {
+         setError(msg);
+       }
+     } finally {
+       setLoading(false);
+     }
+   };
 
-  const handleIncrementalRefresh = async () => {
-    setRefreshLoading(true);
-    try {
-      await api.runIncrementalRefresh();
-      await fetchStatus();
-    } catch (error) {
-      const msg = error instanceof Error ? error.message : 'Failed to run incremental refresh';
-      setError(msg);
-    } finally {
-      setRefreshLoading(false);
-    }
-  };
+   const handleIncrementalRefresh = async () => {
+     setRefreshLoading(true);
+     try {
+       await api.runIncrementalRefresh();
+       await fetchStatus();
+     } catch (error) {
+       const msg = error instanceof Error ? error.message : 'Failed to run incremental refresh';
+       if (msg === 'Please sign in to continue') {
+         router.push('/login');
+       } else {
+         setError(msg);
+       }
+     } finally {
+       setRefreshLoading(false);
+     }
+   };
 
   if (user?.role !== 'admin') {
     return (

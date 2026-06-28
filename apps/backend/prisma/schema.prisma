@@ -160,7 +160,29 @@ model MedicalDocument {
   isVerified      Boolean @default(false)
   createdAt       DateTime @default(now())
   updatedAt       DateTime @default(now())
-  embeddingMetadata EmbeddingMetadata[]
+  embeddingMetadata   EmbeddingMetadata[]
+  documentMetadata    DocumentMetadata[]
+}
+
+// Document Metadata (extracted during upload)
+model DocumentMetadata {
+  id            String   @id @default(uuid())
+  documentId    String
+  title         String?
+  authors       String[] @default([])
+  journal       String?
+  publisher     String?
+  publicationYear Int?
+  doi           String?
+  sourceURL     String?
+  documentType  String?
+
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  document MedicalDocument @relation(fields: [documentId], references: [id])
+
+  @@unique([documentId])
 }
 
 // Pinecone Vector References

@@ -3563,3 +3563,270 @@ The table `public.UserPreferences` does not exist in the current database.
 2026-06-24T18:09:51.584Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-24T18:09:51.584Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-24T18:09:51.996Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-25T06:13:12.566Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:13:12.567Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:13:14.974Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:13:14.975Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:14:55.727Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-25T06:14:58.030Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-25T06:14:58.858Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-25T06:15:54.004Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:54.005Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:15:55.278Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:55.278Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:15:56.182Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:56.182Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:15:56.582Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:56.583Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:17:28.239Z [nileopedia-backend] error: Error in createValidator controller: Email already exists
+2026-06-25T06:17:28.239Z [nileopedia-backend] error: Error handler caught: Email already exists
+2026-06-25T07:52:56.939Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:56.968Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:56.984Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:56.999Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:57.019Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T08:03:58.044Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.070Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.083Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.099Z [nileopedia-backend] error: Email job failed: 280 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.101Z [nileopedia-backend] error: Email job failed: 281 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.102Z [nileopedia-backend] error: Email job failed: 282 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.847Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.858Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.864Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.873Z [nileopedia-backend] error: Email job failed: 280 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.874Z [nileopedia-backend] error: Email job failed: 281 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.874Z [nileopedia-backend] error: Email job failed: 282 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.329Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.335Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.344Z [nileopedia-backend] error: Email job failed: 280 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.345Z [nileopedia-backend] error: Email job failed: 281 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.346Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.400Z [nileopedia-backend] error: Email job failed: 282 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T13:19:47.777Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.808Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.832Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.840Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.847Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:18:51.926Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.946Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.960Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.978Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.992Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.057Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.076Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.091Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.102Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.723Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.733Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.743Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.767Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.789Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.808Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.825Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.842Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.853Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:39:36.881Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.905Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.913Z [nileopedia-backend] error: Email job failed: 283 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.914Z [nileopedia-backend] error: Email job failed: 284 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.960Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.969Z [nileopedia-backend] error: Email job failed: 285 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.032Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.043Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.053Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.073Z [nileopedia-backend] error: Email job failed: 283 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.074Z [nileopedia-backend] error: Email job failed: 284 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.078Z [nileopedia-backend] error: Email job failed: 285 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.135Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.139Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.142Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.147Z [nileopedia-backend] error: Email job failed: 283 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.150Z [nileopedia-backend] error: Email job failed: 284 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.151Z [nileopedia-backend] error: Email job failed: 285 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:46.610Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.619Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.626Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.633Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.640Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:17.440Z [nileopedia-backend] error: Document ingestion job failed: 1 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:220:34
+
+  217   return { success: true };
+  218 
+  219 } catch (error) {
+→ 220   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-06-27T18:47:18.103Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:19.571Z [nileopedia-backend] error: Document ingestion job failed: 1 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:220:34
+
+  217   return { success: true };
+  218 
+  219 } catch (error) {
+→ 220   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-06-27T18:47:18.115Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:18.146Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:18.153Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:23.672Z [nileopedia-backend] error: Document ingestion job failed: 1 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:220:34
+
+  217   return { success: true };
+  218 
+  219 } catch (error) {
+→ 220   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-06-27T18:47:26.158Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.167Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.172Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.179Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.184Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T20:58:33.848Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.

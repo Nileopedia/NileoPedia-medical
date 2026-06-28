@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, use } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Check, X, ArrowLeft } from 'lucide-react';
@@ -18,8 +18,8 @@ interface ValidationDetail {
   reviewedAt: string;
   aiResponse?: ValidationReview['aiResponse'] & {
     summary?: string;
-    keyFindings?: string[];
-    detailedExplanation?: string;
+    keyRecommendations?: string[];
+    sections?: Record<string, string>;
     citations?: Array<{
       id?: string;
       title: string;
@@ -33,7 +33,9 @@ interface ValidationDetail {
   };
 }
 
-export default function ValidatorDetailPage({ params }: { params: { id: string } }) {
+export default function ValidatorDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = use(params);
+  const reviewId = resolvedParams.id;
   const [review, setReview] = useState<ValidationDetail | null>(null);
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
@@ -43,14 +45,14 @@ export default function ValidatorDetailPage({ params }: { params: { id: string }
     if (user?.role === 'validator' || user?.role === 'admin') {
       fetchReview();
     }
-  }, [user, params.id]);
+  }, [user, reviewId]);
 
   const fetchReview = async () => {
     setLoading(true);
     try {
       // Try to get from history first
       const history = await api.getValidationHistory();
-      const found = history.find((h) => h.id === params.id);
+      const found = history.find((h) => h.id === reviewId);
       if (found) {
         setReview({
           ...found,
@@ -62,7 +64,7 @@ export default function ValidatorDetailPage({ params }: { params: { id: string }
 
       // If not found in history, try to get from pending reviews
       const pending = await api.getPendingReviews();
-      const pendingFound = pending.find((p) => p.aiResponseId === params.id || p.id === params.id);
+      const pendingFound = pending.find((p) => p.aiResponseId === reviewId || p.id === reviewId);
       if (pendingFound) {
         setReview({
           id: pendingFound.id,
@@ -136,21 +138,26 @@ export default function ValidatorDetailPage({ params }: { params: { id: string }
                 <p className="text-muted-foreground">{review.aiResponse?.summary || 'No summary available'}</p>
               </div>
 
-              {review.aiResponse?.keyFindings && review.aiResponse.keyFindings.length > 0 && (
+              {review.aiResponse?.keyRecommendations && review.aiResponse.keyRecommendations.length > 0 && (
                 <div>
-                  <h4 className="font-medium text-foreground mb-2">Key Findings</h4>
+                  <h4 className="font-medium text-foreground mb-2">Key Recommendations</h4>
                   <ul className="list-disc list-inside space-y-1 text-muted-foreground">
-                    {review.aiResponse.keyFindings.map((finding, i) => (
-                      <li key={i}>{finding}</li>
+                    {review.aiResponse.keyRecommendations.map((rec, i) => (
+                      <li key={i}>{rec}</li>
                     ))}
                   </ul>
                 </div>
               )}
 
-              {review.aiResponse?.detailedExplanation && (
+              {review.aiResponse?.sections && Object.entries(review.aiResponse.sections).filter(([, v]) => v && v.trim().length > 0).length > 0 && (
                 <div>
                   <h4 className="font-medium text-foreground mb-2">Detailed Explanation</h4>
-                  <p className="text-muted-foreground whitespace-pre-wrap">{review.aiResponse.detailedExplanation}</p>
+                  {Object.entries(review.aiResponse.sections).filter(([, v]) => v && v.trim().length > 0).map(([section, content]) => (
+                    <div key={section} className="mb-2">
+                      <h5 className="text-sm font-medium text-foreground capitalize">{section.replace(/([A-Z])/g, ' $1').trim()}</h5>
+                      <p className="text-sm text-muted-foreground whitespace-pre-wrap">{content}</p>
+                    </div>
+                  ))}
                 </div>
               )}
 

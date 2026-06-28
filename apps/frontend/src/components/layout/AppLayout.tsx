@@ -48,7 +48,7 @@ export const AppLayout: React.FC<AppLayoutProps> = ({ children }) => {
       {/* Main content */}
       <div className={cn(mainMargin, 'transition-all duration-300 ease-in-out')}>
         <Navbar />
-        <main className="p-6">{children}</main>
+        <main className="p-4 sm:p-6">{children}</main>
       </div>
     </div>
   );

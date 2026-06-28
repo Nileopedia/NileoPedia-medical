@@ -22,10 +22,10 @@ export const StatCard: React.FC<StatCardProps> = ({
   className,
 }) => {
   return (
-    <div className={cn('bg-card rounded-xl border border-border p-5 shadow-sm', className)}>
+    <div className={cn('bg-card rounded-xl border border-border p-4 sm:p-5 shadow-sm w-full', className)}>
       {icon && <div className="mb-2">{icon}</div>}
       <p className="text-sm font-medium text-muted-foreground mb-1">{title}</p>
-      <p className="text-3xl font-bold text-foreground mb-2">{value}</p>
+      <p className="text-2xl sm:text-3xl font-bold text-foreground mb-2">{value}</p>
       {change && (
         <div className="flex items-center gap-1">
           {changeType === 'positive' ? (

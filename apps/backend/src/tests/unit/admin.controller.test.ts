@@ -7,6 +7,11 @@ jest.mock('../../modules/admin/services/admin.service');
 jest.mock('../../config/logger', () => ({
   logger: { error: jest.fn(), info: jest.fn() },
 }));
+jest.mock('../../modules/audit/audit.logger', () => ({
+  AuditLogger: {
+    log: jest.fn().mockResolvedValue(undefined),
+  },
+}));
 jest.mock('../../modules/rag/services/embedding.service', () => ({
   EmbeddingService: jest.fn().mockImplementation(() => ({
     embeddingSource: 'local',

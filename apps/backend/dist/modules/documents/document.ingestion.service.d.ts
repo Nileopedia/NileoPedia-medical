@@ -19,18 +19,18 @@ export declare class DocumentIngestionService {
     }): Promise<{
         document: {
             id: string;
+            description: string | null;
             createdAt: Date;
             updatedAt: Date;
-            specialty: string | null;
-            title: string;
-            documentType: string | null;
             source: string | null;
             publicationYear: number | null;
-            description: string | null;
+            specialty: string | null;
+            title: string;
             fileName: string;
             fileUrl: string;
             fileType: string;
             fileSize: number;
+            documentType: string | null;
             uploadedById: string;
             ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
             isVerified: boolean;

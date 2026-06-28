@@ -19,8 +19,8 @@ export declare const getNotificationsQuerySchema: z.ZodObject<{
     page: z.ZodDefault<z.ZodNumber>;
     limit: z.ZodDefault<z.ZodNumber>;
 }, "strip", z.ZodTypeAny, {
-    limit: number;
     page: number;
+    limit: number;
 }, {
     page?: number | undefined;
     limit?: number | undefined;

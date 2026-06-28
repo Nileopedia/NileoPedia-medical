@@ -4,6 +4,7 @@ exports.AuthController = void 0;
 const express_validator_1 = require("express-validator");
 const auth_service_1 = require("../services/auth.service");
 const google_service_1 = require("../services/google.service");
+const audit_logger_1 = require("../../audit/audit.logger");
 const logger_1 = require("../../../config/logger");
 class AuthController {
     constructor() {
@@ -17,6 +18,13 @@ class AuthController {
                 return res.status(400).json({ errors: errors.array() });
             }
             const result = await this.authService.register(req.body);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'USER_REGISTERED',
+                entityType: 'User',
+                entityId: result.user.id,
+                description: 'New user registered',
+                metadata: { email: result.user.email },
+            });
             res.status(201).json({
                 success: true,
                 message: 'User registered successfully',
@@ -25,7 +33,6 @@ class AuthController {
         }
         catch (error) {
             logger_1.logger.error('Error in register controller:', error);
-            // Return proper status for duplicate email
             if (error instanceof Error && error.message === 'User already exists') {
                 return res.status(409).json({ success: false, message: 'Email already exists' });
             }
@@ -39,6 +46,13 @@ class AuthController {
                 return res.status(400).json({ errors: errors.array() });
             }
             const result = await this.authService.login(req.body);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'LOGIN_SUCCESS',
+                entityType: 'Auth',
+                entityId: result.user.id,
+                description: 'User logged in successfully',
+                metadata: { email: result.user.email },
+            });
             res.status(200).json({
                 success: true,
                 message: 'User logged in successfully',
@@ -46,6 +60,12 @@ class AuthController {
             });
         }
         catch (error) {
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'LOGIN_FAILED',
+                entityType: 'Auth',
+                description: 'Failed login attempt',
+                metadata: { email: req.body.email, error: error.message },
+            });
             logger_1.logger.error('Error in login controller:', error);
             next(error);
         }
@@ -99,12 +119,17 @@ class AuthController {
     }
     async logout(req, res, next) {
         try {
-            // Assuming user ID is available from auth middleware
             const userId = req.user?.id;
             if (!userId) {
                 return res.status(401).json({ success: false, message: 'Unauthorized' });
             }
             await this.authService.logout(userId);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'LOGOUT',
+                entityType: 'Auth',
+                entityId: userId,
+                description: 'User logged out',
+            });
             res.status(200).json({
                 success: true,
                 message: 'Logged out successfully',
@@ -158,6 +183,12 @@ class AuthController {
         try {
             const { email } = req.body;
             await this.authService.forgotPassword(email);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'PASSWORD_RESET_REQUESTED',
+                entityType: 'Auth',
+                description: 'Password reset requested',
+                metadata: { email },
+            });
             res.status(200).json({
                 success: true,
                 message: 'If the email exists, a reset link has been sent',
@@ -171,11 +202,16 @@ class AuthController {
     async resetPassword(req, res, next) {
         try {
             const { email, token, newPassword } = req.body;
-            const result = await this.authService.resetPassword(email, token, newPassword);
+            await this.authService.resetPassword(email, token, newPassword);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'PASSWORD_RESET_COMPLETED',
+                entityType: 'Auth',
+                description: 'Password reset completed',
+                metadata: { email },
+            });
             res.status(200).json({
                 success: true,
                 message: 'Password reset successfully',
-                data: result,
             });
         }
         catch (error) {

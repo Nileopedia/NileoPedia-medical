@@ -3,7 +3,8 @@
 import React, { useState } from 'react';
 import { Badge } from '../../../components/ui/Badge';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
-import { Users, Plus, Mail, CheckCircle, X } from 'lucide-react';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
+import { Users, Plus, X } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
 import { useToast } from '../../../components/ui/Toast';
@@ -55,16 +56,16 @@ export default function AdminValidatorsPage() {
 
   return (
     <AppLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground mb-2">Validators</h1>
-          <p className="text-muted-foreground">Manage medical validators</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Validators</h1>
+          <p className="text-sm text-muted-foreground">Manage medical validators</p>
         </div>
 
         <div className="flex justify-end">
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+            className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
           >
             <Plus size={16} />
             Add Validator
@@ -73,14 +74,14 @@ export default function AdminValidatorsPage() {
 
         {showAddModal && (
           <div className="fixed inset-0 bg-black/50 z-50 flex items-center justify-center p-4">
-            <div className="bg-card rounded-lg max-w-md w-full p-6">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-lg font-semibold text-foreground">Add New Validator</h2>
-                <button onClick={() => setShowAddModal(false)} className="text-muted-foreground hover:text-foreground">
+            <div className="bg-card rounded-lg max-w-md w-full p-4 sm:p-6">
+              <div className="flex justify-between items-center mb-3 sm:mb-4">
+                <h2 className="text-base sm:text-lg font-semibold text-foreground">Add New Validator</h2>
+                <button onClick={() => setShowAddModal(false)} className="text-muted-foreground hover:text-foreground p-1">
                   <X size={20} />
                 </button>
               </div>
-              <div className="space-y-4">
+              <div className="space-y-3 sm:space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
                   <input
@@ -131,17 +132,17 @@ export default function AdminValidatorsPage() {
                     placeholder="Hospital Name"
                   />
                 </div>
-                <div className="flex gap-2 pt-2">
+                <div className="flex flex-col sm:flex-row gap-2 pt-2">
                   <button
                     onClick={handleAddValidator}
                     disabled={loading || !formData.fullName || !formData.email}
-                    className="flex-1 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50"
+                    className="flex-1 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 order-2 sm:order-1"
                   >
                     {loading ? 'Adding...' : 'Add Validator'}
                   </button>
                   <button
                     onClick={() => setShowAddModal(false)}
-                    className="px-4 py-2 border border-border rounded-lg hover:bg-muted"
+                    className="px-4 py-2 border border-border rounded-lg hover:bg-muted w-full sm:w-auto order-1 sm:order-2"
                   >
                     Cancel
                   </button>
@@ -153,49 +154,49 @@ export default function AdminValidatorsPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               <Users size={20} className="text-blue-600" />
               Validator Management
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 font-medium text-foreground">Name</th>
-                  <th className="text-left py-2 font-medium text-foreground">Email</th>
-                  <th className="text-left py-2 font-medium text-foreground">Specialization</th>
-                  <th className="text-left py-2 font-medium text-foreground">Status</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Specialization</TableHead>
+                  <TableHead>Status</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {validators.length === 0 ? (
-                  <tr>
-                    <td colSpan={4} className="py-8 text-center text-muted-foreground">
+                  <TableRow>
+                    <TableCell colSpan={4} className="py-6 sm:py-8 text-center text-muted-foreground">
                       No validators found. Add your first validator above.
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ) : (
                   validators.map((validator) => (
-                    <tr key={validator.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                      <td className="py-3 font-medium text-foreground">
-                        <div className="flex items-center gap-2">
-                          <CheckCircle size={16} className="text-emerald-500" />
+                    <TableRow key={validator.id}>
+                      <TableCell className="font-medium text-foreground">
+                        <div className="flex items-center gap-1 sm:gap-2">
+                          <span className="text-emerald-500">&#10003;</span>
                           {validator.fullName}
                         </div>
-                      </td>
-                      <td className="py-3 text-muted-foreground">{validator.email}</td>
-                      <td className="py-3 text-muted-foreground">{validator.specialization || '-'}</td>
-                      <td className="py-3">
+                      </TableCell>
+                      <TableCell className="text-muted-foreground">{validator.email}</TableCell>
+                      <TableCell className="text-muted-foreground">{validator.specialization || '-'}</TableCell>
+                      <TableCell>
                         <Badge variant={validator.accountStatus === 'ACTIVE' ? 'success' : 'default'}>
                           {validator.accountStatus === 'ACTIVE' ? 'Active' : 'Inactive'}
                         </Badge>
-                      </td>
-                    </tr>
+                      </TableCell>
+                    </TableRow>
                   ))
                 )}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       </div>

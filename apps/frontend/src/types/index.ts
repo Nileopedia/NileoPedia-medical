@@ -36,13 +36,21 @@ export interface Citation {
   publicationYear?: number;
 }
 
+export interface StructuredResponseSections {
+  treatmentGoals?: string;
+  lifestyle?: string;
+  medications?: string;
+  monitoring?: string;
+  [key: string]: string | undefined;
+}
+
 export interface AIResponse {
   id: string;
   queryId: string;
   title: string;
   summary: string;
-  keyFindings: string[];
-  detailedExplanation: string;
+  keyRecommendations: string[];
+  sections: StructuredResponseSections;
   citations: Citation[];
   status: 'pending' | 'approved' | 'rejected' | 'in_review';
   confidenceScore: number;

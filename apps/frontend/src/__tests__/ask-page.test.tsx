@@ -18,7 +18,7 @@ vi.mock('../../store/appStore', () => ({
 vi.mock('../../lib/api', () => ({
   api: {
     askQuestion: vi.fn().mockResolvedValue({ questionId: 'test-question-id' }),
-    getQuestion: vi.fn().mockResolvedValue({ aiResponse: { id: 'resp-1', summary: 'Done', keyFindings: [] } }),
+    getQuestion: vi.fn().mockResolvedValue({ aiResponse: { id: 'resp-1', summary: 'Done', keyRecommendations: [] } }),
   },
 }));
 

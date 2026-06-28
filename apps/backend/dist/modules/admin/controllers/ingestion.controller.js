@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.IngestionController = void 0;
 const queues_1 = require("../../../jobs/queues");
 const document_processor_1 = require("../../../jobs/processors/document.processor");
+const audit_logger_1 = require("../../audit/audit.logger");
 const logger_1 = require("../../../config/logger");
 const JOURNAL_SOURCES = [
     { name: 'PubMed Central', specialty: 'general' },
@@ -19,6 +20,12 @@ class IngestionController {
     async runManualIngestion(req, res, next) {
         try {
             const results = await (0, document_processor_1.refreshKnowledgeBase)(false);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_INGESTION_RUN',
+                entityType: 'Ingestion',
+                description: 'Admin triggered manual knowledge base ingestion',
+                metadata: { result: results },
+            });
             res.status(200).json({ success: true, message: 'Manual ingestion completed', data: results });
         }
         catch (error) {
@@ -29,6 +36,12 @@ class IngestionController {
     async runIncrementalRefresh(req, res, next) {
         try {
             const results = await (0, document_processor_1.refreshKnowledgeBase)(true);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_INGESTION_REFRESH',
+                entityType: 'Ingestion',
+                description: 'Admin triggered incremental KB refresh',
+                metadata: { result: results },
+            });
             res.status(200).json({ success: true, message: 'Incremental refresh completed', data: results });
         }
         catch (error) {

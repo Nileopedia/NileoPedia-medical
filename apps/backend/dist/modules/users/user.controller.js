@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserController = void 0;
 const user_service_1 = require("./user.service");
+const audit_logger_1 = require("../audit/audit.logger");
 const logger_1 = require("../../config/logger");
 const user_validation_1 = require("./user.validation");
 class UserController {
@@ -27,6 +28,12 @@ class UserController {
             const userId = req.user.id;
             const validatedData = user_validation_1.updateProfileSchema.parse(req.body);
             const user = await this.userService.updateProfile(userId, validatedData);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'USER_PROFILE_UPDATED',
+                entityType: 'User',
+                entityId: userId,
+                description: 'User updated their profile',
+            });
             res.status(200).json({
                 success: true,
                 message: 'Profile updated successfully',
@@ -43,6 +50,12 @@ class UserController {
             const userId = req.user.id;
             const validatedData = user_validation_1.changePasswordSchema.parse(req.body);
             await this.userService.changePassword(userId, validatedData);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'PASSWORD_CHANGED',
+                entityType: 'Auth',
+                entityId: userId,
+                description: 'User changed their password',
+            });
             res.status(200).json({
                 success: true,
                 message: 'Password changed successfully',
@@ -91,6 +104,13 @@ class UserController {
         try {
             const { id } = req.params;
             await this.userService.deactivateUser(id);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_USER_DEACTIVATED',
+                entityType: 'User',
+                entityId: id,
+                description: 'Admin deactivated a user',
+                metadata: { targetUserId: id },
+            });
             res.status(200).json({
                 success: true,
                 message: 'User deactivated successfully',
@@ -105,6 +125,13 @@ class UserController {
         try {
             const { id } = req.params;
             await this.userService.activateUser(id);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_USER_ACTIVATED',
+                entityType: 'User',
+                entityId: id,
+                description: 'Admin activated a user',
+                metadata: { targetUserId: id },
+            });
             res.status(200).json({
                 success: true,
                 message: 'User activated successfully',
@@ -147,6 +174,13 @@ class UserController {
     async createValidator(req, res, next) {
         try {
             const user = await this.userService.createValidator(req.body);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'VALIDATOR_CREATED',
+                entityType: 'User',
+                entityId: user.id,
+                description: 'Admin created a validator',
+                metadata: { email: user.email },
+            });
             res.status(201).json({
                 success: true,
                 message: 'Validator created successfully',

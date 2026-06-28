@@ -27,22 +27,22 @@ export const QueryInput: React.FC<QueryInputProps> = ({ onSubmit, loading }) => 
   };
 
   return (
-    <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-      <h2 className="text-lg font-semibold text-slate-900 mb-4">Ask a Medical Question</h2>
+    <div className="bg-white rounded-xl border border-slate-200 p-4 sm:p-6 shadow-sm w-full">
+      <h2 className="text-base sm:text-lg font-semibold text-slate-900 mb-3 sm:mb-4">Ask a Medical Question</h2>
       <TextArea
-        placeholder="Enter your medical question or topic... (e.g., What are the latest guidelines for managing hypertension in elderly patients?)"
+        placeholder="Enter your medical question..."
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
-        rows={4}
-        className="mb-4"
+        rows={3}
+        className="mb-3 sm:mb-4"
       />
-      <div className="flex items-center justify-between">
-        <p className="text-xs text-slate-400">Press Enter to submit, Shift+Enter for new line</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 sm:gap-0">
+        <p className="text-xs text-slate-400 order-2 sm:order-1">Press Enter to submit, Shift+Enter for new line</p>
         <Button
           onClick={handleSubmit}
           disabled={!query.trim() || loading}
-          className="gap-2"
+          className="gap-2 w-full sm:w-auto"
         >
           {loading ? (
             <>

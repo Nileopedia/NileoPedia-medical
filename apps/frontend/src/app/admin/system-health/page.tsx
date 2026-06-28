@@ -39,11 +39,11 @@ export default function AdminSystemHealthPage() {
   const ServiceCard = ({ name, available }: { name: string; available: boolean | undefined }) => (
     <Card>
       <CardHeader>
-        <CardTitle className="flex items-center gap-2">
+        <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
           {available ? (
-            <CheckCircle size={20} className="text-emerald-600" />
+            <CheckCircle size={18} className="text-emerald-600" />
           ) : (
-            <XCircle size={20} className="text-red-600" />
+            <XCircle size={18} className="text-red-600" />
           )}
           {name}
         </CardTitle>
@@ -64,44 +64,44 @@ export default function AdminSystemHealthPage() {
 
   return (
     <AppLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground mb-2">System Health</h1>
-          <p className="text-muted-foreground">Monitor service status and performance (refreshes every 30 seconds)</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">System Health</h1>
+          <p className="text-sm text-muted-foreground">Monitor service status and performance (refreshes every 30 seconds)</p>
           {lastChecked && (
-            <p className="text-xs text-muted-foreground mt-2">Last checked: {lastChecked}</p>
+            <p className="text-xs text-muted-foreground mt-1.5 sm:mt-2">Last checked: {lastChecked}</p>
           )}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           <ServiceCard name="Embeddings" available={status?.embeddings} />
           <ServiceCard name="Pinecone" available={status?.pinecone} />
           <ServiceCard name="Groq" available={status?.groq} />
           <ServiceCard name="Redis" available={status?.redis} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Database size={20} className="text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <Database size={18} className="text-blue-600" />
                 Documents
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold text-foreground">{status?.totalDocuments ?? 0}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-foreground">{status?.totalDocuments ?? 0}</span>
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Activity size={20} className="text-blue-600" />
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <Activity size={18} className="text-blue-600" />
                 Vectors
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <span className="text-2xl font-bold text-foreground">{status?.totalVectors ?? 0}</span>
+              <span className="text-2xl sm:text-3xl font-bold text-foreground">{status?.totalVectors ?? 0}</span>
             </CardContent>
           </Card>
         </div>

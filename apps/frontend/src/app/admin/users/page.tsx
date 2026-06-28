@@ -3,8 +3,9 @@
 import React, { useEffect, useState } from 'react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
 import { User } from '../../../types';
-import { Users, Plus, Trash2, Mail, Shield } from 'lucide-react';
+import { Users, Plus, Trash2, Shield } from 'lucide-react';
 
 export default function AdminUsersPage() {
   const [users, setUsers] = useState<User[]>([]);
@@ -19,16 +20,14 @@ export default function AdminUsersPage() {
 
   return (
     <AppLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground mb-2">User Management</h1>
-          <p className="text-muted-foreground">Manage platform users</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">User Management</h1>
+          <p className="text-sm text-muted-foreground">Manage platform users</p>
         </div>
 
         <div className="flex justify-end">
-          <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors" onClick={() => {
-            // TODO: Implement add user functionality
-          }}>
+          <button className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto">
             <Plus size={16} />
             Add User
           </button>
@@ -36,28 +35,28 @@ export default function AdminUsersPage() {
 
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
+            <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               <Users size={20} className="text-blue-600" />
               Users
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-border">
-                  <th className="text-left py-2 font-medium text-foreground">Name</th>
-                  <th className="text-left py-2 font-medium text-foreground">Email</th>
-                  <th className="text-left py-2 font-medium text-foreground">Role</th>
-                  <th className="text-left py-2 font-medium text-foreground">Status</th>
-                  <th className="w-24 text-right py-2 font-medium text-foreground">Actions</th>
-                </tr>
-              </thead>
-              <tbody>
+            <Table>
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Name</TableHead>
+                  <TableHead>Email</TableHead>
+                  <TableHead>Role</TableHead>
+                  <TableHead>Status</TableHead>
+                  <TableHead className="text-right">Actions</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
                 {users.map((user) => (
-                  <tr key={user.id} className="border-b border-slate-100 dark:border-slate-800 last:border-0">
-                    <td className="py-3 font-medium text-foreground">{user.name}</td>
-                    <td className="py-3 text-muted-foreground">{user.email}</td>
-                    <td className="py-3 capitalize">
+                  <TableRow key={user.id}>
+                    <TableCell className="font-medium text-foreground">{user.name}</TableCell>
+                    <TableCell className="text-muted-foreground">{user.email}</TableCell>
+                    <TableCell className="capitalize">
                       <span className={`px-2 py-0.5 rounded text-xs font-medium flex items-center gap-1 w-fit ${
                         user.role === 'admin' ? 'bg-blue-100 text-blue-700' :
                         user.role === 'validator' ? 'bg-amber-100 text-amber-700' :
@@ -66,21 +65,21 @@ export default function AdminUsersPage() {
                         {user.role === 'admin' && <Shield size={14} />}
                         {user.role}
                       </span>
-                    </td>
-                    <td className="py-3">
+                    </TableCell>
+                    <TableCell>
                       <span className="px-2 py-0.5 bg-emerald-100 text-emerald-700 rounded text-xs font-medium">
                         active
                       </span>
-                    </td>
-                    <td className="py-3 text-right">
+                    </TableCell>
+                    <TableCell className="text-right">
                       <button className="text-red-600 hover:text-red-700" title="Delete user">
                         <Trash2 size={16} />
                       </button>
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 ))}
-              </tbody>
-            </table>
+              </TableBody>
+            </Table>
           </CardContent>
         </Card>
       </div>

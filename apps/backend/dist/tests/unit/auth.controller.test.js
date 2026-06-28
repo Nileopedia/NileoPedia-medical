@@ -57,7 +57,11 @@ describe('AuthController', () => {
     });
     describe('register', () => {
         it('should register user successfully', async () => {
-            const mockResult = { userId: 'user-1', email: 'test@test.com' };
+            const mockResult = {
+                user: { id: 'user-1', email: 'test@test.com' },
+                accessToken: 'token-123',
+                refreshToken: 'refresh-123',
+            };
             mockAuthService.register.mockResolvedValue(mockResult);
             mockRequest.body = { email: 'test@test.com', password: 'password123', name: 'Test User' };
             await controller.register(mockRequest, mockResponse, mockNext);
@@ -79,7 +83,11 @@ describe('AuthController', () => {
     });
     describe('login', () => {
         it('should login user successfully', async () => {
-            const mockResult = { accessToken: 'token-123', refreshToken: 'refresh-123' };
+            const mockResult = {
+                user: { id: 'user-1', email: 'test@test.com' },
+                accessToken: 'token-123',
+                refreshToken: 'refresh-123',
+            };
             mockAuthService.login.mockResolvedValue(mockResult);
             mockRequest.body = { email: 'test@test.com', password: 'password123' };
             await controller.login(mockRequest, mockResponse, mockNext);

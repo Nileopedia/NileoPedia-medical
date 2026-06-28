@@ -9017,3 +9017,644 @@ The table `public.UserPreferences` does not exist in the current database.
 2026-06-24T18:09:51.584Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-24T18:09:51.584Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-24T18:09:51.996Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-25T06:08:42.072Z [nileopedia-backend] info: Schedulers initialized
+2026-06-25T06:08:44.748Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T06:08:45.683Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T06:08:47.131Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T06:08:53.561Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T06:13:12.236Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:13:12.566Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:13:12.567Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:13:14.656Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:13:14.974Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:13:14.975Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:13:25.871Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:14:55.675Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-25T06:14:55.727Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-25T06:14:58.026Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-25T06:14:58.030Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-25T06:14:58.855Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-25T06:14:58.858Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-25T06:15:53.799Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:15:54.004Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:54.005Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:15:55.026Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:15:55.278Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:55.278Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:15:55.990Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:15:56.182Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:56.182Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:15:56.343Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:15:56.582Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-25T06:15:56.583Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-25T06:16:11.494Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:16:12.049Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-25T06:16:12.065Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-25T06:16:15.439Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-25T06:16:15.442Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-25T06:16:15.487Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-25T06:16:15.512Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-25T06:17:28.224Z [nileopedia-backend] info: POST /api/v1/users/validator - ::1
+2026-06-25T06:17:28.239Z [nileopedia-backend] error: Error in createValidator controller: Email already exists
+2026-06-25T06:17:28.239Z [nileopedia-backend] error: Error handler caught: Email already exists
+2026-06-25T06:17:37.322Z [nileopedia-backend] info: POST /api/v1/users/validator - ::1
+2026-06-25T06:18:20.813Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-25T06:18:21.327Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-25T06:18:21.335Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-25T06:18:21.354Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-25T06:18:21.372Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-25T06:18:31.444Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-25T06:18:31.548Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-25T06:18:31.750Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-25T06:18:32.239Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-25T07:05:31.477Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-25T07:52:56.886Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-25T07:52:56.939Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:56.949Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-25T07:52:56.968Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:56.975Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-25T07:52:56.984Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:56.990Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-25T07:52:56.999Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T07:52:57.004Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-25T07:52:57.019Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-25T08:03:49.801Z [nileopedia-backend] info: Schedulers initialized
+2026-06-25T08:03:54.847Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T08:03:56.384Z [nileopedia-backend] info: Processing email job: 280
+2026-06-25T08:03:56.397Z [nileopedia-backend] info: Processing email job: 281
+2026-06-25T08:03:56.403Z [nileopedia-backend] info: Processing email job: 282
+2026-06-25T08:03:56.420Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T08:03:58.044Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.070Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.083Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.099Z [nileopedia-backend] error: Email job failed: 280 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.101Z [nileopedia-backend] error: Email job failed: 281 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:58.102Z [nileopedia-backend] error: Email job failed: 282 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:03:59.680Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-25T08:04:00.836Z [nileopedia-backend] info: Processing email job: 280
+2026-06-25T08:04:00.838Z [nileopedia-backend] info: Processing email job: 281
+2026-06-25T08:04:00.839Z [nileopedia-backend] info: Processing email job: 282
+2026-06-25T08:04:00.847Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.858Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.864Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.873Z [nileopedia-backend] error: Email job failed: 280 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.874Z [nileopedia-backend] error: Email job failed: 281 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-25T08:04:00.874Z [nileopedia-backend] error: Email job failed: 282 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:44.099Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T11:36:50.485Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:36:52.209Z [nileopedia-backend] info: Processing email job: 280
+2026-06-27T11:36:52.238Z [nileopedia-backend] info: Processing email job: 281
+2026-06-27T11:36:52.241Z [nileopedia-backend] info: Processing email job: 282
+2026-06-27T11:36:52.329Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.335Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.344Z [nileopedia-backend] error: Email job failed: 280 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.345Z [nileopedia-backend] error: Email job failed: 281 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.346Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:52.400Z [nileopedia-backend] error: Email job failed: 282 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T11:36:53.274Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:36:57.646Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:37:01.717Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:37:56.807Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T11:38:00.193Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:38:01.922Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:38:04.154Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:38:07.599Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:38:30.603Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T11:38:32.610Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:39:13.718Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T11:39:14.340Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:39:26.362Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T11:39:26.935Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:39:31.717Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-27T11:39:33.297Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T11:39:33.334Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T11:39:36.721Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T11:39:36.754Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T11:39:36.803Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T11:39:36.883Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T11:39:40.367Z [nileopedia-backend] info: POST /api/v1/validation/570be42f-ad85-4694-affa-201a4cf6cd28/approve - ::1
+2026-06-27T11:39:40.633Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T11:39:43.380Z [nileopedia-backend] info: POST /api/v1/validation/1847ecd5-57d9-4e43-9765-bb2e3afd9f4f/approve - ::1
+2026-06-27T11:39:43.744Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T11:39:45.935Z [nileopedia-backend] info: POST /api/v1/validation/9ca3627c-3aa2-43d7-8473-0eec4911962e/approve - ::1
+2026-06-27T11:39:46.127Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T11:41:46.919Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-27T11:42:08.339Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-27T11:42:08.380Z [nileopedia-backend] info: Processing AI generation job: 54
+2026-06-27T11:42:08.382Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:42:09.117Z [nileopedia-backend] info: GET /api/v1/questions/e2ecce55-aea2-49c4-b309-ec6616a0de9a - ::1
+2026-06-27T11:42:12.455Z [nileopedia-backend] info: AI generation completed for question: e2ecce55-aea2-49c4-b309-ec6616a0de9a
+2026-06-27T11:42:12.462Z [nileopedia-backend] info: AI generation job completed: 54
+2026-06-27T11:43:11.067Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T11:43:11.122Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T11:43:15.438Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T11:43:15.547Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T11:43:24.189Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:43:25.899Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:43:27.801Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:43:28.946Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:43:31.627Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:43:32.972Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T11:44:00.498Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-27T11:44:00.526Z [nileopedia-backend] info: Processing AI generation job: 55
+2026-06-27T11:44:00.526Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:44:02.603Z [nileopedia-backend] info: GET /api/v1/questions/13eee890-3aed-4ed6-adf4-a99e27c8bebc - ::1
+2026-06-27T11:44:03.668Z [nileopedia-backend] info: AI generation completed for question: 13eee890-3aed-4ed6-adf4-a99e27c8bebc
+2026-06-27T11:44:03.670Z [nileopedia-backend] info: AI generation job completed: 55
+2026-06-27T11:44:04.626Z [nileopedia-backend] info: GET /api/v1/questions/13eee890-3aed-4ed6-adf4-a99e27c8bebc - ::1
+2026-06-27T11:48:01.927Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-27T11:48:02.011Z [nileopedia-backend] info: Processing AI generation job: 56
+2026-06-27T11:48:02.011Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T11:48:04.060Z [nileopedia-backend] info: GET /api/v1/questions/5fbd8c60-90a1-4c7b-98fd-f71dfbd2f45c - ::1
+2026-06-27T11:48:06.083Z [nileopedia-backend] info: GET /api/v1/questions/5fbd8c60-90a1-4c7b-98fd-f71dfbd2f45c - ::1
+2026-06-27T11:48:07.471Z [nileopedia-backend] info: AI generation completed for question: 5fbd8c60-90a1-4c7b-98fd-f71dfbd2f45c
+2026-06-27T11:48:07.473Z [nileopedia-backend] info: AI generation job completed: 56
+2026-06-27T11:48:08.106Z [nileopedia-backend] info: GET /api/v1/questions/5fbd8c60-90a1-4c7b-98fd-f71dfbd2f45c - ::1
+2026-06-27T13:19:47.732Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T13:19:47.777Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.785Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T13:19:47.808Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.820Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T13:19:47.832Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.834Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T13:19:47.840Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T13:19:47.841Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T13:19:47.847Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:13:37.683Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:13:39.187Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:13:39.948Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:13:41.973Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:13:45.516Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:14:10.302Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:14:10.818Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:14:17.364Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-27T18:14:27.768Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-27T18:14:27.818Z [nileopedia-backend] info: Processing AI generation job: 57
+2026-06-27T18:14:27.819Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:14:29.872Z [nileopedia-backend] info: GET /api/v1/questions/0b2442b8-f94c-415f-9bc4-d64dbe8799ee - ::1
+2026-06-27T18:14:31.742Z [nileopedia-backend] info: AI generation completed for question: 0b2442b8-f94c-415f-9bc4-d64dbe8799ee
+2026-06-27T18:14:31.749Z [nileopedia-backend] info: AI generation job completed: 57
+2026-06-27T18:14:31.914Z [nileopedia-backend] info: GET /api/v1/questions/0b2442b8-f94c-415f-9bc4-d64dbe8799ee - ::1
+2026-06-27T18:15:45.257Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:15:45.296Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:16:01.992Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-27T18:16:02.002Z [nileopedia-backend] info: Processing AI generation job: 58
+2026-06-27T18:16:02.002Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:16:04.039Z [nileopedia-backend] info: GET /api/v1/questions/c0b8a85f-43cf-477a-ab24-8221d8df51d3 - ::1
+2026-06-27T18:16:06.071Z [nileopedia-backend] info: GET /api/v1/questions/c0b8a85f-43cf-477a-ab24-8221d8df51d3 - ::1
+2026-06-27T18:16:06.398Z [nileopedia-backend] info: AI generation completed for question: c0b8a85f-43cf-477a-ab24-8221d8df51d3
+2026-06-27T18:16:06.400Z [nileopedia-backend] info: AI generation job completed: 58
+2026-06-27T18:16:08.096Z [nileopedia-backend] info: GET /api/v1/questions/c0b8a85f-43cf-477a-ab24-8221d8df51d3 - ::1
+2026-06-27T18:16:31.479Z [nileopedia-backend] info: POST /api/v1/questions/c0b8a85f-43cf-477a-ab24-8221d8df51d3/save - ::1
+2026-06-27T18:16:33.082Z [nileopedia-backend] info: DELETE /api/v1/questions/c0b8a85f-43cf-477a-ab24-8221d8df51d3/save - ::1
+2026-06-27T18:16:35.707Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:16:35.757Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:02.243Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:02.288Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:11.052Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:11.072Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:22.740Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:17:24.361Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:17:28.139Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:17:31.814Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:17:39.887Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:39.932Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:49.598Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:17:50.872Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:17:55.428Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:17:55.475Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-27T18:18:02.483Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-27T18:18:02.990Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:18:03.004Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:18:06.436Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:18:06.440Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:18:06.486Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:18:06.522Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:18:15.385Z [nileopedia-backend] info: POST /api/v1/validation/8d8f231f-8fae-42ca-9e08-1f69f26966ad/approve - ::1
+2026-06-27T18:18:15.636Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:18:17.815Z [nileopedia-backend] info: POST /api/v1/validation/da9799d6-9512-42f6-b8c4-cd9bdfdac90e/approve - ::1
+2026-06-27T18:18:17.980Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:18:26.921Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:18:27.044Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:18:27.165Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:18:27.627Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:18:48.990Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:18:48.994Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:18:49.771Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:18:51.854Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-06-27T18:18:51.926Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.946Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.960Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.978Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:51.992Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.057Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.076Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.091Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.102Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:52.131Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:18:53.708Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-06-27T18:18:53.723Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.733Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.743Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.767Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.789Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.808Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.825Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.842Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.853Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-27T18:18:53.882Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:18:56.406Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:18:56.434Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:18:56.446Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:18:56.488Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:19:09.018Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:19:09.177Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:19:09.284Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:19:09.773Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:24:08.384Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:24:09.015Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:09.769Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:10.835Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:18.945Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:22.493Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:24:22.815Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:23.305Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:23.954Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:24:25.541Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:09.802Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:25:10.346Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:11.076Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:12.025Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:14.995Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:25.614Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:25:26.013Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:26.760Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:27.553Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:35.683Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:48.502Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:25:48.778Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:49.486Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:50.414Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:25:53.270Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:15.426Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:26:15.776Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:16.566Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:17.329Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:20.506Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:40.295Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:26:40.663Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:41.576Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:42.473Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:46.005Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:56.637Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:26:56.984Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:57.533Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:26:58.209Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:08.407Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:14.843Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:27:15.310Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:16.130Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:17.015Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:21.333Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:26.574Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:27:26.789Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:27.265Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:27.901Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:27:38.737Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:33:51.223Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:33:51.939Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T18:36:15.218Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:36:16.057Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:36:17.444Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:36:18.971Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:36:33.500Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:36:51.038Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:36:51.894Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:36:53.195Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:36:54.422Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:37:05.508Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:37:42.497Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:37:43.177Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:37:44.719Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:37:46.275Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:37:54.030Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:39:36.831Z [nileopedia-backend] info: Processing email job: 283
+2026-06-27T18:39:36.860Z [nileopedia-backend] info: Processing email job: 284
+2026-06-27T18:39:36.881Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.905Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.913Z [nileopedia-backend] error: Email job failed: 283 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.914Z [nileopedia-backend] error: Email job failed: 284 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.947Z [nileopedia-backend] info: Processing email job: 285
+2026-06-27T18:39:36.960Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:36.969Z [nileopedia-backend] error: Email job failed: 285 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.008Z [nileopedia-backend] info: Processing email job: 283
+2026-06-27T18:39:39.014Z [nileopedia-backend] info: Processing email job: 284
+2026-06-27T18:39:39.016Z [nileopedia-backend] info: Processing email job: 285
+2026-06-27T18:39:39.032Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.043Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.053Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.073Z [nileopedia-backend] error: Email job failed: 283 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.074Z [nileopedia-backend] error: Email job failed: 284 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:39.078Z [nileopedia-backend] error: Email job failed: 285 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.114Z [nileopedia-backend] info: Processing email job: 283
+2026-06-27T18:39:43.119Z [nileopedia-backend] info: Processing email job: 284
+2026-06-27T18:39:43.124Z [nileopedia-backend] info: Processing email job: 285
+2026-06-27T18:39:43.135Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.139Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.142Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.147Z [nileopedia-backend] error: Email job failed: 283 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.150Z [nileopedia-backend] error: Email job failed: 284 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:43.151Z [nileopedia-backend] error: Email job failed: 285 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-27T18:39:46.598Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:39:46.610Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.615Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:39:46.619Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.622Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:39:46.626Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.628Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:39:46.633Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:39:46.634Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:39:46.640Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:44:41.847Z [nileopedia-backend] info: Schedulers initialized
+2026-06-27T18:44:42.388Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:44:43.310Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:44:44.271Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:44:55.257Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T18:47:17.366Z [nileopedia-backend] info: Processing document ingestion job: 1
+2026-06-27T18:47:17.440Z [nileopedia-backend] error: Document ingestion job failed: 1 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:220:34
+
+  217   return { success: true };
+  218 
+  219 } catch (error) {
+→ 220   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-06-27T18:47:18.089Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:19.537Z [nileopedia-backend] info: Processing document ingestion job: 1
+2026-06-27T18:47:19.571Z [nileopedia-backend] error: Document ingestion job failed: 1 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:220:34
+
+  217   return { success: true };
+  218 
+  219 } catch (error) {
+→ 220   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-06-27T18:47:18.103Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:18.109Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:18.115Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:18.141Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:18.146Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:18.149Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:18.153Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:23.646Z [nileopedia-backend] info: Processing document ingestion job: 1
+2026-06-27T18:47:23.672Z [nileopedia-backend] error: Document ingestion job failed: 1 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:220:34
+
+  217   return { success: true };
+  218 
+  219 } catch (error) {
+→ 220   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-06-27T18:47:26.154Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:26.158Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.161Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:26.167Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.169Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:26.172Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.175Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:26.179Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:47:26.180Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-27T18:47:26.184Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-06-27T18:56:26.807Z [nileopedia-backend] info: GET /api/v1/audit - ::1
+2026-06-27T18:56:26.822Z [nileopedia-backend] info: GET /api/v1/audit - ::1
+2026-06-27T18:56:30.160Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:56:30.177Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-27T18:57:36.591Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:57:36.599Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:57:36.615Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:57:36.620Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:59:43.743Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-27T18:59:43.852Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-27T18:59:43.860Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-27T18:59:44.352Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-27T20:58:16.176Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-27T20:58:32.812Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-27T20:58:32.853Z [nileopedia-backend] info: Processing AI generation job: 59
+2026-06-27T20:58:32.855Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-27T20:58:33.848Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-06-27T20:58:33.861Z [nileopedia-backend] info: AI generation job completed: 59
+2026-06-27T20:58:34.934Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:36.980Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:39.013Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:41.046Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:43.070Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:45.113Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:47.157Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:49.185Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:51.218Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:53.264Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:55.287Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:57.304Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:58:59.328Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:01.344Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:03.361Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:05.382Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:07.400Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:09.424Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:11.462Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:13.479Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:15.502Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:17.546Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:19.590Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:21.632Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:23.662Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:25.697Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:27.719Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:29.757Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:31.773Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:33.786Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:35.810Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:37.833Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:39.857Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:41.920Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:43.976Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:46.022Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:48.042Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:50.061Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:52.086Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:54.108Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:56.134Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T20:59:58.166Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:00.214Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:02.253Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:04.283Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:06.314Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:08.329Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:10.368Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:12.387Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:14.404Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:16.420Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:18.438Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:20.453Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:22.468Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:24.488Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:26.508Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:28.528Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:30.559Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:32.574Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:34.587Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-27T21:00:36.668Z [nileopedia-backend] info: GET /api/v1/questions/02abafa4-a9b8-467c-8830-f91397867424 - ::1
+2026-06-28T17:11:48.169Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T17:11:52.841Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T17:11:54.709Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T17:11:57.278Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T17:12:02.165Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T17:13:19.965Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-28T17:13:20.800Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1

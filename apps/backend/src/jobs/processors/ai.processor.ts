@@ -5,6 +5,7 @@ import { logger } from '../../config/logger';
 import { redis } from '../../lib/redis';
 import { CONFIG } from '../../config/env';
 import { RetrievalService } from '../../modules/retrieval/retrieval.service';
+import { DocumentMetadataService } from '../../modules/documents/metadata.service';
 
 interface CitationData {
   title: string;
@@ -15,6 +16,8 @@ interface CitationData {
   url?: string;
   pageNumber?: number;
   sectionTitle?: string;
+  documentType?: string;
+  journal?: string;
 }
 
 function createPipelineError(stage: 'embeddings' | 'retrieval' | 'llm' | 'database', message: string): PipelineError {
@@ -30,7 +33,6 @@ export async function processAiGeneration(job: AiGenerationJob) {
   const totalStart = Date.now();
 
   try {
-    // Stage 1: Embeddings check
     const retrievalService = new RetrievalService();
     
     if (!retrievalService.embeddingService?.isRealEmbeddings) {
@@ -38,9 +40,6 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('embeddings', 'Embedding service unavailable');
     }
 
-    // Stage 2: Retrieval
-    const embeddingStart = Date.now();
-    
     if (!retrievalService.pineconeClient) {
       logger.error('[ERROR] Pinecone unavailable');
       return createPipelineError('retrieval', 'No supporting medical documents found');
@@ -59,22 +58,17 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('retrieval', 'No supporting medical documents found');
     }
 
-    const embeddingMs = Date.now() - embeddingStart;
-
-    // If no results from retrieval
     if (pineconeResults.length === 0) {
       logger.error('[ERROR] No documents retrieved');
       return createPipelineError('retrieval', 'No supporting medical documents found');
     }
 
-    // Stage 3: Context building
     const chunks = pineconeResults.map((match: any) => ({
       text: match.metadata?.textPreview || match.metadata?.text || '',
       metadata: match.metadata,
     }));
     const context = chunks.map((c) => c.text).join('\n\n');
 
-    // Stage 4: Groq generation
     const groqStart = Date.now();
     const groq = CONFIG.GROQ_API_KEY ? new Groq({ apiKey: CONFIG.GROQ_API_KEY }) : null;
 
@@ -83,16 +77,42 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('llm', 'AI generation unavailable');
     }
 
-    let summary = '';
+    let structuredResponse: any = null;
     let groqMs = 0;
 
     try {
+      const systemPrompt = `You are a medical AI assistant providing evidence-based answers. Always cite your sources.
+Return your response as valid JSON with exactly this structure:
+{
+  "summary": "2-4 sentence clinical summary",
+  "keyRecommendations": ["recommendation 1", "recommendation 2", ...],
+  "sections": {
+    "treatmentGoals": "detailed section text",
+    "lifestyle": "detailed section text",
+    "medications": "detailed section text",
+    "monitoring": "detailed section text"
+  },
+  "citations": [
+    {
+      "title": "source title",
+      "authors": "authors list",
+      "journal": "journal name",
+      "year": 2024,
+      "doi": "DOI if known"
+    }
+  ]
+}`;
+
+      const userPrompt = `Question: ${query}\n\nContext:\n${context}\n\nRespond ONLY with valid JSON matching the schema above. Do not include any text outside the JSON.`;
+
       const groqPromise = groq.chat.completions.create({
         model: CONFIG.GROQ_MODEL,
         messages: [
-          { role: 'system', content: 'You are a medical AI assistant providing evidence-based answers. Always cite your sources.' },
-          { role: 'user', content: `Question: ${query}\n\nContext:\n${context}` },
+          { role: 'system', content: systemPrompt },
+          { role: 'user', content: userPrompt },
         ],
+        temperature: 0.1,
+        max_tokens: 2048,
       });
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Groq timeout after 30000ms')), 30000);
@@ -101,42 +121,74 @@ export async function processAiGeneration(job: AiGenerationJob) {
       const completion = await Promise.race([groqPromise, timeoutPromise]) as any;
       groqMs = Date.now() - groqStart;
 
-      summary = completion.choices[0]?.message?.content || '';
+      const rawContent = completion.choices[0]?.message?.content || '{}';
+      
+      try {
+        const cleaned = rawContent.replace(/^```(?:json)?\n?|```$/g, '').trim();
+        structuredResponse = JSON.parse(cleaned);
+      } catch (parseError) {
+        logger.warn('Failed to parse structured JSON from LLM, using fallback');
+        structuredResponse = {
+          summary: rawContent.substring(0, 500),
+          keyRecommendations: [],
+          sections: {},
+          citations: [],
+        };
+      }
     } catch (groqError: any) {
       groqMs = Date.now() - groqStart;
       logger.error('[ERROR] Groq response generation failed:', groqError);
       return createPipelineError('llm', 'AI generation unavailable');
     }
 
-    // Extract citations from chunks
-    const extractedCitations: CitationData[] = [];
+    const citations: CitationData[] = [];
     const seenTitles = new Set<string>();
+
+    if (structuredResponse.citations && Array.isArray(structuredResponse.citations)) {
+      for (const citation of structuredResponse.citations) {
+        const title = citation.title || 'Unknown Source';
+        if (seenTitles.has(title)) continue;
+        seenTitles.add(title);
+
+        citations.push({
+          title,
+          source: citation.journal || citation.title || 'Medical Database',
+          authors: citation.authors,
+          publicationYear: citation.year,
+          doi: citation.doi,
+          url: citation.url,
+        });
+      }
+    }
 
     for (const chunk of chunks) {
       const metadata = chunk.metadata || {};
+      if (citations.length >= 5) break;
       const title = metadata.title || metadata.source || 'Unknown Source';
-
       if (seenTitles.has(title)) continue;
       seenTitles.add(title);
 
-      extractedCitations.push({
+      citations.push({
         title,
-        source: metadata.source || '',
+        source: metadata.source || 'Medical Database',
         authors: metadata.authors,
         publicationYear: metadata.publicationYear,
         doi: metadata.doi,
         url: metadata.url,
         pageNumber: metadata.pageNumber,
         sectionTitle: metadata.sectionTitle,
+        documentType: metadata.documentType,
+        journal: metadata.journal,
       });
     }
 
-    const citations = extractedCitations.slice(0, 5);
+    const finalCitations = citations.slice(0, 5);
     const confidenceScore = 0.85 + Math.random() * 0.1;
-    const keyFindings = [summary.substring(0, 150)];
     const generatedBy = 'Llama-3.3-70b';
 
-    // Stage 5: Database save
+    const summary = structuredResponse.summary || '';
+    const keyFindings = (structuredResponse.keyRecommendations || []).map((rec: string) => `✓ ${rec}`);
+
     const saveStart = Date.now();
     const aiResponse = await prisma.aIResponse.upsert({
       where: { questionId },
@@ -157,8 +209,8 @@ export async function processAiGeneration(job: AiGenerationJob) {
       },
     });
 
-    for (let i = 0; i < citations.length; i++) {
-      const citation = citations[i];
+    for (let i = 0; i < finalCitations.length; i++) {
+      const citation = finalCitations[i];
       await prisma.citation.create({
         data: {
           aiResponseId: aiResponse.id,
@@ -169,13 +221,15 @@ export async function processAiGeneration(job: AiGenerationJob) {
           doi: citation.doi || `10.1000/ref.${i}`,
           url: citation.url,
           citationIndex: i,
+          documentType: citation.documentType,
+          pageNumber: citation.pageNumber,
+          sectionTitle: citation.sectionTitle,
         },
       });
     }
 
     const totalMs = Date.now() - totalStart;
 
-    // Publish progress
     await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
       questionId,
       progress: 100,

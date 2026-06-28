@@ -5,6 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AdminController = void 0;
 const admin_service_1 = require("../services/admin.service");
+const audit_logger_1 = require("../../audit/audit.logger");
 const logger_1 = require("../../../config/logger");
 const retrieval_service_1 = require("../../../modules/retrieval/retrieval.service");
 const embedding_service_1 = require("../../../modules/rag/services/embedding.service");
@@ -17,6 +18,11 @@ class AdminController {
     async getUsers(req, res, next) {
         try {
             const users = await this.adminService.getUsers();
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_VIEW_USERS',
+                entityType: 'User',
+                description: 'Admin viewed users list',
+            });
             res.status(200).json({ success: true, data: users });
         }
         catch (error) {
@@ -28,6 +34,13 @@ class AdminController {
         try {
             const { userId } = req.params;
             await this.adminService.suspendUser(userId);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_USER_SUSPENDED',
+                entityType: 'User',
+                entityId: userId,
+                description: 'Admin suspended a user',
+                metadata: { targetUserId: userId },
+            });
             res.status(200).json({ success: true, message: 'User suspended' });
         }
         catch (error) {
@@ -39,6 +52,13 @@ class AdminController {
         try {
             const { userId } = req.params;
             await this.adminService.activateUser(userId);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_USER_ACTIVATED',
+                entityType: 'User',
+                entityId: userId,
+                description: 'Admin activated a user',
+                metadata: { targetUserId: userId },
+            });
             res.status(200).json({ success: true, message: 'User activated' });
         }
         catch (error) {
@@ -50,6 +70,13 @@ class AdminController {
         try {
             const { userId } = req.params;
             await this.adminService.deleteUser(userId);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_USER_DELETED',
+                entityType: 'User',
+                entityId: userId,
+                description: 'Admin deleted a user',
+                metadata: { targetUserId: userId },
+            });
             res.status(200).json({ success: true, message: 'User deleted' });
         }
         catch (error) {
@@ -60,6 +87,11 @@ class AdminController {
     async getAnalytics(req, res, next) {
         try {
             const analytics = await this.adminService.getAnalytics();
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_VIEW_ANALYTICS',
+                entityType: 'Analytics',
+                description: 'Admin viewed analytics dashboard',
+            });
             res.status(200).json({ success: true, data: analytics });
         }
         catch (error) {
@@ -84,6 +116,11 @@ class AdminController {
                 console.warn('Embedding test fallback to mock:', e);
                 actualSource = 'mock';
             }
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADIN_TEST_EMBEDDINGS',
+                entityType: 'System',
+                description: 'Admin ran embedding test',
+            });
             res.status(200).json({
                 success: true,
                 model,
@@ -122,6 +159,12 @@ class AdminController {
             }
             metrics.pinecone_ms = Date.now() - pineconeStart;
             metrics.total_ms = Date.now() - totalStart;
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_PERFORMANCE_TEST',
+                entityType: 'System',
+                description: 'Admin ran performance test',
+                metadata: metrics,
+            });
             res.status(200).json({
                 embedding_ms: metrics.embedding_ms,
                 pinecone_ms: metrics.pinecone_ms,
@@ -150,6 +193,11 @@ class AdminController {
                 this.getDocumentsCount(),
                 this.getVectorsCount(),
             ]);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_VIEW_SYSTEM_STATUS',
+                entityType: 'System',
+                description: 'Admin viewed system status',
+            });
             res.status(200).json({
                 embeddings: embeddingOk,
                 pinecone: pineconeOk,

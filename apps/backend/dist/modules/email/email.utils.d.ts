@@ -68,15 +68,15 @@ export declare const securityAlertSchema: z.ZodObject<{
     description: z.ZodString;
     ipAddress: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
+    description: string;
     fullName: string;
     email: string;
-    description: string;
     alertType: string;
     ipAddress?: string | undefined;
 }, {
+    description: string;
     fullName: string;
     email: string;
-    description: string;
     alertType: string;
     ipAddress?: string | undefined;
 }>;

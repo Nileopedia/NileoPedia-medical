@@ -33,7 +33,7 @@ export interface GetDocumentsQuery {
 }
 
 export interface GetDocumentsResult {
-  documents: MedicalDocument[];
+  documents: (MedicalDocument & { metadata?: any })[];
   total: number;
   page: number;
   limit: number;

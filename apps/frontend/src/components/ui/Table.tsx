@@ -7,8 +7,8 @@ interface TableProps extends React.HTMLAttributes<HTMLTableElement> {
 }
 
 export const Table: React.FC<TableProps> = ({ children, className, ...props }) => (
-  <div className="overflow-x-auto">
-    <table className={cn('w-full text-sm', className)} {...props}>
+  <div className="overflow-x-auto -mx-2 sm:mx-0 px-2 sm:px-0">
+    <table className={cn('w-full text-xs sm:text-sm', className)} {...props}>
       {children}
     </table>
   </div>
@@ -37,7 +37,7 @@ interface TableHeadProps extends React.ThHTMLAttributes<HTMLTableCellElement> {
 }
 
 export const TableHead: React.FC<TableHeadProps> = ({ children, className, ...props }) => (
-  <th className={cn('px-4 py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider', className)} {...props}>
+  <th className={cn('px-2 sm:px-4 py-2 sm:py-3 text-left text-xs font-semibold text-muted-foreground uppercase tracking-wider', className)} {...props}>
     {children}
   </th>
 );
@@ -47,7 +47,7 @@ interface TableCellProps extends React.TdHTMLAttributes<HTMLTableCellElement> {
 }
 
 export const TableCell: React.FC<TableCellProps> = ({ children, className, ...props }) => (
-  <td className={cn('px-4 py-3 text-foreground', className)} {...props}>
+  <td className={cn('px-2 sm:px-4 py-2 sm:py-3 text-foreground', className)} {...props}>
     {children}
   </td>
 );

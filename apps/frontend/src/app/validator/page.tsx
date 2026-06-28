@@ -7,44 +7,53 @@ import { Check, X } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api, ValidationReview } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function ValidatorPage() {
-  const [reviewQueue, setReviewQueue] = useState<Array<{ id: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string; aiResponseId?: string }>>([]);
-  const [validationHistory, setValidationHistory] = useState<ValidationReview[]>([]);
-  const [activeTab, setActiveTab] = useState<'pending' | 'history'>('pending');
-  const [loading, setLoading] = useState(false);
-  const [actionLoading, setActionLoading] = useState<string | null>(null);
-  const user = useAppStore((state) => state.user);
-  const isInitialized = useAppStore((state) => state.isInitialized);
+   const [reviewQueue, setReviewQueue] = useState<Array<{ id: string; title: string; category: string; submittedAt: string; dueDate: string; priority: string; aiResponseId?: string }>>([]);
+   const [validationHistory, setValidationHistory] = useState<ValidationReview[]>([]);
+   const [activeTab, setActiveTab] = useState<'pending' | 'history'>('pending');
+   const [loading, setLoading] = useState(false);
+   const [actionLoading, setActionLoading] = useState<string | null>(null);
+   const router = useRouter();
+   const user = useAppStore((state) => state.user);
+   const isInitialized = useAppStore((state) => state.isInitialized);
 
-  useEffect(() => {
-    if (isInitialized && (user?.role === 'validator' || user?.role === 'admin')) {
-      fetchPendingReviews();
-      fetchHistory();
-    }
-  }, [user, isInitialized]);
+   useEffect(() => {
+     if (isInitialized && (user?.role === 'validator' || user?.role === 'admin')) {
+       fetchPendingReviews();
+       fetchHistory();
+     }
+   }, [user, isInitialized]);
 
-  const fetchPendingReviews = async () => {
-    setLoading(true);
-    try {
-      const reviews = await api.getPendingReviews();
-      setReviewQueue(reviews);
-    } catch (error) {
-      console.error('Failed to fetch pending reviews:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
+   const fetchPendingReviews = async () => {
+     setLoading(true);
+     try {
+       const reviews = await api.getPendingReviews();
+       setReviewQueue(reviews);
+     } catch (error) {
+       if (error instanceof Error && error.message === 'Please sign in to continue') {
+         router.push('/login');
+       } else {
+         console.error('Failed to fetch pending reviews:', error);
+       }
+     } finally {
+       setLoading(false);
+     }
+   };
 
-  const fetchHistory = async () => {
-    try {
-      const history = await api.getValidationHistory();
-      setValidationHistory(history);
-    } catch (error) {
-      console.error('Failed to fetch validation history:', error);
-    }
-  };
+const fetchHistory = async () => {
+     try {
+       const history = await api.getValidationHistory();
+       setValidationHistory(history);
+     } catch (error) {
+       if (error instanceof Error && error.message === 'Please sign in to continue') {
+         router.push('/login');
+       } else {
+         console.error('Failed to fetch validation history:', error);
+       }
+     }
+   };
 
   const handleApprove = async (responseId: string) => {
     setActionLoading(responseId);

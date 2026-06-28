@@ -256,13 +256,34 @@ class ApiClient {
       id: citation.id,
       title: citation.title,
       authors: citation.authors || citation.source || 'Unknown source',
-      journal: citation.source || 'Medical source',
+      journal: citation.source || citation.documentType || 'Medical source',
       year: citation.publicationYear || new Date().getFullYear(),
       volume: citation.sectionTitle || undefined,
       pages: citation.pageNumber ? String(citation.pageNumber) : undefined,
       type: 'Study',
-      organization: citation.documentType || citation.specialty || undefined,
+      organization: citation.specialty || undefined,
+      doi: citation.doi,
+      url: citation.url,
     };
+  }
+
+  private parseSections(raw?: string): Record<string, string> {
+    if (!raw) return {};
+    try {
+      const parsed = JSON.parse(raw);
+      if (typeof parsed === 'object' && parsed !== null) {
+        return parsed;
+      }
+    } catch {
+      // Not JSON, return as general explanation
+    }
+    return { general: raw };
+  }
+
+  private extractRecommendations(findings: string[]): string[] {
+    return (findings || [])
+      .map(f => f.replace(/^[•\-✓✔]\s*/, '').trim())
+      .filter(Boolean);
   }
 
   private normalizeStatus(status?: BackendValidationStatus): AIResponse['status'] {
@@ -297,8 +318,8 @@ class ApiClient {
           queryId: question.id,
           title: question.questionText,
           summary: question.aiResponse.summary,
-          keyFindings: question.aiResponse.keyFindings || [],
-          detailedExplanation: question.aiResponse.detailedExplanation || question.aiResponse.summary,
+          keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings),
+          sections: this.parseSections(question.aiResponse.detailedExplanation),
           citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
           status: this.normalizeStatus(question.aiResponse.validationStatus),
           confidenceScore: question.aiResponse.confidenceScore || 0,
@@ -313,8 +334,8 @@ class ApiClient {
           queryId: question.id,
           title: question.questionText,
           summary: 'I could not find supporting medical information in the knowledge base.',
-          keyFindings: [],
-          detailedExplanation: '',
+          keyRecommendations: [],
+          sections: {},
           citations: [],
           status: 'pending' as const,
           confidenceScore: 0,
@@ -598,6 +619,51 @@ class ApiClient {
       body: JSON.stringify(data),
     });
     return payload.data;
+  }
+
+  async getAuditLogs(params: { page?: number; limit?: number; action?: string; entityType?: string; userId?: string; startDate?: string; endDate?: string } = {}): Promise<{ logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; total: number; page: number; limit: number; totalPages: number }> {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', String(params.page));
+    if (params.limit) query.set('limit', String(params.limit));
+    if (params.action) query.set('action', params.action);
+    if (params.entityType) query.set('entityType', params.entityType);
+    if (params.userId) query.set('userId', params.userId);
+    if (params.startDate) query.set('startDate', params.startDate);
+    if (params.endDate) query.set('endDate', params.endDate);
+    const qs = query.toString();
+    const payload = await this.request<{ success: boolean; data: { logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(`/audit-logs${qs ? `?${qs}` : ''}`);
+    const d = payload.data;
+    return { logs: d.logs, total: d.pagination.total, page: d.pagination.page, limit: d.pagination.limit, totalPages: d.pagination.totalPages };
+  }
+
+  async getSecurityEvents(params: { page?: number; limit?: number } = {}): Promise<{ logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; total: number; page: number; limit: number; totalPages: number }> {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', String(params.page));
+    if (params.limit) query.set('limit', String(params.limit));
+    const qs = query.toString();
+    const payload = await this.request<{ success: boolean; data: { logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(`/audit-logs/security${qs ? `?${qs}` : ''}`);
+    const d = payload.data;
+    return { logs: d.logs, total: d.pagination.total, page: d.pagination.page, limit: d.pagination.limit, totalPages: d.pagination.totalPages };
+  }
+
+  async getUserActivityLogs(userId: string, params: { page?: number; limit?: number } = {}): Promise<{ logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; total: number; page: number; limit: number; totalPages: number }> {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', String(params.page));
+    if (params.limit) query.set('limit', String(params.limit));
+    const qs = query.toString();
+    const payload = await this.request<{ success: boolean; data: { logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(`/audit-logs/user/${userId}${qs ? `?${qs}` : ''}`);
+    const d = payload.data;
+    return { logs: d.logs, total: d.pagination.total, page: d.pagination.page, limit: d.pagination.limit, totalPages: d.pagination.totalPages };
+  }
+
+  async getValidationActivity(params: { page?: number; limit?: number } = {}): Promise<{ logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; total: number; page: number; limit: number; totalPages: number }> {
+    const query = new URLSearchParams();
+    if (params.page) query.set('page', String(params.page));
+    if (params.limit) query.set('limit', String(params.limit));
+    const qs = query.toString();
+    const payload = await this.request<{ success: boolean; data: { logs: Array<{ id: string; action: string; entityType?: string; entityId?: string; description?: string; ipAddress?: string; userAgent?: string; createdAt: string; user?: { id: string; fullName: string; email: string; role: string } }>; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(`/audit-logs/validation${qs ? `?${qs}` : ''}`);
+    const d = payload.data;
+    return { logs: d.logs, total: d.pagination.total, page: d.pagination.page, limit: d.pagination.limit, totalPages: d.pagination.totalPages };
   }
 }
 

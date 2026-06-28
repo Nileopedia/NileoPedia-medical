@@ -3,6 +3,7 @@ import path from 'path';
 import fs from 'fs';
 import { IngestionStatus } from '@prisma/client';
 import { DocumentIngestionService } from '../../modules/documents/document.ingestion.service';
+import { DocumentMetadataService } from '../../modules/documents/metadata.service';
 import { logger } from '../../config/logger';
 
 interface KbSource {
@@ -24,7 +25,7 @@ const KB_SOURCES: KbSource[] = [
   { name: 'Gastroenterology', specialty: 'gastroenterology', baseUrl: 'https://gi.org/' },
 ];
 
-async function createDemoDocuments(source: { name: string; specialty: string }, isIncremental = false) {
+async function createDemoDocuments(source: { name: string; specialty: string; baseUrl: string }, isIncremental = false) {
   const demoTitles = [
     'Evidence-Based Clinical Guidelines',
     'Latest Research Findings',
@@ -62,7 +63,18 @@ async function createDemoDocuments(source: { name: string; specialty: string }, 
       });
       count++;
       
-      // Create embedding metadata for demo documents
+      await prisma.documentMetadata.create({
+        data: {
+          documentId: doc.id,
+          title: documentTitle,
+          authors: ['Medical Editorial Board'],
+          journal: source.name,
+          publicationYear: new Date().getFullYear(),
+          sourceURL: source.baseUrl,
+          documentType: 'GUIDELINE',
+        },
+      });
+
       await prisma.embeddingMetadata.create({
         data: {
           documentId: doc.id,
@@ -164,6 +176,27 @@ export async function processDocumentIngestion(job: any) {
     if (!content || !content.trim()) {
       throw new Error('No content could be extracted from the file');
     }
+
+    const metadataService = new DocumentMetadataService();
+    const extractedMetadata = await metadataService.extractMetadata({
+      rawText: content,
+      fileName,
+      fileType,
+      sourceURL: source,
+      doctype: documentType,
+    });
+
+    await metadataService.saveMetadata({
+      documentId,
+      title: extractedMetadata.title || title,
+      authors: extractedMetadata.authors,
+      journal: extractedMetadata.journal,
+      publisher: extractedMetadata.publisher,
+      publicationYear: extractedMetadata.publicationYear || publicationYear,
+      doi: extractedMetadata.doi,
+      sourceURL: extractedMetadata.sourceURL || source,
+      documentType: documentType,
+    });
 
     const ingestionService = new DocumentIngestionService();
     await ingestionService.ingestDocument({

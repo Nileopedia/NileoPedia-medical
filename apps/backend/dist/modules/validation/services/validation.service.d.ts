@@ -2,8 +2,8 @@ export declare class ValidationService {
     getPending(): Promise<({
         question: {
             id: string;
-            createdAt: Date;
             userId: string;
+            createdAt: Date;
             questionText: string;
             isSaved: boolean;
         };
@@ -11,11 +11,11 @@ export declare class ValidationService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
+        validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         questionId: string;
         summary: string;
         keyFindings: string[];
         confidenceScore: number | null;
-        validationStatus: import("@prisma/client").$Enums.ValidationStatus;
         generatedBy: string;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
@@ -24,8 +24,8 @@ export declare class ValidationService {
         aiResponse: {
             question: {
                 id: string;
-                createdAt: Date;
                 userId: string;
+                createdAt: Date;
                 questionText: string;
                 isSaved: boolean;
             };
@@ -33,28 +33,28 @@ export declare class ValidationService {
             id: string;
             createdAt: Date;
             updatedAt: Date;
+            validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             questionId: string;
             summary: string;
             keyFindings: string[];
             confidenceScore: number | null;
-            validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
         };
     } & {
         feedback: string | null;
         id: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     })[]>;
     getReview(responseId: string): Promise<{
         feedback: string | null;
         id: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     } | null>;

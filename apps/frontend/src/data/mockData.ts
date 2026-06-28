@@ -92,24 +92,20 @@ export const mockResponse: AIResponse = {
   id: 'resp-1',
   queryId: 'q-1',
   title: 'What are the latest evidence-based recommendations for managing Type 2 Diabetes in elderly patients?',
-  summary: 'Management of Type 2 Diabetes in elderly patients requires individualized treatment goals considering comorbidities, life expectancy, and risk of hypoglycemia. Current guidelines recommend:',
-  keyFindings: [
-    'HbA1c target of < 7.5–8.0% for healthy elderly patients',
-    'Less stringent targets (< 8.5–9.0%) for those with complex health issues',
-    'Metformin as first-line therapy if eGFR > 30 ml/min/1.73m²',
-    'Avoid sulfonylureas due to hypoglycemia risk',
-    'Consider SGLT2 inhibitors for patients with CVD or CKD',
-    'Regular monitoring and patient education are essential',
+  summary: 'Management of type 2 diabetes in elderly patients should be individualized based on cognitive status, life expectancy, and comorbidities. Current guidelines emphasize less stringent HbA1c targets and minimizing hypoglycemia risk while maintaining glycemic control through metformin first-line therapy and regular monitoring.',
+  keyRecommendations: [
+    'HbA1c target: 7–8% for healthy elderly patients',
+    'Metformin as first-line treatment',
+    'Minimize hypoglycemia risk',
+    'Regular monitoring',
+    'Lifestyle modifications',
   ],
-  detailedExplanation: `Glycemic targets should be individualized based on the patient's overall health status:
-
-• Healthy elderly (few comorbidities, intact cognitive function): HbA1c < 7.5%
-• Complex/intermediate health: HbA1c < 8.0%
-• Very complex/poor health: HbA1c < 8.5–9.0%
-
-Metformin remains the first-line therapy but requires dose adjustment based on renal function. SGLT2 inhibitors and GLP-1 receptor agonists are preferred for patients with cardiovascular disease or chronic kidney disease.
-
-Hypoglycemia prevention is critical in elderly patients. Sulfonylureas and insulin should be used with extreme caution. Regular monitoring of renal function, cognitive status, and functional capacity is essential for ongoing treatment decisions.`,
+  sections: {
+    treatmentGoals: 'Glycemic targets should be individualized based on the patient\'s overall health status:\n\n• Healthy elderly (few comorbidities, intact cognitive function): HbA1c < 7.5%\n• Complex/intermediate health: HbA1c < 8.0%\n• Very complex/poor health: HbA1c < 8.5–9.0%',
+    lifestyle: 'Lifestyle modifications remain essential and should include regular physical activity as tolerated, a balanced diet rich in fiber and low in saturated fats, and smoking cessation support. Weight management should be approached cautiously in frail patients.',
+    medications: 'Metformin remains the first-line therapy but requires dose adjustment based on renal function. SGLT2 inhibitors and GLP-1 receptor agonists are preferred for patients with cardiovascular disease or chronic kidney disease. Avoid sulfonylureas and insulin where possible due to hypoglycemia risk.',
+    monitoring: 'Hypoglycemia prevention is critical in elderly patients. Sulfonylureas and insulin should be used with extreme caution. Regular monitoring of renal function, cognitive status, and functional capacity is essential for ongoing treatment decisions.',
+  },
   citations: mockCitations,
   status: 'in_review',
   confidenceScore: 92,

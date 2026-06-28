@@ -11,23 +11,25 @@ import { ResponseViewer } from '../../components/query/ResponseViewer';
 import { io, type Socket } from 'socket.io-client';
 import { useAppStore } from '../../store/appStore';
 import { useToast } from '../../components/ui/Toast';
+import { useRouter } from 'next/navigation';
 
 const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
 
 export default function AskPage() {
-  const [question, setQuestion] = useState('');
-  const [specialty, setSpecialty] = useState<string>('general');
-  const [loading, setLoading] = useState(false);
-  const [processing, setProcessing] = useState(false);
-  const [response, setResponse] = useState<AIResponse | null>(null);
-  const [partialFindings, setPartialFindings] = useState<string[]>([]);
-  const [streamingVisible, setStreamingVisible] = useState<boolean[]>([]);
-  const [progress, setProgress] = useState(0);
-  const [socketConnected, setSocketConnected] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [questionId, setQuestionId] = useState<string | null>(null);
-  const user = useAppStore((state) => state.user);
-  const { addToast } = useToast();
+   const [question, setQuestion] = useState('');
+   const [specialty, setSpecialty] = useState<string>('general');
+   const [loading, setLoading] = useState(false);
+   const [processing, setProcessing] = useState(false);
+   const [response, setResponse] = useState<AIResponse | null>(null);
+   const [partialRecommendations, setPartialRecommendations] = useState<string[]>([]);
+   const [streamingVisible, setStreamingVisible] = useState<boolean[]>([]);
+   const [progress, setProgress] = useState(0);
+   const [socketConnected, setSocketConnected] = useState(false);
+   const [error, setError] = useState<string | null>(null);
+   const [questionId, setQuestionId] = useState<string | null>(null);
+   const router = useRouter();
+   const user = useAppStore((state) => state.user);
+   const { addToast } = useToast();
 
   useEffect(() => {
     if (!questionId) return;
@@ -36,36 +38,41 @@ export default function AskPage() {
     let attempts = 0;
     const maxAttempts = 60;
 
-    const pollForResponse = async () => {
-      try {
-        const data = await api.getQuestion(questionId);
-        
-        if (data.aiResponse) {
-          setResponse(data.aiResponse);
-          setProcessing(false);
-          setProgress(100);
-          setPartialFindings(data.aiResponse.keyFindings || []);
-          setStreamingVisible((data.aiResponse.keyFindings || []).map(() => true));
-          if (pollInterval) clearInterval(pollInterval);
-        } else if (attempts < maxAttempts) {
-          attempts++;
-          setProcessing(true);
-          setProgress(Math.min(90, attempts * 15));
-        }
-      } catch (err: any) {
-        if (err?.message?.includes('HTTP_429') || err?.message?.includes('Too Many Requests')) {
-          console.warn('Rate limit hit, stopping polling');
-          if (pollInterval) clearInterval(pollInterval);
-          setError('Rate limit reached. Please wait a moment and try again.');
-          setLoading(false);
-          return;
-        }
-        if (attempts < maxAttempts) {
-          attempts++;
-          setProgress(Math.min(90, attempts * 15));
-        }
-      }
-    };
+const pollForResponse = async () => {
+       try {
+         const data = await api.getQuestion(questionId);
+         
+         if (data.aiResponse) {
+           setResponse(data.aiResponse);
+           setProcessing(false);
+           setProgress(100);
+           setPartialRecommendations(data.aiResponse.keyRecommendations || []);
+           setStreamingVisible((data.aiResponse.keyRecommendations || []).map(() => true));
+           if (pollInterval) clearInterval(pollInterval);
+         } else if (attempts < maxAttempts) {
+           attempts++;
+           setProcessing(true);
+           setProgress(Math.min(90, attempts * 15));
+         }
+       } catch (err: any) {
+         if (err instanceof Error && err.message === 'Please sign in to continue') {
+           if (pollInterval) clearInterval(pollInterval);
+           router.push('/login');
+           return;
+         }
+         if (err?.message?.includes('HTTP_429') || err?.message?.includes('Too Many Requests')) {
+           console.warn('Rate limit hit, stopping polling');
+           if (pollInterval) clearInterval(pollInterval);
+           setError('Rate limit reached. Please wait a moment and try again.');
+           setLoading(false);
+           return;
+         }
+         if (attempts < maxAttempts) {
+           attempts++;
+           setProgress(Math.min(90, attempts * 15));
+         }
+       }
+     };
 
     setProcessing(true);
     setProgress(5);
@@ -90,7 +97,7 @@ export default function AskPage() {
     });
 
     socket.on('ai-key-findings', (data: { keyFindings: string[] }) => {
-      setPartialFindings(data.keyFindings);
+      setPartialRecommendations(data.keyFindings);
     });
 
     socket.on('ai-progress', (data: { progress: number }) => {
@@ -119,24 +126,29 @@ export default function AskPage() {
     };
   }, [questionId, user, addToast]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!question.trim()) return;
+const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault();
+     if (!question.trim()) return;
 
-    setLoading(true);
-    setError(null);
-    setResponse(null);
-    setPartialFindings([]);
-    setQuestionId(null);
+     setLoading(true);
+     setError(null);
+     setResponse(null);
+     setPartialRecommendations([]);
+     setStreamingVisible([]);
+     setQuestionId(null);
 
-    try {
-      const result = await api.askQuestion(question.trim(), specialty === 'general' ? undefined : specialty);
-      setQuestionId(result.questionId);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Failed to submit question');
-      setLoading(false);
-    }
-  };
+     try {
+       const result = await api.askQuestion(question.trim(), specialty === 'general' ? undefined : specialty);
+       setQuestionId(result.questionId);
+     } catch (err) {
+       if (err instanceof Error && err.message === 'Please sign in to continue') {
+         router.push('/login');
+       } else {
+         setError(err instanceof Error ? err.message : 'Failed to submit question');
+       }
+       setLoading(false);
+     }
+   };
 
   return (
     <AppLayout>
@@ -227,27 +239,27 @@ export default function AskPage() {
                   <span className="text-xs text-slate-500 mt-1 block">{progress}%</span>
                 </div>
               )}
-              {partialFindings.length > 0 && (
-                <div className="mt-4">
-                  <h3 className="text-sm font-medium text-slate-700 mb-2">Key Findings (streaming):</h3>
-                  <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
-                    {partialFindings.map((finding, i) => {
-                      const isVisible = streamingVisible[i];
-                      return (
-                        <li 
-                          key={i} 
-                          className={`transition-all duration-500 ease-out ${
-                            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                          }`}
-                          style={{ transitionDelay: `${i * 100}ms` }}
-                        >
-                          {finding}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              )}
+               {partialRecommendations.length > 0 && (
+                 <div className="mt-4">
+                   <h3 className="text-sm font-medium text-slate-700 mb-2">Key Findings (streaming):</h3>
+                   <ul className="list-disc list-inside text-sm text-slate-600 space-y-1">
+                     {partialRecommendations.map((rec, i) => {
+                       const isVisible = streamingVisible[i];
+                       return (
+                         <li 
+                           key={i} 
+                           className={`transition-all duration-500 ease-out ${
+                             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                           }`}
+                           style={{ transitionDelay: `${i * 100}ms` }}
+                         >
+                           {rec}
+                         </li>
+                       );
+                     })}
+                   </ul>
+                 </div>
+               )}
             </div>
           )}
 
