@@ -2,6 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Chrome autofill fix */
+@layer base {
+  input:-webkit-autofill,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:hover,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:focus,
+  textarea:-webkit-autofill:hover {
+    -webkit-text-fill-color: inherit;
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
 @layer base {
   :root {
     --background: 255 255 255;
@@ -83,7 +96,7 @@
   }
 
   .text-sidebar-foreground {
-    color: rgb(var(--sidebar-foreground));
+    background-color: rgb(var(--sidebar-foreground));
   }
 
   .bg-muted {
@@ -187,6 +200,14 @@
       font-size: 1rem;
       line-height: 1.5rem;
     }
+  }
+}
+
+@layer utilities {
+  /* Mobile touch targets */
+  .touch-target {
+    min-height: 44px;
+    min-width: 44px;
   }
 }
 

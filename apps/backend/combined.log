@@ -9658,3 +9658,65 @@ An operation failed because it depends on one or more records that were required
 2026-06-28T17:12:02.165Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-06-28T17:13:19.965Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
 2026-06-28T17:13:20.800Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-28T17:29:13.417Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T17:29:19.373Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T17:29:19.469Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T17:29:39.274Z [nileopedia-backend] info: POST /api/v1/auth/verify-otp - ::1
+2026-06-28T17:29:39.296Z [nileopedia-backend] error: Error in verifyOtp controller: Invalid or expired OTP
+2026-06-28T17:29:39.297Z [nileopedia-backend] error: Error handler caught: Invalid or expired OTP
+2026-06-28T17:31:22.853Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T17:31:22.866Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T17:31:25.839Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T17:31:25.845Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T17:31:26.814Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T17:31:26.821Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T17:33:55.802Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T17:33:55.824Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T18:33:44.937Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T18:33:45.081Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T18:33:46.090Z [nileopedia-backend] info: POST /api/v1/auth/register - ::1
+2026-06-28T18:33:46.121Z [nileopedia-backend] error: Error in register controller: User already exists
+2026-06-28T19:16:43.315Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:43.321Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:43.397Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:43.400Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:43.495Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:43.498Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.041Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.056Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.078Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.078Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.223Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.226Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.618Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.619Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.655Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:44.775Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.007Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.013Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.017Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.036Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.414Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.458Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.468Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.481Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.918Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.928Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.933Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:45.934Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.425Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.433Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.442Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.450Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.903Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.905Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.907Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:46.927Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:47.737Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:47.791Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:47.823Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:47.948Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:48.569Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:48.603Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:48.615Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T19:16:48.642Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379

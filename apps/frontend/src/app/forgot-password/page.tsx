@@ -27,13 +27,13 @@ export default function ForgotPasswordPage() {
 
   if (sent) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900">
-        <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md text-center">
-          <h1 className="text-3xl font-bold text-foreground mb-4">Check Your Email</h1>
-          <p className="text-muted-foreground mb-6">
+      <div className="min-h-screen flex items-center justify-center bg-background p-4">
+        <div className="bg-card p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md text-center">
+          <h1 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 sm:mb-4">Check Your Email</h1>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
             We've sent a password reset link to {email}. Please check your inbox.
           </p>
-          <Link href="/login" className="text-blue-600 hover:underline">
+          <Link href="/login" className="text-primary hover:underline text-sm sm:text-base">
             Back to Login
           </Link>
         </div>
@@ -42,21 +42,21 @@ export default function ForgotPasswordPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-slate-100 dark:bg-slate-900">
-      <div className="bg-card p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h1 className="text-3xl font-bold text-center text-foreground mb-6">Forgot Password?</h1>
-        <p className="text-center text-muted-foreground mb-8">
+    <div className="min-h-screen flex items-center justify-center bg-background p-4">
+      <div className="bg-card p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-md">
+        <h1 className="text-2xl sm:text-3xl font-bold text-center text-foreground mb-4 sm:mb-6">Forgot Password?</h1>
+        <p className="text-center text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
           Enter your email to receive a reset link.
         </p>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3 sm:space-y-4">
           <div>
-            <label className="block text-sm font-medium text-slate-700 mb-2">Email Address</label>
+            <label className="block text-sm font-medium text-foreground mb-1.5 sm:mb-2">Email Address</label>
             <input
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
-              className="w-full px-4 py-2 border border-slate-300 rounded-lg text-foreground placeholder-slate-400 dark:placeholder-slate-500 bg-card focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2.5 sm:py-3 border border-border rounded-lg bg-input text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
               required
             />
           </div>
@@ -64,14 +64,14 @@ export default function ForgotPasswordPage() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50"
+            className="w-full bg-primary text-primary-foreground py-2.5 sm:py-3 px-4 rounded-lg hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 disabled:opacity-50 transition-all"
           >
             {loading ? 'Sending...' : 'Send Reset Link'}
           </button>
         </form>
-        <p className="mt-6 text-center text-muted-foreground">
+        <p className="mt-4 sm:mt-6 text-center text-sm text-muted-foreground">
           Remembered your password?{' '}
-          <Link href="/login" className="text-blue-600 hover:underline">
+          <Link href="/login" className="text-primary hover:underline">
             Log in
           </Link>
         </p>
