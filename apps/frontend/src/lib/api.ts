@@ -204,22 +204,22 @@ class ApiClient {
 
     if (!response.ok) {
        const apiError = payload as { message?: string; errors?: Array<{ msg?: string }> };
-       const fallbackMessage = apiError.errors?.[0]?.msg || apiError.message || `Request failed (${response.status})`;
-       // Check for authentication errors
-       if (response.status === 401) {
-         throw new Error('Please sign in to continue');
-       }
-       // Check for conflict (duplicate email)
-       if (response.status === 409) {
-         throw new Error('Email already registered');
-       }
-       // Debug log
-       if (process.env.NODE_ENV !== 'test') {
-         console.warn(`API Error ${response.status}:`, apiError);
-       }
-       // Include status code in error for proper handling
-       throw new Error(`HTTP_${response.status}:${fallbackMessage}`);
-     }
+        const fallbackMessage = apiError.errors?.[0]?.msg || apiError.message || `Request failed (${response.status})`;
+        // Check for authentication errors
+        if (response.status === 401) {
+          throw new Error('Please sign in to continue');
+        }
+        // Check for conflict (duplicate email)
+        if (response.status === 409) {
+          throw new Error('Email already registered');
+        }
+        // Debug log
+        if (process.env.NODE_ENV !== 'test') {
+          console.warn(`API Error ${response.status}:`, apiError);
+        }
+        // Include status code in error for proper handling
+        throw new Error(`HTTP_${response.status}:${fallbackMessage}`);
+      }
 
     return payload as T;
   }
@@ -262,8 +262,8 @@ class ApiClient {
       pages: citation.pageNumber ? String(citation.pageNumber) : undefined,
       type: 'Study',
       organization: citation.specialty || undefined,
-      doi: citation.doi,
-      url: citation.url,
+      doi: citation.doi || undefined,
+      url: citation.url || undefined,
     };
   }
 
@@ -318,7 +318,7 @@ class ApiClient {
           queryId: question.id,
           title: question.questionText,
           summary: question.aiResponse.summary,
-          keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings),
+          keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings ?? []),
           sections: this.parseSections(question.aiResponse.detailedExplanation),
           citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
           status: this.normalizeStatus(question.aiResponse.validationStatus),

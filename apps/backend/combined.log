@@ -9720,3 +9720,421 @@ An operation failed because it depends on one or more records that were required
 2026-06-28T19:16:48.603Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-28T19:16:48.615Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-28T19:16:48.642Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-28T20:27:11.029Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T20:27:13.754Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:27:15.087Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:27:17.118Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:27:39.814Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T20:27:41.872Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:27:42.470Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:27:43.109Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:27:46.142Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T20:28:15.547Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-28T20:28:16.042Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-28T20:32:17.145Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T20:32:20.590Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T20:32:22.007Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T20:32:23.903Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T20:32:25.257Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:32:25.297Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:32:28.619Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:32:28.628Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:32:28.721Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:32:28.768Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:32:55.031Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:32:55.172Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:33:00.436Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:33:00.467Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:33:22.060Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:22.064Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:22.109Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:22.123Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:23.475Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:33:23.483Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:33:25.467Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:25.479Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:25.512Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:25.537Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:41.712Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:41.716Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:41.748Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:41.770Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:43.978Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:33:43.993Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:33:46.087Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-06-28T20:33:46.233Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.264Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.287Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.306Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.341Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.356Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.384Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.406Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.433Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:46.483Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:33:48.997Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-06-28T20:33:49.019Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.039Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.071Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.095Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.119Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.147Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.164Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.178Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.196Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:33:49.260Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:33:56.871Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:33:56.877Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:56.928Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:33:56.937Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:34:12.930Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:34:12.933Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:34:12.988Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:34:13.001Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:34:15.215Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:34:15.230Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:38:27.455Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:38:27.459Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:38:27.567Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:38:27.591Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:38:49.849Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:38:49.890Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:39:15.914Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:39:15.998Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:39:33.241Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:39:33.266Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:39:35.127Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:39:35.158Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:39:35.191Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:39:35.205Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:39:55.371Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:39:55.389Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-28T20:40:00.248Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:40:00.278Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:40:03.180Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-06-28T20:40:03.197Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.207Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.218Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.232Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.246Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.260Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.274Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.285Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.304Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:03.341Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:40:05.557Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-06-28T20:40:05.571Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.581Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.594Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.607Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.626Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.645Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.659Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.675Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.687Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T20:40:05.765Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:40:08.869Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:40:08.967Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:40:08.981Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:40:09.060Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:43:26.438Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:43:26.455Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:43:28.722Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:43:28.725Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:43:28.808Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T20:43:28.835Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T20:43:50.185Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-28T20:43:50.864Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-28T20:44:40.465Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T20:44:40.468Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-28T20:44:41.772Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-28T20:49:36.602Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-28T20:49:37.569Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1

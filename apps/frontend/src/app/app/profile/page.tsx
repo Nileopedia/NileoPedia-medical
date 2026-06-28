@@ -37,26 +37,26 @@ export default function ProfilePage() {
   }, [user]);
 
   if (!user) {
-    return <AppLayout><div className="p-6">Loading...</div></AppLayout>;
+    return <AppLayout><div className="p-4 sm:p-6 text-sm sm:text-base">Loading...</div></AppLayout>;
   }
 
   return (
     <AppLayout>
-      <div className="space-y-6 max-w-2xl">
+      <div className="space-y-4 sm:space-y-6 max-w-2xl">
         <div>
-          <h1 className="text-2xl font-bold text-foreground mb-2">Profile</h1>
-          <p className="text-muted-foreground">Manage your account information</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Profile</h1>
+          <p className="text-sm text-muted-foreground">Manage your account information</p>
         </div>
 
         <Card>
           <CardHeader>
-            <CardTitle>Personal Information</CardTitle>
+            <CardTitle className="text-sm sm:text-base">Personal Information</CardTitle>
           </CardHeader>
-          <CardContent className="space-y-6">
-            <div className="flex items-center gap-4">
+          <CardContent className="space-y-4 sm:space-y-6">
+            <div className="flex items-center gap-3 sm:gap-4">
               <Avatar name={user.name} size="lg" />
               <div>
-                <h2 className="text-lg font-semibold text-foreground">{user.name}</h2>
+                <h2 className="text-base sm:text-lg font-semibold text-foreground">{user.name}</h2>
                 <span
                   className={cn(
                     'inline-block text-xs px-2 py-0.5 rounded-full mt-1 font-medium',
@@ -68,36 +68,36 @@ export default function ProfilePage() {
               </div>
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
+                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Full Name</label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   disabled={!editing}
-                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-input disabled:bg-slate-50 disabled:text-slate-500 dark:disabled:bg-slate-800"
+                  className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input disabled:bg-muted disabled:text-muted-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Email</label>
+                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Email</label>
                 <input
                   type="email"
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   disabled={!editing}
-                  className="w-full px-3 py-2 border border-slate-200 dark:border-slate-600 rounded-lg text-sm bg-input disabled:bg-slate-50 disabled:text-slate-500 dark:disabled:bg-slate-800"
+                  className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input disabled:bg-muted disabled:text-muted-foreground"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-foreground mb-1">Role</label>
-                <p className="text-sm text-muted-foreground">{roleLabels[user.role]}</p>
+                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Role</label>
+                <p className="text-xs sm:text-sm text-muted-foreground">{roleLabels[user.role]}</p>
               </div>
             </div>
 
-            <div className="flex gap-2 pt-4">
+            <div className="flex flex-col sm:flex-row gap-2 pt-3 sm:pt-4">
               {editing ? (
                 <>
                   <button
@@ -105,7 +105,7 @@ export default function ProfilePage() {
                       setEditing(false);
                       setFormData({ name: user.name, email: user.email });
                     }}
-                    className="px-4 py-2 text-sm text-muted-foreground border border-slate-200 dark:border-slate-600 rounded-lg hover:bg-slate-50 dark:hover:bg-slate-700"
+                    className="px-4 py-2 text-xs sm:text-sm text-muted-foreground border border-border rounded-lg hover:bg-muted w-full sm:w-auto"
                   >
                     Cancel
                   </button>
@@ -114,7 +114,7 @@ export default function ProfilePage() {
                       setEditing(false);
                       // Would save to API here
                     }}
-                    className="px-4 py-2 text-sm text-white bg-blue-600 rounded-lg hover:bg-blue-700"
+                    className="px-4 py-2 text-xs sm:text-sm text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 w-full sm:w-auto"
                   >
                     Save changes
                   </button>
@@ -122,7 +122,7 @@ export default function ProfilePage() {
               ) : (
                 <button
                   onClick={() => setEditing(true)}
-                  className="px-4 py-2 text-sm text-blue-600 border border-blue-200 rounded-lg hover:bg-blue-50"
+                  className="px-4 py-2 text-xs sm:text-sm text-primary border border-primary/30 rounded-lg hover:bg-primary/10 w-full sm:w-auto"
                 >
                   Edit profile
                 </button>

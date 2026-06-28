@@ -21,29 +21,29 @@ const approvedItems: ReviewItem[] = [
 export default function ValidatorApprovedPage() {
   return (
     <AppLayout>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-6">
         <div>
-          <h1 className="text-2xl font-bold text-foreground mb-2">Approved Responses</h1>
-          <p className="text-muted-foreground">Previously validated responses</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Approved Responses</h1>
+          <p className="text-sm text-muted-foreground">Previously validated responses</p>
         </div>
 
-        <div className="bg-white rounded-xl border border-slate-200 p-6 shadow-sm">
-          <h2 className="flex items-center gap-2 text-lg font-semibold text-slate-900 mb-4">
-            <ClipboardCheck size={20} className="text-blue-600" />
+        <div className="bg-card rounded-xl border border-border p-4 sm:p-6 shadow-sm">
+          <h2 className="flex items-center gap-2 text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">
+            <ClipboardCheck size={18} className="text-blue-600" />
             Approved Items
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-2.5 sm:space-y-4">
             {approvedItems.map((item) => (
-              <div key={item.id} className="flex items-center justify-between p-4 border border-border rounded-lg">
+              <div key={item.id} className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3.5 sm:p-4 border border-border rounded-lg gap-2">
                 <div>
-                  <p className="font-medium text-foreground">{item.title}</p>
-                  <p className="text-sm text-muted-foreground">{item.category}</p>
+                  <p className="text-sm sm:text-base font-medium text-foreground">{item.title}</p>
+                  <p className="text-xs sm:text-sm text-muted-foreground">{item.category}</p>
                 </div>
                 <div className="flex items-center gap-2">
                   <Badge variant="success" className="text-xs">
                     {item.status}
                   </Badge>
-                  <span className="text-sm text-muted-foreground">{item.approvedAt}</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground">{item.approvedAt}</span>
                 </div>
               </div>
             ))}
