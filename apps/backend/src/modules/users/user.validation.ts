@@ -4,7 +4,8 @@ export const updateProfileSchema = z.object({
   fullName: z.string().min(1, 'Full name is required').optional(),
   specialization: z.string().optional(),
   institution: z.string().optional(),
-  profileImage: z.string().url('Invalid URL format').optional(),
+  profileImage: z.string().url('Invalid URL format').optional().or(z.literal('')),
+  bio: z.string().optional(),
 });
 
 export const changePasswordSchema = z.object({

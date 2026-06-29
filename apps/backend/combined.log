@@ -10452,3 +10452,79 @@ Unknown field `validationReviews` for select statement on model `UserCountOutput
 2026-06-28T23:14:48.764Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-29T06:46:39.700Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:46:40.551Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:46:41.418Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:46:42.685Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:46:46.754Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:04.838Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:47:05.414Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:06.200Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:07.236Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:09.746Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:15.453Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:47:15.886Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:16.653Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:17.846Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:21.768Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:27.642Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:47:28.166Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:28.906Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:29.872Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:34.183Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:49.163Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:47:49.783Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:50.953Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:52.115Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:47:55.026Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:07.614Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:48:08.305Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:09.592Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:10.885Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:16.326Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:48:17.103Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:18.258Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:19.591Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:48:23.428Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:00.646Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:49:01.156Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:02.036Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:03.248Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:07.308Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:15.232Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:49:15.817Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:16.926Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:18.143Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:20.704Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:52.453Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T06:49:53.269Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:55.132Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:56.584Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T06:49:57.654Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T07:03:49.634Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T07:03:50.977Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T07:03:53.171Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T07:03:56.089Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T07:04:01.990Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T08:33:01.797Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:33:01.948Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:33:01.967Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:33:02.003Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:33:02.007Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-06-29T08:33:02.023Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:33:02.024Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-06-29T08:33:02.049Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:33:02.055Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-06-29T08:35:40.967Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:35:41.060Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:35:41.063Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-06-29T08:35:41.072Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:35:41.072Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-06-29T08:35:41.097Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-06-29T08:35:41.137Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-06-29T08:42:56.903Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:42:57.046Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:42:57.086Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T08:42:57.249Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-06-29T08:53:18.198Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T08:53:31.236Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)

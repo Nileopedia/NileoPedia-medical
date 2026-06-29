@@ -1,6 +1,7 @@
 import express, { Express } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import { EmailService } from './modules/email/email.service';
 import './jobs/worker';
 import { redis } from './lib/redis';
 import { CONFIG } from './config/env';
@@ -143,7 +144,15 @@ prisma.$connect()
     
     // Initialize admin account
     await initializeAdmin();
-    
+
+    // Verify email service on startup
+    const emailStatus = await EmailService.checkConnection();
+    console.log('===================================================');
+    console.log(`[INFO] Email Provider: ${emailStatus.provider}`);
+    console.log(`[INFO] Email Service Configured: ${emailStatus.configured}`);
+    console.log(`[INFO] Email Service Status: ${emailStatus.status}`);
+    console.log('===================================================\n');
+
     const warmupPromise = warmupAiServices();
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Warmup timeout after 20000ms')), 20000);

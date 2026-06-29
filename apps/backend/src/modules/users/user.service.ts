@@ -15,8 +15,10 @@ export class UserService {
         specialization: true,
         institution: true,
         profileImage: true,
+        bio: true,
         isEmailVerified: true,
         accountStatus: true,
+        createdAt: true,
       },
     });
 
@@ -39,8 +41,10 @@ export class UserService {
         specialization: true,
         institution: true,
         profileImage: true,
+        bio: true,
         isEmailVerified: true,
         accountStatus: true,
+        createdAt: true,
       },
     });
 
@@ -123,6 +127,7 @@ export class UserService {
           specialization: true,
           institution: true,
           profileImage: true,
+          bio: true,
           isEmailVerified: true,
           accountStatus: true,
           createdAt: true,

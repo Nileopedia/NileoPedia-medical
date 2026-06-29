@@ -6,15 +6,26 @@ import { logger } from '../../config/logger';
 import { EmailJob } from '../../jobs/types';
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@nileopedia.com';
+const EMAIL_FROM = process.env.EMAIL_FROM;
 const EMAIL_PROVIDER = process.env.EMAIL_PROVIDER || 'resend';
+
+const getEmailFrom = () => process.env.EMAIL_FROM || '';
+const getApiKey = () => process.env.RESEND_API_KEY;
 
 let resendClient: any = null;
 
+export function resetResendClient() {
+  resendClient = null;
+}
+
 async function getResendClient() {
-  if (!resendClient && RESEND_API_KEY) {
+  if (!resendClient) {
+    const apiKey = getApiKey();
+    if (!apiKey) {
+      throw new Error('RESEND_API_KEY is not configured');
+    }
     const { Resend } = await import('resend');
-    resendClient = new Resend(RESEND_API_KEY);
+    resendClient = new Resend(apiKey);
   }
   return resendClient;
 }
@@ -22,37 +33,37 @@ async function getResendClient() {
 export class EmailService {
   static async sendValidatorOtp(data: { email: string; fullName: string; otpCode: string }): Promise<void> {
     const template = emailTemplates.validatorOtp(data);
-    await this.queueEmail(data.email, template.subject, template.html, 'otp');
+    await this.sendEmail(data.email, template.subject, template.html, 'otp');
   }
 
   static async sendOtp(data: { email: string; fullName: string; otp: string }): Promise<void> {
     const template = emailTemplates.otpLogin(data);
-    await this.queueEmail(data.email, template.subject, template.html, 'otp');
+    await this.sendEmail(data.email, template.subject, template.html, 'otp');
   }
 
   static async sendPasswordReset(data: { email: string; fullName: string; resetLink: string }): Promise<void> {
     const template = emailTemplates.passwordReset(data);
-    await this.queueEmail(data.email, template.subject, template.html, 'passwordReset');
+    await this.sendEmail(data.email, template.subject, template.html, 'passwordReset');
   }
 
   static async sendWelcome(data: { email: string; fullName: string }): Promise<void> {
     const template = emailTemplates.welcome(data);
-    await this.queueEmail(data.email, template.subject, template.html, 'notification');
+    await this.sendEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendAccountActivated(data: { email: string; fullName: string; reason?: string }): Promise<void> {
     const template = emailTemplates.accountActivated(data);
-    await this.queueEmail(data.email, template.subject, template.html, 'notification');
+    await this.sendEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendAccountDeactivated(data: { email: string; fullName: string; reason?: string }): Promise<void> {
     const template = emailTemplates.accountDeactivated(data);
-    await this.queueEmail(data.email, template.subject, template.html, 'notification');
+    await this.sendEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendSecurityAlert(data: { email: string; fullName: string; alertType: string; description: string; ipAddress?: string }): Promise<void> {
     const template = emailTemplates.securityAlert({ ...data, ipAddress: data.ipAddress });
-    await this.queueEmail(data.email, template.subject, template.html, 'notification');
+    await this.sendEmail(data.email, template.subject, template.html, 'notification');
   }
 
   static async sendSystemAnnouncement(recipients: string[], subject: string, title: string, message: string): Promise<void> {
@@ -64,22 +75,18 @@ export class EmailService {
         <p style="font-size: 12px; color: #999;">NileoPedia Team</p>
       </div>
     `;
-    
-    const { emailQueue } = await import('../../jobs/queues');
-    const jobs = recipients.map((email) => ({
-      name: 'announcement',
-      data: { to: email, subject, html, template: 'notification', data: { title, message } },
-    }));
-    
-    await emailQueue.addBulk(jobs);
+
+    for (const email of recipients) {
+      await this.sendEmail(email, subject, html, 'notification');
+    }
   }
 
-  private static async queueEmail(to: string, subject: string, html: string, template: string): Promise<void> {
+  static async sendEmail(to: string, subject: string, html: string, template?: string): Promise<void> {
     if (!validateEmail({ to, subject, html })) {
       throw new Error('Invalid email data');
     }
 
-    await prisma.emailLog.create({
+    const pendingLog = await prisma.emailLog.create({
       data: {
         recipient: to,
         subject,
@@ -88,65 +95,62 @@ export class EmailService {
     });
 
     try {
-      const { emailQueue } = await import('../../jobs/queues');
-      const jobData: EmailJob = { to, subject, template, html };
-      await emailQueue.add('send', jobData);
-    } catch (error) {
-      // Fallback: send directly via Resend when Redis/queue unavailable
-      logger.warn('Queue unavailable, sending email directly via Resend');
-      try {
-        await this.sendViaResend(to, subject, html);
-        await prisma.emailLog.updateMany({
-          where: { recipient: to, subject },
-          data: { status: EmailStatus.SENT, sentAt: new Date() },
-        });
-      } catch (sendError) {
-        await prisma.emailLog.updateMany({
-          where: { recipient: to, subject },
-          data: { status: EmailStatus.FAILED, error: String(sendError) },
-        });
-        throw sendError;
-      }
-    }
-  }
-
-  static async sendEmail(to: string, subject: string, html: string): Promise<void> {
-    if (EMAIL_PROVIDER === 'resend') {
       await this.sendViaResend(to, subject, html);
-    } else {
-      await this.sendViaNodemailer(to, subject, html);
-    }
-  }
-
-  private static async sendViaResend(to: string, subject: string, html: string): Promise<void> {
-    try {
-      const resend = await getResendClient();
-      if (!resend) {
-        throw new Error('Resend client not configured');
-      }
-      await resend.emails.send({
-        from: EMAIL_FROM,
-        to,
-        subject,
-        html,
+      await prisma.emailLog.update({
+        where: { id: pendingLog.id },
+        data: { status: EmailStatus.SENT, sentAt: new Date() },
       });
+      logger.info(`Email sent successfully to ${to}`, { type: template, subject });
     } catch (error) {
-      logger.error('Resend email failed, falling back to Nodemailer', error);
-      await this.sendViaNodemailer(to, subject, html);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      await prisma.emailLog.update({
+        where: { id: pendingLog.id },
+        data: { status: EmailStatus.FAILED, error: errorMessage },
+      });
+      logger.error(`Email sending failed to ${to}`, { type: template, subject, error: errorMessage });
+      throw error;
     }
   }
 
-  private static async sendViaNodemailer(to: string, subject: string, html: string): Promise<void> {
-    const nodemailer = await import('nodemailer');
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST || 'localhost',
-      port: parseInt(process.env.SMTP_PORT || '1025'),
-    });
-    await transporter.sendMail({
-      from: EMAIL_FROM,
+  static async sendViaResend(to: string, subject: string, html: string): Promise<void> {
+    const resend = await getResendClient();
+    const result = await resend.emails.send({
+      from: getEmailFrom(),
       to,
       subject,
       html,
     });
+
+    logger.info(`Resend API response for ${to}`, {
+      id: result.data?.id,
+      status: 'queued',
+    });
+  }
+
+  static getEmailProvider(): string {
+    return EMAIL_PROVIDER;
+  }
+
+  static isConfigured(): boolean {
+    return !!getApiKey() && !!getEmailFrom();
+  }
+
+  static async checkConnection(): Promise<{ provider: string; configured: boolean; status: string }> {
+    try {
+      const resend = await getResendClient();
+      const configured = this.isConfigured();
+      return {
+        provider: 'resend',
+        configured,
+        status: configured ? 'connected' : 'disconnected',
+      };
+    } catch (error) {
+      logger.error('Email connection check failed', error);
+      return {
+        provider: 'resend',
+        configured: false,
+        status: 'disconnected',
+      };
+    }
   }
 }

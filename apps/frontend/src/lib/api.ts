@@ -42,11 +42,13 @@ type BackendAiResponse = {
   id: string;
   questionId: string;
   summary: string;
-  keyFindings?: string[];
   detailedExplanation?: string;
+  keyFindings?: string[];
   confidenceScore?: number | null;
   validationStatus?: BackendValidationStatus;
   generatedBy?: string;
+  processingTime?: number | null;
+  documentsUsed?: number | null;
   createdAt?: string;
   updatedAt?: string;
   citations?: BackendCitation[];
@@ -55,6 +57,7 @@ type BackendAiResponse = {
 type BackendQuestion = {
   id: string;
   questionText: string;
+  category?: string;
   createdAt: string;
   isSaved?: boolean;
   aiResponse?: BackendAiResponse | null;
@@ -298,7 +301,7 @@ class ApiClient {
     return {
       id: question.id,
       question: question.questionText,
-      category: 'General',
+      category: question.category || 'General',
       status: this.normalizeStatus(question.aiResponse?.validationStatus),
       createdAt: new Date(question.createdAt).toLocaleString(),
       updatedAt: new Date(question.createdAt).toLocaleString(),
@@ -328,6 +331,8 @@ class ApiClient {
           tags: [],
           isSaved: question.isSaved || false,
           source: (hasRealResponse ? 'real' : 'unavailable') as 'real' | 'unavailable',
+          documentsUsed: question.aiResponse.documentsUsed ?? 0,
+          processingTime: question.aiResponse.processingTime ?? null,
         }
       : {
           id: `resp-${question.id}`,
@@ -344,6 +349,8 @@ class ApiClient {
           tags: [],
           isSaved: false,
           source: 'unavailable' as const,
+          documentsUsed: 0,
+          processingTime: null,
         };
 
     return {
@@ -369,16 +376,24 @@ class ApiClient {
     return this.normalizeAiResponse(this.unwrap(payload));
   }
 
-  async getHistory(): Promise<Query[]> {
-    const payload = await this.request<ApiEnvelope<BackendQuestion[]>>('/questions/history');
-    const questions = this.unwrap(payload);
-    return questions.map((question) => {
-      const mapped = this.normalizeQuestion(question);
-      return {
-        ...mapped,
-        userId: question.id,
-      };
-    });
+  async getHistory(options: { page?: number; limit?: number; category?: string; startDate?: string; endDate?: string } = {}): Promise<{ questions: Query[]; total: number; page: number; limit: number; totalPages: number }> {
+    const { page = 1, limit = 10, category, startDate, endDate } = options;
+    const query = new URLSearchParams({ page: String(page), limit: String(limit) });
+    if (category) query.set('category', category);
+    if (startDate) query.set('startDate', startDate);
+    if (endDate) query.set('endDate', endDate);
+    const payload = await this.request<ApiEnvelope<{ questions: BackendQuestion[]; meta: { total: number; page: number; limit: number; totalPages: number } }>>(`/questions/history?${query.toString()}`);
+    const data = this.unwrap(payload);
+    return {
+      questions: data.questions.map((question) => {
+        const mapped = this.normalizeQuestion(question);
+        return { ...mapped, userId: question.id };
+      }),
+      total: data.meta.total,
+      page: data.meta.page,
+      limit: data.meta.limit,
+      totalPages: data.meta.totalPages,
+    };
   }
 
   async login(email: string, password: string): Promise<{ token: string; refreshToken?: string; user: User }> {
@@ -463,9 +478,95 @@ class ApiClient {
     });
   }
 
-  async getSavedResponses(): Promise<Query[]> {
-    const history = await this.getHistory();
-    return history.filter((query) => query.isSaved);
+  async getSavedResponses(options: { page?: number; limit?: number; search?: string } = {}): Promise<{ questions: Query[]; total: number; page: number; limit: number; totalPages: number }> {
+    const { page = 1, limit = 10, search } = options;
+    const query = new URLSearchParams({ page: String(page), limit: String(limit) });
+    if (search) query.set('search', search);
+    const payload = await this.request<ApiEnvelope<{ questions: BackendQuestion[]; meta: { total: number; page: number; limit: number; totalPages: number } }>>(`/questions/saved?${query.toString()}`);
+    const data = this.unwrap(payload);
+    return {
+      questions: data.questions.map((question) => {
+        const mapped = this.normalizeQuestion(question);
+        return { ...mapped, userId: question.id, isSaved: true };
+      }),
+      total: data.meta.total,
+      page: data.meta.page,
+      limit: data.meta.limit,
+      totalPages: data.meta.totalPages,
+    };
+  }
+
+  async getDashboardAnalytics() {
+    const payload = await this.request<ApiEnvelope<{
+      totalQueries: number;
+      savedResponses: number;
+      aiResponsesGenerated: number;
+      pendingResponses: number;
+      approvedResponses: number;
+      avgResponseTime: string;
+      topCategories: Array<{ name: string; count: number }>;
+      dailyTrends: Record<string, number>;
+      activities: Array<{ id: string; type: string; title: string; description: string; status: string; timestamp: string }>;
+      recentQueries: Array<{ id: string; question: string; category: string; status: string; createdAt: string; updatedAt: string; isSaved: boolean; confidenceScore: number | null; responseTime: number | null }>;
+    }>>('/analytics/user/dashboard');
+    return this.unwrap(payload);
+  }
+
+  async getCurrentUser() {
+    const payload = await this.request<ApiEnvelope<{
+      id: string;
+      fullName: string;
+      email: string;
+      role: string;
+      specialization?: string | null;
+      institution?: string | null;
+      profileImage?: string | null;
+      bio?: string | null;
+      isEmailVerified: boolean;
+      accountStatus: string;
+      createdAt: string;
+    }>>('/users/me');
+    const data = this.unwrap(payload);
+    return {
+      id: data.id,
+      name: data.fullName,
+      email: data.email,
+      role: this.normalizeRole(data.role),
+      avatar: data.profileImage ?? undefined,
+      title: data.institution ?? data.specialization ?? undefined,
+      specialty: data.specialization ?? undefined,
+      bio: data.bio ?? undefined,
+      createdAt: data.createdAt,
+    };
+  }
+
+  async updateProfile(data: { fullName?: string; email?: string; specialization?: string; institution?: string; profileImage?: string; bio?: string }) {
+    const payload = await this.request<ApiEnvelope<{
+      id: string;
+      fullName: string;
+      email: string;
+      role: string;
+      specialization?: string | null;
+      institution?: string | null;
+      profileImage?: string | null;
+      bio?: string | null;
+      isEmailVerified: boolean;
+      accountStatus: string;
+    }>>('/users/profile', {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+    const user = this.unwrap(payload);
+    return {
+      id: user.id,
+      name: user.fullName,
+      email: user.email,
+      role: this.normalizeRole(user.role),
+      avatar: user.profileImage ?? undefined,
+      title: user.institution ?? user.specialization ?? undefined,
+      specialty: user.specialization ?? undefined,
+      bio: user.bio ?? undefined,
+    };
   }
 
   async search(

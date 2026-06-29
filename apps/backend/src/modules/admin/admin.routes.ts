@@ -2,11 +2,14 @@ import { Router } from 'express';
 import { AdminController } from './controllers/admin.controller';
 import { authenticate, authorize } from '../../shared/middleware/auth.middleware';
 import { IngestionController } from './controllers/ingestion.controller';
+import emailRoutes from '../email/email.routes';
 
 const adminController = new AdminController();
 const ingestionController = new IngestionController();
 
 const router: Router = Router();
+
+router.use('/email-status', emailRoutes);
 
 router.get('/users', authenticate, authorize('ADMIN'), adminController.getUsers.bind(adminController));
 router.patch('/users/:userId/suspend', authenticate, authorize('ADMIN'), adminController.suspendUser.bind(adminController));

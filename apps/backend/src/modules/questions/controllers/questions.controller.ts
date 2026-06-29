@@ -41,14 +41,51 @@ export class QuestionsController {
   async getHistory(req: Request, res: Response, next: NextFunction) {
     try {
       const userId = req.user!.id;
-      const questions = await this.questionsService.getHistory(userId);
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const category = req.query.category as string | undefined;
+      const startDate = req.query.startDate as string | undefined;
+      const endDate = req.query.endDate as string | undefined;
+
+      const result = await this.questionsService.getHistory(userId, { page, limit, category, startDate, endDate });
 
       res.status(200).json({
         success: true,
-        data: questions,
+        data: result.questions,
+        meta: {
+          total: result.total,
+          page: result.page,
+          limit: result.limit,
+          totalPages: result.totalPages,
+        },
       });
     } catch (error) {
       logger.error('Error in getHistory controller:', error);
+      next(error);
+    }
+  }
+
+  async getSavedResponses(req: Request, res: Response, next: NextFunction) {
+    try {
+      const userId = req.user!.id;
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 10;
+      const search = req.query.search as string | undefined;
+
+      const result = await this.questionsService.getSavedResponses(userId, { page, limit, search });
+
+      res.status(200).json({
+        success: true,
+        data: result.questions,
+        meta: {
+          total: result.total,
+          page: result.page,
+          limit: result.limit,
+          totalPages: result.totalPages,
+        },
+      });
+    } catch (error) {
+      logger.error('Error in getSavedResponses controller:', error);
       next(error);
     }
   }

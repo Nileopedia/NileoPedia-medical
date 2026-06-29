@@ -4375,3 +4375,6 @@ Unknown field `validationReviews` for select statement on model `UserCountOutput
 2026-06-28T23:14:48.764Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
 2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-29T08:35:41.097Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-06-29T08:35:41.137Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-06-29T08:42:57.249Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured

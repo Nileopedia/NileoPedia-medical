@@ -1,184 +1,242 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
 import { AppLayout } from '@/components/layout/AppLayout';
-import { QueryInput } from '@/components/query/QueryInput';
-import { ResponseViewer } from '@/components/query/ResponseViewer';
 import { StatCard } from '@/components/dashboard/StatCard';
-import { TopCategories } from '@/components/dashboard/TopCategories';
-import { RecentActivity } from '@/components/dashboard/RecentActivity';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '@/components/ui/Table';
+import { Badge } from '@/components/ui/Badge';
 import { useAppStore } from '@/store/appStore';
-import { MessageCircleQuestion, History, Bookmark, Clock } from 'lucide-react';
+import { useToast } from '@/components/ui/Toast';
+import { useRouter } from 'next/navigation';
 import { api } from '@/lib/api';
-import type { AIResponse, CategoryStat, Activity } from '@/types';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, Legend } from 'recharts';
+import { MessageCircleQuestion, Bookmark, Brain, Clock } from 'lucide-react';
 
 export default function AppPage() {
-   const user = useAppStore((state) => state.user);
-   const router = useRouter();
-   const [showResponse, setShowResponse] = useState(false);
-   const [loading, setLoading] = useState(false);
-   const [response, setResponse] = useState<AIResponse | null>(null);
-   const [error, setError] = useState<string | null>(null);
-   const [stats, setStats] = useState({
-     totalQueries: 0,
-     pendingReviews: 0,
-     savedResponses: 0,
-     avgResponseTime: '2.4s',
-   });
-   const [categoryStats, setCategoryStats] = useState<CategoryStat[]>([]);
-   const [recentActivities, setRecentActivities] = useState<Activity[]>([]);
+  const user = useAppStore((state) => state.user);
+  const router = useRouter();
+  const { addToast } = useToast();
+  const [loading, setLoading] = useState(true);
+  const [analytics, setAnalytics] = useState<{
+    totalQueries: number;
+    savedResponses: number;
+    aiResponsesGenerated: number;
+    pendingResponses: number;
+    approvedResponses: number;
+    avgResponseTime: string;
+    topCategories: Array<{ name: string; count: number }>;
+    dailyTrends: Record<string, number>;
+    activities: Array<{ id: string; type: string; title: string; description: string; status: string; timestamp: string }>;
+    recentQueries: Array<{ id: string; question: string; category: string; status: string; createdAt: string; updatedAt: string; isSaved: boolean; confidenceScore: number | null; responseTime: number | null }>;
+  } | null>(null);
 
-   useEffect(() => {
-     fetchDashboardStats();
-   }, []);
+  useEffect(() => {
+    fetchDashboardStats();
+  }, []);
 
-   const fetchDashboardStats = async () => {
-     try {
-       const history = await api.getHistory();
-       const saved = await api.getSavedResponses();
-       
-       setStats({
-         totalQueries: history.length,
-         pendingReviews: history.filter(q => q.status === 'pending' || q.status === 'in_review').length,
-         savedResponses: saved.length,
-         avgResponseTime: '2.4s',
-       });
+  const fetchDashboardStats = async () => {
+    setLoading(true);
+    try {
+      const data = await api.getDashboardAnalytics();
+      setAnalytics(data);
+    } catch (err) {
+      if ((err as Error).message === 'Please sign in to continue') {
+        router.push('/login');
+        return;
+      }
+      addToast({ type: 'error', title: 'Failed to load dashboard statistics' });
+    } finally {
+      setLoading(false);
+    }
+  };
 
-       const categoryCounts: Record<string, number> = {};
-       history.forEach(q => {
-         const cat = q.category || 'General';
-         categoryCounts[cat] = (categoryCounts[cat] || 0) + 1;
-       });
-       
-       const colors = ['#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE'];
-       const statsItems = Object.entries(categoryCounts).map(([name, value], i) => ({
-         name,
-         value,
-         color: colors[i % colors.length],
-       }));
-       setCategoryStats(statsItems);
+  const categoryChartData = analytics?.topCategories?.map((cat, i) => ({
+    name: cat.name,
+    value: cat.count,
+    color: ['#2563EB', '#3B82F6', '#60A5FA', '#93C5FD', '#BFDBFE'][i % 5],
+  })) || [];
 
-       const activities: Activity[] = history.slice(0, 5).map((q) => ({
-         id: q.id,
-         type: 'query_submitted' as const,
-         title: q.question,
-         description: `${q.category || 'General'} - ${q.status}`,
-         status: (q.status === 'approved' || q.status === 'rejected' || q.status === 'pending') ? q.status : 'pending',
-         timestamp: q.createdAt || 'Recently',
-       }));
-       setRecentActivities(activities);
-     } catch (err) {
-       console.error('Failed to fetch dashboard stats:', err);
-     }
-   };
+  const trendData = analytics?.dailyTrends
+    ? Object.entries(analytics.dailyTrends).map(([date, count]) => ({ date: date.slice(5), count }))
+    : [];
 
-   const handleSubmitQuery = async (query: string) => {
-     setLoading(true);
-     setError(null);
-     try {
-       const result = await api.askQuestion(query);
-       if (!result || !result.questionId) throw new Error('Invalid response from AI service');
+  const recentActivities = analytics?.activities?.map((a) => ({
+    id: a.id,
+    type: 'query_submitted' as const,
+    title: a.title,
+    description: a.description,
+    status: (a.status === 'approved' ? 'approved' : a.status === 'rejected' ? 'rejected' : 'pending') as 'pending' | 'approved' | 'rejected' | 'info',
+    timestamp: a.timestamp,
+  })) || [];
 
-       const aiResponse: AIResponse = {
-         id: `resp-${result.questionId}`,
-         queryId: result.questionId,
-         title: query,
-         summary: 'Your question is being processed by our AI system.',
-         keyRecommendations: [],
-         sections: {},
-         citations: [],
-         status: 'pending',
-         confidenceScore: 0,
-         model: 'Processing',
-         generatedAt: new Date().toISOString(),
-         tags: [],
-         source: 'real' as const,
-       };
-       setResponse(aiResponse);
-       setShowResponse(true);
+  if (loading) {
+    return (
+      <AppLayout>
+        <div className="flex justify-center items-center py-12">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+        </div>
+      </AppLayout>
+    );
+  }
 
-       const pollForFullResponse = async (questionId: string) => {
-         let attempts = 0;
-         const maxAttempts = 60;
+  if (!analytics) {
+    return (
+      <AppLayout>
+        <div className="flex justify-center items-center py-12">
+          <p className="text-muted-foreground">No data available</p>
+        </div>
+      </AppLayout>
+    );
+  }
 
-         const check = async () => {
-           try {
-             const data = await api.getQuestion(questionId);
-             if (data.aiResponse && data.aiResponse.status !== 'pending') {
-               setResponse(data.aiResponse);
-             } else if (attempts < maxAttempts) {
-               attempts++;
-               setTimeout(check, 2000);
-             } else {
-               setError('AI processing is taking longer than usual. Please check back in history later.');
-             }
-           } catch (err) {
-             if (err instanceof Error && err.message === 'Please sign in to continue') {
-               router.push('/login');
-               return;
-             }
-             if (attempts < maxAttempts) {
-               attempts++;
-               setTimeout(check, 3000);
-             }
-           }
-         };
-         setTimeout(check, 2000);
-       };
-       pollForFullResponse(result.questionId);
-     } catch (err) {
-       if (err instanceof Error && err.message === 'Please sign in to continue') {
-         router.push('/login');
-       } else {
-         console.error('Failed to submit query:', err);
-         setError(err instanceof Error ? err.message : 'Failed to reach AI service');
-       }
-     } finally {
-       setLoading(false);
-     }
-   };
+  const getStatusBadge = (status: string) => {
+    switch (status) {
+      case 'approved':
+        return <Badge variant="success">Approved</Badge>;
+      case 'rejected':
+        return <Badge variant="danger">Rejected</Badge>;
+      case 'pending':
+        return <Badge variant="warning">Pending</Badge>;
+      default:
+        return <Badge variant="info">{status}</Badge>;
+    }
+  };
 
-   return (
-     <AppLayout>
-       <div className="space-y-4 sm:space-y-6">
-         <div>
-           <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Welcome back, {user?.name?.split(' ')[0] || 'User'}</h1>
-           <p className="text-sm text-muted-foreground">Ask medical questions and get evidence-based answers validated by experts</p>
-         </div>
+  return (
+    <AppLayout>
+      <div className="space-y-4 sm:space-y-6">
+        <div>
+          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Welcome back, {user?.name?.split(' ')[0] || 'User'}</h1>
+          <p className="text-sm text-muted-foreground">Your medical AI assistant dashboard</p>
+        </div>
 
-         {user?.role === 'admin' && (
-           <div className="bg-red-100 dark:bg-red-900 p-3 sm:p-4 rounded-lg text-red-800 dark:text-red-200 border border-red-200 dark:border-red-700">
-             <p className="font-semibold text-sm sm:text-base">Admin Dashboard Access:</p>
-             <p className="text-xs sm:text-sm">As an administrator, you have elevated privileges. Access admin-specific tools and reports here.</p>
-             <Link href="/admin" className="text-red-600 hover:underline mt-1.5 sm:mt-2 block">Go to Admin Panel</Link>
-           </div>
-         )}
+        {user?.role === 'admin' && (
+          <div className="bg-red-50 dark:bg-red-900/30 p-3 sm:p-4 rounded-lg border border-red-200 dark:border-red-700">
+            <p className="font-semibold text-sm sm:text-base text-red-800 dark:text-red-200">Admin Dashboard Access:</p>
+            <p className="text-xs sm:text-sm text-red-600 dark:text-red-300">As an administrator, you have elevated privileges.</p>
+            <a href="/admin" className="text-red-600 dark:text-red-400 hover:underline mt-1.5 sm:mt-2 inline-block text-sm">Go to Admin Panel</a>
+          </div>
+        )}
 
-         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
-           <StatCard title="Total Queries" value={stats.totalQueries.toString()} icon={<MessageCircleQuestion size={20} className="text-blue-600" />} />
-           <StatCard title="Pending Reviews" value={stats.pendingReviews.toString()} icon={<Clock size={20} className="text-amber-600" />} />
-           <StatCard title="Saved Responses" value={stats.savedResponses.toString()} icon={<Bookmark size={20} className="text-emerald-600" />} />
-           <StatCard title="Avg Response Time" value={stats.avgResponseTime} icon={<History size={20} className="text-purple-600" />} />
-         </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+          <StatCard title="Total Queries" value={analytics.totalQueries.toString()} icon={<MessageCircleQuestion size={20} className="text-blue-600" />} />
+          <StatCard title="AI Responses Generated" value={analytics.aiResponsesGenerated.toString()} icon={<Brain size={20} className="text-emerald-600" />} />
+          <StatCard title="Saved Responses" value={analytics.savedResponses.toString()} icon={<Bookmark size={20} className="text-purple-600" />} />
+          <StatCard title="Avg Response Time" value={analytics.avgResponseTime} icon={<Clock size={20} className="text-amber-600" />} />
+        </div>
 
-         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
-           <div className="lg:col-span-2 space-y-4 sm:space-y-6">
-             <QueryInput onSubmit={handleSubmitQuery} loading={loading} />
-             {error && (
-               <div className="p-3 sm:p-4 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm">
-                 {error}
-               </div>
-             )}
-             {showResponse && response && <ResponseViewer response={response} />}
-           </div>
-           <div className="space-y-4 sm:space-y-6">
-             <TopCategories categories={categoryStats} />
-             <RecentActivity activities={recentActivities} />
-           </div>
-         </div>
-       </div>
-     </AppLayout>
-   );
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Queries Over Time (Last 30 Days)</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={trendData}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="date" tick={{ fontSize: 12 }} />
+                    <YAxis allowDecimals={false} tick={{ fontSize: 12 }} />
+                    <Tooltip />
+                    <Bar dataKey="count" fill="#2563EB" radius={[4, 4, 0, 0]} />
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <CardTitle>Top Categories</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <PieChart>
+                    <Pie
+                      data={categoryChartData}
+                      cx="50%"
+                      cy="50%"
+                      innerRadius={40}
+                      outerRadius={80}
+                      paddingAngle={2}
+                      dataKey="value"
+                      label={({ name, value }) => `${name}: ${value}`}
+                    >
+                      {categoryChartData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.color} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                </ResponsiveContainer>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent Activity</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {recentActivities.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No recent activity</p>
+            ) : (
+              <div className="space-y-4">
+                {recentActivities.map((activity) => (
+                  <div key={activity.id} className="flex items-start gap-3">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center justify-between gap-2">
+                        <p className="text-sm font-medium text-foreground truncate">{activity.title}</p>
+                        {getStatusBadge(activity.status)}
+                      </div>
+                      <p className="text-sm text-muted-foreground truncate">{activity.description}</p>
+                      <p className="text-xs text-muted-foreground/70 mt-0.5">{new Date(activity.timestamp).toLocaleString()}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Recent Queries</CardTitle>
+          </CardHeader>
+          <CardContent>
+            {analytics.recentQueries.length === 0 ? (
+              <p className="text-sm text-muted-foreground">No queries yet</p>
+            ) : (
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Question</TableHead>
+                    <TableHead>Category</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Date</TableHead>
+                    <TableHead>Confidence</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {analytics.recentQueries.map((q) => (
+                    <TableRow key={q.id}>
+                      <TableCell className="font-medium text-foreground max-w-xs truncate">{q.question}</TableCell>
+                      <TableCell className="text-muted-foreground">{q.category}</TableCell>
+                      <TableCell>{getStatusBadge(q.status)}</TableCell>
+                      <TableCell className="text-muted-foreground">{new Date(q.createdAt).toLocaleDateString()}</TableCell>
+                      <TableCell className="text-muted-foreground">{q.confidenceScore ? `${(q.confidenceScore * 100).toFixed(0)}%` : 'N/A'}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            )}
+          </CardContent>
+        </Card>
+      </div>
+    </AppLayout>
+  );
 }

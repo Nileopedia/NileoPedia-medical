@@ -1,454 +1,376 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { AppLayout } from '@/components/layout/AppLayout';
-import { cn } from '@/utils/cn';
-import { Globe, MessageSquare, Shield, User, Check, Monitor, Moon, Sun } from 'lucide-react';
-import { api } from '@/lib/api';
-import { useToast } from '@/components/ui/Toast';
-import { useAppStore } from '@/store/appStore';
+import React, { useEffect, useState } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/Input';
+import { TextArea } from '../../components/ui/Input';
+import { Loader2, Save, Lock, Bell, Palette, Brain } from 'lucide-react';
+import { AppLayout } from '../../components/layout/AppLayout';
+import { api } from '../../lib/api';
+import { useRouter } from 'next/navigation';
+import { useToast } from '../../components/ui/Toast';
+import { useSettings } from '../../contexts/SettingsContext';
+import { cn } from '../../utils/cn';
 
-type SettingsTab = 'general' | 'ai' | 'notifications' | 'account';
-type ThemeType = 'light' | 'dark' | 'system';
+type Theme = 'light' | 'dark' | 'system';
+type Language = 'en' | 'am' | 'om';
+type ResponseStyle = 'concise' | 'normal' | 'detailed';
 
-interface Settings {
-  theme: ThemeType;
-  language: string;
+interface SettingsState {
+  theme: Theme;
+  language: Language;
   sidebarCollapsed: boolean;
-  responseStyle: string;
-  citationEnabled: boolean;
   emailNotifications: boolean;
   systemNotifications: boolean;
   uploadNotifications: boolean;
   validationNotifications: boolean;
+  responseStyle: ResponseStyle;
+  citationEnabled: boolean;
 }
 
-const defaultSettings: Settings = {
-  theme: 'system',
-  language: 'en',
-  sidebarCollapsed: false,
-  responseStyle: 'normal',
-  citationEnabled: true,
-  emailNotifications: true,
-  systemNotifications: true,
-  uploadNotifications: true,
-  validationNotifications: true,
-};
+const Switch: React.FC<{
+  checked: boolean;
+  onChange: (val: boolean) => void;
+  disabled?: boolean;
+}> = ({ checked, onChange, disabled }) => (
+  <button
+    type="button"
+    onClick={() => onChange(!checked)}
+    disabled={disabled}
+    className={cn(
+      'relative inline-flex h-6 w-11 items-center rounded-full transition-colors duration-300',
+      checked ? 'bg-primary' : 'bg-slate-300'
+    )}
+    role="switch"
+    aria-checked={checked}
+  >
+    <span
+      className={cn(
+        'inline-block h-5 w-5 transform rounded-full bg-white shadow transition-transform duration-300',
+        checked ? 'translate-x-5' : 'translate-x-1'
+      )}
+    />
+  </button>
+);
 
 export default function SettingsPage() {
-  const [activeTab, setActiveTab] = useState<SettingsTab>('general');
-  const [settings, setSettings] = useState<Settings>(defaultSettings);
-  const [loading, setLoading] = useState(true);
+  const router = useRouter();
+  const { settings: contextSettings, updateSettings: updateContextSettings, loadSettings } = useSettings();
   const { addToast } = useToast();
-  const { toggleSidebar } = useAppStore();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [showPasswordForm, setShowPasswordForm] = useState(false);
+  const [passwordData, setPasswordData] = useState({ currentPassword: '', newPassword: '', confirmPassword: '' });
+  const [changingPassword, setChangingPassword] = useState(false);
+  const [form, setForm] = useState<SettingsState>({
+    theme: 'system',
+    language: 'en',
+    sidebarCollapsed: false,
+    emailNotifications: true,
+    systemNotifications: true,
+    uploadNotifications: true,
+    validationNotifications: true,
+    responseStyle: 'normal',
+    citationEnabled: true,
+  });
 
   useEffect(() => {
-    loadSettings();
+    loadFromBackend();
   }, []);
 
-const loadSettings = async () => {
-     setLoading(true);
-     try {
-       const response = await api.request<{ success: boolean; data: Settings }>('/users/preferences');
-       setSettings(response.data);
-       if (response.data.sidebarCollapsed) {
-         toggleSidebar();
-       }
-     } catch {
-       addToast({ type: 'error', title: 'Failed to load settings' });
-     } finally {
-       setLoading(false);
-     }
-   };
+  useEffect(() => {
+    if (contextSettings.theme) {
+      setForm((prev) => ({ ...prev, theme: contextSettings.theme }));
+    }
+    if (contextSettings.language) {
+      setForm((prev) => ({ ...prev, language: contextSettings.language }));
+    }
+    if (contextSettings.sidebarCollapsed !== undefined) {
+      setForm((prev) => ({ ...prev, sidebarCollapsed: contextSettings.sidebarCollapsed }));
+    }
+    if (contextSettings.emailNotifications !== undefined) {
+      setForm((prev) => ({ ...prev, emailNotifications: contextSettings.emailNotifications }));
+    }
+    if (contextSettings.systemNotifications !== undefined) {
+      setForm((prev) => ({ ...prev, systemNotifications: contextSettings.systemNotifications }));
+    }
+    if (contextSettings.uploadNotifications !== undefined) {
+      setForm((prev) => ({ ...prev, uploadNotifications: contextSettings.uploadNotifications }));
+    }
+    if (contextSettings.validationNotifications !== undefined) {
+      setForm((prev) => ({ ...prev, validationNotifications: contextSettings.validationNotifications }));
+    }
+    if (contextSettings.responseStyle) {
+      setForm((prev) => ({ ...prev, responseStyle: contextSettings.responseStyle }));
+    }
+    if (contextSettings.citationEnabled !== undefined) {
+      setForm((prev) => ({ ...prev, citationEnabled: contextSettings.citationEnabled }));
+    }
+  }, [contextSettings]);
 
-   const saveSettings = async () => {
-     try {
-       await api.request('/users/preferences', {
-         method: 'PUT',
-         body: JSON.stringify(settings),
-       });
-       addToast({ type: 'success', title: 'Settings saved successfully' });
-     } catch {
-       addToast({ type: 'error', title: 'Failed to save settings' });
-     }
-   };
-
-  const updateSetting = (key: keyof Settings, value: Settings[keyof Settings]) => {
-    setSettings((prev) => ({ ...prev, [key]: value }));
+  const loadFromBackend = async () => {
+    setLoading(true);
+    try {
+      await loadSettings();
+    } catch {
+      addToast({ type: 'error', title: 'Failed to load settings' });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const [currentPassword, setCurrentPassword] = useState('');
-  const [newPassword, setNewPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [changingPassword, setChangingPassword] = useState(false);
+  const updateForm = (key: keyof SettingsState) => (value: SettingsState[keyof SettingsState]) => {
+    setForm((prev) => ({ ...prev, [key]: value }));
+    updateContextSettings(key as any, value as any);
+  };
 
-  const handleChangePassword = async () => {
-    if (newPassword !== confirmPassword) {
-      addToast({ type: 'error', title: 'Passwords do not match' });
+  const handleSaveGeneral = async () => {
+    setSaving(true);
+    try {
+      await api.request('/users/preferences', {
+        method: 'PUT',
+        body: JSON.stringify({
+          theme: form.theme,
+          language: form.language,
+          sidebarCollapsed: form.sidebarCollapsed,
+          responseStyle: form.responseStyle,
+          citationEnabled: form.citationEnabled,
+          emailNotifications: form.emailNotifications,
+          systemNotifications: form.systemNotifications,
+          uploadNotifications: form.uploadNotifications,
+          validationNotifications: form.validationNotifications,
+        }),
+      });
+      addToast({ type: 'success', title: 'Settings saved successfully' });
+    } catch (err) {
+      addToast({ type: 'error', title: (err as Error).message || 'Failed to save settings' });
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  const handleChangePassword = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (passwordData.newPassword !== passwordData.confirmPassword) {
+      addToast({ type: 'error', title: 'New passwords do not match' });
+      return;
+    }
+    if (passwordData.newPassword.length < 8) {
+      addToast({ type: 'error', title: 'Password must be at least 8 characters' });
       return;
     }
     setChangingPassword(true);
     try {
-      await api.request('/users/change-password', {
-        method: 'PATCH',
-        body: JSON.stringify({ currentPassword, newPassword }),
-      });
+      await api.changePassword(passwordData.currentPassword, passwordData.newPassword);
+      setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
+      setShowPasswordForm(false);
       addToast({ type: 'success', title: 'Password changed successfully' });
-      setCurrentPassword('');
-      setNewPassword('');
-      setConfirmPassword('');
-    } catch {
-      addToast({ type: 'error', title: 'Failed to change password' });
+    } catch (err) {
+      addToast({ type: 'error', title: (err as Error).message || 'Failed to change password' });
     } finally {
       setChangingPassword(false);
     }
   };
 
-  const ThemePreview = ({ theme }: { theme: ThemeType }) => {
-    const isSelected = settings.theme === theme;
-    const Icon = theme === 'light' ? Sun : theme === 'dark' ? Moon : Monitor;
-
-    return (
-      <button
-        onClick={() => {
-          updateSetting('theme', theme);
-          saveSettings();
-        }}
-        className={cn(
-          'flex-1 p-3 sm:p-4 rounded-lg border-2 transition-all duration-300 text-left',
-          isSelected ? 'border-blue-500 shadow-md' : 'border-border hover:border-muted-foreground',
-          theme === 'light' && 'bg-card',
-          theme === 'dark' && 'bg-muted',
-          theme === 'system' && 'bg-gradient-to-br from-card to-muted'
-        )}
-      >
-        <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
-          <Icon size={16} className="text-foreground" />
-          <span className="text-xs sm:text-sm font-medium capitalize text-foreground">
-            {theme}
-          </span>
-          {isSelected && <Check size={14} className="text-blue-500 ml-auto" />}
-        </div>
-        <div className={cn('h-10 sm:h-12 rounded border', theme === 'light' ? 'bg-muted border-border' : 'bg-border border-muted-foreground')}>
-          <div className={cn('h-5 sm:h-6 mx-1.5 sm:mx-2 mt-1.5 sm:mt-2 rounded-sm', theme === 'light' ? 'bg-primary w-1/2' : 'bg-primary w-1/3')} />
-        </div>
-      </button>
-    );
-  };
-
   if (loading) {
     return (
       <AppLayout>
-        <div className="p-4 sm:p-6 text-sm sm:text-base">Loading settings...</div>
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
       </AppLayout>
     );
   }
 
   return (
     <AppLayout>
-      <div className="space-y-4 sm:space-y-6 transition-colors duration-300">
+      <div className="space-y-6">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Settings</h1>
-          <p className="text-sm text-muted-foreground">Configure your application preferences</p>
+          <h1 className="text-2xl font-bold text-foreground">Settings</h1>
+          <p className="text-sm text-muted-foreground">Manage your application preferences</p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
-          <nav className="w-full sm:w-56 flex-shrink-0 space-y-1">
-            {[
-              { id: 'general', label: 'General', icon: Globe },
-              { id: 'ai', label: 'AI Settings', icon: MessageSquare },
-              { id: 'notifications', label: 'Notifications', icon: Shield },
-              { id: 'account', label: 'Account', icon: User },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id as SettingsTab)}
-                className={cn(
-                  'w-full flex items-center gap-3 px-3 py-2 text-xs sm:text-sm rounded-lg transition-colors duration-300',
-                  activeTab === tab.id
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-muted'
-                )}
-              >
-                <tab.icon size={16} />
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </nav>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <Card>
+            <CardHeader className="flex items-center gap-2">
+              <Palette size={18} className="text-primary" />
+              <CardTitle>General</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Theme</label>
+                <select
+                  value={form.theme}
+                  onChange={(e) => updateForm('theme')(e.target.value as Theme)}
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-input text-foreground text-sm"
+                >
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="system">System</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Language</label>
+                <select
+                  value={form.language}
+                  onChange={(e) => updateForm('language')(e.target.value as Language)}
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-input text-foreground text-sm"
+                >
+                  <option value="en">English</option>
+                  <option value="am">Amharic</option>
+                  <option value="om">Oromiffa</option>
+                </select>
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Collapsed Sidebar</p>
+                  <p className="text-xs text-muted-foreground">Show sidebar as icons only</p>
+                </div>
+                <Switch checked={form.sidebarCollapsed} onChange={(val) => updateForm('sidebarCollapsed')(val)} />
+              </div>
+            </CardContent>
+          </Card>
 
-          <div className="flex-1 w-full">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm sm:text-base">
-                  {activeTab === 'general' && 'General Settings'}
-                  {activeTab === 'ai' && 'AI Settings'}
-                  {activeTab === 'notifications' && 'Notification Settings'}
-                  {activeTab === 'account' && 'Account Settings'}
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3 sm:space-y-4">
-                {activeTab === 'general' && (
-                  <>
-                    <div className="py-2.5 sm:py-3">
-                      <p className="text-xs sm:text-sm font-medium text-foreground mb-2 sm:mb-3">Theme</p>
-                      <p className="text-xs text-muted-foreground mb-2 sm:mb-3">Choose your interface appearance</p>
-                      <div className="grid grid-cols-3 gap-2 sm:gap-3">
-                        <ThemePreview theme="light" />
-                        <ThemePreview theme="dark" />
-                        <ThemePreview theme="system" />
-                      </div>
-                    </div>
+          <Card>
+            <CardHeader className="flex items-center gap-2">
+              <Bell size={18} className="text-primary" />
+              <CardTitle>Notifications</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Email Notifications</p>
+                  <p className="text-xs text-muted-foreground">Receive updates via email</p>
+                </div>
+                <Switch checked={form.emailNotifications} onChange={(val) => updateForm('emailNotifications')(val)} />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Push Notifications</p>
+                  <p className="text-xs text-muted-foreground">Browser push notifications</p>
+                </div>
+                <Switch checked={form.systemNotifications} onChange={(val) => updateForm('systemNotifications')(val)} />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">AI Notifications</p>
+                  <p className="text-xs text-muted-foreground">Notify when AI responds</p>
+                </div>
+                <Switch checked={form.uploadNotifications} onChange={(val) => updateForm('uploadNotifications')(val)} />
+              </div>
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm font-medium text-foreground">Validation Notifications</p>
+                  <p className="text-xs text-muted-foreground">Notify on validation changes</p>
+                </div>
+                <Switch checked={form.validationNotifications} onChange={(val) => updateForm('validationNotifications')(val)} />
+              </div>
+            </CardContent>
+          </Card>
 
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">Language</p>
-                        <p className="text-xs text-muted-foreground">Select your preferred language</p>
-                      </div>
-                      <select
-                        value={settings.language}
-                        onChange={(e) => {
-                          updateSetting('language', e.target.value);
-                          saveSettings();
-                        }}
-                        className="text-xs sm:text-sm border border-border rounded-lg px-2 py-1 bg-input text-foreground"
-                      >
-                        <option value="en">English</option>
-                        <option value="am">Amharic</option>
-                        <option value="om">Oromo</option>
-                      </select>
-                    </div>
+          <Card>
+            <CardHeader className="flex items-center gap-2">
+              <Brain size={18} className="text-primary" />
+              <CardTitle>AI Preferences</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Response Detail Level</label>
+                <select
+                  value={form.responseStyle}
+                  onChange={(e) => updateForm('responseStyle')(e.target.value as ResponseStyle)}
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-input text-foreground text-sm"
+                >
+                  <option value="concise">Short</option>
+                  <option value="normal">Medium</option>
+                  <option value="detailed">Detailed</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">Preferred Citation Style</label>
+                <select
+                  value={form.citationEnabled ? 'enabled' : 'disabled'}
+                  onChange={(e) => updateForm('citationEnabled')(e.target.value === 'enabled')}
+                  className="w-full px-3 py-2 border border-border rounded-lg bg-input text-foreground text-sm"
+                >
+                  <option value="enabled">Enabled</option>
+                  <option value="disabled">Disabled</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-foreground mb-1.5">AI Model</label>
+                <Input value="Llama-3.3-70b" disabled />
+                <p className="text-xs text-muted-foreground mt-1">Model selection coming soon</p>
+              </div>
+            </CardContent>
+          </Card>
 
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">Sidebar collapsed</p>
-                        <p className="text-xs text-muted-foreground">Start with collapsed sidebar</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          updateSetting('sidebarCollapsed', !settings.sidebarCollapsed);
-                          if (!settings.sidebarCollapsed) toggleSidebar();
-                          saveSettings();
-                        }}
-                        className={cn(
-                          'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
-                          settings.sidebarCollapsed ? 'bg-primary' : 'bg-muted'
-                        )}
-                        role="switch"
-                        aria-checked={settings.sidebarCollapsed}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-4 sm:h-5 w-4 sm:w-5 transform rounded-full bg-white shadow transition-transform duration-300',
-                            settings.sidebarCollapsed ? 'translate-x-5 sm:translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
-                  </>
-                )}
-
-                {activeTab === 'ai' && (
-                  <>
-                    <div className="py-2.5 sm:py-3">
-                      <p className="text-xs sm:text-sm font-medium text-foreground mb-1.5 sm:mb-2">Response Length</p>
-                      <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                        {(['concise', 'normal', 'detailed'] as const).map((length) => (
-                          <button
-                            key={length}
-                            onClick={() => {
-                              updateSetting('responseStyle', length);
-                              saveSettings();
-                            }}
-                            className={cn(
-                              'px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs rounded-lg border transition-colors duration-300',
-                              settings.responseStyle === length
-                                ? 'bg-primary text-primary-foreground border-primary'
-                                : 'bg-card text-foreground border-border hover:bg-muted'
-                            )}
-                          >
-                            {length.charAt(0).toUpperCase() + length.slice(1)}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">Citation Mode</p>
-                        <p className="text-xs text-muted-foreground">Show citations in responses</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          updateSetting('citationEnabled', !settings.citationEnabled);
-                          saveSettings();
-                        }}
-                        className={cn(
-                          'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
-                          settings.citationEnabled ? 'bg-primary' : 'bg-muted'
-                        )}
-                        role="switch"
-                        aria-checked={settings.citationEnabled}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-4 sm:h-5 w-4 sm:w-5 transform rounded-full bg-white shadow transition-transform duration-300',
-                            settings.citationEnabled ? 'translate-x-5 sm:translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
-                  </>
-                )}
-
-                {activeTab === 'notifications' && (
-                  <>
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">Email Notifications</p>
-                        <p className="text-xs text-muted-foreground">Receive notifications via email</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          updateSetting('emailNotifications', !settings.emailNotifications);
-                          saveSettings();
-                        }}
-                        className={cn(
-                          'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
-                          settings.emailNotifications ? 'bg-primary' : 'bg-muted'
-                        )}
-                        role="switch"
-                        aria-checked={settings.emailNotifications}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-4 sm:h-5 w-4 sm:w-5 transform rounded-full bg-white shadow transition-transform duration-300',
-                            settings.emailNotifications ? 'translate-x-5 sm:translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">System Notifications</p>
-                        <p className="text-xs text-muted-foreground">In-app system alerts</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          updateSetting('systemNotifications', !settings.systemNotifications);
-                          saveSettings();
-                        }}
-                        className={cn(
-                          'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
-                          settings.systemNotifications ? 'bg-primary' : 'bg-muted'
-                        )}
-                        role="switch"
-                        aria-checked={settings.systemNotifications}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-4 sm:h-5 w-4 sm:w-5 transform rounded-full bg-white shadow transition-transform duration-300',
-                            settings.systemNotifications ? 'translate-x-5 sm:translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">Upload Notifications</p>
-                        <p className="text-xs text-muted-foreground">Alerts when uploads complete</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          updateSetting('uploadNotifications', !settings.uploadNotifications);
-                          saveSettings();
-                        }}
-                        className={cn(
-                          'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
-                          settings.uploadNotifications ? 'bg-primary' : 'bg-muted'
-                        )}
-                        role="switch"
-                        aria-checked={settings.uploadNotifications}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-4 sm:h-5 w-4 sm:w-5 transform rounded-full bg-white shadow transition-transform duration-300',
-                            settings.uploadNotifications ? 'translate-x-5 sm:translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
-
-                    <div className="flex items-center justify-between py-2.5 sm:py-3">
-                      <div>
-                        <p className="text-xs sm:text-sm font-medium text-foreground">Validation Notifications</p>
-                        <p className="text-xs text-muted-foreground">Alerts for validation tasks</p>
-                      </div>
-                      <button
-                        onClick={() => {
-                          updateSetting('validationNotifications', !settings.validationNotifications);
-                          saveSettings();
-                        }}
-                        className={cn(
-                          'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
-                          settings.validationNotifications ? 'bg-primary' : 'bg-muted'
-                        )}
-                        role="switch"
-                        aria-checked={settings.validationNotifications}
-                      >
-                        <span
-                          className={cn(
-                            'inline-block h-4 sm:h-5 w-4 sm:w-5 transform rounded-full bg-white shadow transition-transform duration-300',
-                            settings.validationNotifications ? 'translate-x-5 sm:translate-x-5' : 'translate-x-1'
-                          )}
-                        />
-                      </button>
-                    </div>
-                  </>
-                )}
-
-                {activeTab === 'account' && (
-                  <div className="space-y-4 sm:space-y-6">
-                    <div>
-                      <h4 className="text-xs sm:text-sm font-medium text-foreground mb-2 sm:mb-3">Change Password</h4>
-                      <div className="space-y-2 sm:space-y-3">
-                        <input
-                          type="password"
-                          placeholder="Current password"
-                          value={currentPassword}
-                          onChange={(e) => setCurrentPassword(e.target.value)}
-                          className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input text-foreground"
-                        />
-                        <input
-                          type="password"
-                          placeholder="New password"
-                          value={newPassword}
-                          onChange={(e) => setNewPassword(e.target.value)}
-                          className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input text-foreground"
-                        />
-                        <input
-                          type="password"
-                          placeholder="Confirm new password"
-                          value={confirmPassword}
-                          onChange={(e) => setConfirmPassword(e.target.value)}
-                          className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input text-foreground"
-                        />
-                        <button
-                          onClick={handleChangePassword}
-                          disabled={changingPassword || !currentPassword || !newPassword}
-                          className="px-4 py-2 text-xs sm:text-sm text-primary-foreground bg-primary rounded-lg hover:opacity-90 disabled:opacity-50 transition-opacity duration-300 w-full sm:w-auto"
-                        >
-                          {changingPassword ? 'Changing...' : 'Change Password'}
-                        </button>
-                      </div>
-                    </div>
+          <Card>
+            <CardHeader className="flex items-center gap-2">
+              <Lock size={18} className="text-primary" />
+              <CardTitle>Security</CardTitle>
+            </CardHeader>
+            <CardContent>
+              {!showPasswordForm ? (
+                <div>
+                  <p className="text-sm text-muted-foreground mb-4">Change your password to keep your account secure.</p>
+                  <Button onClick={() => setShowPasswordForm(true)} variant="outline">
+                    Change Password
+                  </Button>
+                </div>
+              ) : (
+                <form onSubmit={handleChangePassword} className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Current Password</label>
+                    <Input type="password" value={passwordData.currentPassword} onChange={(e) => setPasswordData((p) => ({ ...p, currentPassword: e.target.value }))} required />
                   </div>
-                )}
-              </CardContent>
-            </Card>
-          </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">New Password</label>
+                    <Input type="password" value={passwordData.newPassword} onChange={(e) => setPasswordData((p) => ({ ...p, newPassword: e.target.value }))} required minLength={8} />
+                  </div>
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-1.5">Confirm New Password</label>
+                    <Input type="password" value={passwordData.confirmPassword} onChange={(e) => setPasswordData((p) => ({ ...p, confirmPassword: e.target.value }))} required />
+                  </div>
+                  <div className="flex gap-2">
+                    <Button type="submit" disabled={changingPassword}>
+                      {changingPassword ? (
+                        <>
+                          <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                          Updating...
+                        </>
+                      ) : (
+                        <>
+                          <Save className="mr-2 h-4 w-4" />
+                          Update Password
+                        </>
+                      )}
+                    </Button>
+                    <Button type="button" variant="ghost" onClick={() => setShowPasswordForm(false)} disabled={changingPassword}>
+                      Cancel
+                    </Button>
+                  </div>
+                </form>
+              )}
+            </CardContent>
+          </Card>
+        </div>
+
+        <div className="flex justify-end">
+          <Button onClick={handleSaveGeneral} disabled={saving}>
+            {saving ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Saving...
+              </>
+            ) : (
+              <>
+                <Save className="mr-2 h-4 w-4" />
+                Save Settings
+              </>
+            )}
+          </Button>
         </div>
       </div>
     </AppLayout>

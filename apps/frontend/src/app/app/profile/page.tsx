@@ -1,36 +1,43 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { AppLayout } from '@/components/layout/AppLayout';
-import { Avatar } from '@/components/ui/Avatar';
-import { api } from '@/lib/api';
-import { cn } from '@/utils/cn';
-import { useToast } from '@/components/ui/Toast';
+import React, { useEffect, useState, useRef } from 'react';
+import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
+import { Button } from '../../components/ui/Button';
+import { Input } from '../../components/ui/Input';
+import { TextArea } from '../../components/ui/Input';
+import { Camera, Save, Loader2, User } from 'lucide-react';
+import { AppLayout } from '../../components/layout/AppLayout';
+import { api } from '../../lib/api';
+import { useAppStore } from '../../store/appStore';
+import { useRouter } from 'next/navigation';
+import { useToast } from '../../components/ui/Toast';
+import { cn } from '../../utils/cn';
 
-const roleLabels: Record<string, string> = {
-  MEDICAL_USER: 'Medical User',
-  VALIDATOR: 'Validator',
-  ADMIN: 'Admin',
-};
-
-const roleColors: Record<string, string> = {
-  MEDICAL_USER: 'bg-blue-100 text-blue-700',
-  VALIDATOR: 'bg-amber-100 text-amber-700',
-  ADMIN: 'bg-purple-100 text-purple-700',
+type ProfileForm = {
+  fullName: string;
+  email: string;
+  specialization: string;
+  institution: string;
+  bio: string;
+  profileImage: string;
 };
 
 export default function ProfilePage() {
-  const [user, setUser] = useState<{ id: string; name: string; email: string; role: string; avatar?: string; createdAt?: string } | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [editing, setEditing] = useState(false);
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    specialty: '',
-    bio: '',
-  });
+  const router = useRouter();
+  const user = useAppStore((state) => state.user);
   const { addToast } = useToast();
+  const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
+  const [form, setForm] = useState<ProfileForm>({
+    fullName: '',
+    email: '',
+    specialization: '',
+    institution: '',
+    bio: '',
+    profileImage: '',
+  });
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
     fetchProfile();
@@ -39,230 +46,175 @@ export default function ProfilePage() {
   const fetchProfile = async () => {
     setLoading(true);
     try {
-      const response = await api.request<{ success: boolean; data: { id: string; fullName: string; email: string; role: string; specialization?: string; institution?: string; profileImage?: string; createdAt?: string } }>('/users/me');
-      const backendUser = response.data;
-      setUser({
-        id: backendUser.id,
-        name: backendUser.fullName,
-        email: backendUser.email,
-        role: backendUser.role,
-        avatar: backendUser.profileImage,
-        createdAt: backendUser.createdAt,
-      });
-      setFormData({
-        name: backendUser.fullName || '',
-        email: backendUser.email || '',
-        specialty: backendUser.specialization || '',
-        bio: backendUser.institution || '',
-      });
+      const profile = await api.getCurrentUser();
+      const initial: ProfileForm = {
+        fullName: profile.name || '',
+        email: profile.email || '',
+        specialization: profile.specialty || '',
+        institution: profile.title || '',
+        bio: profile.bio || '',
+        profileImage: profile.avatar || '',
+      };
+      setForm(initial);
+      setImagePreview(profile.avatar || null);
     } catch (err) {
       if ((err as Error).message === 'Please sign in to continue') {
-        window.location.href = '/login';
-      } else {
-        addToast({ type: 'error', title: 'Failed to load profile' });
+        router.push('/login');
       }
+      addToast({ type: 'error', title: 'Failed to load profile' });
     } finally {
       setLoading(false);
     }
   };
 
-  const handleUpdateProfile = async () => {
-    try {
-      const updatedUser = await api.request<{ success: boolean; data: { id: string; fullName: string; email: string; role: string; profileImage?: string } }>('/users/profile', {
-        method: 'PATCH',
-        body: JSON.stringify({
-          fullName: formData.name,
-          email: formData.email,
-          specialization: formData.specialty,
-          institution: formData.bio,
-        }),
-      });
-      setUser({ ...user!, name: updatedUser.data.fullName, email: updatedUser.data.email });
-      setEditing(false);
-      addToast({ type: 'success', title: 'Profile updated successfully' });
-    } catch {
-      addToast({ type: 'error', title: 'Failed to update profile' });
-    }
+  const handleChange = (field: keyof ProfileForm) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setForm((prev) => ({ ...prev, [field]: e.target.value }));
   };
 
-  const handlePasswordChange = async () => {
-    const current = (document.getElementById('currentPassword') as HTMLInputElement)?.value;
-    const newPass = (document.getElementById('newPassword') as HTMLInputElement)?.value;
-    const confirm = (document.getElementById('confirmPassword') as HTMLInputElement)?.value;
+  const handleImageClick = () => {
+    fileInputRef.current?.click();
+  };
 
-    if (newPass !== confirm) {
-      addToast({ type: 'error', title: 'Passwords do not match' });
+  const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      addToast({ type: 'error', title: 'Image must be under 5MB' });
       return;
     }
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = reader.result as string;
+      setImagePreview(dataUrl);
+      setForm((prev) => ({ ...prev, profileImage: dataUrl }));
+    };
+    reader.readAsDataURL(file);
+  };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSaving(true);
     try {
-      await api.request('/users/change-password', {
-        method: 'PATCH',
-        body: JSON.stringify({ currentPassword: current, newPassword: newPass }),
+      const updated = await api.updateProfile({
+        fullName: form.fullName,
+        email: form.email,
+        specialization: form.specialization,
+        institution: form.institution,
+        bio: form.bio,
+        profileImage: form.profileImage || undefined,
       });
-      addToast({ type: 'success', title: 'Password changed successfully' });
-    } catch {
-      addToast({ type: 'error', title: 'Failed to change password' });
+      useAppStore.getState().setUser({
+        id: updated.id,
+        name: updated.name,
+        email: updated.email,
+        role: updated.role,
+        avatar: updated.avatar,
+        title: updated.title,
+        specialty: updated.specialty,
+        bio: updated.bio,
+        createdAt: updated.createdAt,
+      });
+      addToast({ type: 'success', title: 'Profile updated successfully' });
+    } catch (err) {
+      addToast({ type: 'error', title: (err as Error).message || 'Failed to update profile' });
+    } finally {
+      setSaving(false);
     }
   };
 
-  if (loading || !user) {
+  if (loading) {
     return (
       <AppLayout>
-        <div className="p-4 sm:p-6 text-sm sm:text-base">Loading...</div>
+        <div className="flex justify-center items-center py-12">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
       </AppLayout>
     );
   }
 
-  const roleKey = user.role.toUpperCase() === 'ADMIN' ? 'ADMIN' : user.role.toUpperCase() === 'VALIDATOR' ? 'VALIDATOR' : 'MEDICAL_USER';
-
   return (
     <AppLayout>
-      <div className="space-y-4 sm:space-y-6 max-w-2xl">
+      <div className="space-y-6">
         <div>
-          <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Profile</h1>
-          <p className="text-sm text-muted-foreground">Manage your account information</p>
+          <h1 className="text-2xl font-bold text-foreground">Profile</h1>
+          <p className="text-sm text-muted-foreground">Manage your personal information</p>
         </div>
 
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm sm:text-base">Personal Information</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4 sm:space-y-6">
-            <div className="flex items-center gap-3 sm:gap-4">
-              <Avatar name={user.name} size="lg" src={user.avatar} />
-              <div>
-                <h2 className="text-base sm:text-lg font-semibold text-foreground">{user.name}</h2>
-                <span
-                  className={cn(
-                    'inline-block text-xs px-2 py-0.5 rounded-full mt-1 font-medium',
-                    roleColors[roleKey]
-                  )}
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle>Profile Photo</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="flex items-center gap-6">
+                <div
+                  onClick={handleImageClick}
+                  className="relative h-24 w-24 sm:h-32 sm:w-32 rounded-full bg-muted border-2 border-dashed border-border flex items-center justify-center cursor-pointer overflow-hidden hover:border-primary transition-colors"
                 >
-                  {roleLabels[roleKey]}
-                </span>
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Profile" className="h-full w-full object-cover" />
+                  ) : (
+                    <User size={48} className="text-muted-foreground" />
+                  )}
+                  <div className="absolute bottom-0 right-0 bg-primary text-primary-foreground p-1.5 rounded-full">
+                    <Camera size={14} />
+                  </div>
+                </div>
+                <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={handleImageChange} />
+                <div>
+                  <p className="text-sm font-medium text-foreground">Click to upload a photo</p>
+                  <p className="text-xs text-muted-foreground mt-1">JPG, PNG or GIF. Max 5MB</p>
+                </div>
               </div>
-            </div>
+            </CardContent>
+          </Card>
 
-            <div className="space-y-3 sm:space-y-4">
+          <Card>
+            <CardHeader>
+              <CardTitle>Personal Information</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Full Name</label>
+                  <Input value={form.fullName} onChange={handleChange('fullName')} placeholder="Your full name" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Email</label>
+                  <Input type="email" value={form.email} onChange={handleChange('email')} placeholder="your@email.com" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Specialty</label>
+                  <Input value={form.specialization} onChange={handleChange('specialization')} placeholder="e.g., Cardiology" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-foreground mb-1.5">Institution</label>
+                  <Input value={form.institution} onChange={handleChange('institution')} placeholder="e.g., City Hospital" />
+                </div>
+              </div>
               <div>
-                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Full Name</label>
-                <input
-                  type="text"
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  disabled={!editing}
-                  className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input disabled:bg-muted disabled:text-muted-foreground"
-                />
+                <label className="block text-sm font-medium text-foreground mb-1.5">Bio</label>
+                <TextArea rows={4} value={form.bio} onChange={handleChange('bio')} placeholder="Tell us about yourself..." />
               </div>
+            </CardContent>
+          </Card>
 
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Email</label>
-                <input
-                  type="email"
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  disabled={!editing}
-                  className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input disabled:bg-muted disabled:text-muted-foreground"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Specialty</label>
-                <input
-                  type="text"
-                  value={formData.specialty}
-                  onChange={(e) => setFormData({ ...formData, specialty: e.target.value })}
-                  disabled={!editing}
-                  placeholder="Your medical specialty"
-                  className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input disabled:bg-muted disabled:text-muted-foreground"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Bio / Institution</label>
-                <textarea
-                  value={formData.bio}
-                  onChange={(e) => setFormData({ ...formData, bio: e.target.value })}
-                  disabled={!editing}
-                  placeholder="Your institution or bio"
-                  className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input disabled:bg-muted disabled:text-muted-foreground"
-                  rows={3}
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Role</label>
-                <p className="text-xs sm:text-sm text-muted-foreground">{roleLabels[roleKey]}</p>
-              </div>
-
-              <div>
-                <label className="block text-xs sm:text-sm font-medium text-foreground mb-1">Joined</label>
-                <p className="text-xs sm:text-sm text-muted-foreground">
-                  {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'Recently'}
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-col sm:flex-row gap-2 pt-3 sm:pt-4">
-              {editing ? (
+          <div className="flex justify-end">
+            <Button type="submit" disabled={saving}>
+              {saving ? (
                 <>
-                  <button
-                    onClick={() => setEditing(false)}
-                    className="px-4 py-2 text-xs sm:text-sm text-muted-foreground border border-border rounded-lg hover:bg-muted w-full sm:w-auto"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    onClick={handleUpdateProfile}
-                    className="px-4 py-2 text-xs sm:text-sm text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 w-full sm:w-auto"
-                  >
-                    Save changes
-                  </button>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Saving...
                 </>
               ) : (
-                <button
-                  onClick={() => setEditing(true)}
-                  className="px-4 py-2 text-xs sm:text-sm text-primary border border-primary/30 rounded-lg hover:bg-primary/10 w-full sm:w-auto"
-                >
-                  Edit profile
-                </button>
+                <>
+                  <Save className="mr-2 h-4 w-4" />
+                  Save Changes
+                </>
               )}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-sm sm:text-base">Change Password</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-3 sm:space-y-4">
-            <input
-              id="currentPassword"
-              type="password"
-              placeholder="Current password"
-              className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input"
-            />
-            <input
-              id="newPassword"
-              type="password"
-              placeholder="New password"
-              className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input"
-            />
-            <input
-              id="confirmPassword"
-              type="password"
-              placeholder="Confirm new password"
-              className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input"
-            />
-            <button
-              onClick={handlePasswordChange}
-              className="px-4 py-2 text-xs sm:text-sm text-primary-foreground bg-primary rounded-lg hover:bg-primary/90 w-full sm:w-auto"
-            >
-              Update Password
-            </button>
-          </CardContent>
-        </Card>
+            </Button>
+          </div>
+        </form>
       </div>
     </AppLayout>
   );

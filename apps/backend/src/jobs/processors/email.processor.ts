@@ -1,12 +1,6 @@
-import nodemailer from 'nodemailer';
+import { EmailService } from '../../modules/email/email.service';
 import { EmailJob } from '../types';
 import { logger } from '../../config/logger';
-
-const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'localhost',
-  port: parseInt(process.env.SMTP_PORT || '1025'),
-  secure: false,
-});
 
 export async function processEmail(job: EmailJob) {
   const { to, subject, html, template, data } = job;
@@ -14,25 +8,20 @@ export async function processEmail(job: EmailJob) {
   try {
     const emailHtml = html || (template ? renderTemplate(template!, data || {}) : '');
 
-    await transporter.sendMail({
-      from: process.env.EMAIL_FROM || 'noreply@nileopedia.test',
-      to,
-      subject,
-      html: emailHtml,
-    });
+    await EmailService.sendViaResend(to, subject, emailHtml);
 
-    logger.info(`Email sent to ${to}`);
+    logger.info(`Email sent to ${to} via Resend`, { template, subject });
     return { success: true };
 
   } catch (error) {
-    logger.error(`Email sending failed to ${to}`, error);
+    logger.error(`Email sending failed to ${to}`, { template, subject, error });
     throw error;
   }
 }
 
 function renderTemplate(template: string, data: Record<string, unknown>): string {
   const templates: Record<string, string> = {
-    otp: `<p>Your verification code: <strong>${data.code || '------'}</strong></p>`,
+    otp: `<p>Your verification code: <strong>${data.code || data.otp || '------'}</strong></p>`,
     passwordReset: `<p>Click to reset: <a href="${data.resetLink || '#'}">Reset Password</a></p>`,
     notification: `<h2>${data.title || ''}</h2><p>${data.message || ''}</p>`,
   };

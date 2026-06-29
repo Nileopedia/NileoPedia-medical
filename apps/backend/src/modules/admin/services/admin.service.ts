@@ -4,7 +4,7 @@ import { AuditLogger } from '../../audit/audit.logger';
 export class AdminService {
   async getUsers(page = 1, limit = 20, search = '') {
     const skip = (page - 1) * limit;
-    const where = search
+    const where: any = search
       ? { OR: [{ fullName: { contains: search, mode: 'insensitive' } }, { email: { contains: search, mode: 'insensitive' } }] }
       : {};
     
