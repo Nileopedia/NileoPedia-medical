@@ -16,13 +16,16 @@ export class AdminController {
 
   async getUsers(req: Request, res: Response, next: NextFunction) {
     try {
-      const users = await this.adminService.getUsers();
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+      const search = req.query.search as string || '';
+      const result = await this.adminService.getUsers(page, limit, search);
       await AuditLogger.log(req, {
         action: 'ADMIN_VIEW_USERS',
         entityType: 'User',
         description: 'Admin viewed users list',
       });
-      res.status(200).json({ success: true, data: users });
+      res.status(200).json({ success: true, data: result });
     } catch (error) {
       logger.error('Error in getUsers controller:', error);
       next(error);
@@ -83,6 +86,81 @@ export class AdminController {
     }
   }
 
+  async resetPassword(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { userId } = req.params;
+      await this.adminService.resetPassword(userId);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_RESET_PASSWORD',
+        entityType: 'User',
+        entityId: userId,
+        description: 'Admin reset user password',
+        metadata: { targetUserId: userId },
+      });
+      res.status(200).json({ success: true, message: 'Password reset initiated' });
+    } catch (error) {
+      logger.error('Error in resetPassword controller:', error);
+      next(error);
+    }
+  }
+
+  async getValidators(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+      const search = req.query.search as string || '';
+      const result = await this.adminService.getValidators(page, limit, search);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_VIEW_VALIDATORS',
+        entityType: 'User',
+        description: 'Admin viewed validators list',
+      });
+      res.status(200).json({ success: true, data: result });
+    } catch (error) {
+      logger.error('Error in getValidators controller:', error);
+      next(error);
+    }
+  }
+
+  async addValidator(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await this.adminService.addValidator(req.body);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_ADD_VALIDATOR',
+        entityType: 'User',
+        entityId: result.id,
+        description: 'Admin added a validator',
+        metadata: { email: result.email },
+      });
+      res.status(201).json({ success: true, data: result });
+    } catch (error: any) {
+      logger.error('Error in addValidator controller:', error);
+      if (error.message?.includes('exists')) {
+        res.status(409).json({ success: false, message: error.message });
+        return;
+      }
+      next(error);
+    }
+  }
+
+  async removeValidator(req: Request, res: Response, next: NextFunction) {
+    try {
+      const { validatorId } = req.params;
+      await this.adminService.removeValidator(validatorId);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_REMOVE_VALIDATOR',
+        entityType: 'User',
+        entityId: validatorId,
+        description: 'Admin removed a validator',
+        metadata: { targetValidatorId: validatorId },
+      });
+      res.status(200).json({ success: true, message: 'Validator removed' });
+    } catch (error) {
+      logger.error('Error in removeValidator controller:', error);
+      next(error);
+    }
+  }
+
   async getAnalytics(req: Request, res: Response, next: NextFunction) {
     try {
       const analytics = await this.adminService.getAnalytics();
@@ -119,7 +197,7 @@ export class AdminController {
       }
       
       await AuditLogger.log(req, {
-        action: 'ADIN_TEST_EMBEDDINGS',
+        action: 'ADMIN_TEST_EMBEDDINGS',
         entityType: 'System',
         description: 'Admin ran embedding test',
       });
@@ -236,6 +314,58 @@ export class AdminController {
         error: error.message,
         lastChecked: new Date().toISOString(),
       });
+    }
+  }
+
+  async getRecentValidations(req: Request, res: Response, next: NextFunction) {
+    try {
+      const limit = parseInt(req.query.limit as string) || 50;
+      const validations = await this.adminService.getRecentValidations(limit);
+      res.status(200).json({ success: true, data: validations });
+    } catch (error) {
+      logger.error('Error in getRecentValidations controller:', error);
+      next(error);
+    }
+  }
+
+  async getSettings(req: Request, res: Response, next: NextFunction) {
+    try {
+      const settings = await this.adminService.getSettings();
+      res.status(200).json({ success: true, data: settings });
+    } catch (error) {
+      logger.error('Error in getSettings controller:', error);
+      next(error);
+    }
+  }
+
+  async updateSettings(req: Request, res: Response, next: NextFunction) {
+    try {
+      const settings = await this.adminService.updateSettings(req.body);
+      await AuditLogger.log(req, {
+        action: 'ADMIN_UPDATE_SETTINGS',
+        entityType: 'Settings',
+        description: 'Admin updated system settings',
+        metadata: req.body,
+      });
+      res.status(200).json({ success: true, data: settings });
+    } catch (error) {
+      logger.error('Error in updateSettings controller:', error);
+      next(error);
+    }
+  }
+
+  async getAiActivity(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+      const search = req.query.search as string || '';
+      const status = req.query.status as string || '';
+      
+      const result = await this.adminService.getAiActivity(page, limit, search, status);
+      res.status(200).json({ success: true, data: result });
+    } catch (error) {
+      logger.error('Error in getAiActivity controller:', error);
+      next(error);
     }
   }
 

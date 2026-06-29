@@ -1,10 +1,12 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Badge } from '../../../components/ui/Badge';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
-import { Users, Plus, X } from 'lucide-react';
+import { Button } from '../../../components/ui/Button';
+import { Input } from '../../../components/ui/Input';
+import { Users, Plus, X, Trash2, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
 import { useToast } from '../../../components/ui/Toast';
@@ -17,14 +19,18 @@ interface Validator {
   specialization?: string | null;
   institution?: string | null;
   accountStatus: string;
-  reviews?: number;
-  accuracy?: string;
+  reviewsCompleted?: number;
+  approvalRate?: number;
+  averageReviewTime?: number;
 }
 
 export default function AdminValidatorsPage() {
   const [validators, setValidators] = useState<Validator[]>([]);
+  const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  const [search, setSearch] = useState('');
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -34,11 +40,30 @@ export default function AdminValidatorsPage() {
   });
   const { addToast } = useToast();
 
-  const handleAddValidator = async () => {
+  useEffect(() => {
+    fetchValidators();
+  }, [page, search]);
+
+  const fetchValidators = async () => {
     setLoading(true);
     try {
+      const response = await api.request<{ success: boolean; data: { validators: Validator[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
+        `/admin/validators?page=${page}&limit=20&search=${encodeURIComponent(search)}`
+      );
+      setValidators(response.data.validators || []);
+      setTotalPages(response.data.pagination?.totalPages || 1);
+    } catch (error) {
+      console.error('Failed to fetch validators:', error);
+      addToast({ type: 'error', title: 'Failed to load validators' });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleAddValidator = async () => {
+    try {
       const result = await api.createValidator(formData);
-      setValidators([...validators, { ...result, accountStatus: 'ACTIVE', reviews: 0, accuracy: '100%' }]);
+      setValidators([...validators, { ...result, accountStatus: 'ACTIVE', reviewsCompleted: 0 }]);
       setShowAddModal(false);
       setFormData({ fullName: '', email: '', password: '', specialization: '', institution: '' });
       addToast({ type: 'success', title: 'Validator added successfully' });
@@ -49,8 +74,17 @@ export default function AdminValidatorsPage() {
       } else {
         addToast({ type: 'error', title: 'Failed to add validator' });
       }
-    } finally {
-      setLoading(false);
+    }
+  };
+
+  const handleRemoveValidator = async (validatorId: string) => {
+    if (!confirm('Are you sure you want to remove this validator?')) return;
+    try {
+      await api.request(`/admin/validators/${validatorId}`, { method: 'DELETE' });
+      addToast({ type: 'success', title: 'Validator removed' });
+      fetchValidators();
+    } catch (error) {
+      addToast({ type: 'error', title: 'Failed to remove validator' });
     }
   };
 
@@ -62,14 +96,19 @@ export default function AdminValidatorsPage() {
           <p className="text-sm text-muted-foreground">Manage medical validators</p>
         </div>
 
-        <div className="flex justify-end">
-          <button
-            onClick={() => setShowAddModal(true)}
-            className="flex items-center gap-2 px-3 sm:px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors w-full sm:w-auto"
-          >
-            <Plus size={16} />
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-between">
+          <div className="relative flex-1">
+            <Input
+              placeholder="Search validators..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full"
+            />
+          </div>
+          <Button onClick={() => setShowAddModal(true)} className="w-full sm:w-auto">
+            <Plus size={16} className="mr-2" />
             Add Validator
-          </button>
+          </Button>
         </div>
 
         {showAddModal && (
@@ -84,68 +123,56 @@ export default function AdminValidatorsPage() {
               <div className="space-y-3 sm:space-y-4">
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Full Name</label>
-                  <input
+                  <Input
                     type="text"
                     value={formData.fullName}
                     onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground"
                     placeholder="Dr. John Smith"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Email</label>
-                  <input
+                  <Input
                     type="email"
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground"
                     placeholder="john@medical.org"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Password (optional)</label>
-                  <input
+                  <Input
                     type="password"
                     value={formData.password}
                     onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground"
                     placeholder="Leave empty for auto-generated"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Specialization</label>
-                  <input
+                  <Input
                     type="text"
                     value={formData.specialization}
                     onChange={(e) => setFormData({ ...formData, specialization: e.target.value })}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground"
                     placeholder="Cardiology"
                   />
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-foreground mb-1">Institution</label>
-                  <input
+                  <Input
                     type="text"
                     value={formData.institution}
                     onChange={(e) => setFormData({ ...formData, institution: e.target.value })}
-                    className="w-full px-3 py-2 border border-border rounded-lg text-sm bg-input text-foreground"
                     placeholder="Hospital Name"
                   />
                 </div>
                 <div className="flex flex-col sm:flex-row gap-2 pt-2">
-                  <button
-                    onClick={handleAddValidator}
-                    disabled={loading || !formData.fullName || !formData.email}
-                    className="flex-1 px-4 py-2 text-white bg-blue-600 rounded-lg hover:bg-blue-700 disabled:opacity-50 order-2 sm:order-1"
-                  >
-                    {loading ? 'Adding...' : 'Add Validator'}
-                  </button>
-                  <button
-                    onClick={() => setShowAddModal(false)}
-                    className="px-4 py-2 border border-border rounded-lg hover:bg-muted w-full sm:w-auto order-1 sm:order-2"
-                  >
+                  <Button onClick={handleAddValidator} disabled={!formData.fullName || !formData.email} className="flex-1 sm:flex-initial">
+                    Add Validator
+                  </Button>
+                  <Button variant="outline" onClick={() => setShowAddModal(false)} className="w-full sm:w-auto">
                     Cancel
-                  </button>
+                  </Button>
                 </div>
               </div>
             </div>
@@ -156,47 +183,97 @@ export default function AdminValidatorsPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base sm:text-lg">
               <Users size={20} className="text-blue-600" />
-              Validator Management
+              Validator Management ({validators.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>Name</TableHead>
-                  <TableHead>Email</TableHead>
-                  <TableHead>Specialization</TableHead>
-                  <TableHead>Status</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {validators.length === 0 ? (
-                  <TableRow>
-                    <TableCell colSpan={4} className="py-6 sm:py-8 text-center text-muted-foreground">
-                      No validators found. Add your first validator above.
-                    </TableCell>
-                  </TableRow>
-                ) : (
-                  validators.map((validator) => (
-                    <TableRow key={validator.id}>
-                      <TableCell className="font-medium text-foreground">
-                        <div className="flex items-center gap-1 sm:gap-2">
-                          <span className="text-emerald-500">&#10003;</span>
-                          {validator.fullName}
-                        </div>
-                      </TableCell>
-                      <TableCell className="text-muted-foreground">{validator.email}</TableCell>
-                      <TableCell className="text-muted-foreground">{validator.specialization || '-'}</TableCell>
-                      <TableCell>
-                        <Badge variant={validator.accountStatus === 'ACTIVE' ? 'success' : 'default'}>
-                          {validator.accountStatus === 'ACTIVE' ? 'Active' : 'Inactive'}
-                        </Badge>
-                      </TableCell>
+            {loading ? (
+              <div className="text-center py-6 sm:py-8 text-sm">Loading validators...</div>
+            ) : (
+              <>
+                <Table>
+                  <TableHeader>
+                    <TableRow>
+                      <TableHead>Name</TableHead>
+                      <TableHead>Email</TableHead>
+                      <TableHead>Specialization</TableHead>
+                      <TableHead>Reviews</TableHead>
+                      <TableHead>Approval Rate</TableHead>
+                      <TableHead>Status</TableHead>
+                      <TableHead className="text-right">Actions</TableHead>
                     </TableRow>
-                  ))
+                  </TableHeader>
+                  <TableBody>
+                    {validators.length === 0 ? (
+                      <TableRow>
+                        <TableCell colSpan={7} className="py-6 sm:py-8 text-center text-muted-foreground">
+                          No validators found. Add your first validator above.
+                        </TableCell>
+                      </TableRow>
+                    ) : (
+                      validators.map((validator) => (
+                        <TableRow key={validator.id}>
+                          <TableCell className="font-medium text-foreground">
+                            <div className="flex items-center gap-1 sm:gap-2">
+                              <span className="text-emerald-500">&#10003;</span>
+                              {validator.fullName}
+                            </div>
+                          </TableCell>
+                          <TableCell className="text-muted-foreground">{validator.email}</TableCell>
+                          <TableCell className="text-muted-foreground">{validator.specialization || '-'}</TableCell>
+                          <TableCell className="text-muted-foreground">{validator.reviewsCompleted ?? 0}</TableCell>
+                          <TableCell className="text-muted-foreground">
+                            {validator.approvalRate ? `${validator.approvalRate}%` : '-'}
+                          </TableCell>
+                          <TableCell>
+                            <Badge variant={validator.accountStatus === 'ACTIVE' ? 'success' : 'default'}>
+                              {validator.accountStatus?.toLowerCase()}
+                            </Badge>
+                          </TableCell>
+                          <TableCell className="text-right">
+                            <button
+                              onClick={() => handleRemoveValidator(validator.id)}
+                              className="p-1 text-red-600 hover:text-red-700"
+                              title="Remove validator"
+                            >
+                              <Trash2 size={16} />
+                            </button>
+                          </TableCell>
+                        </TableRow>
+                      ))
+                    )}
+                  </TableBody>
+                </Table>
+
+                {totalPages > 1 && (
+                  <div className="flex items-center justify-between mt-3 sm:mt-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={page <= 1}
+                      onClick={() => setPage(p => Math.max(1, p - 1))}
+                      className="w-full sm:w-auto"
+                    >
+                      <ChevronLeft size={14} />
+                      Previous
+                    </Button>
+                    <span className="text-xs sm:text-sm text-muted-foreground">
+                      Page {page} of {totalPages}
+                    </span>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      disabled={page >= totalPages}
+                      onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                      className="w-full sm:w-auto"
+                    >
+                      Next
+                      <ChevronRight size={14} />
+                    </Button>
+                  </div>
                 )}
-              </TableBody>
-            </Table>
+              </>
+            )}
           </CardContent>
         </Card>
       </div>

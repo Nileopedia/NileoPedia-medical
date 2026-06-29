@@ -10138,3 +10138,29 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-06-28T20:44:41.772Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
 2026-06-28T20:49:36.602Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
 2026-06-28T20:49:37.569Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-28T21:19:29.269Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:19:30.377Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:19:32.114Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:19:34.762Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:19:40.289Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:20:52.201Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:20:52.855Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:20:53.866Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:20:55.020Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:20:58.168Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:27:17.293Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-28T21:27:51.210Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:27:51.967Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:27:53.183Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:27:54.435Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:27:59.652Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:20.640Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:28:21.387Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:22.555Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:23.792Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:26.669Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:56.891Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:28:57.487Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:58.470Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:28:59.619Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:29:03.140Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)

@@ -11,5 +11,7 @@ router.post('/:responseId/approve', authenticate, authorize('VALIDATOR', 'ADMIN'
 router.post('/:responseId/reject', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.reject.bind(validationController));
 router.get('/history', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getHistory.bind(validationController));
 router.get('/:responseId', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getReview.bind(validationController));
+router.get('/approved', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getApproved.bind(validationController));
+router.get('/rejected', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getRejected.bind(validationController));
 
 export default router;

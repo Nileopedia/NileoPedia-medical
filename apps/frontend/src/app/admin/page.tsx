@@ -1,77 +1,99 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardContent } from '../../components/ui/Card';
+import { Card, CardContent, CardHeader, CardTitle } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
-import { RefreshCw, CheckCircle, AlertCircle, RefreshCcw, WifiOff } from 'lucide-react';
+import { RefreshCw, CheckCircle, AlertCircle, RefreshCcw, WifiOff, Users, FileText, MessageCircle } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { useAppStore } from '../../store/appStore';
 import { useRouter } from 'next/navigation';
 
+interface AnalyticsData {
+  totalUsers?: number;
+  totalValidators?: number;
+  totalDocuments?: number;
+  totalResponses?: number;
+  pendingReviews?: number;
+  totalVectors?: number;
+}
+
 export default function AdminPage() {
-   const [ingestionStatus, setIngestionStatus] = useState<{
-      isRunning: boolean;
-      isActive: boolean;
-      sources: number;
-    }>({ isRunning: false, isActive: false, sources: 9 });
-    const [loading, setLoading] = useState(false);
-    const [refreshLoading, setRefreshLoading] = useState(false);
-    const [error, setError] = useState<string | null>(null);
-    const router = useRouter();
-    const user = useAppStore((state) => state.user);
+  const [ingestionStatus, setIngestionStatus] = useState<{
+    isRunning: boolean;
+    isActive: boolean;
+    sources: number;
+  }>({ isRunning: false, isActive: false, sources: 9 });
+  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [refreshLoading, setRefreshLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
+  const user = useAppStore((state) => state.user);
 
-    useEffect(() => {
+  useEffect(() => {
+    if (user?.role === 'admin') {
       fetchStatus();
-    }, []);
+      fetchAnalytics();
+    }
+  }, [user]);
 
-    const fetchStatus = async () => {
-      try {
-        const status = await api.getIngestionStatus();
-        setIngestionStatus(status);
-        setError(null);
-      } catch (error) {
-        if (error instanceof Error && error.message === 'Please sign in to continue') {
-          router.push('/login');
-        } else {
-          setError(error instanceof Error ? error.message : 'Connection failed');
-        }
+  const fetchStatus = async () => {
+    try {
+      const status = await api.getIngestionStatus();
+      setIngestionStatus(status);
+      setError(null);
+    } catch (err) {
+      if (err instanceof Error && err.message === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(err instanceof Error ? err.message : 'Connection failed');
       }
-    };
+    }
+  };
 
-    const handleRunIngestion = async () => {
-      setLoading(true);
-      try {
-        await api.runScheduledIngestion();
-        await fetchStatus();
-      } catch (error) {
-        const msg = error instanceof Error ? error.message : 'Failed to run ingestion';
-        if (msg === 'Please sign in to continue') {
-          router.push('/login');
-        } else {
-          setError(msg);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchAnalytics = async () => {
+    try {
+      const data = await api.request<{ success: boolean; data: AnalyticsData }>('/admin/analytics');
+      setAnalytics(data.data);
+    } catch (err) {
+      console.error('Failed to fetch analytics:', err);
+    }
+  };
 
-    const handleIncrementalRefresh = async () => {
-      setRefreshLoading(true);
-      try {
-        await api.runIncrementalRefresh();
-        await fetchStatus();
-      } catch (error) {
-        const msg = error instanceof Error ? error.message : 'Failed to run incremental refresh';
-        if (msg === 'Please sign in to continue') {
-          router.push('/login');
-        } else {
-          setError(msg);
-        }
-      } finally {
-        setRefreshLoading(false);
+  const handleRunIngestion = async () => {
+    setLoading(true);
+    try {
+      await api.runScheduledIngestion();
+      await fetchStatus();
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : 'Failed to run ingestion';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
       }
-    };
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleIncrementalRefresh = async () => {
+    setRefreshLoading(true);
+    try {
+      await api.runIncrementalRefresh();
+      await fetchStatus();
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : 'Failed to run incremental refresh';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
+      }
+    } finally {
+      setRefreshLoading(false);
+    }
+  };
 
   if (user?.role !== 'admin') {
     return (
@@ -88,7 +110,7 @@ export default function AdminPage() {
       <div className="space-y-4 sm:space-y-6">
         <div>
           <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Admin Dashboard</h1>
-          <p className="text-sm text-muted-foreground">Manage system ingestion and knowledge base</p>
+          <p className="text-sm text-muted-foreground">Manage system and monitor platform metrics</p>
         </div>
 
         {error && (
@@ -97,6 +119,75 @@ export default function AdminPage() {
             <p className="text-xs sm:text-sm text-amber-700">{error}</p>
           </div>
         )}
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <Users size={18} className="text-blue-600" />
+                Total Users
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">{analytics?.totalUsers ?? 0}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <Users size={18} className="text-emerald-600" />
+                Total Validators
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">{analytics?.totalValidators ?? 0}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <FileText size={18} className="text-purple-600" />
+                Total Documents
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">{analytics?.totalDocuments ?? 0}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <MessageCircle size={18} className="text-amber-600" />
+                Total AI Queries
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">{analytics?.totalResponses ?? 0}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <AlertCircle size={18} className="text-red-600" />
+                Pending Validations
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">{analytics?.pendingReviews ?? 0}</p>
+            </CardContent>
+          </Card>
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2 text-sm sm:text-base">
+                <FileText size={18} className="text-blue-600" />
+                Pinecone Vectors
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-2xl sm:text-3xl font-bold text-foreground">{analytics?.totalVectors ?? 0}</p>
+            </CardContent>
+          </Card>
+        </div>
 
         <Card>
           <CardContent className="p-4 sm:p-6">

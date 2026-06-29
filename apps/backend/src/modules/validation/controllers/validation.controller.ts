@@ -69,4 +69,28 @@ export class ValidationController {
       next(error);
     }
   }
+
+  async getApproved(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+      const result = await this.validationService.getApproved(page, limit);
+      res.status(200).json({ success: true, data: result });
+    } catch (error) {
+      logger.error('Error in getApproved controller:', error);
+      next(error);
+    }
+  }
+
+  async getRejected(req: Request, res: Response, next: NextFunction) {
+    try {
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+      const result = await this.validationService.getRejected(page, limit);
+      res.status(200).json({ success: true, data: result });
+    } catch (error) {
+      logger.error('Error in getRejected controller:', error);
+      next(error);
+    }
+  }
 }
