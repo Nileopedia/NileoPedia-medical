@@ -10164,3 +10164,291 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-06-28T21:28:58.470Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-06-28T21:28:59.619Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-06-28T21:29:03.140Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:42:09.413Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T21:42:09.618Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-28T21:42:09.621Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-28T21:42:18.534Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T21:42:27.515Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-28T21:42:27.585Z [nileopedia-backend] info: GET /api/v1/questions/history - ::1
+2026-06-28T21:43:23.199Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T21:43:25.039Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T21:43:25.073Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-28T21:43:25.128Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-28T21:43:25.370Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-28T21:43:29.192Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-28T21:43:29.306Z [nileopedia-backend] error: Error in getValidators controller: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:43:29.308Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:43:29.318Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-28T21:43:29.345Z [nileopedia-backend] error: Error in getValidators controller: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:43:29.348Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:44:50.195Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:44:50.966Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:44:52.428Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:44:53.748Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:44:58.366Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:10.056Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:45:10.659Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:11.822Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:13.004Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:15.869Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:24.940Z [nileopedia-backend] info: POST /api/v1/users/validator - ::1
+2026-06-28T21:45:40.773Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-28T21:45:42.106Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T21:45:42.114Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T21:45:42.180Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T21:45:42.231Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T21:45:50.167Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:45:50.776Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:51.857Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:52.889Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:45:56.447Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:05.032Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:46:05.890Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:06.976Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:08.560Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:13.478Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:44.621Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:46:45.444Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:47.000Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:48.566Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:46:51.730Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:17.800Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:47:18.478Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:19.277Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:20.317Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:23.767Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:50.011Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T21:47:50.650Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:51.634Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:53.252Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T21:47:57.145Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:12:43.180Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T22:12:43.666Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:12:44.382Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:12:45.068Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:12:49.555Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:30.257Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T22:13:30.743Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:31.972Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:33.003Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:35.958Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:50.617Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T22:13:51.334Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:52.227Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:53.150Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:13:56.155Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T22:43:12.348Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-28T22:43:12.422Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-28T22:43:12.439Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-28T22:43:12.953Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-28T23:07:01.099Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:07:01.748Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:02.745Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:04.074Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:08.440Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:11.069Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:07:11.643Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:12.588Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:13.941Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:16.527Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:26.910Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:07:27.453Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:28.329Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:29.053Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:31.747Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:53.276Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:07:54.059Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:54.851Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:55.680Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:07:58.912Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:30.429Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:08:31.149Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:32.112Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:32.838Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:35.753Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:47.739Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:08:48.414Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:49.683Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:50.835Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:08:53.780Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:05.199Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:09:05.841Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:06.752Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:07.823Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:10.589Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:26.593Z [nileopedia-backend] info: Schedulers initialized
+2026-06-28T23:09:27.184Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:27.976Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:28.933Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:09:32.883Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-28T23:14:42.407Z [nileopedia-backend] info: Processing email job: 286
+2026-06-28T23:14:42.494Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.517Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.518Z [nileopedia-backend] info: Processing email job: 287
+2026-06-28T23:14:42.521Z [nileopedia-backend] info: Processing email job: 288
+2026-06-28T23:14:42.533Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.538Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.541Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.544Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.602Z [nileopedia-backend] info: Processing email job: 286
+2026-06-28T23:14:44.611Z [nileopedia-backend] info: Processing email job: 287
+2026-06-28T23:14:44.617Z [nileopedia-backend] info: Processing email job: 288
+2026-06-28T23:14:44.633Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.641Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.647Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.653Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.655Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.656Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.706Z [nileopedia-backend] info: Processing email job: 286
+2026-06-28T23:14:48.709Z [nileopedia-backend] info: Processing email job: 287
+2026-06-28T23:14:48.711Z [nileopedia-backend] info: Processing email job: 288
+2026-06-28T23:14:48.738Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.752Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.755Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.764Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025

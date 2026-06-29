@@ -10,5 +10,13 @@ router.post('/:responseId/approve', auth_middleware_1.authenticate, (0, auth_mid
 router.post('/:responseId/reject', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.reject.bind(validationController));
 router.get('/history', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getHistory.bind(validationController));
 router.get('/:responseId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getReview.bind(validationController));
+router.get('/approved', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getApproved.bind(validationController));
+router.get('/rejected', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getRejected.bind(validationController));
+router.get('/feedback', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getFeedbackReports.bind(validationController));
+router.patch('/feedback/:reportId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.updateFeedbackReport.bind(validationController));
+router.get('/profile', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getProfile.bind(validationController));
+router.put('/profile', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.updateProfile.bind(validationController));
+router.get('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getSettings.bind(validationController));
+router.put('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.updateSettings.bind(validationController));
 exports.default = router;
 //# sourceMappingURL=validation.routes.js.map

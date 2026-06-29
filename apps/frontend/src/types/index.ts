@@ -5,6 +5,9 @@ export interface User {
   role: 'user' | 'validator' | 'admin';
   avatar?: string;
   title?: string;
+  specialty?: string;
+  bio?: string;
+  createdAt?: string;
 }
 
 export interface Query {

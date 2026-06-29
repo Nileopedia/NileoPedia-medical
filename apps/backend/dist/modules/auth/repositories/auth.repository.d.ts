@@ -2,6 +2,7 @@ export declare class AuthRepository {
     findByEmail(email: string): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
@@ -12,11 +13,11 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
-        updatedAt: Date;
     } | null>;
     findById(id: string): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
@@ -27,7 +28,6 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
-        updatedAt: Date;
     } | null>;
     create(userData: {
         fullName: string;
@@ -39,6 +39,7 @@ export declare class AuthRepository {
     }): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
@@ -49,7 +50,6 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
-        updatedAt: Date;
     }>;
     update(id: string, userData: Partial<{
         fullName: string;
@@ -63,6 +63,7 @@ export declare class AuthRepository {
     }>): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
@@ -73,11 +74,11 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
-        updatedAt: Date;
     }>;
     setRefreshToken(id: string, refreshToken: string | null): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
@@ -88,11 +89,11 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
-        updatedAt: Date;
     }>;
     updatePassword(id: string, password: string): Promise<{
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         fullName: string;
         email: string;
         password: string;
@@ -103,7 +104,6 @@ export declare class AuthRepository {
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
-        updatedAt: Date;
     }>;
     createPasswordReset(email: string, token: string, expiresAt: Date): Promise<{
         id: string;

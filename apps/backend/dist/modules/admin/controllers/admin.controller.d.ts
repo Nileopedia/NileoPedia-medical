@@ -6,10 +6,18 @@ export declare class AdminController {
     suspendUser(req: Request, res: Response, next: NextFunction): Promise<void>;
     activateUser(req: Request, res: Response, next: NextFunction): Promise<void>;
     deleteUser(req: Request, res: Response, next: NextFunction): Promise<void>;
+    resetPassword(req: Request, res: Response, next: NextFunction): Promise<void>;
+    getValidators(req: Request, res: Response, next: NextFunction): Promise<void>;
+    addValidator(req: Request, res: Response, next: NextFunction): Promise<void>;
+    removeValidator(req: Request, res: Response, next: NextFunction): Promise<void>;
     getAnalytics(req: Request, res: Response, next: NextFunction): Promise<void>;
     testEmbeddings(req: Request, res: Response, next: NextFunction): Promise<void>;
     performanceTest(req: Request, res: Response, next: NextFunction): Promise<void>;
     getSystemStatus(req: Request, res: Response, next: NextFunction): Promise<void>;
+    getRecentValidations(req: Request, res: Response, next: NextFunction): Promise<void>;
+    getSettings(req: Request, res: Response, next: NextFunction): Promise<void>;
+    updateSettings(req: Request, res: Response, next: NextFunction): Promise<void>;
+    getAiActivity(req: Request, res: Response, next: NextFunction): Promise<void>;
     private testEmbeddingAvailability;
     private testPineconeAvailability;
     private getDocumentsCount;

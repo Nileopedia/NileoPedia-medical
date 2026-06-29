@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from 'express';
 import { QuestionsService } from '../services/questions.service';
 import { logger } from '../../../config/logger';
+import { AuditLogger } from '../../audit/audit.logger';
 
 export class QuestionsController {
   private questionsService: QuestionsService;
@@ -18,6 +19,13 @@ export class QuestionsController {
       const { question, specialty } = req.body;
 
       const result = await this.questionsService.askQuestion(userId, question, specialty);
+
+      await AuditLogger.log(req, {
+        action: 'QUESTION_ASKED',
+        entityType: 'Question',
+        entityId: result.questionId,
+        description: 'User submitted a medical question',
+      });
 
       res.status(201).json({
         success: true,
@@ -65,6 +73,13 @@ export class QuestionsController {
       const { questionId } = req.params;
       await this.questionsService.saveResponse(questionId, req.user!.id);
 
+      await AuditLogger.log(req, {
+        action: 'RESPONSE_SAVED',
+        entityType: 'Question',
+        entityId: questionId,
+        description: 'User saved an AI response',
+      });
+
       res.status(200).json({
         success: true,
         message: 'Response saved',
@@ -79,6 +94,13 @@ export class QuestionsController {
     try {
       const { questionId } = req.params;
       await this.questionsService.unsaveResponse(questionId, req.user!.id);
+
+      await AuditLogger.log(req, {
+        action: 'RESPONSE_UNSAVED',
+        entityType: 'Question',
+        entityId: questionId,
+        description: 'User unsaved an AI response',
+      });
 
       res.status(200).json({
         success: true,

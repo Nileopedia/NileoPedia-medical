@@ -31,9 +31,10 @@ export default function AskPage() {
    const user = useAppStore((state) => state.user);
    const { addToast } = useToast();
 
-useEffect(() => {
+   useEffect(() => {
      if (!questionId) return;
 
+     let pollInterval: ReturnType<typeof setInterval> | undefined;
      let attempts = 0;
      const maxAttempts = 60;
 
@@ -47,18 +48,21 @@ useEffect(() => {
            setProgress(100);
            setPartialRecommendations(data.aiResponse.keyRecommendations || []);
            setStreamingVisible((data.aiResponse.keyRecommendations || []).map(() => true));
+           if (pollInterval) clearInterval(pollInterval);
          } else if (attempts < maxAttempts) {
            attempts++;
            setProcessing(true);
            setProgress(Math.min(90, attempts * 15));
          }
-       } catch (err) {
+       } catch (err: any) {
          if (err instanceof Error && err.message === 'Please sign in to continue') {
+           if (pollInterval) clearInterval(pollInterval);
            router.push('/login');
            return;
          }
-         if (typeof err === 'string' && (err.includes('HTTP_429') || err.includes('Too Many Requests'))) {
+         if (err?.message?.includes('HTTP_429') || err?.message?.includes('Too Many Requests')) {
            console.warn('Rate limit hit, stopping polling');
+           if (pollInterval) clearInterval(pollInterval);
            setError('Rate limit reached. Please wait a moment and try again.');
            setLoading(false);
            return;
@@ -73,9 +77,9 @@ useEffect(() => {
     setProcessing(true);
     setProgress(5);
     pollForResponse();
-    const intervalId = setInterval(pollForResponse, 1500);
+    pollInterval = setInterval(pollForResponse, 1500);
 
-   const socket: Socket = io(SOCKET_URL, {
+    const socket: Socket = io(SOCKET_URL, {
       transports: ['websocket'],
       reconnection: false,
     });
@@ -88,7 +92,7 @@ useEffect(() => {
       setSocketConnected(false);
     });
 
-    socket.on('ai-status', () => {
+    socket.on('ai-status', (data: { status: string; message: string }) => {
       setProcessing(true);
     });
 
@@ -117,7 +121,7 @@ useEffect(() => {
     }, 100);
 
     return () => {
-      clearInterval(intervalId);
+      if (pollInterval) clearInterval(pollInterval);
       socket.disconnect();
     };
   }, [questionId, user, addToast]);
@@ -140,8 +144,7 @@ useEffect(() => {
       if (err instanceof Error && err.message === 'Please sign in to continue') {
         router.push('/login');
       } else {
-        const error = err as Error;
-        setError(error.message || 'Failed to submit question');
+        setError(err instanceof Error ? err.message : 'Failed to submit question');
       }
       setLoading(false);
     }
@@ -192,12 +195,12 @@ useEffect(() => {
                   placeholder="Enter your medical question... (e.g., What are the latest guidelines for hypertension management?)"
                   value={question}
                   onChange={(e) => setQuestion(e.target.value)}
-onKeyDown={(e) => {
-                     if (e.key === 'Enter' && !e.shiftKey) {
-                       e.preventDefault();
-                       handleSubmit(e as unknown as React.KeyboardEvent<HTMLTextAreaElement>);
-                     }
-                   }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' && !e.shiftKey) {
+                      e.preventDefault();
+                      handleSubmit(e as any);
+                    }
+                  }}
                   rows={4}
                   required
                 />

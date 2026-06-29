@@ -35,28 +35,28 @@ export declare class DocumentMetadataService {
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        publicationYear: number | null;
         title: string | null;
+        authors: string[];
+        publicationYear: number | null;
+        doi: string | null;
         documentType: string | null;
         documentId: string;
-        authors: string[];
         journal: string | null;
         publisher: string | null;
-        doi: string | null;
         sourceURL: string | null;
     } | null>;
     getMetadataByDocumentIds(documentIds: string[]): Promise<{
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        publicationYear: number | null;
         title: string | null;
+        authors: string[];
+        publicationYear: number | null;
+        doi: string | null;
         documentType: string | null;
         documentId: string;
-        authors: string[];
         journal: string | null;
         publisher: string | null;
-        doi: string | null;
         sourceURL: string | null;
     }[]>;
 }

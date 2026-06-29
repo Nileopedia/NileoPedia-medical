@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.QuestionsController = void 0;
 const questions_service_1 = require("../services/questions.service");
 const logger_1 = require("../../../config/logger");
+const audit_logger_1 = require("../../audit/audit.logger");
 class QuestionsController {
     constructor() {
         this.questionsService = new questions_service_1.QuestionsService();
@@ -15,6 +16,12 @@ class QuestionsController {
             const userId = req.user.id;
             const { question, specialty } = req.body;
             const result = await this.questionsService.askQuestion(userId, question, specialty);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'QUESTION_ASKED',
+                entityType: 'Question',
+                entityId: result.questionId,
+                description: 'User submitted a medical question',
+            });
             res.status(201).json({
                 success: true,
                 message: 'Question submitted successfully',
@@ -58,6 +65,12 @@ class QuestionsController {
         try {
             const { questionId } = req.params;
             await this.questionsService.saveResponse(questionId, req.user.id);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'RESPONSE_SAVED',
+                entityType: 'Question',
+                entityId: questionId,
+                description: 'User saved an AI response',
+            });
             res.status(200).json({
                 success: true,
                 message: 'Response saved',
@@ -72,6 +85,12 @@ class QuestionsController {
         try {
             const { questionId } = req.params;
             await this.questionsService.unsaveResponse(questionId, req.user.id);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'RESPONSE_UNSAVED',
+                entityType: 'Question',
+                entityId: questionId,
+                description: 'User unsaved an AI response',
+            });
             res.status(200).json({
                 success: true,
                 message: 'Response unsaved',

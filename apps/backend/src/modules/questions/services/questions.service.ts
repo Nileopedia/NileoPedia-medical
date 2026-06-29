@@ -3,6 +3,7 @@ import { aiQueue } from '../../../jobs/queues';
 import { logger } from '../../../config/logger';
 import { RetrievalService } from '../../retrieval/retrieval.service';
 import { CONFIG } from '../../../config/env';
+import { AuditLogger } from '../../audit/audit.logger';
 
 export class QuestionsService {
   async askQuestion(userId: string, questionText: string, specialty?: string) {

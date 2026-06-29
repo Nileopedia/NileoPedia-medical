@@ -1,45 +1,87 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { AppLayout } from '@/components/layout/AppLayout';
 import { cn } from '@/utils/cn';
 import { Globe, MessageSquare, Shield, User, Check, Monitor, Moon, Sun } from 'lucide-react';
-import { useSettings } from '@/contexts/SettingsContext';
 import { api } from '@/lib/api';
 import { useToast } from '@/components/ui/Toast';
-import { useTheme } from 'next-themes';
+import { useAppStore } from '@/store/appStore';
 
 type SettingsTab = 'general' | 'ai' | 'notifications' | 'account';
 type ThemeType = 'light' | 'dark' | 'system';
 
+interface Settings {
+  theme: ThemeType;
+  language: string;
+  sidebarCollapsed: boolean;
+  responseStyle: string;
+  citationEnabled: boolean;
+  emailNotifications: boolean;
+  systemNotifications: boolean;
+  uploadNotifications: boolean;
+  validationNotifications: boolean;
+}
+
+const defaultSettings: Settings = {
+  theme: 'system',
+  language: 'en',
+  sidebarCollapsed: false,
+  responseStyle: 'normal',
+  citationEnabled: true,
+  emailNotifications: true,
+  systemNotifications: true,
+  uploadNotifications: true,
+  validationNotifications: true,
+};
+
 export default function SettingsPage() {
   const [activeTab, setActiveTab] = useState<SettingsTab>('general');
-  const { settings, updateSettings } = useSettings();
+  const [settings, setSettings] = useState<Settings>(defaultSettings);
+  const [loading, setLoading] = useState(true);
   const { addToast } = useToast();
-  const { setTheme, theme: currentTheme } = useTheme();
+  const { toggleSidebar } = useAppStore();
 
-  const handleThemeChange = (theme: ThemeType) => {
-    updateSettings('theme', theme);
-    setTheme(theme);
+  useEffect(() => {
+    loadSettings();
+  }, []);
+
+const loadSettings = async () => {
+     setLoading(true);
+     try {
+       const response = await api.request<{ success: boolean; data: Settings }>('/users/preferences');
+       setSettings(response.data);
+       if (response.data.sidebarCollapsed) {
+         toggleSidebar();
+       }
+     } catch {
+       addToast({ type: 'error', title: 'Failed to load settings' });
+     } finally {
+       setLoading(false);
+     }
+   };
+
+   const saveSettings = async () => {
+     try {
+       await api.request('/users/preferences', {
+         method: 'PUT',
+         body: JSON.stringify(settings),
+       });
+       addToast({ type: 'success', title: 'Settings saved successfully' });
+     } catch {
+       addToast({ type: 'error', title: 'Failed to save settings' });
+     }
+   };
+
+  const updateSetting = (key: keyof Settings, value: Settings[keyof Settings]) => {
+    setSettings((prev) => ({ ...prev, [key]: value }));
   };
 
-  // Change password state
   const [currentPassword, setCurrentPassword] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [changingPassword, setChangingPassword] = useState(false);
-
-  // 2FA state
-  const [twoFactorEnabled, setTwoFactorEnabled] = useState(false);
-  const [showQrCode, setShowQrCode] = useState(false);
-  const [qrCodeUrl, setQrCodeUrl] = useState('');
-  const [otpCode, setOtpCode] = useState('');
-  const [twoFactorLoading, setTwoFactorLoading] = useState(false);
-
-  // Security info
-  const [lastLogin] = useState('2024-06-15 14:30:00');
-  const [activeSessions] = useState(1);
 
   const handleChangePassword = async () => {
     if (newPassword !== confirmPassword) {
@@ -48,7 +90,10 @@ export default function SettingsPage() {
     }
     setChangingPassword(true);
     try {
-      await api.changePassword(currentPassword, newPassword);
+      await api.request('/users/change-password', {
+        method: 'PATCH',
+        body: JSON.stringify({ currentPassword, newPassword }),
+      });
       addToast({ type: 'success', title: 'Password changed successfully' });
       setCurrentPassword('');
       setNewPassword('');
@@ -60,65 +105,16 @@ export default function SettingsPage() {
     }
   };
 
-  const handleEnable2FA = async () => {
-    setTwoFactorLoading(true);
-    try {
-      const response = await api.request<{ success: boolean; data: { qrCodeUrl: string } }>('/auth/2fa/enable', {
-        method: 'POST',
-      });
-      setQrCodeUrl(response.data.qrCodeUrl);
-      setShowQrCode(true);
-    } catch (error: unknown) {
-      const err = error as Error;
-      if (err.message?.includes('404')) {
-        addToast({ type: 'info', title: '2FA feature coming soon' });
-      } else {
-        addToast({ type: 'error', title: 'Failed to enable 2FA' });
-      }
-    } finally {
-      setTwoFactorLoading(false);
-    }
-  };
-
-  const handleVerify2FA = async () => {
-    setTwoFactorLoading(true);
-    try {
-      await api.request('/auth/2fa/verify', {
-        method: 'POST',
-        body: JSON.stringify({ code: otpCode }),
-      });
-      setTwoFactorEnabled(true);
-      setShowQrCode(false);
-      addToast({ type: 'success', title: '2FA enabled successfully' });
-    } catch {
-      addToast({ type: 'error', title: 'Invalid verification code' });
-    } finally {
-      setTwoFactorLoading(false);
-    }
-  };
-
-  const handleDisable2FA = async () => {
-    setTwoFactorLoading(true);
-    try {
-      await api.request('/auth/2fa/disable', {
-        method: 'POST',
-      });
-      setTwoFactorEnabled(false);
-      addToast({ type: 'success', title: '2FA disabled' });
-    } catch {
-      addToast({ type: 'error', title: 'Failed to disable 2FA' });
-    } finally {
-      setTwoFactorLoading(false);
-    }
-  };
-
   const ThemePreview = ({ theme }: { theme: ThemeType }) => {
     const isSelected = settings.theme === theme;
     const Icon = theme === 'light' ? Sun : theme === 'dark' ? Moon : Monitor;
-    
+
     return (
       <button
-        onClick={() => handleThemeChange(theme)}
+        onClick={() => {
+          updateSetting('theme', theme);
+          saveSettings();
+        }}
         className={cn(
           'flex-1 p-3 sm:p-4 rounded-lg border-2 transition-all duration-300 text-left',
           isSelected ? 'border-blue-500 shadow-md' : 'border-border hover:border-muted-foreground',
@@ -129,26 +125,25 @@ export default function SettingsPage() {
       >
         <div className="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
           <Icon size={16} className="text-foreground" />
-          <span className={cn(
-            'text-xs sm:text-sm font-medium capitalize',
-            'text-foreground'
-          )}>
+          <span className="text-xs sm:text-sm font-medium capitalize text-foreground">
             {theme}
           </span>
           {isSelected && <Check size={14} className="text-blue-500 ml-auto" />}
         </div>
-        <div className={cn(
-          'h-10 sm:h-12 rounded border',
-          theme === 'light' ? 'bg-muted border-border' : 'bg-border border-muted-foreground'
-        )}>
-          <div className={cn(
-            'h-5 sm:h-6 mx-1.5 sm:mx-2 mt-1.5 sm:mt-2 rounded-sm',
-            theme === 'light' ? 'bg-primary w-1/2' : 'bg-primary w-1/3'
-          )} />
+        <div className={cn('h-10 sm:h-12 rounded border', theme === 'light' ? 'bg-muted border-border' : 'bg-border border-muted-foreground')}>
+          <div className={cn('h-5 sm:h-6 mx-1.5 sm:mx-2 mt-1.5 sm:mt-2 rounded-sm', theme === 'light' ? 'bg-primary w-1/2' : 'bg-primary w-1/3')} />
         </div>
       </button>
     );
   };
+
+  if (loading) {
+    return (
+      <AppLayout>
+        <div className="p-4 sm:p-6 text-sm sm:text-base">Loading settings...</div>
+      </AppLayout>
+    );
+  }
 
   return (
     <AppLayout>
@@ -212,7 +207,10 @@ export default function SettingsPage() {
                       </div>
                       <select
                         value={settings.language}
-                        onChange={(e) => updateSettings('language', e.target.value as 'en' | 'am' | 'om')}
+                        onChange={(e) => {
+                          updateSetting('language', e.target.value);
+                          saveSettings();
+                        }}
                         className="text-xs sm:text-sm border border-border rounded-lg px-2 py-1 bg-input text-foreground"
                       >
                         <option value="en">English</option>
@@ -227,7 +225,11 @@ export default function SettingsPage() {
                         <p className="text-xs text-muted-foreground">Start with collapsed sidebar</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('sidebarCollapsed', !settings.sidebarCollapsed)}
+                        onClick={() => {
+                          updateSetting('sidebarCollapsed', !settings.sidebarCollapsed);
+                          if (!settings.sidebarCollapsed) toggleSidebar();
+                          saveSettings();
+                        }}
                         className={cn(
                           'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
                           settings.sidebarCollapsed ? 'bg-primary' : 'bg-muted'
@@ -254,7 +256,10 @@ export default function SettingsPage() {
                         {(['concise', 'normal', 'detailed'] as const).map((length) => (
                           <button
                             key={length}
-                            onClick={() => updateSettings('responseStyle', length)}
+                            onClick={() => {
+                              updateSetting('responseStyle', length);
+                              saveSettings();
+                            }}
                             className={cn(
                               'px-2.5 sm:px-3 py-1 sm:py-1.5 text-xs rounded-lg border transition-colors duration-300',
                               settings.responseStyle === length
@@ -274,7 +279,10 @@ export default function SettingsPage() {
                         <p className="text-xs text-muted-foreground">Show citations in responses</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('citationEnabled', !settings.citationEnabled)}
+                        onClick={() => {
+                          updateSetting('citationEnabled', !settings.citationEnabled);
+                          saveSettings();
+                        }}
                         className={cn(
                           'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
                           settings.citationEnabled ? 'bg-primary' : 'bg-muted'
@@ -301,7 +309,10 @@ export default function SettingsPage() {
                         <p className="text-xs text-muted-foreground">Receive notifications via email</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('emailNotifications', !settings.emailNotifications)}
+                        onClick={() => {
+                          updateSetting('emailNotifications', !settings.emailNotifications);
+                          saveSettings();
+                        }}
                         className={cn(
                           'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
                           settings.emailNotifications ? 'bg-primary' : 'bg-muted'
@@ -324,7 +335,10 @@ export default function SettingsPage() {
                         <p className="text-xs text-muted-foreground">In-app system alerts</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('systemNotifications', !settings.systemNotifications)}
+                        onClick={() => {
+                          updateSetting('systemNotifications', !settings.systemNotifications);
+                          saveSettings();
+                        }}
                         className={cn(
                           'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
                           settings.systemNotifications ? 'bg-primary' : 'bg-muted'
@@ -347,7 +361,10 @@ export default function SettingsPage() {
                         <p className="text-xs text-muted-foreground">Alerts when uploads complete</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('uploadNotifications', !settings.uploadNotifications)}
+                        onClick={() => {
+                          updateSetting('uploadNotifications', !settings.uploadNotifications);
+                          saveSettings();
+                        }}
                         className={cn(
                           'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
                           settings.uploadNotifications ? 'bg-primary' : 'bg-muted'
@@ -370,7 +387,10 @@ export default function SettingsPage() {
                         <p className="text-xs text-muted-foreground">Alerts for validation tasks</p>
                       </div>
                       <button
-                        onClick={() => updateSettings('validationNotifications', !settings.validationNotifications)}
+                        onClick={() => {
+                          updateSetting('validationNotifications', !settings.validationNotifications);
+                          saveSettings();
+                        }}
                         className={cn(
                           'relative inline-flex h-5 sm:h-6 w-10 sm:w-11 items-center rounded-full transition-colors duration-300',
                           settings.validationNotifications ? 'bg-primary' : 'bg-muted'
@@ -423,67 +443,6 @@ export default function SettingsPage() {
                           {changingPassword ? 'Changing...' : 'Change Password'}
                         </button>
                       </div>
-                    </div>
-
-                    <div className="pt-3 sm:pt-4 border-t border-border">
-                      <h4 className="text-xs sm:text-sm font-medium text-foreground mb-2 sm:mb-3">Security Settings</h4>
-                      <div className="space-y-1.5 sm:space-y-2 text-xs sm:text-sm">
-                        <div className="flex justify-between">
-                          <span className="text-muted-foreground">Last login</span>
-                          <span className="text-foreground">{lastLogin}</span>
-                        </div>
-                        <div className="flex justify-between">
-                          <span className="text-muted-foreground">Active sessions</span>
-                          <span className="text-foreground">{activeSessions}</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="pt-3 sm:pt-4 border-t border-border">
-                      <h4 className="text-xs sm:text-sm font-medium text-foreground mb-2 sm:mb-3">Two-Factor Authentication</h4>
-                      {!twoFactorEnabled && !showQrCode && (
-                        <button
-                          onClick={handleEnable2FA}
-                          disabled={twoFactorLoading}
-                          className="px-4 py-2 text-xs sm:text-sm text-primary-foreground bg-primary rounded-lg hover:opacity-90 disabled:opacity-50 transition-opacity duration-300 w-full sm:w-auto"
-                        >
-                          Enable 2FA
-                        </button>
-                      )}
-                      {showQrCode && (
-                        <div className="space-y-2 sm:space-y-3">
-                          <div className="flex justify-center">
-                            <img src={qrCodeUrl} alt="2FA QR Code" className="w-40 sm:w-48 h-40 sm:h-48" />
-                          </div>
-                          <input
-                            type="text"
-                            placeholder="Enter 6-digit code"
-                            value={otpCode}
-                            onChange={(e) => setOtpCode(e.target.value)}
-                            className="w-full px-3 py-2 border border-border rounded-lg text-xs sm:text-sm bg-input text-foreground"
-                            maxLength={6}
-                          />
-                          <button
-                            onClick={handleVerify2FA}
-                            disabled={twoFactorLoading || otpCode.length < 6}
-                            className="px-4 py-2 text-xs sm:text-sm text-primary-foreground bg-emerald-600 rounded-lg hover:opacity-90 disabled:opacity-50 transition-opacity duration-300 w-full sm:w-auto"
-                          >
-                            {twoFactorLoading ? 'Verifying...' : 'Verify Code'}
-                          </button>
-                        </div>
-                      )}
-                      {twoFactorEnabled && (
-                        <div className="space-y-2 sm:space-y-3">
-                          <p className="text-xs sm:text-sm text-emerald-600">2FA is enabled</p>
-                          <button
-                            onClick={handleDisable2FA}
-                            disabled={twoFactorLoading}
-                            className="px-4 py-2 text-xs sm:text-sm text-red-600 border border-red-200 rounded-lg hover:bg-red-50 w-full sm:w-auto"
-                          >
-                            Disable 2FA
-                          </button>
-                        </div>
-                      )}
                     </div>
                   </div>
                 )}

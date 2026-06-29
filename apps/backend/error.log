@@ -4207,3 +4207,171 @@ Invalid `prisma.medicalDocument.create()` invocation in
   46 if (!existing) {
 → 47   const doc = await prisma.medicalDocument.create(
 Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-28T21:42:09.618Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-06-28T21:42:09.621Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-06-28T21:43:29.306Z [nileopedia-backend] error: Error in getValidators controller: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:43:29.308Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:43:29.345Z [nileopedia-backend] error: Error in getValidators controller: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T21:43:29.348Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.user.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/admin/services/admin.service.ts:70:19
+
+  67 }
+  68 
+  69 const [validators, total] = await Promise.all([
+→ 70   prisma.user.findMany({
+         where: {
+           role: "VALIDATOR"
+         },
+         skip: 0,
+         take: 20,
+         select: {
+           id: true,
+           fullName: true,
+           email: true,
+           role: true,
+           specialization: true,
+           institution: true,
+           accountStatus: true,
+           _count: {
+             select: {
+               validationReviews: true,
+               ~~~~~~~~~~~~~~~~~
+       ?       questions?: true,
+       ?       validations?: true,
+       ?       sessions?: true,
+       ?       notifications?: true,
+       ?       auditLogs?: true,
+       ?       medicalDocuments?: true
+             }
+           }
+         }
+       })
+
+Unknown field `validationReviews` for select statement on model `UserCountOutputType`. Available options are marked with ?.
+2026-06-28T23:14:42.494Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.517Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.533Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.538Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.541Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:42.544Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.633Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.641Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.647Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.653Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.655Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:44.656Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.738Z [nileopedia-backend] error: Email sending failed to validator@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.752Z [nileopedia-backend] error: Email sending failed to admin@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.755Z [nileopedia-backend] error: Email sending failed to test@test.com connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.764Z [nileopedia-backend] error: Email job failed: 286 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 287 connect ECONNREFUSED 127.0.0.1:1025
+2026-06-28T23:14:48.769Z [nileopedia-backend] error: Email job failed: 288 connect ECONNREFUSED 127.0.0.1:1025

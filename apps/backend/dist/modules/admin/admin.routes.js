@@ -11,11 +11,19 @@ router.get('/users', auth_middleware_1.authenticate, (0, auth_middleware_1.autho
 router.patch('/users/:userId/suspend', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.suspendUser.bind(adminController));
 router.patch('/users/:userId/activate', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.activateUser.bind(adminController));
 router.delete('/users/:userId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.deleteUser.bind(adminController));
+router.post('/users/:userId/reset-password', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.resetPassword.bind(adminController));
+router.get('/validators', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getValidators.bind(adminController));
+router.post('/validators', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.addValidator.bind(adminController));
+router.delete('/validators/:validatorId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.removeValidator.bind(adminController));
 router.get('/analytics', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getAnalytics.bind(adminController));
 router.post('/ingestion/run', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.runManualIngestion.bind(ingestionController));
 router.post('/ingestion/refresh', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.runIncrementalRefresh.bind(ingestionController));
 router.get('/ingestion/status', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), ingestionController.getStatus.bind(ingestionController));
 router.get('/performance-test', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.performanceTest.bind(adminController));
 router.get('/system-status', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getSystemStatus.bind(adminController));
+router.get('/recent-validations', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getRecentValidations.bind(adminController));
+router.get('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getSettings.bind(adminController));
+router.put('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.updateSettings.bind(adminController));
+router.get('/ai-activity', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getAiActivity.bind(adminController));
 exports.default = router;
 //# sourceMappingURL=admin.routes.js.map
