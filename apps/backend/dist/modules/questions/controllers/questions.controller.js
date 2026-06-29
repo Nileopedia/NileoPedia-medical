@@ -36,14 +36,48 @@ class QuestionsController {
     async getHistory(req, res, next) {
         try {
             const userId = req.user.id;
-            const questions = await this.questionsService.getHistory(userId);
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const category = req.query.category;
+            const startDate = req.query.startDate;
+            const endDate = req.query.endDate;
+            const result = await this.questionsService.getHistory(userId, { page, limit, category, startDate, endDate });
             res.status(200).json({
                 success: true,
-                data: questions,
+                data: result.questions,
+                meta: {
+                    total: result.total,
+                    page: result.page,
+                    limit: result.limit,
+                    totalPages: result.totalPages,
+                },
             });
         }
         catch (error) {
             logger_1.logger.error('Error in getHistory controller:', error);
+            next(error);
+        }
+    }
+    async getSavedResponses(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const search = req.query.search;
+            const result = await this.questionsService.getSavedResponses(userId, { page, limit, search });
+            res.status(200).json({
+                success: true,
+                data: result.questions,
+                meta: {
+                    total: result.total,
+                    page: result.page,
+                    limit: result.limit,
+                    totalPages: result.totalPages,
+                },
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in getSavedResponses controller:', error);
             next(error);
         }
     }

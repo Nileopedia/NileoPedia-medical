@@ -2,14 +2,14 @@ import { CreateAuditLogDto, GetAuditLogsQuery, GetAuditLogsResult, SecurityEvent
 export declare class AuditService {
     createAuditLog(data: CreateAuditLogDto): Promise<{
         id: string;
-        userId: string | null;
         createdAt: Date;
+        userId: string | null;
         description: string | null;
+        ipAddress: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
         entityType: string;
         entityId: string | null;
-        ipAddress: string | null;
         userAgent: string | null;
     }>;
     getAuditLogs(query: GetAuditLogsQuery): Promise<GetAuditLogsResult>;
@@ -22,14 +22,14 @@ export declare class AuditService {
         } | null;
     } & {
         id: string;
-        userId: string | null;
         createdAt: Date;
+        userId: string | null;
         description: string | null;
+        ipAddress: string | null;
         metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
         entityType: string;
         entityId: string | null;
-        ipAddress: string | null;
         userAgent: string | null;
     }) | null>;
     getUserActivityLogs(userId: string, query: {
@@ -38,14 +38,14 @@ export declare class AuditService {
     }): Promise<{
         logs: {
             id: string;
-            userId: string | null;
             createdAt: Date;
+            userId: string | null;
             description: string | null;
+            ipAddress: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
             entityId: string | null;
-            ipAddress: string | null;
             userAgent: string | null;
         }[];
         total: number;
@@ -66,14 +66,14 @@ export declare class AuditService {
             } | null;
         } & {
             id: string;
-            userId: string | null;
             createdAt: Date;
+            userId: string | null;
             description: string | null;
+            ipAddress: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
             entityId: string | null;
-            ipAddress: string | null;
             userAgent: string | null;
         })[];
         total: number;
@@ -91,14 +91,14 @@ export declare class AuditService {
             } | null;
         } & {
             id: string;
-            userId: string | null;
             createdAt: Date;
+            userId: string | null;
             description: string | null;
+            ipAddress: string | null;
             metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
             entityId: string | null;
-            ipAddress: string | null;
             userAgent: string | null;
         })[];
         total: number;

@@ -3,17 +3,20 @@ export declare const updateProfileSchema: z.ZodObject<{
     fullName: z.ZodOptional<z.ZodString>;
     specialization: z.ZodOptional<z.ZodString>;
     institution: z.ZodOptional<z.ZodString>;
-    profileImage: z.ZodOptional<z.ZodString>;
+    profileImage: z.ZodUnion<[z.ZodOptional<z.ZodString>, z.ZodLiteral<"">]>;
+    bio: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
     fullName?: string | undefined;
     specialization?: string | undefined;
     institution?: string | undefined;
     profileImage?: string | undefined;
+    bio?: string | undefined;
 }, {
     fullName?: string | undefined;
     specialization?: string | undefined;
     institution?: string | undefined;
     profileImage?: string | undefined;
+    bio?: string | undefined;
 }>;
 export declare const changePasswordSchema: z.ZodObject<{
     currentPassword: z.ZodString;

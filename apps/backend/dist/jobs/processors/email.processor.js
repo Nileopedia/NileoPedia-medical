@@ -1,38 +1,25 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.processEmail = void 0;
-const nodemailer_1 = __importDefault(require("nodemailer"));
+const email_service_1 = require("../../modules/email/email.service");
 const logger_1 = require("../../config/logger");
-const transporter = nodemailer_1.default.createTransport({
-    host: process.env.SMTP_HOST || 'localhost',
-    port: parseInt(process.env.SMTP_PORT || '1025'),
-    secure: false,
-});
 async function processEmail(job) {
     const { to, subject, html, template, data } = job;
     try {
         const emailHtml = html || (template ? renderTemplate(template, data || {}) : '');
-        await transporter.sendMail({
-            from: process.env.EMAIL_FROM || 'noreply@nileopedia.test',
-            to,
-            subject,
-            html: emailHtml,
-        });
-        logger_1.logger.info(`Email sent to ${to}`);
+        await email_service_1.EmailService.sendViaResend(to, subject, emailHtml);
+        logger_1.logger.info(`Email sent to ${to} via Resend`, { template, subject });
         return { success: true };
     }
     catch (error) {
-        logger_1.logger.error(`Email sending failed to ${to}`, error);
+        logger_1.logger.error(`Email sending failed to ${to}`, { template, subject, error });
         throw error;
     }
 }
 exports.processEmail = processEmail;
 function renderTemplate(template, data) {
     const templates = {
-        otp: `<p>Your verification code: <strong>${data.code || '------'}</strong></p>`,
+        otp: `<p>Your verification code: <strong>${data.code || data.otp || '------'}</strong></p>`,
         passwordReset: `<p>Click to reset: <a href="${data.resetLink || '#'}">Reset Password</a></p>`,
         notification: `<h2>${data.title || ''}</h2><p>${data.message || ''}</p>`,
     };

@@ -11,9 +11,8 @@ class QuestionsService {
     async askQuestion(userId, questionText, specialty) {
         try {
             const question = await prisma_1.default.question.create({
-                data: { userId, questionText },
+                data: { userId, questionText, category: specialty || 'General' },
             });
-            // Check if queue is available
             if (queues_1.aiQueue && typeof queues_1.aiQueue.add === 'function') {
                 try {
                     await queues_1.aiQueue.add('generate', {
@@ -42,12 +41,63 @@ class QuestionsService {
             throw error;
         }
     }
-    async getHistory(userId) {
-        return prisma_1.default.question.findMany({
-            where: { userId },
-            include: { aiResponse: { include: { citations: true } } },
-            orderBy: { createdAt: 'desc' },
-        });
+    async getHistory(userId, options = {}) {
+        const { page = 1, limit = 10, category, startDate, endDate } = options;
+        const skip = (page - 1) * limit;
+        const where = { userId };
+        if (category)
+            where.category = category;
+        if (startDate || endDate) {
+            where.createdAt = {};
+            if (startDate)
+                where.createdAt.gte = new Date(startDate);
+            if (endDate)
+                where.createdAt.lte = new Date(endDate);
+        }
+        const [questions, total] = await Promise.all([
+            prisma_1.default.question.findMany({
+                where,
+                include: { aiResponse: { include: { citations: true } } },
+                orderBy: { createdAt: 'desc' },
+                skip,
+                take: limit,
+            }),
+            prisma_1.default.question.count({ where }),
+        ]);
+        return {
+            questions,
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+        };
+    }
+    async getSavedResponses(userId, options = {}) {
+        const { page = 1, limit = 10, search } = options;
+        const skip = (page - 1) * limit;
+        const where = { userId, isSaved: true };
+        if (search) {
+            where.OR = [
+                { questionText: { contains: search, mode: 'insensitive' } },
+            ];
+        }
+        const [questions, total] = await Promise.all([
+            prisma_1.default.question.findMany({
+                where,
+                include: { aiResponse: { include: { citations: true } } },
+                orderBy: { createdAt: 'desc' },
+                skip,
+                take: limit,
+            }),
+            prisma_1.default.question.count({ where }),
+        ]);
+        return {
+            questions,
+            total,
+            page,
+            limit,
+            totalPages: Math.ceil(total / limit),
+        };
     }
     async getQuestion(questionId) {
         const question = await prisma_1.default.question.findUnique({

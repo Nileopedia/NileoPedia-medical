@@ -68,7 +68,11 @@ export class ValidationController {
     try {
       const validatorId = req.user!.id;
       const userRole = req.user!.role;
-      const history = await this.validationService.getHistory(validatorId, userRole);
+      const page = parseInt(req.query.page as string) || 1;
+      const limit = parseInt(req.query.limit as string) || 20;
+      const search = req.query.search as string | undefined;
+      const startDate = req.query.startDate as string | undefined;
+      const history = await this.validationService.getHistory(validatorId, userRole, page, limit, search, startDate);
       res.status(200).json({ success: true, data: history });
     } catch (error) {
       logger.error('Error in getHistory controller:', error);

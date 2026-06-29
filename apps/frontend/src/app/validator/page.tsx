@@ -42,18 +42,18 @@ export default function ValidatorPage() {
      }
    };
 
- const fetchHistory = async () => {
-     try {
-       const history = await api.getValidationHistory();
-       setValidationHistory(history);
-     } catch (error) {
-       if (error instanceof Error && error.message === 'Please sign in to continue') {
-         router.push('/login');
-       } else {
-         console.error('Failed to fetch validation history:', error);
-       }
-     }
-   };
+const fetchHistory = async () => {
+      try {
+        const result = await api.getValidationHistory(1, 10);
+        setValidationHistory(result.reviews);
+      } catch (error) {
+        if (error instanceof Error && error.message === 'Please sign in to continue') {
+          router.push('/login');
+        } else {
+          console.error('Failed to fetch validation history:', error);
+        }
+      }
+    };
 
    const handleApprove = async (responseId: string) => {
      setActionLoading(responseId);

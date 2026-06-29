@@ -12,7 +12,7 @@ vi.mock('../../store/appStore', () => ({
 vi.mock('../../lib/api', () => ({
   api: {
     getPendingReviews: vi.fn().mockResolvedValue([]),
-    getValidationHistory: vi.fn().mockResolvedValue([]),
+    getValidationHistory: vi.fn().mockResolvedValue({ reviews: [], pagination: { total: 0, page: 1, limit: 20, totalPages: 1 } }),
     approveReview: vi.fn().mockResolvedValue(undefined),
     rejectReview: vi.fn().mockResolvedValue(undefined),
   },

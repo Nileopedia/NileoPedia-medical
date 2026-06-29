@@ -10,6 +10,7 @@ export declare class AuthRepository {
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
+        bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
@@ -25,6 +26,7 @@ export declare class AuthRepository {
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
+        bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
@@ -47,6 +49,7 @@ export declare class AuthRepository {
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
+        bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
@@ -71,6 +74,7 @@ export declare class AuthRepository {
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
+        bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
@@ -86,6 +90,7 @@ export declare class AuthRepository {
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
+        bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
@@ -101,6 +106,7 @@ export declare class AuthRepository {
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
+        bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
         refreshToken: string | null;
@@ -131,26 +137,26 @@ export declare class AuthRepository {
     }>;
     deleteExpiredPasswordResets(): Promise<import("@prisma/client").Prisma.BatchPayload>;
     createOtp(email: string, otp: string, expiresAt: Date): Promise<{
+        otp: string;
         id: string;
         createdAt: Date;
         email: string;
-        otp: string;
         expiresAt: Date;
         used: boolean;
     }>;
     findOtp(email: string, otp: string): Promise<{
+        otp: string;
         id: string;
         createdAt: Date;
         email: string;
-        otp: string;
         expiresAt: Date;
         used: boolean;
     } | null>;
     markOtpUsed(id: string): Promise<{
+        otp: string;
         id: string;
         createdAt: Date;
         email: string;
-        otp: string;
         expiresAt: Date;
         used: boolean;
     }>;

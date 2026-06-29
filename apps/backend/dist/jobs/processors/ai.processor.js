@@ -160,12 +160,12 @@ Return your response as valid JSON with exactly this structure:
         const generatedBy = 'Llama-3.3-70b';
         const summary = structuredResponse.summary || '';
         const keyFindings = (structuredResponse.keyRecommendations || []).map((rec) => `✓ ${rec}`);
-        const saveStart = Date.now();
         const aiResponse = await prisma_1.default.aIResponse.upsert({
             where: { questionId },
             create: {
                 questionId,
                 summary,
+                detailedExplanation: structuredResponse.detailedExplanation || structuredResponse.sections ? JSON.stringify(structuredResponse.sections) : null,
                 keyFindings,
                 confidenceScore,
                 generatedBy,
@@ -173,6 +173,7 @@ Return your response as valid JSON with exactly this structure:
             },
             update: {
                 summary,
+                detailedExplanation: structuredResponse.detailedExplanation || structuredResponse.sections ? JSON.stringify(structuredResponse.sections) : null,
                 keyFindings,
                 confidenceScore,
                 generatedBy,

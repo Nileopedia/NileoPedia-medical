@@ -4,58 +4,127 @@ export declare class QuestionsService {
         status: string;
         message: string;
     }>;
-    getHistory(userId: string): Promise<({
-        aiResponse: ({
-            citations: {
+    getHistory(userId: string, options?: {
+        page?: number;
+        limit?: number;
+        category?: string;
+        startDate?: string;
+        endDate?: string;
+    }): Promise<{
+        questions: ({
+            aiResponse: ({
+                citations: {
+                    id: string;
+                    createdAt: Date;
+                    aiResponseId: string;
+                    specialty: string | null;
+                    title: string;
+                    documentType: string | null;
+                    source: string;
+                    publicationYear: number | null;
+                    authors: string | null;
+                    doi: string | null;
+                    url: string | null;
+                    citationIndex: number;
+                    chunkId: string | null;
+                    pageNumber: number | null;
+                    sectionTitle: string | null;
+                }[];
+            } & {
                 id: string;
                 createdAt: Date;
-                aiResponseId: string;
-                title: string;
-                source: string;
-                authors: string | null;
-                publicationYear: number | null;
-                doi: string | null;
-                url: string | null;
-                citationIndex: number;
-                documentType: string | null;
-                specialty: string | null;
-                chunkId: string | null;
-                pageNumber: number | null;
-                sectionTitle: string | null;
-            }[];
+                questionId: string;
+                summary: string;
+                detailedExplanation: string | null;
+                keyFindings: string[];
+                confidenceScore: number | null;
+                validationStatus: import("@prisma/client").$Enums.ValidationStatus;
+                generatedBy: string;
+                processingTime: number | null;
+                documentsUsed: number | null;
+                updatedAt: Date;
+            }) | null;
         } & {
             id: string;
             createdAt: Date;
-            questionId: string;
-            summary: string;
-            keyFindings: string[];
-            confidenceScore: number | null;
-            validationStatus: import("@prisma/client").$Enums.ValidationStatus;
-            generatedBy: string;
             updatedAt: Date;
-        }) | null;
-    } & {
-        id: string;
-        userId: string;
-        questionText: string;
-        isSaved: boolean;
-        createdAt: Date;
-    })[]>;
+            userId: string;
+            questionText: string;
+            category: string | null;
+            isSaved: boolean;
+        })[];
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    }>;
+    getSavedResponses(userId: string, options?: {
+        page?: number;
+        limit?: number;
+        search?: string;
+    }): Promise<{
+        questions: ({
+            aiResponse: ({
+                citations: {
+                    id: string;
+                    createdAt: Date;
+                    aiResponseId: string;
+                    specialty: string | null;
+                    title: string;
+                    documentType: string | null;
+                    source: string;
+                    publicationYear: number | null;
+                    authors: string | null;
+                    doi: string | null;
+                    url: string | null;
+                    citationIndex: number;
+                    chunkId: string | null;
+                    pageNumber: number | null;
+                    sectionTitle: string | null;
+                }[];
+            } & {
+                id: string;
+                createdAt: Date;
+                questionId: string;
+                summary: string;
+                detailedExplanation: string | null;
+                keyFindings: string[];
+                confidenceScore: number | null;
+                validationStatus: import("@prisma/client").$Enums.ValidationStatus;
+                generatedBy: string;
+                processingTime: number | null;
+                documentsUsed: number | null;
+                updatedAt: Date;
+            }) | null;
+        } & {
+            id: string;
+            createdAt: Date;
+            updatedAt: Date;
+            userId: string;
+            questionText: string;
+            category: string | null;
+            isSaved: boolean;
+        })[];
+        total: number;
+        page: number;
+        limit: number;
+        totalPages: number;
+    }>;
     getQuestion(questionId: string): Promise<({
         aiResponse: ({
             citations: {
                 id: string;
                 createdAt: Date;
                 aiResponseId: string;
+                specialty: string | null;
                 title: string;
+                documentType: string | null;
                 source: string;
-                authors: string | null;
                 publicationYear: number | null;
+                authors: string | null;
                 doi: string | null;
                 url: string | null;
                 citationIndex: number;
-                documentType: string | null;
-                specialty: string | null;
                 chunkId: string | null;
                 pageNumber: number | null;
                 sectionTitle: string | null;
@@ -65,18 +134,23 @@ export declare class QuestionsService {
             createdAt: Date;
             questionId: string;
             summary: string;
+            detailedExplanation: string | null;
             keyFindings: string[];
             confidenceScore: number | null;
             validationStatus: import("@prisma/client").$Enums.ValidationStatus;
             generatedBy: string;
+            processingTime: number | null;
+            documentsUsed: number | null;
             updatedAt: Date;
         }) | null;
     } & {
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         questionText: string;
+        category: string | null;
         isSaved: boolean;
-        createdAt: Date;
     }) | {
         aiResponse: {
             summary: string;
@@ -86,10 +160,12 @@ export declare class QuestionsService {
             generatedBy: string;
         };
         id: string;
+        createdAt: Date;
+        updatedAt: Date;
         userId: string;
         questionText: string;
+        category: string | null;
         isSaved: boolean;
-        createdAt: Date;
     }>;
     saveResponse(questionId: string, userId: string): Promise<void>;
     unsaveResponse(questionId: string, userId: string): Promise<void>;

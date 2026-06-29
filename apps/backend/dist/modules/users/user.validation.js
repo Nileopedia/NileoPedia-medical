@@ -6,7 +6,8 @@ exports.updateProfileSchema = zod_1.z.object({
     fullName: zod_1.z.string().min(1, 'Full name is required').optional(),
     specialization: zod_1.z.string().optional(),
     institution: zod_1.z.string().optional(),
-    profileImage: zod_1.z.string().url('Invalid URL format').optional(),
+    profileImage: zod_1.z.string().url('Invalid URL format').optional().or(zod_1.z.literal('')),
+    bio: zod_1.z.string().optional(),
 });
 exports.changePasswordSchema = zod_1.z.object({
     currentPassword: zod_1.z.string().min(1, 'Current password is required'),

@@ -6,10 +6,11 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
 import { Button } from '../../../components/ui/Button';
 import { Input } from '../../../components/ui/Input';
-import { Users, Plus, X, Trash2, RefreshCw, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Users, Plus, X, Trash2, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
 import { useToast } from '../../../components/ui/Toast';
+import { useRouter } from 'next/navigation';
 
 interface Validator {
   id: string;

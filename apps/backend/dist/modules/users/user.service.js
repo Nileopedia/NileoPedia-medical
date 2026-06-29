@@ -19,8 +19,10 @@ class UserService {
                 specialization: true,
                 institution: true,
                 profileImage: true,
+                bio: true,
                 isEmailVerified: true,
                 accountStatus: true,
+                createdAt: true,
             },
         });
         if (!user) {
@@ -40,8 +42,10 @@ class UserService {
                 specialization: true,
                 institution: true,
                 profileImage: true,
+                bio: true,
                 isEmailVerified: true,
                 accountStatus: true,
+                createdAt: true,
             },
         });
         return user;
@@ -109,6 +113,7 @@ class UserService {
                     specialization: true,
                     institution: true,
                     profileImage: true,
+                    bio: true,
                     isEmailVerified: true,
                     accountStatus: true,
                     createdAt: true,

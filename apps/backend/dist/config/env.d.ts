@@ -1,6 +1,7 @@
 export declare const CONFIG: {
     readonly PORT: number;
     readonly NODE_ENV: string;
+    readonly API_URL: string;
     readonly DATABASE_URL: string;
     readonly JWT_ACCESS_SECRET: string;
     readonly JWT_REFRESH_SECRET: string;

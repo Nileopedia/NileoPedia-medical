@@ -7,6 +7,7 @@ exports.io = exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
+const email_service_1 = require("./modules/email/email.service");
 require("./jobs/worker");
 const redis_1 = require("./lib/redis");
 const env_1 = require("./config/env");
@@ -135,6 +136,13 @@ prisma_1.default.$connect()
     console.log('Database connected successfully');
     // Initialize admin account
     await initializeAdmin();
+    // Verify email service on startup
+    const emailStatus = await email_service_1.EmailService.checkConnection();
+    console.log('===================================================');
+    console.log(`[INFO] Email Provider: ${emailStatus.provider}`);
+    console.log(`[INFO] Email Service Configured: ${emailStatus.configured}`);
+    console.log(`[INFO] Email Service Status: ${emailStatus.status}`);
+    console.log('===================================================\n');
     const warmupPromise = warmupAiServices();
     const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Warmup timeout after 20000ms')), 20000);
@@ -244,6 +252,14 @@ prisma_1.default.$connect()
             }, 100);
         });
     }
+    // Health check endpoint
+    app.get('/api/health', (req, res) => {
+        res.status(200).json({
+            status: 'ok',
+            database: prisma_1.default ? 'connected' : 'disconnected',
+            socket: io ? 'active' : 'inactive',
+        });
+    });
     // Socket.IO connection handling with Redis pub/sub for real-time streaming
     io.on('connection', (socket) => {
         console.log('User connected:', socket.id);
@@ -268,6 +284,7 @@ prisma_1.default.$connect()
     app.use(errorHandler);
     // Start server
     const PORT = env_1.CONFIG.PORT || 3001;
+    console.log('Backend URL:', env_1.CONFIG.API_URL);
     httpServer.listen(PORT, () => {
         console.log(`Server running in ${env_1.CONFIG.NODE_ENV} mode on port ${PORT}`);
     });

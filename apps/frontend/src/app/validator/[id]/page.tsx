@@ -5,9 +5,9 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { Check, X, ArrowLeft } from 'lucide-react';
 import { AppLayout } from '@/components/layout/AppLayout';
-import { api } from '@/lib/api';
+import { api, ValidationReview } from '@/lib/api';
 import { useAppStore } from '@/store/appStore';
-import type { ValidationReview } from '@/types';
+import { useRouter } from 'next/navigation';
 
 interface ValidationDetail {
   id: string;
@@ -40,6 +40,7 @@ export default function ValidatorDetailPage({ params }: { params: Promise<{ id: 
   const [loading, setLoading] = useState(true);
   const [actionLoading, setActionLoading] = useState(false);
   const user = useAppStore((state) => state.user);
+  const router = useRouter();
 
   useEffect(() => {
     if (user?.role === 'validator' || user?.role === 'admin') {
@@ -51,8 +52,8 @@ export default function ValidatorDetailPage({ params }: { params: Promise<{ id: 
     setLoading(true);
     try {
       // Try to get from history first
-      const history = await api.getValidationHistory();
-      const found = history.find((h) => h.id === reviewId);
+      const result = await api.getValidationHistory(1, 100);
+      const found = result.reviews.find((h) => h.id === reviewId);
       if (found) {
         setReview({
           ...found,
@@ -80,7 +81,11 @@ export default function ValidatorDetailPage({ params }: { params: Promise<{ id: 
         });
       }
     } catch (error) {
-      console.error('Failed to fetch review:', error);
+      if (error instanceof Error && error.message === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        console.error('Failed to fetch review:', error);
+      }
     } finally {
       setLoading(false);
     }

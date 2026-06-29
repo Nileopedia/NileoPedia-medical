@@ -3,17 +3,10 @@ export declare class AdminService {
         users: {
             id: string;
             createdAt: Date;
-            updatedAt: Date;
             fullName: string;
             email: string;
-            password: string;
             role: import("@prisma/client").$Enums.UserRole;
-            specialization: string | null;
-            institution: string | null;
-            profileImage: string | null;
-            isEmailVerified: boolean;
             accountStatus: import("@prisma/client").$Enums.AccountStatus;
-            refreshToken: string | null;
         }[];
         total: number;
         page: number;

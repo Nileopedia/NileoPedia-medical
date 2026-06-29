@@ -643,23 +643,36 @@ class ApiClient {
     }));
   }
 
-  async getValidationHistory(): Promise<ValidationReview[]> {
-    const payload = await this.request<ApiEnvelope<BackendValidationReview[]>>('/validation/history');
-    const items = this.unwrap(payload);
-    return items.map((item) => ({
-      id: item.id,
-      aiResponseId: item.aiResponseId,
-      aiResponse: {
-        title: item.aiResponse?.summary?.substring(0, 50) || 'Untitled',
-        question: {
-          questionText: item.aiResponse?.question?.questionText || 'Unknown query',
+  async getValidationHistory(page?: number, limit?: number, search?: string, startDate?: string): Promise<{ reviews: ValidationReview[]; pagination: { total: number; page: number; limit: number; totalPages: number } }> {
+    const params = new URLSearchParams();
+    if (page) params.set('page', String(page));
+    if (limit) params.set('limit', String(limit));
+    if (search) params.set('search', search);
+    if (startDate) params.set('startDate', startDate);
+    const qs = params.toString();
+    const payload = await this.request<ApiEnvelope<BackendValidationReview[] & { pagination?: { total: number; page: number; limit: number; totalPages: number } }>>(`/validation/history?${qs}`);
+    const data = this.unwrap(payload);
+    const reviews = Array.isArray(data) ? data : (data as any).reviews || [];
+    const pagination = Array.isArray(data) 
+      ? { total: reviews.length, page: 1, limit: reviews.length, totalPages: 1 } 
+      : (data as any).pagination || { total: 0, page: 1, limit: limit || 20, totalPages: 0 };
+    return {
+      reviews: reviews.map((item) => ({
+        id: item.id,
+        aiResponseId: item.aiResponseId,
+        aiResponse: {
+          title: item.aiResponse?.summary?.substring(0, 50) || 'Untitled',
+          question: {
+            questionText: item.aiResponse?.question?.questionText || 'Unknown query',
+          },
         },
-      },
-      status: this.normalizeStatus(item.status),
-      reviewedAt: item.reviewedAt,
-      score: item.score,
-      feedback: item.feedback,
-    }));
+        status: this.normalizeStatus(item.status),
+        reviewedAt: item.reviewedAt,
+        score: item.score,
+        feedback: item.feedback,
+      })),
+      pagination,
+    };
   }
 
   async approveReview(responseId: string, score: number, feedback: string): Promise<void> {

@@ -13,7 +13,9 @@ jest.mock('../../config/prisma', () => ({
         findMany: jest.fn(),
         findUnique: jest.fn(),
         update: jest.fn(),
+        count: jest.fn(),
     },
+    aIResponse: { count: jest.fn() },
 }));
 jest.mock('../../jobs/queues', () => ({
     aiQueue: { add: jest.fn() },
@@ -56,20 +58,74 @@ describe('QuestionsService', () => {
             }), expect.any(Object));
         });
     });
+    describe('askQuestion', () => {
+        it('should create question with category and queue for processing', async () => {
+            mockPrisma.question.create.mockResolvedValue({ id: 'q-1', questionText: 'test', userId: 'user-1' });
+            queues_1.aiQueue.add.mockResolvedValue({ id: 'job-1' });
+            const result = await service.askQuestion('user-1', 'What is diabetes?', 'endocrinology');
+            expect(mockPrisma.question.create).toHaveBeenCalledWith({
+                data: { userId: 'user-1', questionText: 'What is diabetes?', category: 'endocrinology' },
+            });
+            expect(result.status).toBe('processing');
+            expect(queues_1.aiQueue.add).toHaveBeenCalledWith('generate', expect.objectContaining({
+                questionId: 'q-1',
+                specialty: 'endocrinology',
+            }), expect.any(Object));
+        });
+        it('should default category to General when no specialty provided', async () => {
+            mockPrisma.question.create.mockResolvedValue({ id: 'q-1', questionText: 'test', userId: 'user-1' });
+            queues_1.aiQueue.add.mockResolvedValue({ id: 'job-1' });
+            await service.askQuestion('user-1', 'test question');
+            expect(mockPrisma.question.create).toHaveBeenCalledWith({
+                data: { userId: 'user-1', questionText: 'test question', category: 'General' },
+            });
+        });
+        it('should handle queue error gracefully', async () => {
+            mockPrisma.question.create.mockResolvedValue({ id: 'q-2' });
+            queues_1.aiQueue.add.mockRejectedValue(new Error('Redis unavailable'));
+            const result = await service.askQuestion('user-1', 'test');
+            expect(result.status).toBe('processing');
+            expect(result.message).toBe('Question submitted for processing');
+        });
+    });
     describe('getHistory', () => {
-        it('should return question history for user', async () => {
+        it('should return paginated question history', async () => {
             const mockQuestions = [
-                { id: 'q-1', questionText: 'Question 1' },
-                { id: 'q-2', questionText: 'Question 2' },
+                { id: 'q-1', questionText: 'Q1', category: 'General', createdAt: new Date(), aiResponse: null },
             ];
             mockPrisma.question.findMany.mockResolvedValue(mockQuestions);
-            const result = await service.getHistory('user-1');
-            expect(result).toEqual(mockQuestions);
+            mockPrisma.question.count.mockResolvedValue(1);
+            const result = await service.getHistory('user-1', { page: 1, limit: 10 });
+            expect(result.questions).toEqual(mockQuestions);
+            expect(result.total).toBe(1);
+            expect(result.page).toBe(1);
+            expect(result.limit).toBe(10);
+            expect(result.totalPages).toBe(1);
         });
-        it('should order by createdAt descending', async () => {
-            await service.getHistory('user-1');
+        it('should apply category filter', async () => {
+            mockPrisma.question.findMany.mockResolvedValue([]);
+            mockPrisma.question.count.mockResolvedValue(0);
+            await service.getHistory('user-1', { page: 1, limit: 10, category: 'cardiology' });
             expect(mockPrisma.question.findMany).toHaveBeenCalledWith(expect.objectContaining({
-                orderBy: { createdAt: 'desc' },
+                where: expect.objectContaining({ category: 'cardiology' }),
+            }));
+        });
+        it('should apply date range filter', async () => {
+            mockPrisma.question.findMany.mockResolvedValue([]);
+            mockPrisma.question.count.mockResolvedValue(0);
+            await service.getHistory('user-1', {
+                page: 1,
+                limit: 10,
+                startDate: '2025-01-01',
+                endDate: '2025-01-31',
+            });
+            expect(mockPrisma.question.findMany).toHaveBeenCalledWith(expect.objectContaining({
+                where: expect.objectContaining({
+                    createdAt: expect.objectContaining({
+                        gte: expect.any(Date),
+                        lte: expect.any(Date),
+                    }),
+                }),
             }));
         });
     });

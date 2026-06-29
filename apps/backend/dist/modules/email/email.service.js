@@ -26,51 +26,61 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.EmailService = void 0;
+exports.EmailService = exports.resetResendClient = void 0;
 const email_types_1 = require("./email.types");
 const email_templates_1 = require("./email.templates");
 const email_utils_1 = require("./email.utils");
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const logger_1 = require("../../config/logger");
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const EMAIL_FROM = process.env.EMAIL_FROM || 'noreply@nileopedia.com';
+const EMAIL_FROM = process.env.EMAIL_FROM;
 const EMAIL_PROVIDER = process.env.EMAIL_PROVIDER || 'resend';
+const getEmailFrom = () => process.env.EMAIL_FROM || '';
+const getApiKey = () => process.env.RESEND_API_KEY;
 let resendClient = null;
+function resetResendClient() {
+    resendClient = null;
+}
+exports.resetResendClient = resetResendClient;
 async function getResendClient() {
-    if (!resendClient && RESEND_API_KEY) {
+    if (!resendClient) {
+        const apiKey = getApiKey();
+        if (!apiKey) {
+            throw new Error('RESEND_API_KEY is not configured');
+        }
         const { Resend } = await Promise.resolve().then(() => __importStar(require('resend')));
-        resendClient = new Resend(RESEND_API_KEY);
+        resendClient = new Resend(apiKey);
     }
     return resendClient;
 }
 class EmailService {
     static async sendValidatorOtp(data) {
         const template = email_templates_1.emailTemplates.validatorOtp(data);
-        await this.queueEmail(data.email, template.subject, template.html, 'otp');
+        await this.sendEmail(data.email, template.subject, template.html, 'otp');
     }
     static async sendOtp(data) {
         const template = email_templates_1.emailTemplates.otpLogin(data);
-        await this.queueEmail(data.email, template.subject, template.html, 'otp');
+        await this.sendEmail(data.email, template.subject, template.html, 'otp');
     }
     static async sendPasswordReset(data) {
         const template = email_templates_1.emailTemplates.passwordReset(data);
-        await this.queueEmail(data.email, template.subject, template.html, 'passwordReset');
+        await this.sendEmail(data.email, template.subject, template.html, 'passwordReset');
     }
     static async sendWelcome(data) {
         const template = email_templates_1.emailTemplates.welcome(data);
-        await this.queueEmail(data.email, template.subject, template.html, 'notification');
+        await this.sendEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendAccountActivated(data) {
         const template = email_templates_1.emailTemplates.accountActivated(data);
-        await this.queueEmail(data.email, template.subject, template.html, 'notification');
+        await this.sendEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendAccountDeactivated(data) {
         const template = email_templates_1.emailTemplates.accountDeactivated(data);
-        await this.queueEmail(data.email, template.subject, template.html, 'notification');
+        await this.sendEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendSecurityAlert(data) {
         const template = email_templates_1.emailTemplates.securityAlert({ ...data, ipAddress: data.ipAddress });
-        await this.queueEmail(data.email, template.subject, template.html, 'notification');
+        await this.sendEmail(data.email, template.subject, template.html, 'notification');
     }
     static async sendSystemAnnouncement(recipients, subject, title, message) {
         const html = `
@@ -81,18 +91,15 @@ class EmailService {
         <p style="font-size: 12px; color: #999;">NileoPedia Team</p>
       </div>
     `;
-        const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
-        const jobs = recipients.map((email) => ({
-            name: 'announcement',
-            data: { to: email, subject, html, template: 'notification', data: { title, message } },
-        }));
-        await emailQueue.addBulk(jobs);
+        for (const email of recipients) {
+            await this.sendEmail(email, subject, html, 'notification');
+        }
     }
-    static async queueEmail(to, subject, html, template) {
+    static async sendEmail(to, subject, html, template) {
         if (!(0, email_utils_1.validateEmail)({ to, subject, html })) {
             throw new Error('Invalid email data');
         }
-        await prisma_1.default.emailLog.create({
+        const pendingLog = await prisma_1.default.emailLog.create({
             data: {
                 recipient: to,
                 subject,
@@ -100,67 +107,60 @@ class EmailService {
             },
         });
         try {
-            const { emailQueue } = await Promise.resolve().then(() => __importStar(require('../../jobs/queues')));
-            const jobData = { to, subject, template, html };
-            await emailQueue.add('send', jobData);
+            await this.sendViaResend(to, subject, html);
+            await prisma_1.default.emailLog.update({
+                where: { id: pendingLog.id },
+                data: { status: email_types_1.EmailStatus.SENT, sentAt: new Date() },
+            });
+            logger_1.logger.info(`Email sent successfully to ${to}`, { type: template, subject });
         }
         catch (error) {
-            // Fallback: send directly via Resend when Redis/queue unavailable
-            logger_1.logger.warn('Queue unavailable, sending email directly via Resend');
-            try {
-                await this.sendViaResend(to, subject, html);
-                await prisma_1.default.emailLog.updateMany({
-                    where: { recipient: to, subject },
-                    data: { status: email_types_1.EmailStatus.SENT, sentAt: new Date() },
-                });
-            }
-            catch (sendError) {
-                await prisma_1.default.emailLog.updateMany({
-                    where: { recipient: to, subject },
-                    data: { status: email_types_1.EmailStatus.FAILED, error: String(sendError) },
-                });
-                throw sendError;
-            }
-        }
-    }
-    static async sendEmail(to, subject, html) {
-        if (EMAIL_PROVIDER === 'resend') {
-            await this.sendViaResend(to, subject, html);
-        }
-        else {
-            await this.sendViaNodemailer(to, subject, html);
+            const errorMessage = error instanceof Error ? error.message : String(error);
+            await prisma_1.default.emailLog.update({
+                where: { id: pendingLog.id },
+                data: { status: email_types_1.EmailStatus.FAILED, error: errorMessage },
+            });
+            logger_1.logger.error(`Email sending failed to ${to}`, { type: template, subject, error: errorMessage });
+            throw error;
         }
     }
     static async sendViaResend(to, subject, html) {
-        try {
-            const resend = await getResendClient();
-            if (!resend) {
-                throw new Error('Resend client not configured');
-            }
-            await resend.emails.send({
-                from: EMAIL_FROM,
-                to,
-                subject,
-                html,
-            });
-        }
-        catch (error) {
-            logger_1.logger.error('Resend email failed, falling back to Nodemailer', error);
-            await this.sendViaNodemailer(to, subject, html);
-        }
-    }
-    static async sendViaNodemailer(to, subject, html) {
-        const nodemailer = await Promise.resolve().then(() => __importStar(require('nodemailer')));
-        const transporter = nodemailer.createTransport({
-            host: process.env.SMTP_HOST || 'localhost',
-            port: parseInt(process.env.SMTP_PORT || '1025'),
-        });
-        await transporter.sendMail({
-            from: EMAIL_FROM,
+        const resend = await getResendClient();
+        const result = await resend.emails.send({
+            from: getEmailFrom(),
             to,
             subject,
             html,
         });
+        logger_1.logger.info(`Resend API response for ${to}`, {
+            id: result.data?.id,
+            status: 'queued',
+        });
+    }
+    static getEmailProvider() {
+        return EMAIL_PROVIDER;
+    }
+    static isConfigured() {
+        return !!getApiKey() && !!getEmailFrom();
+    }
+    static async checkConnection() {
+        try {
+            const resend = await getResendClient();
+            const configured = this.isConfigured();
+            return {
+                provider: 'resend',
+                configured,
+                status: configured ? 'connected' : 'disconnected',
+            };
+        }
+        catch (error) {
+            logger_1.logger.error('Email connection check failed', error);
+            return {
+                provider: 'resend',
+                configured: false,
+                status: 'disconnected',
+            };
+        }
     }
 }
 exports.EmailService = EmailService;

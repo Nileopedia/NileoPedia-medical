@@ -4,13 +4,13 @@ export declare const emailSchema: z.ZodObject<{
     subject: z.ZodString;
     html: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    html: string;
-    to: string;
     subject: string;
+    to: string;
+    html: string;
 }, {
-    html: string;
-    to: string;
     subject: string;
+    to: string;
+    html: string;
 }>;
 export declare const validatorOtpSchema: z.ZodObject<{
     email: z.ZodString;
@@ -70,14 +70,14 @@ export declare const securityAlertSchema: z.ZodObject<{
 }, "strip", z.ZodTypeAny, {
     fullName: string;
     email: string;
-    description: string;
     alertType: string;
+    description: string;
     ipAddress?: string | undefined;
 }, {
     fullName: string;
     email: string;
-    description: string;
     alertType: string;
+    description: string;
     ipAddress?: string | undefined;
 }>;
 export declare const systemAnnouncementSchema: z.ZodObject<{
@@ -86,14 +86,14 @@ export declare const systemAnnouncementSchema: z.ZodObject<{
     title: z.ZodString;
     message: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    subject: string;
     title: string;
     message: string;
-    subject: string;
     recipients: string[];
 }, {
+    subject: string;
     title: string;
     message: string;
-    subject: string;
     recipients: string[];
 }>;
 export declare function validateEmail(data: unknown): boolean;

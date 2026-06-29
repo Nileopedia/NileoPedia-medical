@@ -36,13 +36,13 @@ export declare class DocumentMetadataService {
         createdAt: Date;
         updatedAt: Date;
         title: string | null;
-        authors: string[];
-        publicationYear: number | null;
-        doi: string | null;
         documentType: string | null;
+        publicationYear: number | null;
         documentId: string;
+        authors: string[];
         journal: string | null;
         publisher: string | null;
+        doi: string | null;
         sourceURL: string | null;
     } | null>;
     getMetadataByDocumentIds(documentIds: string[]): Promise<{
@@ -50,13 +50,13 @@ export declare class DocumentMetadataService {
         createdAt: Date;
         updatedAt: Date;
         title: string | null;
-        authors: string[];
-        publicationYear: number | null;
-        doi: string | null;
         documentType: string | null;
+        publicationYear: number | null;
         documentId: string;
+        authors: string[];
         journal: string | null;
         publisher: string | null;
+        doi: string | null;
         sourceURL: string | null;
     }[]>;
 }

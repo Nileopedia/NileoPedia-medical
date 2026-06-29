@@ -5,11 +5,13 @@ import { Badge } from '../../../components/ui/Badge';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
 import { Input } from '../../../components/ui/Input';
-import { Clock, Search as SearchIcon, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { Clock, Search as SearchIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api, ValidationReview } from '../../../lib/api';
+import { useRouter } from 'next/navigation';
 
 export default function ValidatorHistoryPage() {
+  const router = useRouter();
   const [history, setHistory] = useState<ValidationReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
@@ -24,15 +26,15 @@ export default function ValidatorHistoryPage() {
   const fetchHistory = async () => {
     setLoading(true);
     try {
-      const params: { page?: number; limit?: number; startDate?: string } = { page, limit: 20 };
-      if (dateFilter) params.startDate = dateFilter;
-      const result = await api.request<{ success: boolean; data: { reviews: ValidationReview[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
-        `/validation/history?page=${params.page}&limit=${params.limit}&search=${encodeURIComponent(search)}${dateFilter ? `&startDate=${dateFilter}` : ''}`
-      );
-      setHistory(result.data.reviews);
-      setTotalPages(result.data.pagination.totalPages);
+      const result = await api.getValidationHistory(page, 20, search, dateFilter);
+      setHistory(result.reviews);
+      setTotalPages(result.pagination.totalPages);
     } catch (error) {
-      console.error('Failed to fetch validation history:', error);
+      if (error instanceof Error && error.message === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        console.error('Failed to fetch validation history:', error);
+      }
     } finally {
       setLoading(false);
     }

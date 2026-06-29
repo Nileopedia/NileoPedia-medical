@@ -10,6 +10,7 @@ const env = process.env.NODE_ENV || 'development';
 exports.CONFIG = {
     PORT: parseInt(process.env.PORT || '3001', 10),
     NODE_ENV: process.env.NODE_ENV || 'development',
+    API_URL: process.env.API_URL || `http://localhost:${process.env.PORT || 3001}`,
     // Database
     DATABASE_URL: process.env.DATABASE_URL || '',
     // JWT

@@ -10548,3 +10548,281 @@ Unknown field `validationReviews` for select statement on model `UserCountOutput
 2026-06-29T09:26:37.091Z [nileopedia-backend] info: GET /api/health - ::1
 2026-06-29T09:26:46.582Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
 2026-06-29T09:33:44.422Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T10:12:41.868Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T10:12:48.727Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T10:12:50.438Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T10:12:51.786Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T10:12:53.831Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T10:12:55.449Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T10:12:55.483Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T10:12:56.572Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T10:13:47.457Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T10:13:49.304Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T10:13:49.330Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:13:49.345Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T10:13:49.563Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:13:53.450Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T10:13:53.483Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T10:14:02.038Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:14:02.114Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:14:14.295Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T10:14:14.337Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T10:14:32.730Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T10:14:32.792Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:32.794Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:32.800Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T10:14:32.818Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:32.820Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:43.319Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T10:14:43.350Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T10:14:48.302Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T10:14:48.313Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T10:14:52.167Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T10:14:52.190Z [nileopedia-backend] error: Error in getPending controller: 
+Invalid `prisma.aIResponse.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:5:47
+
+  2 
+  3 export class ValidationService {
+  4   async getPending() {
+→ 5     const responses = await prisma.aIResponse.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.190Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.aIResponse.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:5:47
+
+  2 
+  3 export class ValidationService {
+  4   async getPending() {
+→ 5     const responses = await prisma.aIResponse.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.199Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T10:14:52.212Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T10:14:52.221Z [nileopedia-backend] error: Error in getPending controller: 
+Invalid `prisma.aIResponse.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:5:47
+
+  2 
+  3 export class ValidationService {
+  4   async getPending() {
+→ 5     const responses = await prisma.aIResponse.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.221Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.aIResponse.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:5:47
+
+  2 
+  3 export class ValidationService {
+  4   async getPending() {
+→ 5     const responses = await prisma.aIResponse.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.234Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.238Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.251Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T10:14:52.267Z [nileopedia-backend] error: Error in getHistory controller: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:52.271Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.validationReview.findMany()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/validation/services/validation.service.ts:52:51
+
+  49 
+  50 async getHistory(validatorId: string, userRole?: string) {
+  51   const where = userRole === 'ADMIN' ? {} : { validatorId };
+→ 52   const reviews = await prisma.validationReview.findMany(
+The column `AIResponse.detailedExplanation` does not exist in the current database.
+2026-06-29T10:14:56.801Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T10:14:56.823Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T10:14:56.873Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:14:56.943Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:15:05.427Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:15:05.458Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:15:15.496Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T10:15:15.529Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T10:15:23.957Z [nileopedia-backend] info: POST /api/v1/documents/afc9c928-4447-4202-981d-8cda38b9e882/verify - ::1
+2026-06-29T10:15:24.970Z [nileopedia-backend] info: POST /api/v1/documents/afc9c928-4447-4202-981d-8cda38b9e882/verify - ::1
+2026-06-29T10:15:25.914Z [nileopedia-backend] info: POST /api/v1/documents/afc9c928-4447-4202-981d-8cda38b9e882/verify - ::1
+2026-06-29T10:15:27.047Z [nileopedia-backend] info: POST /api/v1/documents/afc9c928-4447-4202-981d-8cda38b9e882/verify - ::1
+2026-06-29T10:18:09.943Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T10:18:09.955Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T10:18:21.230Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T10:18:39.949Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T10:18:39.961Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T10:45:38.594Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:45:38.616Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:45:44.722Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T10:45:44.726Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T10:45:44.729Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T10:45:45.514Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T13:35:23.189Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:35:25.318Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:35:26.022Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:35:26.580Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:35:27.682Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:35:40.532Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T13:35:43.266Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T13:35:43.279Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:35:43.342Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T13:35:43.548Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:35:50.138Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T13:35:50.176Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:35:50.211Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T13:35:50.234Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:36:16.876Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T13:36:16.914Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T13:36:17.263Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:36:17.563Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T13:36:18.084Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T13:36:37.817Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T13:36:37.854Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T13:36:38.503Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T13:36:38.513Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:36:39.361Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T13:36:49.145Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T13:36:49.186Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T13:36:49.472Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:36:49.742Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T13:36:50.308Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T13:37:09.360Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T13:37:09.392Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T13:37:09.737Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T13:37:09.742Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:37:10.744Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T13:37:13.650Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T13:37:13.677Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T13:37:17.670Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T13:37:17.682Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T13:37:20.226Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:37:20.254Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:37:38.266Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T13:37:38.351Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:37:38.359Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T13:48:02.910Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:48:03.452Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:48:03.337Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:48:03.827Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:50:46.208Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:50:50.623Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:50:52.466Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:50:53.904Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:50:58.072Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:51:12.433Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T13:51:12.554Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:51:12.617Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T13:51:14.654Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T13:51:22.332Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T13:51:22.378Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T13:52:05.500Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T13:52:07.257Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T13:52:07.279Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:52:07.315Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T13:52:07.479Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:52:10.557Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T13:52:10.629Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T13:52:15.648Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:52:15.691Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T13:52:30.000Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:52:30.123Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:52:37.990Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-29T13:52:38.049Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-29T13:52:48.392Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T13:52:48.438Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T13:52:56.392Z [nileopedia-backend] info: POST /api/v1/documents/f713b421-828e-46b8-95a2-f4a6e5514ec8/verify - ::1
+2026-06-29T13:55:21.538Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:55:21.952Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:22.757Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:23.604Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:26.768Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:43.906Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:55:44.258Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:45.020Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:45.869Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:55:48.687Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:56:29.364Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:56:29.693Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:56:30.405Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:56:31.069Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:56:34.577Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:56:46.128Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T13:56:46.262Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T13:56:54.769Z [nileopedia-backend] info: GET /api/v1/admin/settings - ::1
+2026-06-29T13:56:54.804Z [nileopedia-backend] info: GET /api/v1/admin/settings - ::1
+2026-06-29T13:57:00.501Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T13:57:00.539Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T13:57:02.580Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T13:57:02.646Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T13:57:05.577Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-29T13:57:05.639Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-29T13:57:12.669Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:57:12.861Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T13:57:19.248Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T13:57:19.309Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T13:57:29.240Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T13:57:29.285Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T13:59:22.427Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T13:59:22.951Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:59:23.874Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:59:24.646Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T13:59:27.253Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T14:02:44.021Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T14:02:44.192Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T14:02:44.215Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-06-29T14:02:44.325Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-06-29T14:02:48.073Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-06-29T14:15:02.463Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:22:49.922Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T14:22:49.946Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1

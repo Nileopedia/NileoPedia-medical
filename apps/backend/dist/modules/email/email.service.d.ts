@@ -1,3 +1,4 @@
+export declare function resetResendClient(): void;
 export declare class EmailService {
     static sendValidatorOtp(data: {
         email: string;
@@ -36,9 +37,14 @@ export declare class EmailService {
         ipAddress?: string;
     }): Promise<void>;
     static sendSystemAnnouncement(recipients: string[], subject: string, title: string, message: string): Promise<void>;
-    private static queueEmail;
-    static sendEmail(to: string, subject: string, html: string): Promise<void>;
-    private static sendViaResend;
-    private static sendViaNodemailer;
+    static sendEmail(to: string, subject: string, html: string, template?: string): Promise<void>;
+    static sendViaResend(to: string, subject: string, html: string): Promise<void>;
+    static getEmailProvider(): string;
+    static isConfigured(): boolean;
+    static checkConnection(): Promise<{
+        provider: string;
+        configured: boolean;
+        status: string;
+    }>;
 }
 //# sourceMappingURL=email.service.d.ts.map

@@ -9,6 +9,7 @@ import { Input } from '../../../components/ui/Input';
 import { api } from '../../../lib/api';
 import { Users, Plus, Trash2, Shield, Edit, Key, ChevronLeft, ChevronRight } from 'lucide-react';
 import { useToast } from '../../../components/ui/Toast';
+import { useRouter } from 'next/navigation';
 
 interface BackendUser {
   id: string;
@@ -21,6 +22,7 @@ interface BackendUser {
 }
 
 export default function AdminUsersPage() {
+  const router = useRouter();
   const [users, setUsers] = useState<BackendUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -41,8 +43,12 @@ export default function AdminUsersPage() {
       setUsers(response.data.users);
       setTotalPages(response.data.pagination.totalPages);
     } catch (err) {
-      console.error('Failed to fetch users:', err);
-      addToast({ type: 'error', title: 'Failed to load users' });
+      if (err instanceof Error && err.message === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        console.error('Failed to fetch users:', err);
+        addToast({ type: 'error', title: 'Failed to load users' });
+      }
     } finally {
       setLoading(false);
     }

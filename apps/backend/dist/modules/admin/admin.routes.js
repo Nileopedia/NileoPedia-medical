@@ -1,12 +1,17 @@
 "use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const admin_controller_1 = require("./controllers/admin.controller");
 const auth_middleware_1 = require("../../shared/middleware/auth.middleware");
 const ingestion_controller_1 = require("./controllers/ingestion.controller");
+const email_routes_1 = __importDefault(require("../email/email.routes"));
 const adminController = new admin_controller_1.AdminController();
 const ingestionController = new ingestion_controller_1.IngestionController();
 const router = (0, express_1.Router)();
+router.use('/email-status', email_routes_1.default);
 router.get('/users', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getUsers.bind(adminController));
 router.patch('/users/:userId/suspend', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.suspendUser.bind(adminController));
 router.patch('/users/:userId/activate', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.activateUser.bind(adminController));

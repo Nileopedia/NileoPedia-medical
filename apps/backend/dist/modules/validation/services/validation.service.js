@@ -46,14 +46,23 @@ class ValidationService {
             });
         });
     }
-    async getHistory(validatorId, userRole) {
+    async getHistory(validatorId, userRole, page = 1, limit = 20) {
+        const skip = (page - 1) * limit;
         const where = userRole === 'ADMIN' ? {} : { validatorId };
-        const reviews = await prisma_1.default.validationReview.findMany({
-            where,
-            include: { aiResponse: { include: { question: true } } },
-            orderBy: { reviewedAt: 'desc' },
-        });
-        return reviews;
+        const [reviews, total] = await Promise.all([
+            prisma_1.default.validationReview.findMany({
+                where,
+                include: { aiResponse: { include: { question: true } } },
+                orderBy: { reviewedAt: 'desc' },
+                skip,
+                take: limit,
+            }),
+            prisma_1.default.validationReview.count({ where }),
+        ]);
+        return {
+            reviews,
+            pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+        };
     }
     async getReview(responseId) {
         const review = await prisma_1.default.validationReview.findFirst({

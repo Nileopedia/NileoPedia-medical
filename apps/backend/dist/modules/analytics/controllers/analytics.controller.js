@@ -17,6 +17,17 @@ class AnalyticsController {
             next(error);
         }
     }
+    async getUserDashboard(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const analytics = await this.analyticsService.getUserDashboard(userId);
+            res.status(200).json({ success: true, data: analytics });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in getUserDashboard controller:', error);
+            next(error);
+        }
+    }
     async getValidationMetrics(req, res, next) {
         try {
             const metrics = await this.analyticsService.getValidationMetrics();

@@ -72,6 +72,7 @@ export const mockPrismaClient: any = {
     findFirst: jest.fn().mockResolvedValue(null),
     create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data, id: 'mock-review-id', reviewedAt: new Date() })),
     update: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data })),
+    count: jest.fn().mockResolvedValue(0),
   },
 };
 

@@ -20,6 +20,7 @@ export declare const createTestUser: (data: {
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
+    bio: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
     refreshToken: string | null;
@@ -35,6 +36,7 @@ export declare const createTestAdmin: () => Promise<{
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
+    bio: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
     refreshToken: string | null;
@@ -50,6 +52,7 @@ export declare const createTestValidator: () => Promise<{
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
+    bio: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
     refreshToken: string | null;
@@ -65,6 +68,7 @@ export declare const createTestMedicalUser: () => Promise<{
     specialization: string | null;
     institution: string | null;
     profileImage: string | null;
+    bio: string | null;
     isEmailVerified: boolean;
     accountStatus: import("@prisma/client").$Enums.AccountStatus;
     refreshToken: string | null;
