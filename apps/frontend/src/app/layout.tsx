@@ -1,13 +1,18 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "../components/Providers";
 import { AuthGuard } from "../components/AuthGuard";
 import { ThemeProvider } from "next-themes";
+import BackendBanner from "../components/BackendBanner";
 
 export const metadata: Metadata = {
   title: "NileoPedia",
   description: "Medical Intelligence Platform",
-  viewport: "width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover",
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
 };
 
 export default function RootLayout({
@@ -18,6 +23,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="min-h-screen flex flex-col transition-colors duration-300">
+        <BackendBanner />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

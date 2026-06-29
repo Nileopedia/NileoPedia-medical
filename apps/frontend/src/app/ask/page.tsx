@@ -13,7 +13,7 @@ import { useAppStore } from '../../store/appStore';
 import { useToast } from '../../components/ui/Toast';
 import { useRouter } from 'next/navigation';
 
-const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL || 'http://localhost:3001';
+const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export default function AskPage() {
    const [question, setQuestion] = useState('');
@@ -75,13 +75,19 @@ useEffect(() => {
     pollForResponse();
     const intervalId = setInterval(pollForResponse, 1500);
 
-   const socket: Socket = io(SOCKET_URL, {
+    const socket: Socket = io(SOCKET_URL, {
       transports: ['websocket'],
-      reconnection: false,
+      reconnection: true,
+      reconnectionAttempts: 5,
+      reconnectionDelay: 1000,
     });
 
     socket.on('connect', () => {
       setSocketConnected(true);
+    });
+
+    socket.on('connect_error', () => {
+      console.warn('Backend unavailable');
     });
 
     socket.on('disconnect', () => {

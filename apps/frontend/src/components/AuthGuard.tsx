@@ -18,7 +18,7 @@ export function AuthGuard({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     const isPublicRoute = PUBLIC_ROUTES.includes(pathname);
-    
+
     if (!isInitialized) return;
 
     if (!user && !isPublicRoute) {

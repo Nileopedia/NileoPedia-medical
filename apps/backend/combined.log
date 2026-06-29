@@ -10528,3 +10528,23 @@ Unknown field `validationReviews` for select statement on model `UserCountOutput
 2026-06-29T08:42:57.249Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
 2026-06-29T08:53:18.198Z [nileopedia-backend] info: Schedulers initialized
 2026-06-29T08:53:31.236Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:03:12.055Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T09:03:18.035Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:14:40.649Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T09:14:42.825Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:18:15.266Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T09:18:16.738Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:18:17.435Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:18:18.276Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:18:19.586Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:18:58.825Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T09:18:59.269Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:26:16.411Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T09:26:17.807Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:26:18.262Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:26:19.560Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:26:23.769Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T09:26:37.079Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T09:26:37.091Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T09:26:46.582Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T09:33:44.422Z [nileopedia-backend] info: GET /api/health - ::1

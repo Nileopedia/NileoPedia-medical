@@ -1,6 +1,6 @@
 import { AIResponse, Citation, Query, User } from '../types';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api/v1';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 const SAVED_RESPONSE_IDS_KEY = 'nileopedia.savedResponseIds';
 
 type ApiEnvelope<T> = {
@@ -706,6 +706,16 @@ class ApiClient {
     return this.request('/admin/system-status', {
       method: 'GET',
     });
+  }
+
+  async checkHealth(): Promise<{ status: string; database: string; socket: string }> {
+    const baseUrl = process.env.NEXT_PUBLIC_API_URL || '';
+    const rootUrl = baseUrl.replace(/\/api\/v1$/, '');
+    const response = await fetch(`${rootUrl}/api/health`);
+    if (!response.ok) {
+      throw new Error('Health check failed');
+    }
+    return response.json();
   }
 
   async createValidator(data: {

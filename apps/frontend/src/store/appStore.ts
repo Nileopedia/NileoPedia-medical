@@ -26,7 +26,9 @@ interface AppState {
   responses: AIResponse[];
   activities: Activity[];
   notifications: Notification[];
+  backendAvailable: boolean;
   initialize: () => void;
+  setBackendAvailable: (available: boolean) => void;
   setUser: (user: User | null) => void;
   setOtpState: (state: OtpState) => void;
   toggleSidebar: () => void;
@@ -48,6 +50,7 @@ export const useAppStore = create<AppState>((set) => ({
   responses: [],
   activities: [],
   notifications: [],
+  backendAvailable: true,
   initialize: () => {
     if (typeof window === 'undefined') return;
     const token = localStorage.getItem('token');
@@ -62,6 +65,7 @@ export const useAppStore = create<AppState>((set) => ({
       set({ isInitialized: true });
     }
   },
+  setBackendAvailable: (backendAvailable) => set({ backendAvailable }),
   setUser: (user) => {
     if (user) {
       localStorage.setItem('user', JSON.stringify(user));

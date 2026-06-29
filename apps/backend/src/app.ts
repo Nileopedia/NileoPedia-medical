@@ -274,6 +274,15 @@ prisma.$connect()
       });
     }
 
+    // Health check endpoint
+    app.get('/api/health', (req, res) => {
+      res.status(200).json({
+        status: 'ok',
+        database: prisma ? 'connected' : 'disconnected',
+        socket: io ? 'active' : 'inactive',
+      });
+    });
+
     // Socket.IO connection handling with Redis pub/sub for real-time streaming
     io.on('connection', (socket) => {
       console.log('User connected:', socket.id);
@@ -303,6 +312,7 @@ prisma.$connect()
 
     // Start server
     const PORT = CONFIG.PORT || 3001;
+    console.log('Backend URL:', CONFIG.API_URL);
     httpServer.listen(PORT, () => {
       console.log(`Server running in ${CONFIG.NODE_ENV} mode on port ${PORT}`);
     });

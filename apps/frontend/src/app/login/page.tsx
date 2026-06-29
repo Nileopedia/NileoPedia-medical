@@ -39,7 +39,7 @@ export default function Login() {
   };
 
   const handleGoogleLogin = () => {
-    window.location.href = 'http://localhost:3001/api/v1/auth/google/login';
+    window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google/login`;
   };
 
   return (
