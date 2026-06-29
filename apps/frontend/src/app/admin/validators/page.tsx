@@ -26,6 +26,7 @@ interface Validator {
 }
 
 export default function AdminValidatorsPage() {
+  const router = useRouter();
   const [validators, setValidators] = useState<Validator[]>([]);
   const [loading, setLoading] = useState(true);
   const [showAddModal, setShowAddModal] = useState(false);
@@ -48,14 +49,18 @@ export default function AdminValidatorsPage() {
   const fetchValidators = async () => {
     setLoading(true);
     try {
-      const response = await api.request<{ success: boolean; data: { validators: Validator[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
+      const response = await api.request<{ success: boolean; data: { validators: Validator[]; totalPages: number } }>(
         `/admin/validators?page=${page}&limit=20&search=${encodeURIComponent(search)}`
       );
       setValidators(response.data.validators || []);
-      setTotalPages(response.data.pagination?.totalPages || 1);
+      setTotalPages(response.data.totalPages || 1);
     } catch (error) {
-      console.error('Failed to fetch validators:', error);
-      addToast({ type: 'error', title: 'Failed to load validators' });
+      if (error instanceof Error && error.message === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        console.error('Failed to fetch validators:', error);
+        addToast({ type: 'error', title: 'Failed to load validators' });
+      }
     } finally {
       setLoading(false);
     }

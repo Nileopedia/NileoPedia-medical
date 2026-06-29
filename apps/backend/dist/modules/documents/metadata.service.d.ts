@@ -32,12 +32,12 @@ export declare class DocumentMetadataService {
         documentType?: string;
     }): Promise<void>;
     getMetadata(documentId: string): Promise<{
+        documentType: string | null;
+        publicationYear: number | null;
+        title: string | null;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        title: string | null;
-        documentType: string | null;
-        publicationYear: number | null;
         documentId: string;
         authors: string[];
         journal: string | null;
@@ -46,12 +46,12 @@ export declare class DocumentMetadataService {
         sourceURL: string | null;
     } | null>;
     getMetadataByDocumentIds(documentIds: string[]): Promise<{
+        documentType: string | null;
+        publicationYear: number | null;
+        title: string | null;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        title: string | null;
-        documentType: string | null;
-        publicationYear: number | null;
         documentId: string;
         authors: string[];
         journal: string | null;

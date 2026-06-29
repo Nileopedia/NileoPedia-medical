@@ -37,11 +37,11 @@ export default function AdminUsersPage() {
   const fetchUsers = async () => {
     setLoading(true);
     try {
-      const response = await api.request<{ success: boolean; data: { users: BackendUser[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
+      const response = await api.request<{ success: boolean; data: { users: BackendUser[]; totalPages: number } }>(
         `/admin/users?page=${page}&limit=20&search=${encodeURIComponent(search)}`
       );
       setUsers(response.data.users);
-      setTotalPages(response.data.pagination.totalPages);
+      setTotalPages(response.data.totalPages);
     } catch (err) {
       if (err instanceof Error && err.message === 'Please sign in to continue') {
         router.push('/login');

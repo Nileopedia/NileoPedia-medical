@@ -4,11 +4,11 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { FileUpload, FilePreview } from '../../components/ui/FileUpload';
-import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../components/ui/Table';
 import { Input } from '../../components/ui/Input';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
-import { FileText, Search as SearchIcon, Trash2, RefreshCw, ChevronLeft, ChevronRight, Eye } from 'lucide-react';
+import { FileText, Search as SearchIcon, Trash2, RefreshCw, ChevronLeft, ChevronRight, WifiOff } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 interface Document {
   id: string;
@@ -31,6 +31,9 @@ export default function DocumentsPage() {
   const [totalPages, setTotalPages] = useState(1);
   const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
   const [uploading, setUploading] = useState(false);
+  const [reingestingId, setReingestingId] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
     fetchDocuments();
@@ -44,8 +47,13 @@ export default function DocumentsPage() {
       );
       setDocuments(response.data.documents);
       setTotalPages(response.data.pagination.totalPages);
-    } catch (error) {
-      console.error('Failed to fetch documents:', error);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to fetch documents';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
+      }
     } finally {
       setLoading(false);
     }
@@ -87,17 +95,30 @@ export default function DocumentsPage() {
     try {
       await api.request(`/documents/${documentId}`, { method: 'DELETE' });
       fetchDocuments();
-    } catch (error) {
-      console.error('Failed to delete document:', error);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to delete document';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
+      }
     }
   };
 
   const handleReingestDocument = async (documentId: string) => {
+    setReingestingId(documentId);
     try {
-      await api.request(`/documents/${documentId}/verify`, { method: 'POST' });
+      await api.request(`/documents/${documentId}/verify`, { method: 'PATCH' });
       fetchDocuments();
-    } catch (error) {
-      console.error('Failed to re-ingest document:', error);
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to re-ingest document';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
+      }
+    } finally {
+      setReingestingId(null);
     }
   };
 
@@ -108,6 +129,13 @@ export default function DocumentsPage() {
           <h1 className="text-xl sm:text-2xl font-bold text-foreground mb-1 sm:mb-2">Documents</h1>
           <p className="text-sm text-muted-foreground">Manage medical documents and knowledge base</p>
         </div>
+
+        {error && (
+          <div className="p-3 sm:p-4 bg-amber-50 dark:bg-amber-900/20 border border-amber-200 rounded-lg flex items-center gap-2">
+            <WifiOff className="text-amber-600" size={16} />
+            <p className="text-xs sm:text-sm text-amber-700">{error}</p>
+          </div>
+        )}
 
         {selectedFiles.length > 0 && (
           <Card>
@@ -172,7 +200,7 @@ export default function DocumentsPage() {
                       </div>
                       <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-3">
                         <span className={`px-2 py-0.5 rounded text-xs font-medium w-fit ${
-                          doc.ingestionStatus === 'PROCESSED' ? 'bg-emerald-100 text-emerald-700' :
+                          doc.ingestionStatus === 'COMPLETED' ? 'bg-emerald-100 text-emerald-700' :
                           doc.ingestionStatus === 'PROCESSING' ? 'bg-amber-100 text-amber-700' :
                           'bg-red-100 text-red-700'
                         }`}>
@@ -181,10 +209,11 @@ export default function DocumentsPage() {
                         <div className="flex gap-1 sm:gap-2">
                           <button
                             onClick={() => handleReingestDocument(doc.id)}
-                            className="p-1 text-primary hover:text-primary/80"
+                            disabled={doc.ingestionStatus === 'PROCESSING' || reingestingId === doc.id}
+                            className="p-1 text-primary hover:text-primary/80 disabled:opacity-50"
                             title="Re-ingest"
                           >
-                            <RefreshCw size={16} />
+                            {reingestingId === doc.id ? 'Re-ingesting...' : <RefreshCw size={16} />}
                           </button>
                           <button
                             onClick={() => handleDeleteDocument(doc.id)}

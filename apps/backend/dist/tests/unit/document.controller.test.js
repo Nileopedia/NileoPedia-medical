@@ -367,12 +367,19 @@ describe('DocumentController', () => {
             expect(mockResponse.status).toHaveBeenCalledWith(200);
             expect(mockResponse.json).toHaveBeenCalledWith({
                 success: true,
-                message: 'Document verified successfully',
+                message: 'Document re-ingestion started',
                 data: mockDocument,
             });
         });
         it('should handle service error and call next', async () => {
             const error = new Error('Verify error');
+            mockDocumentService.verifyDocument.mockRejectedValue(error);
+            mockRequest.params = { id: 'doc-1' };
+            await controller.verifyDocument(mockRequest, mockResponse, mockNext);
+            expect(mockNext).toHaveBeenCalledWith(error);
+        });
+        it('should reject when document is currently processing', async () => {
+            const error = new Error('Document is currently processing');
             mockDocumentService.verifyDocument.mockRejectedValue(error);
             mockRequest.params = { id: 'doc-1' };
             await controller.verifyDocument(mockRequest, mockResponse, mockNext);

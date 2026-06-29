@@ -12,6 +12,7 @@ export declare class ValidationService {
     } & {
         id: string;
         createdAt: Date;
+        updatedAt: Date;
         questionId: string;
         summary: string;
         detailedExplanation: string | null;
@@ -21,11 +22,10 @@ export declare class ValidationService {
         generatedBy: string;
         processingTime: number | null;
         documentsUsed: number | null;
-        updatedAt: Date;
     })[]>;
     approve(responseId: string, validatorId: string, score: number, feedback: string): Promise<void>;
     reject(responseId: string, validatorId: string, feedback: string): Promise<void>;
-    getHistory(validatorId: string, userRole?: string, page?: number, limit?: number): Promise<{
+    getHistory(validatorId: string, userRole?: string, page?: number, limit?: number, search?: string, startDate?: string): Promise<{
         reviews: ({
             aiResponse: {
                 question: {
@@ -40,6 +40,7 @@ export declare class ValidationService {
             } & {
                 id: string;
                 createdAt: Date;
+                updatedAt: Date;
                 questionId: string;
                 summary: string;
                 detailedExplanation: string | null;
@@ -49,14 +50,13 @@ export declare class ValidationService {
                 generatedBy: string;
                 processingTime: number | null;
                 documentsUsed: number | null;
-                updatedAt: Date;
             };
         } & {
             feedback: string | null;
             id: string;
             status: import("@prisma/client").$Enums.ValidationStatus;
-            validatorId: string;
             aiResponseId: string;
+            validatorId: string;
             score: number | null;
             reviewedAt: Date;
         })[];
@@ -71,8 +71,8 @@ export declare class ValidationService {
         feedback: string | null;
         id: string;
         status: import("@prisma/client").$Enums.ValidationStatus;
-        validatorId: string;
         aiResponseId: string;
+        validatorId: string;
         score: number | null;
         reviewedAt: Date;
     } | null>;

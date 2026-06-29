@@ -3,8 +3,8 @@ export declare class UserService {
     getCurrentUser(userId: string): Promise<{
         id: string;
         createdAt: Date;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -16,8 +16,8 @@ export declare class UserService {
     updateProfile(userId: string, data: UpdateProfileDto): Promise<{
         id: string;
         createdAt: Date;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -30,8 +30,8 @@ export declare class UserService {
     getUserById(userId: string): Promise<{
         id: string;
         createdAt: Date;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -101,8 +101,8 @@ export declare class UserService {
     }): Promise<{
         id: string;
         createdAt: Date;
-        fullName: string;
         email: string;
+        fullName: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;

@@ -195,7 +195,7 @@ async uploadDocument(req: Request, res: Response, next: NextFunction) {
 
       res.status(200).json({
         success: true,
-        message: 'Document verified successfully',
+        message: 'Document re-ingestion started',
         data: document,
       });
     } catch (error) {

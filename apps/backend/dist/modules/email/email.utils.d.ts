@@ -4,12 +4,12 @@ export declare const emailSchema: z.ZodObject<{
     subject: z.ZodString;
     html: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    subject: string;
     to: string;
+    subject: string;
     html: string;
 }, {
-    subject: string;
     to: string;
+    subject: string;
     html: string;
 }>;
 export declare const validatorOtpSchema: z.ZodObject<{
@@ -17,12 +17,12 @@ export declare const validatorOtpSchema: z.ZodObject<{
     fullName: z.ZodString;
     otpCode: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    fullName: string;
     email: string;
+    fullName: string;
     otpCode: string;
 }, {
-    fullName: string;
     email: string;
+    fullName: string;
     otpCode: string;
 }>;
 export declare const passwordResetSchema: z.ZodObject<{
@@ -30,35 +30,35 @@ export declare const passwordResetSchema: z.ZodObject<{
     fullName: z.ZodString;
     resetLink: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    fullName: string;
     email: string;
+    fullName: string;
     resetLink: string;
 }, {
-    fullName: string;
     email: string;
+    fullName: string;
     resetLink: string;
 }>;
 export declare const welcomeSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    fullName: string;
     email: string;
+    fullName: string;
 }, {
-    fullName: string;
     email: string;
+    fullName: string;
 }>;
 export declare const accountStatusSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
     reason: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    fullName: string;
     email: string;
+    fullName: string;
     reason?: string | undefined;
 }, {
-    fullName: string;
     email: string;
+    fullName: string;
     reason?: string | undefined;
 }>;
 export declare const securityAlertSchema: z.ZodObject<{
@@ -68,16 +68,16 @@ export declare const securityAlertSchema: z.ZodObject<{
     description: z.ZodString;
     ipAddress: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    fullName: string;
-    email: string;
-    alertType: string;
     description: string;
+    email: string;
+    fullName: string;
+    alertType: string;
     ipAddress?: string | undefined;
 }, {
-    fullName: string;
-    email: string;
-    alertType: string;
     description: string;
+    email: string;
+    fullName: string;
+    alertType: string;
     ipAddress?: string | undefined;
 }>;
 export declare const systemAnnouncementSchema: z.ZodObject<{
@@ -86,13 +86,13 @@ export declare const systemAnnouncementSchema: z.ZodObject<{
     title: z.ZodString;
     message: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    subject: string;
     title: string;
+    subject: string;
     message: string;
     recipients: string[];
 }, {
-    subject: string;
     title: string;
+    subject: string;
     message: string;
     recipients: string[];
 }>;

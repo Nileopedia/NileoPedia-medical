@@ -46,9 +46,19 @@ class ValidationService {
             });
         });
     }
-    async getHistory(validatorId, userRole, page = 1, limit = 20) {
+    async getHistory(validatorId, userRole, page = 1, limit = 20, search, startDate) {
         const skip = (page - 1) * limit;
         const where = userRole === 'ADMIN' ? {} : { validatorId };
+        if (search) {
+            where.aiResponse = {
+                question: {
+                    questionText: { contains: search, mode: 'insensitive' },
+                },
+            };
+        }
+        if (startDate) {
+            where.reviewedAt = { gte: new Date(startDate) };
+        }
         const [reviews, total] = await Promise.all([
             prisma_1.default.validationReview.findMany({
                 where,

@@ -10,6 +10,7 @@ export declare class PineconeService {
     }>): Promise<void>;
     query(vector: number[], topK?: number, filter?: Record<string, any>): Promise<any>;
     deleteVectors(ids: string[]): Promise<void>;
+    deleteByDocumentId(documentId: string): Promise<void>;
     storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string): Promise<{
         id: string;
         values: number[];

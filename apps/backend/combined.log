@@ -10826,3 +10826,387 @@ The column `AIResponse.detailedExplanation` does not exist in the current databa
 2026-06-29T14:15:02.463Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
 2026-06-29T14:22:49.922Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
 2026-06-29T14:22:49.946Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T14:29:23.322Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T14:29:29.851Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T14:29:34.887Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T14:29:36.748Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T14:29:41.848Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T14:29:48.654Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T14:30:02.100Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:30:02.152Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:30:07.925Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T14:30:09.793Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:30:09.808Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:30:09.856Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:30:10.091Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:30:12.251Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:30:12.289Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:34:42.307Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T14:34:42.492Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T14:34:48.374Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:34:48.415Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:34:55.097Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:34:55.154Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:35:00.393Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T14:35:00.466Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T14:36:55.533Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:36:55.727Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:39:20.686Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:45:00.569Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T14:45:00.601Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:45:00.694Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T14:45:00.778Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:45:09.661Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:45:09.687Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:45:09.714Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:45:09.741Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:45:20.673Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:45:20.734Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:45:20.753Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:45:20.776Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:54:39.281Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T14:54:40.728Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:54:40.735Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:54:40.756Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:54:41.050Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:54:44.626Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T14:54:44.671Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:54:44.690Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T14:54:44.728Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:54:47.895Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:54:47.924Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:54:50.523Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T14:54:50.551Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T14:54:53.470Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:54:53.513Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T14:54:56.687Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:54:56.722Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T14:55:01.054Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:55:01.088Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-06-29T14:55:10.599Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T14:55:10.648Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-06-29T14:55:25.591Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:55:25.720Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:55:36.806Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-29T14:55:36.885Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-06-29T14:55:40.409Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T14:55:40.454Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T14:55:47.182Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T14:55:47.248Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T14:55:52.958Z [nileopedia-backend] info: GET /api/v1/admin/settings - ::1
+2026-06-29T14:55:52.993Z [nileopedia-backend] info: GET /api/v1/admin/settings - ::1
+2026-06-29T14:55:58.333Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:55:58.347Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T14:55:58.382Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T14:55:58.458Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T15:01:43.186Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T15:01:43.238Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T15:01:43.530Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T15:01:43.666Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T15:01:48.622Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T15:01:48.671Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T15:01:55.807Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T15:01:55.822Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T15:01:55.931Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T15:01:55.998Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T15:02:01.133Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:02:01.223Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:02:06.550Z [nileopedia-backend] info: POST /api/v1/documents/4a46e55f-5a92-40b3-8fe8-938cd53d2cb4/verify - ::1
+2026-06-29T15:09:38.704Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:09:38.951Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:09:44.224Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:09:44.269Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:10:22.069Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:10:22.128Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:10:39.779Z [nileopedia-backend] info: GET /api/health - ::1
+2026-06-29T15:10:39.937Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-06-29T15:10:39.960Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:10:43.613Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-29T15:10:52.670Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:10:52.705Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:11:05.110Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T15:11:07.824Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T15:11:07.921Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T15:11:07.945Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T15:11:08.392Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T15:11:13.041Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:11:13.107Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-06-29T15:11:17.694Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:11:17.754Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:11:21.430Z [nileopedia-backend] info: PATCH /api/v1/documents/4a46e55f-5a92-40b3-8fe8-938cd53d2cb4/verify - ::1
+2026-06-29T15:11:21.592Z [nileopedia-backend] error: Error in verifyDocument controller: Document is not pending verification
+2026-06-29T15:11:21.594Z [nileopedia-backend] error: Error handler caught: Document is not pending verification
+2026-06-29T15:13:55.328Z [nileopedia-backend] info: PATCH /api/v1/documents/4a46e55f-5a92-40b3-8fe8-938cd53d2cb4/verify - ::1
+2026-06-29T15:13:55.352Z [nileopedia-backend] error: Error in verifyDocument controller: Document is not pending verification
+2026-06-29T15:13:55.356Z [nileopedia-backend] error: Error handler caught: Document is not pending verification
+2026-06-29T15:19:25.532Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:19:26.820Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:19:29.320Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:19:32.142Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:19:37.201Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:19:57.286Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:19:58.134Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:19:59.838Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:01.299Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:07.513Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:22.507Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:20:23.255Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:25.055Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:27.096Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:30.939Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:20:50.537Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:28:49.246Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:28:49.923Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:28:51.083Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:28:52.702Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:28:58.598Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:34:43.162Z [nileopedia-backend] info: PATCH /api/v1/documents/ea9b042a-0f75-4a26-9933-01aab2e5e778/verify - ::1
+2026-06-29T15:34:56.077Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T15:35:00.106Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T15:35:00.178Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T15:35:00.194Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T15:35:00.483Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T15:35:06.247Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:35:06.331Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-06-29T15:35:14.727Z [nileopedia-backend] info: PATCH /api/v1/documents/c3e20df9-9e2d-4539-b8fa-cc7a7b074c27/verify - ::1
+2026-06-29T15:35:15.859Z [nileopedia-backend] error: Error in verifyDocument controller: this.index.delete is not a function
+2026-06-29T15:35:15.869Z [nileopedia-backend] error: Error handler caught: this.index.delete is not a function
+2026-06-29T15:35:37.446Z [nileopedia-backend] info: PATCH /api/v1/documents/c3e20df9-9e2d-4539-b8fa-cc7a7b074c27/verify - ::1
+2026-06-29T15:35:38.498Z [nileopedia-backend] error: Error in verifyDocument controller: this.index.delete is not a function
+2026-06-29T15:35:38.499Z [nileopedia-backend] error: Error handler caught: this.index.delete is not a function
+2026-06-29T15:41:44.931Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:41:45.519Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:41:46.615Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:41:47.856Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:41:52.541Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:43:33.400Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:43:34.010Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:43:35.171Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:43:36.520Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:43:40.865Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:44:34.564Z [nileopedia-backend] info: Schedulers initialized
+2026-06-29T15:44:35.114Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:44:36.256Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:44:37.215Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T15:44:41.003Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-29T18:09:09.882Z [nileopedia-backend] info: PATCH /api/v1/documents/ea9b042a-0f75-4a26-9933-01aab2e5e778/verify - ::1
+2026-06-29T18:09:17.349Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T18:09:19.425Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T18:09:19.493Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T18:09:19.513Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T18:09:19.774Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-06-29T18:09:23.294Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-06-29T18:09:23.473Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.505Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.520Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.543Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.561Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.586Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.605Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.632Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.647Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:23.850Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T18:09:26.584Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-06-29T18:09:26.618Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.646Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.665Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.688Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.701Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.714Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.727Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.740Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:26.752Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-06-29T18:09:27.207Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-06-29T18:14:36.524Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-29T18:14:38.604Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T18:14:38.611Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:14:38.795Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T18:14:38.848Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:14:43.153Z [nileopedia-backend] info: POST /api/v1/validation/c6eb24b5-1d22-4eca-a6ec-698d4c0a2b7e/approve - ::1
+2026-06-29T18:14:44.258Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:14:51.730Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T18:14:51.783Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-06-29T18:14:59.644Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T18:14:59.676Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T18:15:02.721Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:02.764Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:08.032Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T18:15:08.141Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-06-29T18:15:08.208Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:08.253Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:12.838Z [nileopedia-backend] info: POST /api/v1/validation/373f5b5f-da93-4118-bf69-41f5df817827/approve - ::1
+2026-06-29T18:15:14.000Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:18.781Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:18.837Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-06-29T18:15:47.389Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T18:15:47.440Z [nileopedia-backend] info: GET /api/v1/validation/rejected - ::1
+2026-06-29T18:15:53.510Z [nileopedia-backend] info: GET /api/v1/validator/feedback - ::1
+2026-06-29T18:15:53.549Z [nileopedia-backend] info: GET /api/v1/validator/feedback - ::1
+2026-06-29T18:16:00.619Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:16:00.632Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:16:06.343Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:16:06.372Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:16:12.491Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:16:12.506Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:16:19.040Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:16:19.049Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:18:52.428Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:18:52.474Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:21:13.852Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:21:13.865Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:22:31.864Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:22:31.955Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:22:45.784Z [nileopedia-backend] info: GET /api/v1/validator/feedback - ::1
+2026-06-29T18:22:45.791Z [nileopedia-backend] info: GET /api/v1/validator/feedback - ::1
+2026-06-29T18:23:56.353Z [nileopedia-backend] info: GET /api/v1/validation/feedback - ::1
+2026-06-29T18:27:44.002Z [nileopedia-backend] info: GET /api/v1/validation/feedback - ::1
+2026-06-29T18:29:48.557Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:29:48.570Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:35:57.711Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:35:57.728Z [nileopedia-backend] info: GET /api/v1/validator/settings - ::1
+2026-06-29T18:37:53.573Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1
+2026-06-29T18:37:53.583Z [nileopedia-backend] info: GET /api/v1/validator/profile - ::1

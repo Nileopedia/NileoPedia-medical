@@ -31,7 +31,7 @@ export const Navbar: React.FC = () => {
   const profileRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    // eslint-disable-next-line @typescript-eslint/no-require-imports
+     
     try {
       const { useRouter } = require('next/navigation');
       setRouter(useRouter());

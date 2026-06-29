@@ -3,8 +3,8 @@ export declare class AdminService {
         users: {
             id: string;
             createdAt: Date;
-            fullName: string;
             email: string;
+            fullName: string;
             role: import("@prisma/client").$Enums.UserRole;
             accountStatus: import("@prisma/client").$Enums.AccountStatus;
         }[];
@@ -24,8 +24,8 @@ export declare class AdminService {
             reviewsCompleted: number;
             approvalRate: number;
             id: string;
-            fullName: string;
             email: string;
+            fullName: string;
             role: import("@prisma/client").$Enums.UserRole;
             specialization: string | null;
             institution: string | null;

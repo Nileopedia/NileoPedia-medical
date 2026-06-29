@@ -3,12 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import { Table, TableHeader, TableBody, TableRow, TableHead, TableCell } from '../../../components/ui/Table';
-import { Badge } from '../../../components/ui/Badge';
 import { Input } from '../../../components/ui/Input';
 import { Button } from '../../../components/ui/Button';
 import { MessageSquare, Search as SearchIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
+import { useRouter } from 'next/navigation';
 import { useToast } from '../../../components/ui/Toast';
 
 interface FeedbackReport {
@@ -28,7 +28,7 @@ export default function ValidatorFeedbackPage() {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [search, setSearch] = useState('');
-  const [selectedSeverity, setSelectedSeverity] = useState<Record<string, string>>({});
+  const router = useRouter();
   const { addToast } = useToast();
 
   useEffect(() => {
@@ -39,12 +39,17 @@ export default function ValidatorFeedbackPage() {
     setLoading(true);
     try {
       const response = await api.request<{ success: boolean; data: { reports: FeedbackReport[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
-        `/validator/feedback?page=${page}&limit=20&search=${encodeURIComponent(search)}`
+        `/validation/feedback?page=${page}&limit=20&search=${encodeURIComponent(search)}`
       );
       setFeedbackReports(response.data.reports);
       setTotalPages(response.data.pagination.totalPages);
     } catch (err) {
-      console.error('Failed to fetch feedback reports:', err);
+      const msg = err instanceof Error ? err.message : 'Failed to fetch feedback reports';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        console.error('Failed to fetch feedback reports:', err);
+      }
     } finally {
       setLoading(false);
     }
@@ -52,36 +57,27 @@ export default function ValidatorFeedbackPage() {
 
   const handleUpdateSeverity = async (reportId: string, severity: string) => {
     try {
-      await api.request(`/validator/feedback/${reportId}`, {
+      await api.request(`/validation/feedback/${reportId}`, {
         method: 'PATCH',
         body: JSON.stringify({ severity }),
       });
       addToast({ type: 'success', title: 'Severity updated' });
       fetchFeedbackReports();
-    } catch (err) {
+    } catch {
       addToast({ type: 'error', title: 'Failed to update severity' });
     }
   };
 
   const handleUpdateStatus = async (reportId: string, status: string) => {
     try {
-      await api.request(`/validator/feedback/${reportId}`, {
+      await api.request(`/validation/feedback/${reportId}`, {
         method: 'PATCH',
         body: JSON.stringify({ status }),
       });
       addToast({ type: 'success', title: 'Status updated' });
       fetchFeedbackReports();
-    } catch (err) {
+    } catch {
       addToast({ type: 'error', title: 'Failed to update status' });
-    }
-  };
-
-  const getSeverityColor = (severity: string) => {
-    switch (severity) {
-      case 'critical': return 'danger';
-      case 'high': return 'warning';
-      case 'medium': return 'info';
-      default: return 'default';
     }
   };
 

@@ -1,16 +1,16 @@
 import { CreateCitationDto, UpdateCitationDto, SearchCitationsQuery, SearchCitationsResult } from './citation.types';
 export declare class CitationService {
     getCitationsForResponse(aiResponseId: string): Promise<{
-        id: string;
-        createdAt: Date;
-        aiResponseId: string;
-        specialty: string | null;
-        title: string;
         documentType: string | null;
-        source: string;
         publicationYear: number | null;
+        title: string;
+        id: string;
+        specialty: string | null;
+        source: string;
+        createdAt: Date;
         authors: string | null;
         doi: string | null;
+        aiResponseId: string;
         url: string | null;
         citationIndex: number;
         chunkId: string | null;
@@ -18,16 +18,16 @@ export declare class CitationService {
         sectionTitle: string | null;
     }[]>;
     getCitationById(id: string): Promise<{
-        id: string;
-        createdAt: Date;
-        aiResponseId: string;
-        specialty: string | null;
-        title: string;
         documentType: string | null;
-        source: string;
         publicationYear: number | null;
+        title: string;
+        id: string;
+        specialty: string | null;
+        source: string;
+        createdAt: Date;
         authors: string | null;
         doi: string | null;
+        aiResponseId: string;
         url: string | null;
         citationIndex: number;
         chunkId: string | null;
@@ -36,16 +36,16 @@ export declare class CitationService {
     } | null>;
     searchCitations(query: SearchCitationsQuery): Promise<SearchCitationsResult>;
     createCitation(data: CreateCitationDto): Promise<{
-        id: string;
-        createdAt: Date;
-        aiResponseId: string;
-        specialty: string | null;
-        title: string;
         documentType: string | null;
-        source: string;
         publicationYear: number | null;
+        title: string;
+        id: string;
+        specialty: string | null;
+        source: string;
+        createdAt: Date;
         authors: string | null;
         doi: string | null;
+        aiResponseId: string;
         url: string | null;
         citationIndex: number;
         chunkId: string | null;
@@ -53,16 +53,16 @@ export declare class CitationService {
         sectionTitle: string | null;
     }>;
     updateCitation(id: string, data: UpdateCitationDto): Promise<{
-        id: string;
-        createdAt: Date;
-        aiResponseId: string;
-        specialty: string | null;
-        title: string;
         documentType: string | null;
-        source: string;
         publicationYear: number | null;
+        title: string;
+        id: string;
+        specialty: string | null;
+        source: string;
+        createdAt: Date;
         authors: string | null;
         doi: string | null;
+        aiResponseId: string;
         url: string | null;
         citationIndex: number;
         chunkId: string | null;
@@ -70,16 +70,16 @@ export declare class CitationService {
         sectionTitle: string | null;
     }>;
     deleteCitation(id: string): Promise<{
-        id: string;
-        createdAt: Date;
-        aiResponseId: string;
-        specialty: string | null;
-        title: string;
         documentType: string | null;
-        source: string;
         publicationYear: number | null;
+        title: string;
+        id: string;
+        specialty: string | null;
+        source: string;
+        createdAt: Date;
         authors: string | null;
         doi: string | null;
+        aiResponseId: string;
         url: string | null;
         citationIndex: number;
         chunkId: string | null;

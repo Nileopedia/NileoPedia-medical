@@ -57,7 +57,12 @@ export default function AdminPage() {
       const data = await api.request<{ success: boolean; data: AnalyticsData }>('/admin/analytics');
       setAnalytics(data.data);
     } catch (err) {
-      console.error('Failed to fetch analytics:', err);
+      const msg = err instanceof Error ? err.message : 'Failed to fetch analytics';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
+      }
     }
   };
 

@@ -125,13 +125,27 @@ export class DocumentService {
       throw new Error('Document not found');
     }
 
-    if (document.ingestionStatus !== IngestionStatus.PENDING) {
-      throw new Error('Document is not pending verification');
+    if (document.ingestionStatus === IngestionStatus.PROCESSING) {
+      throw new Error('Document is currently processing');
     }
 
+    // Clear old embeddings and chunks for re-ingestion
+    await prisma.embeddingMetadata.deleteMany({
+      where: { documentId: id },
+    });
+
+    // Delete old Pinecone vectors
+    const { PineconeService } = await import('../rag/services/pinecone.service');
+    const pineconeService = new PineconeService();
+    await pineconeService.deleteByDocumentId(id);
+
+    // Reset document state
     await prisma.medicalDocument.update({
       where: { id },
-      data: { isVerified: true, ingestionStatus: IngestionStatus.PROCESSING },
+      data: {
+        isVerified: true,
+        ingestionStatus: IngestionStatus.PROCESSING,
+      },
     });
 
     const { documentQueue } = await import('../../jobs/queues');

@@ -62,7 +62,9 @@ class ValidationController {
             const userRole = req.user.role;
             const page = parseInt(req.query.page) || 1;
             const limit = parseInt(req.query.limit) || 20;
-            const history = await this.validationService.getHistory(validatorId, userRole, page, limit);
+            const search = req.query.search;
+            const startDate = req.query.startDate;
+            const history = await this.validationService.getHistory(validatorId, userRole, page, limit, search, startDate);
             res.status(200).json({ success: true, data: history });
         }
         catch (error) {

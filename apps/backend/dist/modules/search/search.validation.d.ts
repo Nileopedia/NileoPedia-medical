@@ -8,9 +8,9 @@ export declare const searchQuerySchema: z.ZodObject<{
     publicationYear: z.ZodOptional<z.ZodNumber>;
     documentType: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    type: "keyword" | "semantic" | "hybrid";
     page: number;
     limit: number;
+    type: "keyword" | "semantic" | "hybrid";
     q: string;
     specialty?: string | undefined;
     publicationYear?: number | undefined;

@@ -14,16 +14,16 @@ export declare class QuestionsService {
         questions: ({
             aiResponse: ({
                 citations: {
-                    id: string;
-                    createdAt: Date;
-                    aiResponseId: string;
-                    specialty: string | null;
-                    title: string;
                     documentType: string | null;
-                    source: string;
                     publicationYear: number | null;
+                    title: string;
+                    id: string;
+                    specialty: string | null;
+                    source: string;
+                    createdAt: Date;
                     authors: string | null;
                     doi: string | null;
+                    aiResponseId: string;
                     url: string | null;
                     citationIndex: number;
                     chunkId: string | null;
@@ -33,6 +33,7 @@ export declare class QuestionsService {
             } & {
                 id: string;
                 createdAt: Date;
+                updatedAt: Date;
                 questionId: string;
                 summary: string;
                 detailedExplanation: string | null;
@@ -42,7 +43,6 @@ export declare class QuestionsService {
                 generatedBy: string;
                 processingTime: number | null;
                 documentsUsed: number | null;
-                updatedAt: Date;
             }) | null;
         } & {
             id: string;
@@ -66,16 +66,16 @@ export declare class QuestionsService {
         questions: ({
             aiResponse: ({
                 citations: {
-                    id: string;
-                    createdAt: Date;
-                    aiResponseId: string;
-                    specialty: string | null;
-                    title: string;
                     documentType: string | null;
-                    source: string;
                     publicationYear: number | null;
+                    title: string;
+                    id: string;
+                    specialty: string | null;
+                    source: string;
+                    createdAt: Date;
                     authors: string | null;
                     doi: string | null;
+                    aiResponseId: string;
                     url: string | null;
                     citationIndex: number;
                     chunkId: string | null;
@@ -85,6 +85,7 @@ export declare class QuestionsService {
             } & {
                 id: string;
                 createdAt: Date;
+                updatedAt: Date;
                 questionId: string;
                 summary: string;
                 detailedExplanation: string | null;
@@ -94,7 +95,6 @@ export declare class QuestionsService {
                 generatedBy: string;
                 processingTime: number | null;
                 documentsUsed: number | null;
-                updatedAt: Date;
             }) | null;
         } & {
             id: string;
@@ -113,16 +113,16 @@ export declare class QuestionsService {
     getQuestion(questionId: string): Promise<({
         aiResponse: ({
             citations: {
-                id: string;
-                createdAt: Date;
-                aiResponseId: string;
-                specialty: string | null;
-                title: string;
                 documentType: string | null;
-                source: string;
                 publicationYear: number | null;
+                title: string;
+                id: string;
+                specialty: string | null;
+                source: string;
+                createdAt: Date;
                 authors: string | null;
                 doi: string | null;
+                aiResponseId: string;
                 url: string | null;
                 citationIndex: number;
                 chunkId: string | null;
@@ -132,6 +132,7 @@ export declare class QuestionsService {
         } & {
             id: string;
             createdAt: Date;
+            updatedAt: Date;
             questionId: string;
             summary: string;
             detailedExplanation: string | null;
@@ -141,7 +142,6 @@ export declare class QuestionsService {
             generatedBy: string;
             processingTime: number | null;
             documentsUsed: number | null;
-            updatedAt: Date;
         }) | null;
     } & {
         id: string;

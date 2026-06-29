@@ -8,6 +8,7 @@ import { Input } from '../../../components/ui/Input';
 import { ClipboardCheck, Search as SearchIcon, ChevronLeft, ChevronRight } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
+import { useRouter } from 'next/navigation';
 
 interface ApprovedResponse {
   id: string;
@@ -18,6 +19,7 @@ interface ApprovedResponse {
 }
 
 export default function ValidatorApprovedPage() {
+  const router = useRouter();
   const [approved, setApproved] = useState<ApprovedResponse[]>([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -34,10 +36,14 @@ export default function ValidatorApprovedPage() {
       const response = await api.request<{ success: boolean; data: { reviews: ApprovedResponse[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
         `/validation/approved?page=${page}&limit=20&search=${encodeURIComponent(search)}`
       );
-      setApproved(response.data.reviews);
-      setTotalPages(response.data.pagination.totalPages);
+      setApproved(response.data?.reviews || []);
+      setTotalPages(response.data?.pagination?.totalPages || 1);
     } catch (error) {
-      console.error('Failed to fetch approved responses:', error);
+      if (error instanceof Error && error.message === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        console.error('Failed to fetch approved responses:', error);
+      }
     } finally {
       setLoading(false);
     }

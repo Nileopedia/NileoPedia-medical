@@ -46,7 +46,21 @@ class PineconeService {
     async deleteVectors(ids) {
         if (!this.pinecone || !this.index)
             return;
-        await this.index.delete(ids);
+        await this.index.deleteMany(ids);
+    }
+    async deleteByDocumentId(documentId) {
+        if (!this.pinecone || !this.index)
+            return;
+        try {
+            await this.index.deleteMany({
+                filter: { documentId: { $eq: documentId } }
+            });
+            logger_1.logger.info(`Deleted vectors for document ${documentId}`);
+        }
+        catch (error) {
+            logger_1.logger.error('Pinecone delete failed:', error);
+            throw error;
+        }
     }
     async storeChunks(chunks, embeddings, documentId) {
         const vectors = embeddings.map((embedding, i) => ({

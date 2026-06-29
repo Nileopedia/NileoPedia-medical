@@ -18,22 +18,22 @@ export declare class DocumentIngestionService {
         fileSize: number;
     }): Promise<{
         document: {
-            id: string;
-            createdAt: Date;
-            updatedAt: Date;
-            specialty: string | null;
-            title: string;
+            ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
             documentType: string | null;
-            source: string | null;
-            description: string | null;
             publicationYear: number | null;
+            description: string | null;
+            title: string;
+            id: string;
             fileName: string;
             fileUrl: string;
             fileType: string;
             fileSize: number;
+            specialty: string | null;
+            source: string | null;
             uploadedById: string;
-            ingestionStatus: import("@prisma/client").$Enums.IngestionStatus;
             isVerified: boolean;
+            createdAt: Date;
+            updatedAt: Date;
         };
         chunksCount: number;
     }>;
