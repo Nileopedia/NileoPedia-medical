@@ -51,12 +51,14 @@ export class QuestionsController {
 
       res.status(200).json({
         success: true,
-        data: result.questions,
-        meta: {
-          total: result.total,
-          page: result.page,
-          limit: result.limit,
-          totalPages: result.totalPages,
+        data: {
+          questions: result.questions,
+          meta: {
+            total: result.total,
+            page: result.page,
+            limit: result.limit,
+            totalPages: result.totalPages,
+          },
         },
       });
     } catch (error) {
@@ -76,12 +78,14 @@ export class QuestionsController {
 
       res.status(200).json({
         success: true,
-        data: result.questions,
-        meta: {
-          total: result.total,
-          page: result.page,
-          limit: result.limit,
-          totalPages: result.totalPages,
+        data: {
+          questions: result.questions,
+          meta: {
+            total: result.total,
+            page: result.page,
+            limit: result.limit,
+            totalPages: result.totalPages,
+          },
         },
       });
     } catch (error) {

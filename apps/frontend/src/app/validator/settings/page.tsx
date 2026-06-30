@@ -5,6 +5,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui
 import { Bell, Shield, Save, Loader2 } from 'lucide-react';
 import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
+import { useRouter } from 'next/navigation';
 import { useToast } from '../../../components/ui/Toast';
 import { useTheme } from 'next-themes';
 
@@ -18,6 +19,7 @@ export default function ValidatorSettingsPage() {
   });
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
+  const router = useRouter();
   const { addToast } = useToast();
   const { theme, setTheme } = useTheme();
 
@@ -28,10 +30,21 @@ export default function ValidatorSettingsPage() {
   const fetchSettings = async () => {
     setLoading(true);
     try {
-      const response = await api.request<{ success: boolean; data: typeof settings }>('/validator/settings');
-      setSettings(response.data);
+      const response = await api.request<{ success: boolean; data: typeof settings }>('/validation/settings');
+      setSettings(response.data ?? {
+        reviewAlerts: true,
+        feedbackAlerts: true,
+        emailNotifications: true,
+        autoSortByPriority: false,
+        citationDisplay: 'inline',
+      });
     } catch (err) {
-      addToast({ type: 'error', title: 'Failed to load settings' });
+      const msg = err instanceof Error ? err.message : 'Failed to load settings';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        addToast({ type: 'error', title: 'Failed to load settings' });
+      }
     } finally {
       setLoading(false);
     }
@@ -40,7 +53,7 @@ export default function ValidatorSettingsPage() {
   const handleSave = async () => {
     setSaving(true);
     try {
-      await api.request('/validator/settings', {
+      await api.request('/validation/settings', {
         method: 'PUT',
         body: JSON.stringify(settings),
       });

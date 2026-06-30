@@ -42,7 +42,7 @@ export default function ValidatorProfilePage() {
 
   const fetchProfile = async () => {
     try {
-      const response = await api.request<{ success: boolean; data: ValidatorProfile }>('/validator/profile');
+      const response = await api.request<{ success: boolean; data: ValidatorProfile }>('/validation/profile');
       setProfile(response.data);
       setFormData({
         specialization: response.data.specialization || '',
@@ -57,7 +57,7 @@ export default function ValidatorProfilePage() {
 
   const handleSave = async () => {
     try {
-      await api.request('/validator/profile', {
+      await api.request('/validation/profile', {
         method: 'PUT',
         body: JSON.stringify(formData),
       });

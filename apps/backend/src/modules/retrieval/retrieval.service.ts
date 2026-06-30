@@ -31,11 +31,15 @@ export class RetrievalService {
     }
     
     const embedding = await this.embeddingService.generateEmbedding(query);
+    console.log('[PINECONE] Query embedding dimensions:', embedding.length);
     const results = await this.index.query({
       vector: embedding,
       topK,
       includeMetadata: true,
     });
+
+    console.log('[PINECONE] Matches:', results.matches?.length);
+    console.log('[PINECONE] Scores:', results.matches?.map((m: any) => m.score));
 
     return results.matches || [];
   }

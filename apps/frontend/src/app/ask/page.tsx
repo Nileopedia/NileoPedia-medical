@@ -287,12 +287,26 @@ onKeyDown={(e) => {
             </div>
           )}
 
+          {response?.source === 'no_results' && !error && (
+            <div className="bg-card rounded-xl border border-amber-200 p-4 sm:p-6 shadow-sm">
+              <div className="flex items-start">
+                <Info className="h-5 w-5 text-amber-500 mr-3 mt-0.5" />
+                <div>
+                  <h3 className="text-base font-semibold text-amber-700 mb-2">No Retrieval Results</h3>
+                  <p className="text-sm text-amber-600">
+                    No relevant medical documents were found in the knowledge base for this query. Please try a different question or check back later.
+                  </p>
+                </div>
+              </div>
+            </div>
+          )}
+
           {response?.source === 'unavailable' && !error && (
             <div className="bg-card rounded-xl border border-red-200 p-4 sm:p-6 shadow-sm">
               <div className="flex items-start">
                 <Info className="h-5 w-5 text-red-500 mr-3 mt-0.5" />
                 <div>
-                  <h3 className="text-base font-semibold text-red-700 mb-2">No Medical Evidence Available</h3>
+                  <h3 className="text-base font-semibold text-red-700 mb-2">Unable to Generate Response</h3>
                   <p className="text-sm text-red-600">
                     We couldn't retrieve enough medical evidence. Please try rephrasing your question or contact support.
                   </p>

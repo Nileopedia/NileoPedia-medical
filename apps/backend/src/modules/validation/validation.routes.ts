@@ -10,7 +10,6 @@ router.get('/pending', authenticate, authorize('VALIDATOR', 'ADMIN'), validation
 router.post('/:responseId/approve', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.approve.bind(validationController));
 router.post('/:responseId/reject', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.reject.bind(validationController));
 router.get('/history', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getHistory.bind(validationController));
-router.get('/:responseId', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getReview.bind(validationController));
 router.get('/approved', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getApproved.bind(validationController));
 router.get('/rejected', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getRejected.bind(validationController));
 router.get('/feedback', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getFeedbackReports.bind(validationController));
@@ -19,5 +18,6 @@ router.get('/profile', authenticate, authorize('VALIDATOR', 'ADMIN'), validation
 router.put('/profile', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.updateProfile.bind(validationController));
 router.get('/settings', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getSettings.bind(validationController));
 router.put('/settings', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.updateSettings.bind(validationController));
+router.get('/:responseId', authenticate, authorize('VALIDATOR', 'ADMIN'), validationController.getReview.bind(validationController));
 
 export default router;

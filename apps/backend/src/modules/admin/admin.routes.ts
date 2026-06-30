@@ -29,5 +29,6 @@ router.get('/recent-validations', authenticate, authorize('ADMIN'), adminControl
 router.get('/settings', authenticate, authorize('ADMIN'), adminController.getSettings.bind(adminController));
 router.put('/settings', authenticate, authorize('ADMIN'), adminController.updateSettings.bind(adminController));
 router.get('/ai-activity', authenticate, authorize('ADMIN'), adminController.getAiActivity.bind(adminController));
+router.get('/retrieval-test', authenticate, authorize('ADMIN'), adminController.retrievalTest.bind(adminController));
 
 export default router;

@@ -63,7 +63,7 @@ export interface AIResponse {
   dueDate?: string;
   tags: string[];
   isSaved?: boolean;
-  source: 'real' | 'unavailable';
+  source: 'real' | 'unavailable' | 'no_results';
   documentsUsed?: number;
   embeddingModel?: string;
   processingTime?: number;

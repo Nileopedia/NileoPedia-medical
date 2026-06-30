@@ -112,6 +112,38 @@ async function warmupAiServices(): Promise<void> {
   console.log('[STARTUP] Warmup complete\n');
 }
 
+// Verify Pinecone index on startup
+async function verifyPineconeIndex(): Promise<void> {
+  const { RetrievalService } = require('./modules/retrieval/retrieval.service');
+  const retrievalService = new RetrievalService();
+  
+  console.log('\n========== PINECONE INDEX VERIFICATION ==========');
+  
+  if (!retrievalService.pineconeClient || !retrievalService['index']) {
+    console.warn('[WARN] Pinecone not configured - mock mode active');
+    console.log('=================================================\n');
+    return;
+  }
+
+  try {
+    const index = retrievalService['index'];
+    const stats = await index.describeIndexStats();
+    console.log('[PINECONE] Total vectors:', (stats as any).totalRecordCount ?? 'unknown');
+    console.log('[PINECONE] Index dimension:', (stats as any).dimension ?? 'unknown');
+    
+    const vectorCount = (stats as any).totalRecordCount || 0;
+    if (vectorCount === 0) {
+      console.warn('[WARN] No vectors indexed - knowledge base is empty');
+      console.warn('[WARN] Run ingestion to populate the knowledge base');
+    } else {
+      console.log(`[PINECONE] Index healthy with ${vectorCount} vectors`);
+    }
+  } catch (e: any) {
+    console.error('[ERROR] Failed to verify Pinecone index:', e?.message || e);
+  }
+  console.log('===================================================\n');
+}
+
 // Verify embedding service on startup
 async function verifyEmbeddings(): Promise<void> {
   const { EmbeddingService } = require('./modules/rag/services/embedding.service');
@@ -166,6 +198,7 @@ prisma.$connect()
     
     // Verify embedding service at startup (non-blocking)
     setImmediate(() => verifyEmbeddings());
+    setImmediate(() => verifyPineconeIndex());
     
     // Seed knowledge base if empty
     await seedKnowledgeBase();

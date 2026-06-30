@@ -1,5 +1,6 @@
 import prisma from '../../config/prisma';
 import { IngestionStatus } from '@prisma/client';
+import { logger } from '../../config/logger';
 import {
   CreateDocumentDto,
   UpdateDocumentDto,
@@ -134,10 +135,14 @@ export class DocumentService {
       where: { documentId: id },
     });
 
-    // Delete old Pinecone vectors
-    const { PineconeService } = await import('../rag/services/pinecone.service');
-    const pineconeService = new PineconeService();
-    await pineconeService.deleteByDocumentId(id);
+    // Delete old Pinecone vectors (non-blocking — proceed with re-ingestion even if this fails)
+    try {
+      const { PineconeService } = await import('../rag/services/pinecone.service');
+      const pineconeService = new PineconeService();
+      await pineconeService.deleteByDocumentId(id);
+    } catch (error) {
+      logger.warn('Proceeding with re-ingestion using new vectors', { documentId: id, error });
+    }
 
     // Reset document state
     await prisma.medicalDocument.update({

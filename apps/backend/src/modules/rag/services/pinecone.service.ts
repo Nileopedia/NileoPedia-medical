@@ -20,8 +20,9 @@ export class PineconeService {
 
   async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>) {
     if (!this.pinecone || !this.index) return;
-    const batchSize = 20; // Smaller batch size to avoid Pinecone timeouts
+    const batchSize = 20;
     
+    console.log('[PINECONE] Upserting', vectors.length, 'vectors');
     for (let i = 0; i < vectors.length; i += batchSize) {
       const batch = vectors.slice(i, i + batchSize);
       try {
@@ -30,12 +31,15 @@ export class PineconeService {
         logger.error('Pinecone upsert batch failed:', { batchStart: i, error });
       }
     }
+    console.log('[PINECONE] Upsert complete');
   }
 
   async query(vector: number[], topK = 10, filter?: Record<string, any>) {
     if (!this.pinecone || !this.index) {
+      console.log('[PINECONE] Query skipped - Pinecone not configured');
       return [];
     }
+    
     const queryRequest = {
       vector,
       topK,
@@ -44,7 +48,9 @@ export class PineconeService {
     };
 
     const results = await this.index.query(queryRequest);
-    return results.matches || [];
+    const matches = results.matches || [];
+    console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m: any) => m.score));
+    return matches;
   }
 
   async deleteVectors(ids: string[]) {
@@ -54,18 +60,20 @@ export class PineconeService {
 
   async deleteByDocumentId(documentId: string) {
     if (!this.pinecone || !this.index) return;
+    logger.info('Deleting previous vectors', { documentId });
     try {
       await this.index.deleteMany({
-        filter: { documentId: { $eq: documentId } }
+        filter: { documentId },
       });
       logger.info(`Deleted vectors for document ${documentId}`);
     } catch (error) {
-      logger.error('Pinecone delete failed:', error);
+      logger.error('Failed deleting existing vectors', error);
       throw error;
     }
   }
 
   async storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string) {
+    console.log('[PINECONE] Storing', chunks.length, 'chunks for document:', documentId);
     const vectors = embeddings.map((embedding, i) => ({
       id: `${documentId}_chunk_${i}`,
       values: embedding,
@@ -78,11 +86,13 @@ export class PineconeService {
     }));
 
     await this.upsertVectors(vectors);
+    console.log('[PINECONE] Stored', vectors.length, 'vectors for document:', documentId);
     return vectors;
   }
 
   async searchSimilar(query: string, embeddingService: any, topK = 10, filter?: Record<string, any>) {
     if (!this.pinecone || !this.index) {
+      console.log('[PINECONE] searchSimilar skipped - Pinecone not configured');
       return [];
     }
     const queryEmbedding = await embeddingService.generateEmbedding(query);

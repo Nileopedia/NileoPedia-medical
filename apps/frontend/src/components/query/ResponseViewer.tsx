@@ -37,6 +37,14 @@ export const ResponseViewer: React.FC<ResponseViewerProps> = ({ response, onSave
         </div>
       );
     }
+    if (response.source === 'no_results') {
+      return (
+        <div className="flex items-center text-amber-600 mb-4">
+          <Info size={16} className="mr-2" />
+          <span className="text-sm font-medium">No Retrieval Results</span>
+        </div>
+      );
+    }
     return (
       <div className="flex items-center text-red-600 mb-4">
         <Info size={16} className="mr-2" />

@@ -1,17 +1,17 @@
 'use client';
 
 import React, { useEffect, useState, useRef } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
-import { TextArea } from '../../components/ui/Input';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Button } from '../../../components/ui/Button';
+import { Input } from '../../../components/ui/Input';
+import { TextArea } from '../../../components/ui/Input';
 import { Camera, Save, Loader2, User } from 'lucide-react';
-import { AppLayout } from '../../components/layout/AppLayout';
-import { api } from '../../lib/api';
-import { useAppStore } from '../../store/appStore';
+import { AppLayout } from '../../../components/layout/AppLayout';
+import { api } from '../../../lib/api';
+import { useAppStore } from '../../../store/appStore';
 import { useRouter } from 'next/navigation';
-import { useToast } from '../../components/ui/Toast';
-import { cn } from '../../utils/cn';
+import { useToast } from '../../../components/ui/Toast';
+import { cn } from '../../../utils/cn';
 
 type ProfileForm = {
   fullName: string;

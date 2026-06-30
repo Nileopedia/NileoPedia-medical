@@ -41,8 +41,9 @@ export default function ValidatorFeedbackPage() {
       const response = await api.request<{ success: boolean; data: { reports: FeedbackReport[]; pagination: { total: number; page: number; limit: number; totalPages: number } } }>(
         `/validation/feedback?page=${page}&limit=20&search=${encodeURIComponent(search)}`
       );
-      setFeedbackReports(response.data.reports);
-      setTotalPages(response.data.pagination.totalPages);
+      const reports = response.data?.reports ?? [];
+      setFeedbackReports(reports);
+      setTotalPages(response.data?.pagination?.totalPages ?? 1);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'Failed to fetch feedback reports';
       if (msg === 'Please sign in to continue') {

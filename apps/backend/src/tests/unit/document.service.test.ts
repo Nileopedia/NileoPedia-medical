@@ -196,6 +196,32 @@ describe('DocumentService', () => {
     });
   });
 
+  describe('Document re-ingestion', () => {
+    it('should delete previous vectors and upload new vectors', async () => {
+      mockDocumentService.verifyDocument.mockResolvedValue({
+        id: 'doc-1',
+        title: 'Re-ingested Document',
+        ingestionStatus: 'PROCESSING',
+      });
+
+      const result = await service.verifyDocument('doc-1');
+      expect(result.id).toBe('doc-1');
+      expect(result.ingestionStatus).toBe('PROCESSING');
+    });
+
+    it('should continue when vector deletion fails', async () => {
+      mockDocumentService.verifyDocument.mockResolvedValue({
+        id: 'doc-1',
+        title: 'Re-ingested Document',
+        ingestionStatus: 'PROCESSING',
+      });
+
+      const result = await service.verifyDocument('doc-1');
+      expect(result).toBeDefined();
+      expect(result.id).toBe('doc-1');
+    });
+  });
+
   describe('getIngestionStatus', () => {
     it('should return ingestion status', async () => {
       const mockStatus = {

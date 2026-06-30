@@ -311,9 +311,8 @@ class ApiClient {
   }
 
   private normalizeAiResponse(question: BackendQuestion): QuestionDetail {
-    const hasRealResponse = !!(question.aiResponse && 
-      question.aiResponse.summary && 
-      question.aiResponse.summary !== 'I could not find supporting medical information in the knowledge base.');
+    const NO_RESULTS = 'No retrieval results';
+    const UNAVAILABLE = 'I could not find supporting medical information in the knowledge base.';
     
     const aiResponse = question.aiResponse
       ? {
@@ -330,15 +329,15 @@ class ApiClient {
           generatedAt: question.aiResponse.createdAt || question.createdAt,
           tags: [],
           isSaved: question.isSaved || false,
-          source: (hasRealResponse ? 'real' : 'unavailable') as 'real' | 'unavailable',
+          source: (question.aiResponse.summary === NO_RESULTS ? 'no_results' : 'real') as 'real' | 'no_results',
           documentsUsed: question.aiResponse.documentsUsed ?? 0,
-          processingTime: question.aiResponse.processingTime ?? null,
+          processingTime: question.aiResponse.processingTime ?? undefined,
         }
       : {
           id: `resp-${question.id}`,
           queryId: question.id,
           title: question.questionText,
-          summary: 'I could not find supporting medical information in the knowledge base.',
+          summary: UNAVAILABLE,
           keyRecommendations: [],
           sections: {},
           citations: [],
@@ -350,7 +349,7 @@ class ApiClient {
           isSaved: false,
           source: 'unavailable' as const,
           documentsUsed: 0,
-          processingTime: null,
+          processingTime: undefined,
         };
 
     return {
@@ -657,7 +656,7 @@ class ApiClient {
       ? { total: reviews.length, page: 1, limit: reviews.length, totalPages: 1 } 
       : (data as any).pagination || { total: 0, page: 1, limit: limit || 20, totalPages: 0 };
     return {
-      reviews: reviews.map((item) => ({
+      reviews: reviews.map((item: any) => ({
         id: item.id,
         aiResponseId: item.aiResponseId,
         aiResponse: {

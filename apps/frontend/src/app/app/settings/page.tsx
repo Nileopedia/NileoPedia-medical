@@ -1,17 +1,17 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
-import { Button } from '../../components/ui/Button';
-import { Input } from '../../components/ui/Input';
-import { TextArea } from '../../components/ui/Input';
+import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
+import { Button } from '../../../components/ui/Button';
+import { Input } from '../../../components/ui/Input';
+import { TextArea } from '../../../components/ui/Input';
 import { Loader2, Save, Lock, Bell, Palette, Brain } from 'lucide-react';
-import { AppLayout } from '../../components/layout/AppLayout';
-import { api } from '../../lib/api';
+import { AppLayout } from '../../../components/layout/AppLayout';
+import { api } from '../../../lib/api';
 import { useRouter } from 'next/navigation';
-import { useToast } from '../../components/ui/Toast';
-import { useSettings } from '../../contexts/SettingsContext';
-import { cn } from '../../utils/cn';
+import { useToast } from '../../../components/ui/Toast';
+import { useSettings } from '../../../contexts/SettingsContext';
+import { cn } from '../../../utils/cn';
 
 type Theme = 'light' | 'dark' | 'system';
 type Language = 'en' | 'am' | 'om';
