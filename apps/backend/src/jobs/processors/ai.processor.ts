@@ -49,7 +49,6 @@ export async function processAiGeneration(job: AiGenerationJob) {
     }
 
     let embedding: number[] | null = null;
-    let pineconeResults: any[];
     try {
       console.log('[AI] Generating embedding for query:', query);
       const embeddingPromise = retrievalService.embeddingService.generateEmbedding(query);
@@ -69,72 +68,81 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('embeddings', 'Embedding service unavailable');
     }
 
+    let retrievalResult: { hasContext: boolean; context: any[] } | null = null;
     try {
-      console.log('[AI] Running hybrid search with topK:', topK, 'specialty:', specialty);
-      const searchPromise = retrievalService.hybridSearch(query, specialty || undefined);
+      console.log(`[AI] Running strict RAG retrieval for query: ${query}`);
+      const retrievalPromise = retrievalService.getRelevantDocs(query, topK || 10);
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Pinecone timeout after 10000ms')), 10000);
       });
 
-      pineconeResults = await Promise.race([searchPromise, timeoutPromise]) as any[];
-      console.log('[AI] Retrieved docs:', pineconeResults.length);
-      console.log('[AI] Top docs:', pineconeResults.slice(0, 3).map(d => ({
+      retrievalResult = await Promise.race([retrievalPromise, timeoutPromise]) as {
+        hasContext: boolean;
+        context: any[];
+      };
+
+      logger.info({
+        question: query,
+        retrievedCount: retrievalResult.context.length,
+        topScore: retrievalResult.context[0]?.score,
+      });
+
+      console.log('[AI] Retrieved docs:', retrievalResult.context.length);
+      console.log('[AI] Top docs:', retrievalResult.context.slice(0, 3).map((d: any) => ({
         id: d.id,
         score: d.score,
         title: d.metadata?.title || d.metadata?.source || 'Unknown',
       })));
+
+      if (!retrievalResult.hasContext) {
+        const noResultResponse = await prisma.aIResponse.upsert({
+          where: { questionId },
+          create: {
+            questionId,
+            summary: 'I could not find supporting medical information in the knowledge base.',
+            detailedExplanation: 'No relevant documents exist in NileoPedia.',
+            keyFindings: [],
+            confidenceScore: 0,
+            generatedBy: 'No Context',
+            validationStatus: 'APPROVED',
+          },
+          update: {
+            summary: 'I could not find supporting medical information in the knowledge base.',
+            detailedExplanation: 'No relevant documents exist in NileoPedia.',
+            keyFindings: [],
+            confidenceScore: 0,
+            generatedBy: 'No Context',
+            validationStatus: 'APPROVED',
+          },
+        });
+
+        const totalMs = Date.now() - totalStart;
+        await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+          questionId,
+          progress: 100,
+          keyFindings: [],
+        }));
+
+        logger.warn(`AI generation skipped - no relevant context for question: ${questionId}`);
+        console.log('[AI] No context found for query:', query);
+
+        const metadata: MetadataResponse = {
+          answer: 'I could not find supporting medical information in the knowledge base.',
+          source: 'Knowledge Base Unavailable',
+          documentsUsed: 0,
+          model: 'none',
+          embeddingModel: 'Xenova/all-MiniLM-L6-v2',
+          processingTime: totalMs,
+        };
+
+        return { success: true, responseId: noResultResponse.id, metadata };
+      }
     } catch (pineconeError: any) {
       logger.error('[ERROR] Pinecone retrieval failed:', pineconeError);
       return createPipelineError('retrieval', 'No supporting medical documents found');
     }
 
-    if (pineconeResults.length === 0) {
-      logger.warn('[AI] No documents retrieved from Pinecone - saving no-results response');
-      console.log('[AI] No retrieval results for query:', query);
-
-      const noResultResponse = await prisma.aIResponse.upsert({
-        where: { questionId },
-        create: {
-          questionId,
-          summary: 'No retrieval results',
-          detailedExplanation: null,
-          keyFindings: [],
-          confidenceScore: 0,
-          generatedBy: 'No retrieval results',
-          validationStatus: 'APPROVED',
-        },
-        update: {
-          summary: 'No retrieval results',
-          detailedExplanation: null,
-          keyFindings: [],
-          confidenceScore: 0,
-          generatedBy: 'No retrieval results',
-          validationStatus: 'APPROVED',
-        },
-      });
-
-      const totalMs = Date.now() - totalStart;
-      await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
-        questionId,
-        progress: 100,
-        keyFindings: [],
-      }));
-
-      logger.info(`AI generation completed (no results) for question: ${questionId}`);
-      
-      const metadata = {
-        answer: 'No retrieval results',
-        source: 'no_results',
-        documentsUsed: 0,
-        model: 'none',
-        embeddingModel: 'Xenova/all-MiniLM-L6-v2',
-        processingTime: totalMs,
-      };
-
-      return { success: true, responseId: noResultResponse.id, metadata };
-    }
-
-    const chunks = pineconeResults.map((match: any) => ({
+    const chunks = retrievalResult.context.map((match: any) => ({
       text: match.metadata?.textPreview || match.metadata?.text || '',
       metadata: match.metadata,
     }));
@@ -142,50 +150,6 @@ export async function processAiGeneration(job: AiGenerationJob) {
 
     console.log('[GROQ] Context length:', context.length);
     console.log('[GROQ] Chunks used:', chunks.length);
-
-    if (context.trim().length === 0) {
-      logger.warn('[AI] Empty context after retrieval - saving no-results response');
-      const noResultResponse = await prisma.aIResponse.upsert({
-        where: { questionId },
-        create: {
-          questionId,
-          summary: 'No retrieval results',
-          detailedExplanation: null,
-          keyFindings: [],
-          confidenceScore: 0,
-          generatedBy: 'No retrieval results',
-          validationStatus: 'APPROVED',
-        },
-        update: {
-          summary: 'No retrieval results',
-          detailedExplanation: null,
-          keyFindings: [],
-          confidenceScore: 0,
-          generatedBy: 'No retrieval results',
-          validationStatus: 'APPROVED',
-        },
-      });
-
-      const totalMs = Date.now() - totalStart;
-      await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
-        questionId,
-        progress: 100,
-        keyFindings: [],
-      }));
-
-      return {
-        success: true,
-        responseId: noResultResponse.id,
-        metadata: {
-          answer: 'No retrieval results',
-          source: 'no_results',
-          documentsUsed: 0,
-          model: 'none',
-          embeddingModel: 'Xenova/all-MiniLM-L6-v2',
-          processingTime: totalMs,
-        },
-      };
-    }
 
     const groqStart = Date.now();
     const groq = CONFIG.GROQ_API_KEY ? new Groq({ apiKey: CONFIG.GROQ_API_KEY }) : null;
@@ -199,31 +163,34 @@ export async function processAiGeneration(job: AiGenerationJob) {
     let groqMs = 0;
 
     try {
-      const systemPrompt = `You are a medical AI assistant providing evidence-based answers. Always cite your sources.
+      const systemPrompt = `You are a medical retrieval assistant.
+
+Rules:
+- Use ONLY information provided in CONTEXT.
+- Never use your own knowledge.
+- Never invent facts.
+- If context is insufficient, reply exactly: "I could not find supporting medical information in the knowledge base."
+
+CONTEXT:
+${context}
+
+Retrieve relevant medical information. Do not add external knowledge.`;
+
+      const userPrompt = `QUESTION:
+${query}
+
 Return your response as valid JSON with exactly this structure:
 {
-  "summary": "2-4 sentence clinical summary",
-  "keyRecommendations": ["recommendation 1", "recommendation 2", ...],
-  "sections": {
-    "treatmentGoals": "detailed section text",
-    "lifestyle": "detailed section text",
-    "medications": "detailed section text",
-    "monitoring": "detailed section text"
-  },
-  "citations": [
-    {
-      "title": "source title",
-      "authors": "authors list",
-      "journal": "journal name",
-      "year": 2024,
-      "doi": "DOI if known"
-    }
-  ]
-}`;
+  "summary": "clinical summary",
+  "keyRecommendations": [],
+  "sections": {},
+  "citations": []
+}
 
-      const userPrompt = `Question: ${query}\n\nContext:\n${context}\n\nRespond ONLY with valid JSON matching the schema above. Do not include any text outside the JSON.`;
+If no relevant information is available in the context, use summary: "I could not find supporting medical information in the knowledge base."`;
 
       console.log('[GROQ] Sending request to model:', CONFIG.GROQ_MODEL);
+
       const groqPromise = groq.chat.completions.create({
         model: CONFIG.GROQ_MODEL,
         messages: [
@@ -244,19 +211,29 @@ Return your response as valid JSON with exactly this structure:
       const rawContent = completion.choices[0]?.message?.content || '{}';
       console.log('[GROQ] Raw response length:', rawContent.length);
       console.log('[GROQ] Raw response preview:', rawContent.substring(0, 200));
-      
+
       try {
         const cleaned = rawContent.replace(/^```(?:json)?\n?|```$/g, '').trim();
         structuredResponse = JSON.parse(cleaned);
         console.log('[GROQ] Parsed structured response successfully');
       } catch (parseError) {
-        logger.warn('Failed to parse structured JSON from LLM, using fallback');
-        structuredResponse = {
-          summary: rawContent.substring(0, 500),
-          keyRecommendations: [],
-          sections: {},
-          citations: [],
-        };
+        const noContext = rawContent.toLowerCase().includes('i could not find supporting medical information');
+        if (noContext) {
+          structuredResponse = {
+            summary: 'I could not find supporting medical information in the knowledge base.',
+            keyRecommendations: [],
+            sections: {},
+            citations: [],
+          };
+        } else {
+          logger.warn('Failed to parse structured JSON from LLM, using fallback');
+          structuredResponse = {
+            summary: rawContent.substring(0, 500),
+            keyRecommendations: [],
+            sections: {},
+            citations: [],
+          };
+        }
       }
     } catch (groqError: any) {
       groqMs = Date.now() - groqStart;
@@ -365,7 +342,7 @@ Return your response as valid JSON with exactly this structure:
     const metadata: MetadataResponse = {
       answer: summary,
       source: 'real',
-      documentsUsed: pineconeResults.length,
+      documentsUsed: chunks.length,
       model: generatedBy,
       embeddingModel: 'Xenova/all-MiniLM-L6-v2',
       processingTime: totalMs,

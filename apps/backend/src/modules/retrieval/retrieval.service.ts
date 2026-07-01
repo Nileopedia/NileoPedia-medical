@@ -62,4 +62,14 @@ export class RetrievalService {
   private rankResults(results: any[]) {
     return results.sort((a, b) => (b.score || 0) - (a.score || 0));
   }
+
+  getRelevantDocs(query: string, topK = 10, minScore = 0.75) {
+    return this.semanticSearch(query, topK).then((matches) => {
+      const relevant = matches.filter((match: any) => (match.score ?? 0) >= minScore);
+      if (relevant.length === 0) {
+        return { hasContext: false, context: '' };
+      }
+      return { hasContext: true, context: relevant };
+    });
+  }
 }

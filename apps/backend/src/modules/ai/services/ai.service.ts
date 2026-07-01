@@ -31,8 +31,8 @@ export class AIService {
     const completion = await this.groq.chat.completions.create({
       model: CONFIG.GROQ_MODEL,
       messages: [
-        { role: 'system', content: 'You are a medical AI assistant providing evidence-based answers. Always cite your sources.' },
-        { role: 'user', content: `Question: ${question}\n\nContext:\n${context}` },
+        { role: 'system', content: 'You are a medical retrieval assistant.\n\nRules:\n- Use ONLY information provided in CONTEXT.\n- Never use your own knowledge.\n- Never invent facts.\n- If context is insufficient, reply exactly: "I could not find supporting medical information in the knowledge base."' },
+        { role: 'user', content: `CONTEXT:\n${context}\n\nQUESTION:\n${question}` },
       ],
     });
 

@@ -13349,3 +13349,472 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-06-30T21:07:34.950Z [nileopedia-backend] info: GET /api/health - ::1
 2026-06-30T21:07:34.960Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
 2026-06-30T21:07:35.458Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-06-30T21:07:54.513Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-06-30T21:07:55.266Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-06-30T21:07:55.442Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-06-30T21:08:12.352Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-06-30T21:08:12.408Z [nileopedia-backend] info: Processing AI generation job: 80
+2026-06-30T21:08:12.414Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-06-30T21:08:13.043Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:13.994Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:15.494Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:16.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:18.517Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:19.993Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:21.207Z [nileopedia-backend] info: AI generation completed for question: ceea429e-84c8-4473-bdb6-043c3ebc5810
+2026-06-30T21:08:21.233Z [nileopedia-backend] info: AI generation job completed: 80
+2026-06-30T21:08:21.489Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:22.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:24.504Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:25.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:27.491Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:28.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:30.492Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:31.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:33.492Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:34.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:36.502Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:38.066Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:39.492Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:40.991Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:42.501Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:43.991Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:45.491Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:46.993Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:48.501Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:49.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:51.493Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:52.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:54.500Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:55.992Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:57.492Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:08:58.993Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:00.922Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:02.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:03.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:05.916Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:06.927Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:08.915Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:09.911Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:11.916Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:12.924Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:14.920Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:15.915Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:17.912Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:18.915Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:20.911Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:21.938Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:23.916Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:24.927Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:26.932Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:27.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:29.979Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:30.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:32.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:33.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:35.921Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:36.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:38.913Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:39.912Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:41.923Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:42.915Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:44.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:45.915Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:47.923Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:48.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:50.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:51.916Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:53.921Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:54.915Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:56.914Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:09:57.916Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:10:01.918Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:11:01.926Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:12:01.924Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:13:01.926Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:14:01.920Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:15:01.925Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:16:01.923Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:17:01.923Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:18:01.927Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:19:01.925Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:20:01.923Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:21:01.925Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:22:01.924Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:23:01.924Z [nileopedia-backend] info: GET /api/v1/questions/ceea429e-84c8-4473-bdb6-043c3ebc5810 - ::1
+2026-06-30T21:29:55.316Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.317Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.326Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.327Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-01T03:38:13.740Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:38:18.019Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:38:19.614Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:38:21.172Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:38:26.106Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:38:26.137Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:40:03.442Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-01T03:40:03.468Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-01T03:40:04.265Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-01T03:46:37.302Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:46:38.155Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:40.086Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:41.805Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:45.802Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:45.835Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:55.921Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:46:56.593Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:58.132Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:46:59.605Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:02.635Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:02.655Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:11.858Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:47:12.320Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:13.735Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:14.990Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:18.145Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:47:18.178Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:22.832Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:48:23.169Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:23.878Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:24.575Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:27.620Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:27.647Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:34.250Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:48:34.640Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:35.647Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:36.554Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:39.695Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:39.707Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:42.605Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:48:43.090Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:43.870Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:44.820Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:47.746Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:48:47.757Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:53:19.973Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:53:20.368Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:53:21.101Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:53:21.824Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:53:25.782Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:53:25.804Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:54:20.735Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:54:20.748Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:54:20.756Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:54:20.769Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:54:20.776Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:54:20.788Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:54:20.793Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:54:20.804Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:54:20.809Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:54:20.821Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:54:20.827Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:44.483Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-01T03:55:44.654Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-01T03:55:44.694Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-01T03:55:44.764Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-01T03:55:50.896Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:55:50.932Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:55:50.976Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:55:51.011Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:55:51.032Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:51.053Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:55:51.078Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:51.117Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:55:51.149Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:51.206Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:55:51.223Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.129Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:57:53.140Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:57:53.147Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:57:53.160Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:57:53.166Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.176Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:57:53.181Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.190Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:57:53.195Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.208Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:57:53.214Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.559Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:58:30.575Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:58:30.583Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:58:30.598Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:58:30.607Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.622Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:58:30.629Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.648Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:58:30.654Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.665Z [nileopedia-backend] info: [object Object]
+2026-07-01T03:58:30.671Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:59:36.579Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T03:59:36.943Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:59:37.667Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:59:38.416Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:59:49.823Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T03:59:49.837Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:00:01.658Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T04:00:02.026Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:00:02.837Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:00:03.568Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:00:07.914Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:00:07.926Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:00:45.254Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:00:45.281Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:00:45.296Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:00:45.334Z [nileopedia-backend] info: [object Object]
+2026-07-01T04:00:45.353Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.380Z [nileopedia-backend] info: [object Object]
+2026-07-01T04:00:45.392Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.414Z [nileopedia-backend] info: [object Object]
+2026-07-01T04:00:45.429Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.451Z [nileopedia-backend] info: [object Object]
+2026-07-01T04:00:45.459Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:02:14.689Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-01T04:02:15.641Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-01T04:02:15.835Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-01T04:02:34.013Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-01T04:02:34.035Z [nileopedia-backend] info: Processing AI generation job: 81
+2026-07-01T04:02:34.038Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:02:34.564Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:36.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:36.307Z [nileopedia-backend] info: [object Object]
+2026-07-01T04:02:36.335Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalResult.context.slice(...).map is not a function
+2026-07-01T04:02:36.347Z [nileopedia-backend] info: AI generation job completed: 81
+2026-07-01T04:02:37.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:39.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:40.540Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:42.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:43.536Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:45.037Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:46.541Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:48.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:49.536Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:51.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:52.543Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:54.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:55.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:57.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:02:58.540Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:00.037Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:01.536Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:03.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:04.541Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:06.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:07.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:09.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:10.540Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:12.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:13.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:15.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:16.540Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:18.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:19.536Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:21.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:22.542Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:24.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:25.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:27.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:28.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:30.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:31.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:33.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:34.543Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:36.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:37.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:39.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:40.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:42.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:43.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:45.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:46.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:48.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:49.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:51.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:52.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:54.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:55.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:57.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:03:58.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:00.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:01.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:03.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:04.538Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:06.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:07.537Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:09.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:10.540Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:12.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:13.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:15.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:16.539Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:18.037Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:19.536Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:21.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:22.539Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:24.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:25.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:27.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:28.543Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:30.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:31.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:33.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:34.539Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:36.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:37.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:39.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:40.539Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:42.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:43.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:45.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:46.540Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:48.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:49.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:51.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:52.541Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:54.039Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:55.541Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:57.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:04:58.544Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:05:00.036Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:05:01.535Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:05:03.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:05:04.539Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:05:06.035Z [nileopedia-backend] info: GET /api/v1/questions/e727a0f6-9feb-4304-bc12-0db7c0b8ea04 - ::1
+2026-07-01T04:05:07.522Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-01T04:05:07.534Z [nileopedia-backend] info: Processing AI generation job: 82
+2026-07-01T04:05:07.535Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:05:07.953Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:09.441Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:10.121Z [nileopedia-backend] info: [object Object]
+2026-07-01T04:05:10.128Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalResult.context.slice(...).map is not a function
+2026-07-01T04:05:10.135Z [nileopedia-backend] info: AI generation job completed: 82
+2026-07-01T04:05:10.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:12.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:13.944Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:15.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:16.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:18.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:19.944Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:21.441Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:22.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:24.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:25.943Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:27.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:28.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:30.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:31.947Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:33.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:34.944Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:36.439Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:37.946Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:39.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:40.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:42.439Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:43.943Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:45.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:46.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:48.441Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:49.969Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:51.442Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:52.942Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:54.445Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:55.947Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:58.214Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:05:59.223Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:01.221Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:02.214Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:03.723Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:04.945Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:06.446Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:07.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:09.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:10.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:12.447Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:13.943Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:15.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:16.942Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:18.448Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:19.941Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:21.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:22.945Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:24.445Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:25.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:27.441Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:28.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:30.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:31.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:33.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:34.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:36.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:37.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:39.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:40.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:42.447Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:43.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:45.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:46.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:48.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:49.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:51.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:52.950Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:54.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:55.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:57.441Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:06:58.941Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:00.445Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:01.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:03.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:04.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:06.445Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:07.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:09.439Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:10.941Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:12.443Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:13.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:15.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:16.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:18.443Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:19.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:21.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:22.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:24.443Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:25.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:27.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:28.947Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:30.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:31.948Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:33.441Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:34.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:36.445Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:37.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:39.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:40.941Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:42.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:43.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:45.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:46.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:48.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:49.941Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:51.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:52.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:54.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:55.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:57.439Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:07:58.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:00.443Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:01.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:03.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:04.941Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:06.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:07.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:09.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:10.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:12.444Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:13.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:15.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:16.939Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:18.443Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:19.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:21.440Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:22.940Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:24.454Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1
+2026-07-01T04:08:25.944Z [nileopedia-backend] info: GET /api/v1/questions/de488018-3611-4a40-b6a1-4d9251ee09aa - ::1

@@ -4986,3 +4986,45 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-06-30T12:43:05.732Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-30T12:43:05.735Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-06-30T12:43:05.736Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.316Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.317Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.326Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-06-30T21:29:55.327Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-01T03:54:20.735Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:54:20.748Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:54:20.756Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:54:20.776Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:54:20.793Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:54:20.809Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:54:20.827Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:44.764Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-01T03:55:50.896Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:55:50.932Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:55:50.976Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:55:51.032Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:51.078Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:51.149Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:55:51.223Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.129Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:57:53.140Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:57:53.147Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:57:53.166Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.181Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.195Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:57:53.214Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.559Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:58:30.575Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:58:30.583Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T03:58:30.607Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.629Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.654Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T03:58:30.671Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.254Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:00:45.281Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:00:45.296Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:00:45.353Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.392Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.429Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:00:45.459Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:02:36.335Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalResult.context.slice(...).map is not a function
+2026-07-01T04:05:10.128Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalResult.context.slice(...).map is not a function
