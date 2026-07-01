@@ -14010,3 +14010,15 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-07-01T04:50:56.933Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-07-01T04:51:01.732Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-07-01T04:51:01.762Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:53:18.420Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T04:53:21.536Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:53:22.410Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:53:23.106Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:53:27.587Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:53:27.598Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:55:17.882Z [nileopedia-backend] info: Schedulers initialized
+2026-07-01T04:55:18.388Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:55:19.222Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:55:20.114Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:55:27.744Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-01T04:55:27.757Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
