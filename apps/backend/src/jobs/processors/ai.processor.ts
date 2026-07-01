@@ -48,6 +48,52 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('retrieval', 'No supporting medical documents found');
     }
 
+    const medicalIntent = await retrievalService.isMedicalQuery(query, retrievalService.embeddingService);
+
+    if (!medicalIntent) {
+      const noResultResponse = await prisma.aIResponse.upsert({
+        where: { questionId },
+        create: {
+          questionId,
+          summary: 'Question outside supported medical domain.',
+          detailedExplanation: 'Please ask medical-related questions only.',
+          keyFindings: [],
+          confidenceScore: 0,
+          generatedBy: 'Domain Filter',
+          validationStatus: 'APPROVED',
+        },
+        update: {
+          summary: 'Question outside supported medical domain.',
+          detailedExplanation: 'Please ask medical-related questions only.',
+          keyFindings: [],
+          confidenceScore: 0,
+          generatedBy: 'Domain Filter',
+          validationStatus: 'APPROVED',
+        },
+      });
+
+      const totalMs = Date.now() - totalStart;
+      await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+        questionId,
+        progress: 100,
+        keyFindings: [],
+      }));
+
+      logger.warn(`AI generation skipped - domain filter for question: ${questionId}`);
+      console.log('[AI] Domain filter blocked query:', query);
+
+      const metadata: MetadataResponse = {
+        answer: 'Question outside supported medical domain.',
+        source: 'Domain Filter',
+        documentsUsed: 0,
+        model: 'none',
+        embeddingModel: 'Xenova/all-MiniLM-L6-v2',
+        processingTime: totalMs,
+      };
+
+      return { success: true, responseId: noResultResponse.id, metadata };
+    }
+
     let embedding: number[] | null = null;
     try {
       console.log('[AI] Generating embedding for query:', query);
@@ -71,14 +117,19 @@ export async function processAiGeneration(job: AiGenerationJob) {
     let retrievalResult: { hasContext: boolean; context: any[] } | null = null;
     try {
       console.log(`[AI] Running strict RAG retrieval for query: ${query}`);
-      const retrievalPromise = retrievalService.getRelevantDocs(query, topK || 10);
+      const pineconePromise = retrievalService.semanticSearch(query, topK || 10);
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Pinecone timeout after 10000ms')), 10000);
       });
 
-      retrievalResult = await Promise.race([retrievalPromise, timeoutPromise]) as {
-        hasContext: boolean;
-        context: any[];
+      const pineconeMatches = await Promise.race([pineconePromise, timeoutPromise]) as any[];
+      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.75);
+      const MIN_DOCS = 2;
+      const hasContext = relevant.length >= MIN_DOCS;
+
+      retrievalResult = {
+        hasContext,
+        context: hasContext ? relevant : [],
       };
 
       logger.info({

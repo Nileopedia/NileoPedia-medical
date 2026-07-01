@@ -217,77 +217,114 @@ export class AdminController {
     }
   }
 
-   async retrievalTest(req: Request, res: Response, next: NextFunction) {
-    try {
-      const query = (req.query.q as string) || 'hypertension';
-      const embeddingService = new EmbeddingService();
-      const retrievalService = new RetrievalService();
-
-      const embeddingSource = embeddingService.embeddingSource;
-      let embeddingDimension = 0;
-      let embedding: number[] = [];
-
+    async retrievalTest(req: Request, res: Response, next: NextFunction) {
       try {
-        embedding = await embeddingService.generateEmbedding(query);
-        embeddingDimension = embedding.length;
-      } catch (e: any) {
-        console.warn('Embedding test failed:', e?.message || e);
+        const query = (req.query.q as string) || 'hypertension';
+        const embeddingService = new EmbeddingService();
+        const retrievalService = new RetrievalService();
+
+        const embeddingSource = embeddingService.embeddingSource;
+        let embeddingDimension = 0;
+        let embedding: number[] = [];
+
+        try {
+          embedding = await embeddingService.generateEmbedding(query);
+          embeddingDimension = embedding.length;
+        } catch (e: any) {
+          console.warn('Embedding test failed:', e?.message || e);
+        }
+
+        let pineconeMatches = 0;
+        let topResults: any[] = [];
+        let pineconeError: string | undefined;
+
+        try {
+          const results = await retrievalService.hybridSearch(query);
+          pineconeMatches = results.length;
+          topResults = results.slice(0, 5).map((r: any) => ({
+            id: r.id,
+            score: r.score,
+            title: r.metadata?.title || r.metadata?.source || 'Unknown',
+          }));
+        } catch (e: any) {
+          pineconeError = e?.message || String(e);
+          console.error('[RETRIEVAL_TEST] Pinecone query failed:', e);
+        }
+
+        let aiStatus = 'idle';
+        if (pineconeError) {
+          aiStatus = 'pinecone_error';
+        } else if (embeddingDimension === 0) {
+          aiStatus = 'embedding_error';
+        } else if (pineconeMatches === 0) {
+          aiStatus = 'no_results';
+        } else {
+          aiStatus = 'ready';
+        }
+
+        await AuditLogger.log(req, {
+          action: 'ADMIN_RETRIEVAL_TEST',
+          entityType: 'System',
+          description: 'Admin ran retrieval pipeline test',
+          metadata: { query, aiStatus, pineconeMatches },
+        });
+
+        res.status(200).json({
+          success: true,
+          query,
+          embeddingSource,
+          embeddingDimension,
+          pineconeMatches,
+          topResults,
+          aiStatus,
+          pineconeError,
+        });
+      } catch (error: any) {
+        logger.error('Retrieval test error:', error);
+        res.status(500).json({
+          success: false,
+          error: error.message,
+          aiStatus: 'error',
+        });
       }
-
-      let pineconeMatches = 0;
-      let topResults: any[] = [];
-      let pineconeError: string | undefined;
-
-      try {
-        const results = await retrievalService.hybridSearch(query);
-        pineconeMatches = results.length;
-        topResults = results.slice(0, 5).map((r: any) => ({
-          id: r.id,
-          score: r.score,
-          title: r.metadata?.title || r.metadata?.source || 'Unknown',
-        }));
-      } catch (e: any) {
-        pineconeError = e?.message || String(e);
-        console.error('[RETRIEVAL_TEST] Pinecone query failed:', e);
-      }
-
-      let aiStatus = 'idle';
-      if (pineconeError) {
-        aiStatus = 'pinecone_error';
-      } else if (embeddingDimension === 0) {
-        aiStatus = 'embedding_error';
-      } else if (pineconeMatches === 0) {
-        aiStatus = 'no_results';
-      } else {
-        aiStatus = 'ready';
-      }
-
-      await AuditLogger.log(req, {
-        action: 'ADMIN_RETRIEVAL_TEST',
-        entityType: 'System',
-        description: 'Admin ran retrieval pipeline test',
-        metadata: { query, aiStatus, pineconeMatches },
-      });
-
-      res.status(200).json({
-        success: true,
-        query,
-        embeddingSource,
-        embeddingDimension,
-        pineconeMatches,
-        topResults,
-        aiStatus,
-        pineconeError,
-      });
-    } catch (error: any) {
-      logger.error('Retrieval test error:', error);
-      res.status(500).json({
-        success: false,
-        error: error.message,
-        aiStatus: 'error',
-      });
     }
-  }
+
+    async ragDebug(req: Request, res: Response, next: NextFunction) {
+      try {
+        const query = (req.query.q as string) || '';
+        const retrievalService = new RetrievalService();
+
+        const pineconeMatches = await retrievalService.semanticSearch(query, 10);
+        const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.75);
+        const documents = relevant.map((doc: any) => ({
+          id: doc.id,
+          score: doc.score,
+          title: doc.metadata?.title || doc.metadata?.source || 'Unknown',
+          source: doc.metadata?.source || 'Unknown',
+        }));
+
+        await AuditLogger.log(req, {
+          action: 'ADMIN_RAG_DEBUG',
+          entityType: 'System',
+          description: 'Admin inspected RAG retrieval results',
+          metadata: { query, retrievedCount: documents.length, topScore: documents[0]?.score },
+        });
+
+        res.status(200).json({
+          success: true,
+          query,
+          retrievedCount: documents.length,
+          topScore: documents[0]?.score || null,
+          documents,
+        });
+      } catch (error: any) {
+        logger.error('RAG debug error:', error);
+        res.status(500).json({
+          success: false,
+          error: error.message,
+        });
+      }
+    }
 
   async performanceTest(req: Request, res: Response, next: NextFunction) {
     const totalStart = Date.now();

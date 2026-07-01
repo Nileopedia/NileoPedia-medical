@@ -5028,3 +5028,52 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-07-01T04:00:45.459Z [nileopedia-backend] error: [ERROR] Groq API unavailable
 2026-07-01T04:02:36.335Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalResult.context.slice(...).map is not a function
 2026-07-01T04:05:10.128Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalResult.context.slice(...).map is not a function
+2026-07-01T04:15:04.573Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:15:04.587Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:15:04.596Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:15:04.604Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:15:04.612Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:15:04.634Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:15:04.648Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:15:04.661Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:15:04.677Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:18:11.048Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:18:11.061Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:18:11.068Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:18:11.077Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:18:11.085Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:18:11.106Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:18:11.123Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:18:11.139Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:18:11.155Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-01T04:32:05.298Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:32:05.310Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:32:05.316Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:32:05.322Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:32:05.329Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:32:05.336Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:33:53.726Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:33:53.738Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:33:53.743Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:33:53.749Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:33:53.755Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:33:53.761Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.586Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.600Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.607Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.615Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.622Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.628Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:03.692Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T04:35:03.703Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T04:35:03.714Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T04:35:48.661Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:48.676Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:48.692Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:48.734Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:48.764Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:48.773Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T04:35:49.076Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T04:35:49.124Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T04:35:49.161Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T04:35:52.459Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured

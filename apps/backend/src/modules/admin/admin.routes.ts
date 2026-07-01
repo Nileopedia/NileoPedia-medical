@@ -30,5 +30,4 @@ router.get('/settings', authenticate, authorize('ADMIN'), adminController.getSet
 router.put('/settings', authenticate, authorize('ADMIN'), adminController.updateSettings.bind(adminController));
 router.get('/ai-activity', authenticate, authorize('ADMIN'), adminController.getAiActivity.bind(adminController));
 router.get('/retrieval-test', authenticate, authorize('ADMIN'), adminController.retrievalTest.bind(adminController));
-
-export default router;
+router.get('/rag-debug', authenticate, authorize('ADMIN'), adminController.ragDebug.bind(adminController));

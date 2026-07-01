@@ -74,16 +74,43 @@ describe('RetrievalService', () => {
     expect(results.length).toBeGreaterThan(0);
   });
 
-  it('getRelevantDocs should return hasContext=true when docs meet threshold', async () => {
-    const result = await service.getRelevantDocs('hypertension', 10, 0.75);
-    expect(result.hasContext).toBe(true);
-    expect((result as any).context.length).toBeGreaterThan(0);
-    expect((result as any).context.every((d: any) => d.score >= 0.75)).toBe(true);
+  it('isMedicalQuery should return true for medical-like queries via embedding similarity', async () => {
+    const medicalEmbedding = Array(384).fill(0.5);
+    const nonMedicalEmbedding = Array(384).fill(-0.5);
+
+    const mockGenerateEmbedding = jest
+      .fn()
+      .mockImplementationOnce((text: string) => {
+        if (text.includes('dizzy') || text.includes('hypertension')) {
+          return Promise.resolve(medicalEmbedding);
+        }
+        return Promise.resolve(nonMedicalEmbedding);
+      })
+      .mockImplementationOnce(() => Promise.resolve(medicalEmbedding));
+
+    (service.embeddingService.generateEmbedding as jest.Mock) = mockGenerateEmbedding;
+
+    const result = await service.isMedicalQuery('Why do I feel dizzy after standing?', service.embeddingService);
+    expect(result).toBe(true);
   });
 
-  it('getRelevantDocs should return hasContext=false when no docs meet threshold', async () => {
-    const result = await service.getRelevantDocs('world cup', 10, 0.99);
-    expect(result.hasContext).toBe(false);
-    expect((result as any).context).toBe('');
+  it('isMedicalQuery should return false for non-medical queries via embedding similarity', async () => {
+    const nonMedicalEmbedding = Array(384).fill(-0.5);
+    const medicalEmbedding = Array(384).fill(0.5);
+
+    const mockGenerateEmbedding = jest
+      .fn()
+      .mockImplementationOnce((text: string) => {
+        if (text.includes('FIFA World Cup') || text.includes('Messi')) {
+          return Promise.resolve(nonMedicalEmbedding);
+        }
+        return Promise.resolve(medicalEmbedding);
+      })
+      .mockImplementationOnce(() => Promise.resolve(medicalEmbedding));
+
+    (service.embeddingService.generateEmbedding as jest.Mock) = mockGenerateEmbedding;
+
+    const result = await service.isMedicalQuery('Who won the FIFA World Cup?', service.embeddingService);
+    expect(result).toBe(false);
   });
 });

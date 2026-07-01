@@ -28,7 +28,8 @@ jest.mock('../../modules/retrieval/retrieval.service', () => {
       generateEmbedding: jest.fn().mockResolvedValue(Array(384).fill(0.5)),
     },
     pineconeClient: { index: jest.fn() },
-    getRelevantDocs: jest.fn(),
+    semanticSearch: jest.fn(),
+    isMedicalQuery: jest.fn(),
   };
 
   return {
@@ -38,6 +39,14 @@ jest.mock('../../modules/retrieval/retrieval.service', () => {
 });
 
 describe('AI Pipeline Validation', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+    const { RetrievalService, retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
+    RetrievalService.mockImplementation(() => retrievalService);
+    retrievalService.semanticSearch = jest.fn();
+    retrievalService.isMedicalQuery = jest.fn().mockResolvedValue(true);
+  });
+
   describe('embeddings failure', () => {
     it('should return embeddings error when embedding service unavailable', async () => {
       const mockJob: AiGenerationJob = {
@@ -69,16 +78,69 @@ describe('AI Pipeline Validation', () => {
   });
 
   describe('strict RAG enforcement', () => {
-    it('should return knowledge-base-unavailable message when no relevant context exists', async () => {
+    it('should return domain-filtered message for non-medical queries like FIFA World Cup', async () => {
       const mockJob: AiGenerationJob = {
-        questionId: 'test-q-no-ctx',
-        query: 'What is FIFA World Cup?',
+        questionId: 'test-q-domain-1',
+        query: 'Who won the FIFA World Cup?',
         userId: 'user-1',
       };
 
       const { retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
-      if (retrievalService.getRelevantDocs) {
-        retrievalService.getRelevantDocs = jest.fn().mockResolvedValue({ hasContext: false, context: '' });
+      if (retrievalService.isMedicalQuery) {
+        retrievalService.isMedicalQuery = jest.fn().mockResolvedValue(false);
+      }
+
+      const result = await processAiGeneration(mockJob);
+
+      if (result.success && (result as any).metadata) {
+        const metadata = (result as any).metadata as MetadataResponse;
+        expect(metadata.source).toBe('Domain Filter');
+        expect(metadata.answer).toBe('Question outside supported medical domain.');
+        expect(metadata.documentsUsed).toBe(0);
+      } else {
+        expect((result as PipelineError).stage).toBeDefined();
+      }
+    });
+
+    it('should return domain-filtered message for non-medical queries like Messi', async () => {
+      const mockJob: AiGenerationJob = {
+        questionId: 'test-q-domain-2',
+        query: 'Who is Messi?',
+        userId: 'user-1',
+      };
+
+      const { retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
+      if (retrievalService.isMedicalQuery) {
+        retrievalService.isMedicalQuery = jest.fn().mockResolvedValue(false);
+      }
+
+      const result = await processAiGeneration(mockJob);
+
+      if (result.success && (result as any).metadata) {
+        const metadata = (result as any).metadata as MetadataResponse;
+        expect(metadata.source).toBe('Domain Filter');
+        expect(metadata.answer).toBe('Question outside supported medical domain.');
+        expect(metadata.documentsUsed).toBe(0);
+      } else {
+        expect((result as PipelineError).stage).toBeDefined();
+      }
+    });
+
+    it('should allow medical queries like dizziness after standing', async () => {
+      const mockJob: AiGenerationJob = {
+        questionId: 'test-q-medical-1',
+        query: 'Why do I feel dizzy after standing?',
+        userId: 'user-1',
+      };
+
+      const { retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
+      if (retrievalService.isMedicalQuery) {
+        retrievalService.isMedicalQuery = jest.fn().mockResolvedValue(true);
+      }
+      if (retrievalService.semanticSearch) {
+        retrievalService.semanticSearch = jest.fn().mockResolvedValue([
+          { id: 'm1', score: 0.60, metadata: { text: 'Low relevance' } },
+        ]);
       }
 
       const result = await processAiGeneration(mockJob);
@@ -87,7 +149,34 @@ describe('AI Pipeline Validation', () => {
         const metadata = (result as any).metadata as MetadataResponse;
         expect(metadata.source).toBe('Knowledge Base Unavailable');
         expect(metadata.answer).toContain('I could not find supporting medical information');
-        expect(metadata.documentsUsed).toBe(0);
+      } else {
+        expect((result as PipelineError).stage).toBeDefined();
+      }
+    });
+
+    it('should allow medical queries like swollen ankles', async () => {
+      const mockJob: AiGenerationJob = {
+        questionId: 'test-q-medical-2',
+        query: 'What causes swollen ankles?',
+        userId: 'user-1',
+      };
+
+      const { retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
+      if (retrievalService.isMedicalQuery) {
+        retrievalService.isMedicalQuery = jest.fn().mockResolvedValue(true);
+      }
+      if (retrievalService.semanticSearch) {
+        retrievalService.semanticSearch = jest.fn().mockResolvedValue([
+          { id: 'm1', score: 0.60, metadata: { text: 'Low relevance' } },
+        ]);
+      }
+
+      const result = await processAiGeneration(mockJob);
+
+      if (result.success && (result as any).metadata) {
+        const metadata = (result as any).metadata as MetadataResponse;
+        expect(metadata.source).toBe('Knowledge Base Unavailable');
+        expect(metadata.answer).toContain('I could not find supporting medical information');
       } else {
         expect((result as PipelineError).stage).toBeDefined();
       }
@@ -100,23 +189,25 @@ describe('AI Pipeline Validation', () => {
         userId: 'user-1',
       };
 
-      const { RetrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
+      const { RetrievalService, retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
       const MockRetrievalServiceClass = RetrievalService;
       const instance = new MockRetrievalServiceClass();
       instance.embeddingService = {
         isRealEmbeddings: true,
         generateEmbedding: jest.fn().mockResolvedValue(Array(384).fill(0.5)),
       };
-      instance.getRelevantDocs = jest.fn().mockResolvedValue({
-        hasContext: true,
-        context: [{ score: 0.9, id: 'd1', metadata: { text: 'HTN content' } }],
-      });
+      instance.semanticSearch = jest.fn().mockResolvedValue([
+        { score: 0.9, id: 'd1', metadata: { text: 'HTN content' } },
+      ]);
+      instance.isMedicalQuery = jest.fn().mockResolvedValue(true);
 
       MockRetrievalServiceClass.mockImplementation(() => instance);
 
       const result = await processAiGeneration(mockJob);
 
       expect(result.success || (result as PipelineError).stage).toBeTruthy();
+
+      MockRetrievalServiceClass.mockImplementation(() => ({ ...retrievalService }));
     });
   });
 

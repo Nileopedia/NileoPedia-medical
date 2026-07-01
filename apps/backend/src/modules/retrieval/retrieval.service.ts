@@ -63,13 +63,38 @@ export class RetrievalService {
     return results.sort((a, b) => (b.score || 0) - (a.score || 0));
   }
 
-  getRelevantDocs(query: string, topK = 10, minScore = 0.75) {
-    return this.semanticSearch(query, topK).then((matches) => {
-      const relevant = matches.filter((match: any) => (match.score ?? 0) >= minScore);
-      if (relevant.length === 0) {
-        return { hasContext: false, context: '' };
-      }
-      return { hasContext: true, context: relevant };
-    });
+  async isMedicalQuery(query: string, embeddingService: EmbeddingService): Promise<boolean> {
+    const [queryEmbedding, referenceEmbedding] = await Promise.all([
+      embeddingService.generateEmbedding(query),
+      embeddingService.generateEmbedding(
+        'medical disease symptoms diagnosis treatment medication patient health clinical medicine'
+      ),
+    ]);
+
+    const similarity = cosineSimilarity(queryEmbedding, referenceEmbedding);
+    return similarity >= 0.45;
   }
+}
+
+function cosineSimilarity(a: number[], b: number[]): number {
+  if (a.length !== b.length) {
+    throw new Error('Embedding dimensions must match');
+  }
+
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+
+  for (let i = 0; i < a.length; i++) {
+    dotProduct += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+
+  const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+  if (denominator === 0) {
+    return 0;
+  }
+
+  return dotProduct / denominator;
 }
