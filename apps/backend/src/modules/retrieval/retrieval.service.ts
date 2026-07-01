@@ -7,6 +7,7 @@ export class RetrievalService {
   private pinecone: Pinecone | null = null;
   private index: any = null;
   public embeddingService: EmbeddingService;
+  private medicalReferenceEmbedding: number[] | null = null;
 
   get pineconeClient() {
     return this.pinecone;
@@ -21,6 +22,19 @@ export class RetrievalService {
       } catch (e) {
         logger.error('[ERROR] Pinecone unavailable');
       }
+    }
+
+    this.initMedicalReferenceEmbedding();
+  }
+
+  private async initMedicalReferenceEmbedding() {
+    try {
+      this.medicalReferenceEmbedding = await this.embeddingService.generateEmbedding(
+        'disease symptoms diagnosis treatment medication malaria hypertension diabetes cancer infection patient medicine healthcare clinical care fever headache asthma pneumonia'
+      );
+    } catch (e) {
+      logger.error('[ERROR] Failed to generate medical reference embedding:', e);
+      this.medicalReferenceEmbedding = null;
     }
   }
 
@@ -64,15 +78,49 @@ export class RetrievalService {
   }
 
   async isMedicalQuery(query: string, embeddingService: EmbeddingService): Promise<boolean> {
-    const [queryEmbedding, referenceEmbedding] = await Promise.all([
-      embeddingService.generateEmbedding(query),
-      embeddingService.generateEmbedding(
-        'medical disease symptoms diagnosis treatment medication patient health clinical medicine'
-      ),
-    ]);
+    const medicalTerms = [
+      'malaria',
+      'hypertension',
+      'diabetes',
+      'asthma',
+      'pneumonia',
+      'stroke',
+      'cancer',
+      'fever',
+      'headache',
+      'infection',
+      'tuberculosis',
+      'covid',
+      'heart',
+      'blood pressure',
+      'pain',
+      'symptoms',
+      'diagnosis',
+      'treatment',
+      'medication',
+      'disease',
+      'patient',
+    ];
 
-    const similarity = cosineSimilarity(queryEmbedding, referenceEmbedding);
-    return similarity >= 0.45;
+    const normalized = query.toLowerCase().trim();
+
+    const containsMedicalTerm = medicalTerms.some((term) => normalized.includes(term));
+
+    if (containsMedicalTerm) {
+      console.log({ query: normalized, containsMedicalTerm: true, similarity: 'term-match' });
+      return true;
+    }
+
+    const queryEmbedding = await embeddingService.generateEmbedding(normalized);
+
+    let similarity = 0;
+    if (this.medicalReferenceEmbedding) {
+      similarity = cosineSimilarity(queryEmbedding, this.medicalReferenceEmbedding);
+    }
+
+    console.log({ query: normalized, containsMedicalTerm: false, similarity });
+
+    return similarity >= 0.30;
   }
 }
 

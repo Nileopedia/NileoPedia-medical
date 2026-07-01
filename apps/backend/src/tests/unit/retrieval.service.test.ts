@@ -74,43 +74,64 @@ describe('RetrievalService', () => {
     expect(results.length).toBeGreaterThan(0);
   });
 
-  it('isMedicalQuery should return true for medical-like queries via embedding similarity', async () => {
-    const medicalEmbedding = Array(384).fill(0.5);
-    const nonMedicalEmbedding = Array(384).fill(-0.5);
-
-    const mockGenerateEmbedding = jest
-      .fn()
-      .mockImplementationOnce((text: string) => {
-        if (text.includes('dizzy') || text.includes('hypertension')) {
-          return Promise.resolve(medicalEmbedding);
-        }
-        return Promise.resolve(nonMedicalEmbedding);
-      })
-      .mockImplementationOnce(() => Promise.resolve(medicalEmbedding));
-
-    (service.embeddingService.generateEmbedding as jest.Mock) = mockGenerateEmbedding;
-
-    const result = await service.isMedicalQuery('Why do I feel dizzy after standing?', service.embeddingService);
+  it('isMedicalQuery should allow "what is malaria" via term containment', async () => {
+    const result = await service.isMedicalQuery('what is malaria', service.embeddingService);
     expect(result).toBe(true);
   });
 
-  it('isMedicalQuery should return false for non-medical queries via embedding similarity', async () => {
+  it('isMedicalQuery should allow "what is hypertension" via term containment', async () => {
+    const result = await service.isMedicalQuery('what is hypertension', service.embeddingService);
+    expect(result).toBe(true);
+  });
+
+  it('isMedicalQuery should allow "diabetes symptoms" via term containment', async () => {
+    const result = await service.isMedicalQuery('diabetes symptoms', service.embeddingService);
+    expect(result).toBe(true);
+  });
+
+  it('isMedicalQuery should allow "asthma treatment" via term containment', async () => {
+    const result = await service.isMedicalQuery('asthma treatment', service.embeddingService);
+    expect(result).toBe(true);
+  });
+
+  it('isMedicalQuery should allow "causes of fever" via term containment', async () => {
+    const result = await service.isMedicalQuery('causes of fever', service.embeddingService);
+    expect(result).toBe(true);
+  });
+
+  it('isMedicalQuery should block "Who won FIFA World Cup" via semantic fallback', async () => {
     const nonMedicalEmbedding = Array(384).fill(-0.5);
-    const medicalEmbedding = Array(384).fill(0.5);
 
     const mockGenerateEmbedding = jest
       .fn()
       .mockImplementationOnce((text: string) => {
-        if (text.includes('FIFA World Cup') || text.includes('Messi')) {
+        if (text === 'who won fifa world cup') {
           return Promise.resolve(nonMedicalEmbedding);
         }
-        return Promise.resolve(medicalEmbedding);
-      })
-      .mockImplementationOnce(() => Promise.resolve(medicalEmbedding));
+        return Promise.resolve(Array(384).fill(0.5));
+      });
 
     (service.embeddingService.generateEmbedding as jest.Mock) = mockGenerateEmbedding;
 
-    const result = await service.isMedicalQuery('Who won the FIFA World Cup?', service.embeddingService);
+    const result = await service.isMedicalQuery('Who won FIFA World Cup', service.embeddingService);
+    expect(result).toBe(false);
+  });
+
+  it('isMedicalQuery should block "Who is Messi" via semantic fallback', async () => {
+    const nonMedicalEmbedding = Array(384).fill(-0.5);
+
+    const mockGenerateEmbedding = jest
+      .fn()
+      .mockImplementationOnce((text: string) => {
+        if (text === 'who is messi') {
+          return Promise.resolve(nonMedicalEmbedding);
+        }
+        return Promise.resolve(Array(384).fill(0.5));
+      });
+
+    (service.embeddingService.generateEmbedding as jest.Mock) = mockGenerateEmbedding;
+
+    const result = await service.isMedicalQuery('Who is Messi', service.embeddingService);
     expect(result).toBe(false);
   });
 });

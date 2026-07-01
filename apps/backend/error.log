@@ -5077,3 +5077,21 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-07-01T04:35:49.124Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
 2026-07-01T04:35:49.161Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
 2026-07-01T04:35:52.459Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-01T05:02:45.985Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:02:45.997Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:02:46.005Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:02:46.015Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:02:46.024Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:02:46.032Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:02:46.088Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T05:02:46.099Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T05:02:46.111Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T05:15:31.487Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:15:31.500Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:15:31.507Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:15:31.516Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:15:31.523Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:15:31.531Z [nileopedia-backend] error: [ERROR] Embedding service unavailable
+2026-07-01T05:15:31.601Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T05:15:31.614Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-01T05:15:31.626Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
