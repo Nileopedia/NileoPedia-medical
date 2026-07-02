@@ -17,13 +17,13 @@ export class ChunkingService {
 
   chunkDocument(content: string, metadata: Record<string, any> = {}): DocumentChunk[] {
     // Semantic chunking based on paragraphs and sentences
-    const paragraphs = content.split(/\n\s*\n/).filter(p => p.trim().length > 0);
+    const paragraphs = content.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
     const chunks: DocumentChunk[] = [];
-    
+
     for (let i = 0; i < paragraphs.length; i++) {
       const para = paragraphs[i];
-      const sentences = para.split(/[.!?]+/).filter(s => s.trim().length > 50);
-      
+      const sentences = para.split(/[.!?]+/).filter((s) => s.trim().length > 50);
+
       for (const sentence of sentences) {
         const trimmed = sentence.trim();
         if (trimmed.length >= 50) {
@@ -40,14 +40,14 @@ export class ChunkingService {
         }
       }
     }
-    
+
     return chunks;
   }
 
   async generateEmbeddings(chunks: DocumentChunk[]): Promise<Array<{ embedding: number[]; chunk: DocumentChunk }>> {
-    const texts = chunks.map(c => c.text);
+    const texts = chunks.map((c) => c.text);
     const embeddings = await this.embeddingService.generateBatchEmbeddings(texts);
-    
+
     return embeddings.map((embedding, i) => ({
       embedding,
       chunk: chunks[i],

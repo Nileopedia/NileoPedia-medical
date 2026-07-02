@@ -7,6 +7,7 @@ import { logger } from '../../../config/logger';
 
 export class AuthController {
   private authService: AuthService;
+
   private googleAuthService: GoogleAuthService;
 
   constructor() {
@@ -89,14 +90,14 @@ export class AuthController {
     try {
       const code = req.query.code as string;
       if (!code) {
-        return res.status(400).json({ 
-          success: false, 
-          message: 'Authorization code not provided' 
+        return res.status(400).json({
+          success: false,
+          message: 'Authorization code not provided',
         });
       }
 
       const result = await this.googleAuthService.handleGoogleCallback(code);
-      
+
       // Redirect to frontend with tokens (you might want to use a different approach)
       const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
       res.redirect(`${frontendUrl}/auth/google/callback?access_token=${result.accessToken}&refresh_token=${result.refreshToken}`);
@@ -160,11 +161,11 @@ export class AuthController {
       }
 
       const requiresOtp = await this.authService.requiresOtp(email);
-      
+
       if (requiresOtp) {
         await this.authService.generateOtp(email);
       }
-      
+
       res.status(200).json({
         success: true,
         message: requiresOtp ? 'OTP sent to your email' : 'Verification check complete',
@@ -179,7 +180,7 @@ export class AuthController {
   async verifyOtp(req: Request, res: Response, next: NextFunction) {
     try {
       const { email, otp } = req.body;
-      
+
       const result = await this.authService.verifyOtp(email, otp);
       res.status(200).json({
         success: true,

@@ -1,5 +1,5 @@
-import prisma from '../../config/prisma';
 import { IngestionStatus } from '@prisma/client';
+import prisma from '../../config/prisma';
 import { logger } from '../../config/logger';
 import {
   CreateDocumentDto,
@@ -17,7 +17,9 @@ export class DocumentService {
   }
 
   async getAllDocuments(query: GetDocumentsQuery): Promise<GetDocumentsResult> {
-    const { page, limit, search, ingestionStatus, documentType, publicationYear } = query;
+    const {
+      page, limit, search, ingestionStatus, documentType, publicationYear,
+    } = query;
     const skip = (page - 1) * limit;
 
     const where: {
@@ -53,7 +55,7 @@ export class DocumentService {
     ]);
 
     return {
-      documents: documents.map(doc => ({
+      documents: documents.map((doc) => ({
         ...doc,
         metadata: doc.documentMetadata || undefined,
       })),

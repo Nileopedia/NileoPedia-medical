@@ -64,7 +64,7 @@ describe('EmailService', () => {
       process.env.EMAIL_FROM = 'test@nileopedia.com';
 
       await expect(
-        EmailService.sendViaResend('test@example.com', 'Test', '<p>content</p>')
+        EmailService.sendViaResend('test@example.com', 'Test', '<p>content</p>'),
       ).rejects.toThrow('Resend API error');
     });
 
@@ -80,7 +80,7 @@ describe('EmailService', () => {
       process.env.EMAIL_FROM = 'test@nileopedia.com';
 
       await expect(
-        EmailService.sendViaResend('test@example.com', 'Test', '<p>content</p>')
+        EmailService.sendViaResend('test@example.com', 'Test', '<p>content</p>'),
       ).rejects.toThrow('ECONNREFUSED');
     });
   });
@@ -148,7 +148,7 @@ describe('EmailService', () => {
       (prisma.emailLog.create as jest.Mock).mockResolvedValue(pendingLog);
 
       await expect(
-        EmailService.sendEmail('test@example.com', 'Subject', '<p>Body</p>')
+        EmailService.sendEmail('test@example.com', 'Subject', '<p>Body</p>'),
       ).rejects.toThrow('API Error');
 
       expect(prisma.emailLog.update).toHaveBeenCalledWith({

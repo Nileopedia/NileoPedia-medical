@@ -70,7 +70,9 @@ export class AuthRepository {
 
   async findOtp(email: string, otp: string) {
     return prisma.otpVerification.findFirst({
-      where: { email, otp, used: false, expiresAt: { gt: new Date() } },
+      where: {
+        email, otp, used: false, expiresAt: { gt: new Date() },
+      },
     });
   }
 

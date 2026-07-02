@@ -5,8 +5,8 @@ import prisma from '../../config/prisma';
 import { logger } from '../../config/logger';
 import { EmailJob } from '../../jobs/types';
 
-const RESEND_API_KEY = process.env.RESEND_API_KEY;
-const EMAIL_FROM = process.env.EMAIL_FROM;
+const { RESEND_API_KEY } = process.env;
+const { EMAIL_FROM } = process.env;
 const EMAIL_PROVIDER = process.env.EMAIL_PROVIDER || 'resend';
 
 const getEmailFrom = () => process.env.EMAIL_FROM || '';

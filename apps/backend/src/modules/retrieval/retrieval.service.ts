@@ -5,8 +5,11 @@ import { EmbeddingService } from '../rag/services/embedding.service';
 
 export class RetrievalService {
   private pinecone: Pinecone | null = null;
+
   private index: any = null;
+
   public embeddingService: EmbeddingService;
+
   private medicalReferenceEmbedding: number[] | null = null;
 
   get pineconeClient() {
@@ -30,7 +33,7 @@ export class RetrievalService {
   private async initMedicalReferenceEmbedding() {
     try {
       this.medicalReferenceEmbedding = await this.embeddingService.generateEmbedding(
-        'disease symptoms diagnosis treatment medication malaria hypertension diabetes cancer infection patient medicine healthcare clinical care fever headache asthma pneumonia'
+        'disease symptoms diagnosis treatment medication malaria hypertension diabetes cancer infection patient medicine healthcare clinical care fever headache asthma pneumonia',
       );
     } catch (e) {
       logger.error('[ERROR] Failed to generate medical reference embedding:', e);
@@ -43,7 +46,7 @@ export class RetrievalService {
       logger.error('[ERROR] Pinecone unavailable');
       return [];
     }
-    
+
     const embedding = await this.embeddingService.generateEmbedding(query);
     console.log('[PINECONE] Query embedding dimensions:', embedding.length);
     const results = await this.index.query({

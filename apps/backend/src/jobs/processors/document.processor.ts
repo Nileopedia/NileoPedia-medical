@@ -1,7 +1,7 @@
-import prisma from '../../config/prisma';
 import path from 'path';
 import fs from 'fs';
 import { IngestionStatus } from '@prisma/client';
+import prisma from '../../config/prisma';
 import { DocumentIngestionService } from '../../modules/documents/document.ingestion.service';
 import { DocumentMetadataService } from '../../modules/documents/metadata.service';
 import { logger } from '../../config/logger';
@@ -36,7 +36,7 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
   let count = 0;
   for (const title of demoTitles) {
     const documentTitle = `${source.specialty.charAt(0).toUpperCase() + source.specialty.slice(1)}: ${title}`;
-    
+
     const existing = await prisma.medicalDocument.findFirst({
       where: {
         title: { contains: documentTitle },
@@ -62,7 +62,7 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
         },
       });
       count++;
-      
+
       await prisma.documentMetadata.create({
         data: {
           documentId: doc.id,
@@ -122,7 +122,9 @@ export async function processDocumentIngestion(job: any) {
     return createDemoDocuments(job.source);
   }
 
-  const { documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear, fileType } = job;
+  const {
+    documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear, fileType,
+  } = job;
 
   try {
     await prisma.medicalDocument.update({
@@ -131,7 +133,7 @@ export async function processDocumentIngestion(job: any) {
     });
 
     const fullPath = path.join(process.cwd(), fileUrl);
-    
+
     if (!fs.existsSync(fullPath)) {
       throw new Error(`File not found: ${fileUrl}`);
     }
@@ -145,17 +147,17 @@ export async function processDocumentIngestion(job: any) {
         const pdfData = await pdf.default(buffer);
         content = pdfData.text || '';
       } catch (pdfError) {
-        logger.warn(`PDF parsing failed, falling back to text extraction:`, pdfError);
+        logger.warn('PDF parsing failed, falling back to text extraction:', pdfError);
         content = buffer.toString('utf-8');
       }
-    } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-                   fileName.toLowerCase().endsWith('.docx')) {
+    } else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+                   || fileName.toLowerCase().endsWith('.docx')) {
       try {
         const mammoth = await import('mammoth');
         const docxResult = await mammoth.extractRawText({ buffer });
         content = docxResult.value || '';
       } catch (docxError) {
-        logger.warn(`DOCX parsing failed, falling back to text extraction:`, docxError);
+        logger.warn('DOCX parsing failed, falling back to text extraction:', docxError);
         content = buffer.toString('utf-8');
       }
     } else if (fileType === 'text/html' || fileName.toLowerCase().endsWith('.html') || fileName.toLowerCase().endsWith('.htm')) {
@@ -166,7 +168,7 @@ export async function processDocumentIngestion(job: any) {
         content = $('body').text() || $('html').text() || '';
         content = content.replace(/\s+/g, ' ').trim();
       } catch (htmlError) {
-        logger.warn(`HTML parsing failed, falling back to text extraction:`, htmlError);
+        logger.warn('HTML parsing failed, falling back to text extraction:', htmlError);
         content = buffer.toString('utf-8');
       }
     } else {
@@ -195,7 +197,7 @@ export async function processDocumentIngestion(job: any) {
       publicationYear: extractedMetadata.publicationYear || publicationYear,
       doi: extractedMetadata.doi,
       sourceURL: extractedMetadata.sourceURL || source,
-      documentType: documentType,
+      documentType,
     });
 
     const ingestionService = new DocumentIngestionService();
@@ -215,7 +217,6 @@ export async function processDocumentIngestion(job: any) {
 
     logger.info(`Document ingestion completed: ${documentId}`);
     return { success: true };
-
   } catch (error) {
     await prisma.medicalDocument.update({
       where: { id: documentId },

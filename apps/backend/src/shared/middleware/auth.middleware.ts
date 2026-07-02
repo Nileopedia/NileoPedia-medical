@@ -26,7 +26,7 @@ export const authenticate = async (req: Request, res: Response, next: NextFuncti
 
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, CONFIG.JWT_ACCESS_SECRET) as JwtPayload;
-    
+
     const user = await prisma.user.findUnique({ where: { id: decoded.id } });
     if (!user) {
       return res.status(401).json({ success: false, message: 'User not found' });
@@ -48,7 +48,7 @@ authenticate.optional = async (req: Request, res: Response, next: NextFunction) 
 
     const token = authHeader.split(' ')[1];
     const decoded = jwt.verify(token, CONFIG.JWT_ACCESS_SECRET) as JwtPayload;
-    
+
     const user = await prisma.user.findUnique({ where: { id: decoded.id } });
     if (user) {
       req.user = decoded;
@@ -59,11 +59,9 @@ authenticate.optional = async (req: Request, res: Response, next: NextFunction) 
   }
 };
 
-export const authorize = (...roles: string[]) => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    if (!req.user || !roles.includes(req.user.role)) {
-      return res.status(403).json({ success: false, message: 'Forbidden' });
-    }
-    next();
-  };
+export const authorize = (...roles: string[]) => (req: Request, res: Response, next: NextFunction) => {
+  if (!req.user || !roles.includes(req.user.role)) {
+    return res.status(403).json({ success: false, message: 'Forbidden' });
+  }
+  next();
 };

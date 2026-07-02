@@ -22,7 +22,8 @@
     "prisma:migrate": "prisma migrate dev",
     "prisma:studio": "prisma studio",
     "prisma:seed": "ts-node prisma/seed.ts",
-    "reindex-documents": "ts-node src/scripts/reindex-documents.ts"
+    "reindex-documents": "ts-node src/scripts/reindex-documents.ts",
+    "run-reindex": "ts-node scripts/reindex.ts"
   },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"

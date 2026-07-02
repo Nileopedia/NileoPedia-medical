@@ -15,7 +15,7 @@ const worker = new Worker<DocumentIngestionJob>(
     concurrency: 2,
     removeOnComplete: { age: 3600 },
     removeOnFail: { age: 86400 },
-  }
+  },
 );
 
 worker.on('completed', (job) => {

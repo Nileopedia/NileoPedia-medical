@@ -1,5 +1,6 @@
 export class MockEmbeddingProvider {
   embeddingSource = 'mock';
+
   private EXPECTED_DIMENSIONS = 384;
 
   async generateEmbedding(text: string): Promise<number[]> {
@@ -12,6 +13,6 @@ export class MockEmbeddingProvider {
   }
 
   async generateBatchEmbeddings(texts: string[]): Promise<number[][]> {
-    return Promise.all(texts.map(t => this.generateEmbedding(t)));
+    return Promise.all(texts.map((t) => this.generateEmbedding(t)));
   }
 }

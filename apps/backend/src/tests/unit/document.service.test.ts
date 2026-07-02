@@ -1,6 +1,8 @@
 /* eslint-env jest */
 import { IngestionStatus } from '@prisma/client';
 
+import { DocumentService } from '../../modules/documents/document.service';
+
 // Mock the entire DocumentService for unit testing
 const mockDocumentService = {
   getAllDocuments: jest.fn(),
@@ -21,8 +23,6 @@ jest.mock('../../jobs/queues', () => ({
     add: jest.fn(),
   },
 }));
-
-import { DocumentService } from '../../modules/documents/document.service';
 
 describe('DocumentService', () => {
   let service: typeof mockDocumentService;

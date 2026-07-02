@@ -15,7 +15,7 @@ const worker = new Worker<NotificationJob>(
     concurrency: 10,
     removeOnComplete: { age: 3600 },
     removeOnFail: { age: 86400 },
-  }
+  },
 );
 
 worker.on('completed', (job) => {

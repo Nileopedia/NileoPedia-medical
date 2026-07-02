@@ -5,7 +5,8 @@ export const createCitationSchema = z.object({
   title: z.string().min(1, 'Title is required').optional(),
   source: z.string().min(1, 'Source is required').optional(),
   authors: z.string().optional(),
-  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10)
+    .optional(),
   doi: z.string().optional(),
   url: z.string().url('Invalid URL format').optional(),
   documentType: z.string().optional(),
@@ -19,7 +20,8 @@ export const updateCitationSchema = z.object({
   title: z.string().min(1, 'Title is required').optional(),
   source: z.string().min(1, 'Source is required').optional(),
   authors: z.string().optional(),
-  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10)
+    .optional(),
   doi: z.string().optional(),
   url: z.string().url('Invalid URL format').optional(),
   documentType: z.string().optional(),

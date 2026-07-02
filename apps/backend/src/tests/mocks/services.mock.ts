@@ -27,7 +27,9 @@ export const mockPrismaClient: any = {
   aIResponse: {
     findMany: jest.fn().mockResolvedValue([]),
     findUnique: jest.fn().mockResolvedValue(null),
-    create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data, id: 'mock-response-id', createdAt: new Date(), updatedAt: new Date() })),
+    create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({
+      ...data, id: 'mock-response-id', createdAt: new Date(), updatedAt: new Date(),
+    })),
     update: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data })),
     deleteMany: jest.fn().mockResolvedValue({}),
     count: jest.fn().mockResolvedValue(0),
@@ -48,7 +50,9 @@ export const mockPrismaClient: any = {
   medicalDocument: {
     findMany: jest.fn().mockResolvedValue([]),
     findUnique: jest.fn().mockResolvedValue(null),
-    create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data, id: 'mock-doc-id', createdAt: new Date(), updatedAt: new Date() })),
+    create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({
+      ...data, id: 'mock-doc-id', createdAt: new Date(), updatedAt: new Date(),
+    })),
     update: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data })),
     delete: jest.fn().mockResolvedValue({}),
     deleteMany: jest.fn().mockResolvedValue({}),
@@ -62,7 +66,9 @@ export const mockPrismaClient: any = {
     findMany: jest.fn().mockResolvedValue([]),
     findUnique: jest.fn().mockResolvedValue(null),
     findFirst: jest.fn().mockResolvedValue(null),
-    create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data, id: 'mock-user-id', createdAt: new Date(), updatedAt: new Date() })),
+    create: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({
+      ...data, id: 'mock-user-id', createdAt: new Date(), updatedAt: new Date(),
+    })),
     update: jest.fn().mockImplementation(({ data }: { data: any }) => Promise.resolve({ ...data })),
     deleteMany: jest.fn().mockResolvedValue({}),
     count: jest.fn().mockResolvedValue(0),

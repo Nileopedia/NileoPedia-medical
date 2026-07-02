@@ -1,6 +1,8 @@
 import { RetrievalService } from '../retrieval/retrieval.service';
 import prisma from '../../config/prisma';
-import { SearchType, SearchResult, SearchQuery, SearchResultResponse } from './search.types';
+import {
+  SearchType, SearchResult, SearchQuery, SearchResultResponse,
+} from './search.types';
 import { logger } from '../../config/logger';
 
 export interface SearchErrorResponse {
@@ -16,11 +18,13 @@ export class SearchService {
   }
 
   async globalSearch(query: SearchQuery): Promise<SearchResultResponse | SearchErrorResponse> {
-    const { q, type, specialty, limit, page } = query;
+    const {
+      q, type, specialty, limit, page,
+    } = query;
     const skip = (page - 1) * limit;
 
     let results: SearchResult[] = [];
-    let error: string | null = null;
+    const error: string | null = null;
 
     switch (type) {
       case 'semantic':
@@ -144,7 +148,7 @@ export class SearchService {
       ]);
 
       const mergedMap = new Map<string, SearchResult>();
-      
+
       for (const result of semanticResults) {
         result.relevanceScore = (result.relevanceScore || 0) * 0.7;
         mergedMap.set(result.id, result);
@@ -170,7 +174,9 @@ export class SearchService {
   }
 
   async searchDocuments(query: SearchQuery) {
-    const { q, specialty, limit, page } = query;
+    const {
+      q, specialty, limit, page,
+    } = query;
     const skip = (page - 1) * limit;
 
     const where: {

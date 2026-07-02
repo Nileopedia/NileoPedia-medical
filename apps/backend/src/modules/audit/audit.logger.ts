@@ -1,6 +1,6 @@
-import prisma from '../../config/prisma';
 import { Request } from 'express';
 import type { JsonValue } from '@prisma/client/runtime/library';
+import prisma from '../../config/prisma';
 
 export interface AuditLogInput {
   userId?: string;

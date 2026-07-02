@@ -41,7 +41,9 @@ export class QuestionsService {
   }
 
   async getHistory(userId: string, options: { page?: number; limit?: number; category?: string; startDate?: string; endDate?: string } = {}) {
-    const { page = 1, limit = 10, category, startDate, endDate } = options;
+    const {
+      page = 1, limit = 10, category, startDate, endDate,
+    } = options;
     const skip = (page - 1) * limit;
 
     const where: any = { userId };
@@ -110,7 +112,7 @@ export class QuestionsService {
     });
 
     if (!question) throw new Error('Question not found');
-    
+
     // If no AI response exists, return question with empty response
     if (!question.aiResponse) {
       return {
@@ -124,7 +126,7 @@ export class QuestionsService {
         },
       };
     }
-    
+
     return question;
   }
 
@@ -132,11 +134,11 @@ export class QuestionsService {
     const question = await prisma.question.findUnique({
       where: { id: questionId },
     });
-    
+
     if (!question) {
       throw new Error('Question not found');
     }
-    
+
     if (question.userId !== userId) {
       throw new Error('Unauthorized');
     }
@@ -151,11 +153,11 @@ export class QuestionsService {
     const question = await prisma.question.findUnique({
       where: { id: questionId },
     });
-    
+
     if (!question) {
       throw new Error('Question not found');
     }
-    
+
     if (question.userId !== userId) {
       throw new Error('Unauthorized');
     }

@@ -15,7 +15,7 @@ const worker = new Worker<CleanupJob>(
     concurrency: 1,
     removeOnComplete: { age: 86400 },
     removeOnFail: { age: 86400 },
-  }
+  },
 );
 
 worker.on('completed', (job) => {

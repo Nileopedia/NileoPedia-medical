@@ -6,20 +6,22 @@ import { logger } from '../../../config/logger';
 
 export class GoogleAuthService {
   private authRepository: AuthRepository;
+
   private jwtService: JwtService;
+
   private oAuth2Client: OAuth2Client | null;
 
   constructor() {
     this.authRepository = new AuthRepository();
     this.jwtService = new JwtService();
-    
+
     // Only initialize OAuth client if valid credentials are provided
-    if (CONFIG.GOOGLE_CLIENT_ID && CONFIG.GOOGLE_CLIENT_SECRET && 
-        CONFIG.GOOGLE_CLIENT_ID.length > 20) { // Real Google client IDs are ~70+ chars
+    if (CONFIG.GOOGLE_CLIENT_ID && CONFIG.GOOGLE_CLIENT_SECRET
+        && CONFIG.GOOGLE_CLIENT_ID.length > 20) { // Real Google client IDs are ~70+ chars
       this.oAuth2Client = new OAuth2Client(
         CONFIG.GOOGLE_CLIENT_ID,
         CONFIG.GOOGLE_CLIENT_SECRET,
-        CONFIG.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/v1/auth/google/callback'
+        CONFIG.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/v1/auth/google/callback',
       );
     } else {
       logger.warn('Google OAuth credentials not configured - Google login disabled');
@@ -51,20 +53,22 @@ export class GoogleAuthService {
         audience: CONFIG.GOOGLE_CLIENT_ID,
       });
       const payload = ticket.getPayload();
-      
+
       if (!payload) {
         throw new Error('Invalid Google token');
       }
 
-      const { email, given_name, family_name, sub } = payload;
+      const {
+        email, given_name, family_name, sub,
+      } = payload;
       const fullName = `${given_name || ''} ${family_name || ''}`.trim();
-      
+
       if (!email) {
         throw new Error('Email not provided by Google');
       }
 
       let user = await this.authRepository.findByEmail(email);
-      
+
       if (!user) {
         user = await this.authRepository.create({
           fullName,

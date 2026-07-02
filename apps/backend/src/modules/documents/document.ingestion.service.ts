@@ -1,5 +1,5 @@
-import prisma from '../../config/prisma';
 import { IngestionStatus } from '@prisma/client';
+import prisma from '../../config/prisma';
 import { EmbeddingService } from '../rag/services/embedding.service';
 import { ChunkingService } from '../rag/services/chunking.service';
 import { PineconeService } from '../rag/services/pinecone.service';
@@ -8,7 +8,9 @@ import { CONFIG } from '../../config/env';
 
 export class DocumentIngestionService {
   private embeddingService: EmbeddingService;
+
   private chunkingService: ChunkingService;
+
   private pineconeService: PineconeService | null = null;
 
   constructor() {
@@ -50,20 +52,46 @@ export class DocumentIngestionService {
       },
     });
 
+    logger.info({
+      documentId: document.id,
+      extractedLength: input.content.length,
+    });
+
     const chunks = this.chunkingService.chunkDocument(input.content, {
       source: input.source,
       publicationYear: input.publicationYear,
       specialty: input.specialty || 'general',
     });
 
+    logger.info({
+      documentId: document.id,
+      chunkCount: chunks.length,
+    });
+
     const embeddedChunks = await this.chunkingService.generateEmbeddings(chunks);
-    
+
+    logger.info({
+      documentId: document.id,
+      embeddingCount: embeddedChunks.length,
+      dimensions: embeddedChunks[0]?.embedding?.length,
+    });
+
     if (this.pineconeService && CONFIG.PINECONE_API_KEY) {
-      await this.pineconeService.storeChunks(
+      const vectors = await this.pineconeService.storeChunks(
         chunks,
-        embeddedChunks.map(e => e.embedding),
-        document.id
+        embeddedChunks.map((e) => e.embedding),
+        document.id,
       );
+
+      logger.info({
+        documentId: document.id,
+        uploadedVectors: vectors?.length ?? chunks.length,
+      });
+
+      const stats = await this.pineconeService.describeIndexStats();
+      logger.info({
+        totalVectors: stats?.totalRecordCount,
+      });
     } else {
       logger.info(`Mock mode: Skipping Pinecone storage for document ${document.id}`);
     }

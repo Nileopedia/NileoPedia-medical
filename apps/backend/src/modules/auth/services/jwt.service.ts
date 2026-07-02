@@ -5,7 +5,7 @@ import { CONFIG } from '../../../config/env';
 const parseTimeToSeconds = (timeStr: string): number => {
   const unit = timeStr.slice(-1);
   const value = parseInt(timeStr.slice(0, -1), 10);
-  
+
   switch (unit) {
     case 's': return value;
     case 'm': return value * 60;

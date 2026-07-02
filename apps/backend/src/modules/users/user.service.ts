@@ -1,7 +1,9 @@
 import bcrypt from 'bcryptjs';
-import prisma from '../../config/prisma';
-import { UpdateProfileDto, ChangePasswordDto, GetUsersQuery, GetUsersResult } from './user.types';
 import { AccountStatus } from '@prisma/client';
+import prisma from '../../config/prisma';
+import {
+  UpdateProfileDto, ChangePasswordDto, GetUsersQuery, GetUsersResult,
+} from './user.types';
 
 export class UserService {
   async getCurrentUser(userId: string) {

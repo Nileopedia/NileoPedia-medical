@@ -1,11 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
-import { DocumentService } from './document.service';
-import { logger } from '../../config/logger';
-import { updateDocumentSchema, getDocumentsQuerySchema } from './document.validation';
-import { allowedMimeTypes, maxFileSize } from './document.validation';
 import path from 'path';
 import fs from 'fs';
 import { IngestionStatus } from '@prisma/client';
+import { DocumentService } from './document.service';
+import { logger } from '../../config/logger';
+import {
+  updateDocumentSchema, getDocumentsQuerySchema, allowedMimeTypes, maxFileSize,
+} from './document.validation';
 
 export class DocumentController {
   private documentService: DocumentService;
@@ -73,10 +74,10 @@ export class DocumentController {
     }
   }
 
-async uploadDocument(req: Request, res: Response, next: NextFunction) {
+  async uploadDocument(req: Request, res: Response, next: NextFunction) {
     try {
       const file = req.file as Express.Multer.File | undefined;
-      const body = req.body;
+      const { body } = req;
 
       if (!file) {
         return res.status(400).json({

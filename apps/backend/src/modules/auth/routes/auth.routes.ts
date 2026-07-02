@@ -1,6 +1,8 @@
 import { Router } from 'express';
 import { validate } from '../../../shared/middleware';
-import { registerValidation, loginValidation, verifyOtpValidation, refreshTokenValidation, forgotPasswordValidation, resetPasswordValidation } from '../validators/auth.validation';
+import {
+  registerValidation, loginValidation, verifyOtpValidation, refreshTokenValidation, forgotPasswordValidation, resetPasswordValidation,
+} from '../validators/auth.validation';
 
 // Export a function that takes the controller instance and returns the router
 export default function authRoutes(authController: any) {

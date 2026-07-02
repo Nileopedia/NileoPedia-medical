@@ -23,7 +23,9 @@ export class AuditService {
   }
 
   async getAuditLogs(query: GetAuditLogsQuery): Promise<GetAuditLogsResult> {
-    const { page, limit, action, entityType, userId, startDate, endDate } = query;
+    const {
+      page, limit, action, entityType, userId, startDate, endDate,
+    } = query;
     const skip = (page - 1) * limit;
 
     const where: {
@@ -36,7 +38,7 @@ export class AuditService {
     if (action) where.action = action;
     if (entityType) where.entityType = entityType;
     if (userId) where.userId = userId;
-    
+
     if (startDate || endDate) {
       where.createdAt = {};
       if (startDate) where.createdAt.gte = new Date(startDate);

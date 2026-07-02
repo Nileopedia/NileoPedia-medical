@@ -7,7 +7,7 @@ export class AdminService {
     const where: any = search
       ? { OR: [{ fullName: { contains: search, mode: 'insensitive' } }, { email: { contains: search, mode: 'insensitive' } }] }
       : {};
-    
+
     const [users, total] = await Promise.all([
       prisma.user.findMany({
         where,
@@ -25,7 +25,9 @@ export class AdminService {
       prisma.user.count({ where }),
     ]);
 
-    return { users, total, page, limit, totalPages: Math.ceil(total / limit) };
+    return {
+      users, total, page, limit, totalPages: Math.ceil(total / limit),
+    };
   }
 
   async suspendUser(userId: string, adminId?: string) {
@@ -57,7 +59,7 @@ export class AdminService {
   async getValidators(page = 1, limit = 20, search = '') {
     const skip = (page - 1) * limit;
     const where: any = { role: 'VALIDATOR' as any };
-    
+
     if (search) {
       where.OR = [
         { fullName: { contains: search, mode: 'insensitive' } },
@@ -65,7 +67,7 @@ export class AdminService {
         { specialization: { contains: search, mode: 'insensitive' } },
       ];
     }
-    
+
     const [validators, total] = await Promise.all([
       prisma.user.findMany({
         where,
@@ -90,18 +92,20 @@ export class AdminService {
           where: { validatorId: v.id },
         });
         const reviewsCompleted = reviews.length;
-        const approved = reviews.filter(r => r.status === 'APPROVED').length;
+        const approved = reviews.filter((r) => r.status === 'APPROVED').length;
         const approvalRate = reviews.length > 0 ? Math.round((approved / reviews.length) * 100) : 0;
-        
+
         return {
           ...v,
           reviewsCompleted,
           approvalRate,
         };
-      })
+      }),
     );
 
-    return { validators: validatorsWithStats, total, page, limit, totalPages: Math.ceil(total / limit) };
+    return {
+      validators: validatorsWithStats, total, page, limit, totalPages: Math.ceil(total / limit),
+    };
   }
 
   async addValidator(data: { fullName: string; email: string; password?: string; specialization?: string; institution?: string }) {
@@ -121,13 +125,15 @@ export class AdminService {
       },
     });
 
-    return { id: user.id, fullName: user.fullName, email: user.email, role: user.role };
+    return {
+      id: user.id, fullName: user.fullName, email: user.email, role: user.role,
+    };
   }
 
   async removeValidator(validatorId: string) {
     const user = await prisma.user.findUnique({ where: { id: validatorId } });
     if (!user || user.role !== 'VALIDATOR') throw new Error('Validator not found');
-    
+
     await prisma.user.update({
       where: { id: validatorId },
       data: { role: 'MEDICAL_USER' as any, accountStatus: 'SUSPENDED' as any },
@@ -149,7 +155,7 @@ export class AdminService {
     // Get queries per day (last 7 days)
     const sevenDaysAgo = new Date();
     sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 7);
-    
+
     const questions = await prisma.question.groupBy({
       by: ['createdAt'],
       where: { createdAt: { gte: sevenDaysAgo } },
@@ -215,7 +221,7 @@ export class AdminService {
       },
     });
 
-    return validations.map(v => ({
+    return validations.map((v) => ({
       id: v.id,
       question: v.aiResponse?.question?.questionText || 'Unknown',
       response: v.aiResponse?.summary?.substring(0, 100) || 'No response',
@@ -277,7 +283,7 @@ export class AdminService {
     ]);
 
     return {
-      activities: activities.map(a => ({
+      activities: activities.map((a) => ({
         id: a.id,
         question: a.question?.questionText || 'Unknown',
         model: a.generatedBy || 'Unknown',
@@ -286,7 +292,9 @@ export class AdminService {
         status: a.validationStatus?.toLowerCase() ?? 'pending',
         date: a.createdAt.toISOString(),
       })),
-      pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+      pagination: {
+        total, page, limit, totalPages: Math.ceil(total / limit),
+      },
     };
   }
 }

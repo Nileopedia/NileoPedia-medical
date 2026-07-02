@@ -3,7 +3,7 @@ import Redis from 'ioredis';
 import { CONFIG } from '../../config/env';
 
 let connection: Redis | null = null;
-let aiQueueInstance: Queue | null = null;
+const aiQueueInstance: Queue | null = null;
 
 try {
   connection = new Redis(CONFIG.REDIS_URL as string, {
@@ -19,7 +19,7 @@ const createQueue = (name: string) => {
   if (!connection) {
     return null as unknown as Queue;
   }
-  return new Queue(name, { 
+  return new Queue(name, {
     connection: connection as any,
     defaultJobOptions: {
       attempts: 3,

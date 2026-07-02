@@ -7,6 +7,7 @@ const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_
 
 export class PineconeService {
   private pinecone: Pinecone | null = null;
+
   private index: any;
 
   constructor() {
@@ -21,7 +22,7 @@ export class PineconeService {
   async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>) {
     if (!this.pinecone || !this.index) return;
     const batchSize = 20;
-    
+
     console.log('[PINECONE] Upserting', vectors.length, 'vectors');
     for (let i = 0; i < vectors.length; i += batchSize) {
       const batch = vectors.slice(i, i + batchSize);
@@ -39,7 +40,7 @@ export class PineconeService {
       console.log('[PINECONE] Query skipped - Pinecone not configured');
       return [];
     }
-    
+
     const queryRequest = {
       vector,
       topK,
@@ -97,5 +98,16 @@ export class PineconeService {
     }
     const queryEmbedding = await embeddingService.generateEmbedding(query);
     return this.query(queryEmbedding, topK, filter);
+  }
+
+  async describeIndexStats() {
+    if (!this.pinecone || !this.index) return null;
+    try {
+      const stats = await this.index.describeIndexStats();
+      return stats;
+    } catch (error) {
+      logger.error('Failed to describe index stats:', error);
+      return null;
+    }
   }
 }

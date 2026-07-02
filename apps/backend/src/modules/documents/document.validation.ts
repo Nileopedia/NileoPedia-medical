@@ -7,7 +7,8 @@ export const createDocumentSchema = z.object({
   specialty: z.string().optional(),
   documentType: z.string().optional(),
   source: z.string().optional(),
-  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10)
+    .optional(),
 });
 
 export const updateDocumentSchema = z.object({
@@ -16,7 +17,8 @@ export const updateDocumentSchema = z.object({
   specialty: z.string().optional(),
   documentType: z.string().optional(),
   source: z.string().optional(),
-  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+  publicationYear: z.number().int().min(1900).max(new Date().getFullYear() + 10)
+    .optional(),
 });
 
 export const getDocumentsQuerySchema = z.object({

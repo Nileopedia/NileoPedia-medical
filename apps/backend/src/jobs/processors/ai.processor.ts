@@ -1,5 +1,5 @@
-import prisma from '../../config/prisma';
 import { Groq } from 'groq-sdk';
+import prisma from '../../config/prisma';
 import { AiGenerationJob, PipelineError, MetadataResponse } from '../types';
 import { logger } from '../../config/logger';
 import { redis } from '../../lib/redis';
@@ -29,15 +29,19 @@ function createPipelineError(stage: 'embeddings' | 'retrieval' | 'llm' | 'databa
 }
 
 export async function processAiGeneration(job: AiGenerationJob) {
-  const { questionId, query, userId, topK = 10, specialty } = job;
+  const {
+    questionId, query, userId, topK = 10, specialty,
+  } = job;
   const totalStart = Date.now();
 
   try {
     console.log('[AI] User query:', query);
-    console.log('[AI] Job params:', { questionId, userId, topK, specialty });
+    console.log('[AI] Job params:', {
+      questionId, userId, topK, specialty,
+    });
 
     const retrievalService = new RetrievalService();
-    
+
     if (!retrievalService.embeddingService?.isRealEmbeddings) {
       logger.error('[ERROR] Embedding service unavailable');
       return createPipelineError('embeddings', 'Embedding service unavailable');
@@ -123,7 +127,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
       });
 
       const pineconeMatches = await Promise.race([pineconePromise, timeoutPromise]) as any[];
-      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.75);
+      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.55);
       const MIN_DOCS = 2;
       const hasContext = relevant.length >= MIN_DOCS;
 
@@ -389,7 +393,7 @@ If no relevant information is available in the context, use summary: "I could no
     }));
 
     logger.info(`AI generation completed for question: ${questionId}`);
-    
+
     const metadata: MetadataResponse = {
       answer: summary,
       source: 'real',
@@ -400,7 +404,6 @@ If no relevant information is available in the context, use summary: "I could no
     };
 
     return { success: true, responseId: aiResponse.id, metadata };
-
   } catch (error: any) {
     logger.error('[ERROR] AI generation failed:', error);
     return createPipelineError('database', 'Database operation failed');

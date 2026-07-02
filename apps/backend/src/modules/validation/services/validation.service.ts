@@ -76,7 +76,9 @@ export class ValidationService {
 
     return {
       reviews,
-      pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+      pagination: {
+        total, page, limit, totalPages: Math.ceil(total / limit),
+      },
     };
   }
 
@@ -105,7 +107,7 @@ export class ValidationService {
     ]);
 
     return {
-      reviews: reviews.map(r => ({
+      reviews: reviews.map((r) => ({
         id: r.id,
         question: r.aiResponse?.question?.questionText || 'Unknown',
         response: r.aiResponse?.summary || '',
@@ -113,7 +115,9 @@ export class ValidationService {
         date: r.reviewedAt.toISOString(),
         score: r.score,
       })),
-      pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+      pagination: {
+        total, page, limit, totalPages: Math.ceil(total / limit),
+      },
     };
   }
 
@@ -134,14 +138,16 @@ export class ValidationService {
     ]);
 
     return {
-      reviews: reviews.map(r => ({
+      reviews: reviews.map((r) => ({
         id: r.id,
         question: r.aiResponse?.question?.questionText || 'Unknown',
         reason: r.feedback || 'No reason provided',
         validator: r.validator?.fullName || 'Unknown',
         date: r.reviewedAt.toISOString(),
       })),
-      pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+      pagination: {
+        total, page, limit, totalPages: Math.ceil(total / limit),
+      },
     };
   }
 
@@ -160,7 +166,7 @@ export class ValidationService {
     ]);
 
     return {
-      reports: feedbacks.map(f => ({
+      reports: feedbacks.map((f) => ({
         id: f.id,
         question: f.aiResponse?.question?.questionText || 'Unknown question',
         userFeedback: f.comment,
@@ -170,7 +176,9 @@ export class ValidationService {
         severity: 'medium' as const,
         status: 'open' as const,
       })),
-      pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+      pagination: {
+        total, page, limit, totalPages: Math.ceil(total / limit),
+      },
     };
   }
 
@@ -192,11 +200,11 @@ export class ValidationService {
       where: { validatorId },
     });
 
-    const approved = reviews.filter(r => r.status === 'APPROVED').length;
+    const approved = reviews.filter((r) => r.status === 'APPROVED').length;
     const reviewsCompleted = reviews.length;
     const approvalRate = reviews.length > 0 ? Math.round((approved / reviews.length) * 100) : 0;
 
-    const timestamps = reviews.map(r => new Date(r.reviewedAt).getTime());
+    const timestamps = reviews.map((r) => new Date(r.reviewedAt).getTime());
     const avgReviewTime = timestamps.length > 1
       ? Math.round((timestamps[timestamps.length - 1] - timestamps[0]) / timestamps.length / 1000)
       : 0;
@@ -242,7 +250,7 @@ export class ValidationService {
 
   async updateSettings(validatorId: string, settings: Record<string, any>) {
     const existing = await prisma.userPreferences.findUnique({ where: { userId: validatorId } });
-    
+
     if (existing) {
       await prisma.userPreferences.update({
         where: { userId: validatorId },

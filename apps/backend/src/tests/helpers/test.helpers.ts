@@ -2,11 +2,9 @@ import { UserRole, AccountStatus } from '@prisma/client';
 import jwt from 'jsonwebtoken';
 import prisma from '../../config/prisma';
 
-export const generateTestJWT = (payload: { id: string; email: string; role: string }) => {
-  return jwt.sign(payload, process.env.JWT_ACCESS_SECRET || 'test-access-secret-key', {
-    expiresIn: '15m',
-  });
-};
+export const generateTestJWT = (payload: { id: string; email: string; role: string }) => jwt.sign(payload, process.env.JWT_ACCESS_SECRET || 'test-access-secret-key', {
+  expiresIn: '15m',
+});
 
 export const createTestUser = async (data: {
   email?: string;
@@ -26,17 +24,11 @@ export const createTestUser = async (data: {
   return user;
 };
 
-export const createTestAdmin = async () => {
-  return createTestUser({ role: 'ADMIN' });
-};
+export const createTestAdmin = async () => createTestUser({ role: 'ADMIN' });
 
-export const createTestValidator = async () => {
-  return createTestUser({ role: 'VALIDATOR' });
-};
+export const createTestValidator = async () => createTestUser({ role: 'VALIDATOR' });
 
-export const createTestMedicalUser = async () => {
-  return createTestUser({ role: 'MEDICAL_USER' });
-};
+export const createTestMedicalUser = async () => createTestUser({ role: 'MEDICAL_USER' });
 
 export const createAuthHeader = (token: string) => ({
   Authorization: `Bearer ${token}`,

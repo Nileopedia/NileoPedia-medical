@@ -15,7 +15,7 @@ const worker = new Worker<EmailJob>(
     concurrency: 5,
     removeOnComplete: { age: 3600 },
     removeOnFail: { age: 86400 },
-  }
+  },
 );
 
 worker.on('completed', (job) => {

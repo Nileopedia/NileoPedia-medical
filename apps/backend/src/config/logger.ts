@@ -1,11 +1,13 @@
 import winston from 'winston';
 import { CONFIG } from './env';
 
-const { combine, timestamp, label, printf, errors } = winston.format;
+const {
+  combine, timestamp, label, printf, errors,
+} = winston.format;
 
-const loggerFormat = printf(({ level, message, label, timestamp }) => {
-  return `${timestamp} [${label}] ${level}: ${message}`;
-});
+const loggerFormat = printf(({
+  level, message, label, timestamp,
+}) => `${timestamp} [${label}] ${level}: ${message}`);
 
 export const logger = winston.createLogger({
   level: CONFIG.NODE_ENV === 'development' ? 'debug' : 'info',
@@ -13,7 +15,7 @@ export const logger = winston.createLogger({
     errors({ stack: true }),
     label({ label: 'nileopedia-backend' }),
     timestamp(),
-    loggerFormat
+    loggerFormat,
   ),
   transports: [
     new winston.transports.Console(),

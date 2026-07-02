@@ -10,8 +10,8 @@ async function getFetch() {
   return fetch;
 }
 
-const HF_API_KEY = CONFIG.HF_API_KEY;
-const HF_EMBEDDING_MODEL = CONFIG.HF_EMBEDDING_MODEL;
+const { HF_API_KEY } = CONFIG;
+const { HF_EMBEDDING_MODEL } = CONFIG;
 const EXPECTED_DIMENSIONS = 384;
 // Force mock mode in test environment to avoid network calls and dynamic imports
 const IS_TEST = process.env.NODE_ENV === 'test';
@@ -21,7 +21,7 @@ const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false' && !IS_
 console.log('[EmbeddingService] Configuration check:', {
   HF_API_KEY_EXISTS: !!HF_API_KEY,
   HF_API_KEY_LENGTH: HF_API_KEY?.length || 0,
-  HF_EMBEDDING_MODEL: HF_EMBEDDING_MODEL,
+  HF_EMBEDDING_MODEL,
   USE_MOCK_EMBEDDINGS: CONFIG.USE_MOCK_EMBEDDINGS,
   LOCAL_EMBEDDINGS_ENABLED: LOCAL_EMBEDDING_ENABLED,
 });
@@ -36,7 +36,7 @@ let localEmbeddingPipeline: any = null;
 async function loadLocalEmbedding() {
   if (!LOCAL_EMBEDDING_ENABLED) return null;
   if (localEmbeddingPipeline) return localEmbeddingPipeline;
-  
+
   try {
     const { pipeline } = await import('@xenova/transformers');
     localEmbeddingPipeline = await pipeline('feature-extraction', 'Xenova/all-MiniLM-L6-v2');
@@ -67,7 +67,7 @@ async function localEmbedding(text: string): Promise<number[]> {
     logger.error('[ERROR] Pinecone unavailable');
     throw new Error('Embedding service unavailable');
   }
-  
+
   const output = await pipeline(text, { pooling: 'mean', normalize: true });
   return Array.from(output.data);
 }
@@ -76,7 +76,7 @@ async function hfEmbedding(text: string): Promise<number[]> {
   const requestUrl = `https://api-inference.huggingface.co/models/${HF_EMBEDDING_MODEL}`;
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), 15000);
-  
+
   try {
     console.log(`[HF] Requesting embedding from: ${requestUrl}`);
     const fetchFn = await getFetch();
@@ -85,12 +85,12 @@ async function hfEmbedding(text: string): Promise<number[]> {
       {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${HF_API_KEY}`,
+          Authorization: `Bearer ${HF_API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ inputs: text }),
         signal: controller.signal,
-      }
+      },
     );
 
     if (!response.ok) {
@@ -101,12 +101,12 @@ async function hfEmbedding(text: string): Promise<number[]> {
     const data = await response.json();
     const flatten = (arr: any[]): number[] => arr.flat(Infinity);
     const embedding = flatten(data);
-    
+
     // Validate dimensions
     if (embedding.length !== EXPECTED_DIMENSIONS) {
       throw new Error(`Unexpected embedding dimensions: ${embedding.length} (expected ${EXPECTED_DIMENSIONS})`);
     }
-    
+
     console.log(`[HF] Generated embedding: ${embedding.length} dimensions`);
     return embedding;
   } catch (error: any) {
@@ -128,11 +128,12 @@ async function hfEmbedding(text: string): Promise<number[]> {
 
 export class EmbeddingService {
   private mockMode: boolean;
+
   private useLocal: boolean = false;
-  
+
   constructor() {
     this.mockMode = IS_TEST || !HF_API_KEY && !LOCAL_EMBEDDING_ENABLED;
-    
+
     if (this.mockMode) {
       logger.warn('Using mock embeddings - no embedding service available');
       console.warn('[EmbeddingService] Mock embeddings active - 384 dimensions');
@@ -190,7 +191,7 @@ export class EmbeddingService {
     if (this.mockMode) {
       throw new Error('Embedding service unavailable');
     }
-    
+
     const results: number[][] = [];
     for (const text of texts) {
       try {

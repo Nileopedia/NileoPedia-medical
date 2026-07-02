@@ -15,7 +15,7 @@ const worker = new Worker<AiGenerationJob>(
     concurrency: 3,
     removeOnComplete: { age: 3600 },
     removeOnFail: { age: 86400 },
-  }
+  },
 );
 
 worker.on('completed', (job) => {

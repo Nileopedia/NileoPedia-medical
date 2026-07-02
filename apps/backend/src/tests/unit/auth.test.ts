@@ -8,31 +8,25 @@ process.env.JWT_REFRESH_EXPIRES_IN = '7d';
 
 describe('Authentication', () => {
   // Re-implement JWT utilities locally for testing
-  const generateAccessToken = (userId: string, email: string) => {
-    return jwt.sign(
-      { id: userId, email },
+  const generateAccessToken = (userId: string, email: string) => jwt.sign(
+    { id: userId, email },
       process.env.JWT_ACCESS_SECRET!,
-      { expiresIn: '15m' }
-    );
-  };
+      { expiresIn: '15m' },
+  );
 
-  const generateRefreshToken = (userId: string) => {
-    return jwt.sign(
-      { id: userId },
+  const generateRefreshToken = (userId: string) => jwt.sign(
+    { id: userId },
       process.env.JWT_REFRESH_SECRET!,
-      { expiresIn: '7d' }
-    );
-  };
+      { expiresIn: '7d' },
+  );
 
-  const verifyAccessToken = (token: string) => {
-    return jwt.verify(token, process.env.JWT_ACCESS_SECRET!) as any;
-  };
+  const verifyAccessToken = (token: string) => jwt.verify(token, process.env.JWT_ACCESS_SECRET!) as any;
 
   describe('JWT Generation', () => {
     it('should generate valid access token', () => {
       const token = generateAccessToken('user-123', 'test@example.com');
       const decoded = jwt.decode(token) as any;
-      
+
       expect(decoded).toBeDefined();
       expect(decoded?.id).toBe('user-123');
       expect(decoded?.email).toBe('test@example.com');
@@ -41,7 +35,7 @@ describe('Authentication', () => {
     it('should generate valid refresh token', () => {
       const token = generateRefreshToken('user-123');
       const decoded = jwt.decode(token) as any;
-      
+
       expect(decoded).toBeDefined();
       expect(decoded?.id).toBe('user-123');
       expect(decoded?.email).toBeUndefined();
@@ -52,14 +46,14 @@ describe('Authentication', () => {
     it('should verify valid token', () => {
       const token = generateAccessToken('user-123', 'test@example.com');
       const decoded = verifyAccessToken(token);
-      
+
       expect(decoded.id).toBe('user-123');
       expect(decoded.email).toBe('test@example.com');
     });
 
     it('should reject invalid secret', () => {
       const token = generateAccessToken('user-123', 'test@example.com');
-      
+
       expect(() => {
         jwt.verify(token, 'wrong-secret');
       }).toThrow();
@@ -73,9 +67,7 @@ describe('Authentication', () => {
   });
 
   describe('Password Validation', () => {
-    const validatePassword = (password: string) => {
-      return password.length >= 8;
-    };
+    const validatePassword = (password: string) => password.length >= 8;
 
     it('should accept valid password', () => {
       expect(validatePassword('password123')).toBe(true);
@@ -87,9 +79,7 @@ describe('Authentication', () => {
   });
 
   describe('Email Validation', () => {
-    const validateEmail = (email: string) => {
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    };
+    const validateEmail = (email: string) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
     it('should accept valid email', () => {
       expect(validateEmail('test@example.com')).toBe(true);

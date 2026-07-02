@@ -1,10 +1,11 @@
+import bcrypt from 'bcryptjs';
 import { AuthRepository } from '../repositories/auth.repository';
 import { JwtService } from './jwt.service';
-import bcrypt from 'bcryptjs';
 import { logger } from '../../../config/logger';
 
 export class AuthService {
   private authRepository: AuthRepository;
+
   private jwtService: JwtService;
 
   constructor() {
@@ -20,7 +21,9 @@ export class AuthService {
     institution?: string;
     specialization?: string;
   }) {
-    const { fullName, email, password, role, institution, specialization } = registerDto;
+    const {
+      fullName, email, password, role, institution, specialization,
+    } = registerDto;
 
     const existingUser = await this.authRepository.findByEmail(email);
     if (existingUser) {
@@ -153,18 +156,18 @@ export class AuthService {
   async generateOtp(email: string): Promise<string> {
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes expiry
-    
+
     await this.authRepository.createOtp(email, otp, expiresAt);
-    
+
     try {
-      const EmailService = (await import('../../email/email.service')).EmailService;
+      const { EmailService } = await import('../../email/email.service');
       const user = await this.authRepository.findByEmail(email);
       await EmailService.sendOtp({ email, fullName: user?.fullName || 'User', otp });
       logger.info(`OTP email sent to ${email}`);
     } catch (error) {
       logger.info(`OTP for ${email}: ${otp}`);
     }
-    
+
     return otp;
   }
 
@@ -217,13 +220,13 @@ export class AuthService {
     if (user) {
       const resetToken = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
       const expiresAt = new Date(Date.now() + 60 * 60 * 1000); // 1 hour expiry
-      
+
       await this.authRepository.createPasswordReset(email, resetToken, expiresAt);
-      
+
       const resetLink = `${process.env.FRONTEND_URL}/reset-password?email=${encodeURIComponent(email)}&token=${resetToken}`;
-      
+
       try {
-        const EmailService = (await import('../../email/email.service')).EmailService;
+        const { EmailService } = await import('../../email/email.service');
         await EmailService.sendPasswordReset({
           email,
           fullName: user.fullName,

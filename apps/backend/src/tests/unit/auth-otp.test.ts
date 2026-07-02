@@ -1,8 +1,6 @@
 describe('Auth Service - OTP/Email Verification', () => {
   describe('requiresOtp validation', () => {
-    const requiresOtp = (role: string): boolean => {
-      return role === 'VALIDATOR' || role === 'ADMIN';
-    };
+    const requiresOtp = (role: string): boolean => role === 'VALIDATOR' || role === 'ADMIN';
 
     it('should require OTP for VALIDATOR role', () => {
       expect(requiresOtp('VALIDATOR')).toBe(true);

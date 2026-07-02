@@ -85,7 +85,7 @@ describe('QuestionsService', () => {
           questionId: 'q-1',
           specialty: 'endocrinology',
         }),
-        expect.any(Object)
+        expect.any(Object),
       );
     });
 
@@ -114,7 +114,9 @@ describe('QuestionsService', () => {
   describe('getHistory', () => {
     it('should return paginated question history', async () => {
       const mockQuestions = [
-        { id: 'q-1', questionText: 'Q1', category: 'General', createdAt: new Date(), aiResponse: null },
+        {
+          id: 'q-1', questionText: 'Q1', category: 'General', createdAt: new Date(), aiResponse: null,
+        },
       ];
       mockPrisma.question.findMany.mockResolvedValue(mockQuestions);
       mockPrisma.question.count.mockResolvedValue(1);
@@ -137,7 +139,7 @@ describe('QuestionsService', () => {
       expect(mockPrisma.question.findMany).toHaveBeenCalledWith(
         expect.objectContaining({
           where: expect.objectContaining({ category: 'cardiology' }),
-        })
+        }),
       );
     });
 
@@ -160,15 +162,15 @@ describe('QuestionsService', () => {
               lte: expect.any(Date),
             }),
           }),
-        })
+        }),
       );
     });
   });
 
   describe('getQuestion', () => {
     it('should return question by id with aiResponse if present', async () => {
-      const mockQuestion = { 
-        id: 'q-1', 
+      const mockQuestion = {
+        id: 'q-1',
         questionText: 'test question',
         aiResponse: {
           id: 'resp-1',
@@ -195,8 +197,8 @@ describe('QuestionsService', () => {
     });
 
     it('should return unavailable message when no AI response', async () => {
-      const mockQuestion = { 
-        id: 'q-1', 
+      const mockQuestion = {
+        id: 'q-1',
         questionText: 'test question',
         aiResponse: null,
       };

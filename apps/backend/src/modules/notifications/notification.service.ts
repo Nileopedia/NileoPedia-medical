@@ -1,5 +1,5 @@
-import prisma from '../../config/prisma';
 import { NotificationType } from '@prisma/client';
+import prisma from '../../config/prisma';
 import {
   CreateNotificationDto,
   CreateSystemNotificationDto,

@@ -1,8 +1,8 @@
+import fs from 'fs';
+import path from 'path';
 import prisma from '../../config/prisma';
 import { CleanupJob } from '../types';
 import { logger } from '../../config/logger';
-import fs from 'fs';
-import path from 'path';
 
 export async function processCleanup(job: CleanupJob) {
   const { type } = job;
@@ -46,21 +46,21 @@ async function cleanupFailedJobs() {
 async function cleanupTempFiles() {
   const uploadDir = process.env.UPLOAD_DIR || './uploads';
   let cleaned = 0;
-  
+
   if (fs.existsSync(uploadDir)) {
     const files = fs.readdirSync(uploadDir);
     for (const file of files) {
       const filePath = path.join(uploadDir, file);
       const stat = fs.statSync(filePath);
       const oneDayAgo = Date.now() - 24 * 60 * 60 * 1000;
-      
+
       if (stat.mtime.getTime() < oneDayAgo) {
         fs.unlinkSync(filePath);
         cleaned++;
       }
     }
   }
-  
+
   logger.info(`Cleaned up ${cleaned} temp files`);
   return { success: true, cleaned };
 }

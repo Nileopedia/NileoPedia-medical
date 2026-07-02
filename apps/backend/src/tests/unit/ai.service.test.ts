@@ -4,17 +4,15 @@ import { CONFIG } from '../../config/env';
 
 // Mock the Groq SDK
 const mockCreate = jest.fn();
-jest.mock('groq-sdk', () => {
-  return {
-    Groq: jest.fn().mockImplementation(() => ({
-      chat: {
-        completions: {
-          create: mockCreate,
-        },
+jest.mock('groq-sdk', () => ({
+  Groq: jest.fn().mockImplementation(() => ({
+    chat: {
+      completions: {
+        create: mockCreate,
       },
-    })),
-  };
-});
+    },
+  })),
+}));
 
 describe('AIService', () => {
   beforeEach(() => {

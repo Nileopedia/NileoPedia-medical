@@ -1,6 +1,8 @@
 import express, { Express } from 'express';
 import { createServer } from 'http';
 import { Server } from 'socket.io';
+import bcrypt from 'bcryptjs';
+import { UserRole } from '@prisma/client';
 import { EmailService } from './modules/email/email.service';
 import './jobs/worker';
 import { redis } from './lib/redis';
@@ -8,8 +10,6 @@ import { CONFIG } from './config/env';
 import prisma from './config/prisma';
 import { setupMiddleware } from './shared/middleware';
 import { setupRoutes } from './routes';
-import bcrypt from 'bcryptjs';
-import { UserRole } from '@prisma/client';
 
 const app: Express = express();
 const httpServer = createServer(app);
@@ -34,11 +34,11 @@ global.io = io;
 async function initializeAdmin(): Promise<void> {
   const adminEmail = 'admin@nileopedia.com';
   const adminPassword = 'Admin123456!';
-  
+
   const existingAdmin = await prisma.user.findUnique({
     where: { email: adminEmail },
   });
-  
+
   if (existingAdmin) {
     console.log('Admin account already exists');
   } else {
@@ -60,7 +60,7 @@ async function initializeAdmin(): Promise<void> {
 // Seed demo knowledge base on startup (FR-20)
 async function seedKnowledgeBase(): Promise<void> {
   const { refreshKnowledgeBase } = require('./jobs/processors/document.processor');
-  
+
   const demoCount = await prisma.medicalDocument.count();
   if (demoCount === 0) {
     console.log('Seeding demo knowledge base...');
@@ -72,13 +72,13 @@ async function seedKnowledgeBase(): Promise<void> {
 // Warm up AI services on startup (FR-38)
 async function warmupAiServices(): Promise<void> {
   console.log('\n========== AI SERVICES WARMUP ==========');
-  
+
   // Warmup EmbeddingService with preloaded model
   try {
     const { EmbeddingService, preloadEmbeddingModel } = require('./modules/rag/services/embedding.service');
     const embeddingService = new EmbeddingService();
     console.log('[WARMUP] Initializing EmbeddingService...');
-    
+
     const warmupStart = Date.now();
     try {
       // Preload the model before first use
@@ -97,7 +97,7 @@ async function warmupAiServices(): Promise<void> {
     const { RetrievalService } = require('./modules/retrieval/retrieval.service');
     const retrievalService = new RetrievalService();
     console.log('[WARMUP] Initializing RetrievalService...');
-    
+
     const warmupStart = Date.now();
     try {
       await retrievalService.hybridSearch('diabetes');
@@ -116,21 +116,21 @@ async function warmupAiServices(): Promise<void> {
 async function verifyPineconeIndex(): Promise<void> {
   const { RetrievalService } = require('./modules/retrieval/retrieval.service');
   const retrievalService = new RetrievalService();
-  
+
   console.log('\n========== PINECONE INDEX VERIFICATION ==========');
-  
-  if (!retrievalService.pineconeClient || !retrievalService['index']) {
+
+  if (!retrievalService.pineconeClient || !retrievalService.index) {
     console.warn('[WARN] Pinecone not configured - mock mode active');
     console.log('=================================================\n');
     return;
   }
 
   try {
-    const index = retrievalService['index'];
+    const { index } = retrievalService;
     const stats = await index.describeIndexStats();
     console.log('[PINECONE] Total vectors:', (stats as any).totalRecordCount ?? 'unknown');
     console.log('[PINECONE] Index dimension:', (stats as any).dimension ?? 'unknown');
-    
+
     const vectorCount = (stats as any).totalRecordCount || 0;
     if (vectorCount === 0) {
       console.warn('[WARN] No vectors indexed - knowledge base is empty');
@@ -148,12 +148,12 @@ async function verifyPineconeIndex(): Promise<void> {
 async function verifyEmbeddings(): Promise<void> {
   const { EmbeddingService } = require('./modules/rag/services/embedding.service');
   const embeddingService = new EmbeddingService();
-  
+
   console.log('\n========== EMBEDDING SERVICE VERIFICATION ==========');
   console.log('HF_API_KEY configured:', !!CONFIG.HF_API_KEY);
   console.log('USE_MOCK_EMBEDDINGS:', CONFIG.USE_MOCK_EMBEDDINGS);
   console.log('isRealEmbeddings:', embeddingService.isRealEmbeddings);
-  
+
   if (!embeddingService.isRealEmbeddings) {
     console.warn('\n[INFO] Using mock embeddings - no embedding service available');
     console.warn('[INFO] Install @xenova/transformers for local embeddings\n');
@@ -173,7 +173,7 @@ async function verifyEmbeddings(): Promise<void> {
 prisma.$connect()
   .then(async () => {
     console.log('Database connected successfully');
-    
+
     // Initialize admin account
     await initializeAdmin();
 
@@ -186,23 +186,23 @@ prisma.$connect()
     console.log('===================================================\n');
 
     const warmupPromise = warmupAiServices();
-      const timeoutPromise = new Promise((_, reject) => {
-        setTimeout(() => reject(new Error('Warmup timeout after 20000ms')), 20000);
-      });
-      
-      try {
-        await Promise.race([warmupPromise, timeoutPromise]);
-      } catch (e: any) {
-        console.warn(`[STARTUP] Warmup timeout or error (continuing startup): ${e.message}`);
-      }
-    
+    const timeoutPromise = new Promise((_, reject) => {
+      setTimeout(() => reject(new Error('Warmup timeout after 20000ms')), 20000);
+    });
+
+    try {
+      await Promise.race([warmupPromise, timeoutPromise]);
+    } catch (e: any) {
+      console.warn(`[STARTUP] Warmup timeout or error (continuing startup): ${e.message}`);
+    }
+
     // Verify embedding service at startup (non-blocking)
     setImmediate(() => verifyEmbeddings());
     setImmediate(() => verifyPineconeIndex());
-    
+
     // Seed knowledge base if empty
     await seedKnowledgeBase();
-    
+
     // Setup middleware (cors, helmet, body parser, etc.)
     setupMiddleware(app);
 
@@ -210,14 +210,14 @@ prisma.$connect()
     const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
     const { AuthController } = require('./modules/auth/controllers/auth.controller');
     const authController = new AuthController();
-    
+
     setupRoutes(app, io, authController);
 
     // Mock AI service endpoint (only when explicitly enabled)
     if (CONFIG.USE_MOCK_AI) {
       app.post('/api/v1/mock-ai/generate', (req, res) => {
         const { query, specialty } = req.body;
-        
+
         // Specialty-specific mock content
         const specialtyContent: Record<string, { keywords: string[], keyFindings: string[] }> = {
           cardiology: {
@@ -269,10 +269,10 @@ prisma.$connect()
             ],
           },
         };
-        
+
         const content = specialtyContent[specialty] || specialtyContent.general;
         const specialtyName = specialty ? specialty.charAt(0).toUpperCase() + specialty.slice(1).toLowerCase() : 'General';
-        
+
         const mockCitations = Array.from({ length: 3 }, (_, i) => ({
           title: `${specialtyName} Reference ${i + 1}`,
           source: 'PubMed',
@@ -295,7 +295,9 @@ prisma.$connect()
 
       // Mock ingest endpoint for document processing
       app.post('/api/v1/mock-ai/ingest', (req, res) => {
-        const { title, content, specialty, documentType, source } = req.body;
+        const {
+          title, content, specialty, documentType, source,
+        } = req.body;
         console.log(`Mock ingest processed: ${title} (${content?.length || 0} chars)`);
         setTimeout(() => {
           res.json({
@@ -327,7 +329,7 @@ prisma.$connect()
       socket.on('stream-question', (questionId: string) => {
         socket.join(`question-${questionId}`);
         // Send existing data if available
-        redis.get(`question-progress:${questionId}`).then(data => {
+        redis.get(`question-progress:${questionId}`).then((data) => {
           if (data) {
             socket.emit('ai-progress', JSON.parse(data));
           }

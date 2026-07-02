@@ -32,7 +32,7 @@ describe('DocumentMetadataService', () => {
 
   describe('extractFromPDF', () => {
     it('should extract title from PDF text', () => {
-      const rawText = `Management of Type 2 Diabetes in Elderly Patients\n\nJohn Smith, Jane Doe\nDiabetes Care\n2024\n10.1000/diabetes.2024.001`;
+      const rawText = 'Management of Type 2 Diabetes in Elderly Patients\n\nJohn Smith, Jane Doe\nDiabetes Care\n2024\n10.1000/diabetes.2024.001';
       const result = (service as any).extractFromPDF(rawText);
 
       expect(result.authors).toEqual(['John Smith', 'Jane Doe']);
@@ -41,7 +41,7 @@ describe('DocumentMetadataService', () => {
     });
 
     it('should extract DOI from first page', () => {
-      const rawText = `Some document\nDOI: 10.1234/test.2023.001\nPublished 2023`;
+      const rawText = 'Some document\nDOI: 10.1234/test.2023.001\nPublished 2023';
       const result = (service as any).extractFromPDF(rawText);
 
       expect(result.doi).toBe('10.1234/test.2023.001');
@@ -143,7 +143,7 @@ Published in 2024. DOI: 10.1234/guidelines.2024`;
   describe('extractMetadata routing', () => {
     it('should route PDF files to extractFromPDF', async () => {
       const spy = jest.spyOn((service as any), 'extractFromPDF').mockReturnValue({ authors: [], title: 'PDF Title' });
-      
+
       await service.extractMetadata({
         rawText: 'pdf content',
         fileName: 'test.pdf',
@@ -156,7 +156,7 @@ Published in 2024. DOI: 10.1234/guidelines.2024`;
 
     it('should route HTML files to extractFromHTML', async () => {
       const spy = jest.spyOn((service as any), 'extractFromHTML').mockReturnValue({ authors: [], title: 'HTML Title' });
-      
+
       await service.extractMetadata({
         rawText: '<html>content</html>',
         fileName: 'test.html',
@@ -169,7 +169,7 @@ Published in 2024. DOI: 10.1234/guidelines.2024`;
 
     it('should route XML/PubMed files to extractFromPubMed', async () => {
       const spy = jest.spyOn((service as any), 'extractFromPubMed').mockReturnValue({ authors: [], title: 'PubMed Title' });
-      
+
       await service.extractMetadata({
         rawText: '<PubmedArticle></PubmedArticle>',
         fileName: 'test.xml',

@@ -1,7 +1,7 @@
 import { Router } from 'express';
+import multer from 'multer';
 import { DocumentController } from './document.controller';
 import { authenticate, authorize } from '../../shared/middleware/auth.middleware';
-import multer from 'multer';
 
 const upload = multer({
   storage: multer.memoryStorage(),

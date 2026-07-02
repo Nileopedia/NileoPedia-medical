@@ -47,7 +47,9 @@ export class QuestionsController {
       const startDate = req.query.startDate as string | undefined;
       const endDate = req.query.endDate as string | undefined;
 
-      const result = await this.questionsService.getHistory(userId, { page, limit, category, startDate, endDate });
+      const result = await this.questionsService.getHistory(userId, {
+        page, limit, category, startDate, endDate,
+      });
 
       res.status(200).json({
         success: true,

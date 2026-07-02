@@ -51,7 +51,7 @@ export class SearchController {
         results: await this.searchService.semanticSearch(
           q as string,
           specialty as string,
-          parseInt(topK as string) || 10
+          parseInt(topK as string) || 10,
         ),
         pagination: {
           total: 0,
@@ -80,7 +80,7 @@ export class SearchController {
         results: await this.searchService.keywordSearch(
           q as string,
           specialty as string,
-          parseInt(limit as string) || 20
+          parseInt(limit as string) || 20,
         ),
         pagination: {
           total: 0,
@@ -109,7 +109,7 @@ export class SearchController {
         results: await this.searchService.hybridSearch(
           q as string,
           specialty as string,
-          parseInt(limit as string) || 20
+          parseInt(limit as string) || 20,
         ),
         pagination: {
           total: 0,
@@ -132,7 +132,9 @@ export class SearchController {
 
   async searchDocuments(req: Request, res: Response, next: NextFunction) {
     try {
-      const { q, specialty, limit, page, publicationYear, documentType } = req.query;
+      const {
+        q, specialty, limit, page, publicationYear, documentType,
+      } = req.query;
       const validatedQuery = searchQuerySchema.parse(req.query);
 
       const result = await this.searchService.searchDocuments({

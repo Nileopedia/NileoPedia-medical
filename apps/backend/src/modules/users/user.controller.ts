@@ -32,7 +32,7 @@ export class UserController {
       const validatedData = updateProfileSchema.parse(req.body);
 
       const user = await this.userService.updateProfile(userId, validatedData);
-      
+
       await AuditLogger.log(req, {
         action: 'USER_PROFILE_UPDATED',
         entityType: 'User',
@@ -57,7 +57,7 @@ export class UserController {
       const validatedData = changePasswordSchema.parse(req.body);
 
       await this.userService.changePassword(userId, validatedData);
-      
+
       await AuditLogger.log(req, {
         action: 'PASSWORD_CHANGED',
         entityType: 'Auth',
@@ -187,7 +187,7 @@ export class UserController {
   async createValidator(req: Request, res: Response, next: NextFunction) {
     try {
       const user = await this.userService.createValidator(req.body);
-      
+
       await AuditLogger.log(req, {
         action: 'VALIDATOR_CREATED',
         entityType: 'User',

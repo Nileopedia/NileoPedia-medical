@@ -104,7 +104,7 @@ describe('Metadata Generation', () => {
     const result = await processAiGeneration(mockJob as any);
 
     if (result.success && (result as any).metadata) {
-      const metadata = (result as any).metadata;
+      const { metadata } = (result as any);
       expect(metadata).toHaveProperty('answer');
       expect(metadata).toHaveProperty('source', 'real');
       expect(metadata).toHaveProperty('documentsUsed');
