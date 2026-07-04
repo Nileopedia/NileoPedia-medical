@@ -5,6 +5,20 @@ import { PineconeService } from '../src/modules/rag/services/pinecone.service';
 import fs from 'fs';
 import path from 'path';
 
+function stripHtml(content: string): string {
+  return content
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+    .replace(/<nav\b[^<]*(?:(?!<\/nav>)<[^<]*)*<\/nav>/gi, '')
+    .replace(/<header\b[^<]*(?:(?!<\/header>)<[^<]*)*<\/header>/gi, '')
+    .replace(/<footer\b[^<]*(?:(?!<\/footer>)<[^<]*)*<\/footer>/gi, '')
+    .replace(/<svg\b[^<]*(?:(?!<\/svg>)<[^<]*)*<\/svg>/gi, '')
+    .replace(/<img\b[^>]*>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 async function reindexDocuments() {
   console.log('Starting document reindexing...');
   
@@ -32,8 +46,8 @@ async function reindexDocuments() {
       }
       
       const content = fs.readFileSync(fullPath, 'utf8');
-      const cleaned = await embeddingService.preprocessText(content);
-      const chunks = chunkingService.chunkDocument(cleaned, {
+      const cleanContent = stripHtml(content);
+      const chunks = chunkingService.chunkDocument(cleanContent, {
         source: doc.source || 'MedlinePlus',
         specialty: doc.specialty || 'general'
       });

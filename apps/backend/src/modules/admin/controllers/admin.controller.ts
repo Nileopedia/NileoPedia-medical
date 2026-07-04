@@ -4,6 +4,7 @@ import { AuditLogger } from '../../audit/audit.logger';
 import { logger } from '../../../config/logger';
 import { RetrievalService } from '../../../modules/retrieval/retrieval.service';
 import { EmbeddingService } from '../../../modules/rag/services/embedding.service';
+import { PineconeService } from '../../../modules/rag/services/pinecone.service';
 import { CONFIG } from '../../../config/env';
 import prisma from '../../../config/prisma';
 
@@ -295,7 +296,7 @@ export class AdminController {
       const retrievalService = new RetrievalService();
 
       const pineconeMatches = await retrievalService.semanticSearch(query, 10);
-      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.55);
+      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.50);
       const documents = relevant.map((doc: any) => ({
         id: doc.id,
         score: doc.score,
@@ -549,7 +550,6 @@ export class AdminController {
         });
       }
 
-      const { PineconeService } = await import('../../rag/services/pinecone.service');
       const pineconeService = new PineconeService();
       let pineconeExists = false;
       let vectorCount = 0;
@@ -588,18 +588,7 @@ export class AdminController {
   async queryDebug(req: Request, res: Response, next: NextFunction) {
     try {
       const query = (req.query.q as string) || '';
-      const embeddingService = new EmbeddingService();
       const retrievalService = new RetrievalService();
-
-      let queryEmbeddingDimension = 0;
-      let queryEmbedding: number[] = [];
-
-      try {
-        queryEmbedding = await embeddingService.generateEmbedding(query);
-        queryEmbeddingDimension = queryEmbedding.length;
-      } catch (e: any) {
-        logger.warn('Query embedding failed:', e?.message || e);
-      }
 
       const matches = await retrievalService.semanticSearch(query, 10);
       const retrievedCount = matches.length;
@@ -612,7 +601,6 @@ export class AdminController {
 
       res.status(200).json({
         query,
-        queryEmbeddingDimension,
         retrievedCount,
         topScores,
         documents,

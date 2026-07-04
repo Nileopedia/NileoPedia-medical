@@ -57,7 +57,22 @@ export class DocumentIngestionService {
       extractedLength: input.content.length,
     });
 
-    const chunks = this.chunkingService.chunkDocument(input.content, {
+    let cleanContent = input.content;
+    if (input.content.includes('<') && input.content.includes('>')) {
+      cleanContent = cleanContent
+        .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+        .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+        .replace(/<nav\b[^<]*(?:(?!<\/nav>)<[^<]*)*<\/nav>/gi, '')
+        .replace(/<header\b[^<]*(?:(?!<\/header>)<[^<]*)*<\/header>/gi, '')
+        .replace(/<footer\b[^<]*(?:(?!<\/footer>)<[^<]*)*<\/footer>/gi, '')
+        .replace(/<svg\b[^<]*(?:(?!<\/svg>)<[^<]*)*<\/svg>/gi, '')
+        .replace(/<img\b[^>]*>/gi, '')
+        .replace(/<[^>]+>/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim();
+    }
+
+    const chunks = this.chunkingService.chunkDocument(cleanContent, {
       source: input.source,
       publicationYear: input.publicationYear,
       specialty: input.specialty || 'general',

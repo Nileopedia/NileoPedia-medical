@@ -8,6 +8,20 @@ export interface DocumentChunk {
   metadata: Record<string, any>;
 }
 
+function stripHtmlTags(content: string): string {
+  return content
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
+    .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
+    .replace(/<nav\b[^<]*(?:(?!<\/nav>)<[^<]*)*<\/nav>/gi, '')
+    .replace(/<header\b[^<]*(?:(?!<\/header>)<[^<]*)*<\/header>/gi, '')
+    .replace(/<footer\b[^<]*(?:(?!<\/footer>)<[^<]*)*<\/footer>/gi, '')
+    .replace(/<svg\b[^<]*(?:(?!<\/svg>)<[^<]*)*<\/svg>/gi, '')
+    .replace(/<img\b[^>]*>/gi, '')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+}
+
 export class ChunkingService {
   private embeddingService: EmbeddingService;
 
@@ -16,8 +30,12 @@ export class ChunkingService {
   }
 
   chunkDocument(content: string, metadata: Record<string, any> = {}): DocumentChunk[] {
-    // Semantic chunking based on paragraphs and sentences
-    const paragraphs = content.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
+    let cleanContent = content;
+    if (content.includes('<') && content.includes('>')) {
+      cleanContent = stripHtmlTags(content);
+    }
+    
+    const paragraphs = cleanContent.split(/\n\s*\n/).filter((p) => p.trim().length > 0);
     const chunks: DocumentChunk[] = [];
 
     for (let i = 0; i < paragraphs.length; i++) {

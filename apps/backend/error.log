@@ -5332,3 +5332,11 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-07-02T05:20:05.335Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-07-02T05:20:05.342Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
 2026-07-02T05:20:05.426Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-02T06:46:49.907Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-02T07:03:35.301Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-02T07:03:35.303Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-02T07:03:35.320Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-02T07:03:35.322Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-03T11:56:30.849Z [nileopedia-backend] error: Error in login controller: Invalid credentials
+2026-07-03T11:56:30.854Z [nileopedia-backend] error: Error handler caught: Invalid credentials
+2026-07-03T11:57:00.484Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 10000ms

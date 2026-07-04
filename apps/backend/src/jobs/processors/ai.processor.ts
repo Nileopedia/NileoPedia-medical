@@ -127,8 +127,8 @@ export async function processAiGeneration(job: AiGenerationJob) {
       });
 
       const pineconeMatches = await Promise.race([pineconePromise, timeoutPromise]) as any[];
-      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.55);
-      const MIN_DOCS = 2;
+      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.50);
+      const MIN_DOCS = 1;
       const hasContext = relevant.length >= MIN_DOCS;
 
       retrievalResult = {
@@ -162,6 +162,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
             validationStatus: 'APPROVED',
           },
           update: {
+            questionId,
             summary: 'I could not find supporting medical information in the knowledge base.',
             detailedExplanation: 'No relevant documents exist in NileoPedia.',
             keyFindings: [],
@@ -354,6 +355,7 @@ If no relevant information is available in the context, use summary: "I could no
         confidenceScore,
         generatedBy,
         validationStatus: 'APPROVED',
+        documentsUsed: retrievalResult.context.length,
       },
       update: {
         summary,
@@ -362,6 +364,7 @@ If no relevant information is available in the context, use summary: "I could no
         confidenceScore,
         generatedBy,
         validationStatus: 'APPROVED',
+        documentsUsed: retrievalResult.context.length,
       },
     });
 
