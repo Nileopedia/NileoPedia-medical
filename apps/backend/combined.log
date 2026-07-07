@@ -18377,3 +18377,549 @@ Invalid `prisma.question.create()` invocation in
   10     try {
 → 11       const question = await prisma.question.create(
 Foreign key constraint violated: `Question_userId_fkey (index)`
+2026-07-07T07:00:18.370Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T07:00:19.480Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:00:19.480Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:00:19.481Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:00:20.784Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:00:20.919Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:00:20.919Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:00:20.920Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:00:20.933Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:00:21.245Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:00:21.246Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:00:21.246Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:00:21.247Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:00:21.275Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:00:21.276Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:00:31.878Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:00:31.878Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:00:31.879Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:00:31.889Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:00:32.228Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:00:32.229Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:00:32.229Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:00:32.275Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:00:42.747Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T07:01:59.686Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-07T07:01:59.707Z [nileopedia-backend] info: Processing AI generation job: 100
+2026-07-07T07:02:00.011Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:02:00.012Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:02:00.012Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:02:00.014Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:02:00.046Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:02:00.046Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:02:00.046Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:02:00.062Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:02:00.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:01.793Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:03.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:04.793Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:06.301Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:07.793Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:09.293Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:10.059Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 10000ms
+2026-07-07T07:02:10.067Z [nileopedia-backend] info: AI generation job completed: 100
+2026-07-07T07:02:10.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:12.300Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:13.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:15.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:16.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:18.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:19.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:21.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:22.795Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:24.296Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:25.797Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:27.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:28.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:30.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:31.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:33.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:34.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:36.296Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:37.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:39.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:40.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:42.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:43.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:45.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:46.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:48.296Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:49.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:51.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:52.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:54.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:55.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:57.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:02:58.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:00.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:01.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:03.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:04.799Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:06.306Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:07.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:09.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:10.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:12.301Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:13.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:15.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:16.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:18.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:19.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:21.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:22.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:24.297Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:25.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:27.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:28.800Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:30.295Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:31.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:33.292Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:34.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:36.299Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:37.791Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:39.291Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:40.792Z [nileopedia-backend] info: GET /api/v1/questions/de981b93-d0ff-442c-8dea-d050169d5626 - ::1
+2026-07-07T07:03:46.229Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-07T07:03:47.432Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T07:03:47.436Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T07:03:47.449Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T07:03:47.681Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T07:03:49.817Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T07:03:49.857Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.865Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.873Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.882Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.890Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.900Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.908Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.916Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:49.925Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:50.031Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T07:03:52.519Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T07:03:52.531Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.540Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.547Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.557Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.566Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.575Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.585Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.597Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.606Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:52.733Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T07:03:54.288Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-07-07T07:03:54.299Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.306Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.317Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.327Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.338Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.346Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.355Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.363Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.372Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:54.499Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T07:03:55.702Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T07:03:55.711Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.718Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.724Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.733Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.743Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.749Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.758Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.769Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.777Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T07:03:55.898Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T07:04:06.123Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:06.165Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:13.594Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-07-07T07:04:13.618Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-07-07T07:04:17.167Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:17.192Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:26.255Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:04:26.284Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:04:34.156Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:04:38.327Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:04:41.124Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:41.158Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:42.777Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-07-07T07:04:42.795Z [nileopedia-backend] info: GET /api/v1/audit-logs - ::1
+2026-07-07T07:04:48.097Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:48.116Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:04:49.416Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:04:49.432Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:04:58.753Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T07:04:58.793Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T07:05:00.611Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-07-07T07:05:00.667Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-07-07T07:05:01.803Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-07-07T07:05:01.820Z [nileopedia-backend] info: GET /api/v1/admin/users - ::1
+2026-07-07T07:05:03.042Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-07-07T07:05:03.067Z [nileopedia-backend] info: GET /api/v1/admin/validators - ::1
+2026-07-07T07:05:07.635Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:05:07.665Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:05:08.984Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:05:09.001Z [nileopedia-backend] info: GET /api/v1/admin/ai-activity - ::1
+2026-07-07T07:05:10.276Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:05:10.312Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:06:11.621Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:06:15.989Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T07:07:31.426Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-07T07:07:31.962Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-07T07:07:31.993Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-07T07:07:45.594Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-07T07:07:45.605Z [nileopedia-backend] info: Processing AI generation job: 101
+2026-07-07T07:07:45.931Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:07:45.931Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:07:45.932Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:07:45.934Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:07:45.985Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:07:45.985Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:07:45.985Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:07:45.992Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:07:46.161Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:47.660Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:49.174Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:49.542Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:07:50.233Z [nileopedia-backend] info: AI generation completed for question: 613cbf66-22e6-44e9-b82c-0f0186cbd302
+2026-07-07T07:07:50.235Z [nileopedia-backend] info: AI generation job completed: 101
+2026-07-07T07:07:50.662Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:52.175Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:53.658Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:55.159Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:56.659Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:58.164Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:07:59.662Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:01.158Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:03.556Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:04.221Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:05.658Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:07.158Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:08.741Z [nileopedia-backend] info: GET /api/v1/questions/613cbf66-22e6-44e9-b82c-0f0186cbd302 - ::1
+2026-07-07T07:08:09.919Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-07T07:08:09.930Z [nileopedia-backend] info: Processing AI generation job: 102
+2026-07-07T07:08:10.257Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T07:08:10.258Z [nileopedia-backend] info: [object Object]
+2026-07-07T07:08:10.258Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:08:10.258Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T07:08:10.282Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:08:10.282Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T07:08:10.295Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: 0e34533e-f8d2-458e-a7ff-dba0738ec606
+2026-07-07T07:08:10.298Z [nileopedia-backend] info: AI generation job completed: 102
+2026-07-07T07:08:10.462Z [nileopedia-backend] info: GET /api/v1/questions/0e34533e-f8d2-458e-a7ff-dba0738ec606 - ::1
+2026-07-07T07:08:11.960Z [nileopedia-backend] info: GET /api/v1/questions/0e34533e-f8d2-458e-a7ff-dba0738ec606 - ::1
+2026-07-07T07:08:13.459Z [nileopedia-backend] info: GET /api/v1/questions/0e34533e-f8d2-458e-a7ff-dba0738ec606 - ::1
+2026-07-07T07:08:14.959Z [nileopedia-backend] info: GET /api/v1/questions/0e34533e-f8d2-458e-a7ff-dba0738ec606 - ::1
+2026-07-07T07:08:16.467Z [nileopedia-backend] info: GET /api/v1/questions/0e34533e-f8d2-458e-a7ff-dba0738ec606 - ::1
+2026-07-07T07:08:17.959Z [nileopedia-backend] info: GET /api/v1/questions/0e34533e-f8d2-458e-a7ff-dba0738ec606 - ::1
+2026-07-07T08:59:46.728Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T08:59:51.211Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T08:59:51.213Z [nileopedia-backend] info: [object Object]
+2026-07-07T08:59:51.216Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T08:59:52.717Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T08:59:52.804Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T08:59:52.804Z [nileopedia-backend] info: [object Object]
+2026-07-07T08:59:52.805Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T08:59:52.812Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T08:59:53.047Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T08:59:53.047Z [nileopedia-backend] info: [object Object]
+2026-07-07T08:59:53.047Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T08:59:53.048Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T08:59:53.067Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T08:59:53.067Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T08:59:56.689Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T08:59:56.689Z [nileopedia-backend] info: [object Object]
+2026-07-07T08:59:56.690Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T08:59:56.697Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T08:59:56.966Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T08:59:56.966Z [nileopedia-backend] info: [object Object]
+2026-07-07T08:59:56.966Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T08:59:56.987Z [nileopedia-backend] info: Embedding source: local

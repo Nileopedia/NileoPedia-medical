@@ -12,7 +12,7 @@ export class QuestionsController {
 
   async askQuestion(req: Request, res: Response, next: NextFunction) {
     try {
-      const userId = req.user?.id || 'anonymous-user';
+      const userId = req.user!.id;
       const { question, specialty } = req.body;
 
       const result = await this.questionsService.askQuestion(userId, question, specialty);
