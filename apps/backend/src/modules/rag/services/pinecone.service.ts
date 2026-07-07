@@ -58,22 +58,28 @@ export class PineconeService {
     return this;
   }
 
-  async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>) {
+  async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>): Promise<{ success: number; failed: number }> {
     if (this.isAvailable && this.index) {
       const batchSize = 20;
       console.log('[PINECONE] Upserting', vectors.length, 'vectors');
+      let success = 0;
+      let failed = 0;
       for (let i = 0; i < vectors.length; i += batchSize) {
         const batch = vectors.slice(i, i + batchSize);
         try {
           await this.index.upsert(batch);
+          success += batch.length;
         } catch (error) {
-          logger.error('Pinecone upsert batch failed:', { batchStart: i, error });
+          failed += batch.length;
+          logger.error('Pinecone upsert batch failed:', { batchStart: i, batchSize: batch.length, error: error instanceof Error ? error.message : error });
         }
       }
-      console.log('[PINECONE] Upsert complete');
+      console.log('[PINECONE] Upsert complete', { success, failed });
+      return { success, failed };
     } else {
       PineconeService.mockVectors.push(...vectors);
       console.log('[MOCK] Stored', vectors.length, 'vectors (mock mode), total:', PineconeService.mockVectors.length);
+      return { success: vectors.length, failed: 0 };
     }
   }
 
@@ -125,7 +131,7 @@ export class PineconeService {
       logger.info('Deleting previous vectors', { documentId });
       try {
         await this.index.deleteMany({
-          filter: { documentId },
+          filter: { documentId: { $eq: documentId } },
         });
         logger.info(`Deleted vectors for document ${documentId}`);
       } catch (error) {
@@ -153,9 +159,9 @@ export class PineconeService {
       },
     }));
 
-    await this.upsertVectors(vectors);
-    console.log('[PINECONE] Stored', vectors.length, 'vectors for document:', documentId);
-    return vectors;
+    const result = await this.upsertVectors(vectors);
+    console.log('[PINECONE] Stored', result.success, 'of', vectors.length, 'vectors for document:', documentId);
+    return { vectors, result };
   }
 
   async searchSimilar(query: string, embeddingService: any, topK = 10, filter?: Record<string, any>) {

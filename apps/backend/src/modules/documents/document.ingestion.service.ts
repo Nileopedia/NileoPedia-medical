@@ -90,7 +90,7 @@ export class DocumentIngestionService {
     });
 
     if (this.pineconeService && CONFIG.PINECONE_API_KEY) {
-      const vectors = await this.pineconeService.storeChunks(
+      const storeResult = await this.pineconeService.storeChunks(
         chunks,
         embeddedChunks.map((e) => e.embedding),
         document.id,
@@ -98,8 +98,20 @@ export class DocumentIngestionService {
 
       logger.info({
         documentId: document.id,
-        uploadedVectors: vectors?.length ?? chunks.length,
+        uploadedVectors: storeResult.vectors.length,
+        successCount: storeResult.result.success,
+        failedCount: storeResult.result.failed,
       });
+
+      if (storeResult.result.failed > 0) {
+        const error = new Error(`Failed to store ${storeResult.result.failed} of ${storeResult.vectors.length} vectors in Pinecone for document ${document.id}`);
+        logger.error(error.message);
+        await prisma.medicalDocument.update({
+          where: { id: document.id },
+          data: { ingestionStatus: IngestionStatus.FAILED },
+        });
+        throw error;
+      }
 
       const stats = await this.pineconeService.describeIndexStats();
       logger.info({
