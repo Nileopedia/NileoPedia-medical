@@ -4,10 +4,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.processCleanup = void 0;
-const prisma_1 = __importDefault(require("../../config/prisma"));
-const logger_1 = require("../../config/logger");
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
+const prisma_1 = __importDefault(require("../../config/prisma"));
+const logger_1 = require("../../config/logger");
 async function processCleanup(job) {
     const { type } = job;
     try {

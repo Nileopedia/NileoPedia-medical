@@ -58,8 +58,8 @@ class DocumentMetadataService {
                 const authors = authorStr
                     .replace(/\s*et al\.?$/i, '')
                     .split(/\s*,\s*/)
-                    .map(a => a.trim())
-                    .filter(a => a.length > 1 && a.length < 50);
+                    .map((a) => a.trim())
+                    .filter((a) => a.length > 1 && a.length < 50);
                 if (authors.length > 0) {
                     result.authors = authors;
                     break;
@@ -136,7 +136,7 @@ class DocumentMetadataService {
         if (result.authors.length === 0) {
             const authorMatches = rawText.match(/<meta[^>]+name=["']citation_author["'][^>]+content=["']([^"']+)["']/gi);
             if (authorMatches) {
-                result.authors = authorMatches.map(m => {
+                result.authors = authorMatches.map((m) => {
                     const cMatch = m.match(/content=["']([^"']+)["']/);
                     return cMatch ? cMatch[1] : '';
                 }).filter(Boolean);
@@ -163,7 +163,7 @@ class DocumentMetadataService {
         }
         const authorTags = rawText.match(/<Author>([\s\S]*?)<\/Author>/gi);
         if (authorTags) {
-            result.authors = authorTags.map(tag => {
+            result.authors = authorTags.map((tag) => {
                 const lastName = tag.match(/<LastName>([^<]+)<\/LastName>/i)?.[1] || '';
                 const foreName = tag.match(/<ForeName>([^<]+)<\/ForeName>/i)?.[1] || '';
                 return `${foreName} ${lastName}`.trim();
@@ -213,8 +213,8 @@ class DocumentMetadataService {
         if (authorMatch) {
             result.authors = authorMatch[1]
                 .split(/\s*[,;]\s*/)
-                .map(a => a.trim())
-                .filter(a => a.length > 1);
+                .map((a) => a.trim())
+                .filter((a) => a.length > 1);
         }
         const doiPattern = /10\.\d{4,9}\/[-._;()/:A-Za-z0-9]+/gi;
         const doiMatches = rawText.match(doiPattern);

@@ -111,7 +111,7 @@ class SearchController {
     }
     async searchDocuments(req, res, next) {
         try {
-            const { q, specialty, limit, page, publicationYear, documentType } = req.query;
+            const { q, specialty, limit, page, publicationYear, documentType, } = req.query;
             const validatedQuery = search_validation_1.searchQuerySchema.parse(req.query);
             const result = await this.searchService.searchDocuments({
                 q: validatedQuery.q,

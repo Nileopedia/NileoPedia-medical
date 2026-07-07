@@ -11,8 +11,8 @@ class GoogleAuthService {
         this.authRepository = new auth_repository_1.AuthRepository();
         this.jwtService = new jwt_service_1.JwtService();
         // Only initialize OAuth client if valid credentials are provided
-        if (env_1.CONFIG.GOOGLE_CLIENT_ID && env_1.CONFIG.GOOGLE_CLIENT_SECRET &&
-            env_1.CONFIG.GOOGLE_CLIENT_ID.length > 20) { // Real Google client IDs are ~70+ chars
+        if (env_1.CONFIG.GOOGLE_CLIENT_ID && env_1.CONFIG.GOOGLE_CLIENT_SECRET
+            && env_1.CONFIG.GOOGLE_CLIENT_ID.length > 20) { // Real Google client IDs are ~70+ chars
             this.oAuth2Client = new google_auth_library_1.OAuth2Client(env_1.CONFIG.GOOGLE_CLIENT_ID, env_1.CONFIG.GOOGLE_CLIENT_SECRET, env_1.CONFIG.GOOGLE_CALLBACK_URL || 'http://localhost:3001/api/v1/auth/google/callback');
         }
         else {
@@ -45,7 +45,7 @@ class GoogleAuthService {
             if (!payload) {
                 throw new Error('Invalid Google token');
             }
-            const { email, given_name, family_name, sub } = payload;
+            const { email, given_name, family_name, sub, } = payload;
             const fullName = `${given_name || ''} ${family_name || ''}`.trim();
             if (!email) {
                 throw new Error('Email not provided by Google');

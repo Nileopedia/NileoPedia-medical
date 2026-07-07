@@ -18,7 +18,7 @@ class CitationService {
         });
     }
     async searchCitations(query) {
-        const { page, limit, keyword, specialty, publicationYear, documentType } = query;
+        const { page, limit, keyword, specialty, publicationYear, documentType, } = query;
         const skip = (page - 1) * limit;
         const where = {};
         if (keyword) {

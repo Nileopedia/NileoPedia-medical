@@ -5,8 +5,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const prisma_1 = __importDefault(require("../../config/prisma"));
 const client_1 = require("@prisma/client");
+const prisma_1 = __importDefault(require("../../config/prisma"));
 class UserService {
     async getCurrentUser(userId) {
         const user = await prisma_1.default.user.findUnique({

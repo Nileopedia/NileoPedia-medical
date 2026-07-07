@@ -11,15 +11,9 @@ process.env.JWT_ACCESS_EXPIRES_IN = '15m';
 process.env.JWT_REFRESH_EXPIRES_IN = '7d';
 describe('Authentication', () => {
     // Re-implement JWT utilities locally for testing
-    const generateAccessToken = (userId, email) => {
-        return jsonwebtoken_1.default.sign({ id: userId, email }, process.env.JWT_ACCESS_SECRET, { expiresIn: '15m' });
-    };
-    const generateRefreshToken = (userId) => {
-        return jsonwebtoken_1.default.sign({ id: userId }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
-    };
-    const verifyAccessToken = (token) => {
-        return jsonwebtoken_1.default.verify(token, process.env.JWT_ACCESS_SECRET);
-    };
+    const generateAccessToken = (userId, email) => jsonwebtoken_1.default.sign({ id: userId, email }, process.env.JWT_ACCESS_SECRET, { expiresIn: '15m' });
+    const generateRefreshToken = (userId) => jsonwebtoken_1.default.sign({ id: userId }, process.env.JWT_REFRESH_SECRET, { expiresIn: '7d' });
+    const verifyAccessToken = (token) => jsonwebtoken_1.default.verify(token, process.env.JWT_ACCESS_SECRET);
     describe('JWT Generation', () => {
         it('should generate valid access token', () => {
             const token = generateAccessToken('user-123', 'test@example.com');
@@ -56,9 +50,7 @@ describe('Authentication', () => {
         });
     });
     describe('Password Validation', () => {
-        const validatePassword = (password) => {
-            return password.length >= 8;
-        };
+        const validatePassword = (password) => password.length >= 8;
         it('should accept valid password', () => {
             expect(validatePassword('password123')).toBe(true);
         });
@@ -67,9 +59,7 @@ describe('Authentication', () => {
         });
     });
     describe('Email Validation', () => {
-        const validateEmail = (email) => {
-            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-        };
+        const validateEmail = (email) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
         it('should accept valid email', () => {
             expect(validateEmail('test@example.com')).toBe(true);
         });

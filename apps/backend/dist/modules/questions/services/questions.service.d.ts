@@ -14,17 +14,17 @@ export declare class QuestionsService {
         questions: ({
             aiResponse: ({
                 citations: {
-                    documentType: string | null;
-                    publicationYear: number | null;
-                    title: string;
                     id: string;
-                    specialty: string | null;
-                    source: string;
                     createdAt: Date;
-                    authors: string | null;
-                    doi: string | null;
-                    aiResponseId: string;
+                    specialty: string | null;
+                    title: string;
+                    documentType: string | null;
+                    source: string;
                     url: string | null;
+                    aiResponseId: string;
+                    authors: string | null;
+                    publicationYear: number | null;
+                    doi: string | null;
                     citationIndex: number;
                     chunkId: string | null;
                     pageNumber: number | null;
@@ -66,17 +66,17 @@ export declare class QuestionsService {
         questions: ({
             aiResponse: ({
                 citations: {
-                    documentType: string | null;
-                    publicationYear: number | null;
-                    title: string;
                     id: string;
-                    specialty: string | null;
-                    source: string;
                     createdAt: Date;
-                    authors: string | null;
-                    doi: string | null;
-                    aiResponseId: string;
+                    specialty: string | null;
+                    title: string;
+                    documentType: string | null;
+                    source: string;
                     url: string | null;
+                    aiResponseId: string;
+                    authors: string | null;
+                    publicationYear: number | null;
+                    doi: string | null;
                     citationIndex: number;
                     chunkId: string | null;
                     pageNumber: number | null;
@@ -113,17 +113,17 @@ export declare class QuestionsService {
     getQuestion(questionId: string): Promise<({
         aiResponse: ({
             citations: {
-                documentType: string | null;
-                publicationYear: number | null;
-                title: string;
                 id: string;
-                specialty: string | null;
-                source: string;
                 createdAt: Date;
-                authors: string | null;
-                doi: string | null;
-                aiResponseId: string;
+                specialty: string | null;
+                title: string;
+                documentType: string | null;
+                source: string;
                 url: string | null;
+                aiResponseId: string;
+                authors: string | null;
+                publicationYear: number | null;
+                doi: string | null;
                 citationIndex: number;
                 chunkId: string | null;
                 pageNumber: number | null;

@@ -86,7 +86,7 @@ class AuthController {
             if (!code) {
                 return res.status(400).json({
                     success: false,
-                    message: 'Authorization code not provided'
+                    message: 'Authorization code not provided',
                 });
             }
             const result = await this.googleAuthService.handleGoogleCallback(code);

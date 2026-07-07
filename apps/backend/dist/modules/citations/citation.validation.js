@@ -7,7 +7,8 @@ exports.createCitationSchema = zod_1.z.object({
     title: zod_1.z.string().min(1, 'Title is required').optional(),
     source: zod_1.z.string().min(1, 'Source is required').optional(),
     authors: zod_1.z.string().optional(),
-    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10)
+        .optional(),
     doi: zod_1.z.string().optional(),
     url: zod_1.z.string().url('Invalid URL format').optional(),
     documentType: zod_1.z.string().optional(),
@@ -20,7 +21,8 @@ exports.updateCitationSchema = zod_1.z.object({
     title: zod_1.z.string().min(1, 'Title is required').optional(),
     source: zod_1.z.string().min(1, 'Source is required').optional(),
     authors: zod_1.z.string().optional(),
-    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10)
+        .optional(),
     doi: zod_1.z.string().optional(),
     url: zod_1.z.string().url('Invalid URL format').optional(),
     documentType: zod_1.z.string().optional(),

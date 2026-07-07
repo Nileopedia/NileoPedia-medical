@@ -39,7 +39,7 @@ export interface PipelineError {
 }
 export interface MetadataResponse {
     answer: string;
-    source: 'real' | 'unavailable';
+    source: string;
     documentsUsed: number;
     model: string;
     embeddingModel: string;

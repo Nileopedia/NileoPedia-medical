@@ -32,6 +32,8 @@ router.get('/ai-activity', authenticate, authorize('ADMIN'), adminController.get
 router.get('/retrieval-test', authenticate, authorize('ADMIN'), adminController.retrievalTest.bind(adminController));
 router.get('/rag-debug', authenticate, authorize('ADMIN'), adminController.ragDebug.bind(adminController));
 router.get('/document-debug/:id', authenticate, authorize('ADMIN'), adminController.documentDebug.bind(adminController));
-router.get('/query-debug', authenticate, authorize('ADMIN'), adminController.queryDebug.bind(adminController));
+router.get('/query-debug', adminController.queryDebug.bind(adminController));
+router.get('/ai-process', adminController.aiProcess.bind(adminController));
+router.post('/seed-mock-index', adminController.seedMockIndex.bind(adminController));
 
 export default router;

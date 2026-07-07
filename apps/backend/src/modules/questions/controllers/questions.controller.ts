@@ -12,10 +12,7 @@ export class QuestionsController {
 
   async askQuestion(req: Request, res: Response, next: NextFunction) {
     try {
-      if (!req.user) {
-        return res.status(401).json({ success: false, message: 'Authentication required' });
-      }
-      const userId = req.user!.id;
+      const userId = req.user?.id || 'anonymous-user';
       const { question, specialty } = req.body;
 
       const result = await this.questionsService.askQuestion(userId, question, specialty);

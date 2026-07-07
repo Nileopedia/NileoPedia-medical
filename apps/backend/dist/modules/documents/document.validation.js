@@ -9,7 +9,8 @@ exports.createDocumentSchema = zod_1.z.object({
     specialty: zod_1.z.string().optional(),
     documentType: zod_1.z.string().optional(),
     source: zod_1.z.string().optional(),
-    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10)
+        .optional(),
 });
 exports.updateDocumentSchema = zod_1.z.object({
     title: zod_1.z.string().min(1, 'Title is required').optional(),
@@ -17,7 +18,8 @@ exports.updateDocumentSchema = zod_1.z.object({
     specialty: zod_1.z.string().optional(),
     documentType: zod_1.z.string().optional(),
     source: zod_1.z.string().optional(),
-    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10).optional(),
+    publicationYear: zod_1.z.number().int().min(1900).max(new Date().getFullYear() + 10)
+        .optional(),
 });
 exports.getDocumentsQuerySchema = zod_1.z.object({
     page: zod_1.z.coerce.number().min(1, 'Page must be at least 1').default(1),

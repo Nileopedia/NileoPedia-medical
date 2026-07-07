@@ -71,7 +71,9 @@ class ValidationService {
         ]);
         return {
             reviews,
-            pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+            pagination: {
+                total, page, limit, totalPages: Math.ceil(total / limit),
+            },
         };
     }
     async getReview(responseId) {
@@ -96,7 +98,7 @@ class ValidationService {
             prisma_1.default.validationReview.count({ where: { status: 'APPROVED' } }),
         ]);
         return {
-            reviews: reviews.map(r => ({
+            reviews: reviews.map((r) => ({
                 id: r.id,
                 question: r.aiResponse?.question?.questionText || 'Unknown',
                 response: r.aiResponse?.summary || '',
@@ -104,7 +106,9 @@ class ValidationService {
                 date: r.reviewedAt.toISOString(),
                 score: r.score,
             })),
-            pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+            pagination: {
+                total, page, limit, totalPages: Math.ceil(total / limit),
+            },
         };
     }
     async getRejected(page = 1, limit = 20) {
@@ -123,14 +127,16 @@ class ValidationService {
             prisma_1.default.validationReview.count({ where: { status: 'REJECTED' } }),
         ]);
         return {
-            reviews: reviews.map(r => ({
+            reviews: reviews.map((r) => ({
                 id: r.id,
                 question: r.aiResponse?.question?.questionText || 'Unknown',
                 reason: r.feedback || 'No reason provided',
                 validator: r.validator?.fullName || 'Unknown',
                 date: r.reviewedAt.toISOString(),
             })),
-            pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+            pagination: {
+                total, page, limit, totalPages: Math.ceil(total / limit),
+            },
         };
     }
     async getFeedbackReports(page = 1, limit = 20) {
@@ -147,7 +153,7 @@ class ValidationService {
             prisma_1.default.feedback.count(),
         ]);
         return {
-            reports: feedbacks.map(f => ({
+            reports: feedbacks.map((f) => ({
                 id: f.id,
                 question: f.aiResponse?.question?.questionText || 'Unknown question',
                 userFeedback: f.comment,
@@ -157,7 +163,9 @@ class ValidationService {
                 severity: 'medium',
                 status: 'open',
             })),
-            pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+            pagination: {
+                total, page, limit, totalPages: Math.ceil(total / limit),
+            },
         };
     }
     async updateFeedbackReport(reportId, severity, status) {
@@ -175,10 +183,10 @@ class ValidationService {
         const reviews = await prisma_1.default.validationReview.findMany({
             where: { validatorId },
         });
-        const approved = reviews.filter(r => r.status === 'APPROVED').length;
+        const approved = reviews.filter((r) => r.status === 'APPROVED').length;
         const reviewsCompleted = reviews.length;
         const approvalRate = reviews.length > 0 ? Math.round((approved / reviews.length) * 100) : 0;
-        const timestamps = reviews.map(r => new Date(r.reviewedAt).getTime());
+        const timestamps = reviews.map((r) => new Date(r.reviewedAt).getTime());
         const avgReviewTime = timestamps.length > 1
             ? Math.round((timestamps[timestamps.length - 1] - timestamps[0]) / timestamps.length / 1000)
             : 0;

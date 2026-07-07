@@ -1,33 +1,17 @@
-import { Pinecone } from '@pinecone-database/pinecone';
-import { CONFIG } from '../../config/env';
-import { logger } from '../../config/logger';
+import { PineconeService } from '../rag/services/pinecone.service';
 import { EmbeddingService } from '../rag/services/embedding.service';
 
 export class RetrievalService {
-  private pinecone: Pinecone | null = null;
-
-  private index: any = null;
+  private pineconeService: PineconeService;
 
   public embeddingService: EmbeddingService;
 
   private medicalReferenceEmbedding: number[] | null = null;
 
-  get pineconeClient() {
-    return this.pinecone;
-  }
-
   constructor() {
+    this.pineconeService = new PineconeService();
     this.embeddingService = new EmbeddingService();
-    if (CONFIG.PINECONE_API_KEY && !CONFIG.USE_MOCK_EMBEDDINGS) {
-      try {
-        this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
-        this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
-      } catch (e) {
-        logger.error('[ERROR] Pinecone unavailable');
-      }
-    }
-
-    this.initMedicalReferenceEmbedding();
+    this.initMedicalReferenceEmbedding().catch(() => {});
   }
 
   private async initMedicalReferenceEmbedding() {
@@ -36,29 +20,31 @@ export class RetrievalService {
         'disease symptoms diagnosis treatment medication malaria hypertension diabetes cancer infection patient medicine healthcare clinical care fever headache asthma pneumonia',
       );
     } catch (e) {
-      logger.error('[ERROR] Failed to generate medical reference embedding:', e);
+      console.error('[ERROR] Failed to generate medical reference embedding:', e);
       this.medicalReferenceEmbedding = null;
     }
   }
 
-  async semanticSearch(query: string, topK = 10) {
-    if (!this.index) {
-      logger.error('[ERROR] Pinecone unavailable');
-      return [];
+  get pineconeClient() {
+    if (this.pineconeService.isMockMode()) {
+      return {
+        index: () => ({
+          query: async () => ({ matches: [] }),
+        }),
+      };
     }
+    return this.pineconeService;
+  }
 
+  async semanticSearch(query: string, topK = 10) {
     const embedding = await this.embeddingService.generateEmbedding(query);
     console.log('[PINECONE] Query embedding dimensions:', embedding.length);
-    const results = await this.index.query({
-      vector: embedding,
-      topK,
-      includeMetadata: true,
-    });
+    const results = await this.pineconeService.query(embedding, topK);
 
-    console.log('[PINECONE] Matches:', results.matches?.length);
-    console.log('[PINECONE] Scores:', results.matches?.map((m: any) => m.score));
+    console.log('[PINECONE] Matches:', results.length);
+    console.log('[PINECONE] Scores:', results.map((m: any) => m.score));
 
-    return results.matches || [];
+    return results;
   }
 
   async hybridSearch(query: string, specialty?: string) {

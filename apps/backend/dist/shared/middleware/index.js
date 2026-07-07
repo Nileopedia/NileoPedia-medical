@@ -5,12 +5,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.validate = exports.errorHandler = exports.setupMiddleware = void 0;
 const express_1 = __importDefault(require("express"));
-const validation_middleware_1 = require("./validation.middleware");
-Object.defineProperty(exports, "validate", { enumerable: true, get: function () { return validation_middleware_1.validate; } });
 const helmet_1 = __importDefault(require("helmet"));
 const cors_1 = __importDefault(require("cors"));
 const morgan_1 = __importDefault(require("morgan"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
+const validation_middleware_1 = require("./validation.middleware");
+Object.defineProperty(exports, "validate", { enumerable: true, get: function () { return validation_middleware_1.validate; } });
 const env_1 = require("../../config/env");
 const logger_1 = require("../../config/logger");
 const setupMiddleware = (app) => {

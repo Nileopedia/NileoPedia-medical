@@ -2,11 +2,11 @@ export declare class AdminService {
     getUsers(page?: number, limit?: number, search?: string): Promise<{
         users: {
             id: string;
-            createdAt: Date;
-            email: string;
             fullName: string;
+            email: string;
             role: import("@prisma/client").$Enums.UserRole;
             accountStatus: import("@prisma/client").$Enums.AccountStatus;
+            createdAt: Date;
         }[];
         total: number;
         page: number;
@@ -24,8 +24,8 @@ export declare class AdminService {
             reviewsCompleted: number;
             approvalRate: number;
             id: string;
-            email: string;
             fullName: string;
+            email: string;
             role: import("@prisma/client").$Enums.UserRole;
             specialization: string | null;
             institution: string | null;

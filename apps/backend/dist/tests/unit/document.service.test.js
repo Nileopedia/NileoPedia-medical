@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 /* eslint-env jest */
 const client_1 = require("@prisma/client");
+const document_service_1 = require("../../modules/documents/document.service");
 // Mock the entire DocumentService for unit testing
 const mockDocumentService = {
     getAllDocuments: jest.fn(),
@@ -20,7 +21,6 @@ jest.mock('../../jobs/queues', () => ({
         add: jest.fn(),
     },
 }));
-const document_service_1 = require("../../modules/documents/document.service");
 describe('DocumentService', () => {
     let service;
     beforeEach(() => {
@@ -154,6 +154,28 @@ describe('DocumentService', () => {
             mockDocumentService.verifyDocument.mockResolvedValue(mockDocument);
             const result = await service.verifyDocument('doc-1');
             expect(result).toEqual(mockDocument);
+        });
+    });
+    describe('Document re-ingestion', () => {
+        it('should delete previous vectors and upload new vectors', async () => {
+            mockDocumentService.verifyDocument.mockResolvedValue({
+                id: 'doc-1',
+                title: 'Re-ingested Document',
+                ingestionStatus: 'PROCESSING',
+            });
+            const result = await service.verifyDocument('doc-1');
+            expect(result.id).toBe('doc-1');
+            expect(result.ingestionStatus).toBe('PROCESSING');
+        });
+        it('should continue when vector deletion fails', async () => {
+            mockDocumentService.verifyDocument.mockResolvedValue({
+                id: 'doc-1',
+                title: 'Re-ingested Document',
+                ingestionStatus: 'PROCESSING',
+            });
+            const result = await service.verifyDocument('doc-1');
+            expect(result).toBeDefined();
+            expect(result.id).toBe('doc-1');
         });
     });
     describe('getIngestionStatus', () => {

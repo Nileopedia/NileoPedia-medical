@@ -8,7 +8,7 @@ const bullmq_1 = require("bullmq");
 const ioredis_1 = __importDefault(require("ioredis"));
 const env_1 = require("../../config/env");
 let connection = null;
-let aiQueueInstance = null;
+const aiQueueInstance = null;
 try {
     connection = new ioredis_1.default(env_1.CONFIG.REDIS_URL, {
         maxRetriesPerRequest: null,

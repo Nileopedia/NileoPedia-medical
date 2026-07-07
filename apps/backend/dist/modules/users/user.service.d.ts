@@ -2,9 +2,8 @@ import { UpdateProfileDto, ChangePasswordDto, GetUsersQuery, GetUsersResult } fr
 export declare class UserService {
     getCurrentUser(userId: string): Promise<{
         id: string;
-        createdAt: Date;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -12,12 +11,12 @@ export declare class UserService {
         bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
     updateProfile(userId: string, data: UpdateProfileDto): Promise<{
         id: string;
-        createdAt: Date;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
@@ -25,19 +24,20 @@ export declare class UserService {
         bio: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
     changePassword(userId: string, data: ChangePasswordDto): Promise<void>;
     getUserById(userId: string): Promise<{
         id: string;
-        createdAt: Date;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
         profileImage: string | null;
         isEmailVerified: boolean;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
     getUsers(query: GetUsersQuery): Promise<GetUsersResult>;
     deactivateUser(userId: string): Promise<void>;
@@ -100,13 +100,13 @@ export declare class UserService {
         institution?: string;
     }): Promise<{
         id: string;
-        createdAt: Date;
-        email: string;
         fullName: string;
+        email: string;
         role: import("@prisma/client").$Enums.UserRole;
         specialization: string | null;
         institution: string | null;
         accountStatus: import("@prisma/client").$Enums.AccountStatus;
+        createdAt: Date;
     }>;
 }
 //# sourceMappingURL=user.service.d.ts.map

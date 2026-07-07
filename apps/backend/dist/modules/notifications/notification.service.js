@@ -4,8 +4,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NotificationService = void 0;
-const prisma_1 = __importDefault(require("../../config/prisma"));
 const client_1 = require("@prisma/client");
+const prisma_1 = __importDefault(require("../../config/prisma"));
 class NotificationService {
     async getUserNotifications(userId, query) {
         const { page, limit } = query;

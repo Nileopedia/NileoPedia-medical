@@ -7,11 +7,9 @@ exports.cleanupDatabase = exports.createAuthHeader = exports.createTestMedicalUs
 const client_1 = require("@prisma/client");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
 const prisma_1 = __importDefault(require("../../config/prisma"));
-const generateTestJWT = (payload) => {
-    return jsonwebtoken_1.default.sign(payload, process.env.JWT_ACCESS_SECRET || 'test-access-secret-key', {
-        expiresIn: '15m',
-    });
-};
+const generateTestJWT = (payload) => jsonwebtoken_1.default.sign(payload, process.env.JWT_ACCESS_SECRET || 'test-access-secret-key', {
+    expiresIn: '15m',
+});
 exports.generateTestJWT = generateTestJWT;
 const createTestUser = async (data) => {
     const user = await prisma_1.default.user.create({
@@ -26,17 +24,11 @@ const createTestUser = async (data) => {
     return user;
 };
 exports.createTestUser = createTestUser;
-const createTestAdmin = async () => {
-    return (0, exports.createTestUser)({ role: 'ADMIN' });
-};
+const createTestAdmin = async () => (0, exports.createTestUser)({ role: 'ADMIN' });
 exports.createTestAdmin = createTestAdmin;
-const createTestValidator = async () => {
-    return (0, exports.createTestUser)({ role: 'VALIDATOR' });
-};
+const createTestValidator = async () => (0, exports.createTestUser)({ role: 'VALIDATOR' });
 exports.createTestValidator = createTestValidator;
-const createTestMedicalUser = async () => {
-    return (0, exports.createTestUser)({ role: 'MEDICAL_USER' });
-};
+const createTestMedicalUser = async () => (0, exports.createTestUser)({ role: 'MEDICAL_USER' });
 exports.createTestMedicalUser = createTestMedicalUser;
 const createAuthHeader = (token) => ({
     Authorization: `Bearer ${token}`,

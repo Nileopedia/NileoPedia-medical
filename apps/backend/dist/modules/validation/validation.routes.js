@@ -9,7 +9,6 @@ router.get('/pending', auth_middleware_1.authenticate, (0, auth_middleware_1.aut
 router.post('/:responseId/approve', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.approve.bind(validationController));
 router.post('/:responseId/reject', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.reject.bind(validationController));
 router.get('/history', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getHistory.bind(validationController));
-router.get('/:responseId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getReview.bind(validationController));
 router.get('/approved', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getApproved.bind(validationController));
 router.get('/rejected', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getRejected.bind(validationController));
 router.get('/feedback', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getFeedbackReports.bind(validationController));
@@ -18,5 +17,6 @@ router.get('/profile', auth_middleware_1.authenticate, (0, auth_middleware_1.aut
 router.put('/profile', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.updateProfile.bind(validationController));
 router.get('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getSettings.bind(validationController));
 router.put('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.updateSettings.bind(validationController));
+router.get('/:responseId', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('VALIDATOR', 'ADMIN'), validationController.getReview.bind(validationController));
 exports.default = router;
 //# sourceMappingURL=validation.routes.js.map

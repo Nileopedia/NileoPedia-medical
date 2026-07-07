@@ -1,52 +1,52 @@
 import { CreateAuditLogDto, GetAuditLogsQuery, GetAuditLogsResult, SecurityEventFilters } from './audit.types';
 export declare class AuditService {
     createAuditLog(data: CreateAuditLogDto): Promise<{
-        description: string | null;
         id: string;
         createdAt: Date;
-        ipAddress: string | null;
         userId: string | null;
-        metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
         entityType: string;
         entityId: string | null;
+        description: string | null;
+        ipAddress: string | null;
         userAgent: string | null;
+        metadata: import("@prisma/client/runtime/library").JsonValue;
     }>;
     getAuditLogs(query: GetAuditLogsQuery): Promise<GetAuditLogsResult>;
     getAuditLogById(id: string): Promise<({
         user: {
             id: string;
-            email: string;
             fullName: string;
+            email: string;
             role: import("@prisma/client").$Enums.UserRole;
         } | null;
     } & {
-        description: string | null;
         id: string;
         createdAt: Date;
-        ipAddress: string | null;
         userId: string | null;
-        metadata: import("@prisma/client/runtime/library").JsonValue;
         action: string;
         entityType: string;
         entityId: string | null;
+        description: string | null;
+        ipAddress: string | null;
         userAgent: string | null;
+        metadata: import("@prisma/client/runtime/library").JsonValue;
     }) | null>;
     getUserActivityLogs(userId: string, query: {
         page: number;
         limit: number;
     }): Promise<{
         logs: {
-            description: string | null;
             id: string;
             createdAt: Date;
-            ipAddress: string | null;
             userId: string | null;
-            metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
             entityId: string | null;
+            description: string | null;
+            ipAddress: string | null;
             userAgent: string | null;
+            metadata: import("@prisma/client/runtime/library").JsonValue;
         }[];
         total: number;
         page: number;
@@ -60,21 +60,21 @@ export declare class AuditService {
         logs: ({
             user: {
                 id: string;
-                email: string;
                 fullName: string;
+                email: string;
                 role: import("@prisma/client").$Enums.UserRole;
             } | null;
         } & {
-            description: string | null;
             id: string;
             createdAt: Date;
-            ipAddress: string | null;
             userId: string | null;
-            metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
             entityId: string | null;
+            description: string | null;
+            ipAddress: string | null;
             userAgent: string | null;
+            metadata: import("@prisma/client/runtime/library").JsonValue;
         })[];
         total: number;
         page: number;
@@ -85,21 +85,21 @@ export declare class AuditService {
         logs: ({
             user: {
                 id: string;
-                email: string;
                 fullName: string;
+                email: string;
                 role: import("@prisma/client").$Enums.UserRole;
             } | null;
         } & {
-            description: string | null;
             id: string;
             createdAt: Date;
-            ipAddress: string | null;
             userId: string | null;
-            metadata: import("@prisma/client/runtime/library").JsonValue;
             action: string;
             entityType: string;
             entityId: string | null;
+            description: string | null;
+            ipAddress: string | null;
             userAgent: string | null;
+            metadata: import("@prisma/client/runtime/library").JsonValue;
         })[];
         total: number;
         page: number;

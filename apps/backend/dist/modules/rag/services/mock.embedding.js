@@ -15,7 +15,7 @@ class MockEmbeddingProvider {
         return embedding;
     }
     async generateBatchEmbeddings(texts) {
-        return Promise.all(texts.map(t => this.generateEmbedding(t)));
+        return Promise.all(texts.map((t) => this.generateEmbedding(t)));
     }
 }
 exports.MockEmbeddingProvider = MockEmbeddingProvider;

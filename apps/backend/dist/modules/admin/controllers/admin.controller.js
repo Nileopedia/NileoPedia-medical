@@ -9,6 +9,7 @@ const audit_logger_1 = require("../../audit/audit.logger");
 const logger_1 = require("../../../config/logger");
 const retrieval_service_1 = require("../../../modules/retrieval/retrieval.service");
 const embedding_service_1 = require("../../../modules/rag/services/embedding.service");
+const pinecone_service_1 = require("../../../modules/rag/services/pinecone.service");
 const env_1 = require("../../../config/env");
 const prisma_1 = __importDefault(require("../../../config/prisma"));
 class AdminController {
@@ -214,9 +215,117 @@ class AdminController {
             });
         }
     }
+    async retrievalTest(req, res, next) {
+        try {
+            const query = req.query.q || 'hypertension';
+            const embeddingService = new embedding_service_1.EmbeddingService();
+            const retrievalService = new retrieval_service_1.RetrievalService();
+            const { embeddingSource } = embeddingService;
+            let embeddingDimension = 0;
+            let embedding = [];
+            try {
+                embedding = await embeddingService.generateEmbedding(query);
+                embeddingDimension = embedding.length;
+            }
+            catch (e) {
+                console.warn('Embedding test failed:', e?.message || e);
+            }
+            let pineconeMatches = 0;
+            let topResults = [];
+            let pineconeError;
+            try {
+                const results = await retrievalService.hybridSearch(query);
+                pineconeMatches = results.length;
+                topResults = results.slice(0, 5).map((r) => ({
+                    id: r.id,
+                    score: r.score,
+                    title: r.metadata?.title || r.metadata?.source || 'Unknown',
+                }));
+            }
+            catch (e) {
+                pineconeError = e?.message || String(e);
+                console.error('[RETRIEVAL_TEST] Pinecone query failed:', e);
+            }
+            let aiStatus = 'idle';
+            if (pineconeError) {
+                aiStatus = 'pinecone_error';
+            }
+            else if (embeddingDimension === 0) {
+                aiStatus = 'embedding_error';
+            }
+            else if (pineconeMatches === 0) {
+                aiStatus = 'no_results';
+            }
+            else {
+                aiStatus = 'ready';
+            }
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_RETRIEVAL_TEST',
+                entityType: 'System',
+                description: 'Admin ran retrieval pipeline test',
+                metadata: { query, aiStatus, pineconeMatches },
+            });
+            res.status(200).json({
+                success: true,
+                query,
+                embeddingSource,
+                embeddingDimension,
+                pineconeMatches,
+                topResults,
+                aiStatus,
+                pineconeError,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Retrieval test error:', error);
+            res.status(500).json({
+                success: false,
+                error: error.message,
+                aiStatus: 'error',
+            });
+        }
+    }
+    async ragDebug(req, res, next) {
+        try {
+            const query = req.query.q || '';
+            const retrievalService = new retrieval_service_1.RetrievalService();
+            const pineconeMatches = await retrievalService.semanticSearch(query, 10);
+            const relevant = pineconeMatches.filter((match) => (match.score ?? 0) >= 0.50);
+            const documents = relevant.map((doc) => ({
+                id: doc.id,
+                score: doc.score,
+                title: doc.metadata?.title || doc.metadata?.source || 'Unknown',
+                source: doc.metadata?.source || 'Unknown',
+            }));
+            const topScores = pineconeMatches.slice(0, 3).map((m) => m.score).filter((s) => s !== undefined);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'ADMIN_RAG_DEBUG',
+                entityType: 'System',
+                description: 'Admin inspected RAG retrieval results',
+                metadata: { query, retrievedCount: documents.length, topScore: documents[0]?.score },
+            });
+            res.status(200).json({
+                success: true,
+                query,
+                retrievedCount: documents.length,
+                topScores,
+                topScore: documents[0]?.score || null,
+                documents,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('RAG debug error:', error);
+            res.status(500).json({
+                success: false,
+                error: error.message,
+            });
+        }
+    }
     async performanceTest(req, res, next) {
         const totalStart = Date.now();
-        const metrics = { embedding_ms: 0, pinecone_ms: 0, groq_ms: 0, total_ms: 0 };
+        const metrics = {
+            embedding_ms: 0, pinecone_ms: 0, groq_ms: 0, total_ms: 0,
+        };
         try {
             const embeddingStart = Date.now();
             const embeddingService = new embedding_service_1.EmbeddingService();
@@ -398,12 +507,87 @@ class AdminController {
     }
     testRedisAvailability() {
         try {
-            const redis = require('../../../lib/redis').redis;
+            const { redis } = require('../../../lib/redis');
             redis.ping();
             return true;
         }
         catch {
             return false;
+        }
+    }
+    async documentDebug(req, res, next) {
+        try {
+            const { id } = req.params;
+            const document = await prisma_1.default.medicalDocument.findUnique({
+                where: { id },
+                include: {
+                    embeddingMetadata: true,
+                },
+            });
+            if (!document) {
+                return res.status(404).json({
+                    success: false,
+                    message: 'Document not found',
+                });
+            }
+            const pineconeService = new pinecone_service_1.PineconeService();
+            let pineconeExists = false;
+            let vectorCount = 0;
+            if (pineconeService && env_1.CONFIG.PINECONE_API_KEY) {
+                try {
+                    const stats = await pineconeService.describeIndexStats();
+                    vectorCount = stats?.totalRecordCount ?? 0;
+                    pineconeExists = true;
+                }
+                catch (e) {
+                    logger_1.logger.warn('Could not fetch Pinecone stats', { documentId: id });
+                }
+            }
+            const sampleChunk = document.embeddingMetadata[0]?.chunkText ?? null;
+            res.status(200).json({
+                success: true,
+                documentId: document.id,
+                title: document.title,
+                uploadStatus: document.ingestionStatus,
+                chunkCount: document.embeddingMetadata.length,
+                vectorCount,
+                pineconeExists,
+                sampleChunk,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Document debug error:', error);
+            res.status(500).json({
+                success: false,
+                error: error.message,
+            });
+        }
+    }
+    async queryDebug(req, res, next) {
+        try {
+            const query = req.query.q || '';
+            const retrievalService = new retrieval_service_1.RetrievalService();
+            const matches = await retrievalService.semanticSearch(query, 10);
+            const retrievedCount = matches.length;
+            const topScores = matches.slice(0, 3).map((m) => m.score).filter((s) => s !== undefined);
+            const documents = matches.map((m) => ({
+                id: m.id,
+                score: m.score,
+                title: m.metadata?.title || m.metadata?.source || 'Unknown',
+            }));
+            res.status(200).json({
+                query,
+                retrievedCount,
+                topScores,
+                documents,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Query debug error:', error);
+            res.status(500).json({
+                success: false,
+                error: error.message,
+            });
         }
     }
 }

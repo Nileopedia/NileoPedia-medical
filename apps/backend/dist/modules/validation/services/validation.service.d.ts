@@ -54,9 +54,9 @@ export declare class ValidationService {
         } & {
             feedback: string | null;
             id: string;
-            status: import("@prisma/client").$Enums.ValidationStatus;
             aiResponseId: string;
             validatorId: string;
+            status: import("@prisma/client").$Enums.ValidationStatus;
             score: number | null;
             reviewedAt: Date;
         })[];
@@ -70,9 +70,9 @@ export declare class ValidationService {
     getReview(responseId: string): Promise<{
         feedback: string | null;
         id: string;
-        status: import("@prisma/client").$Enums.ValidationStatus;
         aiResponseId: string;
         validatorId: string;
+        status: import("@prisma/client").$Enums.ValidationStatus;
         score: number | null;
         reviewedAt: Date;
     } | null>;

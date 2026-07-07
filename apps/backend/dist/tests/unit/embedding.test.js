@@ -8,12 +8,8 @@ const mockEmbeddingService = {
             return (seed - 500) / 500;
         });
     }),
-    generateBatchEmbeddings: jest.fn().mockImplementation(async (texts) => {
-        return Promise.all(texts.map((t) => mockEmbeddingService.generateEmbedding(t)));
-    }),
-    preprocessText: jest.fn().mockImplementation((text) => {
-        return text.replace(/\s+/g, ' ').trim().replace(/[^\x00-\x7F]/g, '');
-    }),
+    generateBatchEmbeddings: jest.fn().mockImplementation(async (texts) => Promise.all(texts.map((t) => mockEmbeddingService.generateEmbedding(t)))),
+    preprocessText: jest.fn().mockImplementation((text) => text.replace(/\s+/g, ' ').trim().replace(/[^\x00-\x7F]/g, '')),
     isRealEmbeddings: false,
     embeddingSource: 'mock',
 };

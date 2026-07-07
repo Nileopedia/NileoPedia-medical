@@ -119,19 +119,18 @@ async function verifyPineconeIndex(): Promise<void> {
 
   console.log('\n========== PINECONE INDEX VERIFICATION ==========');
 
-  if (!retrievalService.pineconeClient || !retrievalService.index) {
+  const pineconeService = retrievalService.pineconeService || {};
+  if (!pineconeService.isMockMode && !retrievalService.pineconeClient) {
     console.warn('[WARN] Pinecone not configured - mock mode active');
     console.log('=================================================\n');
     return;
   }
 
   try {
-    const { index } = retrievalService;
-    const stats = await index.describeIndexStats();
-    console.log('[PINECONE] Total vectors:', (stats as any).totalRecordCount ?? 'unknown');
-    console.log('[PINECONE] Index dimension:', (stats as any).dimension ?? 'unknown');
+    const stats = await pineconeService.describeIndexStats ? pineconeService.describeIndexStats() : { totalVectorCount: 0 };
+    console.log('[PINECONE] Total vectors:', (stats as any).totalVectorCount ?? 'unknown');
 
-    const vectorCount = (stats as any).totalRecordCount || 0;
+    const vectorCount = (stats as any).totalVectorCount || 0;
     if (vectorCount === 0) {
       console.warn('[WARN] No vectors indexed - knowledge base is empty');
       console.warn('[WARN] Run ingestion to populate the knowledge base');

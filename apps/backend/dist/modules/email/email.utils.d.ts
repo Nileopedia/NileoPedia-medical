@@ -4,25 +4,25 @@ export declare const emailSchema: z.ZodObject<{
     subject: z.ZodString;
     html: z.ZodString;
 }, "strip", z.ZodTypeAny, {
+    html: string;
     to: string;
     subject: string;
-    html: string;
 }, {
+    html: string;
     to: string;
     subject: string;
-    html: string;
 }>;
 export declare const validatorOtpSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
     otpCode: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
     otpCode: string;
 }, {
-    email: string;
     fullName: string;
+    email: string;
     otpCode: string;
 }>;
 export declare const passwordResetSchema: z.ZodObject<{
@@ -30,35 +30,35 @@ export declare const passwordResetSchema: z.ZodObject<{
     fullName: z.ZodString;
     resetLink: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
     resetLink: string;
 }, {
-    email: string;
     fullName: string;
+    email: string;
     resetLink: string;
 }>;
 export declare const welcomeSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
 }, {
-    email: string;
     fullName: string;
+    email: string;
 }>;
 export declare const accountStatusSchema: z.ZodObject<{
     email: z.ZodString;
     fullName: z.ZodString;
     reason: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    email: string;
     fullName: string;
+    email: string;
     reason?: string | undefined;
 }, {
-    email: string;
     fullName: string;
+    email: string;
     reason?: string | undefined;
 }>;
 export declare const securityAlertSchema: z.ZodObject<{
@@ -68,15 +68,15 @@ export declare const securityAlertSchema: z.ZodObject<{
     description: z.ZodString;
     ipAddress: z.ZodOptional<z.ZodString>;
 }, "strip", z.ZodTypeAny, {
-    description: string;
-    email: string;
     fullName: string;
+    email: string;
+    description: string;
     alertType: string;
     ipAddress?: string | undefined;
 }, {
-    description: string;
-    email: string;
     fullName: string;
+    email: string;
+    description: string;
     alertType: string;
     ipAddress?: string | undefined;
 }>;
@@ -87,13 +87,13 @@ export declare const systemAnnouncementSchema: z.ZodObject<{
     message: z.ZodString;
 }, "strip", z.ZodTypeAny, {
     title: string;
-    subject: string;
     message: string;
+    subject: string;
     recipients: string[];
 }, {
     title: string;
-    subject: string;
     message: string;
+    subject: string;
     recipients: string[];
 }>;
 export declare function validateEmail(data: unknown): boolean;

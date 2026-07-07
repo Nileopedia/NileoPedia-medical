@@ -591,12 +591,14 @@ export class AdminController {
       const retrievalService = new RetrievalService();
 
       const matches = await retrievalService.semanticSearch(query, 10);
-      const retrievedCount = matches.length;
+      const threshold = retrievalService.embeddingService.embeddingSource === 'mock' ? 0.0 : 0.50;
+      const retrievedCount = matches.filter((m: any) => (m.score ?? 0) >= threshold).length;
       const topScores = matches.slice(0, 3).map((m: any) => m.score).filter((s: number) => s !== undefined);
       const documents = matches.map((m: any) => ({
         id: m.id,
         score: m.score,
         title: m.metadata?.title || m.metadata?.source || 'Unknown',
+        preview: m.metadata?.textPreview || m.metadata?.text?.substring(0, 100) || '',
       }));
 
       res.status(200).json({
@@ -607,6 +609,82 @@ export class AdminController {
       });
     } catch (error: any) {
       logger.error('Query debug error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async aiProcess(req: Request, res: Response, next: NextFunction) {
+    try {
+      const query = (req.query.q as string) || 'what is blood pressure';
+      const { processAiGeneration } = require('../../../jobs/processors/ai.processor');
+
+      const result = await processAiGeneration({
+        questionId: 'debug-' + Date.now(),
+        query,
+        userId: '00000000-0000-0000-0000-000000000000',
+        topK: 10,
+      });
+
+      res.status(200).json({
+        success: true,
+        query,
+        result,
+      });
+    } catch (error: any) {
+      logger.error('AI process error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async seedMockIndex(req: Request, res: Response, next: NextFunction) {
+    try {
+      const fs = require('fs');
+      const path = require('path');
+      const { ChunkingService } = require('../../rag/services/chunking.service');
+      const { EmbeddingService } = require('../../rag/services/embedding.service');
+      const { PineconeService } = require('../../rag/services/pinecone.service');
+
+      const embeddingService = new EmbeddingService();
+      const pineconeService = new PineconeService();
+
+      const uploadDir = path.join(process.cwd(), 'uploads');
+      const files = fs.readdirSync(uploadDir).filter((f: string) => f.endsWith('.html') && fs.statSync(path.join(uploadDir, f)).size > 1000);
+
+      let totalChunks = 0;
+      for (const file of files.slice(0, 5)) {
+        const fullPath = path.join(uploadDir, file);
+        const content = fs.readFileSync(fullPath, 'utf8');
+        const clean = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().substring(0, 10000);
+
+        const chunkingService = new ChunkingService();
+        const chunks = chunkingService.chunkDocument(clean, { source: 'MedlinePlus', specialty: 'general' });
+
+        if (chunks.length > 0) {
+          const batchSize = 20;
+          for (let i = 0; i < Math.min(chunks.length, 200); i += batchSize) {
+            const batch = chunks.slice(i, i + batchSize);
+            const embeddings = await embeddingService.generateBatchEmbeddings(batch.map((c: any) => c.text));
+            await pineconeService.storeChunks(batch, embeddings, 'mock-' + file);
+          }
+          totalChunks += chunks.length;
+        }
+      }
+
+      res.status(200).json({
+        success: true,
+        message: 'Seeded mock index',
+        filesProcessed: Math.min(files.length, 5),
+        totalChunks,
+        totalVectors: PineconeService.mockVectors.length,
+      });
+    } catch (error: any) {
+      logger.error('Seed mock index error:', error);
       res.status(500).json({
         success: false,
         error: error.message,

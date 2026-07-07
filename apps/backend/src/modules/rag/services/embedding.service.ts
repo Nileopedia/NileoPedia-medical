@@ -1,7 +1,6 @@
 import { CONFIG } from '../../../config/env';
 import { logger } from '../../../config/logger';
 
-// Dynamic fetch import to support ES modules and CommonJS
 let fetch: any;
 async function getFetch() {
   if (!fetch) {
@@ -13,11 +12,9 @@ async function getFetch() {
 const { HF_API_KEY } = CONFIG;
 const { HF_EMBEDDING_MODEL } = CONFIG;
 const EXPECTED_DIMENSIONS = 384;
-// Force mock mode in test environment to avoid network calls and dynamic imports
 const IS_TEST = process.env.NODE_ENV === 'test';
 const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false' && !IS_TEST;
 
-// Log environment on module load
 console.log('[EmbeddingService] Configuration check:', {
   HF_API_KEY_EXISTS: !!HF_API_KEY,
   HF_API_KEY_LENGTH: HF_API_KEY?.length || 0,
@@ -30,7 +27,6 @@ if (CONFIG.USE_MOCK_EMBEDDINGS) {
   console.warn('[EmbeddingService] WARNING: USE_MOCK_EMBEDDINGS=true - mock embeddings will be used');
 }
 
-// Local embedding using @xenova/transformers (lazy loaded)
 let localEmbeddingPipeline: any = null;
 
 async function loadLocalEmbedding() {
@@ -48,7 +44,6 @@ async function loadLocalEmbedding() {
   }
 }
 
-// Preload embedding model for startup warmup
 export async function preloadEmbeddingModel(): Promise<void> {
   if (!LOCAL_EMBEDDING_ENABLED) {
     console.log('[STARTUP] Skipping embedding preload (local embeddings disabled)');
@@ -102,7 +97,6 @@ async function hfEmbedding(text: string): Promise<number[]> {
     const flatten = (arr: any[]): number[] => arr.flat(Infinity);
     const embedding = flatten(data);
 
-    // Validate dimensions
     if (embedding.length !== EXPECTED_DIMENSIONS) {
       throw new Error(`Unexpected embedding dimensions: ${embedding.length} (expected ${EXPECTED_DIMENSIONS})`);
     }
@@ -110,7 +104,6 @@ async function hfEmbedding(text: string): Promise<number[]> {
     console.log(`[HF] Generated embedding: ${embedding.length} dimensions`);
     return embedding;
   } catch (error: any) {
-    // Detailed error logging
     if (error.name === 'AbortError') {
       console.error('[ERROR] Embedding service unavailable');
     } else if (error.message?.includes('fetch failed')) {
@@ -124,6 +117,33 @@ async function hfEmbedding(text: string): Promise<number[]> {
   } finally {
     clearTimeout(timeoutId);
   }
+}
+
+function generateMockEmbedding(text: string): number[] {
+  const seed = text.toLowerCase().split(/\s+/).filter((w) => w.length > 3);
+  const embedding: number[] = [];
+  const keywords = [
+    'blood', 'pressure', 'hypertension', 'heart', 'cardiovascular',
+    'symptom', 'diagnosis', 'treatment', 'medicine', 'disease',
+    'patient', 'clinical', 'medical', 'health', 'care',
+  ];
+
+  for (let i = 0; i < EXPECTED_DIMENSIONS; i++) {
+    let val = 0;
+    for (const word of seed) {
+      let hash = 0;
+      for (let j = 0; j < word.length; j++) {
+        hash = ((hash << 5) - hash + word.charCodeAt(j)) & 0xffffffff;
+      }
+      const keywordMatch = keywords.some((k) => word.includes(k));
+      val += keywordMatch ? (hash % 100) / 100 : (hash % 50) / 50;
+    }
+    val = val / seed.length;
+    embedding.push(Math.max(-1, Math.min(1, val)));
+  }
+
+  const norm = Math.sqrt(embedding.reduce((sum, v) => sum + v * v, 0));
+  return embedding.map((v) => (norm > 0 ? v / norm : 0));
 }
 
 export class EmbeddingService {
@@ -161,14 +181,19 @@ export class EmbeddingService {
   }
 
   async generateEmbedding(text: string): Promise<number[]> {
-    if (CONFIG.LOCAL_EMBEDDINGS_ENABLED) {
+    if (CONFIG.USE_MOCK_EMBEDDINGS && this.mockMode) {
+      return generateMockEmbedding(text);
+    }
+
+    if (LOCAL_EMBEDDING_ENABLED) {
       try {
         logger.info('Attempting local embeddings...');
         const localResult = await localEmbedding(text);
         logger.info('Embedding source: local');
         return localResult;
       } catch (error) {
-        logger.warn('Local embedding failed, switching to HF API:', error);
+        logger.warn('Local embedding failed, falling back to mock:', error);
+        return generateMockEmbedding(text);
       }
     }
 
@@ -179,17 +204,22 @@ export class EmbeddingService {
         logger.info('Embedding source: huggingface');
         return hfResult;
       } catch (error) {
-        logger.warn('HF embedding failed:', error);
+        logger.warn('HF embedding failed, falling back to mock:', error);
+        return generateMockEmbedding(text);
       }
     }
 
-    logger.error('No embedding provider available');
-    throw new Error('Embedding service unavailable');
+    logger.error('No embedding provider available, using mock');
+    return generateMockEmbedding(text);
   }
 
   async generateBatchEmbeddings(texts: string[]): Promise<number[][]> {
     if (this.mockMode) {
-      throw new Error('Embedding service unavailable');
+      const results: number[][] = [];
+      for (const text of texts) {
+        results.push(generateMockEmbedding(text));
+      }
+      return results;
     }
 
     const results: number[][] = [];

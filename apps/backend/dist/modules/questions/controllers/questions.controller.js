@@ -41,15 +41,19 @@ class QuestionsController {
             const category = req.query.category;
             const startDate = req.query.startDate;
             const endDate = req.query.endDate;
-            const result = await this.questionsService.getHistory(userId, { page, limit, category, startDate, endDate });
+            const result = await this.questionsService.getHistory(userId, {
+                page, limit, category, startDate, endDate,
+            });
             res.status(200).json({
                 success: true,
-                data: result.questions,
-                meta: {
-                    total: result.total,
-                    page: result.page,
-                    limit: result.limit,
-                    totalPages: result.totalPages,
+                data: {
+                    questions: result.questions,
+                    meta: {
+                        total: result.total,
+                        page: result.page,
+                        limit: result.limit,
+                        totalPages: result.totalPages,
+                    },
                 },
             });
         }
@@ -67,12 +71,14 @@ class QuestionsController {
             const result = await this.questionsService.getSavedResponses(userId, { page, limit, search });
             res.status(200).json({
                 success: true,
-                data: result.questions,
-                meta: {
-                    total: result.total,
-                    page: result.page,
-                    limit: result.limit,
-                    totalPages: result.totalPages,
+                data: {
+                    questions: result.questions,
+                    meta: {
+                        total: result.total,
+                        page: result.page,
+                        limit: result.limit,
+                        totalPages: result.totalPages,
+                    },
                 },
             });
         }

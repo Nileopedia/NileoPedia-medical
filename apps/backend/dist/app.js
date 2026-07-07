@@ -7,6 +7,8 @@ exports.io = exports.app = void 0;
 const express_1 = __importDefault(require("express"));
 const http_1 = require("http");
 const socket_io_1 = require("socket.io");
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const client_1 = require("@prisma/client");
 const email_service_1 = require("./modules/email/email.service");
 require("./jobs/worker");
 const redis_1 = require("./lib/redis");
@@ -14,8 +16,6 @@ const env_1 = require("./config/env");
 const prisma_1 = __importDefault(require("./config/prisma"));
 const middleware_1 = require("./shared/middleware");
 const routes_1 = require("./routes");
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const client_1 = require("@prisma/client");
 const app = (0, express_1.default)();
 exports.app = app;
 const httpServer = (0, http_1.createServer)(app);
@@ -106,6 +106,35 @@ async function warmupAiServices() {
     }
     console.log('[STARTUP] Warmup complete\n');
 }
+// Verify Pinecone index on startup
+async function verifyPineconeIndex() {
+    const { RetrievalService } = require('./modules/retrieval/retrieval.service');
+    const retrievalService = new RetrievalService();
+    console.log('\n========== PINECONE INDEX VERIFICATION ==========');
+    if (!retrievalService.pineconeClient || !retrievalService.index) {
+        console.warn('[WARN] Pinecone not configured - mock mode active');
+        console.log('=================================================\n');
+        return;
+    }
+    try {
+        const { index } = retrievalService;
+        const stats = await index.describeIndexStats();
+        console.log('[PINECONE] Total vectors:', stats.totalRecordCount ?? 'unknown');
+        console.log('[PINECONE] Index dimension:', stats.dimension ?? 'unknown');
+        const vectorCount = stats.totalRecordCount || 0;
+        if (vectorCount === 0) {
+            console.warn('[WARN] No vectors indexed - knowledge base is empty');
+            console.warn('[WARN] Run ingestion to populate the knowledge base');
+        }
+        else {
+            console.log(`[PINECONE] Index healthy with ${vectorCount} vectors`);
+        }
+    }
+    catch (e) {
+        console.error('[ERROR] Failed to verify Pinecone index:', e?.message || e);
+    }
+    console.log('===================================================\n');
+}
 // Verify embedding service on startup
 async function verifyEmbeddings() {
     const { EmbeddingService } = require('./modules/rag/services/embedding.service');
@@ -155,6 +184,7 @@ prisma_1.default.$connect()
     }
     // Verify embedding service at startup (non-blocking)
     setImmediate(() => verifyEmbeddings());
+    setImmediate(() => verifyPineconeIndex());
     // Seed knowledge base if empty
     await seedKnowledgeBase();
     // Setup middleware (cors, helmet, body parser, etc.)
@@ -241,7 +271,7 @@ prisma_1.default.$connect()
         console.log('Mock AI service endpoint enabled at /api/v1/mock-ai/generate');
         // Mock ingest endpoint for document processing
         app.post('/api/v1/mock-ai/ingest', (req, res) => {
-            const { title, content, specialty, documentType, source } = req.body;
+            const { title, content, specialty, documentType, source, } = req.body;
             console.log(`Mock ingest processed: ${title} (${content?.length || 0} chars)`);
             setTimeout(() => {
                 res.json({
@@ -269,7 +299,7 @@ prisma_1.default.$connect()
         socket.on('stream-question', (questionId) => {
             socket.join(`question-${questionId}`);
             // Send existing data if available
-            redis_1.redis.get(`question-progress:${questionId}`).then(data => {
+            redis_1.redis.get(`question-progress:${questionId}`).then((data) => {
                 if (data) {
                     socket.emit('ai-progress', JSON.parse(data));
                 }

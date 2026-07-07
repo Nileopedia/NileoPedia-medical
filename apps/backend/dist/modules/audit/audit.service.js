@@ -21,7 +21,7 @@ class AuditService {
         });
     }
     async getAuditLogs(query) {
-        const { page, limit, action, entityType, userId, startDate, endDate } = query;
+        const { page, limit, action, entityType, userId, startDate, endDate, } = query;
         const skip = (page - 1) * limit;
         const where = {};
         if (action)

@@ -45,13 +45,11 @@ exports.authenticate.optional = async (req, res, next) => {
         next();
     }
 };
-const authorize = (...roles) => {
-    return (req, res, next) => {
-        if (!req.user || !roles.includes(req.user.role)) {
-            return res.status(403).json({ success: false, message: 'Forbidden' });
-        }
-        next();
-    };
+const authorize = (...roles) => (req, res, next) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+        return res.status(403).json({ success: false, message: 'Forbidden' });
+    }
+    next();
 };
 exports.authorize = authorize;
 //# sourceMappingURL=auth.middleware.js.map

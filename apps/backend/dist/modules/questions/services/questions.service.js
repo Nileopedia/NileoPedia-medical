@@ -42,7 +42,7 @@ class QuestionsService {
         }
     }
     async getHistory(userId, options = {}) {
-        const { page = 1, limit = 10, category, startDate, endDate } = options;
+        const { page = 1, limit = 10, category, startDate, endDate, } = options;
         const skip = (page - 1) * limit;
         const where = { userId };
         if (category)

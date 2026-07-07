@@ -16,9 +16,7 @@ export class DocumentIngestionService {
   constructor() {
     this.embeddingService = new EmbeddingService();
     this.chunkingService = new ChunkingService();
-    if (CONFIG.PINECONE_API_KEY && !CONFIG.USE_MOCK_EMBEDDINGS) {
-      this.pineconeService = new PineconeService();
-    }
+    this.pineconeService = new PineconeService();
   }
 
   async ingestDocument(input: {

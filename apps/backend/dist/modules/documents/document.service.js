@@ -27,15 +27,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DocumentService = void 0;
-const prisma_1 = __importDefault(require("../../config/prisma"));
 const client_1 = require("@prisma/client");
+const prisma_1 = __importDefault(require("../../config/prisma"));
+const logger_1 = require("../../config/logger");
 const metadata_service_1 = require("./metadata.service");
 class DocumentService {
     constructor() {
         this.metadataService = new metadata_service_1.DocumentMetadataService();
     }
     async getAllDocuments(query) {
-        const { page, limit, search, ingestionStatus, documentType, publicationYear } = query;
+        const { page, limit, search, ingestionStatus, documentType, publicationYear, } = query;
         const skip = (page - 1) * limit;
         const where = {};
         if (search) {
@@ -64,7 +65,7 @@ class DocumentService {
             prisma_1.default.medicalDocument.count({ where }),
         ]);
         return {
-            documents: documents.map(doc => ({
+            documents: documents.map((doc) => ({
                 ...doc,
                 metadata: doc.documentMetadata || undefined,
             })),
@@ -135,10 +136,15 @@ class DocumentService {
         await prisma_1.default.embeddingMetadata.deleteMany({
             where: { documentId: id },
         });
-        // Delete old Pinecone vectors
-        const { PineconeService } = await Promise.resolve().then(() => __importStar(require('../rag/services/pinecone.service')));
-        const pineconeService = new PineconeService();
-        await pineconeService.deleteByDocumentId(id);
+        // Delete old Pinecone vectors (non-blocking — proceed with re-ingestion even if this fails)
+        try {
+            const { PineconeService } = await Promise.resolve().then(() => __importStar(require('../rag/services/pinecone.service')));
+            const pineconeService = new PineconeService();
+            await pineconeService.deleteByDocumentId(id);
+        }
+        catch (error) {
+            logger_1.logger.warn('Proceeding with re-ingestion using new vectors', { documentId: id, error });
+        }
         // Reset document state
         await prisma_1.default.medicalDocument.update({
             where: { id },

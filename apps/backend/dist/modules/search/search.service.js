@@ -12,10 +12,10 @@ class SearchService {
         this.retrievalService = new retrieval_service_1.RetrievalService();
     }
     async globalSearch(query) {
-        const { q, type, specialty, limit, page } = query;
+        const { q, type, specialty, limit, page, } = query;
         const skip = (page - 1) * limit;
         let results = [];
-        let error = null;
+        const error = null;
         switch (type) {
             case 'semantic':
                 results = await this.semanticSearch(q, specialty, limit);
@@ -148,7 +148,7 @@ class SearchService {
         }
     }
     async searchDocuments(query) {
-        const { q, specialty, limit, page } = query;
+        const { q, specialty, limit, page, } = query;
         const skip = (page - 1) * limit;
         const where = {};
         if (q) {

@@ -32,31 +32,31 @@ export declare class DocumentMetadataService {
         documentType?: string;
     }): Promise<void>;
     getMetadata(documentId: string): Promise<{
-        documentType: string | null;
-        publicationYear: number | null;
-        title: string | null;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        documentId: string;
+        title: string | null;
+        documentType: string | null;
         authors: string[];
+        publicationYear: number | null;
+        doi: string | null;
+        documentId: string;
         journal: string | null;
         publisher: string | null;
-        doi: string | null;
         sourceURL: string | null;
     } | null>;
     getMetadataByDocumentIds(documentIds: string[]): Promise<{
-        documentType: string | null;
-        publicationYear: number | null;
-        title: string | null;
         id: string;
         createdAt: Date;
         updatedAt: Date;
-        documentId: string;
+        title: string | null;
+        documentType: string | null;
         authors: string[];
+        publicationYear: number | null;
+        doi: string | null;
+        documentId: string;
         journal: string | null;
         publisher: string | null;
-        doi: string | null;
         sourceURL: string | null;
     }[]>;
 }

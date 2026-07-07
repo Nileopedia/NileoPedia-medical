@@ -12,7 +12,9 @@ describe('SearchController', () => {
         jest.clearAllMocks();
         // Create mock service
         const mockService = {
-            globalSearch: jest.fn().mockResolvedValue({ documents: [], total: 0, page: 1, limit: 20, totalPages: 0 }),
+            globalSearch: jest.fn().mockResolvedValue({
+                documents: [], total: 0, page: 1, limit: 20, totalPages: 0,
+            }),
             semanticSearch: jest.fn().mockResolvedValue([]),
             keywordSearch: jest.fn().mockResolvedValue([]),
             hybridSearch: jest.fn().mockResolvedValue([]),

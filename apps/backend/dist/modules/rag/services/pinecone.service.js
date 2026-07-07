@@ -19,7 +19,8 @@ class PineconeService {
     async upsertVectors(vectors) {
         if (!this.pinecone || !this.index)
             return;
-        const batchSize = 20; // Smaller batch size to avoid Pinecone timeouts
+        const batchSize = 20;
+        console.log('[PINECONE] Upserting', vectors.length, 'vectors');
         for (let i = 0; i < vectors.length; i += batchSize) {
             const batch = vectors.slice(i, i + batchSize);
             try {
@@ -29,9 +30,11 @@ class PineconeService {
                 logger_1.logger.error('Pinecone upsert batch failed:', { batchStart: i, error });
             }
         }
+        console.log('[PINECONE] Upsert complete');
     }
     async query(vector, topK = 10, filter) {
         if (!this.pinecone || !this.index) {
+            console.log('[PINECONE] Query skipped - Pinecone not configured');
             return [];
         }
         const queryRequest = {
@@ -41,7 +44,9 @@ class PineconeService {
             ...(filter && { filter }),
         };
         const results = await this.index.query(queryRequest);
-        return results.matches || [];
+        const matches = results.matches || [];
+        console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m) => m.score));
+        return matches;
     }
     async deleteVectors(ids) {
         if (!this.pinecone || !this.index)
@@ -51,18 +56,20 @@ class PineconeService {
     async deleteByDocumentId(documentId) {
         if (!this.pinecone || !this.index)
             return;
+        logger_1.logger.info('Deleting previous vectors', { documentId });
         try {
             await this.index.deleteMany({
-                filter: { documentId: { $eq: documentId } }
+                filter: { documentId },
             });
             logger_1.logger.info(`Deleted vectors for document ${documentId}`);
         }
         catch (error) {
-            logger_1.logger.error('Pinecone delete failed:', error);
+            logger_1.logger.error('Failed deleting existing vectors', error);
             throw error;
         }
     }
     async storeChunks(chunks, embeddings, documentId) {
+        console.log('[PINECONE] Storing', chunks.length, 'chunks for document:', documentId);
         const vectors = embeddings.map((embedding, i) => ({
             id: `${documentId}_chunk_${i}`,
             values: embedding,
@@ -74,14 +81,28 @@ class PineconeService {
             },
         }));
         await this.upsertVectors(vectors);
+        console.log('[PINECONE] Stored', vectors.length, 'vectors for document:', documentId);
         return vectors;
     }
     async searchSimilar(query, embeddingService, topK = 10, filter) {
         if (!this.pinecone || !this.index) {
+            console.log('[PINECONE] searchSimilar skipped - Pinecone not configured');
             return [];
         }
         const queryEmbedding = await embeddingService.generateEmbedding(query);
         return this.query(queryEmbedding, topK, filter);
+    }
+    async describeIndexStats() {
+        if (!this.pinecone || !this.index)
+            return null;
+        try {
+            const stats = await this.index.describeIndexStats();
+            return stats;
+        }
+        catch (error) {
+            logger_1.logger.error('Failed to describe index stats:', error);
+            return null;
+        }
     }
 }
 exports.PineconeService = PineconeService;

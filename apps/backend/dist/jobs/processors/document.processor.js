@@ -27,10 +27,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.processDocumentIngestion = exports.refreshKnowledgeBase = void 0;
-const prisma_1 = __importDefault(require("../../config/prisma"));
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const client_1 = require("@prisma/client");
+const prisma_1 = __importDefault(require("../../config/prisma"));
 const document_ingestion_service_1 = require("../../modules/documents/document.ingestion.service");
 const metadata_service_1 = require("../../modules/documents/metadata.service");
 const logger_1 = require("../../config/logger");
@@ -134,7 +134,7 @@ async function processDocumentIngestion(job) {
     if ('source' in job && 'type' in job && job.type === 'scheduled') {
         return createDemoDocuments(job.source);
     }
-    const { documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear, fileType } = job;
+    const { documentId, fileUrl, fileName, title, specialty, documentType, uploadedById, source, publicationYear, fileType, } = job;
     try {
         await prisma_1.default.medicalDocument.update({
             where: { id: documentId },
@@ -153,19 +153,19 @@ async function processDocumentIngestion(job) {
                 content = pdfData.text || '';
             }
             catch (pdfError) {
-                logger_1.logger.warn(`PDF parsing failed, falling back to text extraction:`, pdfError);
+                logger_1.logger.warn('PDF parsing failed, falling back to text extraction:', pdfError);
                 content = buffer.toString('utf-8');
             }
         }
-        else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document' ||
-            fileName.toLowerCase().endsWith('.docx')) {
+        else if (fileType === 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'
+            || fileName.toLowerCase().endsWith('.docx')) {
             try {
                 const mammoth = await Promise.resolve().then(() => __importStar(require('mammoth')));
                 const docxResult = await mammoth.extractRawText({ buffer });
                 content = docxResult.value || '';
             }
             catch (docxError) {
-                logger_1.logger.warn(`DOCX parsing failed, falling back to text extraction:`, docxError);
+                logger_1.logger.warn('DOCX parsing failed, falling back to text extraction:', docxError);
                 content = buffer.toString('utf-8');
             }
         }
@@ -178,7 +178,7 @@ async function processDocumentIngestion(job) {
                 content = content.replace(/\s+/g, ' ').trim();
             }
             catch (htmlError) {
-                logger_1.logger.warn(`HTML parsing failed, falling back to text extraction:`, htmlError);
+                logger_1.logger.warn('HTML parsing failed, falling back to text extraction:', htmlError);
                 content = buffer.toString('utf-8');
             }
         }
@@ -205,7 +205,7 @@ async function processDocumentIngestion(job) {
             publicationYear: extractedMetadata.publicationYear || publicationYear,
             doi: extractedMetadata.doi,
             sourceURL: extractedMetadata.sourceURL || source,
-            documentType: documentType,
+            documentType,
         });
         const ingestionService = new document_ingestion_service_1.DocumentIngestionService();
         await ingestionService.ingestDocument({

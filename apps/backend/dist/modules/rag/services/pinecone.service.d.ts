@@ -21,5 +21,6 @@ export declare class PineconeService {
         };
     }[]>;
     searchSimilar(query: string, embeddingService: any, topK?: number, filter?: Record<string, any>): Promise<any>;
+    describeIndexStats(): Promise<any>;
 }
 //# sourceMappingURL=pinecone.service.d.ts.map

@@ -7,7 +7,7 @@ exports.processAudit = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const logger_1 = require("../../config/logger");
 async function processAudit(job) {
-    const { userId, action, entityType, entityId, description, ipAddress, userAgent, metadata } = job;
+    const { userId, action, entityType, entityId, description, ipAddress, userAgent, metadata, } = job;
     try {
         const audit = await prisma_1.default.auditLog.create({
             data: {

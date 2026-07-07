@@ -49,8 +49,10 @@ exports.CONFIG = {
     UPLOAD_DIR: process.env.UPLOAD_DIR || './uploads',
     // Mock AI mode
     USE_MOCK_AI: process.env.USE_MOCK_AI === 'true' || process.env.NODE_ENV === 'test',
-    // Mock Embeddings mode  
+    // Mock Embeddings mode
     USE_MOCK_EMBEDDINGS: process.env.USE_MOCK_EMBEDDINGS === 'true' || process.env.NODE_ENV === 'test',
+    // Local embeddings toggle
+    LOCAL_EMBEDDINGS_ENABLED: process.env.LOCAL_EMBEDDINGS_ENABLED !== 'false',
     // Scheduled Ingestion
     SCHEDULED_INGESTION_ENABLED: process.env.SCHEDULED_INGESTION_ENABLED ?? 'true',
 };

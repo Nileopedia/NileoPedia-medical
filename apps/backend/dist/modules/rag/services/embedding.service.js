@@ -34,8 +34,8 @@ async function getFetch() {
     }
     return fetch;
 }
-const HF_API_KEY = env_1.CONFIG.HF_API_KEY;
-const HF_EMBEDDING_MODEL = env_1.CONFIG.HF_EMBEDDING_MODEL;
+const { HF_API_KEY } = env_1.CONFIG;
+const { HF_EMBEDDING_MODEL } = env_1.CONFIG;
 const EXPECTED_DIMENSIONS = 384;
 // Force mock mode in test environment to avoid network calls and dynamic imports
 const IS_TEST = process.env.NODE_ENV === 'test';
@@ -44,7 +44,7 @@ const LOCAL_EMBEDDING_ENABLED = process.env.LOCAL_EMBEDDINGS !== 'false' && !IS_
 console.log('[EmbeddingService] Configuration check:', {
     HF_API_KEY_EXISTS: !!HF_API_KEY,
     HF_API_KEY_LENGTH: HF_API_KEY?.length || 0,
-    HF_EMBEDDING_MODEL: HF_EMBEDDING_MODEL,
+    HF_EMBEDDING_MODEL,
     USE_MOCK_EMBEDDINGS: env_1.CONFIG.USE_MOCK_EMBEDDINGS,
     LOCAL_EMBEDDINGS_ENABLED: LOCAL_EMBEDDING_ENABLED,
 });
@@ -102,7 +102,7 @@ async function hfEmbedding(text) {
         const response = await fetchFn(requestUrl, {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${HF_API_KEY}`,
+                Authorization: `Bearer ${HF_API_KEY}`,
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({ inputs: text }),
@@ -157,6 +157,10 @@ class EmbeddingService {
         else {
             logger_1.logger.info(`Using Hugging Face embeddings: ${HF_EMBEDDING_MODEL}`);
         }
+        logger_1.logger.info({
+            localEnabled: env_1.CONFIG.LOCAL_EMBEDDINGS_ENABLED,
+            hfConfigured: !!env_1.CONFIG.HF_API_KEY,
+        });
     }
     get isRealEmbeddings() {
         return !this.mockMode;
@@ -169,28 +173,29 @@ class EmbeddingService {
         return 'huggingface';
     }
     async generateEmbedding(text) {
-        // Try local embeddings first if enabled
-        if (this.useLocal) {
+        if (env_1.CONFIG.LOCAL_EMBEDDINGS_ENABLED) {
             try {
-                return await localEmbedding(text);
+                logger_1.logger.info('Attempting local embeddings...');
+                const localResult = await localEmbedding(text);
+                logger_1.logger.info('Embedding source: local');
+                return localResult;
             }
-            catch (e) {
-                logger_1.logger.error('[ERROR] Embedding service unavailable');
-                throw new Error('Embedding service unavailable');
+            catch (error) {
+                logger_1.logger.warn('Local embedding failed, switching to HF API:', error);
             }
         }
-        // Try Hugging Face API
         if (HF_API_KEY) {
             try {
-                return await hfEmbedding(text);
+                logger_1.logger.info('Attempting HF embeddings...');
+                const hfResult = await hfEmbedding(text);
+                logger_1.logger.info('Embedding source: huggingface');
+                return hfResult;
             }
-            catch (e) {
-                logger_1.logger.error('[ERROR] Embedding service unavailable');
-                throw new Error('Embedding service unavailable');
+            catch (error) {
+                logger_1.logger.warn('HF embedding failed:', error);
             }
         }
-        // No embedding service available
-        logger_1.logger.error('[ERROR] Embedding service unavailable');
+        logger_1.logger.error('No embedding provider available');
         throw new Error('Embedding service unavailable');
     }
     async generateBatchEmbeddings(texts) {

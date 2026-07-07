@@ -48,7 +48,9 @@ class AuthRepository {
     }
     async findOtp(email, otp) {
         return prisma_1.default.otpVerification.findFirst({
-            where: { email, otp, used: false, expiresAt: { gt: new Date() } },
+            where: {
+                email, otp, used: false, expiresAt: { gt: new Date() },
+            },
         });
     }
     async markOtpUsed(id) {

@@ -93,7 +93,9 @@ describe('AnalyticsService', () => {
                 createdAt: new Date(),
                 updatedAt: new Date(),
                 isSaved: false,
-                aiResponse: { id: 'r1', validationStatus: 'APPROVED', confidenceScore: 0.9, citations: [] },
+                aiResponse: {
+                    id: 'r1', validationStatus: 'APPROVED', confidenceScore: 0.9, citations: [],
+                },
             },
             {
                 id: 'q-2',
@@ -102,7 +104,9 @@ describe('AnalyticsService', () => {
                 createdAt: new Date(),
                 updatedAt: new Date(),
                 isSaved: false,
-                aiResponse: { id: 'r2', validationStatus: 'APPROVED', confidenceScore: 0.8, citations: [] },
+                aiResponse: {
+                    id: 'r2', validationStatus: 'APPROVED', confidenceScore: 0.8, citations: [],
+                },
             },
             {
                 id: 'q-3',

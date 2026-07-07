@@ -4,13 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.DocumentController = void 0;
-const document_service_1 = require("./document.service");
-const logger_1 = require("../../config/logger");
-const document_validation_1 = require("./document.validation");
-const document_validation_2 = require("./document.validation");
 const path_1 = __importDefault(require("path"));
 const fs_1 = __importDefault(require("fs"));
 const client_1 = require("@prisma/client");
+const document_service_1 = require("./document.service");
+const logger_1 = require("../../config/logger");
+const document_validation_1 = require("./document.validation");
 class DocumentController {
     constructor() {
         this.documentService = new document_service_1.DocumentService();
@@ -72,23 +71,23 @@ class DocumentController {
     async uploadDocument(req, res, next) {
         try {
             const file = req.file;
-            const body = req.body;
+            const { body } = req;
             if (!file) {
                 return res.status(400).json({
                     success: false,
                     message: 'No file uploaded',
                 });
             }
-            if (!document_validation_2.allowedMimeTypes.includes(file.mimetype)) {
+            if (!document_validation_1.allowedMimeTypes.includes(file.mimetype)) {
                 return res.status(400).json({
                     success: false,
-                    message: `Invalid file type. Allowed types: ${document_validation_2.allowedMimeTypes.join(', ')}`,
+                    message: `Invalid file type. Allowed types: ${document_validation_1.allowedMimeTypes.join(', ')}`,
                 });
             }
-            if (file.size > document_validation_2.maxFileSize) {
+            if (file.size > document_validation_1.maxFileSize) {
                 return res.status(400).json({
                     success: false,
-                    message: `File size exceeds maximum of ${document_validation_2.maxFileSize / 1024 / 1024}MB`,
+                    message: `File size exceeds maximum of ${document_validation_1.maxFileSize / 1024 / 1024}MB`,
                 });
             }
             const fileExt = path_1.default.extname(file.originalname);

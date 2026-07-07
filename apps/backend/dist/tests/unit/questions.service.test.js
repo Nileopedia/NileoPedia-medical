@@ -91,7 +91,9 @@ describe('QuestionsService', () => {
     describe('getHistory', () => {
         it('should return paginated question history', async () => {
             const mockQuestions = [
-                { id: 'q-1', questionText: 'Q1', category: 'General', createdAt: new Date(), aiResponse: null },
+                {
+                    id: 'q-1', questionText: 'Q1', category: 'General', createdAt: new Date(), aiResponse: null,
+                },
             ];
             mockPrisma.question.findMany.mockResolvedValue(mockQuestions);
             mockPrisma.question.count.mockResolvedValue(1);

@@ -30,5 +30,9 @@ router.get('/recent-validations', auth_middleware_1.authenticate, (0, auth_middl
 router.get('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getSettings.bind(adminController));
 router.put('/settings', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.updateSettings.bind(adminController));
 router.get('/ai-activity', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.getAiActivity.bind(adminController));
+router.get('/retrieval-test', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.retrievalTest.bind(adminController));
+router.get('/rag-debug', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.ragDebug.bind(adminController));
+router.get('/document-debug/:id', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.documentDebug.bind(adminController));
+router.get('/query-debug', auth_middleware_1.authenticate, (0, auth_middleware_1.authorize)('ADMIN'), adminController.queryDebug.bind(adminController));
 exports.default = router;
 //# sourceMappingURL=admin.routes.js.map

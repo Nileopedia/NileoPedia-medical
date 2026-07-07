@@ -3,73 +3,139 @@ import { CONFIG } from '../../../config/env';
 import { logger } from '../../../config/logger';
 import { DocumentChunk } from './chunking.service';
 
-const USE_MOCK_AI = process.env.USE_MOCK_AI === 'true' || !process.env.PINECONE_API_KEY;
+interface MockVector {
+  id: string;
+  values: number[];
+  metadata?: Record<string, any>;
+}
+
+const mockVectors: MockVector[] = [];
+
+function cosineSimilarity(a: number[], b: number[]): number {
+  if (a.length !== b.length) return 0;
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+  for (let i = 0; i < a.length; i++) {
+    dotProduct += a[i] * b[i];
+    normA += a[i] * a[i];
+    normB += b[i] * b[i];
+  }
+  const denominator = Math.sqrt(normA) * Math.sqrt(normB);
+  return denominator === 0 ? 0 : dotProduct / denominator;
+}
 
 export class PineconeService {
   private pinecone: Pinecone | null = null;
 
   private index: any;
 
+  private isAvailable: boolean = false;
+
+  static mockVectors: MockVector[] = mockVectors;
+
   constructor() {
-    if (!USE_MOCK_AI && CONFIG.PINECONE_API_KEY) {
-      this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
-      this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
-    } else {
-      logger.info('Using mock search mode (Pinecone not configured)');
+    if (CONFIG.PINECONE_API_KEY) {
+      try {
+        this.pinecone = new Pinecone({ apiKey: CONFIG.PINECONE_API_KEY });
+        this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
+        this.isAvailable = true;
+      } catch (e) {
+        logger.error('Pinecone initialization failed, using mock mode:', e);
+        this.isAvailable = false;
+      }
     }
+    if (!this.isAvailable) {
+      logger.info('Using mock vector search (Pinecone not available)');
+    }
+  }
+
+  isMockMode(): boolean {
+    return !this.isAvailable;
+  }
+
+  pineconeClient() {
+    return this;
   }
 
   async upsertVectors(vectors: Array<{ id: string; values: number[]; metadata?: Record<string, any> }>) {
-    if (!this.pinecone || !this.index) return;
-    const batchSize = 20;
-
-    console.log('[PINECONE] Upserting', vectors.length, 'vectors');
-    for (let i = 0; i < vectors.length; i += batchSize) {
-      const batch = vectors.slice(i, i + batchSize);
-      try {
-        await this.index.upsert(batch);
-      } catch (error) {
-        logger.error('Pinecone upsert batch failed:', { batchStart: i, error });
+    if (this.isAvailable && this.index) {
+      const batchSize = 20;
+      console.log('[PINECONE] Upserting', vectors.length, 'vectors');
+      for (let i = 0; i < vectors.length; i += batchSize) {
+        const batch = vectors.slice(i, i + batchSize);
+        try {
+          await this.index.upsert(batch);
+        } catch (error) {
+          logger.error('Pinecone upsert batch failed:', { batchStart: i, error });
+        }
       }
+      console.log('[PINECONE] Upsert complete');
+    } else {
+      PineconeService.mockVectors.push(...vectors);
+      console.log('[MOCK] Stored', vectors.length, 'vectors (mock mode), total:', PineconeService.mockVectors.length);
     }
-    console.log('[PINECONE] Upsert complete');
   }
 
   async query(vector: number[], topK = 10, filter?: Record<string, any>) {
-    if (!this.pinecone || !this.index) {
-      console.log('[PINECONE] Query skipped - Pinecone not configured');
+    if (this.isAvailable && this.index) {
+      const queryRequest = {
+        vector,
+        topK,
+        includeMetadata: true,
+        ...(filter && { filter }),
+      };
+
+      const results = await this.index.query(queryRequest);
+      const matches = results.matches || [];
+      console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m: any) => m.score));
+      return matches;
+    }
+
+    if (!PineconeService.mockVectors.length) {
+      console.log('[MOCK] Query skipped - no vectors in mock store');
       return [];
     }
 
-    const queryRequest = {
-      vector,
-      topK,
-      includeMetadata: true,
-      ...(filter && { filter }),
-    };
+    const scored = PineconeService.mockVectors.map((v) => ({
+      id: v.id,
+      score: cosineSimilarity(vector, v.values),
+      metadata: v.metadata,
+    }));
 
-    const results = await this.index.query(queryRequest);
-    const matches = results.matches || [];
-    console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m: any) => m.score));
-    return matches;
+    const filtered = filter
+      ? scored.filter((m) => m.metadata && Object.keys(filter).every((k) => m.metadata?.[k] === filter[k]))
+      : scored;
+
+    const sorted = filtered.sort((a, b) => (b.score || 0) - (a.score || 0)).slice(0, topK);
+    console.log('[MOCK] Query returned', sorted.length, 'matches, max score:', sorted[0]?.score);
+    return sorted;
   }
 
   async deleteVectors(ids: string[]) {
-    if (!this.pinecone || !this.index) return;
-    await this.index.deleteMany(ids);
+    if (this.isAvailable && this.index) {
+      await this.index.deleteMany(ids);
+    } else {
+      PineconeService.mockVectors = PineconeService.mockVectors.filter((v) => !ids.includes(v.id));
+    }
   }
 
   async deleteByDocumentId(documentId: string) {
-    if (!this.pinecone || !this.index) return;
-    logger.info('Deleting previous vectors', { documentId });
-    try {
-      await this.index.deleteMany({
-        filter: { documentId },
-      });
-      logger.info(`Deleted vectors for document ${documentId}`);
-    } catch (error) {
-      logger.error('Failed deleting existing vectors', error);
-      throw error;
+    if (this.isAvailable && this.index) {
+      logger.info('Deleting previous vectors', { documentId });
+      try {
+        await this.index.deleteMany({
+          filter: { documentId },
+        });
+        logger.info(`Deleted vectors for document ${documentId}`);
+      } catch (error) {
+        logger.error('Failed deleting existing vectors', error);
+        throw error;
+      }
+    } else {
+      const before = PineconeService.mockVectors.length;
+      PineconeService.mockVectors = PineconeService.mockVectors.filter((v) => v.metadata?.documentId !== documentId);
+      console.log(`[MOCK] Deleted ${before - PineconeService.mockVectors.length} vectors for document ${documentId}`);
     }
   }
 
@@ -82,6 +148,7 @@ export class PineconeService {
         documentId,
         chunkIndex: chunks[i].chunkIndex,
         textPreview: chunks[i].text.substring(0, 100),
+        text: chunks[i].text,
         ...chunks[i].metadata,
       },
     }));
@@ -92,22 +159,20 @@ export class PineconeService {
   }
 
   async searchSimilar(query: string, embeddingService: any, topK = 10, filter?: Record<string, any>) {
-    if (!this.pinecone || !this.index) {
-      console.log('[PINECONE] searchSimilar skipped - Pinecone not configured');
-      return [];
-    }
     const queryEmbedding = await embeddingService.generateEmbedding(query);
     return this.query(queryEmbedding, topK, filter);
   }
 
   async describeIndexStats() {
-    if (!this.pinecone || !this.index) return null;
-    try {
-      const stats = await this.index.describeIndexStats();
-      return stats;
-    } catch (error) {
-      logger.error('Failed to describe index stats:', error);
-      return null;
+    if (this.isAvailable && this.index) {
+      try {
+        const stats = await this.index.describeIndexStats();
+        return stats;
+      } catch (error) {
+        logger.error('Failed to describe index stats:', error);
+        return null;
+      }
     }
+    return { totalVectorCount: PineconeService.mockVectors.length, dimension: 384 };
   }
 }

@@ -4,7 +4,7 @@ exports.processEmail = void 0;
 const email_service_1 = require("../../modules/email/email.service");
 const logger_1 = require("../../config/logger");
 async function processEmail(job) {
-    const { to, subject, html, template, data } = job;
+    const { to, subject, html, template, data, } = job;
     try {
         const emailHtml = html || (template ? renderTemplate(template, data || {}) : '');
         await email_service_1.EmailService.sendViaResend(to, subject, emailHtml);

@@ -28,6 +28,7 @@ export declare const CONFIG: {
     readonly UPLOAD_DIR: string;
     readonly USE_MOCK_AI: boolean;
     readonly USE_MOCK_EMBEDDINGS: boolean;
+    readonly LOCAL_EMBEDDINGS_ENABLED: boolean;
     readonly SCHEDULED_INGESTION_ENABLED: string;
 };
 export type Config = typeof CONFIG;

@@ -7,7 +7,7 @@ exports.processBulkNotifications = exports.processNotification = void 0;
 const prisma_1 = __importDefault(require("../../config/prisma"));
 const logger_1 = require("../../config/logger");
 async function processNotification(job) {
-    const { userId, title, message, type, metadata } = job;
+    const { userId, title, message, type, metadata, } = job;
     try {
         const notification = await prisma_1.default.notification.create({
             data: {

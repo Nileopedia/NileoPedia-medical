@@ -28,7 +28,9 @@ class AdminService {
             }),
             prisma_1.default.user.count({ where }),
         ]);
-        return { users, total, page, limit, totalPages: Math.ceil(total / limit) };
+        return {
+            users, total, page, limit, totalPages: Math.ceil(total / limit),
+        };
     }
     async suspendUser(userId, adminId) {
         await prisma_1.default.user.update({
@@ -85,7 +87,7 @@ class AdminService {
                 where: { validatorId: v.id },
             });
             const reviewsCompleted = reviews.length;
-            const approved = reviews.filter(r => r.status === 'APPROVED').length;
+            const approved = reviews.filter((r) => r.status === 'APPROVED').length;
             const approvalRate = reviews.length > 0 ? Math.round((approved / reviews.length) * 100) : 0;
             return {
                 ...v,
@@ -93,7 +95,9 @@ class AdminService {
                 approvalRate,
             };
         }));
-        return { validators: validatorsWithStats, total, page, limit, totalPages: Math.ceil(total / limit) };
+        return {
+            validators: validatorsWithStats, total, page, limit, totalPages: Math.ceil(total / limit),
+        };
     }
     async addValidator(data) {
         // Check if user exists
@@ -111,7 +115,9 @@ class AdminService {
                 accountStatus: 'ACTIVE',
             },
         });
-        return { id: user.id, fullName: user.fullName, email: user.email, role: user.role };
+        return {
+            id: user.id, fullName: user.fullName, email: user.email, role: user.role,
+        };
     }
     async removeValidator(validatorId) {
         const user = await prisma_1.default.user.findUnique({ where: { id: validatorId } });
@@ -196,7 +202,7 @@ class AdminService {
                 validator: { select: { id: true, fullName: true, email: true } },
             },
         });
-        return validations.map(v => ({
+        return validations.map((v) => ({
             id: v.id,
             question: v.aiResponse?.question?.questionText || 'Unknown',
             response: v.aiResponse?.summary?.substring(0, 100) || 'No response',
@@ -251,7 +257,7 @@ class AdminService {
             prisma_1.default.aIResponse.count({ where }),
         ]);
         return {
-            activities: activities.map(a => ({
+            activities: activities.map((a) => ({
                 id: a.id,
                 question: a.question?.questionText || 'Unknown',
                 model: a.generatedBy || 'Unknown',
@@ -260,7 +266,9 @@ class AdminService {
                 status: a.validationStatus?.toLowerCase() ?? 'pending',
                 date: a.createdAt.toISOString(),
             })),
-            pagination: { total, page, limit, totalPages: Math.ceil(total / limit) },
+            pagination: {
+                total, page, limit, totalPages: Math.ceil(total / limit),
+            },
         };
     }
 }

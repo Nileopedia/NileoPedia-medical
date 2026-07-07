@@ -27,9 +27,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const auth_repository_1 = require("../repositories/auth.repository");
 const jwt_service_1 = require("./jwt.service");
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const logger_1 = require("../../../config/logger");
 class AuthService {
     constructor() {
@@ -37,7 +37,7 @@ class AuthService {
         this.jwtService = new jwt_service_1.JwtService();
     }
     async register(registerDto) {
-        const { fullName, email, password, role, institution, specialization } = registerDto;
+        const { fullName, email, password, role, institution, specialization, } = registerDto;
         const existingUser = await this.authRepository.findByEmail(email);
         if (existingUser) {
             throw new Error('User already exists');
@@ -147,7 +147,7 @@ class AuthService {
         const expiresAt = new Date(Date.now() + 10 * 60 * 1000); // 10 minutes expiry
         await this.authRepository.createOtp(email, otp, expiresAt);
         try {
-            const EmailService = (await Promise.resolve().then(() => __importStar(require('../../email/email.service')))).EmailService;
+            const { EmailService } = await Promise.resolve().then(() => __importStar(require('../../email/email.service')));
             const user = await this.authRepository.findByEmail(email);
             await EmailService.sendOtp({ email, fullName: user?.fullName || 'User', otp });
             logger_1.logger.info(`OTP email sent to ${email}`);
@@ -201,7 +201,7 @@ class AuthService {
             await this.authRepository.createPasswordReset(email, resetToken, expiresAt);
             const resetLink = `${process.env.FRONTEND_URL}/reset-password?email=${encodeURIComponent(email)}&token=${resetToken}`;
             try {
-                const EmailService = (await Promise.resolve().then(() => __importStar(require('../../email/email.service')))).EmailService;
+                const { EmailService } = await Promise.resolve().then(() => __importStar(require('../../email/email.service')));
                 await EmailService.sendPasswordReset({
                     email,
                     fullName: user.fullName,
