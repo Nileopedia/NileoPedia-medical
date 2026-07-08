@@ -21698,3 +21698,268 @@ Invalid `prisma.medicalDocument.create()` invocation in
 → 47   const doc = await prisma.medicalDocument.create(
 Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-07-08T10:41:42.511Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T11:08:04.454Z [nileopedia-backend] info: Schedulers initialized
+2026-07-08T11:08:09.044Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T11:08:09.045Z [nileopedia-backend] info: [object Object]
+2026-07-08T11:08:09.046Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T11:08:10.407Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T11:08:10.581Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T11:08:10.582Z [nileopedia-backend] info: [object Object]
+2026-07-08T11:08:10.582Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T11:08:10.591Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T11:08:11.022Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T11:08:11.023Z [nileopedia-backend] info: [object Object]
+2026-07-08T11:08:11.024Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T11:08:11.024Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T11:08:11.056Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T11:08:11.056Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T11:08:21.699Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T11:08:21.700Z [nileopedia-backend] info: [object Object]
+2026-07-08T11:08:21.703Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T11:08:21.713Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T11:08:22.117Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T11:08:22.117Z [nileopedia-backend] info: [object Object]
+2026-07-08T11:08:22.118Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T11:08:22.210Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T11:08:29.585Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-08T12:56:55.454Z [nileopedia-backend] info: Schedulers initialized
+2026-07-08T12:57:05.152Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T12:57:05.153Z [nileopedia-backend] info: [object Object]
+2026-07-08T12:57:05.154Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T12:57:07.957Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T12:57:07.958Z [nileopedia-backend] info: [object Object]
+2026-07-08T12:57:09.867Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T12:57:10.642Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T12:57:10.747Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T12:57:11.952Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T12:57:11.952Z [nileopedia-backend] info: [object Object]
+2026-07-08T12:57:11.953Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T12:57:11.953Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T12:57:12.070Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T12:57:12.071Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T12:57:25.744Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T12:57:25.746Z [nileopedia-backend] info: [object Object]
+2026-07-08T12:57:25.756Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T12:57:25.833Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T12:57:26.416Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T12:57:26.417Z [nileopedia-backend] info: [object Object]
+2026-07-08T12:57:26.417Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T12:57:26.519Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T12:57:47.928Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-08T12:57:48.249Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-08T12:57:49.135Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T12:57:49.169Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T12:57:50.437Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-08T12:57:57.084Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-08T12:57:58.682Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T12:57:58.691Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T12:57:58.733Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T12:57:59.017Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T12:58:01.443Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-08T12:58:01.560Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.581Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.600Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.616Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.630Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.642Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.657Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.669Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.681Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.927Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T12:58:05.793Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-07-08T12:58:05.820Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.839Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.862Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.881Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.897Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.916Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.941Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.966Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.979Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:06.411Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T13:06:19.123Z [nileopedia-backend] info: Schedulers initialized
+2026-07-08T13:06:21.155Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T13:06:21.156Z [nileopedia-backend] info: [object Object]
+2026-07-08T13:06:21.157Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:19.394Z [nileopedia-backend] info: Schedulers initialized
+2026-07-08T13:06:21.603Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T13:06:21.622Z [nileopedia-backend] info: [object Object]
+2026-07-08T13:06:21.627Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:22.959Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T13:06:22.960Z [nileopedia-backend] info: [object Object]
+2026-07-08T13:06:23.821Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T13:06:24.417Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:24.428Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T13:06:24.941Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T13:06:24.942Z [nileopedia-backend] info: [object Object]
+2026-07-08T13:06:24.943Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:24.944Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:25.016Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T13:06:25.017Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T13:06:38.783Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T13:06:38.784Z [nileopedia-backend] info: [object Object]
+2026-07-08T13:06:38.786Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:38.806Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T13:06:39.398Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-08T13:06:39.400Z [nileopedia-backend] info: [object Object]
+2026-07-08T13:06:39.401Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-08T13:06:39.459Z [nileopedia-backend] info: Embedding source: local
+2026-07-08T13:07:41.618Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-08T13:07:42.773Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-08T13:07:43.521Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-08T13:07:46.436Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-08T13:07:47.488Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-08T13:07:52.073Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T13:07:52.098Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T13:07:52.205Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T13:07:52.457Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T13:08:03.413Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-07-08T13:08:03.498Z [nileopedia-backend] info: GET /api/v1/validation/pending - ::1
+2026-07-08T13:08:03.535Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-07-08T13:08:03.609Z [nileopedia-backend] info: GET /api/v1/validation/history - ::1
+2026-07-08T13:08:11.320Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1
+2026-07-08T13:08:11.386Z [nileopedia-backend] info: GET /api/v1/validation/approved - ::1

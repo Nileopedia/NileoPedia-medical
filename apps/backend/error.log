@@ -6971,3 +6971,165 @@ Invalid `prisma.medicalDocument.create()` invocation in
   46 if (!existing) {
 → 47   const doc = await prisma.medicalDocument.create(
 Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.560Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.581Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.600Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.616Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.630Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.642Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.657Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.669Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:01.681Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.820Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.839Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.862Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.881Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.897Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.916Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.941Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.966Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T12:58:05.979Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`

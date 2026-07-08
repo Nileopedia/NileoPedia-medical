@@ -33,7 +33,9 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
     'Randomized Controlled Trial Results',
   ];
 
+  const ingestionService = new DocumentIngestionService();
   let count = 0;
+
   for (const title of demoTitles) {
     const documentTitle = `${source.specialty.charAt(0).toUpperCase() + source.specialty.slice(1)}: ${title}`;
 
@@ -44,28 +46,24 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
     });
 
     if (!existing) {
-      const doc = await prisma.medicalDocument.create({
-        data: {
-          title: documentTitle,
-          description: `Demo document from ${source.name} for ${source.specialty} specialty`,
-          fileName: `demo-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.pdf`,
-          fileUrl: source.name,
-          fileType: 'application/pdf',
-          fileSize: 1024 * 1024,
-          specialty: source.specialty,
-          documentType: 'GUIDELINE',
-          source: source.name,
-          publicationYear: new Date().getFullYear(),
-          uploadedById: '00000000-0000-0000-0000-000000000000',
-          ingestionStatus: IngestionStatus.COMPLETED,
-          isVerified: true,
-        },
+      const content = `${documentTitle}. This document presents comprehensive medical evidence from ${source.name}. Topics include clinical practice guidelines, patient outcomes, treatment protocols, and evidence-based recommendations for healthcare providers. Specialty focus: ${source.specialty}. Key areas: diagnosis, treatment planning, follow-up care, and patient education.`;
+
+      const result = await ingestionService.ingestDocument({
+        title: documentTitle,
+        description: `Demo document from ${source.name} for ${source.specialty} specialty`,
+        source: source.name,
+        specialty: source.specialty,
+        documentType: 'GUIDELINE',
+        uploadedById: '00000000-0000-0000-0000-000000000000',
+        fileName: `demo-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.pdf`,
+        fileUrl: source.baseUrl,
+        fileType: 'application/pdf',
+        fileSize: 1024 * 1024,
       });
-      count++;
 
       await prisma.documentMetadata.create({
         data: {
-          documentId: doc.id,
+          documentId: result.document.id,
           title: documentTitle,
           authors: ['Medical Editorial Board'],
           journal: source.name,
@@ -75,14 +73,7 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
         },
       });
 
-      await prisma.embeddingMetadata.create({
-        data: {
-          documentId: doc.id,
-          pineconeVectorId: `${doc.id}_chunk_0`,
-          chunkIndex: 0,
-          chunkText: `${documentTitle}: Evidence-based clinical guidelines and recommendations.`,
-        },
-      });
+      count++;
     } else if (isIncremental) {
       await prisma.medicalDocument.update({
         where: { id: existing.id },

@@ -10,6 +10,7 @@ import { api } from '../../lib/api';
 import { FileText, Search as SearchIcon, Trash2, RefreshCw, ChevronLeft, ChevronRight, WifiOff, AlertTriangle, Edit, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useToast } from '../../components/ui/Toast';
+import { Input, TextArea } from '../../components/ui/Input';
 
 interface Document {
   id: string;
@@ -35,6 +36,16 @@ export default function DocumentsPage() {
   const [reingestingId, setReingestingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [deletingAll, setDeletingAll] = useState(false);
+  const [editingDoc, setEditingDoc] = useState<Document | null>(null);
+  const [editForm, setEditForm] = useState({
+    title: '',
+    description: '',
+    specialty: '',
+    documentType: '',
+    source: '',
+    publicationYear: '',
+  });
+  const [updatingDoc, setUpdatingDoc] = useState(false);
   const router = useRouter();
   const { addToast } = useToast();
 
@@ -150,6 +161,43 @@ export default function DocumentsPage() {
     }
   };
 
+  const handleEditDocument = (doc: Document) => {
+    setEditingDoc(doc);
+    setEditForm({
+      title: doc.title || '',
+      description: doc.description || '',
+      specialty: doc.specialty || '',
+      documentType: doc.documentType || '',
+      source: doc.source || '',
+      publicationYear: doc.publicationYear ? String(doc.publicationYear) : '',
+    });
+  };
+
+  const handleUpdateDocument = async () => {
+    if (!editingDoc) return;
+    setUpdatingDoc(true);
+    setError(null);
+    try {
+      await api.updateDocument(editingDoc.id, {
+        title: editForm.title || undefined,
+        description: editForm.description || undefined,
+        specialty: editForm.specialty || undefined,
+        documentType: editForm.documentType || undefined,
+        source: editForm.source || undefined,
+        publicationYear: editForm.publicationYear ? parseInt(editForm.publicationYear) : undefined,
+      });
+      addToast({ type: 'success', title: 'Document updated successfully' });
+      setEditingDoc(null);
+      fetchDocuments();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to update document';
+      setError(msg);
+      addToast({ type: 'error', title: msg });
+    } finally {
+      setUpdatingDoc(false);
+    }
+  };
+
   return (
     <AppLayout>
       <div className="space-y-4 sm:space-y-6">
@@ -245,6 +293,13 @@ export default function DocumentsPage() {
                         </span>
                         <div className="flex gap-1 sm:gap-2">
                           <button
+                            onClick={() => handleEditDocument(doc)}
+                            className="p-1 text-blue-600 hover:text-blue-700"
+                            title="Edit"
+                          >
+                            <Edit size={16} />
+                          </button>
+                          <button
                             onClick={() => handleReingestDocument(doc.id)}
                             disabled={doc.ingestionStatus === 'PROCESSING' || reingestingId === doc.id}
                             className="p-1 text-primary hover:text-primary/80 disabled:opacity-50"
@@ -296,6 +351,64 @@ export default function DocumentsPage() {
             )}
           </CardContent>
         </Card>
+
+        {editingDoc && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+            <div className="bg-card rounded-xl shadow-xl w-full max-w-lg max-h-[85vh] overflow-y-auto">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-border">
+                <h2 className="text-lg font-semibold text-foreground">Edit Document</h2>
+                <button
+                  onClick={() => setEditingDoc(null)}
+                  className="p-1.5 text-muted-foreground hover:text-foreground rounded-lg hover:bg-muted"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+              <div className="p-6 space-y-4">
+                <Input
+                  label="Title"
+                  value={editForm.title}
+                  onChange={(e) => setEditForm({ ...editForm, title: e.target.value })}
+                />
+                <TextArea
+                  label="Description"
+                  value={editForm.description}
+                  onChange={(e) => setEditForm({ ...editForm, description: e.target.value })}
+                  rows={3}
+                />
+                <Input
+                  label="Specialty"
+                  value={editForm.specialty}
+                  onChange={(e) => setEditForm({ ...editForm, specialty: e.target.value })}
+                />
+                <Input
+                  label="Document Type"
+                  value={editForm.documentType}
+                  onChange={(e) => setEditForm({ ...editForm, documentType: e.target.value })}
+                />
+                <Input
+                  label="Source"
+                  value={editForm.source}
+                  onChange={(e) => setEditForm({ ...editForm, source: e.target.value })}
+                />
+                <Input
+                  label="Publication Year"
+                  type="number"
+                  value={editForm.publicationYear}
+                  onChange={(e) => setEditForm({ ...editForm, publicationYear: e.target.value })}
+                />
+              </div>
+              <div className="flex justify-end gap-3 px-6 py-4 border-t border-border">
+                <Button variant="outline" onClick={() => setEditingDoc(null)} disabled={updatingDoc}>
+                  Cancel
+                </Button>
+                <Button onClick={handleUpdateDocument} loading={updatingDoc} disabled={updatingDoc}>
+                  Save Changes
+                </Button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </AppLayout>
   );
