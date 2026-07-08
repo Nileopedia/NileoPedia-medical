@@ -51,6 +51,7 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
       const result = await ingestionService.ingestDocument({
         title: documentTitle,
         description: `Demo document from ${source.name} for ${source.specialty} specialty`,
+        content,
         source: source.name,
         specialty: source.specialty,
         documentType: 'GUIDELINE',

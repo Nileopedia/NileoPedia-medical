@@ -7133,3 +7133,1113 @@ Invalid `prisma.medicalDocument.create()` invocation in
   46 if (!existing) {
 → 47   const doc = await prisma.medicalDocument.create(
 Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:36.443Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:36.867Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:37.251Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:37.767Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:38.268Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:38.687Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:39.255Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:39.792Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:40.186Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:43.427Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:43.880Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:44.170Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:44.486Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:44.824Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:45.156Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:45.460Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:45.807Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:46.184Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:47.872Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:48.388Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:48.769Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:49.226Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:49.518Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:49.837Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:50.156Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:50.460Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:14:50.729Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T13:15:05.302Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:15:13.938Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:18.937Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:22.621Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:23.040Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:23.042Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 3ca07d1d-bded-450e-8072-928ec56a399e
+2026-07-08T13:15:23.054Z [nileopedia-backend] error: Document ingestion failed: 8354e4b2-2a23-4773-8d75-1829b5fb1649 Failed to store 61 of 61 vectors in Pinecone for document 3ca07d1d-bded-450e-8072-928ec56a399e
+2026-07-08T13:15:23.061Z [nileopedia-backend] error: Document ingestion job failed: 18 Failed to store 61 of 61 vectors in Pinecone for document 3ca07d1d-bded-450e-8072-928ec56a399e
+2026-07-08T13:15:34.449Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:35.443Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:15:38.096Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:38.099Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 3b9cdf94-5d3b-4e53-92b6-4657dec5b5a9
+2026-07-08T13:15:38.112Z [nileopedia-backend] error: Document ingestion failed: f89781b3-7d06-4924-9a8f-829786cb3fe6 Failed to store 6 of 6 vectors in Pinecone for document 3b9cdf94-5d3b-4e53-92b6-4657dec5b5a9
+2026-07-08T13:15:38.114Z [nileopedia-backend] error: Document ingestion job failed: 19 Failed to store 6 of 6 vectors in Pinecone for document 3b9cdf94-5d3b-4e53-92b6-4657dec5b5a9
+2026-07-08T13:15:38.319Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:39.698Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:15:39.970Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:41.366Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:41.369Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 966e82b5-6c2e-4452-9c25-3f2f99278cae
+2026-07-08T13:15:41.381Z [nileopedia-backend] error: Document ingestion failed: e65ed685-ff0c-48a6-ac3f-8461ffd6b1b8 Failed to store 6 of 6 vectors in Pinecone for document 966e82b5-6c2e-4452-9c25-3f2f99278cae
+2026-07-08T13:15:41.386Z [nileopedia-backend] error: Document ingestion job failed: 20 Failed to store 6 of 6 vectors in Pinecone for document 966e82b5-6c2e-4452-9c25-3f2f99278cae
+2026-07-08T13:15:42.739Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:42.740Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 2d997585-026f-4d84-b793-faeae088de6f
+2026-07-08T13:15:42.749Z [nileopedia-backend] error: Document ingestion failed: f89781b3-7d06-4924-9a8f-829786cb3fe6 Failed to store 6 of 6 vectors in Pinecone for document 2d997585-026f-4d84-b793-faeae088de6f
+2026-07-08T13:15:42.753Z [nileopedia-backend] error: Document ingestion job failed: 19 Failed to store 6 of 6 vectors in Pinecone for document 2d997585-026f-4d84-b793-faeae088de6f
+2026-07-08T13:15:43.177Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:43.183Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 2933c87c-02d7-49dc-a3e3-9741afc29fb1
+2026-07-08T13:15:43.196Z [nileopedia-backend] error: Document ingestion failed: 8354e4b2-2a23-4773-8d75-1829b5fb1649 Failed to store 61 of 61 vectors in Pinecone for document 2933c87c-02d7-49dc-a3e3-9741afc29fb1
+2026-07-08T13:15:43.200Z [nileopedia-backend] error: Document ingestion job failed: 18 Failed to store 61 of 61 vectors in Pinecone for document 2933c87c-02d7-49dc-a3e3-9741afc29fb1
+2026-07-08T13:15:45.051Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:45.052Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 98df0533-2a2c-4f86-930f-f21eabcf0aa9
+2026-07-08T13:15:45.061Z [nileopedia-backend] error: Document ingestion failed: e65ed685-ff0c-48a6-ac3f-8461ffd6b1b8 Failed to store 6 of 6 vectors in Pinecone for document 98df0533-2a2c-4f86-930f-f21eabcf0aa9
+2026-07-08T13:15:45.065Z [nileopedia-backend] error: Document ingestion job failed: 20 Failed to store 6 of 6 vectors in Pinecone for document 98df0533-2a2c-4f86-930f-f21eabcf0aa9
+2026-07-08T13:15:50.764Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:15:50.766Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 6da8f4a0-c7fd-42e9-bd13-8d99a65996c2
+2026-07-08T13:15:50.782Z [nileopedia-backend] error: Document ingestion failed: f89781b3-7d06-4924-9a8f-829786cb3fe6 Failed to store 6 of 6 vectors in Pinecone for document 6da8f4a0-c7fd-42e9-bd13-8d99a65996c2
+2026-07-08T13:15:50.788Z [nileopedia-backend] error: Document ingestion job failed: 19 Failed to store 6 of 6 vectors in Pinecone for document 6da8f4a0-c7fd-42e9-bd13-8d99a65996c2
+2026-07-08T13:16:01.474Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:08.249Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:16:09.555Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:09.556Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 892a867f-a54d-434a-835d-de7d9aa8c23c
+2026-07-08T13:16:09.566Z [nileopedia-backend] error: Document ingestion failed: e65ed685-ff0c-48a6-ac3f-8461ffd6b1b8 Failed to store 6 of 6 vectors in Pinecone for document 892a867f-a54d-434a-835d-de7d9aa8c23c
+2026-07-08T13:16:09.569Z [nileopedia-backend] error: Document ingestion job failed: 20 Failed to store 6 of 6 vectors in Pinecone for document 892a867f-a54d-434a-835d-de7d9aa8c23c
+2026-07-08T13:16:12.121Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:12.122Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d809c99b-0195-414b-aa22-85b8d64aa1c9
+2026-07-08T13:16:12.128Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:16:12.137Z [nileopedia-backend] error: Document ingestion failed: 640e34c1-47a2-4794-9980-953f6cdb90e9 Failed to store 6 of 6 vectors in Pinecone for document d809c99b-0195-414b-aa22-85b8d64aa1c9
+2026-07-08T13:16:12.143Z [nileopedia-backend] error: Document ingestion job failed: 21 Failed to store 6 of 6 vectors in Pinecone for document d809c99b-0195-414b-aa22-85b8d64aa1c9
+2026-07-08T13:16:13.141Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:16:13.431Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:16:13.444Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:13.448Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a7c8e487-b42d-4c6e-a951-5ddf67a30626
+2026-07-08T13:16:13.472Z [nileopedia-backend] error: Document ingestion failed: cf74a30c-3628-4eed-bef4-1db462d580c9 Failed to store 6 of 6 vectors in Pinecone for document a7c8e487-b42d-4c6e-a951-5ddf67a30626
+2026-07-08T13:16:13.475Z [nileopedia-backend] error: Document ingestion job failed: 22 Failed to store 6 of 6 vectors in Pinecone for document a7c8e487-b42d-4c6e-a951-5ddf67a30626
+2026-07-08T13:16:16.543Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:17.057Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:17.934Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:18.240Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:18.241Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 74d5183b-ef67-42e3-a9a8-dc0ef57267b1
+2026-07-08T13:16:18.251Z [nileopedia-backend] error: Document ingestion failed: 8354e4b2-2a23-4773-8d75-1829b5fb1649 Failed to store 61 of 61 vectors in Pinecone for document 74d5183b-ef67-42e3-a9a8-dc0ef57267b1
+2026-07-08T13:16:18.259Z [nileopedia-backend] error: Document ingestion job failed: 18 Failed to store 61 of 61 vectors in Pinecone for document 74d5183b-ef67-42e3-a9a8-dc0ef57267b1
+2026-07-08T13:16:18.734Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:19.371Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:19.372Z [nileopedia-backend] error: Failed to store 60 of 60 vectors in Pinecone for document 8276b604-25c9-4a90-ad13-60e803bb3cc2
+2026-07-08T13:16:19.381Z [nileopedia-backend] error: Document ingestion failed: a3acc8db-8aad-4c41-a6d9-2a5f5c7e6771 Failed to store 60 of 60 vectors in Pinecone for document 8276b604-25c9-4a90-ad13-60e803bb3cc2
+2026-07-08T13:16:19.383Z [nileopedia-backend] error: Document ingestion job failed: 23 Failed to store 60 of 60 vectors in Pinecone for document 8276b604-25c9-4a90-ad13-60e803bb3cc2
+2026-07-08T13:16:19.497Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:19.498Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 4dd8ec9e-e517-4c77-807f-8769b1499713
+2026-07-08T13:16:19.967Z [nileopedia-backend] error: Document ingestion failed: 0d20b286-8f3c-4593-8229-efdf97b2c4b8 Failed to store 6 of 6 vectors in Pinecone for document 4dd8ec9e-e517-4c77-807f-8769b1499713
+2026-07-08T13:16:20.584Z [nileopedia-backend] error: Document ingestion job failed: 24 Failed to store 6 of 6 vectors in Pinecone for document 4dd8ec9e-e517-4c77-807f-8769b1499713
+2026-07-08T13:16:21.307Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:21.308Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document b8a6efa2-18cc-4504-9ff7-499617ea84ca
+2026-07-08T13:16:21.321Z [nileopedia-backend] error: Document ingestion failed: 640e34c1-47a2-4794-9980-953f6cdb90e9 Failed to store 6 of 6 vectors in Pinecone for document b8a6efa2-18cc-4504-9ff7-499617ea84ca
+2026-07-08T13:16:21.326Z [nileopedia-backend] error: Document ingestion job failed: 21 Failed to store 6 of 6 vectors in Pinecone for document b8a6efa2-18cc-4504-9ff7-499617ea84ca
+2026-07-08T13:16:21.938Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:21.939Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1b4ee821-91b0-4d08-ab4f-d3890178ef19
+2026-07-08T13:16:24.722Z [nileopedia-backend] error: Document ingestion failed: cf74a30c-3628-4eed-bef4-1db462d580c9 Failed to store 6 of 6 vectors in Pinecone for document 1b4ee821-91b0-4d08-ab4f-d3890178ef19
+2026-07-08T13:16:24.727Z [nileopedia-backend] error: Document ingestion job failed: 22 Failed to store 6 of 6 vectors in Pinecone for document 1b4ee821-91b0-4d08-ab4f-d3890178ef19
+2026-07-08T13:16:25.665Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:30.590Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:30.591Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a33aa5c1-7c7d-42cf-8672-51b83159c57f
+2026-07-08T13:16:30.608Z [nileopedia-backend] error: Document ingestion failed: 0d20b286-8f3c-4593-8229-efdf97b2c4b8 Failed to store 6 of 6 vectors in Pinecone for document a33aa5c1-7c7d-42cf-8672-51b83159c57f
+2026-07-08T13:16:30.613Z [nileopedia-backend] error: Document ingestion job failed: 24 Failed to store 6 of 6 vectors in Pinecone for document a33aa5c1-7c7d-42cf-8672-51b83159c57f
+2026-07-08T13:16:36.182Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:46.933Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:46.934Z [nileopedia-backend] error: Failed to store 60 of 60 vectors in Pinecone for document d5ae7a6d-5577-49e0-b229-413b9b5dc21a
+2026-07-08T13:16:46.944Z [nileopedia-backend] error: Document ingestion failed: a3acc8db-8aad-4c41-a6d9-2a5f5c7e6771 Failed to store 60 of 60 vectors in Pinecone for document d5ae7a6d-5577-49e0-b229-413b9b5dc21a
+2026-07-08T13:16:46.947Z [nileopedia-backend] error: Document ingestion job failed: 23 Failed to store 60 of 60 vectors in Pinecone for document d5ae7a6d-5577-49e0-b229-413b9b5dc21a
+2026-07-08T13:16:54.224Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:16:55.909Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:55.910Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 56efa6db-52d9-40f2-9164-bb34b0eec421
+2026-07-08T13:16:55.920Z [nileopedia-backend] error: Document ingestion failed: 640e34c1-47a2-4794-9980-953f6cdb90e9 Failed to store 6 of 6 vectors in Pinecone for document 56efa6db-52d9-40f2-9164-bb34b0eec421
+2026-07-08T13:16:55.923Z [nileopedia-backend] error: Document ingestion job failed: 21 Failed to store 6 of 6 vectors in Pinecone for document 56efa6db-52d9-40f2-9164-bb34b0eec421
+2026-07-08T13:16:57.341Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:16:57.355Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:16:57.357Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 5613a5e2-fd92-484a-be0a-a0dfa166304c
+2026-07-08T13:16:57.370Z [nileopedia-backend] error: Document ingestion failed: 0d20b286-8f3c-4593-8229-efdf97b2c4b8 Failed to store 6 of 6 vectors in Pinecone for document 5613a5e2-fd92-484a-be0a-a0dfa166304c
+2026-07-08T13:16:57.387Z [nileopedia-backend] error: Document ingestion job failed: 24 Failed to store 6 of 6 vectors in Pinecone for document 5613a5e2-fd92-484a-be0a-a0dfa166304c
+2026-07-08T13:16:57.392Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:17:00.065Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:00.066Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 11da9bc4-deec-4cd1-928e-9a14d23773ca
+2026-07-08T13:17:00.076Z [nileopedia-backend] error: Document ingestion failed: cf74a30c-3628-4eed-bef4-1db462d580c9 Failed to store 6 of 6 vectors in Pinecone for document 11da9bc4-deec-4cd1-928e-9a14d23773ca
+2026-07-08T13:17:00.080Z [nileopedia-backend] error: Document ingestion job failed: 22 Failed to store 6 of 6 vectors in Pinecone for document 11da9bc4-deec-4cd1-928e-9a14d23773ca
+2026-07-08T13:17:00.306Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:00.307Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8872aaa5-1d85-4f2f-8bba-ac98f9c72d85
+2026-07-08T13:17:03.138Z [nileopedia-backend] error: Document ingestion failed: fb1c3590-9fb1-4249-afe5-8a120eef0bb8 Failed to store 6 of 6 vectors in Pinecone for document 8872aaa5-1d85-4f2f-8bba-ac98f9c72d85
+2026-07-08T13:17:03.144Z [nileopedia-backend] error: Document ingestion job failed: 25 Failed to store 6 of 6 vectors in Pinecone for document 8872aaa5-1d85-4f2f-8bba-ac98f9c72d85
+2026-07-08T13:17:04.569Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:14.272Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:14.273Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9016132a-9cf6-4cc4-8cac-4ba8ffea3c3c
+2026-07-08T13:17:14.284Z [nileopedia-backend] error: Document ingestion failed: e61fbf0c-1c2c-4cf2-8e41-6fc04c4d1d3d Failed to store 6 of 6 vectors in Pinecone for document 9016132a-9cf6-4cc4-8cac-4ba8ffea3c3c
+2026-07-08T13:17:14.288Z [nileopedia-backend] error: Document ingestion job failed: 26 Failed to store 6 of 6 vectors in Pinecone for document 9016132a-9cf6-4cc4-8cac-4ba8ffea3c3c
+2026-07-08T13:17:14.846Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:22.932Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:17:25.929Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:25.930Z [nileopedia-backend] error: Failed to store 60 of 60 vectors in Pinecone for document 85a8197a-b71d-4d04-b872-3e732a12216d
+2026-07-08T13:17:25.934Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:25.935Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document e072fad5-a914-41b6-97f9-491310aac32f
+2026-07-08T13:17:25.949Z [nileopedia-backend] error: Document ingestion failed: a3acc8db-8aad-4c41-a6d9-2a5f5c7e6771 Failed to store 60 of 60 vectors in Pinecone for document 85a8197a-b71d-4d04-b872-3e732a12216d
+2026-07-08T13:17:25.952Z [nileopedia-backend] error: Document ingestion failed: 60bf4d5f-d6c0-4e8f-be75-c34b94ce9ab5 Failed to store 6 of 6 vectors in Pinecone for document e072fad5-a914-41b6-97f9-491310aac32f
+2026-07-08T13:17:25.956Z [nileopedia-backend] error: Document ingestion job failed: 23 Failed to store 60 of 60 vectors in Pinecone for document 85a8197a-b71d-4d04-b872-3e732a12216d
+2026-07-08T13:17:25.961Z [nileopedia-backend] error: Document ingestion job failed: 27 Failed to store 6 of 6 vectors in Pinecone for document e072fad5-a914-41b6-97f9-491310aac32f
+2026-07-08T13:17:31.269Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:17:31.291Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:17:31.797Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:17:41.288Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:41.304Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:41.305Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document fe43539e-d072-40d4-9b05-994bb313231f
+2026-07-08T13:17:41.316Z [nileopedia-backend] error: Document ingestion failed: fb1c3590-9fb1-4249-afe5-8a120eef0bb8 Failed to store 6 of 6 vectors in Pinecone for document fe43539e-d072-40d4-9b05-994bb313231f
+2026-07-08T13:17:41.324Z [nileopedia-backend] error: Document ingestion job failed: 25 Failed to store 6 of 6 vectors in Pinecone for document fe43539e-d072-40d4-9b05-994bb313231f
+2026-07-08T13:17:47.489Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:17:51.986Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:52.485Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:17:52.486Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 0abb3219-df4d-47f7-973a-9c4d17df4b27
+2026-07-08T13:17:52.495Z [nileopedia-backend] error: Document ingestion failed: e61fbf0c-1c2c-4cf2-8e41-6fc04c4d1d3d Failed to store 6 of 6 vectors in Pinecone for document 0abb3219-df4d-47f7-973a-9c4d17df4b27
+2026-07-08T13:17:52.498Z [nileopedia-backend] error: Document ingestion job failed: 26 Failed to store 6 of 6 vectors in Pinecone for document 0abb3219-df4d-47f7-973a-9c4d17df4b27
+2026-07-08T13:17:59.992Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:17:59.998Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:01.628Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:01.630Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 01fb6463-18b2-4d20-b3d1-d133a12f1f33
+2026-07-08T13:18:01.642Z [nileopedia-backend] error: Document ingestion failed: 966e82b5-6c2e-4452-9c25-3f2f99278cae Failed to store 6 of 6 vectors in Pinecone for document 01fb6463-18b2-4d20-b3d1-d133a12f1f33
+2026-07-08T13:18:01.645Z [nileopedia-backend] error: Document ingestion job failed: 29 Failed to store 6 of 6 vectors in Pinecone for document 01fb6463-18b2-4d20-b3d1-d133a12f1f33
+2026-07-08T13:18:02.571Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:02.964Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:02.965Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 3925f7ee-4eb8-48e7-8f9f-f3e29d13a7aa
+2026-07-08T13:18:02.975Z [nileopedia-backend] error: Document ingestion failed: 2933c87c-02d7-49dc-a3e3-9741afc29fb1 Failed to store 61 of 61 vectors in Pinecone for document 3925f7ee-4eb8-48e7-8f9f-f3e29d13a7aa
+2026-07-08T13:18:02.978Z [nileopedia-backend] error: Document ingestion job failed: 28 Failed to store 61 of 61 vectors in Pinecone for document 3925f7ee-4eb8-48e7-8f9f-f3e29d13a7aa
+2026-07-08T13:18:03.598Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:03.600Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document cbf2bfe5-9c88-40ab-b5d9-413d91073437
+2026-07-08T13:18:03.963Z [nileopedia-backend] error: Document ingestion failed: 3b9cdf94-5d3b-4e53-92b6-4657dec5b5a9 Failed to store 6 of 6 vectors in Pinecone for document cbf2bfe5-9c88-40ab-b5d9-413d91073437
+2026-07-08T13:18:03.965Z [nileopedia-backend] error: Document ingestion job failed: 30 Failed to store 6 of 6 vectors in Pinecone for document cbf2bfe5-9c88-40ab-b5d9-413d91073437
+2026-07-08T13:18:05.607Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:05.612Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 6b054459-66b4-4643-bd0f-7b80cdf4c776
+2026-07-08T13:18:05.648Z [nileopedia-backend] error: Document ingestion failed: 2d997585-026f-4d84-b793-faeae088de6f Failed to store 6 of 6 vectors in Pinecone for document 6b054459-66b4-4643-bd0f-7b80cdf4c776
+2026-07-08T13:18:06.028Z [nileopedia-backend] error: Document ingestion job failed: 31 Failed to store 6 of 6 vectors in Pinecone for document 6b054459-66b4-4643-bd0f-7b80cdf4c776
+2026-07-08T13:18:06.892Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:06.900Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:06.902Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 941eb358-de39-4b24-9b96-e7081db8dcb0
+2026-07-08T13:18:06.919Z [nileopedia-backend] error: Document ingestion failed: 60bf4d5f-d6c0-4e8f-be75-c34b94ce9ab5 Failed to store 6 of 6 vectors in Pinecone for document 941eb358-de39-4b24-9b96-e7081db8dcb0
+2026-07-08T13:18:07.226Z [nileopedia-backend] error: Document ingestion job failed: 27 Failed to store 6 of 6 vectors in Pinecone for document 941eb358-de39-4b24-9b96-e7081db8dcb0
+2026-07-08T13:18:07.629Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:09.012Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:09.624Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:09.628Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1929aa31-615e-4e26-bef5-90a51a782b84
+2026-07-08T13:18:09.640Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:09.652Z [nileopedia-backend] error: Document ingestion failed: fb1c3590-9fb1-4249-afe5-8a120eef0bb8 Failed to store 6 of 6 vectors in Pinecone for document 1929aa31-615e-4e26-bef5-90a51a782b84
+2026-07-08T13:18:09.657Z [nileopedia-backend] error: Document ingestion job failed: 25 Failed to store 6 of 6 vectors in Pinecone for document 1929aa31-615e-4e26-bef5-90a51a782b84
+2026-07-08T13:18:10.805Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:10.808Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:10.810Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document fb61163c-b7ae-4247-bd65-3b7980a8674f
+2026-07-08T13:18:13.619Z [nileopedia-backend] error: Document ingestion failed: 6da8f4a0-c7fd-42e9-bd13-8d99a65996c2 Failed to store 6 of 6 vectors in Pinecone for document fb61163c-b7ae-4247-bd65-3b7980a8674f
+2026-07-08T13:18:13.625Z [nileopedia-backend] error: Document ingestion job failed: 32 Failed to store 6 of 6 vectors in Pinecone for document fb61163c-b7ae-4247-bd65-3b7980a8674f
+2026-07-08T13:18:20.448Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:20.449Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7100f35c-61a4-4e09-a498-e872a261e007
+2026-07-08T13:18:20.463Z [nileopedia-backend] error: Document ingestion failed: cf74a30c-3628-4eed-bef4-1db462d580c9 Failed to store 6 of 6 vectors in Pinecone for document 7100f35c-61a4-4e09-a498-e872a261e007
+2026-07-08T13:18:20.467Z [nileopedia-backend] error: Document ingestion job failed: 34 Failed to store 6 of 6 vectors in Pinecone for document 7100f35c-61a4-4e09-a498-e872a261e007
+2026-07-08T13:18:21.708Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:22.328Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:22.329Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 0020df64-44b6-4f9e-9359-030effe7716a
+2026-07-08T13:18:22.339Z [nileopedia-backend] error: Document ingestion failed: e61fbf0c-1c2c-4cf2-8e41-6fc04c4d1d3d Failed to store 6 of 6 vectors in Pinecone for document 0020df64-44b6-4f9e-9359-030effe7716a
+2026-07-08T13:18:22.341Z [nileopedia-backend] error: Document ingestion job failed: 26 Failed to store 6 of 6 vectors in Pinecone for document 0020df64-44b6-4f9e-9359-030effe7716a
+2026-07-08T13:18:22.882Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:37.725Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:45.107Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:46.509Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:46.512Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document e0a558d6-a381-456a-8b04-6d6860e7a963
+2026-07-08T13:18:46.524Z [nileopedia-backend] error: Document ingestion failed: 826095c6-1dae-4319-9812-1ba9e41b8715 Failed to store 15 of 15 vectors in Pinecone for document e0a558d6-a381-456a-8b04-6d6860e7a963
+2026-07-08T13:18:46.526Z [nileopedia-backend] error: Document ingestion job failed: 33 Failed to store 15 of 15 vectors in Pinecone for document e0a558d6-a381-456a-8b04-6d6860e7a963
+2026-07-08T13:18:46.765Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:18:49.913Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:18:49.913Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8b6d2c8b-0c86-40de-ae89-f46889c5da45
+2026-07-08T13:18:50.317Z [nileopedia-backend] error: Document ingestion failed: 966e82b5-6c2e-4452-9c25-3f2f99278cae Failed to store 6 of 6 vectors in Pinecone for document 8b6d2c8b-0c86-40de-ae89-f46889c5da45
+2026-07-08T13:18:50.320Z [nileopedia-backend] error: Document ingestion job failed: 29 Failed to store 6 of 6 vectors in Pinecone for document 8b6d2c8b-0c86-40de-ae89-f46889c5da45
+2026-07-08T13:19:14.251Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:14.252Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1afac4cd-abcc-4c15-a5f4-5a267c1bf3be
+2026-07-08T13:19:14.270Z [nileopedia-backend] error: Document ingestion failed: 3b9cdf94-5d3b-4e53-92b6-4657dec5b5a9 Failed to store 6 of 6 vectors in Pinecone for document 1afac4cd-abcc-4c15-a5f4-5a267c1bf3be
+2026-07-08T13:19:14.282Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:14.306Z [nileopedia-backend] error: Document ingestion job failed: 30 Failed to store 6 of 6 vectors in Pinecone for document 1afac4cd-abcc-4c15-a5f4-5a267c1bf3be
+2026-07-08T13:19:17.069Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:17.074Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c6118363-f1b9-4f49-b159-eaf527c6ef7f
+2026-07-08T13:19:17.102Z [nileopedia-backend] error: Document ingestion failed: 2d997585-026f-4d84-b793-faeae088de6f Failed to store 6 of 6 vectors in Pinecone for document c6118363-f1b9-4f49-b159-eaf527c6ef7f
+2026-07-08T13:19:17.107Z [nileopedia-backend] error: Document ingestion job failed: 31 Failed to store 6 of 6 vectors in Pinecone for document c6118363-f1b9-4f49-b159-eaf527c6ef7f
+2026-07-08T13:19:17.931Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:20.537Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:21.026Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:21.027Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a34945b2-53f7-49e3-81a5-7044832afd2b
+2026-07-08T13:19:21.038Z [nileopedia-backend] error: Document ingestion failed: 60bf4d5f-d6c0-4e8f-be75-c34b94ce9ab5 Failed to store 6 of 6 vectors in Pinecone for document a34945b2-53f7-49e3-81a5-7044832afd2b
+2026-07-08T13:19:21.043Z [nileopedia-backend] error: Document ingestion job failed: 27 Failed to store 6 of 6 vectors in Pinecone for document a34945b2-53f7-49e3-81a5-7044832afd2b
+2026-07-08T13:19:22.606Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:22.606Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ec2a56fd-7b55-4112-9d00-d592ff1104e2
+2026-07-08T13:19:22.614Z [nileopedia-backend] error: Document ingestion failed: 6da8f4a0-c7fd-42e9-bd13-8d99a65996c2 Failed to store 6 of 6 vectors in Pinecone for document ec2a56fd-7b55-4112-9d00-d592ff1104e2
+2026-07-08T13:19:22.616Z [nileopedia-backend] error: Document ingestion job failed: 32 Failed to store 6 of 6 vectors in Pinecone for document ec2a56fd-7b55-4112-9d00-d592ff1104e2
+2026-07-08T13:19:24.460Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:24.462Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7c4ad1e1-0449-4e54-9b5f-99312c117f73
+2026-07-08T13:19:24.471Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:24.472Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 4c215bc3-3a82-42fb-944e-6f94271420ae
+2026-07-08T13:19:24.473Z [nileopedia-backend] error: Document ingestion failed: cf74a30c-3628-4eed-bef4-1db462d580c9 Failed to store 6 of 6 vectors in Pinecone for document 7c4ad1e1-0449-4e54-9b5f-99312c117f73
+2026-07-08T13:19:24.480Z [nileopedia-backend] error: Document ingestion job failed: 34 Failed to store 6 of 6 vectors in Pinecone for document 7c4ad1e1-0449-4e54-9b5f-99312c117f73
+2026-07-08T13:19:24.483Z [nileopedia-backend] error: Document ingestion failed: 2933c87c-02d7-49dc-a3e3-9741afc29fb1 Failed to store 61 of 61 vectors in Pinecone for document 4c215bc3-3a82-42fb-944e-6f94271420ae
+2026-07-08T13:19:24.606Z [nileopedia-backend] error: Document ingestion job failed: 28 Failed to store 61 of 61 vectors in Pinecone for document 4c215bc3-3a82-42fb-944e-6f94271420ae
+2026-07-08T13:19:27.807Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:28.797Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:28.799Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 80ec6277-d759-4570-bcbb-ec958572ebd2
+2026-07-08T13:19:28.810Z [nileopedia-backend] error: Document ingestion failed: 826095c6-1dae-4319-9812-1ba9e41b8715 Failed to store 15 of 15 vectors in Pinecone for document 80ec6277-d759-4570-bcbb-ec958572ebd2
+2026-07-08T13:19:28.813Z [nileopedia-backend] error: Document ingestion job failed: 33 Failed to store 15 of 15 vectors in Pinecone for document 80ec6277-d759-4570-bcbb-ec958572ebd2
+2026-07-08T13:19:29.958Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:29.960Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 5c28485d-aa47-4da2-bf96-5848475c7bee
+2026-07-08T13:19:29.968Z [nileopedia-backend] error: Document ingestion failed: 966e82b5-6c2e-4452-9c25-3f2f99278cae Failed to store 6 of 6 vectors in Pinecone for document 5c28485d-aa47-4da2-bf96-5848475c7bee
+2026-07-08T13:19:29.970Z [nileopedia-backend] error: Document ingestion job failed: 29 Failed to store 6 of 6 vectors in Pinecone for document 5c28485d-aa47-4da2-bf96-5848475c7bee
+2026-07-08T13:19:30.697Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:30.700Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a465af8a-6d29-4135-bb2d-7e496b83ea64
+2026-07-08T13:19:30.942Z [nileopedia-backend] error: Document ingestion failed: 3b9cdf94-5d3b-4e53-92b6-4657dec5b5a9 Failed to store 6 of 6 vectors in Pinecone for document a465af8a-6d29-4135-bb2d-7e496b83ea64
+2026-07-08T13:19:30.947Z [nileopedia-backend] error: Document ingestion job failed: 30 Failed to store 6 of 6 vectors in Pinecone for document a465af8a-6d29-4135-bb2d-7e496b83ea64
+2026-07-08T13:19:31.856Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:31.862Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:31.864Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1edb59ce-0d09-42ce-949e-696289b8a522
+2026-07-08T13:19:32.262Z [nileopedia-backend] error: Document ingestion failed: 2d997585-026f-4d84-b793-faeae088de6f Failed to store 6 of 6 vectors in Pinecone for document 1edb59ce-0d09-42ce-949e-696289b8a522
+2026-07-08T13:19:32.264Z [nileopedia-backend] error: Document ingestion job failed: 31 Failed to store 6 of 6 vectors in Pinecone for document 1edb59ce-0d09-42ce-949e-696289b8a522
+2026-07-08T13:19:33.102Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:33.659Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:33.660Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 30f3dfb9-d115-4e7f-b548-4f8413cd313a
+2026-07-08T13:19:33.734Z [nileopedia-backend] error: Document ingestion failed: c6118363-f1b9-4f49-b159-eaf527c6ef7f Failed to store 6 of 6 vectors in Pinecone for document 30f3dfb9-d115-4e7f-b548-4f8413cd313a
+2026-07-08T13:19:33.738Z [nileopedia-backend] error: Document ingestion job failed: 35 Failed to store 6 of 6 vectors in Pinecone for document 30f3dfb9-d115-4e7f-b548-4f8413cd313a
+2026-07-08T13:19:34.467Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:35.703Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:35.705Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ea98c1bb-d849-41e3-9578-a57eb65070b8
+2026-07-08T13:19:35.719Z [nileopedia-backend] error: Document ingestion failed: 6da8f4a0-c7fd-42e9-bd13-8d99a65996c2 Failed to store 6 of 6 vectors in Pinecone for document ea98c1bb-d849-41e3-9578-a57eb65070b8
+2026-07-08T13:19:35.723Z [nileopedia-backend] error: Document ingestion job failed: 32 Failed to store 6 of 6 vectors in Pinecone for document ea98c1bb-d849-41e3-9578-a57eb65070b8
+2026-07-08T13:19:35.921Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:36.556Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:36.557Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 52ef0465-6c11-44ac-ad1f-ac4e60aca3c3
+2026-07-08T13:19:39.731Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:39.739Z [nileopedia-backend] error: Document ingestion failed: cf74a30c-3628-4eed-bef4-1db462d580c9 Failed to store 6 of 6 vectors in Pinecone for document 52ef0465-6c11-44ac-ad1f-ac4e60aca3c3
+2026-07-08T13:19:39.764Z [nileopedia-backend] error: Document ingestion job failed: 34 Failed to store 6 of 6 vectors in Pinecone for document 52ef0465-6c11-44ac-ad1f-ac4e60aca3c3
+2026-07-08T13:19:42.498Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:42.507Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:43.541Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:44.051Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:44.498Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:45.116Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:46.117Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:46.410Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:46.519Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:46.519Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 1e885a1a-bc2d-42be-ab81-d9ddeba11755
+2026-07-08T13:19:46.531Z [nileopedia-backend] error: Document ingestion failed: 826095c6-1dae-4319-9812-1ba9e41b8715 Failed to store 15 of 15 vectors in Pinecone for document 1e885a1a-bc2d-42be-ab81-d9ddeba11755
+2026-07-08T13:19:46.534Z [nileopedia-backend] error: Document ingestion job failed: 33 Failed to store 15 of 15 vectors in Pinecone for document 1e885a1a-bc2d-42be-ab81-d9ddeba11755
+2026-07-08T13:19:47.009Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:48.434Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:48.436Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:48.437Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9c4a26fb-8529-4b69-a2f2-b01b40d9229e
+2026-07-08T13:19:48.448Z [nileopedia-backend] error: Document ingestion failed: c6118363-f1b9-4f49-b159-eaf527c6ef7f Failed to store 6 of 6 vectors in Pinecone for document 9c4a26fb-8529-4b69-a2f2-b01b40d9229e
+2026-07-08T13:19:48.754Z [nileopedia-backend] error: Document ingestion job failed: 35 Failed to store 6 of 6 vectors in Pinecone for document 9c4a26fb-8529-4b69-a2f2-b01b40d9229e
+2026-07-08T13:19:49.669Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:49.736Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:50.637Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:50.639Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 59e6ee0f-3d24-4f4f-84c6-9f3e3dac43b6
+2026-07-08T13:19:50.651Z [nileopedia-backend] error: Document ingestion failed: 2933c87c-02d7-49dc-a3e3-9741afc29fb1 Failed to store 61 of 61 vectors in Pinecone for document 59e6ee0f-3d24-4f4f-84c6-9f3e3dac43b6
+2026-07-08T13:19:50.654Z [nileopedia-backend] error: Document ingestion job failed: 28 Failed to store 61 of 61 vectors in Pinecone for document 59e6ee0f-3d24-4f4f-84c6-9f3e3dac43b6
+2026-07-08T13:19:51.034Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:51.601Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:52.069Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:52.071Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 94dc81a3-48dc-45cb-a875-6dd8c6ea0162
+2026-07-08T13:19:52.083Z [nileopedia-backend] error: Document ingestion failed: 7c4ad1e1-0449-4e54-9b5f-99312c117f73 Failed to store 6 of 6 vectors in Pinecone for document 94dc81a3-48dc-45cb-a875-6dd8c6ea0162
+2026-07-08T13:19:52.087Z [nileopedia-backend] error: Document ingestion job failed: 36 Failed to store 6 of 6 vectors in Pinecone for document 94dc81a3-48dc-45cb-a875-6dd8c6ea0162
+2026-07-08T13:19:53.296Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:55.038Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:55.046Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:55.060Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:55.061Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d981e457-7c6b-409b-8b28-d5e607d4b2ea
+2026-07-08T13:19:55.559Z [nileopedia-backend] error: Document ingestion failed: c6118363-f1b9-4f49-b159-eaf527c6ef7f Failed to store 6 of 6 vectors in Pinecone for document d981e457-7c6b-409b-8b28-d5e607d4b2ea
+2026-07-08T13:19:55.563Z [nileopedia-backend] error: Document ingestion job failed: 35 Failed to store 6 of 6 vectors in Pinecone for document d981e457-7c6b-409b-8b28-d5e607d4b2ea
+2026-07-08T13:19:56.536Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:57.475Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:57.493Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:57.500Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document cb28820c-3fca-4c2f-a308-61ffa0216949
+2026-07-08T13:19:57.526Z [nileopedia-backend] error: Document ingestion failed: 52ef0465-6c11-44ac-ad1f-ac4e60aca3c3 Failed to store 6 of 6 vectors in Pinecone for document cb28820c-3fca-4c2f-a308-61ffa0216949
+2026-07-08T13:19:57.933Z [nileopedia-backend] error: Document ingestion job failed: 37 Failed to store 6 of 6 vectors in Pinecone for document cb28820c-3fca-4c2f-a308-61ffa0216949
+2026-07-08T13:19:58.217Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:58.906Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:19:59.216Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:19:59.217Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d668b16d-cd8b-4ea4-b184-90a5baca1b68
+2026-07-08T13:19:59.226Z [nileopedia-backend] error: Document ingestion failed: 7c4ad1e1-0449-4e54-9b5f-99312c117f73 Failed to store 6 of 6 vectors in Pinecone for document d668b16d-cd8b-4ea4-b184-90a5baca1b68
+2026-07-08T13:19:59.229Z [nileopedia-backend] error: Document ingestion job failed: 36 Failed to store 6 of 6 vectors in Pinecone for document d668b16d-cd8b-4ea4-b184-90a5baca1b68
+2026-07-08T13:19:59.446Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:00.122Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:01.132Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:01.505Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:20:01.506Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 0f29ee56-242d-49dc-90e8-0188e1c36c58
+2026-07-08T13:20:01.515Z [nileopedia-backend] error: Document ingestion failed: 52ef0465-6c11-44ac-ad1f-ac4e60aca3c3 Failed to store 6 of 6 vectors in Pinecone for document 0f29ee56-242d-49dc-90e8-0188e1c36c58
+2026-07-08T13:20:01.518Z [nileopedia-backend] error: Document ingestion job failed: 37 Failed to store 6 of 6 vectors in Pinecone for document 0f29ee56-242d-49dc-90e8-0188e1c36c58
+2026-07-08T13:20:02.207Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:03.075Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:04.360Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:05.374Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:06.630Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:20:06.630Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 52fbf2b0-dac3-45f0-a41d-388cd5cf80ba
+2026-07-08T13:20:06.633Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:06.649Z [nileopedia-backend] error: Document ingestion failed: 7c4ad1e1-0449-4e54-9b5f-99312c117f73 Failed to store 6 of 6 vectors in Pinecone for document 52fbf2b0-dac3-45f0-a41d-388cd5cf80ba
+2026-07-08T13:20:06.654Z [nileopedia-backend] error: Document ingestion job failed: 36 Failed to store 6 of 6 vectors in Pinecone for document 52fbf2b0-dac3-45f0-a41d-388cd5cf80ba
+2026-07-08T13:20:07.880Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:08.251Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:09.222Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:10.371Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:10.789Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:20:10.789Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 4fd4c97b-6aad-458f-8563-e12eed2c8533
+2026-07-08T13:20:10.803Z [nileopedia-backend] error: Document ingestion failed: d981e457-7c6b-409b-8b28-d5e607d4b2ea Failed to store 6 of 6 vectors in Pinecone for document 4fd4c97b-6aad-458f-8563-e12eed2c8533
+2026-07-08T13:20:10.805Z [nileopedia-backend] error: Document ingestion job failed: 38 Failed to store 6 of 6 vectors in Pinecone for document 4fd4c97b-6aad-458f-8563-e12eed2c8533
+2026-07-08T13:20:11.046Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:11.816Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:12.194Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:20:12.195Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 2ae3afe5-cc8e-4ced-942e-c3d0ff78673e
+2026-07-08T13:20:12.205Z [nileopedia-backend] error: Document ingestion failed: 52ef0465-6c11-44ac-ad1f-ac4e60aca3c3 Failed to store 6 of 6 vectors in Pinecone for document 2ae3afe5-cc8e-4ced-942e-c3d0ff78673e
+2026-07-08T13:20:12.207Z [nileopedia-backend] error: Document ingestion job failed: 37 Failed to store 6 of 6 vectors in Pinecone for document 2ae3afe5-cc8e-4ced-942e-c3d0ff78673e
+2026-07-08T13:20:12.851Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:13.630Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:14.763Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:15.650Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:16.036Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:20:16.037Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document fe3e8215-f920-4876-8dce-d44755eee69d
+2026-07-08T13:20:16.048Z [nileopedia-backend] error: Document ingestion failed: d981e457-7c6b-409b-8b28-d5e607d4b2ea Failed to store 6 of 6 vectors in Pinecone for document fe3e8215-f920-4876-8dce-d44755eee69d
+2026-07-08T13:20:16.051Z [nileopedia-backend] error: Document ingestion job failed: 38 Failed to store 6 of 6 vectors in Pinecone for document fe3e8215-f920-4876-8dce-d44755eee69d
+2026-07-08T13:20:16.523Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:17.332Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:17.843Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:18.324Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:18.820Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:19.576Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:21.151Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:23.021Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:24.758Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:25.270Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T13:20:25.271Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 460628bf-7dce-47c6-92b7-e3490a7f355b
+2026-07-08T13:20:25.279Z [nileopedia-backend] error: Document ingestion failed: d981e457-7c6b-409b-8b28-d5e607d4b2ea Failed to store 6 of 6 vectors in Pinecone for document 460628bf-7dce-47c6-92b7-e3490a7f355b
+2026-07-08T13:20:25.281Z [nileopedia-backend] error: Document ingestion job failed: 38 Failed to store 6 of 6 vectors in Pinecone for document 460628bf-7dce-47c6-92b7-e3490a7f355b
+2026-07-08T13:20:26.159Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:28.899Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:29.592Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:30.128Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:30.801Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:31.363Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:32.342Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:34.839Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:38.689Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:41.672Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:52.790Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:20:53.343Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:10.580Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T13:21:10.926Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:11.664Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:12.361Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:12.691Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:13.149Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:13.546Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:14.035Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:14.583Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:14.905Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:15.495Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:15.910Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:16.471Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:17.086Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:17.412Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:17.754Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:18.111Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:18.434Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:18.944Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:19.238Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:19.565Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:19.998Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:20.463Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:20.833Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:21.139Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:22.023Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:22.953Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:23.905Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:24.700Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:25.716Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:26.541Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:27.287Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:28.042Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:28.858Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:29.542Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:30.155Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:30.770Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:31.590Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:32.207Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:32.823Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:33.493Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:34.156Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:34.881Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:35.594Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:21:36.311Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-08T13:22:14.992Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-08T13:22:14.993Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-08T13:22:15.016Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-08T13:22:15.063Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-08T17:28:28.035Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:28.295Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:28.538Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:28.709Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:28.959Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:29.211Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:29.438Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:29.657Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:29.889Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:28:39.703Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T17:30:38.369Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T17:30:48.570Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:48.749Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:48.892Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:49.036Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:49.255Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:49.440Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:49.576Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:49.714Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:49.846Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:30:51.843Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:31:02.367Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:31:12.880Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:31:23.384Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:31:23.390Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document 3864432c-700c-43be-9812-6a48b01480ec
+2026-07-08T17:31:23.402Z [nileopedia-backend] error: Document ingestion failed: 89132e77-9c4b-4b84-afc6-d901453e5133 Failed to store 61 of 61 vectors in Pinecone for document 3864432c-700c-43be-9812-6a48b01480ec
+2026-07-08T17:31:23.415Z [nileopedia-backend] error: Document ingestion job failed: 39 Failed to store 61 of 61 vectors in Pinecone for document 3864432c-700c-43be-9812-6a48b01480ec
+2026-07-08T17:31:37.865Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:31:45.861Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T17:31:54.353Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T17:32:02.847Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:32:13.354Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:32:23.853Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:32:23.855Z [nileopedia-backend] error: Failed to store 61 of 61 vectors in Pinecone for document e9e8cd26-c5e9-415b-909f-dc2f4ddb6143
+2026-07-08T17:32:23.874Z [nileopedia-backend] error: Document ingestion job failed: 39 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:213:34
+
+  210   logger.info(`Document ingestion completed: ${documentId}`);
+  211   return { success: true };
+  212 } catch (error) {
+→ 213   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-07-08T17:32:27.902Z [nileopedia-backend] error: Document ingestion job failed: 39 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:213:34
+
+  210   logger.info(`Document ingestion completed: ${documentId}`);
+  211   return { success: true };
+  212 } catch (error) {
+→ 213   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-07-08T17:32:31.847Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-08T17:32:43.097Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:32:43.099Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 937c2d17-e3dc-4407-b6bb-69185cb96f7e
+2026-07-08T17:32:43.107Z [nileopedia-backend] error: Document ingestion failed: a08d571f-1ad5-42d0-87c5-ddf03bfd82ea Failed to store 6 of 6 vectors in Pinecone for document 937c2d17-e3dc-4407-b6bb-69185cb96f7e
+2026-07-08T17:32:43.109Z [nileopedia-backend] error: Document ingestion job failed: 40 Failed to store 6 of 6 vectors in Pinecone for document 937c2d17-e3dc-4407-b6bb-69185cb96f7e
+2026-07-08T17:32:52.246Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:52.423Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:52.700Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:52.826Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:52.967Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:53.096Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:53.228Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:53.356Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:53.488Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:56.484Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:32:56.485Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document b7b46400-27d3-4c20-8770-0438fa9b3056
+2026-07-08T17:32:56.499Z [nileopedia-backend] error: Document ingestion failed: a08d571f-1ad5-42d0-87c5-ddf03bfd82ea Failed to store 6 of 6 vectors in Pinecone for document b7b46400-27d3-4c20-8770-0438fa9b3056
+2026-07-08T17:32:56.502Z [nileopedia-backend] error: Document ingestion job failed: 40 Failed to store 6 of 6 vectors in Pinecone for document b7b46400-27d3-4c20-8770-0438fa9b3056
+2026-07-08T17:32:57.122Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:57.297Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:57.422Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:57.559Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:57.715Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:57.873Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:58.013Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:58.138Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:58.261Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:32:59.996Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:00.144Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:00.275Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:00.424Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:00.604Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:00.957Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:01.383Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:01.528Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:01.790Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:36:51
+
+  33   fileType: string;
+  34   fileSize: number;
+  35 }) {
+→ 36   const document = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T17:33:11.870Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-08T17:33:11.871Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 88f05af8-3113-4730-bc69-213d590ecaba
+2026-07-08T17:33:11.888Z [nileopedia-backend] error: Document ingestion failed: a08d571f-1ad5-42d0-87c5-ddf03bfd82ea Failed to store 6 of 6 vectors in Pinecone for document 88f05af8-3113-4730-bc69-213d590ecaba
+2026-07-08T17:33:11.891Z [nileopedia-backend] error: Document ingestion job failed: 40 Failed to store 6 of 6 vectors in Pinecone for document 88f05af8-3113-4730-bc69-213d590ecaba

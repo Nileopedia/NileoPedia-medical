@@ -4,7 +4,6 @@ import React, { useState, useEffect } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../components/ui/Card';
 import { Button } from '../../components/ui/Button';
 import { FileUpload, FilePreview } from '../../components/ui/FileUpload';
-import { Input } from '../../components/ui/Input';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { FileText, Search as SearchIcon, Trash2, RefreshCw, ChevronLeft, ChevronRight, WifiOff, AlertTriangle, Edit, X } from 'lucide-react';
