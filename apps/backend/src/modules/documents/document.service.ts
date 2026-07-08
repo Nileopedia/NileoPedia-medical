@@ -110,16 +110,51 @@ export class DocumentService {
   async deleteDocument(id: string) {
     const document = await prisma.medicalDocument.findUnique({ where: { id } });
     if (!document) {
-      throw new Error('Document not found');
+      return;
     }
+
+    // Delete Pinecone vectors (non-blocking)
+    try {
+      const { PineconeService } = await import('../rag/services/pinecone.service');
+      const pineconeService = new PineconeService();
+      await pineconeService.deleteByDocumentId(id);
+    } catch (error) {
+      logger.warn('Proceeding with DB deletion despite Pinecone cleanup failure', { documentId: id, error });
+    }
+
+    // Delete child records to satisfy FK constraints
+    await prisma.embeddingMetadata.deleteMany({
+      where: { documentId: id },
+    });
 
     await prisma.documentMetadata.deleteMany({
       where: { documentId: id },
     });
 
-    await prisma.medicalDocument.delete({
-      where: { id },
+    // Document may have already been removed (cascade from schema or race condition)
+    try {
+      await prisma.medicalDocument.delete({
+        where: { id },
+      });
+    } catch (error: any) {
+      if (error.code === 'P2025') {
+        logger.warn('Document already deleted', { documentId: id });
+      } else {
+        throw error;
+      }
+    }
+  }
+
+  async deleteAllDocuments(): Promise<{ deletedCount: number }> {
+    const documents = await prisma.medicalDocument.findMany({
+      select: { id: true, fileUrl: true },
     });
+
+    for (const document of documents) {
+      await this.deleteDocument(document.id);
+    }
+
+    return { deletedCount: documents.length };
   }
 
   async verifyDocument(id: string) {

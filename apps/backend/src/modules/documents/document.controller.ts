@@ -189,6 +189,21 @@ export class DocumentController {
     }
   }
 
+  async deleteAllDocuments(req: Request, res: Response, next: NextFunction) {
+    try {
+      const result = await this.documentService.deleteAllDocuments();
+
+      res.status(200).json({
+        success: true,
+        message: `Successfully deleted ${result.deletedCount} documents`,
+        data: { deletedCount: result.deletedCount },
+      });
+    } catch (error) {
+      logger.error('Error in deleteAllDocuments controller:', error);
+      next(error);
+    }
+  }
+
   async verifyDocument(req: Request, res: Response, next: NextFunction) {
     try {
       const { id } = req.params;

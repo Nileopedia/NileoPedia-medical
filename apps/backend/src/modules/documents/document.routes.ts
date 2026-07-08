@@ -22,6 +22,7 @@ router.get('/:id/status', authenticate, documentController.getIngestionStatus.bi
 // Admin-only routes
 router.post('/upload', authenticate, authorize('ADMIN'), upload.single('file'), documentController.uploadDocument.bind(documentController));
 router.patch('/:id', authenticate, authorize('ADMIN'), documentController.updateDocument.bind(documentController));
+router.delete('/all', authenticate, authorize('ADMIN'), documentController.deleteAllDocuments.bind(documentController));
 router.delete('/:id', authenticate, authorize('ADMIN'), documentController.deleteDocument.bind(documentController));
 router.patch('/:id/verify', authenticate, authorize('ADMIN', 'VALIDATOR'), documentController.verifyDocument.bind(documentController));
 

@@ -7,8 +7,9 @@ import { FileUpload, FilePreview } from '../../components/ui/FileUpload';
 import { Input } from '../../components/ui/Input';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
-import { FileText, Search as SearchIcon, Trash2, RefreshCw, ChevronLeft, ChevronRight, WifiOff } from 'lucide-react';
+import { FileText, Search as SearchIcon, Trash2, RefreshCw, ChevronLeft, ChevronRight, WifiOff, AlertTriangle, Edit, X } from 'lucide-react';
 import { useRouter } from 'next/navigation';
+import { useToast } from '../../components/ui/Toast';
 
 interface Document {
   id: string;
@@ -33,7 +34,9 @@ export default function DocumentsPage() {
   const [uploading, setUploading] = useState(false);
   const [reingestingId, setReingestingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [deletingAll, setDeletingAll] = useState(false);
   const router = useRouter();
+  const { addToast } = useToast();
 
   useEffect(() => {
     fetchDocuments();
@@ -99,9 +102,34 @@ export default function DocumentsPage() {
       const msg = err instanceof Error ? err.message : 'Failed to delete document';
       if (msg === 'Please sign in to continue') {
         router.push('/login');
+      } else if (msg.includes('404') || msg.includes('not found')) {
+        fetchDocuments();
       } else {
         setError(msg);
       }
+    }
+  };
+
+  const handleDeleteAllDocuments = async () => {
+    const confirmed = confirm('Are you sure you want to delete ALL documents? This action cannot be undone.');
+    if (!confirmed) return;
+
+    setDeletingAll(true);
+    setError(null);
+    try {
+      await api.deleteAllDocuments();
+      addToast({ type: 'success', title: 'All documents deleted successfully' });
+      fetchDocuments();
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : 'Failed to delete all documents';
+      if (msg === 'Please sign in to continue') {
+        router.push('/login');
+      } else {
+        setError(msg);
+        addToast({ type: 'error', title: msg });
+      }
+    } finally {
+      setDeletingAll(false);
     }
   };
 
@@ -176,8 +204,17 @@ export default function DocumentsPage() {
         </div>
 
         <Card>
-          <CardHeader>
+          <CardHeader className="flex flex-row items-center justify-between">
             <CardTitle>Document Library</CardTitle>
+            <Button
+              variant="destructive"
+              size="sm"
+              disabled={documents.length === 0 || deletingAll}
+              onClick={handleDeleteAllDocuments}
+            >
+              <Trash2 size={14} className="mr-1" />
+              Delete All
+            </Button>
           </CardHeader>
           <CardContent>
             {loading ? (

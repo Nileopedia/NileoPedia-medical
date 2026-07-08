@@ -19953,3 +19953,1748 @@ Invalid `prisma.medicalDocument.delete()` invocation in
   119 
 → 120 await prisma.medicalDocument.delete(
 Foreign key constraint violated: `EmbeddingMetadata_documentId_fkey (index)`
+2026-07-07T09:43:07.459Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T09:43:09.715Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:43:09.716Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:43:09.717Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:43:12.158Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:43:12.298Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:43:12.300Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:43:12.301Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:43:12.320Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:43:13.185Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:43:13.186Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:43:13.187Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:43:13.188Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:43:13.246Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:43:13.246Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:43:20.087Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:43:20.088Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:43:20.091Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:43:20.110Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:43:21.018Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:43:21.020Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:43:21.023Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:43:21.230Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:49:25.580Z [nileopedia-backend] info: DELETE /api/v1/documents/857f67fb-2378-481b-b9de-7c3ac7acfedc - ::1
+2026-07-07T09:49:26.673Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:49:28.292Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:49:28.294Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:49:28.516Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:49:33.349Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T09:49:33.474Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:49:33.517Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T09:49:35.576Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T09:49:38.357Z [nileopedia-backend] info: DELETE /api/v1/documents/506205da-32b2-482a-9788-60ba8e42577c - ::1
+2026-07-07T09:49:39.155Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:49:42.039Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:49:42.041Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:49:42.122Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:49:53.486Z [nileopedia-backend] info: DELETE /api/v1/documents/162aac10-cbf7-45d3-9def-e6e01abb3ecd - ::1
+2026-07-07T09:49:54.219Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:50:00.262Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:50:00.263Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:50:00.315Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:50:11.290Z [nileopedia-backend] info: DELETE /api/v1/documents/239d95b0-7640-44d8-8aa7-8cc3a1d6085f - ::1
+2026-07-07T09:50:12.141Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:50:14.802Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:50:14.803Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:50:14.882Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:50:19.805Z [nileopedia-backend] info: DELETE /api/v1/documents/44847063-ea15-46e9-9f1b-1d910cbc793d - ::1
+2026-07-07T09:50:20.533Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:50:24.456Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:50:24.457Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:50:25.244Z [nileopedia-backend] info: DELETE /api/v1/documents/44847063-ea15-46e9-9f1b-1d910cbc793d - ::1
+2026-07-07T09:50:25.302Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:50:31.330Z [nileopedia-backend] info: DELETE /api/v1/documents/3b27404f-e35a-4d97-be1a-58d38291fbf9 - ::1
+2026-07-07T09:50:32.164Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:50:34.464Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:50:34.465Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:50:35.052Z [nileopedia-backend] info: DELETE /api/v1/documents/3b27404f-e35a-4d97-be1a-58d38291fbf9 - ::1
+2026-07-07T09:50:35.218Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:50:43.139Z [nileopedia-backend] info: DELETE /api/v1/documents/4630e839-d4e4-41cd-8696-271abc3b95cf - ::1
+2026-07-07T09:50:43.937Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:50:46.049Z [nileopedia-backend] info: DELETE /api/v1/documents/4630e839-d4e4-41cd-8696-271abc3b95cf - ::1
+2026-07-07T09:50:46.807Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:50:47.425Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:50:47.426Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:50:47.487Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:50:48.792Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:50:48.794Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:50:49.094Z [nileopedia-backend] error: Error in deleteDocument controller: 
+Invalid `prisma.medicalDocument.delete()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.service.ts:134:40
+
+  131   where: { documentId: id },
+  132 });
+  133 
+→ 134 await prisma.medicalDocument.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+2026-07-07T09:50:49.114Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.medicalDocument.delete()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.service.ts:134:40
+
+  131   where: { documentId: id },
+  132 });
+  133 
+→ 134 await prisma.medicalDocument.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+2026-07-07T09:51:01.254Z [nileopedia-backend] info: DELETE /api/v1/documents/d220a9f2-bb77-4260-9fa4-fdac4448f8b2 - ::1
+2026-07-07T09:51:01.978Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:51:04.986Z [nileopedia-backend] info: DELETE /api/v1/documents/d220a9f2-bb77-4260-9fa4-fdac4448f8b2 - ::1
+2026-07-07T09:51:05.778Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:51:08.389Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:51:08.390Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:51:08.434Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:51:08.712Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:51:08.712Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:51:08.739Z [nileopedia-backend] error: Error in deleteDocument controller: 
+Invalid `prisma.medicalDocument.delete()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.service.ts:134:40
+
+  131   where: { documentId: id },
+  132 });
+  133 
+→ 134 await prisma.medicalDocument.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+2026-07-07T09:51:08.740Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.medicalDocument.delete()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.service.ts:134:40
+
+  131   where: { documentId: id },
+  132 });
+  133 
+→ 134 await prisma.medicalDocument.delete(
+An operation failed because it depends on one or more records that were required but not found. Record to delete does not exist.
+2026-07-07T09:51:13.482Z [nileopedia-backend] info: DELETE /api/v1/documents/82777c3b-2f24-4779-8b11-3f323a0c92e2 - ::1
+2026-07-07T09:51:14.293Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:51:15.423Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:51:15.425Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:51:15.475Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:51:35.766Z [nileopedia-backend] info: DELETE /api/v1/documents/09b4bff0-20f3-47ae-b139-4579c280b6ad - ::1
+2026-07-07T09:51:36.439Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:51:37.643Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:51:37.644Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:51:37.692Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:53:35.785Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T09:53:38.145Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:53:38.146Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:53:38.148Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:53:39.892Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:53:39.893Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:53:40.861Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:53:41.444Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:53:41.475Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:53:42.357Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:53:42.358Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:53:42.359Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:53:42.360Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:53:42.411Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:53:42.411Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:53:45.878Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:53:45.880Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:53:45.882Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:53:45.920Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:53:47.116Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T09:53:47.117Z [nileopedia-backend] info: [object Object]
+2026-07-07T09:53:47.118Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T09:53:47.232Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T09:56:50.946Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T09:56:50.994Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:56:51.009Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T09:56:51.582Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T09:56:56.437Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-07T09:56:56.934Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T09:56:56.939Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T09:56:56.953Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T09:56:57.088Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T09:57:00.203Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:00.242Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:05.611Z [nileopedia-backend] info: DELETE /api/v1/documents/e6edb5fd-1176-4b7a-86ef-bdc90cfd89aa - ::1
+2026-07-07T09:57:06.018Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:57:10.527Z [nileopedia-backend] info: DELETE /api/v1/documents/e6edb5fd-1176-4b7a-86ef-bdc90cfd89aa - ::1
+2026-07-07T09:57:10.899Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:57:13.371Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:57:13.371Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:57:14.448Z [nileopedia-backend] info: DELETE /api/v1/documents/e6edb5fd-1176-4b7a-86ef-bdc90cfd89aa - ::1
+2026-07-07T09:57:14.486Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:15.350Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:57:15.351Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:57:15.369Z [nileopedia-backend] warn: Document already deleted
+2026-07-07T09:57:15.379Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:20.052Z [nileopedia-backend] info: DELETE /api/v1/documents/ac9834fb-6c4c-4205-abb4-74fdf0256767 - ::1
+2026-07-07T09:57:20.417Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:57:22.566Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:57:22.567Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:57:22.589Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:29.075Z [nileopedia-backend] info: DELETE /api/v1/documents/d6564288-1ad8-4cf6-9208-2edba31a8a68 - ::1
+2026-07-07T09:57:29.420Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:57:32.658Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:57:32.659Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:57:32.702Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:36.948Z [nileopedia-backend] info: DELETE /api/v1/documents/3dd6338d-990f-4e22-bd50-d2430be4cb0c - ::1
+2026-07-07T09:57:37.255Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:57:40.402Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:57:40.402Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:57:40.420Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T09:57:45.199Z [nileopedia-backend] info: DELETE /api/v1/documents/ff89f5fa-a4a1-447d-a900-cfb306147435 - ::1
+2026-07-07T09:57:45.512Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T09:57:46.935Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T09:57:46.935Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T09:57:46.952Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:06:04.744Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T10:06:05.220Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:06:05.221Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:06:05.222Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:06:05.809Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:06:05.866Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:06:05.866Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:06:05.866Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:06:05.874Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:06:06.075Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:06:06.076Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:06:06.076Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:06:06.076Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:06:06.106Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:06:06.106Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:06:15.132Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:06:15.133Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:06:15.133Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:06:15.140Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:06:15.330Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:06:15.330Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:06:15.330Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:06:15.343Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:24:19.793Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T10:24:19.802Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:19.815Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T10:24:20.389Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T10:24:24.257Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-07T10:24:24.764Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T10:24:24.776Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T10:24:24.784Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T10:24:24.923Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T10:24:27.744Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:27.782Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:31.931Z [nileopedia-backend] info: DELETE /api/v1/documents/e8a97c50-998e-4566-914a-f9c542e34dbc - ::1
+2026-07-07T10:24:32.301Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:24:35.509Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:24:35.510Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:24:35.547Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:38.961Z [nileopedia-backend] info: DELETE /api/v1/documents/676f6eff-78bb-4a96-a87d-4be54ab5e192 - ::1
+2026-07-07T10:24:39.286Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:24:39.602Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:24:39.602Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:24:39.617Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:42.925Z [nileopedia-backend] info: DELETE /api/v1/documents/c1a0a48f-78a9-4477-96a2-f1a51acbdeb1 - ::1
+2026-07-07T10:24:43.230Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:24:43.489Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:24:43.489Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:24:43.511Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:46.565Z [nileopedia-backend] info: DELETE /api/v1/documents/2b6d2d6c-7d3e-428b-b5c9-9e42ae41386c - ::1
+2026-07-07T10:24:47.018Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:24:47.373Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:24:47.373Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:24:47.388Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:49.931Z [nileopedia-backend] info: DELETE /api/v1/documents/000662d8-b221-4dda-83a5-90d1181be465 - ::1
+2026-07-07T10:24:50.285Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:24:50.649Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:24:50.649Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:24:50.669Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:53.224Z [nileopedia-backend] info: DELETE /api/v1/documents/bef132bf-f1e1-41cd-bafe-8e05d6891d3b - ::1
+2026-07-07T10:24:53.556Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:24:53.924Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:24:53.924Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:24:53.939Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:24:58.867Z [nileopedia-backend] info: DELETE /api/v1/documents/56b2976f-2da0-48f9-86a5-99b566c1bb7d - ::1
+2026-07-07T10:24:59.197Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:25:00.585Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:25:00.585Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:25:00.604Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:25:06.791Z [nileopedia-backend] info: DELETE /api/v1/documents/a40dde57-b35a-4b2d-95fd-157103b84ff1 - ::1
+2026-07-07T10:25:07.097Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:25:10.482Z [nileopedia-backend] info: DELETE /api/v1/documents/a40dde57-b35a-4b2d-95fd-157103b84ff1 - ::1
+2026-07-07T10:25:10.810Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:25:14.361Z [nileopedia-backend] info: DELETE /api/v1/documents/a40dde57-b35a-4b2d-95fd-157103b84ff1 - ::1
+2026-07-07T10:25:14.660Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:25:17.809Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:25:17.810Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:25:17.828Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:25:20.801Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:25:20.802Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:25:20.819Z [nileopedia-backend] warn: Document already deleted
+2026-07-07T10:25:20.835Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:25:24.040Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:25:24.041Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:25:24.047Z [nileopedia-backend] warn: Document already deleted
+2026-07-07T10:25:24.061Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:25:28.194Z [nileopedia-backend] info: DELETE /api/v1/documents/797f1462-d01b-47f9-a562-bea1c8f7df8b - ::1
+2026-07-07T10:25:28.490Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:25:30.173Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:25:30.173Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:25:30.199Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:25:35.913Z [nileopedia-backend] info: DELETE /api/v1/documents/2f03e4a9-56a4-4d4c-a791-b12180c77f23 - ::1
+2026-07-07T10:25:36.193Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:25:37.852Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:25:37.852Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:25:37.868Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:34:34.518Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T10:34:35.042Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:35.042Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:35.043Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:35.839Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:35.904Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:35.905Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:35.905Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:35.911Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:36.126Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:36.127Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:36.127Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:36.127Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:36.150Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:36.151Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:40.518Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:40.519Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:40.519Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:40.528Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:40.763Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:40.763Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:40.764Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:40.783Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:42.593Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T10:34:43.036Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:43.036Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:43.037Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:43.602Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:43.655Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:43.655Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:43.655Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:43.663Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:43.849Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:43.849Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:43.849Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:43.850Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:43.865Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:43.865Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:46.844Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:46.844Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:46.845Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:46.852Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:47.056Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:47.057Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:47.057Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:47.072Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:57.276Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T10:34:57.817Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:57.818Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:57.818Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:58.468Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:58.518Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:58.518Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:58.519Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:58.524Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:58.704Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:34:58.704Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:34:58.704Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:58.704Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:34:58.719Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:34:58.720Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:35:03.329Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:35:03.329Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:35:03.330Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:35:03.342Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:35:03.576Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:35:03.576Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:35:03.576Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:35:03.635Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:35:11.619Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T10:35:11.645Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:35:11.655Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T10:35:12.594Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T10:36:05.582Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:47:55.379Z [nileopedia-backend] info: DELETE /api/v1/documents/ea9b042a-0f75-4a26-9933-01aab2e5e778 - ::1
+2026-07-07T10:48:01.463Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-07T10:48:01.938Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T10:48:01.940Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T10:48:01.948Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T10:48:02.065Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T10:48:12.902Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:48:12.932Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:48:17.191Z [nileopedia-backend] info: DELETE /api/v1/documents/90bb5a01-71d0-415f-b310-d4eaa130cb95 - ::1
+2026-07-07T10:48:17.634Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:48:19.526Z [nileopedia-backend] info: DELETE /api/v1/documents/all - ::1
+2026-07-07T10:48:19.709Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:48:19.710Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:48:19.870Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:48:28.329Z [nileopedia-backend] info: DELETE /api/v1/documents/all - ::1
+2026-07-07T10:48:36.097Z [nileopedia-backend] info: DELETE /api/v1/documents/all - ::1
+2026-07-07T10:49:14.104Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T10:49:14.131Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T10:49:14.144Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:49:15.126Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T10:49:17.723Z [nileopedia-backend] info: DELETE /api/v1/documents/all - ::1
+2026-07-07T10:52:08.240Z [nileopedia-backend] info: Schedulers initialized
+2026-07-07T10:52:09.061Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:52:09.061Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:52:09.062Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:52:09.947Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:52:10.021Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:52:10.021Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:52:10.021Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:52:10.030Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:52:10.303Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:52:10.303Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:52:10.304Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:52:10.304Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:52:10.325Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:52:10.325Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:52:30.025Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:52:30.026Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:52:30.026Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:52:30.036Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:52:30.306Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T10:52:30.306Z [nileopedia-backend] info: [object Object]
+2026-07-07T10:52:30.306Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T10:52:30.336Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T10:53:22.872Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T10:53:22.931Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:53:22.971Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T10:53:24.539Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T10:53:25.000Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T10:53:27.421Z [nileopedia-backend] info: DELETE /api/v1/documents/all - ::1
+2026-07-07T10:53:27.905Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:53:38.406Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:53:38.407Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:53:38.667Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:53:49.161Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:53:49.162Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:53:49.501Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:53:59.996Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:53:59.996Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:00.263Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:10.756Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:10.757Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:11.084Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:21.581Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:21.581Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:21.951Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:32.452Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:32.453Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:32.811Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:32.826Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:32.826Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:33.157Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:33.164Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:33.165Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:33.469Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:43.473Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:43.477Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:44.034Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:44.042Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:44.042Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:44.367Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:44.388Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:44.389Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:44.817Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:44.836Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:44.839Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:45.299Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:45.307Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:45.308Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:45.772Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:45.783Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:45.784Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:46.219Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:46.234Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:46.236Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:46.691Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:46.700Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:46.701Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:47.083Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:47.096Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:47.098Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:47.436Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:47.443Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:47.444Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:47.869Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:54.771Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:54:57.940Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:54:57.941Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:54:58.323Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:54:59.123Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:55:02.886Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:55:06.352Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:55:08.819Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:55:08.820Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:09.093Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:12.825Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T10:55:19.586Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T10:55:19.586Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:19.883Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:29.564Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:29.566Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:29.807Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:30.278Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:30.278Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:30.517Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:31.088Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:31.088Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:31.365Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:32.277Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:32.277Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:32.536Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:33.658Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:33.658Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:33.914Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:34.572Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:34.573Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:34.815Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:36.103Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:36.104Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:36.333Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:36.895Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:36.895Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:37.209Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:38.560Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:38.560Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:38.793Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:40.849Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:40.855Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:41.279Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:43.051Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:43.051Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:43.322Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:44.280Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:44.280Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:44.515Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:45.218Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:45.219Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:45.476Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:48.653Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:48.653Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:48.960Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:52.537Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:52.537Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:52.817Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:54.659Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:54.659Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:54.918Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:55.906Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:55.907Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:56.171Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:55:57.770Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:55:57.770Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:55:58.024Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:00.147Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:00.148Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:00.363Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:02.181Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:02.181Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:02.430Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:03.004Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:03.004Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:03.249Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:04.199Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:04.203Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:04.448Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:05.225Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:05.225Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:05.663Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:05.976Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:05.976Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:06.290Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:06.526Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:06.526Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:06.842Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:07.464Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:07.465Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:07.699Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:08.212Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:08.213Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:08.457Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:08.928Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:08.928Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:09.150Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:10.159Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:10.159Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:10.384Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:10.860Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:10.860Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:11.126Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:12.908Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:12.908Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:13.198Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:13.411Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:13.412Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:13.651Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:13.894Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:13.894Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:14.130Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:14.330Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:14.331Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:14.551Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:14.853Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:14.854Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:15.077Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:15.290Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:15.290Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:15.561Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:15.799Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:15.800Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:16.104Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:16.343Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:16.343Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:16.558Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:16.753Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:16.754Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:16.968Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:17.222Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:17.223Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:17.453Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:17.658Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:17.658Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:17.889Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:18.109Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:18.109Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:18.394Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:18.663Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:18.663Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:18.943Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:19.141Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:19.141Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:19.401Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:19.598Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:19.599Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:19.876Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:20.074Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:20.075Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:20.381Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:20.588Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:20.588Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:20.845Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:21.154Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:21.156Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:21.419Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:21.678Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:21.679Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:21.956Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:22.280Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:22.281Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:22.559Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:22.792Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:22.793Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:23.055Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:23.261Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:23.266Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:23.531Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:23.838Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:23.839Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:24.132Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:24.427Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:24.428Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:24.710Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:24.934Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:24.934Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:25.220Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:25.482Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:25.483Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:25.728Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:26.103Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:26.103Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:26.398Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:26.625Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:26.631Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:26.991Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:27.197Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:27.198Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:27.508Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:27.720Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:27.720Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:27.963Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:28.320Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:28.321Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:28.559Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:28.833Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:28.833Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:29.092Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:29.427Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:29.427Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:29.751Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:30.066Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:30.067Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:30.368Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:30.675Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:30.676Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:30.959Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:49.697Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:49.697Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:49.956Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:51.239Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:51.239Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:51.473Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:51.760Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:51.761Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:52.031Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:52.381Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:52.382Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:52.664Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:53.409Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:53.410Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:53.703Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:53.965Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:53.965Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:54.227Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:54.518Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:54.519Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:54.779Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:55.028Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:55.028Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:55.306Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:56.379Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:56.379Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:56.622Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:58.104Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:58.105Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:58.426Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:58.885Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:58.886Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:59.195Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:56:59.422Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:56:59.423Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:56:59.678Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:00.195Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:00.195Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:00.479Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:00.983Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:00.983Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:01.193Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:02.056Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:02.056Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:02.308Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:03.409Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:03.410Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:03.635Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:05.236Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:05.236Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:05.488Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:07.035Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:07.035Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:07.241Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:08.543Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:08.543Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:08.758Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:09.147Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:09.147Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:09.367Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:09.593Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:09.594Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:09.836Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:10.134Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:10.135Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:10.338Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:11.392Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:11.392Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:11.628Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:13.589Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:13.590Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:13.822Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T10:57:17.775Z [nileopedia-backend] error: Failed deleting existing vectors illegal condition for field filter: unsupported operator 'documentId'
+2026-07-07T10:57:17.776Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T10:57:18.008Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:18.470Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:18.470Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:18.862Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:18.867Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:18.867Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:19.140Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:19.145Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:19.146Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:19.405Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:19.411Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:19.411Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:19.749Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:19.754Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:19.754Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:20.024Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:20.029Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:20.030Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:20.299Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:20.305Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:20.305Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:20.565Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:20.570Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:20.570Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:20.824Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:20.830Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:20.830Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:21.105Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:21.111Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:21.111Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:21.422Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:21.428Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:21.428Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:21.692Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:21.696Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:21.697Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:21.922Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:21.928Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:21.928Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:22.164Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:22.170Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:22.170Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:22.382Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:22.388Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:22.388Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:22.605Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T11:02:22.610Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T11:02:22.610Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T11:02:22.649Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:54:27.089Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:08.523Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T18:55:08.600Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:55:08.621Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T18:55:10.392Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-07T18:55:17.348Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-07T18:55:18.896Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:55:18.913Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T18:55:18.963Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:55:19.212Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T18:55:21.002Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:55:21.033Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:55:32.423Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.020Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.111Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.164Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.235Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.285Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.325Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.410Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.456Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.502Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.546Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.601Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.639Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.701Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.752Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.851Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:33.949Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.021Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.063Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.090Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.144Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.240Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.346Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.457Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.496Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.542Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.600Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.634Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.670Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.714Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.756Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.833Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:34.941Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.176Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.333Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.404Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.451Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.504Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.566Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.626Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.770Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.873Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:35.988Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:36.050Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:36.110Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:36.158Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:36.234Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:36.275Z [nileopedia-backend] info: POST /api/v1/documents/upload - ::1
+2026-07-07T18:55:36.405Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:56:06.581Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:56:10.470Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:56:16.129Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:56:21.586Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:56:33.238Z [nileopedia-backend] info: PATCH /api/v1/documents/05006d65-bec2-455d-9eb3-1878ece41632/verify - ::1
+2026-07-07T18:56:33.673Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T18:56:38.717Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:38.770Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T18:56:38.792Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:38.880Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-07T18:56:41.628Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T18:56:41.668Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.682Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.692Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.703Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.715Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.727Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.736Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.746Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.759Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:41.977Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:44.180Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T18:56:44.180Z [nileopedia-backend] warn: Proceeding with re-ingestion using new vectors
+2026-07-07T18:56:44.203Z [nileopedia-backend] info: Processing document ingestion job: 16
+2026-07-07T18:56:44.798Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:56:44.799Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:44.799Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:56:44.799Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:45.230Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:56:45.234Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T18:56:45.239Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:45.242Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:45.242Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:45.271Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:45.271Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:45.307Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:45.307Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:45.320Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:45.320Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:45.343Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:45.344Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:45.370Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:45.370Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:45.808Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:45.809Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:45.835Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.847Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.855Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.863Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.871Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.879Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.887Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.895Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.905Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:45.932Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:51.496Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-07-07T18:56:51.507Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.514Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.522Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.531Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.541Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.550Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.560Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.572Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.580Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:51.887Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:54.401Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T18:56:54.415Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.426Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.435Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.444Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.453Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.462Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.476Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.485Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.494Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:54.709Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:55.861Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T18:56:55.874Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.884Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.893Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.902Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.910Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.918Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.930Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.940Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:55.949Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:56.190Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:56.321Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-07T18:56:56.335Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:56.335Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document b27de980-33ca-4cae-b308-c40d3b7eaaba
+2026-07-07T18:56:56.356Z [nileopedia-backend] error: Document ingestion failed: 05006d65-bec2-455d-9eb3-1878ece41632 Failed to store 6 of 6 vectors in Pinecone for document b27de980-33ca-4cae-b308-c40d3b7eaaba
+2026-07-07T18:56:56.369Z [nileopedia-backend] error: Document ingestion job failed: 16 Failed to store 6 of 6 vectors in Pinecone for document b27de980-33ca-4cae-b308-c40d3b7eaaba
+2026-07-07T18:56:57.499Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-07T18:56:57.509Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.518Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.528Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.540Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.552Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.562Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.574Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.586Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.596Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-07T18:56:57.799Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-07T18:56:58.463Z [nileopedia-backend] info: Processing document ingestion job: 16
+2026-07-07T18:56:58.715Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:56:58.716Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:58.716Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:56:58.716Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:59.025Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:59.027Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:56:59.027Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:59.069Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:59.074Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:59.144Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:59.150Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:59.173Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:59.173Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:59.192Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:59.192Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:59.205Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:59.206Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:56:59.572Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:56:59.573Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:00.149Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:57:00.187Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:57:07.792Z [nileopedia-backend] info: PATCH /api/v1/documents/b27de980-33ca-4cae-b308-c40d3b7eaaba/verify - ::1
+2026-07-07T18:57:08.103Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T18:57:10.107Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-07T18:57:10.109Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:10.109Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 2f26dcbb-e0b5-4ded-9a75-485da2943f24
+2026-07-07T18:57:10.116Z [nileopedia-backend] error: Document ingestion failed: 05006d65-bec2-455d-9eb3-1878ece41632 Failed to store 6 of 6 vectors in Pinecone for document 2f26dcbb-e0b5-4ded-9a75-485da2943f24
+2026-07-07T18:57:10.119Z [nileopedia-backend] error: Document ingestion job failed: 16 Failed to store 6 of 6 vectors in Pinecone for document 2f26dcbb-e0b5-4ded-9a75-485da2943f24
+2026-07-07T18:57:14.218Z [nileopedia-backend] info: Processing document ingestion job: 16
+2026-07-07T18:57:14.333Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:57:14.333Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:14.333Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:57:14.333Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:14.583Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:14.584Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:14.584Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:14.595Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:14.595Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:14.616Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:14.616Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:14.631Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:14.631Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:14.650Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:14.651Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:14.669Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:14.670Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:15.003Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:15.004Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:18.509Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T18:57:18.509Z [nileopedia-backend] warn: Proceeding with re-ingestion using new vectors
+2026-07-07T18:57:18.517Z [nileopedia-backend] info: Processing document ingestion job: 17
+2026-07-07T18:57:18.665Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:57:18.665Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:18.665Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-07T18:57:18.665Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:18.990Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T18:57:18.992Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:18.992Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:18.993Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:19.007Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:19.007Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:19.032Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:19.032Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:19.047Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:19.047Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:19.067Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:19.067Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:19.085Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:19.085Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-07T18:57:19.519Z [nileopedia-backend] info: Embedding source: local
+2026-07-07T18:57:19.519Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:25.519Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-07T18:57:25.519Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:25.520Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 42fc5296-3138-4f57-93f2-e653f8c44cc5
+2026-07-07T18:57:25.527Z [nileopedia-backend] error: Document ingestion failed: 05006d65-bec2-455d-9eb3-1878ece41632 Failed to store 6 of 6 vectors in Pinecone for document 42fc5296-3138-4f57-93f2-e653f8c44cc5
+2026-07-07T18:57:25.530Z [nileopedia-backend] error: Document ingestion job failed: 16 Failed to store 6 of 6 vectors in Pinecone for document 42fc5296-3138-4f57-93f2-e653f8c44cc5
+2026-07-07T18:57:29.330Z [nileopedia-backend] info: DELETE /api/v1/documents/2f26dcbb-e0b5-4ded-9a75-485da2943f24 - ::1
+2026-07-07T18:57:29.769Z [nileopedia-backend] info: Deleting previous vectors
+2026-07-07T18:57:29.774Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-07T18:57:29.775Z [nileopedia-backend] info: [object Object]
+2026-07-07T18:57:29.776Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7e6ceea0-e3e5-4084-b504-37ae0d78a635
+2026-07-07T18:57:30.052Z [nileopedia-backend] error: Document ingestion failed: b27de980-33ca-4cae-b308-c40d3b7eaaba Failed to store 6 of 6 vectors in Pinecone for document 7e6ceea0-e3e5-4084-b504-37ae0d78a635
+2026-07-07T18:57:30.054Z [nileopedia-backend] error: Document ingestion job failed: 17 Failed to store 6 of 6 vectors in Pinecone for document 7e6ceea0-e3e5-4084-b504-37ae0d78a635
+2026-07-07T18:57:32.083Z [nileopedia-backend] info: Processing document ingestion job: 17
+2026-07-07T18:57:32.099Z [nileopedia-backend] error: Document ingestion failed: b27de980-33ca-4cae-b308-c40d3b7eaaba File not found: /uploads/1783450534687-8zzyd1asjvs.html
+2026-07-07T18:57:32.104Z [nileopedia-backend] error: Document ingestion job failed: 17 File not found: /uploads/1783450534687-8zzyd1asjvs.html
+2026-07-07T18:57:36.194Z [nileopedia-backend] info: Processing document ingestion job: 17
+2026-07-07T18:57:36.207Z [nileopedia-backend] error: Document ingestion failed: b27de980-33ca-4cae-b308-c40d3b7eaaba File not found: /uploads/1783450534687-8zzyd1asjvs.html
+2026-07-07T18:57:36.209Z [nileopedia-backend] error: Document ingestion job failed: 17 File not found: /uploads/1783450534687-8zzyd1asjvs.html
+2026-07-07T18:57:39.765Z [nileopedia-backend] error: Failed deleting existing vectors Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-07T18:57:39.766Z [nileopedia-backend] warn: Proceeding with DB deletion despite Pinecone cleanup failure
+2026-07-07T18:57:39.798Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T19:08:44.264Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-07T19:08:44.292Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-07T19:08:44.295Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-07T19:08:45.875Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-08T10:41:20.935Z [nileopedia-backend] info: GET /api/v1/documents - ::1
+2026-07-08T10:41:27.919Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-08T10:41:29.252Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T10:41:29.258Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T10:41:29.275Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T10:41:29.517Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-08T10:41:38.536Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-08T10:41:38.565Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.586Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.599Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.609Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.625Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.636Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.647Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.657Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.668Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:38.929Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T10:41:40.737Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-07-08T10:41:40.750Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.761Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.775Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.789Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.805Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.817Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.830Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.841Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:40.853Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:41.036Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-08T10:41:42.185Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/refresh - ::1
+2026-07-08T10:41:42.197Z [nileopedia-backend] error: Failed to refresh KB from PubMed Central: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.210Z [nileopedia-backend] error: Failed to refresh KB from NEJM: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.219Z [nileopedia-backend] error: Failed to refresh KB from The Lancet: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.228Z [nileopedia-backend] error: Failed to refresh KB from JAMA: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.239Z [nileopedia-backend] error: Failed to refresh KB from Circulation: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.253Z [nileopedia-backend] error: Failed to refresh KB from Diabetes Care: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.273Z [nileopedia-backend] error: Failed to refresh KB from Journal of Clinical Oncology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.287Z [nileopedia-backend] error: Failed to refresh KB from Neurology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.300Z [nileopedia-backend] error: Failed to refresh KB from Gastroenterology: 
+Invalid `prisma.medicalDocument.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:47:48
+
+  44 });
+  45 
+  46 if (!existing) {
+→ 47   const doc = await prisma.medicalDocument.create(
+Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
+2026-07-08T10:41:42.511Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1

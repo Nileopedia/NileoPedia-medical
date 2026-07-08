@@ -601,7 +601,6 @@ class ApiClient {
       body: formData,
     });
 
-    // Handle non-JSON responses (HTML error pages)
     let payload: any;
     try {
       const contentType = response.headers.get('content-type');
@@ -620,6 +619,25 @@ class ApiClient {
     }
 
     return this.unwrap(payload);
+  }
+
+  async deleteAllDocuments(): Promise<void> {
+    await this.request('/documents/all', { method: 'DELETE' });
+  }
+
+  async updateDocument(id: string, data: {
+    title?: string;
+    description?: string;
+    specialty?: string;
+    documentType?: string;
+    source?: string;
+    publicationYear?: number;
+  }): Promise<any> {
+    const payload = await this.request<{ success: boolean; data: any }>(`/documents/${id}`, {
+      method: 'PATCH',
+      body: JSON.stringify(data),
+    });
+    return this.unwrap(payload.data);
   }
 
   async getNotifications(): Promise<Array<{ id: string; title: string; message: string; read: boolean; createdAt: string }>> {
