@@ -4,6 +4,7 @@ import { IngestionStatus } from '@prisma/client';
 import prisma from '../../config/prisma';
 import { DocumentIngestionService } from '../../modules/documents/document.ingestion.service';
 import { DocumentMetadataService } from '../../modules/documents/metadata.service';
+import { documentQueue } from '../queues';
 import { logger } from '../../config/logger';
 
 interface KbSource {
@@ -41,7 +42,8 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
 
     const existing = await prisma.medicalDocument.findFirst({
       where: {
-        title: { contains: documentTitle },
+        title: documentTitle,
+        source: source.name,
       },
     });
 
@@ -55,7 +57,6 @@ async function createDemoDocuments(source: { name: string; specialty: string; ba
         source: source.name,
         specialty: source.specialty,
         documentType: 'GUIDELINE',
-        uploadedById: '00000000-0000-0000-0000-000000000000',
         fileName: `demo-${Date.now()}-${Math.random().toString(36).substr(2, 9)}.pdf`,
         fileUrl: source.baseUrl,
         fileType: 'application/pdf',
@@ -92,7 +93,12 @@ export async function refreshKnowledgeBase(isIncremental = false) {
     processed: 0,
     updated: 0,
     total: KB_SOURCES.length,
+    queued: 0,
   };
+
+  if (!isIncremental) {
+    results.queued = await queuePendingDocuments();
+  }
 
   for (const source of KB_SOURCES) {
     try {
@@ -107,6 +113,57 @@ export async function refreshKnowledgeBase(isIncremental = false) {
   }
 
   return results;
+}
+
+export async function queuePendingDocuments(): Promise<number> {
+  const pending = await prisma.medicalDocument.findMany({
+    where: {
+      ingestionStatus: {
+        in: ['PENDING', 'FAILED'],
+      },
+    },
+    select: {
+      id: true,
+      fileUrl: true,
+      fileName: true,
+      title: true,
+      specialty: true,
+      documentType: true,
+      uploadedById: true,
+      source: true,
+      publicationYear: true,
+      fileType: true,
+    },
+  });
+
+  const docsWithFiles = pending.filter((doc) => doc.fileUrl != null);
+
+  let queued = 0;
+  for (const doc of docsWithFiles) {
+    try {
+      await documentQueue.add('ingest', {
+        documentId: doc.id,
+        fileUrl: doc.fileUrl,
+        fileName: doc.fileName,
+        title: doc.title,
+        specialty: doc.specialty,
+        documentType: doc.documentType,
+        uploadedById: doc.uploadedById,
+        source: doc.source,
+        publicationYear: doc.publicationYear,
+        fileType: doc.fileType,
+      });
+      queued++;
+    } catch (error) {
+      logger.error(`Failed to queue ingestion job for document ${doc.id}:`, error);
+    }
+  }
+
+  if (queued > 0) {
+    logger.info(`Queued ${queued} documents for ingestion`);
+  }
+
+  return queued;
 }
 
 export async function processDocumentIngestion(job: any) {
@@ -193,18 +250,12 @@ export async function processDocumentIngestion(job: any) {
     });
 
     const ingestionService = new DocumentIngestionService();
-    await ingestionService.ingestDocument({
+    await ingestionService.ingestContentForDocument(documentId, content, {
       title,
-      content,
+      source,
       specialty,
       documentType,
-      source,
       publicationYear,
-      uploadedById,
-      fileName,
-      fileUrl,
-      fileType,
-      fileSize: 0,
     });
 
     logger.info(`Document ingestion completed: ${documentId}`);

@@ -192,8 +192,8 @@ export class EmbeddingService {
         logger.info('Embedding source: local');
         return localResult;
       } catch (error) {
-        logger.warn('Local embedding failed, falling back to mock:', error);
-        return generateMockEmbedding(text);
+        logger.error('Local embedding failed:', error);
+        throw new Error('Embedding service unavailable: local embedding failed');
       }
     }
 
@@ -204,13 +204,12 @@ export class EmbeddingService {
         logger.info('Embedding source: huggingface');
         return hfResult;
       } catch (error) {
-        logger.warn('HF embedding failed, falling back to mock:', error);
-        return generateMockEmbedding(text);
+        logger.error('HF embedding failed:', error);
+        throw new Error('Embedding service unavailable: HF embedding failed');
       }
     }
 
-    logger.error('No embedding provider available, using mock');
-    return generateMockEmbedding(text);
+    throw new Error('No embedding provider available');
   }
 
   async generateBatchEmbeddings(texts: string[]): Promise<number[][]> {
@@ -220,6 +219,22 @@ export class EmbeddingService {
         results.push(generateMockEmbedding(text));
       }
       return results;
+    }
+
+    if (LOCAL_EMBEDDING_ENABLED && !CONFIG.USE_MOCK_EMBEDDINGS) {
+      try {
+        const pipeline = await loadLocalEmbedding();
+        if (pipeline) {
+          const outputs = await pipeline(texts, { pooling: 'mean', normalize: true });
+          const results: number[][] = [];
+          for (let i = 0; i < texts.length; i++) {
+            results.push(Array.from(outputs.data.slice(i * EXPECTED_DIMENSIONS, (i + 1) * EXPECTED_DIMENSIONS)));
+          }
+          return results;
+        }
+      } catch (error: any) {
+        logger.error('Batch local embedding failed, falling back to per-text:', error);
+      }
     }
 
     const results: number[][] = [];

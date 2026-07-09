@@ -127,19 +127,15 @@ async function verifyPineconeIndex(): Promise<void> {
   }
 
   try {
-    const stats = await pineconeService.describeIndexStats ? pineconeService.describeIndexStats() : { totalVectorCount: 0, dimension: 0 };
-    console.log('[PINECONE] Index dimension:', (stats as any).dimension ?? 'unknown');
-    console.log('[PINECONE] Total vectors:', (stats as any).totalVectorCount ?? 'unknown');
-
-    const expectedDimension = 384;
-    const actualDimension = (stats as any).dimension;
-    if (actualDimension && actualDimension !== expectedDimension) {
-      console.error(`[FATAL] Pinecone index dimension mismatch: index has ${actualDimension}D but embedding model produces ${expectedDimension}D.`);
-      console.error(`[FATAL] Update Pinecone index "nileopedia-medical" to dimension ${expectedDimension} or switch embedding model in .env.`);
-    } else if (actualDimension === expectedDimension) {
-      console.log(`[PINECONE] Dimension OK (${actualDimension}D)`);
+    const validation = await pineconeService.validateIndex ? pineconeService.validateIndex(384) : { valid: false, error: 'validateIndex not available' };
+    if (!validation.valid) {
+      console.error(`[FATAL] Pinecone index validation failed: ${validation.error}`);
+      console.error(`[FATAL] Update Pinecone index "nileopedia-medical" to dimension 384 or switch embedding model in .env.`);
+    } else {
+      console.log(`[PINECONE] Dimension OK (${validation.dimension}D)`);
     }
 
+    const stats = await pineconeService.describeIndexStats ? pineconeService.describeIndexStats() : { totalVectorCount: 0, dimension: 0 };
     const vectorCount = (stats as any).totalVectorCount || 0;
     if (vectorCount === 0) {
       console.warn('[WARN] No vectors indexed - knowledge base is empty');

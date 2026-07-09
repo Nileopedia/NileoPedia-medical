@@ -1,5 +1,6 @@
 import { Queue } from 'bullmq';
 import { documentQueue } from '../queues';
+import { queuePendingDocuments, refreshKnowledgeBase } from '../processors/document.processor';
 import { logger } from '../../config/logger';
 
 const JOURNAL_SOURCES = [
@@ -22,6 +23,7 @@ export function setupSchedulers() {
 
     if (hour === 2) {
       if (documentQueue) {
+        queuePendingDocuments().catch((err) => logger.error('Failed to queue pending documents:', err));
         for (const source of JOURNAL_SOURCES) {
           await documentQueue.add('scheduled-ingest', {
             source,

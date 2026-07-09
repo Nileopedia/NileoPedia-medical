@@ -69,9 +69,19 @@ export class PineconeService {
         try {
           await this.index.upsert(batch);
           success += batch.length;
-        } catch (error) {
+        } catch (error: any) {
           failed += batch.length;
-          logger.error('Pinecone upsert batch failed:', { batchStart: i, batchSize: batch.length, error: error instanceof Error ? error.message : error });
+          const errorMessage = error?.message || error?.toString?.() || 'Unknown error';
+          const errorCode = error?.code || error?.status || error?.name || 'unknown';
+          const errorStack = error?.stack || '';
+          logger.error('Pinecone upsert batch failed:', {
+            batchStart: i,
+            batchSize: batch.length,
+            errorMessage,
+            errorCode,
+            errorStack: errorStack ? errorStack.split('\n').slice(0, 3).join('\n') : undefined,
+          });
+          console.error(`[PINECONE] Upsert batch ${i}-${i + batch.length} failed: ${errorMessage} (${errorCode})`);
         }
       }
       console.log('[PINECONE] Upsert complete', { success, failed });
@@ -180,5 +190,33 @@ export class PineconeService {
       }
     }
     return { totalVectorCount: PineconeService.mockVectors.length, dimension: 384 };
+  }
+
+  async validateIndex(expectedDimension = 384): Promise<{ valid: boolean; dimension?: number; error?: string }> {
+    if (!this.isAvailable || !this.index) {
+      return { valid: false, error: 'Pinecone not available' };
+    }
+
+    try {
+      const stats = await this.index.describeIndexStats();
+      const dimension = (stats as any).dimension;
+
+      if (!dimension) {
+        return { valid: false, error: 'Could not determine index dimension. Index may not exist or is not ready.' };
+      }
+
+      if (dimension !== expectedDimension) {
+        return {
+          valid: false,
+          dimension,
+          error: `Index dimension mismatch: index has ${dimension}D but embedding model produces ${expectedDimension}D vectors`,
+        };
+      }
+
+      return { valid: true, dimension };
+    } catch (error: any) {
+      const errorMessage = error?.message || error?.toString?.() || 'Unknown validation error';
+      return { valid: false, error: `Index validation failed: ${errorMessage}` };
+    }
   }
 }

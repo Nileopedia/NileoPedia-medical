@@ -160,8 +160,8 @@ model MedicalDocument {
   documentType    String?
   source          String?
   publicationYear Int?
-  uploadedById    String
-  uploadedBy      User @relation(fields: [uploadedById], references: [id])
+  uploadedById    String?
+  uploadedBy      User? @relation(fields: [uploadedById], references: [id])
   ingestionStatus IngestionStatus @default(PENDING)
   isVerified      Boolean @default(false)
   createdAt       DateTime @default(now())

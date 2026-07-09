@@ -27,7 +27,7 @@ export class DocumentIngestionService {
     publicationYear?: number;
     specialty?: string;
     documentType?: string;
-    uploadedById: string;
+    uploadedById?: string;
     fileName: string;
     fileUrl: string;
     fileType: string;
@@ -41,7 +41,7 @@ export class DocumentIngestionService {
         publicationYear: input.publicationYear,
         specialty: input.specialty,
         documentType: input.documentType,
-        uploadedById: input.uploadedById,
+        uploadedById: input.uploadedById ?? null,
         fileName: input.fileName,
         fileUrl: input.fileUrl,
         fileType: input.fileType,
@@ -50,13 +50,32 @@ export class DocumentIngestionService {
       },
     });
 
-    logger.info({
-      documentId: document.id,
-      extractedLength: input.content.length,
+    return this.ingestContentForDocument(document.id, input.content, {
+      title: input.title,
+      source: input.source,
+      specialty: input.specialty,
+      documentType: input.documentType,
+      publicationYear: input.publicationYear,
+    });
+  }
+
+  async ingestContentForDocument(
+    documentId: string,
+    content: string,
+    meta: { title?: string; source?: string; specialty?: string; documentType?: string; publicationYear?: number }
+  ) {
+    const document = await prisma.medicalDocument.update({
+      where: { id: documentId },
+      data: { ingestionStatus: IngestionStatus.PROCESSING },
     });
 
-    let cleanContent = input.content;
-    if (input.content.includes('<') && input.content.includes('>')) {
+    logger.info({
+      documentId: document.id,
+      extractedLength: content.length,
+    });
+
+    let cleanContent = content;
+    if (content.includes('<') && content.includes('>')) {
       cleanContent = cleanContent
         .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '')
         .replace(/<style\b[^<]*(?:(?!<\/style>)<[^<]*)*<\/style>/gi, '')
@@ -71,9 +90,9 @@ export class DocumentIngestionService {
     }
 
     const chunks = this.chunkingService.chunkDocument(cleanContent, {
-      source: input.source,
-      publicationYear: input.publicationYear,
-      specialty: input.specialty || 'general',
+      source: meta.source,
+      publicationYear: meta.publicationYear,
+      specialty: meta.specialty || 'general',
     });
 
     logger.info({
@@ -120,6 +139,10 @@ export class DocumentIngestionService {
     } else {
       logger.info(`Mock mode: Skipping Pinecone storage for document ${document.id}`);
     }
+
+    await prisma.embeddingMetadata.deleteMany({
+      where: { documentId: document.id },
+    });
 
     for (let i = 0; i < chunks.length; i++) {
       await prisma.embeddingMetadata.create({
