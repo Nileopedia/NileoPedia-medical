@@ -157,17 +157,24 @@ export class PineconeService {
 
   async storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string) {
     console.log('[PINECONE] Storing', chunks.length, 'chunks for document:', documentId);
-    const vectors = embeddings.map((embedding, i) => ({
-      id: `${documentId}_chunk_${i}`,
-      values: embedding,
-      metadata: {
+    const vectors = embeddings.map((embedding, i) => {
+      const metadata: Record<string, any> = {
         documentId,
         chunkIndex: chunks[i].chunkIndex,
         textPreview: chunks[i].text.substring(0, 100),
         text: chunks[i].text,
-        ...chunks[i].metadata,
-      },
-    }));
+      };
+      for (const [key, value] of Object.entries(chunks[i].metadata)) {
+        if (value !== null && value !== undefined) {
+          metadata[key] = value;
+        }
+      }
+      return {
+        id: `${documentId}_chunk_${i}`,
+        values: embedding,
+        metadata,
+      };
+    });
 
     const result = await this.upsertVectors(vectors);
     console.log('[PINECONE] Stored', result.success, 'of', vectors.length, 'vectors for document:', documentId);
@@ -216,6 +223,43 @@ export class PineconeService {
       return { valid: true, dimension };
     } catch (error: any) {
       const errorMessage = error?.message || error?.toString?.() || 'Unknown validation error';
+      const notFound = /404|not found|does not exist/i.test(errorMessage);
+      if (notFound && this.pinecone) {
+        try {
+          logger.info(`Pinecone index "${CONFIG.PINECONE_INDEX_NAME}" not found, creating...`);
+          await this.pinecone.createIndex({
+            name: CONFIG.PINECONE_INDEX_NAME,
+            dimension: expectedDimension,
+            metric: 'cosine',
+            spec: {
+              serverless: {
+                cloud: 'aws',
+                region: CONFIG.PINECONE_ENVIRONMENT,
+              },
+            },
+            suppressConflicts: true,
+            waitUntilReady: true,
+          });
+          this.index = this.pinecone.index(CONFIG.PINECONE_INDEX_NAME);
+          logger.info(`Pinecone index "${CONFIG.PINECONE_INDEX_NAME}" created, re-validating...`);
+          const stats = await this.index.describeIndexStats();
+          const dimension = (stats as any).dimension;
+          if (!dimension) {
+            return { valid: false, error: 'Could not determine index dimension after creation.' };
+          }
+          if (dimension !== expectedDimension) {
+            return {
+              valid: false,
+              dimension,
+              error: `Index dimension mismatch after creation: index has ${dimension}D but embedding model produces ${expectedDimension}D vectors`,
+            };
+          }
+          return { valid: true, dimension };
+        } catch (createError: any) {
+          const createErrorMessage = createError?.message || createError?.toString?.() || 'Unknown creation error';
+          return { valid: false, error: `Index validation and creation failed: ${createErrorMessage}` };
+        }
+      }
       return { valid: false, error: `Index validation failed: ${errorMessage}` };
     }
   }

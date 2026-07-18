@@ -82,6 +82,7 @@ export class RetrievalService {
       'covid',
       'heart',
       'blood pressure',
+      'bloodpressure',
       'pain',
       'symptoms',
       'diagnosis',

@@ -130,7 +130,7 @@ async function verifyPineconeIndex(): Promise<void> {
     const validation = await pineconeService.validateIndex ? pineconeService.validateIndex(384) : { valid: false, error: 'validateIndex not available' };
     if (!validation.valid) {
       console.error(`[FATAL] Pinecone index validation failed: ${validation.error}`);
-      console.error(`[FATAL] Update Pinecone index "nileopedia-medical" to dimension 384 or switch embedding model in .env.`);
+      console.error(`[FATAL] Update Pinecone index "${CONFIG.PINECONE_INDEX_NAME}" to dimension 384 or switch embedding model in .env.`);
     } else {
       console.log(`[PINECONE] Dimension OK (${validation.dimension}D)`);
     }
