@@ -7,7 +7,7 @@ import { Send, Loader2, Stethoscope, Info } from 'lucide-react';
 import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
-import { ResponseViewer } from '../../components/query/ResponseViewer';
+import { MedicalResponseViewer } from '../../components/query/MedicalResponseViewer';
 import { io, type Socket } from 'socket.io-client';
 import { useAppStore } from '../../store/appStore';
 import { useToast } from '../../components/ui/Toast';
@@ -268,7 +268,7 @@ onKeyDown={(e) => {
           {response && !error && (
             <div className="bg-card rounded-xl border border-border p-4 sm:p-6 shadow-sm">
               <h2 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">AI Response</h2>
-              <ResponseViewer response={response} />
+              <MedicalResponseViewer response={response} />
             </div>
           )}
 

@@ -90,17 +90,29 @@ export class DocumentIngestionService {
     }
 
     const chunks = this.chunkingService.chunkDocument(cleanContent, {
+      documentId: document.id,
+      title: meta.title,
       source: meta.source,
-      publicationYear: meta.publicationYear,
       specialty: meta.specialty || 'general',
+      documentType: meta.documentType,
+      publicationYear: meta.publicationYear,
     });
 
     logger.info({
       documentId: document.id,
       chunkCount: chunks.length,
+      avgChunkLength: chunks.length > 0 ? Math.round(chunks.reduce((sum, c) => sum + c.text.length, 0) / chunks.length) : 0,
     });
 
-    const embeddedChunks = await this.chunkingService.generateEmbeddings(chunks);
+    const deduplicatedChunks = await this.chunkingService.deduplicateChunks(chunks);
+    logger.info({
+      documentId: document.id,
+      chunksBeforeDedup: chunks.length,
+      chunksAfterDedup: deduplicatedChunks.length,
+      duplicatesRemoved: chunks.length - deduplicatedChunks.length,
+    });
+
+    const embeddedChunks = await this.chunkingService.generateEmbeddings(deduplicatedChunks);
 
     logger.info({
       documentId: document.id,

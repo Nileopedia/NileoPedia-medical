@@ -29,22 +29,77 @@ export interface Citation {
   source?: string;
   authors?: string;
   journal?: string;
+  publisher?: string;
+  organization?: string;
   year?: number;
   volume?: string;
   pages?: string;
+  pageNumber?: number;
+  issue?: string;
   type?: 'Guideline' | 'Review' | 'Expert Opinion' | 'Study';
-  organization?: string;
   doi?: string;
   url?: string;
   publicationYear?: number;
+  documentType?: string;
+  medicalSpecialty?: string;
+  pmid?: string;
+  pmcid?: string;
+  preview?: string;
 }
 
-export interface StructuredResponseSections {
-  treatmentGoals?: string;
-  lifestyle?: string;
-  medications?: string;
-  monitoring?: string;
-  [key: string]: string | undefined;
+export interface StructuredMedicalResponse {
+  clinicalSummary: string;
+  definition: string;
+  clinicalOverview: string;
+  causes: string[];
+  riskFactors: string[];
+  symptoms: string[];
+  diagnosis: string[];
+  treatment: {
+    lifestyle: string[];
+    medications: Array<{
+      name: string;
+      class: string;
+      use: string;
+    }>;
+  };
+  lifestyleManagement: string[];
+  complications: string[];
+  prevention: string[];
+  specialPopulations: string[];
+  prognosis: string;
+  patientEducation: string[];
+  keyTakeaways: string[];
+  warningBoxes: Array<{
+    type: 'emergency' | 'drug_interaction' | 'contraindication' | 'general';
+    title: string;
+    content: string;
+  }>;
+  tables: Array<{
+    title: string;
+    headers: string[];
+    rows: string[][];
+  }>;
+  references: Array<{
+    title: string;
+    authors: string;
+    journal?: string;
+    organization?: string;
+    year: number;
+    doi?: string;
+    url?: string;
+    publisher?: string;
+    documentType?: string;
+    medicalSpecialty?: string;
+    volume?: string;
+    issue?: string;
+    pages?: string;
+    isbn?: string;
+    pmid?: string;
+    pmcid?: string;
+  }>;
+  followUpQuestions: string[];
+  patientFriendlyVersion: string;
 }
 
 export interface AIResponse {
@@ -52,8 +107,9 @@ export interface AIResponse {
   queryId: string;
   title: string;
   summary: string;
+  structuredResponse?: StructuredMedicalResponse;
   keyRecommendations: string[];
-  sections: StructuredResponseSections;
+  sections: Record<string, string>;
   citations: Citation[];
   status: 'pending' | 'approved' | 'rejected' | 'in_review';
   confidenceScore: number;
@@ -67,6 +123,8 @@ export interface AIResponse {
   documentsUsed?: number;
   embeddingModel?: string;
   processingTime?: number;
+  specialty?: string;
+  evidenceLevel?: string;
 }
 
 export interface Activity {

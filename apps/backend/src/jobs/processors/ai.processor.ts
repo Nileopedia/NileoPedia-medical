@@ -6,18 +6,34 @@ import { redis } from '../../lib/redis';
 import { CONFIG } from '../../config/env';
 import { RetrievalService } from '../../modules/retrieval/retrieval.service';
 import { DocumentMetadataService } from '../../modules/documents/metadata.service';
+import { ragDebugService } from '../../debug/rag-debug.service';
+import { RagDebugInfo } from '../../debug/rag-debug.types';
 
 interface CitationData {
   title: string;
   source: string;
   authors?: string;
+  journal?: string;
+  publisher?: string;
   publicationYear?: number;
+  volume?: string;
+  issue?: string;
+  pages?: string;
   doi?: string;
+  isbn?: string;
+  pmid?: string;
+  pmcid?: string;
+  institution?: string;
+  country?: string;
+  publicationType?: string;
+  keywords?: string[];
+  medicalSpecialty?: string;
+  language?: string;
   url?: string;
   pageNumber?: number;
   sectionTitle?: string;
   documentType?: string;
-  journal?: string;
+  specialty?: string;
 }
 
 function createPipelineError(stage: 'embeddings' | 'retrieval' | 'llm' | 'database', message: string): PipelineError {
@@ -26,6 +42,109 @@ function createPipelineError(stage: 'embeddings' | 'retrieval' | 'llm' | 'databa
     stage,
     message,
   };
+}
+
+function createEmptyStructuredResponse(clinicalSummary = ''): Record<string, unknown> {
+  return {
+    clinicalSummary,
+    definition: '',
+    clinicalOverview: '',
+    causes: [],
+    riskFactors: [],
+    symptoms: [],
+    diagnosis: [],
+    treatment: { lifestyle: [], medications: [] },
+    lifestyleManagement: [],
+    complications: [],
+    prevention: [],
+    specialPopulations: [],
+    prognosis: '',
+    patientEducation: [],
+    keyTakeaways: [],
+    warningBoxes: [],
+    tables: [],
+    references: [],
+    followUpQuestions: [],
+    patientFriendlyVersion: '',
+  };
+}
+
+function buildMatchDebug(match: any): RagDebugInfo['pineconeMatches'][0] {
+  const metadata = match.metadata || {};
+  const preview = typeof metadata.text === 'string' ? metadata.text.slice(0, 150) : (metadata.textPreview || '').slice(0, 150);
+  return {
+    id: match.id || 'unknown',
+    score: typeof match.score === 'number' ? match.score : 0,
+    documentId: metadata.documentId,
+    chunkId: metadata.chunkId || match.id,
+    chunkIndex: metadata.chunkIndex,
+    title: metadata.title || metadata.source || 'Unknown',
+    preview,
+    metadata: metadata as Record<string, unknown>,
+  };
+}
+
+function logRagDebug(debug: RagDebugInfo) {
+  console.log('================================');
+  console.log('Original Query');
+  console.log('================================');
+  console.log(debug.query);
+  console.log('================================');
+  console.log('Normalized Query:', debug.normalizedQuery);
+  console.log('Medical Domain Result:', debug.medicalDomain);
+  console.log('Generated Embedding Dimensions:', debug.embeddingDimensions);
+  console.log('Embedding Provider:', debug.embeddingProvider);
+  console.log('Pinecone Query Vector Size:', debug.embeddingDimensions);
+  console.log('Top 10 Pinecone Matches:', debug.pineconeMatches.length);
+  for (const match of debug.pineconeMatches) {
+    console.log('--------------------------------');
+    console.log('Document ID:', match.documentId || 'N/A');
+    console.log('Document Title:', match.title);
+    console.log('Chunk ID:', match.chunkId);
+    console.log('Chunk Index:', match.chunkIndex ?? 'N/A');
+    console.log('Similarity Score:', match.score.toFixed(6));
+    console.log('Metadata:', JSON.stringify(match.metadata));
+    console.log('Chunk Preview:', match.preview);
+  }
+  console.log('================================');
+  console.log('Filtering');
+  console.log('================================');
+  console.log('MIN_DOCS:', debug.minDocs);
+  console.log('Score Threshold:', debug.minScore);
+  console.log('Documents Before Filtering:', debug.pineconeMatches.length);
+  console.log('Documents After Filtering:', debug.filteredMatches.length);
+  for (const match of debug.rejectedMatches) {
+    console.log('Rejected:', match.id, 'score:', match.score.toFixed(6), 'reason:', match.reason);
+  }
+  console.log('================================');
+  console.log('Final Context');
+  console.log('================================');
+  console.log('Chunks Sent to Groq:', debug.chunksSentToGroq);
+  console.log('Characters Sent:', debug.charactersSent);
+  console.log('Chunk IDs:', debug.chunkIds);
+  console.log('================================');
+  console.log('Groq');
+  console.log('================================');
+  console.log('Prompt Size:', debug.promptSize);
+  console.log('Completion Time:', debug.completionTime);
+  console.log('================================\n');
+
+  ragDebugService.capture(debug);
+  logger.info({
+    type: 'rag_debug',
+    query: debug.query,
+    normalizedQuery: debug.normalizedQuery,
+    medicalDomain: debug.medicalDomain,
+    embeddingProvider: debug.embeddingProvider,
+    embeddingDimensions: debug.embeddingDimensions,
+    retrievedCount: debug.retrievedCount,
+    filteredCount: debug.filteredMatches.length,
+    rejectedCount: debug.rejectedMatches.length,
+    chunksSentToGroq: debug.chunksSentToGroq,
+    topScore: debug.topScore,
+    minScore: debug.minScore,
+    minDocs: debug.minDocs,
+  });
 }
 
 export async function processAiGeneration(job: AiGenerationJob) {
@@ -42,28 +161,60 @@ export async function processAiGeneration(job: AiGenerationJob) {
 
     const retrievalService = new RetrievalService();
 
-    // Allow mock mode for development/testing
     if (!retrievalService.embeddingService?.isRealEmbeddings) {
       logger.warn('[WARN] Using mock embeddings - proceeding in offline mode');
     }
 
     const medicalIntent = await retrievalService.isMedicalQuery(query, retrievalService.embeddingService);
+    const normalizedQuery = query.toLowerCase().trim();
+
+    console.log('================================');
+    console.log('Original Query');
+    console.log('================================');
+    console.log(query);
+    console.log('================================');
+    console.log('Normalized Query:', normalizedQuery);
+    console.log('Medical Domain Result:', medicalIntent);
+    console.log('================================\n');
 
     if (!medicalIntent) {
+      const debug: RagDebugInfo = {
+        query,
+        normalizedQuery,
+        medicalDomain: false,
+        embeddingProvider: 'N/A',
+        embeddingDimensions: 0,
+        pineconeMatches: [],
+        filteredMatches: [],
+        rejectedMatches: [],
+        finalContext: [],
+        topScore: null,
+        retrievedCount: 0,
+        minScore: 0,
+        minDocs: 1,
+        promptSize: 0,
+        completionTime: 0,
+        chunksSentToGroq: 0,
+        charactersSent: 0,
+        chunkIds: [],
+      };
+      logRagDebug(debug);
+
       const noResultResponse = await prisma.aIResponse.upsert({
         where: { questionId },
         create: {
           questionId,
           summary: 'Question outside supported medical domain.',
-          detailedExplanation: 'Please ask medical-related questions only.',
+          detailedExplanation: JSON.stringify(createEmptyStructuredResponse('Question outside supported medical domain.')),
           keyFindings: [],
           confidenceScore: 0,
           generatedBy: 'Domain Filter',
           validationStatus: 'APPROVED',
         },
         update: {
+          questionId,
           summary: 'Question outside supported medical domain.',
-          detailedExplanation: 'Please ask medical-related questions only.',
+          detailedExplanation: JSON.stringify(createEmptyStructuredResponse('Question outside supported medical domain.')),
           keyFindings: [],
           confidenceScore: 0,
           generatedBy: 'Domain Filter',
@@ -114,6 +265,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
     }
 
     let retrievalResult: { hasContext: boolean; context: any[] } | null = null;
+    let debugInfo: RagDebugInfo | null = null;
     try {
       console.log(`[AI] Running strict RAG retrieval for query: ${query}`);
       const pineconePromise = retrievalService.semanticSearch(query, topK || 10);
@@ -126,6 +278,70 @@ export async function processAiGeneration(job: AiGenerationJob) {
       const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= threshold);
       const MIN_DOCS = 1;
       const hasContext = relevant.length >= MIN_DOCS;
+
+      const rejectedMatches = pineconeMatches
+        .filter((match: any) => (match.score ?? 0) < threshold)
+        .map((match: any) => ({
+          ...buildMatchDebug(match),
+          reason: `score ${match.score?.toFixed(6) ?? 0} below threshold ${threshold}`,
+        }));
+
+      const pineconeDebugMatches = pineconeMatches.map((m: any) => buildMatchDebug(m));
+
+      console.log('================================');
+      console.log('Original Query');
+      console.log('================================');
+      console.log(query);
+      console.log('================================');
+      console.log('Normalized Query:', normalizedQuery);
+      console.log('Medical Domain Result:', medicalIntent);
+      console.log('Generated Embedding Dimensions:', embedding?.length);
+      console.log('Embedding Provider:', retrievalService.embeddingService.embeddingSource);
+      console.log('Pinecone Query Vector Size:', embedding?.length);
+      console.log('Top 10 Pinecone Matches:', pineconeMatches.length);
+      for (const match of pineconeDebugMatches) {
+        console.log('--------------------------------');
+        console.log('Document ID:', match.documentId || 'N/A');
+        console.log('Document Title:', match.title);
+        console.log('Chunk ID:', match.chunkId);
+        console.log('Chunk Index:', match.chunkIndex ?? 'N/A');
+        console.log('Similarity Score:', match.score.toFixed(6));
+        console.log('Metadata:', JSON.stringify(match.metadata));
+        console.log('Chunk Preview:', match.preview);
+      }
+      console.log('================================');
+      console.log('Filtering');
+      console.log('================================');
+      console.log('MIN_DOCS:', MIN_DOCS);
+      console.log('Score Threshold:', threshold);
+      console.log('Documents Before Filtering:', pineconeMatches.length);
+      console.log('Documents After Filtering:', relevant.length);
+      for (const match of rejectedMatches) {
+        console.log('Rejected:', match.id, 'score:', match.score.toFixed(6), 'reason:', match.reason);
+      }
+      console.log('================================\n');
+
+      debugInfo = {
+        query,
+        normalizedQuery,
+        medicalDomain: medicalIntent,
+        embeddingProvider: retrievalService.embeddingService.embeddingSource,
+        embeddingDimensions: embedding?.length || 0,
+        pineconeMatches: pineconeDebugMatches,
+        filteredMatches: relevant.map((m: any) => buildMatchDebug(m)),
+        rejectedMatches,
+        finalContext: [],
+        topScore: relevant[0]?.score ?? null,
+        retrievedCount: relevant.length,
+        minScore: threshold,
+        minDocs: MIN_DOCS,
+        promptSize: 0,
+        completionTime: 0,
+        chunksSentToGroq: 0,
+        charactersSent: 0,
+        chunkIds: [],
+      };
+      logRagDebug(debugInfo);
 
       retrievalResult = {
         hasContext,
@@ -151,7 +367,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
           create: {
             questionId,
             summary: 'I could not find supporting medical information in the knowledge base.',
-            detailedExplanation: 'No relevant documents exist in NileoPedia.',
+            detailedExplanation: JSON.stringify(createEmptyStructuredResponse('I could not find supporting medical information in the knowledge base.')),
             keyFindings: [],
             confidenceScore: 0,
             generatedBy: 'No Context',
@@ -160,7 +376,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
           update: {
             questionId,
             summary: 'I could not find supporting medical information in the knowledge base.',
-            detailedExplanation: 'No relevant documents exist in NileoPedia.',
+            detailedExplanation: JSON.stringify(createEmptyStructuredResponse('I could not find supporting medical information in the knowledge base.')),
             keyFindings: [],
             confidenceScore: 0,
             generatedBy: 'No Context',
@@ -198,7 +414,19 @@ export async function processAiGeneration(job: AiGenerationJob) {
       text: match.metadata?.textPreview || match.metadata?.text || '',
       metadata: match.metadata,
     }));
-    const context = chunks.map((c) => c.text).join('\n\n');
+    const context = retrievalService.buildContext(retrievalResult.context);
+
+    console.log('================================');
+    console.log('Retrieved Context');
+    console.log('================================');
+    console.log('Question:', query);
+    console.log('Retrieved chunk count:', chunks.length);
+    console.log('Total context characters:', context.length);
+    console.log('First 500 characters of context:');
+    console.log(context.substring(0, 500));
+    console.log('Document titles:', chunks.map((c: any) => c.metadata?.title || c.metadata?.source || 'Unknown').join(', '));
+    console.log('Chunk IDs:', chunks.map((c: any) => c.metadata?.chunkId || c.metadata?.id || 'unknown').join(', '));
+    console.log('================================\n');
 
     console.log('[GROQ] Context length:', context.length);
     console.log('[GROQ] Chunks used:', chunks.length);
@@ -215,33 +443,113 @@ export async function processAiGeneration(job: AiGenerationJob) {
     let groqMs = 0;
 
     try {
-      const systemPrompt = `You are a medical retrieval assistant.
+      const systemPrompt = `You are a medical retrieval assistant for NileoPedia, a premium evidence-based medical decision support platform.
 
 Rules:
 - Use ONLY information provided in CONTEXT.
 - Never use your own knowledge.
 - Never invent facts.
 - If context is insufficient, reply exactly: "I could not find supporting medical information in the knowledge base."
+- Always return valid JSON matching the requested schema.
+- Keep explanations concise. Maximum 4 lines per paragraph.
+- Use bullet points, tables, and highlight boxes instead of long paragraphs.
+- Never output "Unknown" for metadata fields. If a field is not available in the context, omit it from the reference object.
+- Every clinical statement should be supported by a citation from the references array.
 
 CONTEXT:
-${context}
-
-Retrieve relevant medical information. Do not add external knowledge.`;
+${context}`;
 
       const userPrompt = `QUESTION:
 ${query}
 
 Return your response as valid JSON with exactly this structure:
 {
-  "summary": "clinical summary",
-  "keyRecommendations": [],
-  "sections": {},
-  "citations": []
+  "clinicalSummary": "2-4 sentence executive summary with bullet points if helpful",
+  "definition": "Clear medical definition",
+  "clinicalOverview": "Brief clinical overview paragraph",
+  "causes": ["Cause 1", "Cause 2"],
+  "riskFactors": ["Risk factor 1", "Risk factor 2"],
+  "symptoms": ["Symptom 1", "Symptom 2"],
+  "diagnosis": ["Diagnosis method 1", "Diagnosis method 2"],
+  "treatment": {
+    "lifestyle": ["Lifestyle change 1", "Lifestyle change 2"],
+    "medications": [
+      {
+        "name": "Medication name",
+        "class": "Drug class",
+        "use": "Typical use case"
+      }
+    ]
+  },
+  "lifestyleManagement": ["Management strategy 1", "Management strategy 2"],
+  "complications": ["Complication 1", "Complication 2"],
+  "prevention": ["Prevention strategy 1", "Prevention strategy 2"],
+  "specialPopulations": ["Population 1", "Population 2"],
+  "prognosis": "Brief prognosis statement",
+  "patientEducation": ["Education point 1", "Education point 2"],
+  "keyTakeaways": ["Key point 1", "Key point 2", "Key point 3"],
+  "warningBoxes": [
+    {
+      "type": "emergency" | "drug_interaction" | "contraindication" | "general",
+      "title": "Warning title",
+      "content": "Warning content"
+    }
+  ],
+  "tables": [
+    {
+      "title": "Table title",
+      "headers": ["Column 1", "Column 2"],
+      "rows": [
+        ["Row 1 Col 1", "Row 1 Col 2"],
+        ["Row 2 Col 1", "Row 2 Col 2"]
+      ]
+    }
+  ],
+  "references": [
+    {
+      "title": "Reference title",
+      "authors": "Author names",
+      "journal": "Journal name",
+      "organization": "Organization name",
+      "year": 2023,
+      "doi": "10.1000/ref.0",
+      "url": "https://example.com",
+      "publisher": "Publisher name",
+      "documentType": "Clinical Guideline",
+      "medicalSpecialty": "Cardiology",
+      "volume": "12",
+      "issue": "3",
+      "pages": "45-52",
+      "isbn": "978-0-123456-47-2",
+      "pmid": "12345678",
+      "pmcid": "PMC123456"
+    }
+  ],
+  "followUpQuestions": [
+    "Follow-up question 1",
+    "Follow-up question 2",
+    "Follow-up question 3",
+    "Follow-up question 4"
+  ],
+  "patientFriendlyVersion": "Simple language explanation for patients"
 }
 
-If no relevant information is available in the context, use summary: "I could not find supporting medical information in the knowledge base."`;
+If no relevant information is available in the context, use clinicalSummary: "I could not find supporting medical information in the knowledge base." and empty arrays/objects for all other fields.`;
 
       console.log('[GROQ] Sending request to model:', CONFIG.GROQ_MODEL);
+
+      console.log('================================');
+      console.log('Groq Request');
+      console.log('================================');
+      console.log('Model:', CONFIG.GROQ_MODEL);
+      console.log('Temperature:', 0.1);
+      console.log('Max tokens:', 4096);
+      console.log('Context length:', context.length);
+      console.log('System prompt length:', systemPrompt.length);
+      console.log('User prompt length:', userPrompt.length);
+      console.log('System prompt preview:', systemPrompt.substring(0, 500));
+      console.log('User prompt preview:', userPrompt.substring(0, 500));
+      console.log('================================\n');
 
       const groqPromise = groq.chat.completions.create({
         model: CONFIG.GROQ_MODEL,
@@ -250,7 +558,7 @@ If no relevant information is available in the context, use summary: "I could no
           { role: 'user', content: userPrompt },
         ],
         temperature: 0.1,
-        max_tokens: 2048,
+        max_tokens: 4096,
       });
       const timeoutPromise = new Promise((_, reject) => {
         setTimeout(() => reject(new Error('Groq timeout after 30000ms')), 30000);
@@ -261,29 +569,54 @@ If no relevant information is available in the context, use summary: "I could no
       console.log('[GROQ] Response received in', groqMs, 'ms');
 
       const rawContent = completion.choices[0]?.message?.content || '{}';
+      const finishReason = completion.choices[0]?.finish_reason;
+      const tokenUsage = completion.usage;
+
+      console.log('================================');
+      console.log('Groq Raw Response');
+      console.log('================================');
+      console.log('Raw response:', rawContent);
+      console.log('Finish reason:', finishReason);
+      console.log('Token usage:', JSON.stringify(tokenUsage));
+      console.log('================================\n');
+
       console.log('[GROQ] Raw response length:', rawContent.length);
       console.log('[GROQ] Raw response preview:', rawContent.substring(0, 200));
 
+      let structuredResponse: any = null;
       try {
         const cleaned = rawContent.replace(/^```(?:json)?\n?|```$/g, '').trim();
         structuredResponse = JSON.parse(cleaned);
         console.log('[GROQ] Parsed structured response successfully');
-      } catch (parseError) {
+      } catch (parseError: any) {
+        console.log('================================');
+        console.log('JSON Parsing Failed');
+        console.log('================================');
+        console.log('Parse error:', parseError.message);
+        console.log('Raw response:', rawContent);
+        console.log('Expected schema: structured medical response with clinicalSummary, definition, etc.');
+        console.log('================================\n');
+        
         const noContext = rawContent.toLowerCase().includes('i could not find supporting medical information');
         if (noContext) {
           structuredResponse = {
-            summary: 'I could not find supporting medical information in the knowledge base.',
-            keyRecommendations: [],
-            sections: {},
-            citations: [],
+            clinicalSummary: 'I could not find supporting medical information in the knowledge base.',
+            definition: '',
+            causes: [],
+            symptoms: [],
+            diagnosis: [],
+            treatment: { lifestyle: [], medications: [] },
+            complications: [],
+            prevention: [],
+            specialPopulations: [],
+            keyTakeaways: [],
+            references: [],
           };
         } else {
           logger.warn('Failed to parse structured JSON from LLM, using fallback');
           structuredResponse = {
-            summary: rawContent.substring(0, 500),
-            keyRecommendations: [],
-            sections: {},
-            citations: [],
+            ...createEmptyStructuredResponse(rawContent.substring(0, 500)),
+            clinicalSummary: rawContent.substring(0, 500),
           };
         }
       }
@@ -296,19 +629,27 @@ If no relevant information is available in the context, use summary: "I could no
     const citations: CitationData[] = [];
     const seenTitles = new Set<string>();
 
-    if (structuredResponse.citations && Array.isArray(structuredResponse.citations)) {
-      for (const citation of structuredResponse.citations) {
-        const title = citation.title || 'Unknown Source';
+    if (structuredResponse.references && Array.isArray(structuredResponse.references)) {
+      for (const ref of structuredResponse.references) {
+        const title = ref.title || 'Unknown Source';
         if (seenTitles.has(title)) continue;
         seenTitles.add(title);
 
         citations.push({
           title,
-          source: citation.journal || citation.title || 'Medical Database',
-          authors: citation.authors,
-          publicationYear: citation.year,
-          doi: citation.doi,
-          url: citation.url,
+          source: ref.journal || ref.title || 'Medical Database',
+          authors: ref.authors,
+          journal: ref.journal,
+          publisher: ref.publisher,
+          publicationYear: ref.year,
+          volume: ref.volume,
+          issue: ref.issue,
+          pages: ref.pages,
+          doi: ref.doi,
+          isbn: ref.isbn,
+          pmid: ref.pmid,
+          pmcid: ref.pmcid,
+          url: ref.url,
         });
       }
     }
@@ -324,13 +665,27 @@ If no relevant information is available in the context, use summary: "I could no
         title,
         source: metadata.source || 'Medical Database',
         authors: metadata.authors,
+        journal: metadata.journal,
+        publisher: metadata.publisher,
         publicationYear: metadata.publicationYear,
+        volume: metadata.volume,
+        issue: metadata.issue,
+        pages: metadata.pages,
         doi: metadata.doi,
-        url: metadata.url,
+        isbn: metadata.isbn,
+        pmid: metadata.pmid,
+        pmcid: metadata.pmcid,
+        institution: metadata.institution,
+        country: metadata.country,
+        publicationType: metadata.publicationType,
+        keywords: metadata.keywords,
+        medicalSpecialty: metadata.medicalSpecialty,
+        language: metadata.language,
+        url: metadata.sourceURL || metadata.url,
         pageNumber: metadata.pageNumber,
         sectionTitle: metadata.sectionTitle,
         documentType: metadata.documentType,
-        journal: metadata.journal,
+        specialty: metadata.specialty,
       });
     }
 
@@ -338,15 +693,26 @@ If no relevant information is available in the context, use summary: "I could no
     const confidenceScore = 0.85 + Math.random() * 0.1;
     const generatedBy = 'Llama-3.3-70b';
 
-    const summary = structuredResponse.summary || '';
-    const keyFindings = (structuredResponse.keyRecommendations || []).map((rec: string) => `✓ ${rec}`);
+    const summary = structuredResponse.clinicalSummary || structuredResponse.summary || '';
+    const keyFindings = (structuredResponse.keyTakeaways || []).map((rec: string) => `✓ ${rec}`);
+
+    console.log('================================');
+    console.log('Database Save');
+    console.log('================================');
+    console.log('clinicalSummary:', structuredResponse.clinicalSummary);
+    console.log('definition:', structuredResponse.definition);
+    console.log('clinicalOverview:', structuredResponse.clinicalOverview);
+    console.log('treatment:', JSON.stringify(structuredResponse.treatment));
+    console.log('references count:', structuredResponse.references?.length || 0);
+    console.log('citations count:', finalCitations.length);
+    console.log('================================\n');
 
     const aiResponse = await prisma.aIResponse.upsert({
       where: { questionId },
       create: {
         questionId,
         summary,
-        detailedExplanation: structuredResponse.detailedExplanation || structuredResponse.sections ? JSON.stringify(structuredResponse.sections) : null,
+        detailedExplanation: JSON.stringify(structuredResponse),
         keyFindings,
         confidenceScore,
         generatedBy,
@@ -354,8 +720,9 @@ If no relevant information is available in the context, use summary: "I could no
         documentsUsed: retrievalResult.context.length,
       },
       update: {
+        questionId,
         summary,
-        detailedExplanation: structuredResponse.detailedExplanation || structuredResponse.sections ? JSON.stringify(structuredResponse.sections) : null,
+        detailedExplanation: JSON.stringify(structuredResponse),
         keyFindings,
         confidenceScore,
         generatedBy,
@@ -363,6 +730,27 @@ If no relevant information is available in the context, use summary: "I could no
         documentsUsed: retrievalResult.context.length,
       },
     });
+
+    const savedRecord = await prisma.aIResponse.findUnique({
+      where: { id: aiResponse.id },
+      select: {
+        id: true,
+        summary: true,
+        detailedExplanation: true,
+        validationStatus: true,
+        documentsUsed: true,
+        generatedBy: true,
+        confidenceScore: true,
+      },
+    });
+
+    console.log('================================');
+    console.log('Database Verification');
+    console.log('================================');
+    console.log('Saved record ID:', savedRecord?.id);
+    console.log('clinicalSummary:', savedRecord?.summary);
+    console.log('structuredResponse:', savedRecord?.detailedExplanation);
+    console.log('================================\n');
 
     for (let i = 0; i < finalCitations.length; i++) {
       const citation = finalCitations[i];
@@ -372,11 +760,26 @@ If no relevant information is available in the context, use summary: "I could no
           title: citation.title || `Reference ${i + 1}`,
           source: citation.source || 'Medical Database',
           authors: citation.authors || 'Unknown',
+          journal: citation.journal,
+          publisher: citation.publisher,
           publicationYear: citation.publicationYear || new Date().getFullYear(),
+          volume: citation.volume,
+          issue: citation.issue,
+          pages: citation.pages,
           doi: citation.doi || `10.1000/ref.${i}`,
+          isbn: citation.isbn,
+          pmid: citation.pmid,
+          pmcid: citation.pmcid,
+          institution: citation.institution,
+          country: citation.country,
+          publicationType: citation.publicationType,
+          keywords: citation.keywords,
+          medicalSpecialty: citation.medicalSpecialty,
+          language: citation.language,
           url: citation.url,
           citationIndex: i,
           documentType: citation.documentType,
+          specialty: citation.specialty,
           pageNumber: citation.pageNumber,
           sectionTitle: citation.sectionTitle,
         },

@@ -31613,3 +31613,1100 @@ Foreign key constraint violated: `MedicalDocument_uploadedById_fkey (index)`
 2026-07-18T09:08:39.019Z [nileopedia-backend] error: Failed to store 11 of 11 vectors in Pinecone for document 0c10fb53-74ce-482b-8cdb-0b43e92077c5
 2026-07-18T09:08:39.221Z [nileopedia-backend] error: Document ingestion failed: 0c10fb53-74ce-482b-8cdb-0b43e92077c5 Failed to store 11 of 11 vectors in Pinecone for document 0c10fb53-74ce-482b-8cdb-0b43e92077c5
 2026-07-18T09:08:42.497Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:06:40.480Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T14:06:40.536Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T14:06:40.651Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-18T14:06:40.695Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-18T14:06:40.753Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-18T14:06:40.785Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T14:06:40.818Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T14:06:40.845Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T14:10:45.541Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:10:45.543Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8fc8b2ad-114c-4eda-9418-a19becb8ea70
+2026-07-18T14:10:45.559Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:10:45.560Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 51172ed2-33b7-4110-b317-2ba1ee6ebb76
+2026-07-18T14:10:45.641Z [nileopedia-backend] error: Document ingestion failed: 8fc8b2ad-114c-4eda-9418-a19becb8ea70 Failed to store 6 of 6 vectors in Pinecone for document 8fc8b2ad-114c-4eda-9418-a19becb8ea70
+2026-07-18T14:10:45.654Z [nileopedia-backend] error: Document ingestion failed: 51172ed2-33b7-4110-b317-2ba1ee6ebb76 Failed to store 6 of 6 vectors in Pinecone for document 51172ed2-33b7-4110-b317-2ba1ee6ebb76
+2026-07-18T14:10:45.658Z [nileopedia-backend] error: Document ingestion job failed: 2605 Failed to store 6 of 6 vectors in Pinecone for document 8fc8b2ad-114c-4eda-9418-a19becb8ea70
+2026-07-18T14:10:45.663Z [nileopedia-backend] error: Document ingestion job failed: 2604 Failed to store 6 of 6 vectors in Pinecone for document 51172ed2-33b7-4110-b317-2ba1ee6ebb76
+2026-07-18T14:11:11.963Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:11:27.705Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:11:27.705Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d4b65cd0-bf65-4d81-91ba-b5bd2253e3e9
+2026-07-18T14:11:27.891Z [nileopedia-backend] error: Document ingestion failed: d4b65cd0-bf65-4d81-91ba-b5bd2253e3e9 Failed to store 6 of 6 vectors in Pinecone for document d4b65cd0-bf65-4d81-91ba-b5bd2253e3e9
+2026-07-18T14:11:27.900Z [nileopedia-backend] error: Document ingestion job failed: 2602 Failed to store 6 of 6 vectors in Pinecone for document d4b65cd0-bf65-4d81-91ba-b5bd2253e3e9
+2026-07-18T14:11:28.423Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:11:28.425Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8e9bbd26-01db-4fe1-9f8e-737bafe76c30
+2026-07-18T14:11:37.571Z [nileopedia-backend] error: Document ingestion failed: 8e9bbd26-01db-4fe1-9f8e-737bafe76c30 Failed to store 6 of 6 vectors in Pinecone for document 8e9bbd26-01db-4fe1-9f8e-737bafe76c30
+2026-07-18T14:11:37.790Z [nileopedia-backend] error: Document ingestion job failed: 2603 Failed to store 6 of 6 vectors in Pinecone for document 8e9bbd26-01db-4fe1-9f8e-737bafe76c30
+2026-07-18T14:11:50.559Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:11:50.560Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8909232d-c5aa-45d9-b645-0cc762c6f1c3
+2026-07-18T14:11:50.656Z [nileopedia-backend] error: Document ingestion failed: 8909232d-c5aa-45d9-b645-0cc762c6f1c3 Failed to store 6 of 6 vectors in Pinecone for document 8909232d-c5aa-45d9-b645-0cc762c6f1c3
+2026-07-18T14:11:50.661Z [nileopedia-backend] error: Document ingestion job failed: 2606 Failed to store 6 of 6 vectors in Pinecone for document 8909232d-c5aa-45d9-b645-0cc762c6f1c3
+2026-07-18T14:11:51.355Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:11:51.356Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1e9f1b93-4e66-4380-a3a8-ea3baf68c70c
+2026-07-18T14:11:53.866Z [nileopedia-backend] error: Document ingestion failed: 1e9f1b93-4e66-4380-a3a8-ea3baf68c70c Failed to store 6 of 6 vectors in Pinecone for document 1e9f1b93-4e66-4380-a3a8-ea3baf68c70c
+2026-07-18T14:11:53.874Z [nileopedia-backend] error: Document ingestion job failed: 2607 Failed to store 6 of 6 vectors in Pinecone for document 1e9f1b93-4e66-4380-a3a8-ea3baf68c70c
+2026-07-18T14:12:05.942Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:05.951Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document aa54ffe0-779e-4786-a420-4eba215221ab
+2026-07-18T14:12:05.970Z [nileopedia-backend] error: Document ingestion failed: aa54ffe0-779e-4786-a420-4eba215221ab Failed to store 6 of 6 vectors in Pinecone for document aa54ffe0-779e-4786-a420-4eba215221ab
+2026-07-18T14:12:05.978Z [nileopedia-backend] error: Document ingestion job failed: 2608 Failed to store 6 of 6 vectors in Pinecone for document aa54ffe0-779e-4786-a420-4eba215221ab
+2026-07-18T14:12:07.036Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:07.039Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document dc234a80-c30a-434b-8acc-ebb12b2aa91d
+2026-07-18T14:12:10.097Z [nileopedia-backend] error: Document ingestion failed: dc234a80-c30a-434b-8acc-ebb12b2aa91d Failed to store 6 of 6 vectors in Pinecone for document dc234a80-c30a-434b-8acc-ebb12b2aa91d
+2026-07-18T14:12:10.106Z [nileopedia-backend] error: Document ingestion job failed: 2609 Failed to store 6 of 6 vectors in Pinecone for document dc234a80-c30a-434b-8acc-ebb12b2aa91d
+2026-07-18T14:12:18.167Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:12:22.554Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:22.557Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c6165be6-785b-493f-bd64-23f12418331f
+2026-07-18T14:12:22.573Z [nileopedia-backend] error: Document ingestion failed: c6165be6-785b-493f-bd64-23f12418331f Failed to store 6 of 6 vectors in Pinecone for document c6165be6-785b-493f-bd64-23f12418331f
+2026-07-18T14:12:22.586Z [nileopedia-backend] error: Document ingestion job failed: 2610 Failed to store 6 of 6 vectors in Pinecone for document c6165be6-785b-493f-bd64-23f12418331f
+2026-07-18T14:12:26.613Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:26.615Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1305b490-4995-4ebf-a19f-3db10df0bf1e
+2026-07-18T14:12:26.628Z [nileopedia-backend] error: Document ingestion failed: 1305b490-4995-4ebf-a19f-3db10df0bf1e Failed to store 6 of 6 vectors in Pinecone for document 1305b490-4995-4ebf-a19f-3db10df0bf1e
+2026-07-18T14:12:26.631Z [nileopedia-backend] error: Document ingestion job failed: 2611 Failed to store 6 of 6 vectors in Pinecone for document 1305b490-4995-4ebf-a19f-3db10df0bf1e
+2026-07-18T14:12:35.400Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:35.405Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 036bf60c-c7c0-4486-82ed-7d8a0148c1cf
+2026-07-18T14:12:35.430Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:35.432Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 762b41b7-f708-40d8-9b88-3500f2753ef6
+2026-07-18T14:12:35.448Z [nileopedia-backend] error: Document ingestion failed: 036bf60c-c7c0-4486-82ed-7d8a0148c1cf Failed to store 6 of 6 vectors in Pinecone for document 036bf60c-c7c0-4486-82ed-7d8a0148c1cf
+2026-07-18T14:12:35.452Z [nileopedia-backend] error: Document ingestion failed: 762b41b7-f708-40d8-9b88-3500f2753ef6 Failed to store 6 of 6 vectors in Pinecone for document 762b41b7-f708-40d8-9b88-3500f2753ef6
+2026-07-18T14:12:35.456Z [nileopedia-backend] error: Document ingestion job failed: 2613 Failed to store 6 of 6 vectors in Pinecone for document 036bf60c-c7c0-4486-82ed-7d8a0148c1cf
+2026-07-18T14:12:35.456Z [nileopedia-backend] error: Document ingestion job failed: 2612 Failed to store 6 of 6 vectors in Pinecone for document 762b41b7-f708-40d8-9b88-3500f2753ef6
+2026-07-18T14:12:44.093Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 10000ms
+2026-07-18T14:12:52.132Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:52.137Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 974fa44c-7a33-4505-911c-1efa0e22e9fb
+2026-07-18T14:12:52.147Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:12:52.154Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 885b7bf9-7699-4765-8f97-bd40e94a6b99
+2026-07-18T14:12:52.183Z [nileopedia-backend] error: Document ingestion failed: 974fa44c-7a33-4505-911c-1efa0e22e9fb Failed to store 6 of 6 vectors in Pinecone for document 974fa44c-7a33-4505-911c-1efa0e22e9fb
+2026-07-18T14:12:52.190Z [nileopedia-backend] error: Document ingestion job failed: 2615 Failed to store 6 of 6 vectors in Pinecone for document 974fa44c-7a33-4505-911c-1efa0e22e9fb
+2026-07-18T14:12:52.199Z [nileopedia-backend] error: Document ingestion failed: 885b7bf9-7699-4765-8f97-bd40e94a6b99 Failed to store 6 of 6 vectors in Pinecone for document 885b7bf9-7699-4765-8f97-bd40e94a6b99
+2026-07-18T14:12:52.384Z [nileopedia-backend] error: Document ingestion job failed: 2614 Failed to store 6 of 6 vectors in Pinecone for document 885b7bf9-7699-4765-8f97-bd40e94a6b99
+2026-07-18T14:13:07.257Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:13:07.258Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document e5b4aa19-a4f8-4faa-91b0-24d4f07465fd
+2026-07-18T14:13:07.276Z [nileopedia-backend] error: Document ingestion failed: e5b4aa19-a4f8-4faa-91b0-24d4f07465fd Failed to store 6 of 6 vectors in Pinecone for document e5b4aa19-a4f8-4faa-91b0-24d4f07465fd
+2026-07-18T14:13:07.279Z [nileopedia-backend] error: Document ingestion job failed: 2616 Failed to store 6 of 6 vectors in Pinecone for document e5b4aa19-a4f8-4faa-91b0-24d4f07465fd
+2026-07-18T14:13:10.315Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:13:10.316Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document bf9e7b47-6fd3-4bf3-8287-d76e3b803a2a
+2026-07-18T14:13:10.351Z [nileopedia-backend] error: Document ingestion failed: bf9e7b47-6fd3-4bf3-8287-d76e3b803a2a Failed to store 6 of 6 vectors in Pinecone for document bf9e7b47-6fd3-4bf3-8287-d76e3b803a2a
+2026-07-18T14:13:10.361Z [nileopedia-backend] error: Document ingestion job failed: 2617 Failed to store 6 of 6 vectors in Pinecone for document bf9e7b47-6fd3-4bf3-8287-d76e3b803a2a
+2026-07-18T14:13:28.834Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:14:41.228Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:14:41.232Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d4f7f794-8efa-47ab-a8ea-3e8c65672b13
+2026-07-18T14:14:41.252Z [nileopedia-backend] error: Document ingestion failed: d4f7f794-8efa-47ab-a8ea-3e8c65672b13 Failed to store 6 of 6 vectors in Pinecone for document d4f7f794-8efa-47ab-a8ea-3e8c65672b13
+2026-07-18T14:14:41.258Z [nileopedia-backend] error: Document ingestion job failed: 2624 Failed to store 6 of 6 vectors in Pinecone for document d4f7f794-8efa-47ab-a8ea-3e8c65672b13
+2026-07-18T14:14:53.222Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:14:53.223Z [nileopedia-backend] error: Failed to store 8 of 8 vectors in Pinecone for document 6b80bab1-8497-43d0-826e-b48223483ec4
+2026-07-18T14:14:53.365Z [nileopedia-backend] error: Document ingestion failed: 6b80bab1-8497-43d0-826e-b48223483ec4 Failed to store 8 of 8 vectors in Pinecone for document 6b80bab1-8497-43d0-826e-b48223483ec4
+2026-07-18T14:14:53.369Z [nileopedia-backend] error: Document ingestion job failed: 2626 Failed to store 8 of 8 vectors in Pinecone for document 6b80bab1-8497-43d0-826e-b48223483ec4
+2026-07-18T14:15:03.114Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:13.606Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:15:13.613Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:13.614Z [nileopedia-backend] error: Failed to store 40 of 60 vectors in Pinecone for document f868cdf7-7785-4a5b-8049-81b7c303aa3b
+2026-07-18T14:15:13.670Z [nileopedia-backend] error: Document ingestion failed: f868cdf7-7785-4a5b-8049-81b7c303aa3b Failed to store 40 of 60 vectors in Pinecone for document f868cdf7-7785-4a5b-8049-81b7c303aa3b
+2026-07-18T14:15:13.675Z [nileopedia-backend] error: Document ingestion job failed: 2625 Failed to store 40 of 60 vectors in Pinecone for document f868cdf7-7785-4a5b-8049-81b7c303aa3b
+2026-07-18T14:15:31.520Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:31.521Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7a71d7c8-3abf-4f62-934e-a7f444b75fcf
+2026-07-18T14:15:31.542Z [nileopedia-backend] error: Document ingestion failed: 7a71d7c8-3abf-4f62-934e-a7f444b75fcf Failed to store 6 of 6 vectors in Pinecone for document 7a71d7c8-3abf-4f62-934e-a7f444b75fcf
+2026-07-18T14:15:31.561Z [nileopedia-backend] error: Document ingestion job failed: 2628 Failed to store 6 of 6 vectors in Pinecone for document 7a71d7c8-3abf-4f62-934e-a7f444b75fcf
+2026-07-18T14:15:36.915Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:36.916Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a0e7fa33-48b3-4185-be32-00ad601daec5
+2026-07-18T14:15:36.958Z [nileopedia-backend] error: Document ingestion failed: a0e7fa33-48b3-4185-be32-00ad601daec5 Failed to store 6 of 6 vectors in Pinecone for document a0e7fa33-48b3-4185-be32-00ad601daec5
+2026-07-18T14:15:36.978Z [nileopedia-backend] error: Document ingestion job failed: 2629 Failed to store 6 of 6 vectors in Pinecone for document a0e7fa33-48b3-4185-be32-00ad601daec5
+2026-07-18T14:15:44.763Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:44.764Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 2fb6cb10-af4c-44bc-8216-29ee34da5fd7
+2026-07-18T14:15:44.766Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:44.767Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ef20f4ff-c281-4594-b28d-00b597a2c74e
+2026-07-18T14:15:44.791Z [nileopedia-backend] error: Document ingestion failed: 2fb6cb10-af4c-44bc-8216-29ee34da5fd7 Failed to store 6 of 6 vectors in Pinecone for document 2fb6cb10-af4c-44bc-8216-29ee34da5fd7
+2026-07-18T14:15:44.795Z [nileopedia-backend] error: Document ingestion failed: ef20f4ff-c281-4594-b28d-00b597a2c74e Failed to store 6 of 6 vectors in Pinecone for document ef20f4ff-c281-4594-b28d-00b597a2c74e
+2026-07-18T14:15:44.798Z [nileopedia-backend] error: Document ingestion job failed: 2630 Failed to store 6 of 6 vectors in Pinecone for document 2fb6cb10-af4c-44bc-8216-29ee34da5fd7
+2026-07-18T14:15:44.804Z [nileopedia-backend] error: Document ingestion job failed: 2631 Failed to store 6 of 6 vectors in Pinecone for document ef20f4ff-c281-4594-b28d-00b597a2c74e
+2026-07-18T14:15:51.365Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:15:53.471Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:15:59.281Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:59.283Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 3f052cfe-1e9b-490b-ac74-0f7e4e7854b4
+2026-07-18T14:15:59.299Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:15:59.306Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7e7cddfb-1769-4a7a-977e-649342fa938a
+2026-07-18T14:15:59.321Z [nileopedia-backend] error: Document ingestion failed: 3f052cfe-1e9b-490b-ac74-0f7e4e7854b4 Failed to store 6 of 6 vectors in Pinecone for document 3f052cfe-1e9b-490b-ac74-0f7e4e7854b4
+2026-07-18T14:15:59.324Z [nileopedia-backend] error: Document ingestion failed: 7e7cddfb-1769-4a7a-977e-649342fa938a Failed to store 6 of 6 vectors in Pinecone for document 7e7cddfb-1769-4a7a-977e-649342fa938a
+2026-07-18T14:15:59.327Z [nileopedia-backend] error: Document ingestion job failed: 2632 Failed to store 6 of 6 vectors in Pinecone for document 3f052cfe-1e9b-490b-ac74-0f7e4e7854b4
+2026-07-18T14:15:59.328Z [nileopedia-backend] error: Document ingestion job failed: 2633 Failed to store 6 of 6 vectors in Pinecone for document 7e7cddfb-1769-4a7a-977e-649342fa938a
+2026-07-18T14:16:15.500Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:16:15.501Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 45676cbe-bc70-4453-84e1-b11a1e572fee
+2026-07-18T14:16:15.512Z [nileopedia-backend] error: Document ingestion failed: 45676cbe-bc70-4453-84e1-b11a1e572fee Failed to store 6 of 6 vectors in Pinecone for document 45676cbe-bc70-4453-84e1-b11a1e572fee
+2026-07-18T14:16:15.515Z [nileopedia-backend] error: Document ingestion job failed: 2635 Failed to store 6 of 6 vectors in Pinecone for document 45676cbe-bc70-4453-84e1-b11a1e572fee
+2026-07-18T14:16:37.915Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:16:54.122Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:17:05.771Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:17:05.772Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ea6d21e3-e649-4503-90d0-1d9d01853ee8
+2026-07-18T14:17:05.780Z [nileopedia-backend] error: Document ingestion failed: ea6d21e3-e649-4503-90d0-1d9d01853ee8 Failed to store 6 of 6 vectors in Pinecone for document ea6d21e3-e649-4503-90d0-1d9d01853ee8
+2026-07-18T14:17:05.788Z [nileopedia-backend] error: Document ingestion job failed: 2640 Failed to store 6 of 6 vectors in Pinecone for document ea6d21e3-e649-4503-90d0-1d9d01853ee8
+2026-07-18T14:17:15.082Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:17:49.497Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:18:25.599Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:18:25.601Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1fc4058e-37c9-4c9e-88c4-2b54a49d6fa9
+2026-07-18T14:18:25.613Z [nileopedia-backend] error: Document ingestion failed: 1fc4058e-37c9-4c9e-88c4-2b54a49d6fa9 Failed to store 6 of 6 vectors in Pinecone for document 1fc4058e-37c9-4c9e-88c4-2b54a49d6fa9
+2026-07-18T14:18:25.616Z [nileopedia-backend] error: Document ingestion job failed: 2648 Failed to store 6 of 6 vectors in Pinecone for document 1fc4058e-37c9-4c9e-88c4-2b54a49d6fa9
+2026-07-18T14:18:28.024Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:18:41.468Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:18:41.471Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8478e195-0e0e-43a6-97a8-a98a9d05ceeb
+2026-07-18T14:18:41.479Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:18:41.480Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document f26b4e58-d28d-41af-a91b-279cfe4123f1
+2026-07-18T14:18:41.498Z [nileopedia-backend] error: Document ingestion failed: 8478e195-0e0e-43a6-97a8-a98a9d05ceeb Failed to store 6 of 6 vectors in Pinecone for document 8478e195-0e0e-43a6-97a8-a98a9d05ceeb
+2026-07-18T14:18:41.506Z [nileopedia-backend] error: Document ingestion job failed: 2649 Failed to store 6 of 6 vectors in Pinecone for document 8478e195-0e0e-43a6-97a8-a98a9d05ceeb
+2026-07-18T14:18:41.514Z [nileopedia-backend] error: Document ingestion failed: f26b4e58-d28d-41af-a91b-279cfe4123f1 Failed to store 6 of 6 vectors in Pinecone for document f26b4e58-d28d-41af-a91b-279cfe4123f1
+2026-07-18T14:18:41.729Z [nileopedia-backend] error: Document ingestion job failed: 2650 Failed to store 6 of 6 vectors in Pinecone for document f26b4e58-d28d-41af-a91b-279cfe4123f1
+2026-07-18T14:19:00.920Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:00.924Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 95000ba0-1e4b-49bc-b6da-d559bce59929
+2026-07-18T14:19:00.940Z [nileopedia-backend] error: Document ingestion failed: 95000ba0-1e4b-49bc-b6da-d559bce59929 Failed to store 6 of 6 vectors in Pinecone for document 95000ba0-1e4b-49bc-b6da-d559bce59929
+2026-07-18T14:19:00.946Z [nileopedia-backend] error: Document ingestion job failed: 2651 Failed to store 6 of 6 vectors in Pinecone for document 95000ba0-1e4b-49bc-b6da-d559bce59929
+2026-07-18T14:19:01.936Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:01.944Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document cd7f6b35-26bd-431e-8ffc-c2fb072af208
+2026-07-18T14:19:05.897Z [nileopedia-backend] error: Document ingestion failed: cd7f6b35-26bd-431e-8ffc-c2fb072af208 Failed to store 6 of 6 vectors in Pinecone for document cd7f6b35-26bd-431e-8ffc-c2fb072af208
+2026-07-18T14:19:05.941Z [nileopedia-backend] error: Document ingestion job failed: 2652 Failed to store 6 of 6 vectors in Pinecone for document cd7f6b35-26bd-431e-8ffc-c2fb072af208
+2026-07-18T14:19:10.677Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:12.786Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:14.989Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:17.192Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:19.455Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:20.187Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:20.189Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 445597ce-146b-4f0d-b66f-04b82d663248
+2026-07-18T14:19:20.207Z [nileopedia-backend] error: Document ingestion failed: 445597ce-146b-4f0d-b66f-04b82d663248 Failed to store 6 of 6 vectors in Pinecone for document 445597ce-146b-4f0d-b66f-04b82d663248
+2026-07-18T14:19:20.210Z [nileopedia-backend] error: Document ingestion job failed: 2653 Failed to store 6 of 6 vectors in Pinecone for document 445597ce-146b-4f0d-b66f-04b82d663248
+2026-07-18T14:19:21.180Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:21.184Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 23e9cf45-a512-4164-a003-e621d11eb2d9
+2026-07-18T14:19:25.479Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:25.485Z [nileopedia-backend] error: Document ingestion failed: 23e9cf45-a512-4164-a003-e621d11eb2d9 Failed to store 6 of 6 vectors in Pinecone for document 23e9cf45-a512-4164-a003-e621d11eb2d9
+2026-07-18T14:19:25.496Z [nileopedia-backend] error: Document ingestion job failed: 2654 Failed to store 6 of 6 vectors in Pinecone for document 23e9cf45-a512-4164-a003-e621d11eb2d9
+2026-07-18T14:19:29.202Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:19:38.705Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:38.708Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8f5e6bd4-0fb3-4183-ac66-ca34b7f47421
+2026-07-18T14:19:38.746Z [nileopedia-backend] error: Document ingestion failed: 8f5e6bd4-0fb3-4183-ac66-ca34b7f47421 Failed to store 6 of 6 vectors in Pinecone for document 8f5e6bd4-0fb3-4183-ac66-ca34b7f47421
+2026-07-18T14:19:38.754Z [nileopedia-backend] error: Document ingestion job failed: 2655 Failed to store 6 of 6 vectors in Pinecone for document 8f5e6bd4-0fb3-4183-ac66-ca34b7f47421
+2026-07-18T14:19:39.499Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:39.502Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document e6d174ee-d1e9-43b3-a8be-bdb6cef4f398
+2026-07-18T14:19:41.427Z [nileopedia-backend] error: Document ingestion failed: e6d174ee-d1e9-43b3-a8be-bdb6cef4f398 Failed to store 6 of 6 vectors in Pinecone for document e6d174ee-d1e9-43b3-a8be-bdb6cef4f398
+2026-07-18T14:19:41.444Z [nileopedia-backend] error: Document ingestion job failed: 2656 Failed to store 6 of 6 vectors in Pinecone for document e6d174ee-d1e9-43b3-a8be-bdb6cef4f398
+2026-07-18T14:19:55.370Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:55.376Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1a11d461-2f4d-4b8d-9858-0227f9b0df7b
+2026-07-18T14:19:55.398Z [nileopedia-backend] error: Document ingestion failed: 1a11d461-2f4d-4b8d-9858-0227f9b0df7b Failed to store 6 of 6 vectors in Pinecone for document 1a11d461-2f4d-4b8d-9858-0227f9b0df7b
+2026-07-18T14:19:55.407Z [nileopedia-backend] error: Document ingestion job failed: 2657 Failed to store 6 of 6 vectors in Pinecone for document 1a11d461-2f4d-4b8d-9858-0227f9b0df7b
+2026-07-18T14:19:56.576Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:19:56.577Z [nileopedia-backend] error: Failed to store 19 of 19 vectors in Pinecone for document 3739482d-6f29-482d-bc0c-93b311bb3310
+2026-07-18T14:20:00.256Z [nileopedia-backend] error: Document ingestion failed: 3739482d-6f29-482d-bc0c-93b311bb3310 Failed to store 19 of 19 vectors in Pinecone for document 3739482d-6f29-482d-bc0c-93b311bb3310
+2026-07-18T14:20:00.260Z [nileopedia-backend] error: Document ingestion job failed: 2658 Failed to store 19 of 19 vectors in Pinecone for document 3739482d-6f29-482d-bc0c-93b311bb3310
+2026-07-18T14:20:13.287Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:20:13.291Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c975c292-daeb-4800-8479-dbdded0c75cf
+2026-07-18T14:20:13.306Z [nileopedia-backend] error: Document ingestion failed: c975c292-daeb-4800-8479-dbdded0c75cf Failed to store 6 of 6 vectors in Pinecone for document c975c292-daeb-4800-8479-dbdded0c75cf
+2026-07-18T14:20:13.311Z [nileopedia-backend] error: Document ingestion job failed: 2659 Failed to store 6 of 6 vectors in Pinecone for document c975c292-daeb-4800-8479-dbdded0c75cf
+2026-07-18T14:20:16.860Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:20:16.861Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document adffe8c6-0e6c-4318-a691-d86af1f7f235
+2026-07-18T14:20:16.885Z [nileopedia-backend] error: Document ingestion failed: adffe8c6-0e6c-4318-a691-d86af1f7f235 Failed to store 6 of 6 vectors in Pinecone for document adffe8c6-0e6c-4318-a691-d86af1f7f235
+2026-07-18T14:20:16.887Z [nileopedia-backend] error: Document ingestion job failed: 2660 Failed to store 6 of 6 vectors in Pinecone for document adffe8c6-0e6c-4318-a691-d86af1f7f235
+2026-07-18T14:20:42.010Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:20:42.012Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document edde2b92-76a1-4b26-a167-ea5e12681e47
+2026-07-18T14:20:42.027Z [nileopedia-backend] error: Document ingestion failed: edde2b92-76a1-4b26-a167-ea5e12681e47 Failed to store 6 of 6 vectors in Pinecone for document edde2b92-76a1-4b26-a167-ea5e12681e47
+2026-07-18T14:20:42.031Z [nileopedia-backend] error: Document ingestion job failed: 2664 Failed to store 6 of 6 vectors in Pinecone for document edde2b92-76a1-4b26-a167-ea5e12681e47
+2026-07-18T14:20:54.701Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:20:54.704Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 5bc50e06-ffeb-47f2-9f67-cd8be5e619ad
+2026-07-18T14:20:54.721Z [nileopedia-backend] error: Document ingestion failed: 5bc50e06-ffeb-47f2-9f67-cd8be5e619ad Failed to store 6 of 6 vectors in Pinecone for document 5bc50e06-ffeb-47f2-9f67-cd8be5e619ad
+2026-07-18T14:20:54.726Z [nileopedia-backend] error: Document ingestion job failed: 2666 Failed to store 6 of 6 vectors in Pinecone for document 5bc50e06-ffeb-47f2-9f67-cd8be5e619ad
+2026-07-18T14:21:06.870Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:06.871Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8a193496-99be-4c87-aa44-f0887f97616e
+2026-07-18T14:21:06.878Z [nileopedia-backend] error: Document ingestion failed: 8a193496-99be-4c87-aa44-f0887f97616e Failed to store 6 of 6 vectors in Pinecone for document 8a193496-99be-4c87-aa44-f0887f97616e
+2026-07-18T14:21:06.879Z [nileopedia-backend] error: Document ingestion job failed: 2667 Failed to store 6 of 6 vectors in Pinecone for document 8a193496-99be-4c87-aa44-f0887f97616e
+2026-07-18T14:21:07.645Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:21:22.058Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:22.060Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 72e1faeb-e3a2-4ba6-8fe7-a7e8f8f91a06
+2026-07-18T14:21:22.074Z [nileopedia-backend] error: Document ingestion failed: 72e1faeb-e3a2-4ba6-8fe7-a7e8f8f91a06 Failed to store 6 of 6 vectors in Pinecone for document 72e1faeb-e3a2-4ba6-8fe7-a7e8f8f91a06
+2026-07-18T14:21:22.077Z [nileopedia-backend] error: Document ingestion job failed: 2668 Failed to store 6 of 6 vectors in Pinecone for document 72e1faeb-e3a2-4ba6-8fe7-a7e8f8f91a06
+2026-07-18T14:21:24.234Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:24.235Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 507cc2c9-b831-4a34-af2f-94fbfd54e299
+2026-07-18T14:21:24.247Z [nileopedia-backend] error: Document ingestion failed: 507cc2c9-b831-4a34-af2f-94fbfd54e299 Failed to store 15 of 15 vectors in Pinecone for document 507cc2c9-b831-4a34-af2f-94fbfd54e299
+2026-07-18T14:21:24.252Z [nileopedia-backend] error: Document ingestion job failed: 2669 Failed to store 15 of 15 vectors in Pinecone for document 507cc2c9-b831-4a34-af2f-94fbfd54e299
+2026-07-18T14:21:35.984Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:35.985Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d1db6fbe-ced6-4bfc-93d2-d57d9f02763d
+2026-07-18T14:21:36.002Z [nileopedia-backend] error: Document ingestion failed: d1db6fbe-ced6-4bfc-93d2-d57d9f02763d Failed to store 6 of 6 vectors in Pinecone for document d1db6fbe-ced6-4bfc-93d2-d57d9f02763d
+2026-07-18T14:21:36.006Z [nileopedia-backend] error: Document ingestion job failed: 2670 Failed to store 6 of 6 vectors in Pinecone for document d1db6fbe-ced6-4bfc-93d2-d57d9f02763d
+2026-07-18T14:21:38.206Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:38.207Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 93fe7436-5f60-4928-89d1-a14a72ec94bc
+2026-07-18T14:21:38.218Z [nileopedia-backend] error: Document ingestion failed: 93fe7436-5f60-4928-89d1-a14a72ec94bc Failed to store 6 of 6 vectors in Pinecone for document 93fe7436-5f60-4928-89d1-a14a72ec94bc
+2026-07-18T14:21:38.220Z [nileopedia-backend] error: Document ingestion job failed: 2671 Failed to store 6 of 6 vectors in Pinecone for document 93fe7436-5f60-4928-89d1-a14a72ec94bc
+2026-07-18T14:21:49.770Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:49.771Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 60c7bc59-5a7a-4f8c-aef3-a484d62d0fb0
+2026-07-18T14:21:49.783Z [nileopedia-backend] error: Document ingestion failed: 60c7bc59-5a7a-4f8c-aef3-a484d62d0fb0 Failed to store 6 of 6 vectors in Pinecone for document 60c7bc59-5a7a-4f8c-aef3-a484d62d0fb0
+2026-07-18T14:21:49.787Z [nileopedia-backend] error: Document ingestion job failed: 2672 Failed to store 6 of 6 vectors in Pinecone for document 60c7bc59-5a7a-4f8c-aef3-a484d62d0fb0
+2026-07-18T14:21:50.784Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:21:50.785Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d0316d96-5c00-407c-a292-72745d2d45c5
+2026-07-18T14:21:50.794Z [nileopedia-backend] error: Document ingestion failed: d0316d96-5c00-407c-a292-72745d2d45c5 Failed to store 6 of 6 vectors in Pinecone for document d0316d96-5c00-407c-a292-72745d2d45c5
+2026-07-18T14:21:50.796Z [nileopedia-backend] error: Document ingestion job failed: 2673 Failed to store 6 of 6 vectors in Pinecone for document d0316d96-5c00-407c-a292-72745d2d45c5
+2026-07-18T14:22:01.139Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:01.140Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 5763f638-de01-4521-be03-b5e245495704
+2026-07-18T14:22:01.146Z [nileopedia-backend] error: Document ingestion failed: 5763f638-de01-4521-be03-b5e245495704 Failed to store 6 of 6 vectors in Pinecone for document 5763f638-de01-4521-be03-b5e245495704
+2026-07-18T14:22:01.148Z [nileopedia-backend] error: Document ingestion job failed: 2674 Failed to store 6 of 6 vectors in Pinecone for document 5763f638-de01-4521-be03-b5e245495704
+2026-07-18T14:22:03.789Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:03.790Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 5bee1f7e-b744-4cab-9552-47d51afb8272
+2026-07-18T14:22:03.810Z [nileopedia-backend] error: Document ingestion failed: 5bee1f7e-b744-4cab-9552-47d51afb8272 Failed to store 6 of 6 vectors in Pinecone for document 5bee1f7e-b744-4cab-9552-47d51afb8272
+2026-07-18T14:22:03.816Z [nileopedia-backend] error: Document ingestion job failed: 2675 Failed to store 6 of 6 vectors in Pinecone for document 5bee1f7e-b744-4cab-9552-47d51afb8272
+2026-07-18T14:22:09.588Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:09.589Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document dc6fe650-67db-4313-bf36-d7acccbcd8c0
+2026-07-18T14:22:09.601Z [nileopedia-backend] error: Document ingestion failed: dc6fe650-67db-4313-bf36-d7acccbcd8c0 Failed to store 6 of 6 vectors in Pinecone for document dc6fe650-67db-4313-bf36-d7acccbcd8c0
+2026-07-18T14:22:09.603Z [nileopedia-backend] error: Document ingestion job failed: 2677 Failed to store 6 of 6 vectors in Pinecone for document dc6fe650-67db-4313-bf36-d7acccbcd8c0
+2026-07-18T14:22:21.875Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:21.876Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 4980f900-1890-4b7a-9b7b-e1a4b65d421d
+2026-07-18T14:22:21.882Z [nileopedia-backend] error: Document ingestion failed: 4980f900-1890-4b7a-9b7b-e1a4b65d421d Failed to store 6 of 6 vectors in Pinecone for document 4980f900-1890-4b7a-9b7b-e1a4b65d421d
+2026-07-18T14:22:21.884Z [nileopedia-backend] error: Document ingestion job failed: 2678 Failed to store 6 of 6 vectors in Pinecone for document 4980f900-1890-4b7a-9b7b-e1a4b65d421d
+2026-07-18T14:22:24.829Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:24.830Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document daef2a9b-d4d7-4ce4-8f71-5d024e6f90ca
+2026-07-18T14:22:24.846Z [nileopedia-backend] error: Document ingestion failed: daef2a9b-d4d7-4ce4-8f71-5d024e6f90ca Failed to store 6 of 6 vectors in Pinecone for document daef2a9b-d4d7-4ce4-8f71-5d024e6f90ca
+2026-07-18T14:22:24.848Z [nileopedia-backend] error: Document ingestion job failed: 2679 Failed to store 6 of 6 vectors in Pinecone for document daef2a9b-d4d7-4ce4-8f71-5d024e6f90ca
+2026-07-18T14:22:27.069Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:27.070Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document f11c24ef-9784-4aaf-807c-55170e189d19
+2026-07-18T14:22:27.079Z [nileopedia-backend] error: Document ingestion failed: f11c24ef-9784-4aaf-807c-55170e189d19 Failed to store 6 of 6 vectors in Pinecone for document f11c24ef-9784-4aaf-807c-55170e189d19
+2026-07-18T14:22:27.081Z [nileopedia-backend] error: Document ingestion job failed: 2680 Failed to store 6 of 6 vectors in Pinecone for document f11c24ef-9784-4aaf-807c-55170e189d19
+2026-07-18T14:22:29.193Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:29.194Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9f13162b-87b9-4fb7-a03e-c83c98046b83
+2026-07-18T14:22:29.203Z [nileopedia-backend] error: Document ingestion failed: 9f13162b-87b9-4fb7-a03e-c83c98046b83 Failed to store 6 of 6 vectors in Pinecone for document 9f13162b-87b9-4fb7-a03e-c83c98046b83
+2026-07-18T14:22:29.205Z [nileopedia-backend] error: Document ingestion job failed: 2681 Failed to store 6 of 6 vectors in Pinecone for document 9f13162b-87b9-4fb7-a03e-c83c98046b83
+2026-07-18T14:22:31.633Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:31.634Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a89e990e-b563-419e-bf18-34960c19921e
+2026-07-18T14:22:31.644Z [nileopedia-backend] error: Document ingestion failed: a89e990e-b563-419e-bf18-34960c19921e Failed to store 6 of 6 vectors in Pinecone for document a89e990e-b563-419e-bf18-34960c19921e
+2026-07-18T14:22:31.647Z [nileopedia-backend] error: Document ingestion job failed: 2682 Failed to store 6 of 6 vectors in Pinecone for document a89e990e-b563-419e-bf18-34960c19921e
+2026-07-18T14:22:33.739Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:33.740Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7ecfe44b-1ece-4ca4-8596-15a6e4da2739
+2026-07-18T14:22:33.751Z [nileopedia-backend] error: Document ingestion failed: 7ecfe44b-1ece-4ca4-8596-15a6e4da2739 Failed to store 6 of 6 vectors in Pinecone for document 7ecfe44b-1ece-4ca4-8596-15a6e4da2739
+2026-07-18T14:22:33.753Z [nileopedia-backend] error: Document ingestion job failed: 2683 Failed to store 6 of 6 vectors in Pinecone for document 7ecfe44b-1ece-4ca4-8596-15a6e4da2739
+2026-07-18T14:22:35.703Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:35.704Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 111d58fe-ee4d-4265-bc7f-511a4531a0f1
+2026-07-18T14:22:35.713Z [nileopedia-backend] error: Document ingestion failed: 111d58fe-ee4d-4265-bc7f-511a4531a0f1 Failed to store 6 of 6 vectors in Pinecone for document 111d58fe-ee4d-4265-bc7f-511a4531a0f1
+2026-07-18T14:22:35.715Z [nileopedia-backend] error: Document ingestion job failed: 2684 Failed to store 6 of 6 vectors in Pinecone for document 111d58fe-ee4d-4265-bc7f-511a4531a0f1
+2026-07-18T14:22:37.812Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:37.813Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9eeb23ac-e995-4e86-bf25-ed0bdee99ed6
+2026-07-18T14:22:37.830Z [nileopedia-backend] error: Document ingestion failed: 9eeb23ac-e995-4e86-bf25-ed0bdee99ed6 Failed to store 6 of 6 vectors in Pinecone for document 9eeb23ac-e995-4e86-bf25-ed0bdee99ed6
+2026-07-18T14:22:37.837Z [nileopedia-backend] error: Document ingestion job failed: 2685 Failed to store 6 of 6 vectors in Pinecone for document 9eeb23ac-e995-4e86-bf25-ed0bdee99ed6
+2026-07-18T14:22:39.852Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:39.853Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 169cc91d-7d7e-4479-9297-b288e74e6e67
+2026-07-18T14:22:39.861Z [nileopedia-backend] error: Document ingestion failed: 169cc91d-7d7e-4479-9297-b288e74e6e67 Failed to store 6 of 6 vectors in Pinecone for document 169cc91d-7d7e-4479-9297-b288e74e6e67
+2026-07-18T14:22:39.863Z [nileopedia-backend] error: Document ingestion job failed: 2686 Failed to store 6 of 6 vectors in Pinecone for document 169cc91d-7d7e-4479-9297-b288e74e6e67
+2026-07-18T14:22:41.758Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:41.759Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document fcb78069-c367-4063-a628-3de6de8a91fe
+2026-07-18T14:22:41.766Z [nileopedia-backend] error: Document ingestion failed: fcb78069-c367-4063-a628-3de6de8a91fe Failed to store 6 of 6 vectors in Pinecone for document fcb78069-c367-4063-a628-3de6de8a91fe
+2026-07-18T14:22:41.768Z [nileopedia-backend] error: Document ingestion job failed: 2687 Failed to store 6 of 6 vectors in Pinecone for document fcb78069-c367-4063-a628-3de6de8a91fe
+2026-07-18T14:22:43.595Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:43.595Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1c79002e-88d1-49c9-976e-fde8121e51cf
+2026-07-18T14:22:43.604Z [nileopedia-backend] error: Document ingestion failed: 1c79002e-88d1-49c9-976e-fde8121e51cf Failed to store 6 of 6 vectors in Pinecone for document 1c79002e-88d1-49c9-976e-fde8121e51cf
+2026-07-18T14:22:43.607Z [nileopedia-backend] error: Document ingestion job failed: 2688 Failed to store 6 of 6 vectors in Pinecone for document 1c79002e-88d1-49c9-976e-fde8121e51cf
+2026-07-18T14:22:45.750Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:45.751Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document cd11ab61-04f8-46fe-af9d-8630f3330971
+2026-07-18T14:22:45.764Z [nileopedia-backend] error: Document ingestion failed: cd11ab61-04f8-46fe-af9d-8630f3330971 Failed to store 6 of 6 vectors in Pinecone for document cd11ab61-04f8-46fe-af9d-8630f3330971
+2026-07-18T14:22:45.767Z [nileopedia-backend] error: Document ingestion job failed: 2689 Failed to store 6 of 6 vectors in Pinecone for document cd11ab61-04f8-46fe-af9d-8630f3330971
+2026-07-18T14:22:50.100Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:50.101Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document adc51d32-78ec-410a-ad18-ca9d03a67b1a
+2026-07-18T14:22:50.113Z [nileopedia-backend] error: Document ingestion failed: adc51d32-78ec-410a-ad18-ca9d03a67b1a Failed to store 15 of 15 vectors in Pinecone for document adc51d32-78ec-410a-ad18-ca9d03a67b1a
+2026-07-18T14:22:50.116Z [nileopedia-backend] error: Document ingestion job failed: 2690 Failed to store 15 of 15 vectors in Pinecone for document adc51d32-78ec-410a-ad18-ca9d03a67b1a
+2026-07-18T14:22:52.177Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:52.177Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 099b679e-d5c3-4b87-8aac-dd1c43dfe741
+2026-07-18T14:22:52.185Z [nileopedia-backend] error: Document ingestion failed: 099b679e-d5c3-4b87-8aac-dd1c43dfe741 Failed to store 6 of 6 vectors in Pinecone for document 099b679e-d5c3-4b87-8aac-dd1c43dfe741
+2026-07-18T14:22:52.188Z [nileopedia-backend] error: Document ingestion job failed: 2691 Failed to store 6 of 6 vectors in Pinecone for document 099b679e-d5c3-4b87-8aac-dd1c43dfe741
+2026-07-18T14:22:53.882Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:53.883Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 93fe7721-d5ee-41e8-aa58-fd5cb9d1e9d4
+2026-07-18T14:22:53.891Z [nileopedia-backend] error: Document ingestion failed: 93fe7721-d5ee-41e8-aa58-fd5cb9d1e9d4 Failed to store 6 of 6 vectors in Pinecone for document 93fe7721-d5ee-41e8-aa58-fd5cb9d1e9d4
+2026-07-18T14:22:53.893Z [nileopedia-backend] error: Document ingestion job failed: 2692 Failed to store 6 of 6 vectors in Pinecone for document 93fe7721-d5ee-41e8-aa58-fd5cb9d1e9d4
+2026-07-18T14:22:54.601Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:54.602Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 26850226-b0c0-4e1c-b7ab-e5261dc2064e
+2026-07-18T14:22:54.610Z [nileopedia-backend] error: Document ingestion failed: 26850226-b0c0-4e1c-b7ab-e5261dc2064e Failed to store 6 of 6 vectors in Pinecone for document 26850226-b0c0-4e1c-b7ab-e5261dc2064e
+2026-07-18T14:22:54.612Z [nileopedia-backend] error: Document ingestion job failed: 2693 Failed to store 6 of 6 vectors in Pinecone for document 26850226-b0c0-4e1c-b7ab-e5261dc2064e
+2026-07-18T14:22:55.709Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:55.711Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 4c9697a6-bfa7-4bc4-a096-d287d255c512
+2026-07-18T14:22:55.722Z [nileopedia-backend] error: Document ingestion failed: 4c9697a6-bfa7-4bc4-a096-d287d255c512 Failed to store 6 of 6 vectors in Pinecone for document 4c9697a6-bfa7-4bc4-a096-d287d255c512
+2026-07-18T14:22:55.725Z [nileopedia-backend] error: Document ingestion job failed: 2694 Failed to store 6 of 6 vectors in Pinecone for document 4c9697a6-bfa7-4bc4-a096-d287d255c512
+2026-07-18T14:22:57.907Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:57.908Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c7581cb5-dfa6-4283-9d6b-1d2af85e8f8a
+2026-07-18T14:22:57.921Z [nileopedia-backend] error: Document ingestion failed: c7581cb5-dfa6-4283-9d6b-1d2af85e8f8a Failed to store 6 of 6 vectors in Pinecone for document c7581cb5-dfa6-4283-9d6b-1d2af85e8f8a
+2026-07-18T14:22:57.923Z [nileopedia-backend] error: Document ingestion job failed: 2695 Failed to store 6 of 6 vectors in Pinecone for document c7581cb5-dfa6-4283-9d6b-1d2af85e8f8a
+2026-07-18T14:22:58.606Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:22:58.607Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 87d0f44a-dc38-48b7-9247-1aeea974460c
+2026-07-18T14:22:58.615Z [nileopedia-backend] error: Document ingestion failed: 87d0f44a-dc38-48b7-9247-1aeea974460c Failed to store 6 of 6 vectors in Pinecone for document 87d0f44a-dc38-48b7-9247-1aeea974460c
+2026-07-18T14:22:58.617Z [nileopedia-backend] error: Document ingestion job failed: 2696 Failed to store 6 of 6 vectors in Pinecone for document 87d0f44a-dc38-48b7-9247-1aeea974460c
+2026-07-18T14:23:00.850Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:00.850Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8b914f8e-7db1-44e7-b8a8-4c53ae8e3a78
+2026-07-18T14:23:00.859Z [nileopedia-backend] error: Document ingestion failed: 8b914f8e-7db1-44e7-b8a8-4c53ae8e3a78 Failed to store 6 of 6 vectors in Pinecone for document 8b914f8e-7db1-44e7-b8a8-4c53ae8e3a78
+2026-07-18T14:23:00.861Z [nileopedia-backend] error: Document ingestion job failed: 2697 Failed to store 6 of 6 vectors in Pinecone for document 8b914f8e-7db1-44e7-b8a8-4c53ae8e3a78
+2026-07-18T14:23:02.799Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:02.799Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 75357480-c5f9-4e75-a5a9-e8f499debbe5
+2026-07-18T14:23:02.807Z [nileopedia-backend] error: Document ingestion failed: 75357480-c5f9-4e75-a5a9-e8f499debbe5 Failed to store 6 of 6 vectors in Pinecone for document 75357480-c5f9-4e75-a5a9-e8f499debbe5
+2026-07-18T14:23:02.809Z [nileopedia-backend] error: Document ingestion job failed: 2698 Failed to store 6 of 6 vectors in Pinecone for document 75357480-c5f9-4e75-a5a9-e8f499debbe5
+2026-07-18T14:23:04.369Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:04.370Z [nileopedia-backend] error: Failed to store 8 of 8 vectors in Pinecone for document fd4142f0-9218-45ea-a770-eda942e7d07e
+2026-07-18T14:23:04.388Z [nileopedia-backend] error: Document ingestion failed: fd4142f0-9218-45ea-a770-eda942e7d07e Failed to store 8 of 8 vectors in Pinecone for document fd4142f0-9218-45ea-a770-eda942e7d07e
+2026-07-18T14:23:04.393Z [nileopedia-backend] error: Document ingestion job failed: 2699 Failed to store 8 of 8 vectors in Pinecone for document fd4142f0-9218-45ea-a770-eda942e7d07e
+2026-07-18T14:23:06.819Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:06.822Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8dcbabd3-71cb-4368-a92b-059e4cf134b8
+2026-07-18T14:23:06.832Z [nileopedia-backend] error: Document ingestion failed: 8dcbabd3-71cb-4368-a92b-059e4cf134b8 Failed to store 6 of 6 vectors in Pinecone for document 8dcbabd3-71cb-4368-a92b-059e4cf134b8
+2026-07-18T14:23:06.835Z [nileopedia-backend] error: Document ingestion job failed: 2700 Failed to store 6 of 6 vectors in Pinecone for document 8dcbabd3-71cb-4368-a92b-059e4cf134b8
+2026-07-18T14:23:08.678Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:08.679Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 18bed063-0e30-498b-af16-25e3edfc1eb9
+2026-07-18T14:23:08.687Z [nileopedia-backend] error: Document ingestion failed: 18bed063-0e30-498b-af16-25e3edfc1eb9 Failed to store 6 of 6 vectors in Pinecone for document 18bed063-0e30-498b-af16-25e3edfc1eb9
+2026-07-18T14:23:08.689Z [nileopedia-backend] error: Document ingestion job failed: 2701 Failed to store 6 of 6 vectors in Pinecone for document 18bed063-0e30-498b-af16-25e3edfc1eb9
+2026-07-18T14:23:21.237Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:21.238Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 375896fb-8ae2-4dbf-8bf4-cb6e06bb5919
+2026-07-18T14:23:21.251Z [nileopedia-backend] error: Document ingestion failed: 375896fb-8ae2-4dbf-8bf4-cb6e06bb5919 Failed to store 6 of 6 vectors in Pinecone for document 375896fb-8ae2-4dbf-8bf4-cb6e06bb5919
+2026-07-18T14:23:21.255Z [nileopedia-backend] error: Document ingestion job failed: 2702 Failed to store 6 of 6 vectors in Pinecone for document 375896fb-8ae2-4dbf-8bf4-cb6e06bb5919
+2026-07-18T14:23:33.332Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:33.334Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 22a26e52-37b8-409c-954f-006bddee2faf
+2026-07-18T14:23:33.348Z [nileopedia-backend] error: Document ingestion failed: 22a26e52-37b8-409c-954f-006bddee2faf Failed to store 6 of 6 vectors in Pinecone for document 22a26e52-37b8-409c-954f-006bddee2faf
+2026-07-18T14:23:33.352Z [nileopedia-backend] error: Document ingestion job failed: 2703 Failed to store 6 of 6 vectors in Pinecone for document 22a26e52-37b8-409c-954f-006bddee2faf
+2026-07-18T14:23:44.763Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:23:44.765Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 41ade49c-a326-4ddf-becc-80107b3eb41d
+2026-07-18T14:23:44.776Z [nileopedia-backend] error: Document ingestion failed: 41ade49c-a326-4ddf-becc-80107b3eb41d Failed to store 6 of 6 vectors in Pinecone for document 41ade49c-a326-4ddf-becc-80107b3eb41d
+2026-07-18T14:23:44.779Z [nileopedia-backend] error: Document ingestion job failed: 2704 Failed to store 6 of 6 vectors in Pinecone for document 41ade49c-a326-4ddf-becc-80107b3eb41d
+2026-07-18T14:24:13.793Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:24:13.795Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7b09d7e9-e8ed-4c9c-95e9-69fbf410de9e
+2026-07-18T14:24:13.810Z [nileopedia-backend] error: Document ingestion failed: 7b09d7e9-e8ed-4c9c-95e9-69fbf410de9e Failed to store 6 of 6 vectors in Pinecone for document 7b09d7e9-e8ed-4c9c-95e9-69fbf410de9e
+2026-07-18T14:24:13.815Z [nileopedia-backend] error: Document ingestion job failed: 2706 Failed to store 6 of 6 vectors in Pinecone for document 7b09d7e9-e8ed-4c9c-95e9-69fbf410de9e
+2026-07-18T14:24:24.896Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:24:24.897Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document f4bfcfb3-4df1-42f7-8cfb-71be67aedf59
+2026-07-18T14:24:24.910Z [nileopedia-backend] error: Document ingestion failed: f4bfcfb3-4df1-42f7-8cfb-71be67aedf59 Failed to store 6 of 6 vectors in Pinecone for document f4bfcfb3-4df1-42f7-8cfb-71be67aedf59
+2026-07-18T14:24:24.913Z [nileopedia-backend] error: Document ingestion job failed: 2707 Failed to store 6 of 6 vectors in Pinecone for document f4bfcfb3-4df1-42f7-8cfb-71be67aedf59
+2026-07-18T14:24:37.490Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:24:37.491Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 993ad3bf-bb54-4f60-8054-7356ce70e17c
+2026-07-18T14:24:37.499Z [nileopedia-backend] error: Document ingestion failed: 993ad3bf-bb54-4f60-8054-7356ce70e17c Failed to store 6 of 6 vectors in Pinecone for document 993ad3bf-bb54-4f60-8054-7356ce70e17c
+2026-07-18T14:24:37.501Z [nileopedia-backend] error: Document ingestion job failed: 2708 Failed to store 6 of 6 vectors in Pinecone for document 993ad3bf-bb54-4f60-8054-7356ce70e17c
+2026-07-18T14:25:05.870Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:25:05.871Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 197217a0-149a-4474-bf59-30fa979d9d7d
+2026-07-18T14:25:05.887Z [nileopedia-backend] error: Document ingestion failed: 197217a0-149a-4474-bf59-30fa979d9d7d Failed to store 6 of 6 vectors in Pinecone for document 197217a0-149a-4474-bf59-30fa979d9d7d
+2026-07-18T14:25:05.893Z [nileopedia-backend] error: Document ingestion job failed: 2676 Failed to store 6 of 6 vectors in Pinecone for document 197217a0-149a-4474-bf59-30fa979d9d7d
+2026-07-18T14:26:40.150Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:26:51.477Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:26:51.483Z [nileopedia-backend] error: Failed to store 40 of 60 vectors in Pinecone for document cc7d4451-e097-46ef-8960-cc4a7c1263c1
+2026-07-18T14:26:51.554Z [nileopedia-backend] error: Document ingestion failed: cc7d4451-e097-46ef-8960-cc4a7c1263c1 Failed to store 40 of 60 vectors in Pinecone for document cc7d4451-e097-46ef-8960-cc4a7c1263c1
+2026-07-18T14:26:51.570Z [nileopedia-backend] error: Document ingestion job failed: 2717 Failed to store 40 of 60 vectors in Pinecone for document cc7d4451-e097-46ef-8960-cc4a7c1263c1
+2026-07-18T14:26:57.359Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:26:59.464Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T14:27:05.302Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:27:05.314Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document e899be0c-b9c7-4d46-9942-120f9f8025d0
+2026-07-18T14:27:05.365Z [nileopedia-backend] error: Document ingestion failed: e899be0c-b9c7-4d46-9942-120f9f8025d0 Failed to store 6 of 6 vectors in Pinecone for document e899be0c-b9c7-4d46-9942-120f9f8025d0
+2026-07-18T14:27:05.385Z [nileopedia-backend] error: Document ingestion job failed: 2719 Failed to store 6 of 6 vectors in Pinecone for document e899be0c-b9c7-4d46-9942-120f9f8025d0
+2026-07-18T14:27:06.238Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T14:27:20.150Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:27:20.163Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document e1e3a2ea-3367-432d-95c2-f31705802d78
+2026-07-18T14:27:20.181Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:27:20.191Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 299db3d6-7649-4386-a96f-77c024d24744
+2026-07-18T14:27:20.210Z [nileopedia-backend] error: Document ingestion failed: 299db3d6-7649-4386-a96f-77c024d24744 Failed to store 6 of 6 vectors in Pinecone for document 299db3d6-7649-4386-a96f-77c024d24744
+2026-07-18T14:27:20.220Z [nileopedia-backend] error: Document ingestion job failed: 2721 Failed to store 6 of 6 vectors in Pinecone for document 299db3d6-7649-4386-a96f-77c024d24744
+2026-07-18T14:27:20.230Z [nileopedia-backend] error: Document ingestion failed: e1e3a2ea-3367-432d-95c2-f31705802d78 Failed to store 6 of 6 vectors in Pinecone for document e1e3a2ea-3367-432d-95c2-f31705802d78
+2026-07-18T14:27:20.508Z [nileopedia-backend] error: Document ingestion job failed: 2720 Failed to store 6 of 6 vectors in Pinecone for document e1e3a2ea-3367-432d-95c2-f31705802d78
+2026-07-18T14:27:36.867Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:27:37.074Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7bce94e9-a3f4-47c9-81d8-f82365579702
+2026-07-18T14:27:37.499Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T14:27:37.505Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 4ad7fa98-eac0-4393-adfc-9f8f7df0de3e
+2026-07-18T14:27:37.783Z [nileopedia-backend] error: Document ingestion failed: 4ad7fa98-eac0-4393-adfc-9f8f7df0de3e Failed to store 6 of 6 vectors in Pinecone for document 4ad7fa98-eac0-4393-adfc-9f8f7df0de3e
+2026-07-18T14:27:37.897Z [nileopedia-backend] error: Document ingestion failed: 7bce94e9-a3f4-47c9-81d8-f82365579702 Failed to store 6 of 6 vectors in Pinecone for document 7bce94e9-a3f4-47c9-81d8-f82365579702
+2026-07-18T14:27:37.961Z [nileopedia-backend] error: Document ingestion job failed: 2722 Failed to store 6 of 6 vectors in Pinecone for document 4ad7fa98-eac0-4393-adfc-9f8f7df0de3e
+2026-07-18T14:27:37.976Z [nileopedia-backend] error: Document ingestion job failed: 2723 Failed to store 6 of 6 vectors in Pinecone for document 7bce94e9-a3f4-47c9-81d8-f82365579702
+2026-07-18T18:19:13.583Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:15.691Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:17.848Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:20.053Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:22.431Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:19:22.433Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 7fb3a2ec-5201-4150-be36-1c136b122adf
+2026-07-18T18:19:22.442Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:19:22.444Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ac49b44b-26db-4490-824c-d5054c09dd6e
+2026-07-18T18:19:22.493Z [nileopedia-backend] error: Document ingestion failed: 7fb3a2ec-5201-4150-be36-1c136b122adf Failed to store 15 of 15 vectors in Pinecone for document 7fb3a2ec-5201-4150-be36-1c136b122adf
+2026-07-18T18:19:22.509Z [nileopedia-backend] error: Document ingestion failed: ac49b44b-26db-4490-824c-d5054c09dd6e Failed to store 6 of 6 vectors in Pinecone for document ac49b44b-26db-4490-824c-d5054c09dd6e
+2026-07-18T18:19:22.514Z [nileopedia-backend] error: Document ingestion job failed: 2728 Failed to store 15 of 15 vectors in Pinecone for document 7fb3a2ec-5201-4150-be36-1c136b122adf
+2026-07-18T18:19:22.520Z [nileopedia-backend] error: Document ingestion job failed: 2729 Failed to store 6 of 6 vectors in Pinecone for document ac49b44b-26db-4490-824c-d5054c09dd6e
+2026-07-18T18:19:23.054Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:29.891Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:32.262Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:34.666Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:35.404Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T18:19:37.129Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:37.639Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:19:37.640Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document f16e95bc-ece8-4d24-84d3-39f184e751a4
+2026-07-18T18:19:37.660Z [nileopedia-backend] error: Document ingestion failed: f16e95bc-ece8-4d24-84d3-39f184e751a4 Failed to store 6 of 6 vectors in Pinecone for document f16e95bc-ece8-4d24-84d3-39f184e751a4
+2026-07-18T18:19:37.664Z [nileopedia-backend] error: Document ingestion job failed: 2731 Failed to store 6 of 6 vectors in Pinecone for document f16e95bc-ece8-4d24-84d3-39f184e751a4
+2026-07-18T18:19:38.115Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:19:38.116Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 1fdd9197-37cd-4e69-bae2-8e611eca70c9
+2026-07-18T18:19:40.757Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:40.763Z [nileopedia-backend] error: Document ingestion failed: 1fdd9197-37cd-4e69-bae2-8e611eca70c9 Failed to store 6 of 6 vectors in Pinecone for document 1fdd9197-37cd-4e69-bae2-8e611eca70c9
+2026-07-18T18:19:40.769Z [nileopedia-backend] error: Document ingestion job failed: 2730 Failed to store 6 of 6 vectors in Pinecone for document 1fdd9197-37cd-4e69-bae2-8e611eca70c9
+2026-07-18T18:19:45.773Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:48.383Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:51.039Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:53.742Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:19:53.763Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:19:53.764Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ea8f4453-e7fa-43ad-a685-de52bc64c29b
+2026-07-18T18:19:53.766Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:19:53.767Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document b98d842d-ccc7-4712-8a1a-63f3ef8f21c1
+2026-07-18T18:19:53.773Z [nileopedia-backend] error: Document ingestion failed: b98d842d-ccc7-4712-8a1a-63f3ef8f21c1 Failed to store 6 of 6 vectors in Pinecone for document b98d842d-ccc7-4712-8a1a-63f3ef8f21c1
+2026-07-18T18:19:53.775Z [nileopedia-backend] error: Document ingestion failed: ea8f4453-e7fa-43ad-a685-de52bc64c29b Failed to store 6 of 6 vectors in Pinecone for document ea8f4453-e7fa-43ad-a685-de52bc64c29b
+2026-07-18T18:19:53.777Z [nileopedia-backend] error: Document ingestion job failed: 2726 Failed to store 6 of 6 vectors in Pinecone for document b98d842d-ccc7-4712-8a1a-63f3ef8f21c1
+2026-07-18T18:19:53.778Z [nileopedia-backend] error: Document ingestion job failed: 2727 Failed to store 6 of 6 vectors in Pinecone for document ea8f4453-e7fa-43ad-a685-de52bc64c29b
+2026-07-18T18:20:01.635Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:04.443Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:07.319Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:09.627Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:09.630Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 69826439-89ab-4dde-a2d9-7f88e86f3565
+2026-07-18T18:20:09.636Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:09.639Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 6cd52978-dfd9-41b5-9653-42d777ea2de5
+2026-07-18T18:20:09.652Z [nileopedia-backend] error: Document ingestion failed: 69826439-89ab-4dde-a2d9-7f88e86f3565 Failed to store 15 of 15 vectors in Pinecone for document 69826439-89ab-4dde-a2d9-7f88e86f3565
+2026-07-18T18:20:09.657Z [nileopedia-backend] error: Document ingestion failed: 6cd52978-dfd9-41b5-9653-42d777ea2de5 Failed to store 6 of 6 vectors in Pinecone for document 6cd52978-dfd9-41b5-9653-42d777ea2de5
+2026-07-18T18:20:09.663Z [nileopedia-backend] error: Document ingestion job failed: 2732 Failed to store 15 of 15 vectors in Pinecone for document 69826439-89ab-4dde-a2d9-7f88e86f3565
+2026-07-18T18:20:09.665Z [nileopedia-backend] error: Document ingestion job failed: 2733 Failed to store 6 of 6 vectors in Pinecone for document 6cd52978-dfd9-41b5-9653-42d777ea2de5
+2026-07-18T18:20:10.415Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:16.684Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:19.689Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:22.754Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:23.726Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:23.729Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ec54c9ab-308a-43d9-bb79-1bb6a4fff519
+2026-07-18T18:20:23.738Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:23.743Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a0e9a721-9c26-4a95-8e3a-3bd2110d074d
+2026-07-18T18:20:23.773Z [nileopedia-backend] error: Document ingestion failed: ec54c9ab-308a-43d9-bb79-1bb6a4fff519 Failed to store 6 of 6 vectors in Pinecone for document ec54c9ab-308a-43d9-bb79-1bb6a4fff519
+2026-07-18T18:20:23.779Z [nileopedia-backend] error: Document ingestion failed: a0e9a721-9c26-4a95-8e3a-3bd2110d074d Failed to store 6 of 6 vectors in Pinecone for document a0e9a721-9c26-4a95-8e3a-3bd2110d074d
+2026-07-18T18:20:23.784Z [nileopedia-backend] error: Document ingestion job failed: 2734 Failed to store 6 of 6 vectors in Pinecone for document ec54c9ab-308a-43d9-bb79-1bb6a4fff519
+2026-07-18T18:20:23.789Z [nileopedia-backend] error: Document ingestion job failed: 2735 Failed to store 6 of 6 vectors in Pinecone for document a0e9a721-9c26-4a95-8e3a-3bd2110d074d
+2026-07-18T18:20:27.431Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:37.456Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:37.458Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 6e609d6b-f78b-4cbd-b4fe-5c5d598c82bc
+2026-07-18T18:20:37.464Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:37.466Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document db023102-627e-4b2b-81dd-063161c0e6d4
+2026-07-18T18:20:37.490Z [nileopedia-backend] error: Document ingestion failed: 6e609d6b-f78b-4cbd-b4fe-5c5d598c82bc Failed to store 6 of 6 vectors in Pinecone for document 6e609d6b-f78b-4cbd-b4fe-5c5d598c82bc
+2026-07-18T18:20:37.495Z [nileopedia-backend] error: Document ingestion failed: db023102-627e-4b2b-81dd-063161c0e6d4 Failed to store 6 of 6 vectors in Pinecone for document db023102-627e-4b2b-81dd-063161c0e6d4
+2026-07-18T18:20:37.499Z [nileopedia-backend] error: Document ingestion job failed: 2736 Failed to store 6 of 6 vectors in Pinecone for document 6e609d6b-f78b-4cbd-b4fe-5c5d598c82bc
+2026-07-18T18:20:37.503Z [nileopedia-backend] error: Document ingestion job failed: 2737 Failed to store 6 of 6 vectors in Pinecone for document db023102-627e-4b2b-81dd-063161c0e6d4
+2026-07-18T18:20:42.693Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 10000ms
+2026-07-18T18:20:44.764Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:46.878Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:49.031Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:51.237Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T18:20:52.680Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:52.680Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7910ee45-e4e3-49f8-a5fa-d93462018e36
+2026-07-18T18:20:52.682Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:20:52.683Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 8ecd5e58-54df-4e19-9d9d-726164c432e0
+2026-07-18T18:20:52.695Z [nileopedia-backend] error: Document ingestion failed: 7910ee45-e4e3-49f8-a5fa-d93462018e36 Failed to store 6 of 6 vectors in Pinecone for document 7910ee45-e4e3-49f8-a5fa-d93462018e36
+2026-07-18T18:20:52.696Z [nileopedia-backend] error: Document ingestion failed: 8ecd5e58-54df-4e19-9d9d-726164c432e0 Failed to store 6 of 6 vectors in Pinecone for document 8ecd5e58-54df-4e19-9d9d-726164c432e0
+2026-07-18T18:20:52.698Z [nileopedia-backend] error: Document ingestion job failed: 2739 Failed to store 6 of 6 vectors in Pinecone for document 7910ee45-e4e3-49f8-a5fa-d93462018e36
+2026-07-18T18:20:52.698Z [nileopedia-backend] error: Document ingestion job failed: 2738 Failed to store 6 of 6 vectors in Pinecone for document 8ecd5e58-54df-4e19-9d9d-726164c432e0
+2026-07-18T18:21:05.396Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:05.396Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document dccd3169-d30e-41af-99ab-48965f54468d
+2026-07-18T18:21:05.398Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:05.398Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ca788a45-e442-4ce1-ad23-093f9803b094
+2026-07-18T18:21:05.402Z [nileopedia-backend] error: Document ingestion failed: dccd3169-d30e-41af-99ab-48965f54468d Failed to store 6 of 6 vectors in Pinecone for document dccd3169-d30e-41af-99ab-48965f54468d
+2026-07-18T18:21:05.404Z [nileopedia-backend] error: Document ingestion job failed: 2740 Failed to store 6 of 6 vectors in Pinecone for document dccd3169-d30e-41af-99ab-48965f54468d
+2026-07-18T18:21:05.407Z [nileopedia-backend] error: Document ingestion failed: ca788a45-e442-4ce1-ad23-093f9803b094 Failed to store 6 of 6 vectors in Pinecone for document ca788a45-e442-4ce1-ad23-093f9803b094
+2026-07-18T18:21:05.408Z [nileopedia-backend] error: Document ingestion job failed: 2741 Failed to store 6 of 6 vectors in Pinecone for document ca788a45-e442-4ce1-ad23-093f9803b094
+2026-07-18T18:21:18.087Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:18.088Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 297e3f74-ed9a-4c8e-abe1-105ed787baf0
+2026-07-18T18:21:18.102Z [nileopedia-backend] error: Document ingestion failed: 297e3f74-ed9a-4c8e-abe1-105ed787baf0 Failed to store 6 of 6 vectors in Pinecone for document 297e3f74-ed9a-4c8e-abe1-105ed787baf0
+2026-07-18T18:21:18.105Z [nileopedia-backend] error: Document ingestion job failed: 2742 Failed to store 6 of 6 vectors in Pinecone for document 297e3f74-ed9a-4c8e-abe1-105ed787baf0
+2026-07-18T18:21:31.694Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:31.696Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document f5526f97-298d-4df0-b8a7-3dc707873b23
+2026-07-18T18:21:31.711Z [nileopedia-backend] error: Document ingestion failed: f5526f97-298d-4df0-b8a7-3dc707873b23 Failed to store 6 of 6 vectors in Pinecone for document f5526f97-298d-4df0-b8a7-3dc707873b23
+2026-07-18T18:21:31.714Z [nileopedia-backend] error: Document ingestion job failed: 2743 Failed to store 6 of 6 vectors in Pinecone for document f5526f97-298d-4df0-b8a7-3dc707873b23
+2026-07-18T18:21:33.301Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:33.303Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 82bfb8e2-79a5-4830-96ac-9017e8a48eee
+2026-07-18T18:21:33.336Z [nileopedia-backend] error: Document ingestion failed: 82bfb8e2-79a5-4830-96ac-9017e8a48eee Failed to store 6 of 6 vectors in Pinecone for document 82bfb8e2-79a5-4830-96ac-9017e8a48eee
+2026-07-18T18:21:33.339Z [nileopedia-backend] error: Document ingestion job failed: 2744 Failed to store 6 of 6 vectors in Pinecone for document 82bfb8e2-79a5-4830-96ac-9017e8a48eee
+2026-07-18T18:21:43.620Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:43.622Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ef83defc-4543-425a-8b45-2f09a4056e50
+2026-07-18T18:21:43.656Z [nileopedia-backend] error: Document ingestion failed: ef83defc-4543-425a-8b45-2f09a4056e50 Failed to store 6 of 6 vectors in Pinecone for document ef83defc-4543-425a-8b45-2f09a4056e50
+2026-07-18T18:21:43.659Z [nileopedia-backend] error: Document ingestion job failed: 2745 Failed to store 6 of 6 vectors in Pinecone for document ef83defc-4543-425a-8b45-2f09a4056e50
+2026-07-18T18:21:46.337Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:46.339Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9583e0fd-5882-4346-bcd8-d1d5d7ab1349
+2026-07-18T18:21:46.372Z [nileopedia-backend] error: Document ingestion failed: 9583e0fd-5882-4346-bcd8-d1d5d7ab1349 Failed to store 6 of 6 vectors in Pinecone for document 9583e0fd-5882-4346-bcd8-d1d5d7ab1349
+2026-07-18T18:21:46.375Z [nileopedia-backend] error: Document ingestion job failed: 2746 Failed to store 6 of 6 vectors in Pinecone for document 9583e0fd-5882-4346-bcd8-d1d5d7ab1349
+2026-07-18T18:21:56.700Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:56.702Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document fb5dd13a-44f4-4c49-a384-0cd87c9d9777
+2026-07-18T18:21:56.715Z [nileopedia-backend] error: Document ingestion failed: fb5dd13a-44f4-4c49-a384-0cd87c9d9777 Failed to store 6 of 6 vectors in Pinecone for document fb5dd13a-44f4-4c49-a384-0cd87c9d9777
+2026-07-18T18:21:56.718Z [nileopedia-backend] error: Document ingestion job failed: 2747 Failed to store 6 of 6 vectors in Pinecone for document fb5dd13a-44f4-4c49-a384-0cd87c9d9777
+2026-07-18T18:21:58.975Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:21:58.977Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 349737d7-35a4-4b3f-80b7-6c56aab696d1
+2026-07-18T18:21:59.003Z [nileopedia-backend] error: Document ingestion failed: 349737d7-35a4-4b3f-80b7-6c56aab696d1 Failed to store 6 of 6 vectors in Pinecone for document 349737d7-35a4-4b3f-80b7-6c56aab696d1
+2026-07-18T18:21:59.006Z [nileopedia-backend] error: Document ingestion job failed: 2748 Failed to store 6 of 6 vectors in Pinecone for document 349737d7-35a4-4b3f-80b7-6c56aab696d1
+2026-07-18T18:22:09.019Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:22:09.021Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 75bf2a75-9a92-4987-bf60-6db05d488b78
+2026-07-18T18:22:09.062Z [nileopedia-backend] error: Document ingestion failed: 75bf2a75-9a92-4987-bf60-6db05d488b78 Failed to store 6 of 6 vectors in Pinecone for document 75bf2a75-9a92-4987-bf60-6db05d488b78
+2026-07-18T18:22:09.065Z [nileopedia-backend] error: Document ingestion job failed: 2749 Failed to store 6 of 6 vectors in Pinecone for document 75bf2a75-9a92-4987-bf60-6db05d488b78
+2026-07-18T18:22:11.820Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:22:11.821Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 14c19acd-7e32-4df3-8f56-f4cb854bba0f
+2026-07-18T18:22:11.834Z [nileopedia-backend] error: Document ingestion failed: 14c19acd-7e32-4df3-8f56-f4cb854bba0f Failed to store 6 of 6 vectors in Pinecone for document 14c19acd-7e32-4df3-8f56-f4cb854bba0f
+2026-07-18T18:22:11.837Z [nileopedia-backend] error: Document ingestion job failed: 2750 Failed to store 6 of 6 vectors in Pinecone for document 14c19acd-7e32-4df3-8f56-f4cb854bba0f
+2026-07-18T18:22:22.124Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:22:22.125Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7058a44b-438c-4c90-bec6-f9b62b09860d
+2026-07-18T18:22:22.148Z [nileopedia-backend] error: Document ingestion failed: 7058a44b-438c-4c90-bec6-f9b62b09860d Failed to store 6 of 6 vectors in Pinecone for document 7058a44b-438c-4c90-bec6-f9b62b09860d
+2026-07-18T18:22:22.151Z [nileopedia-backend] error: Document ingestion job failed: 2751 Failed to store 6 of 6 vectors in Pinecone for document 7058a44b-438c-4c90-bec6-f9b62b09860d
+2026-07-18T18:22:24.101Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:22:24.103Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c55780cd-1c0e-46d2-923d-8b7db959b059
+2026-07-18T18:22:24.142Z [nileopedia-backend] error: Document ingestion failed: c55780cd-1c0e-46d2-923d-8b7db959b059 Failed to store 6 of 6 vectors in Pinecone for document c55780cd-1c0e-46d2-923d-8b7db959b059
+2026-07-18T18:22:24.145Z [nileopedia-backend] error: Document ingestion job failed: 2752 Failed to store 6 of 6 vectors in Pinecone for document c55780cd-1c0e-46d2-923d-8b7db959b059
+2026-07-18T18:22:33.455Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:22:33.456Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 21c41940-a7d0-4cdc-b271-3e1deaf8c928
+2026-07-18T18:22:33.474Z [nileopedia-backend] error: Document ingestion failed: 21c41940-a7d0-4cdc-b271-3e1deaf8c928 Failed to store 6 of 6 vectors in Pinecone for document 21c41940-a7d0-4cdc-b271-3e1deaf8c928
+2026-07-18T18:22:33.477Z [nileopedia-backend] error: Document ingestion job failed: 2753 Failed to store 6 of 6 vectors in Pinecone for document 21c41940-a7d0-4cdc-b271-3e1deaf8c928
+2026-07-18T18:22:35.871Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:22:35.872Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7594a9ed-1848-4677-8bf8-a5b880881224
+2026-07-18T18:22:35.885Z [nileopedia-backend] error: Document ingestion failed: 7594a9ed-1848-4677-8bf8-a5b880881224 Failed to store 6 of 6 vectors in Pinecone for document 7594a9ed-1848-4677-8bf8-a5b880881224
+2026-07-18T18:22:35.888Z [nileopedia-backend] error: Document ingestion job failed: 2754 Failed to store 6 of 6 vectors in Pinecone for document 7594a9ed-1848-4677-8bf8-a5b880881224
+2026-07-18T18:22:59.429Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T18:23:13.299Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:13.300Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 0421e4ab-ab47-4539-8803-bb9c9d8c5e9c
+2026-07-18T18:23:13.311Z [nileopedia-backend] error: Document ingestion failed: 0421e4ab-ab47-4539-8803-bb9c9d8c5e9c Failed to store 15 of 15 vectors in Pinecone for document 0421e4ab-ab47-4539-8803-bb9c9d8c5e9c
+2026-07-18T18:23:13.314Z [nileopedia-backend] error: Document ingestion job failed: 2757 Failed to store 15 of 15 vectors in Pinecone for document 0421e4ab-ab47-4539-8803-bb9c9d8c5e9c
+2026-07-18T18:23:15.111Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-18T18:23:26.083Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:26.086Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 58b6efbd-32ad-4ab1-93cc-9f95e0deb140
+2026-07-18T18:23:26.101Z [nileopedia-backend] error: Document ingestion failed: 58b6efbd-32ad-4ab1-93cc-9f95e0deb140 Failed to store 6 of 6 vectors in Pinecone for document 58b6efbd-32ad-4ab1-93cc-9f95e0deb140
+2026-07-18T18:23:26.104Z [nileopedia-backend] error: Document ingestion job failed: 2758 Failed to store 6 of 6 vectors in Pinecone for document 58b6efbd-32ad-4ab1-93cc-9f95e0deb140
+2026-07-18T18:23:26.689Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:26.689Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c5228c1f-7dcb-4592-958a-42f31e8927ff
+2026-07-18T18:23:29.865Z [nileopedia-backend] error: Document ingestion failed: c5228c1f-7dcb-4592-958a-42f31e8927ff Failed to store 6 of 6 vectors in Pinecone for document c5228c1f-7dcb-4592-958a-42f31e8927ff
+2026-07-18T18:23:29.867Z [nileopedia-backend] error: Document ingestion job failed: 2759 Failed to store 6 of 6 vectors in Pinecone for document c5228c1f-7dcb-4592-958a-42f31e8927ff
+2026-07-18T18:23:40.476Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:40.477Z [nileopedia-backend] error: Failed to store 15 of 15 vectors in Pinecone for document 08b8f49d-2b1b-44c5-84b7-3417e9061a29
+2026-07-18T18:23:40.479Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:40.480Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 523089d9-974d-4c9b-95ce-7a8e6cab0bdc
+2026-07-18T18:23:40.484Z [nileopedia-backend] error: Document ingestion failed: 08b8f49d-2b1b-44c5-84b7-3417e9061a29 Failed to store 15 of 15 vectors in Pinecone for document 08b8f49d-2b1b-44c5-84b7-3417e9061a29
+2026-07-18T18:23:40.487Z [nileopedia-backend] error: Document ingestion job failed: 2760 Failed to store 15 of 15 vectors in Pinecone for document 08b8f49d-2b1b-44c5-84b7-3417e9061a29
+2026-07-18T18:23:40.489Z [nileopedia-backend] error: Document ingestion failed: 523089d9-974d-4c9b-95ce-7a8e6cab0bdc Failed to store 6 of 6 vectors in Pinecone for document 523089d9-974d-4c9b-95ce-7a8e6cab0bdc
+2026-07-18T18:23:40.862Z [nileopedia-backend] error: Document ingestion job failed: 2761 Failed to store 6 of 6 vectors in Pinecone for document 523089d9-974d-4c9b-95ce-7a8e6cab0bdc
+2026-07-18T18:23:53.964Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:53.965Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 802d2e77-ab23-46dd-9b21-f7cbc6a80d27
+2026-07-18T18:23:53.969Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:23:53.970Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document f07d5f12-8b8c-45bb-8c99-407f3ac90558
+2026-07-18T18:23:53.978Z [nileopedia-backend] error: Document ingestion failed: 802d2e77-ab23-46dd-9b21-f7cbc6a80d27 Failed to store 6 of 6 vectors in Pinecone for document 802d2e77-ab23-46dd-9b21-f7cbc6a80d27
+2026-07-18T18:23:53.982Z [nileopedia-backend] error: Document ingestion failed: f07d5f12-8b8c-45bb-8c99-407f3ac90558 Failed to store 6 of 6 vectors in Pinecone for document f07d5f12-8b8c-45bb-8c99-407f3ac90558
+2026-07-18T18:23:53.985Z [nileopedia-backend] error: Document ingestion job failed: 2762 Failed to store 6 of 6 vectors in Pinecone for document 802d2e77-ab23-46dd-9b21-f7cbc6a80d27
+2026-07-18T18:23:53.987Z [nileopedia-backend] error: Document ingestion job failed: 2763 Failed to store 6 of 6 vectors in Pinecone for document f07d5f12-8b8c-45bb-8c99-407f3ac90558
+2026-07-18T18:24:07.086Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:07.087Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document d862ddcc-2f08-49c4-a783-fe93e6a2723f
+2026-07-18T18:24:07.092Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:07.094Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 10d9d3e2-ca33-4f06-87cc-3ad0eefff381
+2026-07-18T18:24:07.211Z [nileopedia-backend] error: Document ingestion failed: d862ddcc-2f08-49c4-a783-fe93e6a2723f Failed to store 6 of 6 vectors in Pinecone for document d862ddcc-2f08-49c4-a783-fe93e6a2723f
+2026-07-18T18:24:07.215Z [nileopedia-backend] error: Document ingestion job failed: 2764 Failed to store 6 of 6 vectors in Pinecone for document d862ddcc-2f08-49c4-a783-fe93e6a2723f
+2026-07-18T18:24:07.218Z [nileopedia-backend] error: Document ingestion failed: 10d9d3e2-ca33-4f06-87cc-3ad0eefff381 Failed to store 6 of 6 vectors in Pinecone for document 10d9d3e2-ca33-4f06-87cc-3ad0eefff381
+2026-07-18T18:24:07.221Z [nileopedia-backend] error: Document ingestion job failed: 2765 Failed to store 6 of 6 vectors in Pinecone for document 10d9d3e2-ca33-4f06-87cc-3ad0eefff381
+2026-07-18T18:24:17.003Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:17.004Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 07aac564-8052-434b-9b12-e45e860131c9
+2026-07-18T18:24:17.005Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:17.006Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ddb6e1fe-7941-456e-93ab-9887b3ca8afb
+2026-07-18T18:24:17.010Z [nileopedia-backend] error: Document ingestion failed: 07aac564-8052-434b-9b12-e45e860131c9 Failed to store 6 of 6 vectors in Pinecone for document 07aac564-8052-434b-9b12-e45e860131c9
+2026-07-18T18:24:17.011Z [nileopedia-backend] error: Document ingestion job failed: 2766 Failed to store 6 of 6 vectors in Pinecone for document 07aac564-8052-434b-9b12-e45e860131c9
+2026-07-18T18:24:17.013Z [nileopedia-backend] error: Document ingestion failed: ddb6e1fe-7941-456e-93ab-9887b3ca8afb Failed to store 6 of 6 vectors in Pinecone for document ddb6e1fe-7941-456e-93ab-9887b3ca8afb
+2026-07-18T18:24:17.014Z [nileopedia-backend] error: Document ingestion job failed: 2767 Failed to store 6 of 6 vectors in Pinecone for document ddb6e1fe-7941-456e-93ab-9887b3ca8afb
+2026-07-18T18:24:29.204Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:29.205Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document b2ad8286-b0d6-46d6-b643-2406db27bc71
+2026-07-18T18:24:29.207Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:29.207Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 056d140e-b031-482d-b702-11abe53dddb9
+2026-07-18T18:24:29.213Z [nileopedia-backend] error: Document ingestion failed: b2ad8286-b0d6-46d6-b643-2406db27bc71 Failed to store 6 of 6 vectors in Pinecone for document b2ad8286-b0d6-46d6-b643-2406db27bc71
+2026-07-18T18:24:29.216Z [nileopedia-backend] error: Document ingestion failed: 056d140e-b031-482d-b702-11abe53dddb9 Failed to store 6 of 6 vectors in Pinecone for document 056d140e-b031-482d-b702-11abe53dddb9
+2026-07-18T18:24:29.218Z [nileopedia-backend] error: Document ingestion job failed: 2768 Failed to store 6 of 6 vectors in Pinecone for document b2ad8286-b0d6-46d6-b643-2406db27bc71
+2026-07-18T18:24:29.220Z [nileopedia-backend] error: Document ingestion job failed: 2769 Failed to store 6 of 6 vectors in Pinecone for document 056d140e-b031-482d-b702-11abe53dddb9
+2026-07-18T18:24:42.220Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:42.222Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document c998768a-9aab-453d-9b61-c16ebb28cc5a
+2026-07-18T18:24:42.227Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:42.229Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 6ef373b6-9c2a-4f94-ab0c-56ff66d3307f
+2026-07-18T18:24:42.238Z [nileopedia-backend] error: Document ingestion failed: c998768a-9aab-453d-9b61-c16ebb28cc5a Failed to store 6 of 6 vectors in Pinecone for document c998768a-9aab-453d-9b61-c16ebb28cc5a
+2026-07-18T18:24:42.243Z [nileopedia-backend] error: Document ingestion job failed: 2770 Failed to store 6 of 6 vectors in Pinecone for document c998768a-9aab-453d-9b61-c16ebb28cc5a
+2026-07-18T18:24:42.247Z [nileopedia-backend] error: Document ingestion failed: 6ef373b6-9c2a-4f94-ab0c-56ff66d3307f Failed to store 6 of 6 vectors in Pinecone for document 6ef373b6-9c2a-4f94-ab0c-56ff66d3307f
+2026-07-18T18:24:42.251Z [nileopedia-backend] error: Document ingestion job failed: 2771 Failed to store 6 of 6 vectors in Pinecone for document 6ef373b6-9c2a-4f94-ab0c-56ff66d3307f
+2026-07-18T18:24:54.905Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:54.906Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9ed9aea0-5300-4127-bee4-2c93c59bf110
+2026-07-18T18:24:54.911Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:24:54.912Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 9c82b176-a485-48ef-8bc3-acf1a50938c1
+2026-07-18T18:24:54.922Z [nileopedia-backend] error: Document ingestion failed: 9ed9aea0-5300-4127-bee4-2c93c59bf110 Failed to store 6 of 6 vectors in Pinecone for document 9ed9aea0-5300-4127-bee4-2c93c59bf110
+2026-07-18T18:24:54.926Z [nileopedia-backend] error: Document ingestion failed: 9c82b176-a485-48ef-8bc3-acf1a50938c1 Failed to store 6 of 6 vectors in Pinecone for document 9c82b176-a485-48ef-8bc3-acf1a50938c1
+2026-07-18T18:24:54.928Z [nileopedia-backend] error: Document ingestion job failed: 2772 Failed to store 6 of 6 vectors in Pinecone for document 9ed9aea0-5300-4127-bee4-2c93c59bf110
+2026-07-18T18:24:54.931Z [nileopedia-backend] error: Document ingestion job failed: 2773 Failed to store 6 of 6 vectors in Pinecone for document 9c82b176-a485-48ef-8bc3-acf1a50938c1
+2026-07-18T18:25:08.030Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:08.032Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 276a58ce-3363-44ba-9a1e-3e9081a21122
+2026-07-18T18:25:08.037Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:08.038Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 94f49789-6152-4c5b-9845-7de657878712
+2026-07-18T18:25:08.047Z [nileopedia-backend] error: Document ingestion failed: 276a58ce-3363-44ba-9a1e-3e9081a21122 Failed to store 6 of 6 vectors in Pinecone for document 276a58ce-3363-44ba-9a1e-3e9081a21122
+2026-07-18T18:25:08.052Z [nileopedia-backend] error: Document ingestion job failed: 2774 Failed to store 6 of 6 vectors in Pinecone for document 276a58ce-3363-44ba-9a1e-3e9081a21122
+2026-07-18T18:25:08.056Z [nileopedia-backend] error: Document ingestion failed: 94f49789-6152-4c5b-9845-7de657878712 Failed to store 6 of 6 vectors in Pinecone for document 94f49789-6152-4c5b-9845-7de657878712
+2026-07-18T18:25:08.062Z [nileopedia-backend] error: Document ingestion job failed: 2775 Failed to store 6 of 6 vectors in Pinecone for document 94f49789-6152-4c5b-9845-7de657878712
+2026-07-18T18:25:20.216Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:20.217Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document cc8d37c1-f887-4f23-b068-57b8449cc1d3
+2026-07-18T18:25:20.221Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:20.222Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 7a43344f-4d1d-4827-856d-057d101c903c
+2026-07-18T18:25:20.231Z [nileopedia-backend] error: Document ingestion failed: cc8d37c1-f887-4f23-b068-57b8449cc1d3 Failed to store 6 of 6 vectors in Pinecone for document cc8d37c1-f887-4f23-b068-57b8449cc1d3
+2026-07-18T18:25:20.235Z [nileopedia-backend] error: Document ingestion failed: 7a43344f-4d1d-4827-856d-057d101c903c Failed to store 6 of 6 vectors in Pinecone for document 7a43344f-4d1d-4827-856d-057d101c903c
+2026-07-18T18:25:20.236Z [nileopedia-backend] error: Document ingestion job failed: 2776 Failed to store 6 of 6 vectors in Pinecone for document cc8d37c1-f887-4f23-b068-57b8449cc1d3
+2026-07-18T18:25:20.239Z [nileopedia-backend] error: Document ingestion job failed: 2777 Failed to store 6 of 6 vectors in Pinecone for document 7a43344f-4d1d-4827-856d-057d101c903c
+2026-07-18T18:25:33.513Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:33.514Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document ac7ac895-ffaa-4f7a-8c0a-74db4d770d78
+2026-07-18T18:25:33.518Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:33.519Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 265d48d9-7a68-4fc2-9cf0-46010aefbb4a
+2026-07-18T18:25:33.528Z [nileopedia-backend] error: Document ingestion failed: ac7ac895-ffaa-4f7a-8c0a-74db4d770d78 Failed to store 6 of 6 vectors in Pinecone for document ac7ac895-ffaa-4f7a-8c0a-74db4d770d78
+2026-07-18T18:25:33.533Z [nileopedia-backend] error: Document ingestion failed: 265d48d9-7a68-4fc2-9cf0-46010aefbb4a Failed to store 6 of 6 vectors in Pinecone for document 265d48d9-7a68-4fc2-9cf0-46010aefbb4a
+2026-07-18T18:25:33.535Z [nileopedia-backend] error: Document ingestion job failed: 2778 Failed to store 6 of 6 vectors in Pinecone for document ac7ac895-ffaa-4f7a-8c0a-74db4d770d78
+2026-07-18T18:25:33.537Z [nileopedia-backend] error: Document ingestion job failed: 2779 Failed to store 6 of 6 vectors in Pinecone for document 265d48d9-7a68-4fc2-9cf0-46010aefbb4a
+2026-07-18T18:25:46.531Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:46.532Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document a19bd24f-61b5-4cd8-9ee6-e746e02557c8
+2026-07-18T18:25:46.534Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-18T18:25:46.535Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 66c66639-f840-4288-9ad3-0c06d776afbe
+2026-07-18T22:57:54.123Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T22:57:54.167Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T22:57:54.285Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-18T22:57:54.310Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-18T22:57:54.333Z [nileopedia-backend] error: [ERROR] Groq API unavailable
+2026-07-18T22:57:54.352Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T22:57:54.370Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T22:57:54.393Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Cannot read properties of undefined (reading 'filter')
+2026-07-18T23:05:08.544Z [nileopedia-backend] error: Document ingestion job failed: 2781 job stalled more than allowable limit
+2026-07-18T23:05:08.549Z [nileopedia-backend] error: Document ingestion job failed: 2780 job stalled more than allowable limit
+2026-07-18T23:07:37.989Z [nileopedia-backend] error: [ERROR] askQuestion failed: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:11:46
+
+   8 export class QuestionsService {
+   9   async askQuestion(userId: string, questionText: string, specialty?: string) {
+  10     try {
+→ 11       const question = await prisma.question.create({
+             data: {
+               userId: "c2c412ed-056c-4bcd-9e9f-ede4c7b667d4",
+               category: "General",
+           +   questionText: String
+             }
+           })
+
+Argument `questionText` is missing.
+2026-07-18T23:07:37.989Z [nileopedia-backend] error: Error in askQuestion controller: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:11:46
+
+   8 export class QuestionsService {
+   9   async askQuestion(userId: string, questionText: string, specialty?: string) {
+  10     try {
+→ 11       const question = await prisma.question.create({
+             data: {
+               userId: "c2c412ed-056c-4bcd-9e9f-ede4c7b667d4",
+               category: "General",
+           +   questionText: String
+             }
+           })
+
+Argument `questionText` is missing.
+2026-07-18T23:07:37.990Z [nileopedia-backend] error: Error handler caught: 
+Invalid `prisma.question.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/questions/services/questions.service.ts:11:46
+
+   8 export class QuestionsService {
+   9   async askQuestion(userId: string, questionText: string, specialty?: string) {
+  10     try {
+→ 11       const question = await prisma.question.create({
+             data: {
+               userId: "c2c412ed-056c-4bcd-9e9f-ede4c7b667d4",
+               category: "General",
+           +   questionText: String
+             }
+           })
+
+Argument `questionText` is missing.
+2026-07-18T23:08:41.261Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:08:41.265Z [nileopedia-backend] error: Document ingestion job failed: 2836 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:08:41.284Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-18T23:08:41.289Z [nileopedia-backend] error: Document ingestion job failed: 2837 File not found: https://www.thelancet.com/
+2026-07-18T23:08:41.297Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-18T23:08:41.298Z [nileopedia-backend] error: Document ingestion job failed: 2838 File not found: https://n.neurology.org/
+2026-07-18T23:08:41.306Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:08:41.307Z [nileopedia-backend] error: Document ingestion job failed: 2839 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:08:42.717Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-18T23:08:42.719Z [nileopedia-backend] error: Document ingestion job failed: 2841 File not found: https://jamanetwork.com/
+2026-07-18T23:08:42.728Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:08:42.730Z [nileopedia-backend] error: Document ingestion job failed: 2842 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:08:44.840Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-18T23:08:44.842Z [nileopedia-backend] error: Document ingestion job failed: 2844 File not found: https://diabetesjournals.org/care
+2026-07-18T23:08:44.847Z [nileopedia-backend] error: Document ingestion failed: ec6ae856-e9dc-40dc-9f90-501298860a5f File not found: https://gi.org/
+2026-07-18T23:08:44.848Z [nileopedia-backend] error: Document ingestion job failed: 2845 File not found: https://gi.org/
+2026-07-18T23:08:44.867Z [nileopedia-backend] error: Document ingestion failed: b30e8e7d-0055-4da5-a8cb-722306b9ba4a File not found: https://jamanetwork.com/
+2026-07-18T23:08:44.868Z [nileopedia-backend] error: Document ingestion job failed: 2846 File not found: https://jamanetwork.com/
+2026-07-18T23:08:44.875Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-18T23:08:44.878Z [nileopedia-backend] error: Document ingestion job failed: 2847 File not found: https://n.neurology.org/
+2026-07-18T23:08:44.884Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-18T23:08:44.887Z [nileopedia-backend] error: Document ingestion job failed: 2848 File not found: https://gi.org/
+2026-07-18T23:08:44.894Z [nileopedia-backend] error: Document ingestion failed: 5d2b1c76-612d-4f69-88d5-1c2ab52660cc File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:08:44.896Z [nileopedia-backend] error: Document ingestion job failed: 2849 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:09:15.592Z [nileopedia-backend] error: Error in getHistory controller: Cannot read properties of undefined (reading 'id')
+2026-07-18T23:09:15.593Z [nileopedia-backend] error: Error handler caught: Cannot read properties of undefined (reading 'id')
+2026-07-18T23:10:55.229Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-18T23:10:55.233Z [nileopedia-backend] error: Document ingestion job failed: 2881 File not found: https://jamanetwork.com/
+2026-07-18T23:10:57.378Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:10:57.379Z [nileopedia-backend] error: Document ingestion job failed: 2883 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:10:59.305Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-18T23:10:59.306Z [nileopedia-backend] error: Document ingestion job failed: 2885 File not found: https://diabetesjournals.org/care
+2026-07-18T23:15:37.970Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T23:16:37.001Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T23:19:54.953Z [nileopedia-backend] error: Document worker error could not renew lock for job 1763
+2026-07-18T23:19:55.008Z [nileopedia-backend] error: Document worker error could not renew lock for job 1764
+2026-07-18T23:19:55.049Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-18T23:19:57.778Z [nileopedia-backend] error: Document ingestion failed: f2fdde58-8964-4002-92d8-382f62837ff0 
+Invalid `prisma.embeddingMetadata.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/documents/document.ingestion.service.ts:148:38
+
+  145 });
+  146 
+  147 for (let i = 0; i < chunks.length; i++) {
+→ 148   await prisma.embeddingMetadata.create(
+Can't reach database server at `localhost:5432`
+
+Please make sure your database server is running at `localhost:5432`.
+2026-07-18T23:19:58.161Z [nileopedia-backend] error: Document worker error Missing lock for job 1763. moveToDelayed
+2026-07-18T23:19:58.165Z [nileopedia-backend] error: Document worker error Missing lock for job 1764. moveToFinished
+2026-07-18T23:19:58.358Z [nileopedia-backend] error: Document worker error Missing lock for job 1764. moveToDelayed
+2026-07-18T23:23:16.350Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-18T23:23:16.352Z [nileopedia-backend] error: Document ingestion job failed: 2902 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-18T23:33:17.819Z [nileopedia-backend] error: Document worker error could not renew lock for job 3125
+2026-07-18T23:33:17.852Z [nileopedia-backend] error: Document worker error Missing lock for job 3125. moveToFinished
+2026-07-18T23:33:17.856Z [nileopedia-backend] error: Document worker error Missing lock for job 3125. moveToDelayed
+2026-07-18T23:42:28.379Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:42:28.381Z [nileopedia-backend] error: Document ingestion job failed: 3245 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:42:28.386Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-18T23:42:28.388Z [nileopedia-backend] error: Document ingestion job failed: 3246 File not found: https://www.thelancet.com/
+2026-07-18T23:42:28.394Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-18T23:42:28.395Z [nileopedia-backend] error: Document ingestion job failed: 3247 File not found: https://n.neurology.org/
+2026-07-18T23:42:28.400Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:42:28.401Z [nileopedia-backend] error: Document ingestion job failed: 3248 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:42:29.906Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-18T23:42:29.907Z [nileopedia-backend] error: Document ingestion job failed: 3250 File not found: https://jamanetwork.com/
+2026-07-18T23:42:29.912Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:42:29.914Z [nileopedia-backend] error: Document ingestion job failed: 3251 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:42:30.896Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-18T23:42:30.897Z [nileopedia-backend] error: Document ingestion job failed: 3253 File not found: https://diabetesjournals.org/care
+2026-07-18T23:42:30.903Z [nileopedia-backend] error: Document ingestion failed: ec6ae856-e9dc-40dc-9f90-501298860a5f File not found: https://gi.org/
+2026-07-18T23:42:30.904Z [nileopedia-backend] error: Document ingestion job failed: 3254 File not found: https://gi.org/
+2026-07-18T23:42:30.912Z [nileopedia-backend] error: Document ingestion failed: b30e8e7d-0055-4da5-a8cb-722306b9ba4a File not found: https://jamanetwork.com/
+2026-07-18T23:42:30.914Z [nileopedia-backend] error: Document ingestion job failed: 3255 File not found: https://jamanetwork.com/
+2026-07-18T23:42:30.921Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-18T23:42:30.922Z [nileopedia-backend] error: Document ingestion job failed: 3256 File not found: https://n.neurology.org/
+2026-07-18T23:42:30.931Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-18T23:42:30.933Z [nileopedia-backend] error: Document ingestion job failed: 3257 File not found: https://gi.org/
+2026-07-18T23:42:30.940Z [nileopedia-backend] error: Document ingestion failed: 5d2b1c76-612d-4f69-88d5-1c2ab52660cc File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:42:30.943Z [nileopedia-backend] error: Document ingestion job failed: 3258 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:42:30.950Z [nileopedia-backend] error: Document ingestion failed: 6ca62143-3fc7-49af-9ea6-b700560b95fa File not found: https://gi.org/
+2026-07-18T23:42:30.952Z [nileopedia-backend] error: Document ingestion job failed: 3259 File not found: https://gi.org/
+2026-07-18T23:42:30.958Z [nileopedia-backend] error: Document ingestion failed: 72c955b8-8737-4023-9629-bcc8442b9e93 File not found: https://n.neurology.org/
+2026-07-18T23:42:30.959Z [nileopedia-backend] error: Document ingestion job failed: 3260 File not found: https://n.neurology.org/
+2026-07-18T23:42:30.966Z [nileopedia-backend] error: Document ingestion failed: 911b0253-60e7-4209-9495-62e34206b7cf File not found: https://n.neurology.org/
+2026-07-18T23:42:30.967Z [nileopedia-backend] error: Document ingestion job failed: 3261 File not found: https://n.neurology.org/
+2026-07-18T23:44:44.088Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-18T23:44:44.090Z [nileopedia-backend] error: Document ingestion job failed: 3293 File not found: https://jamanetwork.com/
+2026-07-18T23:44:47.935Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:44:47.937Z [nileopedia-backend] error: Document ingestion job failed: 3295 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:44:52.223Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-18T23:44:52.224Z [nileopedia-backend] error: Document ingestion job failed: 3297 File not found: https://diabetesjournals.org/care
+2026-07-18T23:45:01.592Z [nileopedia-backend] error: Document ingestion failed: a47aac3d-8c4a-4a45-8a7e-e9474f632c60 File not found: https://gi.org/
+2026-07-18T23:45:01.593Z [nileopedia-backend] error: Document ingestion job failed: 3301 File not found: https://gi.org/
+2026-07-18T23:45:28.210Z [nileopedia-backend] error: Document ingestion failed: 5d60ffce-2a68-4640-a83d-6b6158206399 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:45:28.212Z [nileopedia-backend] error: Document ingestion job failed: 3305 File not found: https://ascopubs.org/journal/jco
+2026-07-18T23:45:28.219Z [nileopedia-backend] error: Document ingestion failed: c8abe5d6-aecc-4462-b078-f9a0857ddaf3 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:45:28.221Z [nileopedia-backend] error: Document ingestion job failed: 3306 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:56:29.534Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-18T23:56:30.956Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:56:30.968Z [nileopedia-backend] error: Document ingestion job failed: 3307 File not found: https://www.ahajournals.org/journal/circ
+2026-07-18T23:56:30.972Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-18T23:56:30.975Z [nileopedia-backend] error: Document ingestion job failed: 3308 File not found: https://diabetesjournals.org/care
+2026-07-18T23:56:31.528Z [nileopedia-backend] error: Document ingestion job failed: 1692 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-18T23:56:31.961Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-18T23:56:31.966Z [nileopedia-backend] error: Document ingestion job failed: 3309 File not found: https://diabetesjournals.org/care
+2026-07-18T23:56:31.974Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-18T23:56:32.904Z [nileopedia-backend] error: Document ingestion job failed: 3310 File not found: https://jamanetwork.com/
+2026-07-18T23:56:44.483Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-18T23:56:44.485Z [nileopedia-backend] error: Document ingestion job failed: 2087 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:00:29.599Z [nileopedia-backend] error: Document ingestion job failed: 2125 job stalled more than allowable limit
+2026-07-19T00:00:29.619Z [nileopedia-backend] error: Document ingestion job failed: 2124 job stalled more than allowable limit
+2026-07-19T00:02:16.057Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T00:07:10.132Z [nileopedia-backend] error: Document worker error could not renew lock for job 2218
+2026-07-19T00:07:10.144Z [nileopedia-backend] error: Document worker error could not renew lock for job 2219
+2026-07-19T00:07:16.744Z [nileopedia-backend] error: Document worker error Missing lock for job 2218. moveToFinished
+2026-07-19T00:07:16.752Z [nileopedia-backend] error: Document worker error Missing lock for job 2218. moveToDelayed
+2026-07-19T00:07:18.266Z [nileopedia-backend] error: Document worker error could not renew lock for job 2219
+2026-07-19T00:07:25.768Z [nileopedia-backend] error: Document worker error could not renew lock for job 2219
+2026-07-19T00:07:33.271Z [nileopedia-backend] error: Document worker error could not renew lock for job 2219
+2026-07-19T00:07:39.498Z [nileopedia-backend] error: Document worker error Missing lock for job 2219. moveToFinished
+2026-07-19T00:07:39.503Z [nileopedia-backend] error: Document worker error Missing lock for job 2219. moveToDelayed
+2026-07-19T00:08:40.010Z [nileopedia-backend] error: Document worker error could not renew lock for job 2222
+2026-07-19T00:08:40.012Z [nileopedia-backend] error: Document worker error could not renew lock for job 2219
+2026-07-19T00:08:41.768Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T00:08:43.848Z [nileopedia-backend] error: Document worker error Missing lock for job 2222. moveToFinished
+2026-07-19T00:08:43.852Z [nileopedia-backend] error: Document worker error Missing lock for job 2222. moveToDelayed
+2026-07-19T00:08:47.515Z [nileopedia-backend] error: Document worker error could not renew lock for job 2219
+2026-07-19T00:08:51.574Z [nileopedia-backend] error: Failed to store 20 of 60 vectors in Pinecone for document f868cdf7-7785-4a5b-8049-81b7c303aa3b
+2026-07-19T00:08:54.317Z [nileopedia-backend] error: Document ingestion failed: f868cdf7-7785-4a5b-8049-81b7c303aa3b Failed to store 20 of 60 vectors in Pinecone for document f868cdf7-7785-4a5b-8049-81b7c303aa3b
+2026-07-19T00:08:54.322Z [nileopedia-backend] error: Document worker error Missing lock for job 2219. moveToDelayed
+2026-07-19T00:09:14.072Z [nileopedia-backend] error: Document ingestion job failed: 2219 job stalled more than allowable limit
+2026-07-19T00:10:01.576Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T00:12:21.540Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T00:16:58.869Z [nileopedia-backend] error: Document worker error could not renew lock for job 2324
+2026-07-19T00:16:58.871Z [nileopedia-backend] error: Document worker error could not renew lock for job 2311
+2026-07-19T00:16:58.894Z [nileopedia-backend] error: Document worker error Missing lock for job 2324. moveToFinished
+2026-07-19T00:16:58.898Z [nileopedia-backend] error: Document worker error Missing lock for job 2324. moveToDelayed
+2026-07-19T00:17:15.506Z [nileopedia-backend] error: Document worker error could not renew lock for job 2311
+2026-07-19T00:17:21.188Z [nileopedia-backend] error: Document worker error Missing lock for job 2311. moveToFinished
+2026-07-19T00:17:21.195Z [nileopedia-backend] error: Document worker error Missing lock for job 2311. moveToDelayed
+2026-07-19T00:17:35.026Z [nileopedia-backend] error: Document ingestion job failed: 2311 job stalled more than allowable limit
+2026-07-19T00:22:55.344Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:22:55.350Z [nileopedia-backend] error: Document ingestion job failed: 2430 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:22:55.366Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-19T00:22:55.369Z [nileopedia-backend] error: Document ingestion job failed: 2431 File not found: https://www.thelancet.com/
+2026-07-19T00:22:55.391Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-19T00:22:55.394Z [nileopedia-backend] error: Document ingestion job failed: 2432 File not found: https://n.neurology.org/
+2026-07-19T00:22:55.408Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:22:55.412Z [nileopedia-backend] error: Document ingestion job failed: 2433 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:22:55.429Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:22:55.432Z [nileopedia-backend] error: Document ingestion job failed: 2435 File not found: https://jamanetwork.com/
+2026-07-19T00:22:55.446Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:22:55.449Z [nileopedia-backend] error: Document ingestion job failed: 2436 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:22:57.570Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:22:57.573Z [nileopedia-backend] error: Document ingestion job failed: 2438 File not found: https://diabetesjournals.org/care
+2026-07-19T00:22:59.062Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-19T00:22:59.065Z [nileopedia-backend] error: Document ingestion job failed: 2439 File not found: https://n.neurology.org/
+2026-07-19T00:22:59.078Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-19T00:22:59.081Z [nileopedia-backend] error: Document ingestion job failed: 2440 File not found: https://gi.org/
+2026-07-19T00:24:38.881Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-19T00:24:38.885Z [nileopedia-backend] error: Document ingestion job failed: 2472 File not found: https://jamanetwork.com/
+2026-07-19T00:24:42.144Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:24:42.145Z [nileopedia-backend] error: Document ingestion job failed: 2474 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:24:45.285Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:24:45.288Z [nileopedia-backend] error: Document ingestion job failed: 2476 File not found: https://diabetesjournals.org/care
+2026-07-19T00:26:09.830Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:26:09.834Z [nileopedia-backend] error: Document ingestion job failed: 2493 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:27:44.438Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T00:27:44.439Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 50be9361-d64e-4afa-839e-eb83e03860df
+2026-07-19T00:27:44.462Z [nileopedia-backend] error: Document ingestion failed: 50be9361-d64e-4afa-839e-eb83e03860df Failed to store 6 of 6 vectors in Pinecone for document 50be9361-d64e-4afa-839e-eb83e03860df
+2026-07-19T00:27:44.469Z [nileopedia-backend] error: Document ingestion job failed: 2519 Failed to store 6 of 6 vectors in Pinecone for document 50be9361-d64e-4afa-839e-eb83e03860df
+2026-07-19T00:27:46.958Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T00:27:46.960Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 90f877e3-51e1-4b71-91ab-6fbd90b5dab4
+2026-07-19T00:27:46.974Z [nileopedia-backend] error: Document ingestion failed: 90f877e3-51e1-4b71-91ab-6fbd90b5dab4 Failed to store 6 of 6 vectors in Pinecone for document 90f877e3-51e1-4b71-91ab-6fbd90b5dab4
+2026-07-19T00:27:46.976Z [nileopedia-backend] error: Document ingestion job failed: 2518 Failed to store 6 of 6 vectors in Pinecone for document 90f877e3-51e1-4b71-91ab-6fbd90b5dab4
+2026-07-19T00:27:57.565Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T00:27:57.566Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document 2cdd9bbe-0977-4034-b976-57dd6778ac2c
+2026-07-19T00:27:57.572Z [nileopedia-backend] error: Document ingestion failed: 2cdd9bbe-0977-4034-b976-57dd6778ac2c Failed to store 6 of 6 vectors in Pinecone for document 2cdd9bbe-0977-4034-b976-57dd6778ac2c
+2026-07-19T00:27:57.575Z [nileopedia-backend] error: Document ingestion job failed: 2522 Failed to store 6 of 6 vectors in Pinecone for document 2cdd9bbe-0977-4034-b976-57dd6778ac2c
+2026-07-19T00:28:00.556Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T00:28:00.558Z [nileopedia-backend] error: Failed to store 6 of 6 vectors in Pinecone for document afeeee15-d3cc-4557-8af0-57aa03f6ced6
+2026-07-19T00:28:00.568Z [nileopedia-backend] error: Document ingestion failed: afeeee15-d3cc-4557-8af0-57aa03f6ced6 Failed to store 6 of 6 vectors in Pinecone for document afeeee15-d3cc-4557-8af0-57aa03f6ced6
+2026-07-19T00:28:00.570Z [nileopedia-backend] error: Document ingestion job failed: 2523 Failed to store 6 of 6 vectors in Pinecone for document afeeee15-d3cc-4557-8af0-57aa03f6ced6
+2026-07-19T00:28:24.209Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:28:25.307Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:28:26.315Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:28:27.411Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:28:28.473Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:28:30.003Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:28:30.695Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:37:30.226Z [nileopedia-backend] error: Document worker error could not renew lock for job 2626
+2026-07-19T00:38:36.674Z [nileopedia-backend] error: Document worker error could not renew lock for job 2626
+2026-07-19T00:39:24.059Z [nileopedia-backend] error: Document ingestion job failed: 2626 job stalled more than allowable limit
+2026-07-19T00:39:24.071Z [nileopedia-backend] error: Document ingestion job failed: 2625 job stalled more than allowable limit
+2026-07-19T00:40:20.973Z [nileopedia-backend] error: Document ingestion job failed: 2629 job stalled more than allowable limit
+2026-07-19T00:40:20.981Z [nileopedia-backend] error: Document ingestion job failed: 2628 job stalled more than allowable limit
+2026-07-19T00:41:04.914Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:43:15.744Z [nileopedia-backend] error: Document worker error could not renew lock for job 2676
+2026-07-19T00:43:15.745Z [nileopedia-backend] error: Document worker error could not renew lock for job 2717
+2026-07-19T00:43:18.523Z [nileopedia-backend] error: Document worker error Missing lock for job 2676. moveToFinished
+2026-07-19T00:43:18.526Z [nileopedia-backend] error: Document worker error Missing lock for job 2676. moveToDelayed
+2026-07-19T00:43:22.327Z [nileopedia-backend] error: Document worker error Missing lock for job 2717. moveToFinished
+2026-07-19T00:43:22.334Z [nileopedia-backend] error: Document worker error Missing lock for job 2717. moveToDelayed
+2026-07-19T00:47:45.650Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:45.665Z [nileopedia-backend] error: Document ingestion job failed: 2836 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:45.692Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-19T00:47:45.701Z [nileopedia-backend] error: Document ingestion job failed: 2837 File not found: https://www.thelancet.com/
+2026-07-19T00:47:45.717Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-19T00:47:45.720Z [nileopedia-backend] error: Document ingestion job failed: 2838 File not found: https://n.neurology.org/
+2026-07-19T00:47:45.736Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:45.777Z [nileopedia-backend] error: Document ingestion job failed: 2839 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:45.795Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:47:45.807Z [nileopedia-backend] error: Document ingestion job failed: 2841 File not found: https://jamanetwork.com/
+2026-07-19T00:47:45.823Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:45.832Z [nileopedia-backend] error: Document ingestion job failed: 2842 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:45.853Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:45.857Z [nileopedia-backend] error: Document ingestion job failed: 2844 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:45.872Z [nileopedia-backend] error: Document ingestion failed: ec6ae856-e9dc-40dc-9f90-501298860a5f File not found: https://gi.org/
+2026-07-19T00:47:45.876Z [nileopedia-backend] error: Document ingestion job failed: 2845 File not found: https://gi.org/
+2026-07-19T00:47:45.899Z [nileopedia-backend] error: Document ingestion failed: b30e8e7d-0055-4da5-a8cb-722306b9ba4a File not found: https://jamanetwork.com/
+2026-07-19T00:47:45.907Z [nileopedia-backend] error: Document ingestion job failed: 2846 File not found: https://jamanetwork.com/
+2026-07-19T00:47:45.922Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-19T00:47:45.926Z [nileopedia-backend] error: Document ingestion job failed: 2847 File not found: https://n.neurology.org/
+2026-07-19T00:47:45.955Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-19T00:47:45.967Z [nileopedia-backend] error: Document ingestion job failed: 2848 File not found: https://gi.org/
+2026-07-19T00:47:45.997Z [nileopedia-backend] error: Document ingestion failed: 5d2b1c76-612d-4f69-88d5-1c2ab52660cc File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:45.999Z [nileopedia-backend] error: Document ingestion job failed: 2849 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.015Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.020Z [nileopedia-backend] error: Document ingestion job failed: 2881 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.034Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.037Z [nileopedia-backend] error: Document ingestion job failed: 2883 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.051Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.055Z [nileopedia-backend] error: Document ingestion job failed: 2885 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.068Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:47:46.071Z [nileopedia-backend] error: Document ingestion job failed: 2902 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:47:46.087Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.090Z [nileopedia-backend] error: Document ingestion job failed: 3245 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.105Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-19T00:47:46.110Z [nileopedia-backend] error: Document ingestion job failed: 3246 File not found: https://www.thelancet.com/
+2026-07-19T00:47:46.132Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-19T00:47:46.134Z [nileopedia-backend] error: Document ingestion job failed: 3247 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.149Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.152Z [nileopedia-backend] error: Document ingestion job failed: 3248 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.167Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.170Z [nileopedia-backend] error: Document ingestion job failed: 3250 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.183Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.190Z [nileopedia-backend] error: Document ingestion job failed: 3251 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.204Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.207Z [nileopedia-backend] error: Document ingestion job failed: 3253 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.222Z [nileopedia-backend] error: Document ingestion failed: ec6ae856-e9dc-40dc-9f90-501298860a5f File not found: https://gi.org/
+2026-07-19T00:47:46.233Z [nileopedia-backend] error: Document ingestion job failed: 3254 File not found: https://gi.org/
+2026-07-19T00:47:46.256Z [nileopedia-backend] error: Document ingestion failed: b30e8e7d-0055-4da5-a8cb-722306b9ba4a File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.262Z [nileopedia-backend] error: Document ingestion job failed: 3255 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.280Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.288Z [nileopedia-backend] error: Document ingestion job failed: 3256 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.300Z [nileopedia-backend] error: Document ingestion failed: 5d2b1c76-612d-4f69-88d5-1c2ab52660cc File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.302Z [nileopedia-backend] error: Document ingestion job failed: 3258 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.308Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-19T00:47:46.312Z [nileopedia-backend] error: Document ingestion job failed: 3257 File not found: https://gi.org/
+2026-07-19T00:47:46.317Z [nileopedia-backend] error: Document ingestion failed: 6ca62143-3fc7-49af-9ea6-b700560b95fa File not found: https://gi.org/
+2026-07-19T00:47:46.319Z [nileopedia-backend] error: Document ingestion job failed: 3259 File not found: https://gi.org/
+2026-07-19T00:47:46.331Z [nileopedia-backend] error: Document ingestion failed: 72c955b8-8737-4023-9629-bcc8442b9e93 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.334Z [nileopedia-backend] error: Document ingestion job failed: 3260 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.337Z [nileopedia-backend] error: Document ingestion failed: 911b0253-60e7-4209-9495-62e34206b7cf File not found: https://n.neurology.org/
+2026-07-19T00:47:46.339Z [nileopedia-backend] error: Document ingestion job failed: 3261 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.350Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.353Z [nileopedia-backend] error: Document ingestion job failed: 3293 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.356Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.358Z [nileopedia-backend] error: Document ingestion job failed: 3295 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.369Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.372Z [nileopedia-backend] error: Document ingestion failed: a47aac3d-8c4a-4a45-8a7e-e9474f632c60 File not found: https://gi.org/
+2026-07-19T00:47:46.375Z [nileopedia-backend] error: Document ingestion job failed: 3297 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.375Z [nileopedia-backend] error: Document ingestion job failed: 3301 File not found: https://gi.org/
+2026-07-19T00:47:46.390Z [nileopedia-backend] error: Document ingestion failed: 5d60ffce-2a68-4640-a83d-6b6158206399 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.393Z [nileopedia-backend] error: Document ingestion failed: c8abe5d6-aecc-4462-b078-f9a0857ddaf3 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.397Z [nileopedia-backend] error: Document ingestion job failed: 3305 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.397Z [nileopedia-backend] error: Document ingestion job failed: 3306 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.414Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.418Z [nileopedia-backend] error: Document ingestion job failed: 3307 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.420Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.423Z [nileopedia-backend] error: Document ingestion job failed: 3308 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.431Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.436Z [nileopedia-backend] error: Document ingestion job failed: 3309 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.439Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.450Z [nileopedia-backend] error: Document ingestion job failed: 3310 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.456Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:47:46.461Z [nileopedia-backend] error: Document ingestion job failed: 2087 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:47:46.469Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.475Z [nileopedia-backend] error: Document ingestion job failed: 2430 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.503Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-19T00:47:46.514Z [nileopedia-backend] error: Document ingestion job failed: 2431 File not found: https://www.thelancet.com/
+2026-07-19T00:47:46.544Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-19T00:47:46.546Z [nileopedia-backend] error: Document ingestion job failed: 2432 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.617Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.619Z [nileopedia-backend] error: Document ingestion job failed: 2433 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.633Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.635Z [nileopedia-backend] error: Document ingestion job failed: 2435 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.666Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.673Z [nileopedia-backend] error: Document ingestion job failed: 2436 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:47:46.681Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.691Z [nileopedia-backend] error: Document ingestion job failed: 2438 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.711Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.715Z [nileopedia-backend] error: Document ingestion job failed: 2439 File not found: https://n.neurology.org/
+2026-07-19T00:47:46.726Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-19T00:47:46.731Z [nileopedia-backend] error: Document ingestion job failed: 2440 File not found: https://gi.org/
+2026-07-19T00:47:46.744Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.748Z [nileopedia-backend] error: Document ingestion job failed: 2472 File not found: https://jamanetwork.com/
+2026-07-19T00:47:46.766Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.770Z [nileopedia-backend] error: Document ingestion job failed: 2474 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:47:46.774Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.777Z [nileopedia-backend] error: Document ingestion job failed: 2476 File not found: https://diabetesjournals.org/care
+2026-07-19T00:47:46.984Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:47:50.169Z [nileopedia-backend] error: Document ingestion job failed: 2493 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:47:54.636Z [nileopedia-backend] error: AI worker error connect ETIMEDOUT
+2026-07-19T00:48:02.977Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:02.991Z [nileopedia-backend] error: Document ingestion job failed: 2836 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.007Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-19T00:48:03.010Z [nileopedia-backend] error: Document ingestion job failed: 2837 File not found: https://www.thelancet.com/
+2026-07-19T00:48:03.026Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-19T00:48:03.030Z [nileopedia-backend] error: Document ingestion job failed: 2838 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.045Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.047Z [nileopedia-backend] error: Document ingestion job failed: 2839 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.065Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.068Z [nileopedia-backend] error: Document ingestion job failed: 2841 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.082Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.086Z [nileopedia-backend] error: Document ingestion job failed: 2842 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.098Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.101Z [nileopedia-backend] error: Document ingestion job failed: 2844 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.120Z [nileopedia-backend] error: Document ingestion failed: ec6ae856-e9dc-40dc-9f90-501298860a5f File not found: https://gi.org/
+2026-07-19T00:48:03.122Z [nileopedia-backend] error: Document ingestion job failed: 2845 File not found: https://gi.org/
+2026-07-19T00:48:03.139Z [nileopedia-backend] error: Document ingestion failed: b30e8e7d-0055-4da5-a8cb-722306b9ba4a File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.142Z [nileopedia-backend] error: Document ingestion job failed: 2846 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.160Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.164Z [nileopedia-backend] error: Document ingestion job failed: 2847 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.188Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-19T00:48:03.190Z [nileopedia-backend] error: Document ingestion job failed: 2848 File not found: https://gi.org/
+2026-07-19T00:48:03.203Z [nileopedia-backend] error: Document ingestion failed: 5d2b1c76-612d-4f69-88d5-1c2ab52660cc File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.207Z [nileopedia-backend] error: Document ingestion job failed: 2849 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.226Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.229Z [nileopedia-backend] error: Document ingestion job failed: 2881 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.246Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.248Z [nileopedia-backend] error: Document ingestion job failed: 2883 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.265Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.267Z [nileopedia-backend] error: Document ingestion job failed: 2885 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.291Z [nileopedia-backend] error: Document ingestion failed: e9e8cd26-c5e9-415b-909f-dc2f4ddb6143 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:48:03.296Z [nileopedia-backend] error: Document ingestion job failed: 2902 File not found: /uploads/1783531813114-q4rc3j0bexc.html
+2026-07-19T00:48:03.312Z [nileopedia-backend] error: Document ingestion failed: 5bd36c38-aaa1-43eb-929b-af3db5508d38 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.315Z [nileopedia-backend] error: Document ingestion job failed: 3245 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.331Z [nileopedia-backend] error: Document ingestion failed: 4fa91ffe-1fa0-4b60-a68a-675bfce7c01d File not found: https://www.thelancet.com/
+2026-07-19T00:48:03.336Z [nileopedia-backend] error: Document ingestion job failed: 3246 File not found: https://www.thelancet.com/
+2026-07-19T00:48:03.355Z [nileopedia-backend] error: Document ingestion failed: 453b8703-aa57-4a11-a652-93f46233cf4c File not found: https://n.neurology.org/
+2026-07-19T00:48:03.363Z [nileopedia-backend] error: Document ingestion job failed: 3247 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.379Z [nileopedia-backend] error: Document ingestion failed: eb8ff08f-0c66-4265-a19d-c8eec0a66582 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.381Z [nileopedia-backend] error: Document ingestion job failed: 3248 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.392Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.395Z [nileopedia-backend] error: Document ingestion job failed: 3250 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.409Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.412Z [nileopedia-backend] error: Document ingestion job failed: 3251 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.428Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.433Z [nileopedia-backend] error: Document ingestion job failed: 3253 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.455Z [nileopedia-backend] error: Document ingestion failed: ec6ae856-e9dc-40dc-9f90-501298860a5f File not found: https://gi.org/
+2026-07-19T00:48:03.462Z [nileopedia-backend] error: Document ingestion job failed: 3254 File not found: https://gi.org/
+2026-07-19T00:48:03.480Z [nileopedia-backend] error: Document ingestion failed: b30e8e7d-0055-4da5-a8cb-722306b9ba4a File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.483Z [nileopedia-backend] error: Document ingestion job failed: 3255 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.495Z [nileopedia-backend] error: Document ingestion failed: 4d9dae74-aacb-454e-b8da-f7e00b3d47c5 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.498Z [nileopedia-backend] error: Document ingestion job failed: 3256 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.512Z [nileopedia-backend] error: Document ingestion failed: 5d2b1c76-612d-4f69-88d5-1c2ab52660cc File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.515Z [nileopedia-backend] error: Document ingestion job failed: 3258 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.527Z [nileopedia-backend] error: Document ingestion failed: cb12ff6b-8de6-4cef-ad54-d9daa7ab813b File not found: https://gi.org/
+2026-07-19T00:48:03.532Z [nileopedia-backend] error: Document ingestion job failed: 3257 File not found: https://gi.org/
+2026-07-19T00:48:03.542Z [nileopedia-backend] error: Document ingestion failed: 6ca62143-3fc7-49af-9ea6-b700560b95fa File not found: https://gi.org/
+2026-07-19T00:48:03.545Z [nileopedia-backend] error: Document ingestion job failed: 3259 File not found: https://gi.org/
+2026-07-19T00:48:03.565Z [nileopedia-backend] error: Document ingestion failed: 72c955b8-8737-4023-9629-bcc8442b9e93 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.567Z [nileopedia-backend] error: Document ingestion job failed: 3260 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.582Z [nileopedia-backend] error: Document ingestion failed: 911b0253-60e7-4209-9495-62e34206b7cf File not found: https://n.neurology.org/
+2026-07-19T00:48:03.586Z [nileopedia-backend] error: Document ingestion job failed: 3261 File not found: https://n.neurology.org/
+2026-07-19T00:48:03.599Z [nileopedia-backend] error: Document ingestion failed: 43849941-ece9-466d-bed8-6721e3d6f1bf File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.601Z [nileopedia-backend] error: Document ingestion job failed: 3293 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.612Z [nileopedia-backend] error: Document ingestion failed: 84309dce-3e4b-4b38-9e74-1e61d01ee71d File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.614Z [nileopedia-backend] error: Document ingestion job failed: 3295 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.627Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.630Z [nileopedia-backend] error: Document ingestion job failed: 3297 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.643Z [nileopedia-backend] error: Document ingestion failed: a47aac3d-8c4a-4a45-8a7e-e9474f632c60 File not found: https://gi.org/
+2026-07-19T00:48:03.648Z [nileopedia-backend] error: Document ingestion job failed: 3301 File not found: https://gi.org/
+2026-07-19T00:48:03.661Z [nileopedia-backend] error: Document ingestion failed: 5d60ffce-2a68-4640-a83d-6b6158206399 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.664Z [nileopedia-backend] error: Document ingestion job failed: 3305 File not found: https://ascopubs.org/journal/jco
+2026-07-19T00:48:03.683Z [nileopedia-backend] error: Document ingestion failed: c8abe5d6-aecc-4462-b078-f9a0857ddaf3 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.687Z [nileopedia-backend] error: Document ingestion job failed: 3306 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.700Z [nileopedia-backend] error: Document ingestion failed: 2094fbea-9cee-426c-9463-58cad3667348 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.703Z [nileopedia-backend] error: Document ingestion job failed: 3307 File not found: https://www.ahajournals.org/journal/circ
+2026-07-19T00:48:03.721Z [nileopedia-backend] error: Document ingestion failed: 98d2d1b2-86f0-4083-9bae-cd298fe32a8e File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.726Z [nileopedia-backend] error: Document ingestion job failed: 3308 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.748Z [nileopedia-backend] error: Document ingestion failed: 1ad6acdb-e98f-4b16-a58c-db72026c9cf9 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.750Z [nileopedia-backend] error: Document ingestion job failed: 3309 File not found: https://diabetesjournals.org/care
+2026-07-19T00:48:03.765Z [nileopedia-backend] error: Document ingestion failed: b7226c0b-a934-4011-b38a-f6f1f1037e14 File not found: https://jamanetwork.com/
+2026-07-19T00:48:03.768Z [nileopedia-backend] error: Document ingestion job failed: 3310 File not found: https://jamanetwork.com/
+2026-07-19T00:58:22.630Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.704Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.705Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.709Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.800Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.813Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.817Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T00:58:22.817Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-19T09:14:30.299Z [nileopedia-backend] error: [ERROR] AI generation failed: Cannot read properties of null (reading 'references')
+2026-07-19T09:31:08.115Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T09:36:11.237Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.

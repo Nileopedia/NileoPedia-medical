@@ -109,8 +109,22 @@ model Citation {
   title           String
   source          String
   authors         String?
+  journal         String?
+  publisher       String?
   publicationYear Int?
+  volume          String?
+  issue           String?
+  pages           String?
   doi             String?
+  isbn            String?
+  pmid            String?
+  pmcid           String?
+  institution     String?
+  country         String?
+  publicationType String?
+  keywords        String[]
+  medicalSpecialty String?
+  language        String?
   url             String?
   citationIndex   Int
 
@@ -179,10 +193,21 @@ model DocumentMetadata {
   journal       String?
   publisher     String?
   publicationYear Int?
+  volume        String?
+  issue         String?
+  pages         String?
   doi           String?
+  isbn          String?
+  pmid          String?
+  pmcid         String?
+  institution   String?
+  country       String?
+  publicationType String?
+  keywords      String[]
+  medicalSpecialty String?
+  language      String?
   sourceURL     String?
   documentType  String?
-
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 

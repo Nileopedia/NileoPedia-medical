@@ -274,13 +274,26 @@ class ApiClient {
     if (!raw) return {};
     try {
       const parsed = JSON.parse(raw);
-      if (typeof parsed === 'object' && parsed !== null) {
+      if (typeof parsed === 'object' && parsed !== null && !parsed.clinicalSummary) {
         return parsed;
       }
     } catch {
       // Not JSON, return as general explanation
     }
     return { general: raw };
+  }
+
+  private parseStructuredResponse(raw?: string): import('../types').StructuredMedicalResponse | undefined {
+    if (!raw) return undefined;
+    try {
+      const parsed = JSON.parse(raw);
+      if (typeof parsed === 'object' && parsed !== null && parsed.clinicalSummary) {
+        return parsed as import('../types').StructuredMedicalResponse;
+      }
+    } catch {
+      // Not structured response
+    }
+    return undefined;
   }
 
   private extractRecommendations(findings: string[]): string[] {
@@ -320,6 +333,7 @@ class ApiClient {
           queryId: question.id,
           title: question.questionText,
           summary: question.aiResponse.summary,
+          structuredResponse: this.parseStructuredResponse(question.aiResponse.detailedExplanation),
           keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings ?? []),
           sections: this.parseSections(question.aiResponse.detailedExplanation),
           citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
@@ -338,6 +352,7 @@ class ApiClient {
           queryId: question.id,
           title: question.questionText,
           summary: UNAVAILABLE,
+          structuredResponse: undefined,
           keyRecommendations: [],
           sections: {},
           citations: [],
@@ -372,7 +387,19 @@ class ApiClient {
 
   async getQuestion(questionId: string): Promise<QuestionDetail> {
     const payload = await this.request<ApiEnvelope<BackendQuestion>>(`/questions/${questionId}`);
-    return this.normalizeAiResponse(this.unwrap(payload));
+    const normalized = this.normalizeAiResponse(this.unwrap(payload));
+    
+    console.log('================================');
+    console.log('Frontend API Payload');
+    console.log('================================');
+    console.log('Raw backend response:', JSON.stringify(this.unwrap(payload), null, 2));
+    console.log('Normalized response:', JSON.stringify(normalized, null, 2));
+    console.log('Response source:', normalized.aiResponse?.source);
+    console.log('Response summary:', normalized.aiResponse?.summary);
+    console.log('Has structured response:', !!normalized.aiResponse?.structuredResponse);
+    console.log('================================\n');
+    
+    return normalized;
   }
 
   async getHistory(options: { page?: number; limit?: number; category?: string; startDate?: string; endDate?: string } = {}): Promise<{ questions: Query[]; total: number; page: number; limit: number; totalPages: number }> {

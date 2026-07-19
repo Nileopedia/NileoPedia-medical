@@ -8,7 +8,7 @@ import { AppLayout } from '../../../components/layout/AppLayout';
 import { useRouter } from 'next/navigation';
 import { api } from '../../../lib/api';
 import { useToast } from '../../../components/ui/Toast';
-import { ResponseViewer } from '../../../components/query/ResponseViewer';
+import { MedicalResponseViewer } from '../../../components/query/MedicalResponseViewer';
 
 export default function HistoryDetailPage() {
   const params = useParams();
@@ -83,7 +83,7 @@ export default function HistoryDetailPage() {
           </CardContent>
         </Card>
 
-        <ResponseViewer response={question.aiResponse} />
+        <MedicalResponseViewer response={question.aiResponse} />
       </div>
     </AppLayout>
   );

@@ -292,34 +292,64 @@ export class AdminController {
 
   async ragDebug(req: Request, res: Response, next: NextFunction) {
     try {
-      const query = (req.query.q as string) || '';
-      const retrievalService = new RetrievalService();
-
-      const pineconeMatches = await retrievalService.semanticSearch(query, 10);
-      const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= 0.50);
-      const documents = relevant.map((doc: any) => ({
-        id: doc.id,
-        score: doc.score,
-        title: doc.metadata?.title || doc.metadata?.source || 'Unknown',
-        source: doc.metadata?.source || 'Unknown',
-      }));
-
-      const topScores = pineconeMatches.slice(0, 3).map((m: any) => m.score).filter((s: number) => s !== undefined);
-
+      const { ragDebugService } = require('../../../debug/rag-debug.service');
+      const latestDebug = ragDebugService.getLatest();
+      
       await AuditLogger.log(req, {
         action: 'ADMIN_RAG_DEBUG',
         entityType: 'System',
-        description: 'Admin inspected RAG retrieval results',
-        metadata: { query, retrievedCount: documents.length, topScore: documents[0]?.score },
+        description: 'Admin inspected RAG debug data',
+        metadata: { 
+          query: latestDebug?.query || 'none',
+          retrievedCount: latestDebug?.retrievedCount || 0,
+          topScore: latestDebug?.topScore || null,
+        },
       });
+      
+      if (!latestDebug) {
+        res.status(200).json({
+          success: true,
+          message: 'No RAG debug data available. Submit a query first.',
+          data: null,
+        });
+        return;
+      }
+
+      const avgChunkLength = latestDebug.finalContext?.length 
+        ? Math.round(latestDebug.finalContext.reduce((sum: number, c: any) => sum + (c.preview?.length || 0), 0) / latestDebug.finalContext.length)
+        : 0;
+
+      const metadataFields = ['title', 'authors', 'journal', 'publicationYear', 'doi', 'source'];
+      let totalFields = 0;
+      let filledFields = 0;
+      for (const chunk of latestDebug.finalContext || []) {
+        for (const field of metadataFields) {
+          totalFields++;
+          const value = chunk.metadata?.[field];
+          if (value && value !== 'unknown' && value !== 'Unknown' && value !== 'N/A') {
+            filledFields++;
+          }
+        }
+      }
+      const metadataCompleteness = totalFields > 0 ? Math.round((filledFields / totalFields) * 100) : 0;
 
       res.status(200).json({
         success: true,
-        query,
-        retrievedCount: documents.length,
-        topScores,
-        topScore: documents[0]?.score || null,
-        documents,
+        data: {
+          ...latestDebug,
+          averageChunkLength: avgChunkLength,
+          duplicateChunksRemoved: latestDebug.pineconeMatches?.length - latestDebug.filteredMatches?.length || 0,
+          totalContextCharacters: latestDebug.charactersSent,
+          metadataCompleteness,
+          retrievedChunks: (latestDebug.finalContext || []).map((chunk: any) => ({
+            chunkId: chunk.chunkId,
+            title: chunk.title,
+            authors: chunk.metadata?.authors || 'Unknown',
+            score: chunk.score,
+            length: chunk.preview?.length || 0,
+            preview: chunk.preview,
+          })),
+        },
       });
     } catch (error: any) {
       logger.error('RAG debug error:', error);
