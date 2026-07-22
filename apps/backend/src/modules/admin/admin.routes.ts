@@ -37,5 +37,8 @@ router.get('/ai-process', adminController.aiProcess.bind(adminController));
 router.post('/seed-mock-index', adminController.seedMockIndex.bind(adminController));
 router.get('/knowledge-audit', authenticate, authorize('ADMIN'), adminController.knowledgeAudit.bind(adminController));
 router.get('/coverage-report', authenticate, authorize('ADMIN'), adminController.coverageReport.bind(adminController));
+router.get('/monitoring-dashboard', authenticate, authorize('ADMIN'), adminController.monitoringDashboard.bind(adminController));
+router.get('/knowledge-gaps', authenticate, authorize('ADMIN'), adminController.knowledgeGaps.bind(adminController));
+router.get('/evaluation', authenticate, authorize('ADMIN'), adminController.runEvaluation.bind(adminController));
 
 export default router;

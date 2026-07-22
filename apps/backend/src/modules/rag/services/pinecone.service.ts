@@ -199,7 +199,7 @@ export class PineconeService {
     }
   }
 
-  async storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string) {
+  async storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string, enrichedMetadata?: Record<string, any>) {
     console.log('[PINECONE] Storing', chunks.length, 'chunks for document:', documentId);
     const vectors = embeddings.map((embedding, i) => {
       const metadata: Record<string, any> = {
@@ -211,6 +211,13 @@ export class PineconeService {
       for (const [key, value] of Object.entries(chunks[i].metadata)) {
         if (value !== null && value !== undefined) {
           metadata[key] = value;
+        }
+      }
+      if (enrichedMetadata) {
+        for (const [key, value] of Object.entries(enrichedMetadata)) {
+          if (value !== null && value !== undefined && value !== '' && !(Array.isArray(value) && value.length === 0)) {
+            metadata[key] = value;
+          }
         }
       }
       return {

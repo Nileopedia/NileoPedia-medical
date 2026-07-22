@@ -8,6 +8,9 @@ import { PineconeService } from '../../../modules/rag/services/pinecone.service'
 import { CONFIG } from '../../../config/env';
 import prisma from '../../../config/prisma';
 import { KnowledgeAuditService } from '../../../modules/medical/knowledge-audit.service';
+import { ProductionMonitoringService } from '../../../modules/monitoring/production-monitoring.service';
+import { KnowledgeGapDetectionService } from '../../../modules/monitoring/knowledge-gap-detection.service';
+import { EvaluationDataset } from '../../../modules/evaluation/evaluation-dataset.service';
 
 export class AdminController {
   private adminService: AdminService;
@@ -340,6 +343,34 @@ export class AdminController {
         success: true,
         data: {
           ...latestDebug,
+          diagnostics: {
+            originalQuery: latestDebug.query,
+            normalizedQuery: latestDebug.normalizedQuery,
+            expandedQuery: latestDebug.expandedQuery || latestDebug.query,
+            matchedSynonym: latestDebug.matchedSynonym || null,
+            synonyms: latestDebug.synonyms || [],
+            resolvedAcronyms: latestDebug.resolvedAcronyms || [],
+            hybridWeights: latestDebug.hybridWeights || { dense: 0.6, keyword: 0.4 },
+            denseResultCount: latestDebug.pineconeMatches?.length || latestDebug.denseResults?.length || 0,
+            keywordResultCount: latestDebug.keywordResults?.length || 0,
+            mergedResultCount: latestDebug.mergedResults?.length || 0,
+            rerankedResultCount: latestDebug.rerankedResults?.length || 0,
+            finalSelectedChunks: latestDebug.finalContext?.length || 0,
+            chunkCount: latestDebug.finalContext?.length || 0,
+            chunkLength: avgChunkLength,
+            metadataCompleteness,
+            citationQuality: latestDebug.citationQuality || 0,
+            confidenceScore: latestDebug.confidenceScore || 0,
+            evidenceStrength: latestDebug.evidenceStrength || 'Unknown',
+            retrievalQuality: latestDebug.retrievalQuality || 0,
+            contextSize: latestDebug.charactersSent || 0,
+            promptSize: latestDebug.promptSize || 0,
+            minScore: latestDebug.minScore || 0.25,
+            embeddingScore: latestDebug.pineconeMatches?.[0]?.score || null,
+            bm25Score: latestDebug.keywordResults?.[0]?.score || null,
+            rerankerScore: latestDebug.rerankedResults?.[0]?.score || null,
+            finalRank: latestDebug.finalContext?.[0]?.rank || null,
+          },
           averageChunkLength: avgChunkLength,
           duplicateChunksRemoved: latestDebug.pineconeMatches?.length - latestDebug.filteredMatches?.length || 0,
           totalContextCharacters: latestDebug.charactersSent,
@@ -349,20 +380,10 @@ export class AdminController {
             title: chunk.title,
             authors: chunk.metadata?.authors || 'Unknown',
             score: chunk.score,
+            rank: chunk.rank,
             length: chunk.preview?.length || 0,
             preview: chunk.preview,
           })),
-          diagnostics: {
-            originalQuery: latestDebug.query,
-            normalizedQuery: latestDebug.normalizedQuery,
-            expandedQuery: latestDebug.expandedQuery || latestDebug.query,
-            matchedSynonym: latestDebug.matchedSynonym || null,
-            synonyms: latestDebug.synonyms || [],
-            denseResultCount: latestDebug.pineconeMatches?.length || 0,
-            keywordResultCount: latestDebug.keywordResults?.length || 0,
-            mergedResultCount: latestDebug.mergedResults?.length || 0,
-            finalSelectedChunks: latestDebug.finalContext?.length || 0,
-          },
         },
       });
     } catch (error: any) {
@@ -786,6 +807,90 @@ export class AdminController {
       });
     } catch (error: any) {
       logger.error('Coverage report error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async monitoringDashboard(req: Request, res: Response, next: NextFunction) {
+    try {
+      const monitoringService = new ProductionMonitoringService();
+      const dashboardData = await monitoringService.getDashboardData();
+
+      await AuditLogger.log(req, {
+        action: 'ADMIN_MONITORING_DASHBOARD',
+        entityType: 'System',
+        description: 'Admin viewed monitoring dashboard',
+        metadata: {
+          totalQueries: dashboardData.systemMetrics.totalQueries,
+          failedRetrievals: dashboardData.systemMetrics.failedRetrievals,
+        },
+      });
+
+      res.status(200).json({
+        success: true,
+        data: dashboardData,
+      });
+    } catch (error: any) {
+      logger.error('Monitoring dashboard error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async knowledgeGaps(req: Request, res: Response, next: NextFunction) {
+    try {
+      const gapDetectionService = new KnowledgeGapDetectionService();
+      const report = await gapDetectionService.detectGaps();
+
+      await AuditLogger.log(req, {
+        action: 'ADMIN_KNOWLEDGE_GAPS',
+        entityType: 'System',
+        description: 'Admin viewed knowledge gap report',
+        metadata: {
+          totalGaps: report.totalGaps,
+          highPriorityGaps: report.highPriorityGaps,
+        },
+      });
+
+      res.status(200).json({
+        success: true,
+        data: report,
+      });
+    } catch (error: any) {
+      logger.error('Knowledge gaps error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async runEvaluation(req: Request, res: Response, next: NextFunction) {
+    try {
+      const evaluationDataset = new EvaluationDataset();
+      const report = await evaluationDataset.runEvaluation();
+
+      await AuditLogger.log(req, {
+        action: 'ADMIN_RUN_EVALUATION',
+        entityType: 'System',
+        description: 'Admin ran evaluation benchmark',
+        metadata: {
+          totalQuestions: report.totalQuestions,
+          averageOverallScore: report.averageOverallScore,
+        },
+      });
+
+      res.status(200).json({
+        success: true,
+        data: report,
+      });
+    } catch (error: any) {
+      logger.error('Evaluation error:', error);
       res.status(500).json({
         success: false,
         error: error.message,

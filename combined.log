@@ -11,3 +11,61 @@
 2026-06-16T06:11:22.860Z [nileopedia-backend] warn: HF embedding failed, falling back to mock: fetch failed
 2026-06-17T07:47:41.212Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
 2026-06-17T09:21:51.553Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-22T10:16:02.727Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T10:16:02.585Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-22T10:16:02.592Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-22T10:16:02.615Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:16:03.404Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-22T10:16:03.405Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-22T10:16:03.450Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:16:03.630Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:16:04.137Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:04.250Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:16:04.398Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:04.415Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:16:04.750Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:16:04.756Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-1
+2026-07-22T10:16:04.808Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:16:04.924Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:16:04.925Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-2
+2026-07-22T10:16:04.940Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:16:04.991Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.013Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:16:05.110Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.181Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.274Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.319Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.372Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:02.824Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T10:16:02.845Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T10:16:02.923Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-22T10:19:01.420Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T10:19:01.638Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T10:19:01.682Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T10:19:01.688Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-07-22T10:19:01.742Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-22T10:19:01.778Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-22T10:19:04.943Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-22T10:19:04.951Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-22T10:19:04.973Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:19:05.769Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-22T10:19:05.774Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-22T10:19:05.801Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:19:05.877Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:19:06.093Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:06.159Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:19:06.198Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:06.251Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:19:06.518Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:19:06.520Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-1
+2026-07-22T10:19:06.541Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:19:06.736Z [nileopedia-backend] info: [object Object]
+2026-07-22T10:19:06.742Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-2
+2026-07-22T10:19:06.787Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:19:06.915Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:06.943Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-22T10:19:06.994Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.110Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.237Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.345Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.412Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function

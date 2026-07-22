@@ -4,6 +4,7 @@ import {
   SearchType, SearchResult, SearchQuery, SearchResultResponse,
 } from './search.types';
 import { logger } from '../../config/logger';
+import { DynamicRetrievalService } from '../medical/dynamic-retrieval.service';
 
 export interface SearchErrorResponse {
   success: false;
@@ -12,9 +13,11 @@ export interface SearchErrorResponse {
 
 export class SearchService {
   private retrievalService: RetrievalService;
+  private dynamicRetrievalService: DynamicRetrievalService;
 
   constructor() {
     this.retrievalService = new RetrievalService();
+    this.dynamicRetrievalService = new DynamicRetrievalService();
   }
 
   async globalSearch(query: SearchQuery): Promise<SearchResultResponse | SearchErrorResponse> {
@@ -39,14 +42,6 @@ export class SearchService {
         break;
     }
 
-    // Check if Pinecone is unavailable
-    if (!this.retrievalService.pineconeClient) {
-      return {
-        success: false,
-        error: 'Real search unavailable',
-      };
-    }
-
     return {
       query: q,
       results: results.slice(skip, skip + limit),
@@ -61,12 +56,6 @@ export class SearchService {
   }
 
   async semanticSearch(q: string, specialty?: string, limit: number = 10): Promise<SearchResult[]> {
-    // Check if Pinecone is available
-    if (!this.retrievalService.pineconeClient) {
-      logger.error('[ERROR] Pinecone unavailable');
-      return [];
-    }
-
     try {
       const pineconeResults = await this.retrievalService.semanticSearch(q, limit);
 
@@ -135,11 +124,9 @@ export class SearchService {
   }
 
   async hybridSearch(q: string, specialty?: string, limit: number = 20): Promise<SearchResult[]> {
-    // Check if Pinecone is available
-    if (!this.retrievalService.pineconeClient) {
-      logger.error('[ERROR] Pinecone unavailable');
-      return [];
-    }
+    const queryAnalysis = this.dynamicRetrievalService.analyzeQuery(q);
+    const denseWeight = queryAnalysis.denseWeight;
+    const keywordWeight = queryAnalysis.keywordWeight;
 
     try {
       const [semanticResults, keywordResults] = await Promise.all([
@@ -150,16 +137,16 @@ export class SearchService {
       const mergedMap = new Map<string, SearchResult>();
 
       for (const result of semanticResults) {
-        result.relevanceScore = (result.relevanceScore || 0) * 0.7;
+        result.relevanceScore = (result.relevanceScore || 0) * denseWeight;
         mergedMap.set(result.id, result);
       }
 
       for (const result of keywordResults) {
         const existing = mergedMap.get(result.id);
         if (existing) {
-          existing.relevanceScore = ((existing.relevanceScore || 0) + (result.relevanceScore || 0) * 0.3);
+          existing.relevanceScore = ((existing.relevanceScore || 0) + (result.relevanceScore || 0) * keywordWeight);
         } else {
-          result.relevanceScore = (result.relevanceScore || 0) * 0.3;
+          result.relevanceScore = (result.relevanceScore || 0) * keywordWeight;
           mergedMap.set(result.id, result);
         }
       }

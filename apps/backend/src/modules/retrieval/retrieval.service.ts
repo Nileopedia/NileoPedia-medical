@@ -3,6 +3,9 @@ import { EmbeddingService } from '../rag/services/embedding.service';
 import { DocumentChunk } from '../rag/services/chunking.service';
 import { MedicalSynonymService } from '../medical/synonym.service';
 import { Bm25Service, Bm25Result } from '../medical/bm25.service';
+import { DynamicRetrievalService } from '../medical/dynamic-retrieval.service';
+import { MedicalAcronymResolver } from '../medical/acronym-resolver.service';
+import { CrossEncoderReranker } from './cross-encoder-reranker.service';
 
 export interface RetrievalMatch {
   id: string;
@@ -20,12 +23,18 @@ export class RetrievalService {
   private medicalReferenceEmbedding: number[] | null = null;
   private synonymService: MedicalSynonymService;
   private bm25Service: Bm25Service;
+  private dynamicRetrievalService: DynamicRetrievalService;
+  private acronymResolver: MedicalAcronymResolver;
+  private crossEncoderReranker: CrossEncoderReranker;
 
   constructor() {
     this.pineconeService = new PineconeService();
     this.embeddingService = new EmbeddingService();
     this.synonymService = new MedicalSynonymService();
     this.bm25Service = new Bm25Service();
+    this.dynamicRetrievalService = new DynamicRetrievalService();
+    this.acronymResolver = new MedicalAcronymResolver();
+    this.crossEncoderReranker = new CrossEncoderReranker();
     this.initMedicalReferenceEmbedding().catch(() => {});
   }
 
@@ -40,6 +49,10 @@ export class RetrievalService {
     }
   }
 
+  isMockMode(): boolean {
+    return this.pineconeService.isMockMode();
+  }
+
   get pineconeClient() {
     if (this.pineconeService.isMockMode()) {
       return {
@@ -52,14 +65,21 @@ export class RetrievalService {
   }
 
   async semanticSearch(query: string, topK = 8): Promise<RetrievalMatch[]> {
-    const expansion = this.synonymService.expand(query);
-    const expandedQuery = expansion.expandedQuery;
+    const acronymExpansion = this.acronymResolver.resolveAll(query);
+    const expandedQuery = acronymExpansion.expandedQuery;
+    
+    console.log('[ACRONYM] Original query:', query);
+    console.log('[ACRONYM] Expanded query:', expandedQuery);
+    console.log('[ACRONYM] Resolved acronyms:', acronymExpansion.acronyms.map(a => a.original).join(', '));
+    
+    const expansion = this.synonymService.expand(expandedQuery);
+    const finalExpandedQuery = expansion.expandedQuery;
     
     console.log('[SYNONYM] Original query:', expansion.originalQuery);
-    console.log('[SYNONYM] Expanded query:', expandedQuery);
+    console.log('[SYNONYM] Expanded query:', finalExpandedQuery);
     console.log('[SYNONYM] Matched synonym:', expansion.matchedSynonym);
     
-    const embedding = await this.embeddingService.generateEmbedding(expandedQuery);
+    const embedding = await this.embeddingService.generateEmbedding(finalExpandedQuery);
     console.log('[PINECONE] Query embedding dimensions:', embedding.length);
     const results = await this.pineconeService.query(embedding, Math.max(topK, 20));
 
@@ -80,40 +100,51 @@ export class RetrievalService {
     return topResults;
   }
 
-  async hybridSearch(query: string, specialty?: string): Promise<RetrievalMatch[]> {
-    const expansion = this.synonymService.expand(query);
-    const expandedQuery = expansion.expandedQuery;
+  async hybridSearch(query: string, specialty?: string, topK: number = 8): Promise<RetrievalMatch[]> {
+    const queryAnalysis = this.dynamicRetrievalService.analyzeQuery(query);
+    const acronymExpansion = this.acronymResolver.resolveAll(query);
+    const expandedQuery = acronymExpansion.expandedQuery;
+    const finalExpandedQuery = this.synonymService.expand(expandedQuery).expandedQuery;
 
-    const [denseResults, bm25Results] = await Promise.all([
-      this.semanticSearch(expandedQuery, 20),
-      this.bm25Search(expandedQuery, 20),
-    ]);
+    const denseWeight = queryAnalysis.denseWeight;
+    const keywordWeight = queryAnalysis.keywordWeight;
+
+    const denseResults = await this.semanticSearch(finalExpandedQuery, topK * 2);
+    const bm25Results = await this.bm25Search(finalExpandedQuery, specialty, topK * 2);
 
     console.log('[HYBRID] Dense results:', denseResults.length);
     console.log('[HYBRID] Keyword results:', bm25Results.length);
+    console.log('[HYBRID] Dynamic weights:', { dense: denseWeight, keyword: keywordWeight });
 
-    const merged = this.mergeResults(denseResults, bm25Results);
-    const topResults = merged.slice(0, 8);
+    const merged = this.mergeResults(denseResults, bm25Results, denseWeight, keywordWeight);
+    const topResults = merged.slice(0, topK * 2);
 
     console.log('[HYBRID] Merged results:', merged.length);
-    console.log('[HYBRID] Final results:', topResults.length);
-    console.log('[HYBRID] Final scores:', topResults.map((m) => m.score));
+
+    const reranked = await this.crossEncoderReranker.rerank(query, topResults, topK);
+
+    console.log('[HYBRID] Reranked results:', reranked.length);
+
+    const finalResults = reranked.map((r: any) => ({
+      ...r,
+      retrievalSource: 'hybrid' as const,
+    }));
 
     if (specialty) {
-      const filtered = topResults.filter((match) => {
+      const filtered = finalResults.filter((match) => {
         const metadata = match.metadata || {};
         return metadata.specialty === specialty.toLowerCase() || !metadata.specialty;
       });
-      return filtered.length > 0 ? filtered : topResults;
+      return filtered.length > 0 ? filtered : finalResults;
     }
 
-    return topResults;
+    return finalResults;
   }
 
-  private async bm25Search(query: string, topK = 20): Promise<RetrievalMatch[]> {
+  private async bm25Search(query: string, specialty?: string, topK = 20): Promise<RetrievalMatch[]> {
     try {
       await this.bm25Service.initialize();
-      const results = await this.bm25Service.search(query, topK);
+      const results = await this.bm25Service.search(query, topK, specialty ? { specialty } : undefined);
       
       return results.map((r: Bm25Result) => ({
         id: r.chunkId,
@@ -128,9 +159,7 @@ export class RetrievalService {
     }
   }
 
-  private mergeResults(denseResults: RetrievalMatch[], keywordResults: RetrievalMatch[]): RetrievalMatch[] {
-    const denseWeight = 0.6;
-    const keywordWeight = 0.4;
+  private mergeResults(denseResults: RetrievalMatch[], keywordResults: RetrievalMatch[], denseWeight: number, keywordWeight: number): RetrievalMatch[] {
     const merged = new Map<string, RetrievalMatch>();
 
     const normalizeScore = (score: number, maxScore: number): number => {
@@ -361,4 +390,3 @@ function cosineSimilarity(a: number[], b: number[]): number {
 
   return dotProduct / denominator;
 }
-

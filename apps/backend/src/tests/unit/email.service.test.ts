@@ -6,6 +6,7 @@ import prisma from '../../config/prisma';
 jest.mock('../../config/prisma', () => ({
   emailLog: {
     create: jest.fn(),
+    update: jest.fn(),
     updateMany: jest.fn(),
   },
 }));

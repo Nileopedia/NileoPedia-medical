@@ -1,5 +1,7 @@
 import { Groq } from 'groq-sdk';
 import { CONFIG } from '../../../config/env';
+import { ConfidenceEngine } from '../../medical/confidence-engine.service';
+import { CitationQualityService } from '../../medical/citation-quality.service';
 
 export interface Citation {
   title: string;
@@ -14,11 +16,15 @@ export interface Citation {
 
 export class AIService {
   private groq: Groq | null = null;
+  private confidenceEngine: ConfidenceEngine;
+  private citationQualityService: CitationQualityService;
 
   constructor() {
     if (CONFIG.GROQ_API_KEY) {
       this.groq = new Groq({ apiKey: CONFIG.GROQ_API_KEY });
     }
+    this.confidenceEngine = new ConfidenceEngine();
+    this.citationQualityService = new CitationQualityService();
   }
 
   async generateResponse(question: string, chunks: Array<{ text: string; metadata?: Record<string, any> }>) {
@@ -38,9 +44,9 @@ export class AIService {
 
     const summary = completion.choices[0]?.message?.content || '';
 
-    // Extract real citations from chunks metadata
     const citations: Citation[] = [];
     const seenTitles = new Set<string>();
+    const citationQualityScores: number[] = [];
 
     for (const chunk of chunks) {
       const metadata = chunk.metadata || {};
@@ -48,6 +54,13 @@ export class AIService {
 
       if (seenTitles.has(title)) continue;
       seenTitles.add(title);
+
+      const qualityResult = this.citationQualityService.evaluate(
+        metadata.source || '',
+        metadata.documentType,
+        metadata.authors ? (Array.isArray(metadata.authors) ? metadata.authors : [metadata.authors]) : undefined
+      );
+      citationQualityScores.push(qualityResult.qualityScore);
 
       citations.push({
         title,
@@ -61,17 +74,39 @@ export class AIService {
       });
     }
 
+    const confidenceResult = this.confidenceEngine.calculate({
+      topSimilarity: chunks[0]?.metadata?.score || 0,
+      retrievedCount: chunks.length,
+      rerankerScores: chunks.map((c) => c.metadata?.score || 0),
+      citationQualityScores,
+      metadataCompleteness: this.computeMetadataCompleteness(chunks),
+      sourceDiversity: new Set(chunks.map((c) => c.metadata?.source)).size / Math.max(chunks.length, 1),
+    });
+
     return {
       summary,
       citations,
-      confidenceScore: this.calculateConfidence(chunks, citations.length),
+      confidenceScore: confidenceResult.confidenceScore / 100,
+      evidenceStrength: confidenceResult.evidenceStrength,
+      retrievalQuality: confidenceResult.retrievalQuality,
+      breakdown: confidenceResult.breakdown,
     };
   }
 
-  private calculateConfidence(chunks: Array<any>, numCitations: number): number {
-    if (numCitations === 0) return 0.1;
-    const baseScore = Math.min(numCitations / 5, 1) * 0.5;
-    const chunkScore = Math.min(chunks.length / 10, 1) * 0.5;
-    return Math.round((baseScore + chunkScore) * 100) / 100;
+  private computeMetadataCompleteness(chunks: Array<{ metadata?: Record<string, any> }>): number {
+    if (chunks.length === 0) return 0;
+    const fields = ['title', 'authors', 'journal', 'publicationYear', 'doi', 'source'];
+    let total = 0;
+    let filled = 0;
+    for (const chunk of chunks) {
+      for (const field of fields) {
+        total++;
+        const value = chunk.metadata?.[field];
+        if (value && value !== 'unknown' && value !== 'Unknown' && value !== 'N/A') {
+          filled++;
+        }
+      }
+    }
+    return total > 0 ? (filled / total) * 100 : 0;
   }
 }

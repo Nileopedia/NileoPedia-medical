@@ -139223,3 +139223,7 @@ Argument `authors`: Invalid value provided. Expected String or Null, provided ()
 2026-07-20T22:30:07.459Z [nileopedia-backend] info: [object Object]
 2026-07-20T22:30:07.459Z [nileopedia-backend] info: Attempting local embeddings...
 2026-07-20T22:30:07.492Z [nileopedia-backend] info: Embedding source: local
+2026-07-22T09:32:19.318Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T09:32:19.438Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T09:32:19.468Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-22T09:32:19.554Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured

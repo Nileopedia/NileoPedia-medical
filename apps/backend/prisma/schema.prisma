@@ -217,6 +217,13 @@ model DocumentMetadata {
   icd10         String?
   snomed        String?
   meshTerms     String[]
+  abstract      String?  @db.Text
+  prognosis     String?
+  contraindications String[] @default([])
+  complications String[] @default([])
+  patientEducation String[] @default([])
+  citationQuality Int?
+  metadataCompleteness Int?
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -232,7 +239,24 @@ model EmbeddingMetadata {
   pineconeVectorId String @unique
   chunkIndex      Int
   chunkText       String @db.Text
-
+  disease         String?
+  specialty       String?
+  symptoms        String[]
+  diagnosis       String[]
+  treatment       String[]
+  medication      String[]
+  complications   String[]
+  prevention      String[]
+  icd10           String?
+  snomed          String?
+  meshTerms       String[]
+  citationQuality Int?
+  metadataCompleteness Int?
+  chunkLength     Int?
+  chunkHash       String?
+  isDuplicate     Boolean @default(false)
+  isValid         Boolean @default(true)
+  embeddingModel  String?
   createdAt     DateTime @default(now())
 
   document MedicalDocument @relation(fields: [documentId], references: [id], onDelete: Cascade)

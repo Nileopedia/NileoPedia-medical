@@ -10,7 +10,7 @@ module.exports = {
     '**/tests/**/*.spec.ts',
   ],
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
+    '^.+\\.(ts|tsx)$': ['ts-jest', {
       tsconfig: {
         target: 'ES2020',
         module: 'commonjs',

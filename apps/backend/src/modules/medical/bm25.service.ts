@@ -77,7 +77,7 @@ export class Bm25Service {
     }
   }
 
-  async search(query: string, topK = 20): Promise<Bm25Result[]> {
+  async search(query: string, topK = 20, filter?: Record<string, any>): Promise<Bm25Result[]> {
     if (!this.initialized) {
       await this.initialize();
     }
@@ -112,7 +112,18 @@ export class Bm25Service {
       .sort((a, b) => b[1] - a[1])
       .slice(0, topK);
 
-    return this.enrichResults(ranked);
+    let results = await this.enrichResults(ranked);
+
+    if (filter) {
+      results = results.filter((r) => {
+        for (const [key, value] of Object.entries(filter)) {
+          if (r.metadata[key] !== value) return false;
+        }
+        return true;
+      });
+    }
+
+    return results;
   }
 
   private async enrichResults(ranked: [string, number][]): Promise<Bm25Result[]> {
@@ -134,7 +145,7 @@ export class Bm25Service {
         },
       });
 
-      const chunkMap = new Map(chunks.map(c => [c.id, c]));
+      const chunkMap = new Map<string, any>(chunks.map((c: any) => [c.id, c]));
 
       return ranked.map(([chunkId, score]) => {
         const chunk = chunkMap.get(chunkId);
@@ -149,17 +160,17 @@ export class Bm25Service {
         }
 
         const metadata: Record<string, any> = {
-          title: chunk.document?.title || 'Unknown',
-          source: chunk.document?.source || 'Unknown',
-          specialty: chunk.document?.specialty || 'general',
-          documentType: chunk.document?.documentType || 'Unknown',
+          title: (chunk as any).document?.title || 'Unknown',
+          source: (chunk as any).document?.source || 'Unknown',
+          specialty: (chunk as any).document?.specialty || 'general',
+          documentType: (chunk as any).document?.documentType || 'Unknown',
         };
 
         return {
           chunkId,
-          documentId: chunk.documentId,
+          documentId: (chunk as any).documentId || '',
           score,
-          text: chunk.chunkText || '',
+          text: (chunk as any).chunkText || '',
           title: metadata.title,
           metadata,
         };

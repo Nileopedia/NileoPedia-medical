@@ -219,6 +219,9 @@ export class DocumentMetadataService {
     while ((meshMatchIter = meshHeadingPattern.exec(text)) !== null) {
       const descriptorName = meshMatchIter[1].match(/<DescriptorName>([^<]+)<\/DescriptorName>/i);
       if (descriptorName && descriptorName[1]) {
+        if (!result.meshTerms) {
+          result.meshTerms = [];
+        }
         result.meshTerms.push(descriptorName[1].trim());
       }
     }

@@ -32873,3 +32873,4 @@ Invalid `prisma.citation.create()` invocation in
 Argument `authors`: Invalid value provided. Expected String or Null, provided ().
 2026-07-20T21:35:52.908Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 30000ms
 2026-07-20T21:35:57.484Z [nileopedia-backend] error: [ERROR] Groq response generation failed: Groq timeout after 30000ms
+2026-07-22T09:32:19.554Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured

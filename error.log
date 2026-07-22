@@ -1,3 +1,22 @@
 2026-06-15T09:48:24.555Z [nileopedia-backend] error: Document ingestion failed: 4662c944-0472-4870-8923-eebe3eddfc7c Vector dimension 384 does not match the dimension of the index 3072
 2026-06-15T14:39:30.906Z [nileopedia-backend] error: Document ingestion failed: 2f03e4a9-56a4-4d4c-a791-b12180c77f23 A call to https://api.pinecone.io/indexes/nileopedia-med returned HTTP status 404.
 2026-06-15T14:43:41.991Z [nileopedia-backend] error: Document ingestion failed: 4662c944-0472-4870-8923-eebe3eddfc7c Vector dimension 384 does not match the dimension of the index 3072
+2026-07-22T10:16:02.923Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-22T10:16:04.137Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:04.398Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:04.991Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.110Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.181Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.274Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.319Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:16:05.372Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:01.742Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-22T10:19:01.778Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-22T10:19:06.093Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:06.198Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:06.915Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:06.994Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.110Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.237Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.345Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-22T10:19:07.412Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function

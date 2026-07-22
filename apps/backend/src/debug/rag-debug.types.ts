@@ -4,6 +4,9 @@ export interface RagDebugInfo {
   expandedQuery?: string;
   matchedSynonym?: string | null;
   synonyms?: string[];
+  resolvedAcronyms?: string[];
+  hybridWeights?: { dense: number; keyword: number };
+  dynamicWeights?: { dense: number; keyword: number };
   medicalDomain: boolean;
   embeddingProvider: string;
   embeddingDimensions: number;
@@ -36,6 +39,17 @@ export interface RagDebugInfo {
     title?: string;
     preview: string;
     metadata: Record<string, unknown>;
+  }>;
+  rerankedResults?: Array<{
+    id: string;
+    score: number;
+    documentId?: string;
+    chunkId?: string;
+    chunkIndex?: number;
+    title?: string;
+    preview: string;
+    metadata: Record<string, unknown>;
+    originalScore: number;
   }>;
   pineconeMatches: Array<{
     id: string;
@@ -87,4 +101,17 @@ export interface RagDebugInfo {
   chunksSentToGroq: number;
   charactersSent: number;
   chunkIds: string[];
+  rerankerScores?: number[];
+  citationQualityScores?: number[];
+  confidenceScore?: number;
+  evidenceStrength?: string;
+  retrievalQuality?: number;
+  metadataCompleteness?: number;
+  citationQuality?: number;
+  chunkValidation?: {
+    totalChunks: number;
+    validChunks: number;
+    rejectedChunks: number;
+    rejectionReasons: string[];
+  };
 }

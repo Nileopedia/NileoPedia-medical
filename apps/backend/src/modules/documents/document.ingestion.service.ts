@@ -5,6 +5,8 @@ import { ChunkingService } from '../rag/services/chunking.service';
 import { PineconeService } from '../rag/services/pinecone.service';
 import { logger } from '../../config/logger';
 import { CONFIG } from '../../config/env';
+import { aiMetadataExtractionService } from './ai-metadata.service';
+import { QualityValidationService } from '../medical/quality-validation.service';
 
 export class DocumentIngestionService {
   private embeddingService: EmbeddingService;
@@ -12,11 +14,14 @@ export class DocumentIngestionService {
   private chunkingService: ChunkingService;
 
   private pineconeService: PineconeService | null = null;
+  
+  private qualityValidationService: QualityValidationService;
 
   constructor() {
     this.embeddingService = new EmbeddingService();
     this.chunkingService = new ChunkingService();
     this.pineconeService = new PineconeService();
+    this.qualityValidationService = new QualityValidationService();
   }
 
   async ingestDocument(input: {
@@ -98,10 +103,24 @@ export class DocumentIngestionService {
       publicationYear: meta.publicationYear,
     });
 
+    const validChunksReport = this.qualityValidationService.validateDocumentChunks(
+      chunks.map(c => ({
+        text: c.text,
+        title: meta.title,
+        source: meta.source,
+        specialty: meta.specialty,
+        publicationYear: meta.publicationYear,
+        chunkId: c.chunkId,
+      }))
+    );
+
     logger.info({
       documentId: document.id,
       chunkCount: chunks.length,
-      avgChunkLength: chunks.length > 0 ? Math.round(chunks.reduce((sum, c) => sum + c.text.length, 0) / chunks.length) : 0,
+      validChunks: validChunksReport.validChunks,
+      invalidChunks: validChunksReport.invalidChunks,
+      avgChunkLength: validChunksReport.averageChunkLength,
+      rejectionReasons: validChunksReport.rejectionReasons,
     });
 
     const deduplicatedChunks = await this.chunkingService.deduplicateChunks(chunks);
@@ -120,11 +139,25 @@ export class DocumentIngestionService {
       dimensions: embeddedChunks[0]?.embedding?.length,
     });
 
+    let taxonomy: any = null;
+    try {
+      taxonomy = await aiMetadataExtractionService.extractMetadata(cleanContent, document.fileName);
+    } catch (error) {
+      logger.error({
+        documentId: document.id,
+        error: 'AI metadata extraction failed',
+        message: error instanceof Error ? error.message : String(error),
+      });
+    }
+
+    const enrichedMetadata = this.buildChunkEnrichedMetadata(taxonomy);
+
     if (this.pineconeService && CONFIG.PINECONE_API_KEY) {
       const storeResult = await this.pineconeService.storeChunks(
         chunks,
         embeddedChunks.map((e) => e.embedding),
         document.id,
+        enrichedMetadata,
       );
 
       logger.info({
@@ -156,14 +189,90 @@ export class DocumentIngestionService {
       where: { documentId: document.id },
     });
 
-    for (let i = 0; i < chunks.length; i++) {
-      await prisma.embeddingMetadata.create({
+    const enrichmentPromises = chunks.map((chunk, i) => 
+      prisma.embeddingMetadata.create({
         data: {
           documentId: document.id,
           pineconeVectorId: `${document.id}_chunk_${i}`,
           chunkIndex: chunks[i].chunkIndex,
           chunkText: chunks[i].text,
         },
+      })
+    );
+
+    await Promise.all(enrichmentPromises);
+
+    if (taxonomy) {
+      await prisma.documentMetadata.upsert({
+        where: { documentId: document.id },
+        create: {
+          documentId: document.id,
+          title: taxonomy.title || meta.title,
+          abstract: taxonomy.abstract,
+          disease: taxonomy.disease,
+          medicalSpecialty: taxonomy.specialty,
+          symptoms: taxonomy.symptoms,
+          diagnosis: taxonomy.diagnosis,
+          treatment: taxonomy.treatments,
+          medication: taxonomy.medications,
+          contraindications: taxonomy.contraindications,
+          complications: taxonomy.complications,
+          prevention: taxonomy.prevention,
+          prognosis: taxonomy.prognosis,
+          keywords: taxonomy.keywords,
+          meshTerms: taxonomy.meshTerms,
+          icd10: taxonomy.icd10,
+          snomed: taxonomy.snomed,
+          publicationYear: taxonomy.publicationYear,
+          journal: taxonomy.journal,
+          publisher: taxonomy.publisher,
+          authors: taxonomy.authors,
+          doi: taxonomy.doi,
+          pmid: taxonomy.pmid,
+          pmcid: taxonomy.pmcid,
+          isbn: taxonomy.isbn,
+          language: taxonomy.language,
+          sourceURL: taxonomy.sourceURL,
+          documentType: taxonomy.documentType || meta.documentType,
+        },
+        update: {
+          title: taxonomy.title || meta.title,
+          abstract: taxonomy.abstract,
+          disease: taxonomy.disease,
+          medicalSpecialty: taxonomy.specialty,
+          symptoms: taxonomy.symptoms,
+          diagnosis: taxonomy.diagnosis,
+          treatment: taxonomy.treatments,
+          medication: taxonomy.medications,
+          contraindications: taxonomy.contraindications,
+          complications: taxonomy.complications,
+          prevention: taxonomy.prevention,
+          prognosis: taxonomy.prognosis,
+          keywords: taxonomy.keywords,
+          meshTerms: taxonomy.meshTerms,
+          icd10: taxonomy.icd10,
+          snomed: taxonomy.snomed,
+          publicationYear: taxonomy.publicationYear,
+          journal: taxonomy.journal,
+          publisher: taxonomy.publisher,
+          authors: taxonomy.authors,
+          doi: taxonomy.doi,
+          pmid: taxonomy.pmid,
+          pmcid: taxonomy.pmcid,
+          isbn: taxonomy.isbn,
+          language: taxonomy.language,
+          sourceURL: taxonomy.sourceURL,
+          documentType: taxonomy.documentType || meta.documentType,
+        },
+      });
+
+      logger.info({
+        documentId: document.id,
+        aiMetadataExtracted: true,
+        disease: taxonomy.disease,
+        specialty: taxonomy.specialty,
+        citationQuality: taxonomy.citationQuality,
+        metadataCompleteness: taxonomy.metadataCompleteness,
       });
     }
 
@@ -173,5 +282,29 @@ export class DocumentIngestionService {
     });
 
     return { document, chunksCount: chunks.length };
+  }
+
+  private buildChunkEnrichedMetadata(taxonomy: any): Record<string, any> {
+    if (!taxonomy) return {};
+    return {
+      disease: taxonomy.disease || '',
+      specialty: taxonomy.specialty || 'general',
+      symptoms: taxonomy.symptoms || [],
+      diagnosis: taxonomy.diagnosis || [],
+      treatments: taxonomy.treatments || [],
+      medications: taxonomy.medications || [],
+      complications: taxonomy.complications || [],
+      prevention: taxonomy.prevention || [],
+      contraindications: taxonomy.contraindications || [],
+      patientEducation: taxonomy.patientEducation || [],
+      icd10: taxonomy.icd10 || [],
+      snomed: taxonomy.snomed || [],
+      meshTerms: taxonomy.meshTerms || [],
+      keywords: taxonomy.keywords || [],
+      abstract: taxonomy.abstract || '',
+      prognosis: taxonomy.prognosis || '',
+      citationQuality: taxonomy.citationQuality || 0,
+      metadataCompleteness: taxonomy.metadataCompleteness || 0,
+    };
   }
 }

@@ -9,8 +9,18 @@ import { DocumentMetadataService } from '../../modules/documents/metadata.servic
 import { ragDebugService } from '../../debug/rag-debug.service';
 import { RagDebugInfo } from '../../debug/rag-debug.types';
 import { MedicalSynonymService } from '../../modules/medical/synonym.service';
+import { DynamicRetrievalService } from '../../modules/medical/dynamic-retrieval.service';
+import { CrossEncoderReranker } from '../../modules/retrieval/cross-encoder-reranker.service';
+import { ConfidenceEngine, EvidenceStrength } from '../../modules/medical/confidence-engine.service';
+import { CitationQualityService } from '../../modules/medical/citation-quality.service';
+import { KnowledgeGapDetectionService } from '../../modules/monitoring/knowledge-gap-detection.service';
 
 const synonymService = new MedicalSynonymService();
+const dynamicRetrievalService = new DynamicRetrievalService();
+const crossEncoderReranker = new CrossEncoderReranker();
+const confidenceEngine = new ConfidenceEngine();
+const citationQualityService = new CitationQualityService();
+const knowledgeGapDetectionService = new KnowledgeGapDetectionService();
 
 interface CitationData {
   title: string;
@@ -275,96 +285,97 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('embeddings', 'Embedding service unavailable');
     }
 
-      const retrievalResult: { hasContext: boolean; context: any[] } | null = null;
-      let debugInfo: RagDebugInfo | null = null;
-      try {
-        console.log(`[AI] Running strict RAG retrieval for query: ${query}`);
-        const retrievalQuery = expandedQuery || query;
-        const pineconePromise = retrievalService.semanticSearch(retrievalQuery, topK || 10);
-        const timeoutPromise = new Promise((_, reject) => {
-          setTimeout(() => reject(new Error('Pinecone timeout after 30000ms')), 30000);
-        });
+    let retrievalResult: { hasContext: boolean; context: any[]; hybridWeights?: { dense: number; keyword: number }; resolvedAcronyms: string[] } | null = null;
+    let debugInfo: RagDebugInfo | null = null;
+    try {
+      console.log(`[AI] Running strict RAG retrieval for query: ${query}`);
+      
+      const queryAnalysis = dynamicRetrievalService.analyzeQuery(query);
+      const retrievalQuery = expandedQuery || query;
+      
+      const hybridResults = await retrievalService.hybridSearch(retrievalQuery, specialty, topK || 10);
+      const threshold = retrievalService.embeddingService.embeddingSource === 'mock' ? 0.0 : 0.25;
+      const relevant = hybridResults.filter((match: any) => (match.score ?? 0) >= threshold);
+      const MIN_DOCS = 1;
+      const hasContext = relevant.length >= MIN_DOCS;
 
-        const pineconeMatches = await Promise.race([pineconePromise, timeoutPromise]) as any[];
-        const threshold = retrievalService.embeddingService.embeddingSource === 'mock' ? 0.0 : 0.25;
-        const relevant = pineconeMatches.filter((match: any) => (match.score ?? 0) >= threshold);
-        const MIN_DOCS = 1;
-        const hasContext = relevant.length >= MIN_DOCS;
-
-        const rejectedMatches = pineconeMatches
-          .filter((match: any) => (match.score ?? 0) < threshold)
-          .map((match: any) => ({
-            ...buildMatchDebug(match),
-            reason: `score ${match.score?.toFixed(6) ?? 0} below threshold ${threshold}`,
-          }));
-
-        const pineconeDebugMatches = pineconeMatches.map((m: any) => buildMatchDebug(m));
-
-        console.log('================================');
-        console.log('Original Query');
-        console.log('================================');
-        console.log(query);
-        console.log('================================');
-        console.log('Normalized Query:', normalizedQuery);
-        console.log('Medical Domain Result:', medicalIntent);
-        console.log('Matched Synonym:', synonymExpansion.matchedSynonym);
-        console.log('Expanded Query:', expandedQuery);
-        console.log('Synonyms:', synonymExpansion.synonyms);
-        console.log('Generated Embedding Dimensions:', embedding?.length);
-        console.log('Embedding Provider:', retrievalService.embeddingService.embeddingSource);
-        console.log('Pinecone Query Vector Size:', embedding?.length);
-        console.log('Top 10 Pinecone Matches:', pineconeMatches.length);
-        for (const match of pineconeDebugMatches) {
-          console.log('--------------------------------');
-          console.log('Document ID:', match.documentId || 'N/A');
-          console.log('Document Title:', match.title);
-          console.log('Chunk ID:', match.chunkId);
-          console.log('Chunk Index:', match.chunkIndex ?? 'N/A');
-          console.log('Similarity Score:', match.score.toFixed(6));
-          console.log('Metadata:', JSON.stringify(match.metadata));
-          console.log('Chunk Preview:', match.preview);
-        }
-        console.log('================================');
-        console.log('Filtering');
-        console.log('================================');
-        console.log('MIN_DOCS:', MIN_DOCS);
-        console.log('Score Threshold:', threshold);
-        console.log('Documents Before Filtering:', pineconeMatches.length);
-        console.log('Documents After Filtering:', relevant.length);
-        for (const match of rejectedMatches) {
-          console.log('Rejected:', match.id, 'score:', match.score.toFixed(6), 'reason:', match.reason);
-        }
-        console.log('================================\n');
-
-        debugInfo = {
-          query,
-          normalizedQuery,
-          expandedQuery,
-          matchedSynonym: synonymExpansion.matchedSynonym,
-          synonyms: synonymExpansion.synonyms,
-          medicalDomain: medicalIntent,
-          embeddingProvider: retrievalService.embeddingService.embeddingSource,
-          embeddingDimensions: embedding?.length || 0,
-          pineconeMatches: pineconeDebugMatches,
-          filteredMatches: relevant.map((m: any) => buildMatchDebug(m)),
-          rejectedMatches,
-          finalContext: [],
-          topScore: relevant[0]?.score ?? null,
-          retrievedCount: relevant.length,
-          minScore: threshold,
-          minDocs: MIN_DOCS,
-          promptSize: 0,
-          completionTime: 0,
-          chunksSentToGroq: 0,
-          charactersSent: 0,
-          chunkIds: [],
-        };
-      logRagDebug(debugInfo);
+      const rejectedMatches = hybridResults
+        .filter((match: any) => (match.score ?? 0) < threshold)
+        .map((match: any) => ({
+          ...buildMatchDebug(match),
+          reason: `score ${match.score?.toFixed(6) ?? 0} below threshold ${threshold}`,
+        }));
 
       retrievalResult = {
         hasContext,
         context: hasContext ? relevant : [],
+        hybridWeights: { dense: queryAnalysis.denseWeight, keyword: queryAnalysis.keywordWeight },
+        resolvedAcronyms: queryAnalysis.detectedAcronyms,
       };
+
+      console.log('================================');
+      console.log('Original Query');
+      console.log('================================');
+      console.log(query);
+      console.log('================================');
+      console.log('Normalized Query:', normalizedQuery);
+      console.log('Medical Domain Result:', medicalIntent);
+      console.log('Matched Synonym:', synonymExpansion.matchedSynonym);
+      console.log('Expanded Query:', expandedQuery);
+      console.log('Synonyms:', synonymExpansion.synonyms);
+      console.log('Generated Embedding Dimensions:', embedding?.length);
+      console.log('Embedding Provider:', retrievalService.embeddingService.embeddingSource);
+      console.log('Pinecone Query Vector Size:', embedding?.length);
+      console.log('Top 10 Pinecone Matches:', hybridResults.length);
+      for (const match of hybridResults.slice(0, 10)) {
+        console.log('--------------------------------');
+        console.log('Document ID:', match.metadata?.documentId || 'N/A');
+        console.log('Document Title:', match.metadata?.title || match.metadata?.source || 'Unknown');
+        console.log('Chunk ID:', match.metadata?.chunkId || match.id);
+        console.log('Similarity Score:', (match.score || 0).toFixed(6));
+        console.log('Metadata:', JSON.stringify(match.metadata));
+      }
+      console.log('================================');
+      console.log('Filtering');
+      console.log('================================');
+      console.log('MIN_DOCS:', MIN_DOCS);
+      console.log('Score Threshold:', threshold);
+      console.log('Documents Before Filtering:', hybridResults.length);
+      console.log('Documents After Filtering:', relevant.length);
+      for (const match of rejectedMatches) {
+        console.log('Rejected:', match.id, 'score:', match.score.toFixed(6), 'reason:', match.reason);
+      }
+      console.log('================================\n');
+
+      const rerankerScores = relevant.map((m: any) => m.score || 0);
+
+      debugInfo = {
+        query,
+        normalizedQuery,
+        expandedQuery,
+        matchedSynonym: synonymExpansion.matchedSynonym,
+        synonyms: synonymExpansion.synonyms,
+        resolvedAcronyms: queryAnalysis.detectedAcronyms,
+        dynamicWeights: { dense: queryAnalysis.denseWeight, keyword: queryAnalysis.keywordWeight },
+        medicalDomain: medicalIntent,
+        embeddingProvider: retrievalService.embeddingService.embeddingSource,
+        embeddingDimensions: embedding?.length || 0,
+        pineconeMatches: hybridResults.map((m: any) => buildMatchDebug(m)),
+        filteredMatches: relevant.map((m: any) => buildMatchDebug(m)),
+        rejectedMatches,
+        finalContext: [],
+        topScore: relevant[0]?.score ?? null,
+        retrievedCount: relevant.length,
+        minScore: threshold,
+        minDocs: MIN_DOCS,
+        promptSize: 0,
+        completionTime: 0,
+        chunksSentToGroq: 0,
+        charactersSent: 0,
+        chunkIds: [],
+        rerankerScores,
+      };
+    logRagDebug(debugInfo);
 
       logger.info({
         question: query,
@@ -428,11 +439,11 @@ export async function processAiGeneration(job: AiGenerationJob) {
       return createPipelineError('retrieval', 'No supporting medical documents found');
     }
 
-    const chunks = retrievalResult.context.map((match: any) => ({
+    const chunks = retrievalResult!.context.map((match: any) => ({
       text: match.metadata?.textPreview || match.metadata?.text || '',
       metadata: match.metadata,
     }));
-    const context = retrievalService.buildContext(retrievalResult.context);
+    const context = retrievalService.buildContext(retrievalResult!.context);
 
     console.log('================================');
     console.log('Retrieved Context');
@@ -601,13 +612,13 @@ If no relevant information is available in the context, use clinicalSummary: "I 
       console.log('[GROQ] Raw response length:', rawContent.length);
       console.log('[GROQ] Raw response preview:', rawContent.substring(0, 200));
 
-        structuredResponse = null;
-       try {
-         const cleaned = rawContent.replace(/^```(?:json)?\n?|```$/g, '').trim();
-         const jsonCleaned = cleaned.replace(/"(\\.|[^"\\])*"/g, (match) => match.replace(/\n/g, '\\n').replace(/\r/g, '\\r'));
-         structuredResponse = JSON.parse(jsonCleaned);
-         console.log('[GROQ] Parsed structured response successfully');
-       } catch (parseError: any) {
+      structuredResponse = null;
+      try {
+        const cleaned = rawContent.replace(/^```(?:json)?\n?|```$/g, '').trim();
+        const jsonCleaned = cleaned.replace(/"(\\.|[^"\\])*"/g, (match: string) => match.replace(/\n/g, '\\n').replace(/\r/g, '\\r'));
+        structuredResponse = JSON.parse(jsonCleaned);
+        console.log('[GROQ] Parsed structured response successfully');
+      } catch (parseError: any) {
         console.log('================================');
         console.log('JSON Parsing Failed');
         console.log('================================');
@@ -708,8 +719,39 @@ If no relevant information is available in the context, use clinicalSummary: "I 
       });
     }
 
+    const citationQualityResults = citations.map((c) => citationQualityService.evaluate(c.source, c.documentType, c.authors ? [c.authors] : undefined));
+    const avgCitationQuality = citationQualityResults.length > 0
+      ? citationQualityResults.reduce((sum, r) => sum + r.qualityScore, 0) / citationQualityResults.length
+      : 0;
+
+    const rerankerScores = retrievalResult!.context.map((m: any) => m.score || 0);
+    const confidenceResult = confidenceEngine.calculate({
+      topSimilarity: retrievalResult!.context[0]?.score || 0,
+      retrievedCount: retrievalResult!.context.length,
+      rerankerScores,
+      citationQualityScores: citationQualityResults.map((r) => r.qualityScore),
+      metadataCompleteness: retrievalService.getRetrievalStats(retrievalResult!.context).metadataCompleteness,
+      sourceDiversity: new Set(citations.map((c) => c.source)).size / Math.max(citations.length, 1),
+    });
+
+    const explainabilityInfo = {
+      queryAnalysis: dynamicRetrievalService.analyzeQuery(query),
+      resolvedAcronyms: retrievalResult!.resolvedAcronyms,
+      dynamicWeights: retrievalResult!.hybridWeights,
+      evidenceStrength: confidenceResult.evidenceStrength,
+      retrievalQuality: confidenceResult.retrievalQuality,
+      confidenceBreakdown: confidenceResult.breakdown,
+    };
+
+    const hasResultsForGap = retrievalResult!.context.length > 0;
+    try {
+      knowledgeGapDetectionService.recordSearch(query, hasResultsForGap);
+    } catch (gapError) {
+      logger.warn('Knowledge gap recording failed:', gapError);
+    }
+
     const finalCitations = citations.slice(0, 5);
-    const confidenceScore = 0.85 + Math.random() * 0.1;
+    const confidenceScore = confidenceResult.confidenceScore / 100;
     const generatedBy = 'Llama-3.3-70b';
 
     const summary = structuredResponse.clinicalSummary || structuredResponse.summary || '';
@@ -724,6 +766,9 @@ If no relevant information is available in the context, use clinicalSummary: "I 
     console.log('treatment:', JSON.stringify(structuredResponse.treatment));
     console.log('references count:', structuredResponse.references?.length || 0);
     console.log('citations count:', finalCitations.length);
+    console.log('confidenceScore:', confidenceScore);
+    console.log('evidenceStrength:', confidenceResult.evidenceStrength);
+    console.log('retrievalQuality:', confidenceResult.retrievalQuality);
     console.log('================================\n');
 
     const aiResponse = await prisma.aIResponse.upsert({

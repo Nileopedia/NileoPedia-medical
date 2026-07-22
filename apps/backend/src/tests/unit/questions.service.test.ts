@@ -40,7 +40,7 @@ describe('QuestionsService', () => {
       const result = await service.askQuestion('user-1', 'What is diabetes?');
 
       expect(mockPrisma.question.create).toHaveBeenCalledWith({
-        data: { userId: 'user-1', questionText: 'What is diabetes?' },
+        data: { userId: 'user-1', questionText: 'What is diabetes?', category: 'General' },
       });
       expect(result.status).toBe('processing');
     });

@@ -111,8 +111,9 @@ export class AnalyticsService {
       select: { score: true },
     });
 
-    const avgScore = reviews.length > 0
-      ? reviews.reduce((sum: number, r: { score: number | null }) => sum + (r.score || 0), 0) / reviews.length
+    const validReviews = reviews.filter((r: { score: number | null }) => r.score !== null);
+    const avgScore = validReviews.length > 0
+      ? validReviews.reduce((sum: number, r: { score: number | null }) => sum + (r.score || 0), 0) / validReviews.length
       : 0;
 
     return {
