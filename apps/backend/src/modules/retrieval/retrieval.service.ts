@@ -1,12 +1,15 @@
 import { PineconeService } from '../rag/services/pinecone.service';
 import { EmbeddingService } from '../rag/services/embedding.service';
 import { DocumentChunk } from '../rag/services/chunking.service';
+import { MedicalSynonymService } from '../medical/synonym.service';
+import { Bm25Service, Bm25Result } from '../medical/bm25.service';
 
 export interface RetrievalMatch {
   id: string;
   score: number;
   metadata: Record<string, any>;
   text?: string;
+  retrievalSource?: 'dense' | 'keyword' | 'hybrid';
 }
 
 export class RetrievalService {
@@ -15,10 +18,14 @@ export class RetrievalService {
   public embeddingService: EmbeddingService;
 
   private medicalReferenceEmbedding: number[] | null = null;
+  private synonymService: MedicalSynonymService;
+  private bm25Service: Bm25Service;
 
   constructor() {
     this.pineconeService = new PineconeService();
     this.embeddingService = new EmbeddingService();
+    this.synonymService = new MedicalSynonymService();
+    this.bm25Service = new Bm25Service();
     this.initMedicalReferenceEmbedding().catch(() => {});
   }
 
@@ -45,7 +52,14 @@ export class RetrievalService {
   }
 
   async semanticSearch(query: string, topK = 8): Promise<RetrievalMatch[]> {
-    const embedding = await this.embeddingService.generateEmbedding(query);
+    const expansion = this.synonymService.expand(query);
+    const expandedQuery = expansion.expandedQuery;
+    
+    console.log('[SYNONYM] Original query:', expansion.originalQuery);
+    console.log('[SYNONYM] Expanded query:', expandedQuery);
+    console.log('[SYNONYM] Matched synonym:', expansion.matchedSynonym);
+    
+    const embedding = await this.embeddingService.generateEmbedding(expandedQuery);
     console.log('[PINECONE] Query embedding dimensions:', embedding.length);
     const results = await this.pineconeService.query(embedding, Math.max(topK, 20));
 
@@ -54,7 +68,10 @@ export class RetrievalService {
 
     const deduped = this.deduplicateResults(results);
     const ranked = this.rerankResults(deduped);
-    const topResults = ranked.slice(0, topK);
+    const topResults = ranked.slice(0, topK).map((r: any) => ({
+      ...r,
+      retrievalSource: 'dense' as const,
+    }));
 
     console.log('[PINECONE] After dedup:', deduped.length);
     console.log('[PINECONE] Final results:', topResults.length);
@@ -64,18 +81,96 @@ export class RetrievalService {
   }
 
   async hybridSearch(query: string, specialty?: string): Promise<RetrievalMatch[]> {
-    const pineconeResults = await this.semanticSearch(query);
-    let results = pineconeResults;
+    const expansion = this.synonymService.expand(query);
+    const expandedQuery = expansion.expandedQuery;
+
+    const [denseResults, bm25Results] = await Promise.all([
+      this.semanticSearch(expandedQuery, 20),
+      this.bm25Search(expandedQuery, 20),
+    ]);
+
+    console.log('[HYBRID] Dense results:', denseResults.length);
+    console.log('[HYBRID] Keyword results:', bm25Results.length);
+
+    const merged = this.mergeResults(denseResults, bm25Results);
+    const topResults = merged.slice(0, 8);
+
+    console.log('[HYBRID] Merged results:', merged.length);
+    console.log('[HYBRID] Final results:', topResults.length);
+    console.log('[HYBRID] Final scores:', topResults.map((m) => m.score));
 
     if (specialty) {
-      const filtered = pineconeResults.filter((match) => {
+      const filtered = topResults.filter((match) => {
         const metadata = match.metadata || {};
         return metadata.specialty === specialty.toLowerCase() || !metadata.specialty;
       });
-      results = filtered.length > 0 ? filtered : pineconeResults;
+      return filtered.length > 0 ? filtered : topResults;
     }
 
-    return results;
+    return topResults;
+  }
+
+  private async bm25Search(query: string, topK = 20): Promise<RetrievalMatch[]> {
+    try {
+      await this.bm25Service.initialize();
+      const results = await this.bm25Service.search(query, topK);
+      
+      return results.map((r: Bm25Result) => ({
+        id: r.chunkId,
+        score: r.score,
+        metadata: r.metadata,
+        text: r.text,
+        retrievalSource: 'keyword' as const,
+      }));
+    } catch (error) {
+      console.error('[BM25] Search failed:', error);
+      return [];
+    }
+  }
+
+  private mergeResults(denseResults: RetrievalMatch[], keywordResults: RetrievalMatch[]): RetrievalMatch[] {
+    const denseWeight = 0.6;
+    const keywordWeight = 0.4;
+    const merged = new Map<string, RetrievalMatch>();
+
+    const normalizeScore = (score: number, maxScore: number): number => {
+      if (maxScore === 0) return 0;
+      return score / maxScore;
+    };
+
+    const denseMax = Math.max(...denseResults.map(r => r.score || 0), 0.01);
+    const keywordMax = Math.max(...keywordResults.map(r => r.score || 0), 0.01);
+
+    for (const result of denseResults) {
+      const normalizedScore = normalizeScore(result.score || 0, denseMax);
+      const finalScore = normalizedScore * denseWeight;
+      
+      merged.set(result.id, {
+        ...result,
+        score: finalScore,
+        retrievalSource: 'dense',
+      });
+    }
+
+    for (const result of keywordResults) {
+      const normalizedScore = normalizeScore(result.score || 0, keywordMax);
+      const finalScore = normalizedScore * keywordWeight;
+      
+      const existing = merged.get(result.id);
+      if (existing) {
+        existing.score = existing.score + finalScore;
+        existing.retrievalSource = 'hybrid';
+      } else {
+        merged.set(result.id, {
+          ...result,
+          score: finalScore,
+          retrievalSource: 'keyword',
+        });
+      }
+    }
+
+    return Array.from(merged.values())
+      .sort((a, b) => (b.score || 0) - (a.score || 0));
   }
 
   private deduplicateResults(results: any[]): any[] {
@@ -219,8 +314,12 @@ export class RetrievalService {
     ];
 
     const normalized = query.toLowerCase().trim();
+    const expansion = this.synonymService.expand(normalized);
+    const expandedTerms = expansion.synonyms.map(s => s.toLowerCase());
 
-    const containsMedicalTerm = medicalTerms.some((term) => normalized.includes(term));
+    const containsMedicalTerm = medicalTerms.some((term) => 
+      normalized.includes(term) || expandedTerms.some(s => s.includes(term))
+    );
 
     if (containsMedicalTerm) {
       console.log({ query: normalized, containsMedicalTerm: true, similarity: 'term-match' });
@@ -262,3 +361,4 @@ function cosineSimilarity(a: number[], b: number[]): number {
 
   return dotProduct / denominator;
 }
+

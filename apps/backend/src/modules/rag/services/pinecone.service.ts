@@ -25,6 +25,43 @@ function cosineSimilarity(a: number[], b: number[]): number {
   return denominator === 0 ? 0 : dotProduct / denominator;
 }
 
+async function sleep(ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function retryWithBackoff<T>(
+  fn: () => Promise<T>,
+  maxRetries = 3,
+  baseDelay = 1000
+): Promise<T> {
+  let lastError: any;
+  for (let attempt = 0; attempt < maxRetries; attempt++) {
+    try {
+      return await fn();
+    } catch (error: any) {
+      lastError = error;
+      const errorMessage = error?.message || error?.toString?.() || 'Unknown error';
+      const isRetryable = 
+        errorMessage.includes('Request failed to reach Pinecone') ||
+        errorMessage.includes('ECONNRESET') ||
+        errorMessage.includes('ETIMEDOUT') ||
+        errorMessage.includes('rate limit') ||
+        errorMessage.includes('429') ||
+        errorMessage.includes('500') ||
+        errorMessage.includes('503');
+      
+      if (!isRetryable || attempt === maxRetries - 1) {
+        throw error;
+      }
+      
+      const delay = baseDelay * Math.pow(2, attempt) + Math.random() * 1000;
+      console.log(`[PINECONE] Retry ${attempt + 1}/${maxRetries} after ${Math.round(delay)}ms: ${errorMessage}`);
+      await sleep(delay);
+    }
+  }
+  throw lastError;
+}
+
 export class PineconeService {
   private pinecone: Pinecone | null = null;
 
@@ -67,8 +104,13 @@ export class PineconeService {
       for (let i = 0; i < vectors.length; i += batchSize) {
         const batch = vectors.slice(i, i + batchSize);
         try {
-          await this.index.upsert(batch);
+          await retryWithBackoff(async () => {
+            await this.index!.upsert(batch);
+          });
           success += batch.length;
+          if (i + batchSize < vectors.length) {
+            await sleep(500);
+          }
         } catch (error: any) {
           failed += batch.length;
           const errorMessage = error?.message || error?.toString?.() || 'Unknown error';
@@ -102,7 +144,9 @@ export class PineconeService {
         ...(filter && { filter }),
       };
 
-      const results = await this.index.query(queryRequest);
+      const results = await retryWithBackoff(async () => {
+        return await this.index.query(queryRequest);
+      });
       const matches = results.matches || [];
       console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m: any) => m.score));
       return matches;

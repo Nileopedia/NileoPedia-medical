@@ -32710,3 +32710,166 @@ Please make sure your database server is running at `localhost:5432`.
 2026-07-19T09:14:30.299Z [nileopedia-backend] error: [ERROR] AI generation failed: Cannot read properties of null (reading 'references')
 2026-07-19T09:31:08.115Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
 2026-07-19T09:36:11.237Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:07:21.131Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:07:24.132Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:07:24.136Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document f335a143-927b-4e02-929a-3c7e93949422
+2026-07-19T15:07:41.326Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:07:58.133Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:08:08.956Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:08:08.958Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 4bd1b0f0-35c4-4219-b418-d5ed7dba98b2
+2026-07-19T15:08:20.155Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:08:20.159Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document d7decfa2-3d6b-4511-8d80-eee2a8c79e11
+2026-07-19T15:08:31.336Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:08:31.337Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document c2b058f5-aa29-455e-9e91-7067695bc8bb
+2026-07-19T15:08:42.489Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:08:42.494Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 3e8ce6cc-694a-49eb-9ec6-4a5672021a4d
+2026-07-19T15:09:39.051Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:09:50.229Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:09:50.233Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 0a75cdad-1320-4fef-ae78-52c89150c737
+2026-07-19T15:10:01.333Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:10:01.334Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document f8cf1beb-0a51-43ab-9a67-14b83e6f3125
+2026-07-19T15:10:12.977Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:10:12.979Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 31b19a9e-65c4-4172-a3c7-f9272e8334e8
+2026-07-19T15:11:25.785Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:11:25.787Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document e8f6a02d-968d-4fa7-816d-81a414705c78
+2026-07-19T15:12:07.560Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:12:07.561Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document ba9d7543-9aa2-4c46-a176-7e89586f3838
+2026-07-19T15:12:18.735Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:12:18.738Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document f640c82b-c561-4615-9038-b064284b30ae
+2026-07-19T15:12:29.917Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:12:29.919Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 49b7f7c4-2386-4cf8-96f2-797dbd4b7a79
+2026-07-19T15:12:41.096Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:12:41.096Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 5e4bc280-a0ed-4961-bfb2-a62fd6544100
+2026-07-19T15:12:52.015Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:12:52.016Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document a739d03b-0a3c-47da-8ed5-b268fbabf473
+2026-07-19T15:13:03.188Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:13:03.190Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document ae1b8054-1d97-40de-ba8c-ac0e9131e9a3
+2026-07-19T15:13:14.354Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:13:14.355Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 2cdd9bbe-0977-4034-b976-57dd6778ac2c
+2026-07-19T15:13:25.391Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:13:25.392Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 525bcd1b-56ac-4f0c-913e-3259f018a50a
+2026-07-19T15:13:36.189Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:13:36.190Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document a0bc8598-4bc6-4068-84d0-bca203426e76
+2026-07-19T15:13:47.392Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:13:47.397Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 0ab24cc4-3766-4514-afb0-1ba127413a77
+2026-07-19T15:13:58.630Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:13:58.632Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 8d7fbf4f-50a6-4c2b-b13a-2aeede6a0c97
+2026-07-19T15:14:10.192Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:14:10.194Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document b6d02d4d-b552-48c1-94e0-bfdc1dc77267
+2026-07-19T15:14:21.589Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:14:21.591Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document eae233a5-e6d6-4562-9c6c-f825f24f2c82
+2026-07-19T15:14:33.074Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:14:33.075Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document d494bbf4-04c9-4d09-ad6a-d578810f70d4
+2026-07-19T15:14:44.563Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:14:44.566Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document ff1c1f76-6b3b-462b-9715-cb54e11fde9b
+2026-07-19T15:14:55.845Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:14:55.849Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 5d308850-a509-4875-8a2d-55f7fa4e505d
+2026-07-19T15:15:06.978Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:15:06.979Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 2883a410-41c4-4a80-a14f-74794af10df3
+2026-07-19T15:15:18.002Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:15:18.010Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 1032d3df-02de-4491-9dd2-8755745b0611
+2026-07-19T15:15:29.142Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:15:29.145Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 540c9516-bc20-4bfb-908a-863fc21e7ecf
+2026-07-19T15:15:40.416Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:15:40.419Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 83558bfd-7ac5-4d64-912a-1d83770f52dc
+2026-07-19T15:15:51.941Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:15:51.948Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document e671eaeb-b1f9-46d9-bec1-cda6e88d52fa
+2026-07-19T15:16:03.038Z [nileopedia-backend] error: Pinecone upsert batch failed:
+2026-07-19T15:16:03.040Z [nileopedia-backend] error: Failed to store 1 of 1 vectors in Pinecone for document 90d0d7c0-510e-44f0-b183-b6d739a5727f
+2026-07-19T15:26:30.756Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:28:19.610Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:28:32.243Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:28:43.085Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:29:37.804Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:35:09.747Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:38:52.961Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T15:44:04.383Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-19T16:02:35.883Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-20T20:07:56.471Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 10000ms
+2026-07-20T20:12:12.599Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 30000ms
+2026-07-20T20:21:28.517Z [nileopedia-backend] error: [ERROR] AI generation failed: Cannot read properties of null (reading 'references')
+2026-07-20T20:25:02.139Z [nileopedia-backend] error: [ERROR] AI generation failed: Cannot read properties of null (reading 'references')
+2026-07-20T21:12:02.362Z [nileopedia-backend] error: [ERROR] AI generation failed: Cannot read properties of null (reading 'references')
+2026-07-20T21:14:23.602Z [nileopedia-backend] error: [ERROR] AI generation failed: Cannot read properties of null (reading 'references')
+2026-07-20T21:21:44.978Z [nileopedia-backend] error: [ERROR] AI generation failed: 
+Invalid `prisma.citation.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/ai.processor.ts:758:29
+
+  755 
+  756 for (let i = 0; i < finalCitations.length; i++) {
+  757   const citation = finalCitations[i];
+→ 758   await prisma.citation.create({
+          data: {
+            aiResponseId: "053ecfd6-4f5c-49ce-a06c-fa98ad0cd9ab",
+            title: "Low Blood Pressure _ Hypotension _ MedlinePlus",
+            source: "Unknown",
+            authors: [],
+                     ~~
+            journal: undefined,
+            publisher: undefined,
+            publicationYear: 2026,
+            volume: undefined,
+            issue: undefined,
+            pages: undefined,
+            doi: "10.1000/ref.1",
+            isbn: undefined,
+            pmid: undefined,
+            pmcid: undefined,
+            institution: undefined,
+            country: undefined,
+            publicationType: undefined,
+            keywords: [],
+            medicalSpecialty: undefined,
+            language: "en",
+            url: undefined,
+            citationIndex: 1,
+            documentType: "Unknown",
+            specialty: "general",
+            pageNumber: undefined,
+            sectionTitle: undefined
+          }
+        })
+
+Argument `authors`: Invalid value provided. Expected String or Null, provided ().
+2026-07-20T21:30:19.872Z [nileopedia-backend] error: [ERROR] AI generation failed: 
+Invalid `prisma.citation.create()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/ai.processor.ts:758:29
+
+  755 
+  756 for (let i = 0; i < finalCitations.length; i++) {
+  757   const citation = finalCitations[i];
+→ 758   await prisma.citation.create({
+          data: {
+            aiResponseId: "51e1835f-49d7-4f9a-9fc3-1190a3ee4066",
+            title: "Low Blood Pressure _ Hypotension _ MedlinePlus",
+            source: "Unknown",
+            authors: [],
+                     ~~
+            journal: undefined,
+            publisher: undefined,
+            publicationYear: 2026,
+            volume: undefined,
+            issue: undefined,
+            pages: undefined,
+            doi: "10.1000/ref.0",
+            isbn: undefined,
+            pmid: undefined,
+            pmcid: undefined,
+            institution: undefined,
+            country: undefined,
+            publicationType: undefined,
+            keywords: [],
+            medicalSpecialty: undefined,
+            language: "en",
+            url: undefined,
+            citationIndex: 0,
+            documentType: "Unknown",
+            specialty: "general",
+            pageNumber: undefined,
+            sectionTitle: undefined
+          }
+        })
+
+Argument `authors`: Invalid value provided. Expected String or Null, provided ().
+2026-07-20T21:35:52.908Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Pinecone timeout after 30000ms
+2026-07-20T21:35:57.484Z [nileopedia-backend] error: [ERROR] Groq response generation failed: Groq timeout after 30000ms

@@ -1,9 +1,42 @@
 export interface RagDebugInfo {
   query: string;
   normalizedQuery: string;
+  expandedQuery?: string;
+  matchedSynonym?: string | null;
+  synonyms?: string[];
   medicalDomain: boolean;
   embeddingProvider: string;
   embeddingDimensions: number;
+  denseResults?: Array<{
+    id: string;
+    score: number;
+    documentId?: string;
+    chunkId?: string;
+    chunkIndex?: number;
+    title?: string;
+    preview: string;
+    metadata: Record<string, unknown>;
+  }>;
+  keywordResults?: Array<{
+    id: string;
+    score: number;
+    documentId?: string;
+    chunkId?: string;
+    chunkIndex?: number;
+    title?: string;
+    preview: string;
+    metadata: Record<string, unknown>;
+  }>;
+  mergedResults?: Array<{
+    id: string;
+    score: number;
+    documentId?: string;
+    chunkId?: string;
+    chunkIndex?: number;
+    title?: string;
+    preview: string;
+    metadata: Record<string, unknown>;
+  }>;
   pineconeMatches: Array<{
     id: string;
     score: number;

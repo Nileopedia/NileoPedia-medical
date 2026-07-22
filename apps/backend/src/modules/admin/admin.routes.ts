@@ -35,5 +35,7 @@ router.get('/document-debug/:id', authenticate, authorize('ADMIN'), adminControl
 router.get('/query-debug', adminController.queryDebug.bind(adminController));
 router.get('/ai-process', adminController.aiProcess.bind(adminController));
 router.post('/seed-mock-index', adminController.seedMockIndex.bind(adminController));
+router.get('/knowledge-audit', authenticate, authorize('ADMIN'), adminController.knowledgeAudit.bind(adminController));
+router.get('/coverage-report', authenticate, authorize('ADMIN'), adminController.coverageReport.bind(adminController));
 
 export default router;

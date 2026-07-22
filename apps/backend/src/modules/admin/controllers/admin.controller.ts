@@ -7,6 +7,7 @@ import { EmbeddingService } from '../../../modules/rag/services/embedding.servic
 import { PineconeService } from '../../../modules/rag/services/pinecone.service';
 import { CONFIG } from '../../../config/env';
 import prisma from '../../../config/prisma';
+import { KnowledgeAuditService } from '../../../modules/medical/knowledge-audit.service';
 
 export class AdminController {
   private adminService: AdminService;
@@ -303,6 +304,8 @@ export class AdminController {
           query: latestDebug?.query || 'none',
           retrievedCount: latestDebug?.retrievedCount || 0,
           topScore: latestDebug?.topScore || null,
+          matchedSynonym: latestDebug?.matchedSynonym || null,
+          expandedQuery: latestDebug?.expandedQuery || null,
         },
       });
       
@@ -349,6 +352,17 @@ export class AdminController {
             length: chunk.preview?.length || 0,
             preview: chunk.preview,
           })),
+          diagnostics: {
+            originalQuery: latestDebug.query,
+            normalizedQuery: latestDebug.normalizedQuery,
+            expandedQuery: latestDebug.expandedQuery || latestDebug.query,
+            matchedSynonym: latestDebug.matchedSynonym || null,
+            synonyms: latestDebug.synonyms || [],
+            denseResultCount: latestDebug.pineconeMatches?.length || 0,
+            keywordResultCount: latestDebug.keywordResults?.length || 0,
+            mergedResultCount: latestDebug.mergedResults?.length || 0,
+            finalSelectedChunks: latestDebug.finalContext?.length || 0,
+          },
         },
       });
     } catch (error: any) {
@@ -621,7 +635,7 @@ export class AdminController {
       const retrievalService = new RetrievalService();
 
       const matches = await retrievalService.semanticSearch(query, 10);
-      const threshold = retrievalService.embeddingService.embeddingSource === 'mock' ? 0.0 : 0.50;
+      const threshold = retrievalService.embeddingService.embeddingSource === 'mock' ? 0.0 : 0.25;
       const retrievedCount = matches.filter((m: any) => (m.score ?? 0) >= threshold).length;
       const topScores = matches.slice(0, 3).map((m: any) => m.score).filter((s: number) => s !== undefined);
       const documents = matches.map((m: any) => ({
@@ -715,6 +729,63 @@ export class AdminController {
       });
     } catch (error: any) {
       logger.error('Seed mock index error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async knowledgeAudit(req: Request, res: Response, next: NextFunction) {
+    try {
+      const auditService = new KnowledgeAuditService();
+      const result = await auditService.runAudit();
+
+      await AuditLogger.log(req, {
+        action: 'ADMIN_KNOWLEDGE_AUDIT',
+        entityType: 'System',
+        description: 'Admin ran knowledge base audit',
+        metadata: {
+          coveragePercentage: result.coveragePercentage,
+          diseasesIndexed: result.diseasesIndexed.length,
+          missingDiseases: result.missingDiseases.length,
+        },
+      });
+
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+    } catch (error: any) {
+      logger.error('Knowledge audit error:', error);
+      res.status(500).json({
+        success: false,
+        error: error.message,
+      });
+    }
+  }
+
+  async coverageReport(req: Request, res: Response, next: NextFunction) {
+    try {
+      const auditService = new KnowledgeAuditService();
+      const result = await auditService.getCoverageReport();
+
+      await AuditLogger.log(req, {
+        action: 'ADMIN_COVERAGE_REPORT',
+        entityType: 'System',
+        description: 'Admin viewed medical coverage report',
+        metadata: {
+          coveragePercentage: result.coveragePercentage,
+          missingDiseases: result.missingDiseases.length,
+        },
+      });
+
+      res.status(200).json({
+        success: true,
+        data: result,
+      });
+    } catch (error: any) {
+      logger.error('Coverage report error:', error);
       res.status(500).json({
         success: false,
         error: error.message,

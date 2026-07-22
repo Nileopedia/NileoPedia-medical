@@ -10,6 +10,15 @@ export interface ExtractedMetadata {
   doi?: string;
   sourceURL?: string;
   documentType?: string;
+  disease?: string;
+  symptoms?: string[];
+  diagnosis?: string[];
+  treatment?: string[];
+  medication?: string[];
+  prevention?: string[];
+  icd10?: string;
+  snomed?: string;
+  meshTerms?: string[];
 }
 
 export class DocumentMetadataService {
@@ -43,6 +52,178 @@ export class DocumentMetadataService {
 
     logger.warn(`Unknown document type for metadata extraction: ${fileType}`);
     return { authors: [] };
+  }
+
+  private extractMedicalTaxonomy(text: string): Pick<ExtractedMetadata, 'disease' | 'symptoms' | 'diagnosis' | 'treatment' | 'medication' | 'prevention' | 'icd10' | 'snomed' | 'meshTerms'> {
+    const result: Pick<ExtractedMetadata, 'disease' | 'symptoms' | 'diagnosis' | 'treatment' | 'medication' | 'prevention' | 'icd10' | 'snomed' | 'meshTerms'> = {
+      symptoms: [],
+      diagnosis: [],
+      treatment: [],
+      medication: [],
+      prevention: [],
+      meshTerms: [],
+    };
+
+    const lowerText = text.toLowerCase();
+
+    const diseasePatterns = [
+      /(?:diagnosed with|suffers from|has been diagnosed with)\s+([A-Za-z\s]+?)(?:\s+and\s+|\s+who\s+|\s+,\s+|\s+\.|\s+;)/i,
+      /(?:disease|condition|disorder):\s*([A-Za-z\s,]+?)(?:\n|$)/i,
+      /^([A-Z][A-Za-z\s]+(?:disease|disorder|syndrome|infection|cancer|diabetes|hypertension|asthma|pneumonia|stroke|malaria|tuberculosis|hiv|aids|hepatitis|arthritis|osteoporosis|anemia|leukemia|lymphoma|myeloma|neuropathy|neurodegeneration))/im,
+    ];
+
+    for (const pattern of diseasePatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        result.disease = match[1].trim().substring(0, 100);
+        break;
+      }
+    }
+
+    const symptomKeywords = [
+      'fever', 'cough', 'fatigue', 'weakness', 'nausea', 'vomiting', 'diarrhea', 'headache',
+      'dizziness', 'swelling', 'rash', 'bleeding', 'pain', 'ache', 'sore throat', 'congestion',
+      'shortness of breath', 'chest pain', 'palpitations', 'numbness', 'tingling', 'numbness',
+      'confusion', 'seizure', 'paralysis', 'tremor', 'stiffness', 'joint pain', 'muscle pain',
+      'weight loss', 'weight gain', 'appetite loss', 'insomnia', 'anxiety', 'depression',
+    ];
+
+    const symptomPatterns = [
+      /(?:symptoms?|signs?|clinical features?|presentation)[:\s]+([^\n]{10,200})/i,
+      /(?:may include|includes?|presents with|characterized by)\s+([^\n]{10,200})/i,
+    ];
+
+    for (const pattern of symptomPatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        const symptomsText = match[1];
+        const found = symptomKeywords.filter(s => symptomsText.toLowerCase().includes(s));
+        if (found.length > 0) {
+          result.symptoms = [...new Set(found)].slice(0, 10);
+        }
+        break;
+      }
+    }
+
+    const diagnosisKeywords = [
+      'biopsy', 'blood test', 'imaging', 'mri', 'ct scan', 'x-ray', 'ultrasound', 'endoscopy',
+      'colonoscopy', 'ecg', 'ekg', 'eeg', ' lumbar puncture', 'culture', 'sensitivity',
+      'histopathology', 'cytology', 'serology', 'pcr', 'antigen test', 'antibody test',
+      'physical examination', 'family history', 'medical history', 'laboratory test',
+    ];
+
+    const diagnosisPatterns = [
+      /(?:diagnosis|diagnostic|confirmed by|identified by|detected by)\s+([^\n]{10,200})/i,
+      /(?:diagnostic tests?|diagnostic criteria|diagnostic workup)[:\s]+([^\n]{10,200})/i,
+    ];
+
+    for (const pattern of diagnosisPatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        const diagnosisText = match[1];
+        const found = diagnosisKeywords.filter(d => diagnosisText.toLowerCase().includes(d));
+        if (found.length > 0) {
+          result.diagnosis = [...new Set(found)].slice(0, 10);
+        }
+        break;
+      }
+    }
+
+    const treatmentKeywords = [
+      'surgery', 'chemotherapy', 'radiation', 'immunotherapy', 'antibiotics', 'antiviral',
+      'antifungal', 'antihypertensive', 'insulin', 'metformin', 'bronchodilator', 'corticosteroid',
+      'dialysis', 'transplant', 'angioplasty', 'stenting', 'ablation', 'resection', 'biopsy',
+      'lifestyle modification', 'diet', 'exercise', 'rehabilitation', 'physical therapy',
+      'occupational therapy', 'speech therapy', 'counseling', 'psychotherapy', 'behavioral therapy',
+    ];
+
+    const treatmentPatterns = [
+      /(?:treatment|management|therapy|intervention|approach)[:\s]+([^\n]{10,200})/i,
+      /(?:treated with|managed with|treated by|managed by)\s+([^\n]{10,200})/i,
+    ];
+
+    for (const pattern of treatmentPatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        const treatmentText = match[1];
+        const found = treatmentKeywords.filter(t => treatmentText.toLowerCase().includes(t));
+        if (found.length > 0) {
+          result.treatment = [...new Set(found)].slice(0, 10);
+        }
+        break;
+      }
+    }
+
+    const medicationPatterns = [
+      /(?:medications?|drugs?|pharmacological|medicine)[:\s]+([^\n]{10,200})/i,
+      /(?:prescribed|administered|given|treated with)\s+([^\n]{10,200})/i,
+    ];
+
+    const medicationKeywords = [
+      'aspirin', 'ibuprofen', 'acetaminophen', 'paracetamol', 'morphine', 'fentanyl',
+      'amoxicillin', 'penicillin', 'ciprofloxacin', 'azithromycin', 'vancomycin',
+      'metformin', 'insulin', 'glipizide', 'januvia', 'ozempic', 'trulicity',
+      'lisinopril', 'atenolol', 'metoprolol', 'amlodipine', 'hydrochlorothiazide',
+      'atorvastatin', 'simvastatin', 'rosuvastatin', 'ezetimibe',
+      'omeprazole', 'pantoprazole', 'ranitidine',
+      'prednisone', 'dexamethasone', 'hydrocortisone',
+      'albuterol', 'salbutamol', 'fluticasone', 'budesonide', 'montelukast',
+      'warfarin', 'heparin', 'clopidogrel', 'ticagrelor', 'apixaban', 'rivaroxaban',
+    ];
+
+    for (const pattern of medicationPatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        const medicationText = match[1];
+        const found = medicationKeywords.filter(m => medicationText.toLowerCase().includes(m));
+        if (found.length > 0) {
+          result.medication = [...new Set(found)].slice(0, 10);
+        }
+        break;
+      }
+    }
+
+    const preventionPatterns = [
+      /(?:prevention|prevent|reduce risk|lower risk|avoid|avoidance|protection|vaccination|immunization)[:\s]+([^\n]{10,200})/i,
+      /(?:recommended|advised|suggested|should)\s+(?:to\s+)?(?:avoid|prevent|reduce|lower)\s+([^\n]{10,200})/i,
+    ];
+
+    for (const pattern of preventionPatterns) {
+      const match = text.match(pattern);
+      if (match && match[1]) {
+        result.prevention = [match[1].trim().substring(0, 200)];
+        break;
+      }
+    }
+
+    const icd10Pattern = /[A-Z]\d{2}(?:\.\d{1,4})?/g;
+    const icd10Matches = text.match(icd10Pattern);
+    if (icd10Matches && icd10Matches.length > 0) {
+      result.icd10 = icd10Matches[0];
+    }
+
+    const snomedPattern = /SNOMED[:\s]+([^\n]+)/i;
+    const snomedMatch = text.match(snomedPattern);
+    if (snomedMatch) {
+      result.snomed = snomedMatch[1].trim().substring(0, 100);
+    }
+
+    const meshPattern = /MeSH[:\s]+([^\n]+)/i;
+    const meshMatch = text.match(meshPattern);
+    if (meshMatch) {
+      result.meshTerms = [meshMatch[1].trim().substring(0, 100)];
+    }
+
+    const meshHeadingPattern = /<MeshHeading>([\s\S]*?)<\/MeshHeading>/gi;
+    let meshMatchIter: RegExpExecArray | null;
+    while ((meshMatchIter = meshHeadingPattern.exec(text)) !== null) {
+      const descriptorName = meshMatchIter[1].match(/<DescriptorName>([^<]+)<\/DescriptorName>/i);
+      if (descriptorName && descriptorName[1]) {
+        result.meshTerms.push(descriptorName[1].trim());
+      }
+    }
+
+    return result;
   }
 
   private extractFromPDF(rawText: string): ExtractedMetadata {
@@ -290,6 +471,15 @@ export class DocumentMetadataService {
     doi?: string;
     sourceURL?: string;
     documentType?: string;
+    disease?: string;
+    symptoms?: string[];
+    diagnosis?: string[];
+    treatment?: string[];
+    medication?: string[];
+    prevention?: string[];
+    icd10?: string;
+    snomed?: string;
+    meshTerms?: string[];
   }): Promise<void> {
     await prisma.documentMetadata.upsert({
       where: { documentId: data.documentId },
@@ -303,6 +493,15 @@ export class DocumentMetadataService {
         doi: data.doi,
         sourceURL: data.sourceURL,
         documentType: data.documentType,
+        disease: data.disease,
+        symptoms: data.symptoms,
+        diagnosis: data.diagnosis,
+        treatment: data.treatment,
+        medication: data.medication,
+        prevention: data.prevention,
+        icd10: data.icd10,
+        snomed: data.snomed,
+        meshTerms: data.meshTerms,
       },
       update: {
         title: data.title,
@@ -313,6 +512,15 @@ export class DocumentMetadataService {
         doi: data.doi,
         sourceURL: data.sourceURL,
         documentType: data.documentType,
+        disease: data.disease,
+        symptoms: data.symptoms,
+        diagnosis: data.diagnosis,
+        treatment: data.treatment,
+        medication: data.medication,
+        prevention: data.prevention,
+        icd10: data.icd10,
+        snomed: data.snomed,
+        meshTerms: data.meshTerms,
       },
     });
   }

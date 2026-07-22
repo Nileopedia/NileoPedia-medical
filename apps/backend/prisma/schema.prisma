@@ -208,6 +208,15 @@ model DocumentMetadata {
   language      String?
   sourceURL     String?
   documentType  String?
+  disease       String?
+  symptoms      String[]
+  diagnosis     String[]
+  treatment     String[]
+  medication    String[]
+  prevention    String[]
+  icd10         String?
+  snomed        String?
+  meshTerms     String[]
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
