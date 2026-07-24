@@ -98,6 +98,9 @@ describe('EmailService', () => {
       process.env.RESEND_API_KEY = 're_test';
       process.env.EMAIL_FROM = 'test@nileopedia.com';
 
+      const pendingLog = { id: 'log-1' };
+      (prisma.emailLog.create as jest.Mock).mockResolvedValue(pendingLog);
+
       await EmailService.sendEmail('test@example.com', 'Subject', '<p>Body</p>');
 
       expect(prisma.emailLog.create).toHaveBeenCalledWith({

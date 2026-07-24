@@ -55,7 +55,13 @@ describe('AI Pipeline Validation', () => {
         userId: 'user-1',
       };
 
+      const { retrievalService } = jest.requireMock('../../modules/retrieval/retrieval.service') as any;
+      const originalGenerateEmbedding = retrievalService.embeddingService.generateEmbedding;
+      retrievalService.embeddingService.generateEmbedding = jest.fn().mockRejectedValue(new Error('Embedding service unavailable'));
+
       const result = await processAiGeneration(mockJob);
+
+      retrievalService.embeddingService.generateEmbedding = originalGenerateEmbedding;
 
       expect(result.success).toBe(false);
       expect((result as PipelineError).stage).toBe('embeddings');

@@ -254,6 +254,9 @@ model EmbeddingMetadata {
   metadataCompleteness Int?
   chunkLength     Int?
   chunkHash       String?
+  tokenCount      Int?
+  pageNumber      Int?
+  sectionTitle    String?
   isDuplicate     Boolean @default(false)
   isValid         Boolean @default(true)
   embeddingModel  String?

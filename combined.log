@@ -69,3 +69,1188 @@
 2026-07-22T10:19:07.237Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
 2026-07-22T10:19:07.345Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
 2026-07-22T10:19:07.412Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:48.350Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-23T06:00:48.356Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T06:00:48.375Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:00:48.724Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-23T06:00:48.724Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T06:00:48.734Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:00:48.773Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:00:48.843Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-23T06:00:48.860Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:00:48.936Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:48.949Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:00:49.044Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:00:49.046Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-1
+2026-07-23T06:00:49.065Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:00:49.178Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:00:49.178Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-2
+2026-07-23T06:00:49.196Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:00:49.232Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.245Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:00:49.276Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.329Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.382Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.436Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.490Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:01:59.377Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-23T06:01:59.557Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-23T06:01:59.668Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-23T06:01:59.674Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-07-23T06:01:59.679Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-23T06:01:59.687Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-23T06:02:00.026Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-23T06:02:00.033Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T06:02:00.050Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:02:00.707Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-23T06:02:00.709Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T06:02:00.751Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:02:00.934Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:02:01.135Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-23T06:02:01.192Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:02:01.296Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.308Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:02:01.414Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:02:01.415Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-1
+2026-07-23T06:02:01.445Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:02:01.592Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:02:01.593Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-2
+2026-07-23T06:02:01.652Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:02:01.701Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.715Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:02:01.754Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.838Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.885Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.942Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:02.158Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.308Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-23T06:46:18.532Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-23T06:46:18.533Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-07-23T06:46:18.542Z [nileopedia-backend] info: Resend API response for test@example.com
+2026-07-23T06:46:18.542Z [nileopedia-backend] info: Email sent successfully to test@example.com
+2026-07-23T06:46:18.553Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-23T06:46:18.606Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-23T06:46:16.917Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-23T06:46:16.923Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T06:46:16.972Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:46:17.500Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-23T06:46:17.502Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T06:46:17.521Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:46:17.677Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:46:17.804Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-23T06:46:17.833Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:46:18.014Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.032Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:46:18.318Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:46:18.322Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-1
+2026-07-23T06:46:18.345Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:46:18.547Z [nileopedia-backend] info: [object Object]
+2026-07-23T06:46:18.548Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-2
+2026-07-23T06:46:18.579Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:46:18.657Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.680Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-23T06:46:18.728Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.860Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.949Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.990Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:19.096Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T07:09:11.022Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:11.030Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:09:12.159Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:12.164Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:09:12.448Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:12.452Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:09:42.652Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:42.656Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:09:43.006Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:43.011Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:09:46.762Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:46.765Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:09:47.064Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:09:47.067Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:07.928Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:07.937Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:08.929Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:08.934Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:09.227Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:09.230Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:39.364Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:39.368Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:39.693Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:39.696Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:49.744Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:49.748Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:10:50.012Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:10:50.018Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:11:20.154Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:11:20.166Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:11:21.138Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:11:21.144Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:11:21.455Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:11:21.459Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:11:51.392Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:11:51.396Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:11:51.659Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:11:51.664Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:20:00.033Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:20:00.038Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:20:00.408Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:20:00.411Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:22:25.548Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:22:25.568Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:22:28.211Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:22:28.232Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:22:28.930Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:22:28.938Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:23:03.644Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:23:03.654Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:23:04.347Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:23:04.353Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:25:28.634Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:25:28.653Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:25:30.975Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:25:30.987Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:25:31.647Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:25:31.657Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:25:54.472Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:25:54.481Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:25:55.069Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:25:55.075Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:28:59.533Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:28:59.547Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:29:01.287Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:29:01.294Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:29:01.725Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:29:01.731Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:29:20.493Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:29:20.496Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:29:20.952Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:29:20.956Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:31:10.191Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:31:10.221Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:31:15.045Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:31:15.059Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:31:16.119Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:31:16.128Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:31:28.599Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:31:28.607Z [nileopedia-backend] info: [object Object]
+2026-07-23T07:31:29.325Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T07:31:29.333Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:25:48.854Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:25:48.870Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:25:50.919Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:25:50.928Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:25:51.547Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:25:51.555Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:26:01.361Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:26:01.372Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:26:01.962Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:26:01.969Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:26:39.034Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:26:39.052Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:26:41.284Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:26:41.293Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:26:41.876Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:26:41.882Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:27:00.641Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:27:00.650Z [nileopedia-backend] info: [object Object]
+2026-07-23T08:27:01.320Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T08:27:01.329Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:34.752Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:34.788Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:36.929Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:36.949Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:38.088Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:38.101Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:40.965Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:40.974Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:41.896Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:41.908Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:43.242Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:43.252Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:44.285Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:44.295Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:45.225Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:45.236Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:46.199Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:46.211Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:48.174Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:48.192Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:49.123Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:49.141Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:50.392Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:50.401Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:51.272Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:51.280Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:52.605Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:52.615Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:53.874Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:53.885Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:54.780Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:54.788Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:55.763Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:55.771Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:57.135Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:57.148Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:58.056Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:58.067Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:59.018Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:59.028Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:00:59.977Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:00:59.988Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:00.856Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:00.866Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:02.090Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:02.099Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:03.639Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:03.648Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:04.739Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:04.752Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:06.422Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:06.442Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:07.385Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:07.394Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:08.715Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:08.723Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:09.579Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:09.585Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:10.430Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:10.438Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:11.321Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:11.331Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:12.857Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:12.867Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:13.740Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:13.753Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:14.732Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:14.741Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:15.888Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:15.896Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:16.633Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:16.644Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:17.474Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:17.483Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:18.750Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:18.758Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:19.749Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:19.758Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:20.916Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:20.926Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:21.809Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:21.818Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:23.074Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:23.084Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:23.962Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:23.971Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:24.897Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:24.906Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:25.746Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:25.767Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:26.999Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:27.009Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:27.904Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:27.913Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:29.015Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:29.021Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:29.881Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:29.890Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:30.837Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:30.845Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:31.968Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:31.977Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:33.273Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:33.282Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:34.733Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:34.743Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:36.100Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:36.108Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:36.986Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:36.995Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:38.454Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:38.462Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:39.190Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:39.201Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:40.008Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:40.016Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:40.794Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:40.805Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:41.842Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:41.852Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:42.619Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:42.627Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:43.451Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:43.458Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:44.372Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:44.381Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:45.195Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:45.203Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:46.002Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:46.011Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:47.217Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:47.226Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:47.970Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:47.977Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:49.189Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:49.197Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:50.037Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:50.047Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:51.224Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:51.232Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:52.008Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:52.016Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:52.853Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:52.863Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:53.670Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:53.678Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:57.239Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:57.249Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:58.226Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:58.236Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:01:59.806Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:01:59.818Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:01.056Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:01.081Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:02.255Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:02.267Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:03.235Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:03.246Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:04.736Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:04.746Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:05.690Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:05.702Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:07.503Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:07.520Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:08.583Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:08.593Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:10.309Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:10.317Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:11.373Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:11.381Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:12.338Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:12.348Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:13.151Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:13.162Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:14.259Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:14.267Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:15.066Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:15.075Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:16.027Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:16.036Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:16.916Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:16.926Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:18.298Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:18.337Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:19.633Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:19.643Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:21.812Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:21.826Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:23.466Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:23.476Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:24.965Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:24.975Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:25.894Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:25.902Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:27.299Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:27.312Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:28.565Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:28.575Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:29.664Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:29.674Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:31.008Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:31.042Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:32.951Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:32.985Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:34.069Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:34.079Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:35.095Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:35.106Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:36.287Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:36.307Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:37.637Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:37.645Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:38.946Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:38.960Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:40.835Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:40.845Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:41.914Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:41.922Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:43.372Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:43.379Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:44.238Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:44.247Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:45.582Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:45.592Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:46.756Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:46.775Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:48.363Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:48.373Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:50.122Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:50.131Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:51.477Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:51.485Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:52.415Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:52.424Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:53.406Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:53.414Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:54.361Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:54.370Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:55.402Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:55.411Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:56.335Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:56.345Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:58.212Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:58.222Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:02:59.165Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:02:59.174Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:01.045Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:01.063Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:02.025Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:02.034Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:03.433Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:03.441Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:04.475Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:04.485Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:06.437Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:06.479Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:08.995Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:09.046Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:12.304Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:12.332Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:13.535Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:13.543Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:14.472Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:14.480Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:15.585Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:15.595Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:16.539Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:16.547Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:17.362Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:17.370Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:18.513Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:18.521Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:19.584Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:19.603Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:20.878Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:20.886Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:21.754Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:21.763Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:23.085Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:23.093Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:24.266Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:24.275Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:25.371Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:25.378Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:26.379Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:26.386Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:27.630Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:27.639Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:28.597Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:28.606Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:29.540Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:29.548Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:30.330Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:30.338Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:31.216Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:31.225Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:32.112Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:32.122Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:33.467Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:33.474Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:34.379Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:34.390Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:36.895Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:36.914Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:37.772Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:37.780Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:39.275Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:39.283Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:40.181Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:40.191Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:41.240Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:41.248Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:42.485Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:42.494Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:43.794Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:43.812Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:44.842Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:44.852Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:45.776Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:45.785Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:46.716Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:46.738Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:47.759Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:47.768Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:48.580Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:48.586Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:49.560Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:49.568Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:50.373Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:50.380Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:51.861Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:51.869Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:52.656Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:52.665Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:53.928Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:53.937Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:54.923Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:54.932Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:55.985Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:55.993Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:56.878Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:56.887Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:58.021Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:58.029Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:58.788Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:58.802Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:03:59.624Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:03:59.633Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:00.930Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:00.939Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:02.117Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:02.134Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:03.226Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:03.235Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:04.923Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:04.945Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:06.215Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:06.223Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:07.621Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:07.636Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:08.482Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:08.491Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:09.620Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:09.628Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:10.532Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:10.540Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:11.363Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:11.372Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:12.136Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:12.145Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:14.160Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:14.169Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:15.231Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:15.241Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:16.630Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:16.638Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:17.487Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:17.496Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:19.502Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:19.513Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:20.400Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:20.406Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:22.316Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:22.326Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:23.284Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:23.294Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:24.464Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:24.472Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:04:25.409Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:04:25.418Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:13.509Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:13.584Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:18.170Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:18.242Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:20.798Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:20.833Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:25.748Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:25.793Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:26.757Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:26.770Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:28.185Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:28.198Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:30.614Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:30.627Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:32.162Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:32.174Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:33.397Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:33.432Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:39.153Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:39.163Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:40.082Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:40.096Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:41.935Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:41.944Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:42.963Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:42.972Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:44.673Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:44.685Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:46.102Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:46.114Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:47.502Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:47.510Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:48.834Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:48.845Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:50.849Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:50.860Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:52.069Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:52.081Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:53.100Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:53.109Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:54.135Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:54.145Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:55.212Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:55.228Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:56.235Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:56.244Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:57.574Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:57.582Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:06:58.685Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:06:58.704Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:00.245Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:00.255Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:01.266Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:01.277Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:03.343Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:03.351Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:04.410Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:04.422Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:05.438Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:05.446Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:06.483Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:06.519Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:09.686Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:09.704Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:11.309Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:11.341Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:12.677Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:12.694Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:13.681Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:13.691Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:14.905Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:14.921Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:15.904Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:15.922Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:17.459Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:17.473Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:18.781Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:18.801Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:20.166Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:20.177Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:21.088Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:21.099Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:23.212Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:23.229Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:24.173Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:24.184Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:25.292Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:25.304Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:26.384Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:26.400Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:28.878Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:28.909Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:30.127Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:30.138Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:31.213Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:31.223Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:32.182Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:32.192Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:33.544Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:33.555Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:34.397Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:34.407Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:35.647Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:35.658Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:36.527Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:36.541Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:37.805Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:37.821Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:39.051Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:39.063Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:40.400Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:40.409Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:41.644Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:41.683Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:43.032Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:43.040Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:43.915Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:43.922Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:45.483Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:45.497Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:46.370Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:46.379Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:47.650Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:47.660Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:48.541Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:48.551Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:49.393Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:49.402Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:50.307Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:50.319Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:52.183Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:52.193Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:53.121Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:53.130Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:54.339Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:54.350Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:55.285Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:55.296Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:57.051Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:57.059Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:57.986Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:57.997Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:07:59.146Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:07:59.155Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:00.419Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:00.430Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:03.509Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:03.516Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:04.577Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:04.587Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:06.220Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:06.241Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:07.359Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:07.365Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:08.348Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:08.360Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:09.289Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:09.321Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:10.505Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:10.515Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:11.522Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:11.532Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:12.786Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:12.794Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:13.628Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:13.637Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:14.935Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:14.943Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:16.502Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:16.513Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:17.616Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:17.628Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:18.660Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:18.682Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:20.390Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:20.397Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:21.596Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:21.607Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:22.665Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:22.676Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:23.574Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:23.585Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:24.579Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:24.587Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:25.498Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:25.507Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:37.672Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:37.686Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:38.593Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:38.604Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:48.288Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:48.298Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:49.291Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:49.302Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:51.066Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:51.076Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:52.410Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:52.420Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:53.574Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:53.582Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:54.454Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:54.462Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:56.794Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:56.803Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:58.025Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:58.034Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:58.925Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:58.933Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:08:59.760Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:08:59.769Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:00.812Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:00.824Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:02.374Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:02.383Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:04.485Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:04.497Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:05.938Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:05.949Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:08.184Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:08.194Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:11.263Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:11.273Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:13.719Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:13.728Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:15.067Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:15.085Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:18.281Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:18.291Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:20.120Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:20.138Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:24.437Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:24.455Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:26.194Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:26.203Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:27.028Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:27.035Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:29.330Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:29.349Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:30.676Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:30.686Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:32.882Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:32.891Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:35.183Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:35.208Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:37.426Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:37.436Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:40.743Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:40.752Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:41.770Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:41.781Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:45.037Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:45.055Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:46.346Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:46.355Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:48.612Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:48.652Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:50.208Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:09:50.227Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:09:54.268Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:18.803Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:18.835Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:20.841Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:20.865Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:21.847Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:21.871Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:23.063Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:23.072Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:24.353Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:24.375Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:25.746Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:25.756Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:26.841Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:26.852Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:27.837Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:27.846Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:28.785Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:28.794Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:32.266Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:32.276Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:33.312Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:33.382Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:35.164Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:35.171Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:35.945Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:35.961Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:37.046Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:37.053Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:37.911Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:37.920Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:39.411Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:39.421Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:40.291Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:40.300Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:41.120Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:41.128Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:41.926Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:41.935Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:42.768Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:42.777Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:43.748Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:43.767Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:44.858Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:44.868Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:45.669Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:45.680Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:46.905Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:46.916Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:47.659Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:47.674Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:48.827Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:48.836Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:50.166Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:50.202Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:51.712Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:51.720Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:52.665Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:52.674Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:53.774Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:53.784Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:54.590Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:54.600Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:55.473Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:55.479Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:56.266Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:56.273Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:57.062Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:57.068Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:57.829Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:57.839Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:58.703Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:58.710Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:12:59.481Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:12:59.489Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:00.493Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:00.500Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:01.238Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:01.246Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:02.206Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:02.212Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:02.891Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:02.899Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:03.917Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:03.924Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:04.593Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:04.600Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:06.004Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:06.015Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:06.929Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:06.942Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:07.907Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:07.913Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:08.786Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:08.794Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:09.586Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:09.593Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:10.442Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:10.456Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:11.262Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:11.270Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:12.126Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:12.137Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:13.807Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:13.832Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:15.394Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:15.413Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:17.396Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:17.417Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:18.719Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:18.728Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:20.001Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:20.011Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:20.938Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:20.949Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:22.980Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:22.989Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:23.868Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:23.875Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:25.383Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:25.391Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:26.954Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:26.971Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:28.255Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:28.264Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:29.658Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:29.671Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:30.656Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:30.665Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:31.796Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:31.805Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:33.467Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:33.474Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:34.676Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:34.698Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:36.308Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:36.316Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:37.522Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:37.544Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:39.092Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:39.108Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:40.058Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:40.069Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:43.166Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:43.179Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:44.857Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:44.865Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:46.328Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:46.338Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:47.648Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:47.668Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:49.112Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:49.123Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:50.166Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:50.181Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:51.250Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:51.260Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:52.393Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:52.410Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:55.666Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:55.690Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:56.691Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:56.702Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:13:59.491Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:13:59.512Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:00.584Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:00.596Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:01.906Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:01.915Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:02.836Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:02.845Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:04.031Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:04.049Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:04.960Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:04.968Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:05.786Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:05.794Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:06.599Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:06.608Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:07.426Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:07.434Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:08.190Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:08.199Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:09.011Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:09.019Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:09.896Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:09.906Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:12.314Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:12.327Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:13.495Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:13.507Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:14.748Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:14.758Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:15.672Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:15.680Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:16.867Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:16.875Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:17.798Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:17.812Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:19.067Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:19.076Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:20.122Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:20.132Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:20.907Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:20.916Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:21.799Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:21.807Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:22.673Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:22.682Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:23.446Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:23.453Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:24.220Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:24.228Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:24.938Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:24.947Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:27.078Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:27.093Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:27.985Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:27.996Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:29.147Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:29.155Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:29.923Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:29.930Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:31.851Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:31.859Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:32.489Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:32.497Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:33.458Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:33.463Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:34.149Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:34.159Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:34.918Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:34.930Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:35.612Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:35.619Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:36.282Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:36.288Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:36.972Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:36.980Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:37.600Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:37.610Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:38.355Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:38.365Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:39.573Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:39.579Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:40.365Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:40.372Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:41.349Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:41.356Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:42.046Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:42.054Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:43.198Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:43.206Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:43.855Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:43.864Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:45.433Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:45.445Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:46.310Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:46.324Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:47.129Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:47.136Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:47.819Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:47.826Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:48.493Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:48.501Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:49.307Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:49.315Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:50.102Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:50.109Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:50.910Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:50.918Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:52.336Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:52.345Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:53.117Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:53.124Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:54.401Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:54.421Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:55.399Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:55.409Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:57.603Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:57.625Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:14:59.280Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:14:59.294Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:00.467Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:00.476Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:01.506Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:01.526Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:02.718Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:02.726Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:03.741Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:03.760Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:05.978Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:06.011Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:09.497Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:09.530Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:11.429Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:11.457Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:13.862Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:13.935Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:17.169Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:17.188Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:19.683Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:19.693Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:21.587Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:21.626Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:23.072Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:23.083Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:25.716Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:25.736Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:27.404Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:27.414Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:28.784Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:28.801Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:30.766Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:30.804Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:33.435Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:33.455Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:34.733Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:34.756Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:37.347Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:37.386Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:39.741Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:39.761Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:42.158Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:42.165Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:44.420Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:44.445Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:46.120Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:46.139Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:47.758Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:47.768Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:49.871Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:49.883Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:51.628Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:51.637Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:52.917Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:52.927Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:54.394Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:15:54.405Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:15:55.742Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:25:18.202Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:25:18.233Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:25:21.993Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:25:22.010Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:25:23.063Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:25:23.075Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:25:31.975Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:25:31.984Z [nileopedia-backend] info: [object Object]
+2026-07-23T09:25:33.017Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-23T09:25:33.028Z [nileopedia-backend] info: [object Object]

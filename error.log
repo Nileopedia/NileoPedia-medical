@@ -20,3 +20,31 @@
 2026-07-22T10:19:07.237Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
 2026-07-22T10:19:07.345Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
 2026-07-22T10:19:07.412Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:48.843Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-23T06:00:48.936Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.232Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.276Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.329Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.382Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.436Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:00:49.490Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:01:59.679Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-23T06:01:59.687Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-23T06:02:01.135Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-23T06:02:01.296Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.701Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.754Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.838Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.885Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:01.942Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:02:02.158Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.553Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-23T06:46:18.606Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-23T06:46:17.804Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-23T06:46:18.014Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.657Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.728Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.860Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.949Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:18.990Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-23T06:46:19.096Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function

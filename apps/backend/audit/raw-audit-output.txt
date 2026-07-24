@@ -1,0 +1,71 @@
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+Chunk audit: avg=4463.1, max=14787, tiny=0/100
+console.log
+Chunk audit: total=542, duplicates=0, rate=0.0%
+console.log
+Chunk audit: total=542, invalid=0, rate=0.0%
+console.log
+Chunk audit: text=50/50, vectorId=50/50, docId=50/50, index=50/50, length=0/50
+console.log
+Metadata audit: completeness=0.0% (0/400)
+console.log
+Metadata audit: PMID=0, PMCID=0, DOI=0/50
+console.log
+Citation audit: total=26, complete=26, rate=100.0%
+console.log
+Confidence audit: samples=20, unique=8, range=0-0.9490217129773029
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+console.log
+Explainability audit: hasExplanation=false, results=3
