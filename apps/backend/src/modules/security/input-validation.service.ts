@@ -125,7 +125,8 @@ export const detectEmbeddingInjection = (text: string): { safe: boolean; threats
     /<\|im_start\|>system/gi,
     /<\|im_end\|>/gi,
     /\[INST\].*?\[\/INST\]/gi,
-    /<<SYS>>.*?<</SYS>>/gi,
+    /<<SYS>>/gi,
+    /<\/SYS>>/gi,
     /###\s*instruction/gi,
     /###\s*system/gi,
     /\/\/\/\s*system/gi,
@@ -252,5 +253,17 @@ export const validateSQLQuery = (query: string): { valid: boolean; threats: stri
     }
   });
   
-  return { safe: threats.length === 0, threats };
+  return { valid: threats.length === 0, threats };
 };
+
+export function sanitize(input: any): any {
+  return sanitizeObject(input);
+}
+
+export async function validate(input: any, schema: any): Promise<any> {
+  const { z } = await import('zod');
+  if (schema && typeof schema.parse === 'function') {
+    return schema.parse(input);
+  }
+  return input;
+}

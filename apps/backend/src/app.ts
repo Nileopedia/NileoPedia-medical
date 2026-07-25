@@ -211,6 +211,10 @@ prisma.$connect()
     // Setup middleware (cors, helmet, body parser, etc.)
     setupMiddleware(app);
 
+    // Health check routes
+    const { healthRoutes } = require('./modules/health/health.routes');
+    app.use('/api/v1/health', healthRoutes);
+
     // Import and setup routes with controller instances
     const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
     const { AuthController } = require('./modules/auth/controllers/auth.controller');

@@ -48,3 +48,27 @@
 2026-07-23T06:46:18.949Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
 2026-07-23T06:46:18.990Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
 2026-07-23T06:46:19.096Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:28.583Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-24T07:46:28.915Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:30.331Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:30.559Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:30.801Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:30.851Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:30.907Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:31.044Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:46:43.325Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-24T07:46:43.624Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured
+2026-07-24T07:47:25.415Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: The API key you provided was rejected while calling https://api.pinecone.io/indexes/nileopedia-medical. Please check your configuration values and try again. You can find the configuration values for your project in the Pinecone developer console at https://app.pinecone.io
+2026-07-24T07:47:32.842Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: The API key you provided was rejected while calling https://api.pinecone.io/indexes/nileopedia-medical. Please check your configuration values and try again. You can find the configuration values for your project in the Pinecone developer console at https://app.pinecone.io
+2026-07-24T07:47:35.706Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: The API key you provided was rejected while calling https://api.pinecone.io/indexes/nileopedia-medical. Please check your configuration values and try again. You can find the configuration values for your project in the Pinecone developer console at https://app.pinecone.io
+2026-07-24T07:47:38.308Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: The API key you provided was rejected while calling https://api.pinecone.io/indexes/nileopedia-medical. Please check your configuration values and try again. You can find the configuration values for your project in the Pinecone developer console at https://app.pinecone.io
+2026-07-24T07:54:30.061Z [nileopedia-backend] error: Email sending failed to test@example.com
+2026-07-24T07:54:26.798Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-24T07:54:27.276Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:28.286Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:28.371Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:28.534Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:28.810Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:29.170Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:29.457Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-24T07:54:30.255Z [nileopedia-backend] error: Email connection check failed RESEND_API_KEY is not configured

@@ -303,12 +303,12 @@ export class EvaluationRunnerService {
       expectedTerms.some(term => chunk.text.includes(term.toLowerCase())) ? 1 : 0
     );
     
-    const dcg = relevances.reduce((sum, rel, i) => {
+    const dcg = relevances.reduce((sum: number, rel: number, i: number) => {
       return sum + rel / Math.log2(i + 2);
     }, 0);
     
     const idealRelevances = [...relevances].sort((a, b) => b - a);
-    const idcg = idealRelevances.reduce((sum, rel, i) => {
+    const idcg = idealRelevances.reduce((sum: number, rel: number, i: number) => {
       return sum + rel / Math.log2(i + 2);
     }, 0);
     

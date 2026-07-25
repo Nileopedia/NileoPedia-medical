@@ -17,7 +17,7 @@ import request from 'supertest';
 import { app } from '../../app';
 import { generateTestJWT, createTestUser } from '../helpers/test.helpers';
 import { createTestDocument, MEDICAL_DOCUMENTS, cleanupTestDocuments } from './helpers/medical-documents.helper';
-import { prisma, cleanupDatabase as cleanupTestDb } from './helpers/prisma.helper';
+import { prisma, cleanupDatabase, disconnectPrisma } from './helpers/prisma.helper';
 import { IngestionStatus } from '@prisma/client';
 
 describe('E2E: Medical Document Ingestion Validation', () => {
@@ -101,10 +101,12 @@ describe('E2E: Medical Document Ingestion Validation', () => {
         where: { documentId: document.id }
       });
 
-      if (metadata && metadata.icd10 && metadata.icd10.length > 0) {
-        const hasHypertensionCode = metadata.icd10.some(code => 
-          code.startsWith('I10') || code.startsWith('I11') || code.startsWith('I12') || code.startsWith('I13')
-        );
+      if (metadata && metadata.icd10) {
+        const hasHypertensionCode = 
+          metadata.icd10.startsWith('I10') || 
+          metadata.icd10.startsWith('I11') || 
+          metadata.icd10.startsWith('I12') || 
+          metadata.icd10.startsWith('I13');
         expect(hasHypertensionCode).toBe(true);
       }
     });

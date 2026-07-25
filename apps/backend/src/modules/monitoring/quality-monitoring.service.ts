@@ -142,8 +142,8 @@ export class QualityMonitoringService {
 
   private async collectKnowledgeGaps(timestamp: Date): Promise<QualityMetric> {
     try {
-      const gaps = await knowledgeGapDetectionService.getKnowledgeGaps();
-      const gapCount = Array.isArray(gaps) ? gaps.length : 0;
+      const gaps = await knowledgeGapDetectionService.detectGaps();
+      const gapCount = Array.isArray(gaps.gaps) ? gaps.gaps.length : 0;
       
       return {
         name: 'Knowledge Gaps',
@@ -273,7 +273,7 @@ export class QualityMonitoringService {
   private async collectHallucinationRate(timestamp: Date): Promise<QualityMetric> {
     try {
       const reviews = await prisma.validationReview.findMany({
-        where: { createdAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } },
+        where: { reviewedAt: { gte: new Date(Date.now() - 24 * 60 * 60 * 1000) } },
         take: 100,
       });
 
@@ -464,6 +464,7 @@ export class QualityMonitoringService {
       return {
         name: 'Most Common Diseases',
         value: diseases.slice(0, 10).join(', ') || 'None',
+        status: diseases.length > 0 ? 'healthy' : 'warning',
         timestamp,
       };
     } catch (error) {
@@ -501,6 +502,7 @@ export class QualityMonitoringService {
       return {
         name: 'Most Accessed Documents',
         value: topDocs || 'None',
+        status: 'healthy',
         timestamp,
       };
     } catch (error) {
@@ -712,6 +714,7 @@ export class QualityMonitoringService {
         value: Math.round(avgTokens),
         unit: 'tokens',
         trend: 'stable',
+        status: 'healthy',
         timestamp,
       };
     } catch (error) {
@@ -734,6 +737,7 @@ export class QualityMonitoringService {
         value: totalVectors,
         unit: 'vectors',
         trend: 'stable',
+        status: 'healthy',
         timestamp,
       };
     } catch (error) {
@@ -756,6 +760,7 @@ export class QualityMonitoringService {
       return {
         name: 'Storage Growth',
         value: `${docs} docs, ${chunks} chunks, ${responses} responses`,
+        status: 'healthy',
         timestamp,
       };
     } catch (error) {

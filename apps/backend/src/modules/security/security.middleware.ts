@@ -11,9 +11,8 @@
  */
 
 import { Request, Response, NextFunction } from 'express';
+import { sanitize, validate } from './input-validation.service';
 import { storage } from '../../config/multer';
-import { validate } from './input-validation.service';
-import { sanitize } from './input-sanitization.service';
 import { CONFIG } from '../../config/env';
 import { securityAuditService } from './security-audit.service';
 

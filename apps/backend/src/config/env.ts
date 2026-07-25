@@ -71,6 +71,12 @@ export const CONFIG = {
 
   // Scheduled Ingestion
   SCHEDULED_INGESTION_ENABLED: process.env.SCHEDULED_INGESTION_ENABLED ?? 'true',
+
+  // Additional configuration
+  APP_VERSION: process.env.APP_VERSION || '1.0.0',
+  BACKUP_DIR: process.env.BACKUP_DIR || '',
+  EMAIL_SERVICE_API_KEY: process.env.EMAIL_SERVICE_API_KEY || '',
+  EMAIL_SERVICE_URL: process.env.EMAIL_SERVICE_URL || '',
 } as const;
 
 export type Config = typeof CONFIG;

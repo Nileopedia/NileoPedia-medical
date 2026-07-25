@@ -100,8 +100,8 @@ export class SecurityAuditService {
     this.results.push({
       category: 'Authentication',
       test: 'JWT Expiration',
-      status: CONFIG.JWT_EXPIRES_IN && parseInt(CONFIG.JWT_EXPIRES_IN) <= 900 ? 'PASS' : 'WARNING',
-      message: `JWT expires in ${CONFIG.JWT_EXPIRES_IN || 'not configured'}`,
+      status: CONFIG.JWT_ACCESS_EXPIRES_IN && parseInt(CONFIG.JWT_ACCESS_EXPIRES_IN) <= 900 ? 'PASS' : 'WARNING',
+      message: `JWT expires in ${CONFIG.JWT_ACCESS_EXPIRES_IN || 'not configured'}`,
       severity: 'medium',
       recommendation: 'Set JWT expiration to 15 minutes or less for access tokens',
     });
