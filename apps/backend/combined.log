@@ -139295,3 +139295,103 @@ Argument `authors`: Invalid value provided. Expected String or Null, provided ()
 2026-07-24T03:27:15.521Z [nileopedia-backend] info: Embedding source: local
 2026-07-24T03:27:15.521Z [nileopedia-backend] info: Embedding source: local
 2026-07-24T03:28:07.047Z [nileopedia-backend] info: GET / - ::1
+2026-07-25T06:28:35.399Z [nileopedia-backend] info: Starting production audit...
+2026-07-25T06:28:35.402Z [nileopedia-backend] info: Running knowledge audit...
+2026-07-25T06:28:36.154Z [nileopedia-backend] info: Knowledge audit completed
+2026-07-25T06:28:36.156Z [nileopedia-backend] info: Running security audit...
+2026-07-25T06:28:36.166Z [nileopedia-backend] info: Security audit completed
+2026-07-25T06:28:36.168Z [nileopedia-backend] info: Checking health...
+2026-07-25T06:28:37.813Z [nileopedia-backend] info: Health check completed
+2026-07-25T06:28:37.813Z [nileopedia-backend] info: Validating environment...
+2026-07-25T06:28:37.814Z [nileopedia-backend] info: Environment validation completed
+2026-07-25T06:28:37.814Z [nileopedia-backend] info: Validating configuration...
+2026-07-25T06:28:37.815Z [nileopedia-backend] info: Configuration validation completed
+2026-07-25T06:28:37.816Z [nileopedia-backend] info: Validating database...
+2026-07-25T06:28:38.019Z [nileopedia-backend] info: Database validation completed
+2026-07-25T06:28:38.019Z [nileopedia-backend] info: Validating Pinecone...
+2026-07-25T06:28:38.021Z [nileopedia-backend] info: Pinecone validation completed
+2026-07-25T06:28:38.021Z [nileopedia-backend] info: Validating Redis...
+2026-07-25T06:28:38.031Z [nileopedia-backend] info: Redis validation completed
+2026-07-25T06:31:11.951Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:11.954Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:12.565Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:12.565Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:12.736Z [nileopedia-backend] info: Schedulers initialized
+2026-07-25T06:31:16.916Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:16.916Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:17.316Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:17.316Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:17.318Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:31:18.547Z [nileopedia-backend] info: Processing document ingestion job: 3311
+2026-07-25T06:31:18.767Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:18.767Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:18.791Z [nileopedia-backend] error: Document ingestion job failed: 3311 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:264:34
+
+  261   logger.info(`Document ingestion completed: ${documentId}`);
+  262   return { success: true };
+  263 } catch (error) {
+→ 264   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-07-25T06:31:20.889Z [nileopedia-backend] info: Processing document ingestion job: 3311
+2026-07-25T06:31:20.913Z [nileopedia-backend] error: Document ingestion job failed: 3311 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:264:34
+
+  261   logger.info(`Document ingestion completed: ${documentId}`);
+  262   return { success: true };
+  263 } catch (error) {
+→ 264   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-07-25T06:31:24.998Z [nileopedia-backend] info: Processing document ingestion job: 3311
+2026-07-25T06:31:25.022Z [nileopedia-backend] error: Document ingestion job failed: 3311 
+Invalid `prisma.medicalDocument.update()` invocation in
+/home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/jobs/processors/document.processor.ts:264:34
+
+  261   logger.info(`Document ingestion completed: ${documentId}`);
+  262   return { success: true };
+  263 } catch (error) {
+→ 264   await prisma.medicalDocument.update(
+An operation failed because it depends on one or more records that were required but not found. Record to update not found.
+2026-07-25T06:31:38.775Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:38.776Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:38.777Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:31:39.169Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:39.170Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:39.510Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:31:39.510Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:31:39.511Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:31:50.661Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-07-25T06:31:50.675Z [nileopedia-backend] error: Local embedding failed: Embedding service unavailable
+2026-07-25T06:31:53.650Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:32:02.643Z [nileopedia-backend] error: Failed to describe index stats: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-25T06:32:18.119Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-07-25T06:32:18.123Z [nileopedia-backend] error: Local embedding failed: Embedding service unavailable
+2026-07-25T06:32:18.331Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:32:18.331Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:32:18.545Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:32:18.546Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:32:18.546Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:32:18.550Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:32:28.606Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-07-25T06:32:28.610Z [nileopedia-backend] error: Local embedding failed: Embedding service unavailable
+2026-07-25T06:32:28.614Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-07-25T06:32:28.615Z [nileopedia-backend] error: Local embedding failed: Embedding service unavailable
+2026-07-25T06:34:43.752Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:34:43.754Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:34:44.243Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:34:44.244Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:34:44.363Z [nileopedia-backend] info: Schedulers initialized
+2026-07-25T06:34:46.245Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:34:46.245Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:34:46.506Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:34:46.506Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:34:46.507Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-25T06:34:47.471Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T06:34:47.471Z [nileopedia-backend] info: [object Object]
+2026-07-25T06:35:07.484Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-25T09:25:57.358Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-07-25T09:25:57.359Z [nileopedia-backend] error: Local embedding failed: Embedding service unavailable
+2026-07-25T09:25:57.363Z [nileopedia-backend] error: [ERROR] Pinecone unavailable
+2026-07-25T09:25:57.364Z [nileopedia-backend] error: Local embedding failed: Embedding service unavailable

@@ -60,6 +60,56 @@ export interface StartupDiagnostics {
   summary: string;
 }
 
+class CircuitBreaker {
+  private failures: number = 0;
+  private state: 'closed' | 'open' | 'half-open' = 'closed';
+  private nextAttempt: number = Date.now();
+
+  constructor(private config: { failureThreshold: number; resetTimeout: number; timeout: number }) {}
+
+  async execute<T>(operation: () => Promise<T>): Promise<T> {
+    if (this.state === 'open') {
+      if (Date.now() < this.nextAttempt) {
+        throw new Error('Circuit breaker is open');
+      }
+      this.state = 'half-open';
+    }
+
+    try {
+      const result = await Promise.race([
+        operation(),
+        new Promise<never>((_, reject) =>
+          setTimeout(() => reject(new Error('Operation timeout')), this.config.timeout)
+        ),
+      ]);
+
+      this.recordSuccess();
+      return result;
+    } catch (error) {
+      this.recordFailure();
+      throw error;
+    }
+  }
+
+  recordSuccess(): void {
+    this.failures = 0;
+    this.state = 'closed';
+  }
+
+  recordFailure(): void {
+    this.failures++;
+
+    if (this.failures >= this.config.failureThreshold) {
+      this.state = 'open';
+      this.nextAttempt = Date.now() + this.config.resetTimeout;
+    }
+  }
+
+  getState(): string {
+    return this.state;
+  }
+}
+
 class DeploymentHardeningService {
   private startTime: Date = new Date();
   private circuitBreakers: Map<string, CircuitBreaker> = new Map();
@@ -480,55 +530,4 @@ class DeploymentHardeningService {
 }
 
 export const deploymentHardeningService = new DeploymentHardeningService();
-
-class CircuitBreaker {
-  private failures: number = 0;
-  private state: 'closed' | 'open' | 'half-open' = 'closed';
-  private nextAttempt: number = Date.now();
-
-  constructor(private config: { failureThreshold: number; resetTimeout: number; timeout: number }) {}
-
-  async execute<T>(operation: () => Promise<T>): Promise<T> {
-    if (this.state === 'open') {
-      if (Date.now() < this.nextAttempt) {
-        throw new Error('Circuit breaker is open');
-      }
-      this.state = 'half-open';
-    }
-
-    try {
-      const result = await Promise.race([
-        operation(),
-        new Promise<never>((_, reject) => 
-          setTimeout(() => reject(new Error('Operation timeout')), this.config.timeout)
-        ),
-      ]);
-
-      this.recordSuccess();
-      return result;
-    } catch (error) {
-      this.recordFailure();
-      throw error;
-    }
-  }
-
-  recordSuccess(): void {
-    this.failures = 0;
-    this.state = 'closed';
-  }
-
-  recordFailure(): void {
-    this.failures++;
-    
-    if (this.failures >= this.config.failureThreshold) {
-      this.state = 'open';
-      this.nextAttempt = Date.now() + this.config.resetTimeout;
-    }
-  }
-
-  getState(): string {
-    return this.state;
-  }
-}
-
 export { CircuitBreaker };

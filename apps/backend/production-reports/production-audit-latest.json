@@ -1,0 +1,1056 @@
+{
+  "timestamp": "2026-07-25T06:28:35.402Z",
+  "summary": {
+    "overallScore": 24,
+    "grade": "D",
+    "productionReadinessPercent": 53,
+    "goNoGo": "NO-GO"
+  },
+  "sections": {
+    "knowledgeAudit": {
+      "diseasesIndexed": [],
+      "missingDiseases": [
+        "hypertension",
+        "diabetes mellitus",
+        "asthma",
+        "copd",
+        "malaria",
+        "tuberculosis",
+        "hiv",
+        "heart failure",
+        "stroke",
+        "cancer",
+        "pneumonia",
+        "ckd"
+      ],
+      "duplicateDiseases": [],
+      "medicalSpecialties": [
+        "cardiology",
+        "endocrinology",
+        "gastroenterology",
+        "general",
+        "neurology",
+        "oncology"
+      ],
+      "medicationCoverage": [],
+      "guidelineCoverage": [],
+      "documentCounts": {
+        "total": 439,
+        "bySpecialty": {
+          "general": 419,
+          "endocrinology": 4,
+          "gastroenterology": 4,
+          "oncology": 4,
+          "cardiology": 4,
+          "neurology": 4
+        },
+        "byDocumentType": {
+          "Unknown": 403,
+          "GUIDELINE": 36
+        }
+      },
+      "averagePublicationYear": 0,
+      "averageChunkLength": 5158,
+      "averageMetadataCompleteness": 0,
+      "coveragePercentage": 0,
+      "totalRequiredDiseases": 12,
+      "outdatedPublications": 0,
+      "missingSpecialties": [
+        "cardiac surgery",
+        "cardiology",
+        "dermatology",
+        "emergency medicine",
+        "endocrinology",
+        "family medicine",
+        "gastroenterology",
+        "geriatrics",
+        "gynecology",
+        "hematology",
+        "infectious disease",
+        "internal medicine",
+        "nephrology",
+        "neurology",
+        "neurosurgery",
+        "obstetrics",
+        "oncology",
+        "ophthalmology",
+        "orthopedics",
+        "otolaryngology",
+        "pediatrics",
+        "plastic surgery",
+        "psychiatry",
+        "pulmonology",
+        "rheumatology",
+        "surgery",
+        "urology",
+        "vascular surgery"
+      ],
+      "missingMedications": [
+        "aspirin",
+        "ibuprofen",
+        "metformin",
+        "lisinopril",
+        "atorvastatin",
+        "amlodipine",
+        "omeprazole",
+        "prednisone",
+        "albuterol",
+        "warfarin",
+        "clopidogrel",
+        "insulin",
+        "amoxicillin",
+        "azithromycin",
+        "ciprofloxacin",
+        "vancomycin"
+      ],
+      "missingGuidelines": [
+        "AHA/ACC Hypertension Guidelines",
+        "ADA Standards of Medical Care",
+        "GINA Asthma Strategy",
+        "GOLD COPD Report",
+        "WHO TB Guidelines",
+        "WHO HIV Guidelines",
+        "AHA/ACC Heart Failure Guidelines",
+        "AHA/ASA Stroke Guidelines"
+      ]
+    },
+    "securityAudit": {
+      "timestamp": "2026-07-25T06:28:36.166Z",
+      "overallScore": 48,
+      "categoryScores": {
+        "Authentication": {
+          "score": 78,
+          "status": "warning"
+        },
+        "Authorization": {
+          "score": 67,
+          "status": "warning"
+        },
+        "Audit Logging": {
+          "score": 60,
+          "status": "warning"
+        },
+        "Rate Limiting": {
+          "score": 50,
+          "status": "critical"
+        },
+        "Input Validation": {
+          "score": 43,
+          "status": "critical"
+        },
+        "Attack Prevention": {
+          "score": 40,
+          "status": "critical"
+        },
+        "Backups": {
+          "score": 0,
+          "status": "critical"
+        },
+        "Deployment Hardening": {
+          "score": 43,
+          "status": "critical"
+        }
+      },
+      "results": [
+        {
+          "category": "Authentication",
+          "test": "JWT Secret Configuration",
+          "status": "PASS",
+          "message": "JWT secret is configured with sufficient length",
+          "severity": "critical",
+          "recommendation": "Use a cryptographically secure random string of at least 32 characters"
+        },
+        {
+          "category": "Authentication",
+          "test": "JWT Refresh Token",
+          "status": "PASS",
+          "message": "Refresh token secret is configured",
+          "severity": "high",
+          "recommendation": "Configure JWT_REFRESH_SECRET with a secure random string"
+        },
+        {
+          "category": "Authentication",
+          "test": "JWT Expiration",
+          "status": "PASS",
+          "message": "JWT expires in 15m",
+          "severity": "medium",
+          "recommendation": "Set JWT expiration to 15 minutes or less for access tokens"
+        },
+        {
+          "category": "Authentication",
+          "test": "Refresh Token Expiration",
+          "status": "PASS",
+          "message": "Refresh token expires in 7d",
+          "severity": "medium",
+          "recommendation": "Set refresh token expiration to 7 days or less"
+        },
+        {
+          "category": "Authentication",
+          "test": "Password Hashing",
+          "status": "PASS",
+          "message": "bcrypt with salt rounds is used for password hashing",
+          "severity": "info"
+        },
+        {
+          "category": "Authentication",
+          "test": "Token Rotation",
+          "status": "WARNING",
+          "message": "Token rotation is not implemented",
+          "severity": "medium",
+          "recommendation": "Implement refresh token rotation with one-time use tokens"
+        },
+        {
+          "category": "Authentication",
+          "test": "Session Management",
+          "status": "PASS",
+          "message": "Sessions are stored in database with expiration",
+          "severity": "info"
+        },
+        {
+          "category": "Authentication",
+          "test": "Email Verification",
+          "status": "WARNING",
+          "message": "Email verification flow exists but may not be enforced",
+          "severity": "medium",
+          "recommendation": "Enforce email verification before allowing login"
+        },
+        {
+          "category": "Authentication",
+          "test": "Forgot Password",
+          "status": "PASS",
+          "message": "Password reset flow is implemented with OTP",
+          "severity": "info"
+        },
+        {
+          "category": "Authorization",
+          "test": "POST /api/v1/auth/register",
+          "status": "WARNING",
+          "message": "Endpoint not protected",
+          "severity": "medium",
+          "recommendation": "Add authentication and role-based authorization"
+        },
+        {
+          "category": "Authorization",
+          "test": "POST /api/v1/auth/login",
+          "status": "WARNING",
+          "message": "Endpoint not protected",
+          "severity": "medium",
+          "recommendation": "Add authentication and role-based authorization"
+        },
+        {
+          "category": "Authorization",
+          "test": "GET /api/v1/users",
+          "status": "PASS",
+          "message": "Protected: ADMIN",
+          "severity": "medium"
+        },
+        {
+          "category": "Authorization",
+          "test": "GET /api/v1/admin",
+          "status": "PASS",
+          "message": "Protected: ADMIN",
+          "severity": "high"
+        },
+        {
+          "category": "Authorization",
+          "test": "GET /api/v1/documents",
+          "status": "PASS",
+          "message": "Protected: ADMIN, VALIDATOR, MEDICAL_USER",
+          "severity": "medium"
+        },
+        {
+          "category": "Authorization",
+          "test": "GET /api/v1/search",
+          "status": "PASS",
+          "message": "Protected: ADMIN, VALIDATOR, MEDICAL_USER",
+          "severity": "medium"
+        },
+        {
+          "category": "Authorization",
+          "test": "POST /api/v1/questions",
+          "status": "PASS",
+          "message": "Protected: ADMIN, MEDICAL_USER",
+          "severity": "medium"
+        },
+        {
+          "category": "Authorization",
+          "test": "POST /api/v1/validation",
+          "status": "PASS",
+          "message": "Protected: ADMIN, VALIDATOR",
+          "severity": "medium"
+        },
+        {
+          "category": "Authorization",
+          "test": "Endpoint Coverage",
+          "status": "WARNING",
+          "message": "6/8 endpoints properly secured",
+          "severity": "high",
+          "recommendation": "Review all endpoints for proper authentication and authorization"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "login logging",
+          "status": "PASS",
+          "message": "login events are logged",
+          "severity": "high"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "logout logging",
+          "status": "PASS",
+          "message": "logout events are logged",
+          "severity": "medium"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "document_upload logging",
+          "status": "PASS",
+          "message": "document_upload events are logged",
+          "severity": "medium"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "validation logging",
+          "status": "PASS",
+          "message": "validation events are logged",
+          "severity": "medium"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "ai_request logging",
+          "status": "PASS",
+          "message": "ai_request events are logged",
+          "severity": "medium"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "admin_action logging",
+          "status": "PASS",
+          "message": "admin_action events are logged",
+          "severity": "high"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "settings_change logging",
+          "status": "WARNING",
+          "message": "settings_change events may not be logged",
+          "severity": "medium",
+          "recommendation": "Add audit logging for settings_change events"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "deletion logging",
+          "status": "WARNING",
+          "message": "deletion events may not be logged",
+          "severity": "medium",
+          "recommendation": "Add audit logging for deletion events"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "permission_change logging",
+          "status": "WARNING",
+          "message": "permission_change events may not be logged",
+          "severity": "medium",
+          "recommendation": "Add audit logging for permission_change events"
+        },
+        {
+          "category": "Audit Logging",
+          "test": "Audit log completeness",
+          "status": "WARNING",
+          "message": "Audit logs may not include IP address and user agent",
+          "severity": "medium",
+          "recommendation": "Ensure all audit logs include: timestamp, user, IP, user agent, endpoint, action, result"
+        },
+        {
+          "category": "Rate Limiting",
+          "test": "Global rate limiting",
+          "status": "PASS",
+          "message": "Rate limiting configured: 500 requests per 900000ms",
+          "severity": "info"
+        },
+        {
+          "category": "Rate Limiting",
+          "test": "Strict rate limit for /api/v1/auth/login",
+          "status": "WARNING",
+          "message": "No strict rate limiting configured for /api/v1/auth/login",
+          "severity": "high",
+          "recommendation": "Implement stricter rate limiting for /api/v1/auth/login to prevent brute force attacks"
+        },
+        {
+          "category": "Rate Limiting",
+          "test": "Strict rate limit for /api/v1/auth/register",
+          "status": "WARNING",
+          "message": "No strict rate limiting configured for /api/v1/auth/register",
+          "severity": "high",
+          "recommendation": "Implement stricter rate limiting for /api/v1/auth/register to prevent brute force attacks"
+        },
+        {
+          "category": "Rate Limiting",
+          "test": "Redis-backed distributed rate limiting",
+          "status": "PASS",
+          "message": "Redis is available for distributed rate limiting",
+          "severity": "high",
+          "recommendation": "Configure Redis for distributed rate limiting in production"
+        },
+        {
+          "category": "Input Validation",
+          "test": "Request body validation",
+          "status": "PASS",
+          "message": "Zod and express-validator are used for input validation",
+          "severity": "info"
+        },
+        {
+          "category": "Input Validation",
+          "test": "File upload validation",
+          "status": "WARNING",
+          "message": "File upload validation exists but may need MIME type and extension checking",
+          "severity": "high",
+          "recommendation": "Validate MIME types, file extensions, and file sizes for all uploads"
+        },
+        {
+          "category": "Input Validation",
+          "test": "SQL Injection prevention",
+          "status": "PASS",
+          "message": "Prisma ORM prevents SQL injection via parameterized queries",
+          "severity": "info"
+        },
+        {
+          "category": "Input Validation",
+          "test": "XSS prevention",
+          "status": "WARNING",
+          "message": "Helmet is configured but XSS filter may need explicit enabling",
+          "severity": "medium",
+          "recommendation": "Enable XSS filter in Helmet configuration"
+        },
+        {
+          "category": "Input Validation",
+          "test": "CSRF protection",
+          "status": "WARNING",
+          "message": "CSRF protection not explicitly configured",
+          "severity": "medium",
+          "recommendation": "Implement CSRF protection for state-changing operations"
+        },
+        {
+          "category": "Input Validation",
+          "test": "Command injection prevention",
+          "status": "PASS",
+          "message": "No shell command execution with user input detected",
+          "severity": "info"
+        },
+        {
+          "category": "Input Validation",
+          "test": "Path traversal prevention",
+          "status": "WARNING",
+          "message": "File paths may not be fully sanitized",
+          "severity": "high",
+          "recommendation": "Validate and sanitize all file paths to prevent directory traversal"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "Prompt injection prevention",
+          "status": "WARNING",
+          "message": "No explicit prompt injection detection found",
+          "severity": "critical",
+          "recommendation": "Implement prompt injection detection and filtering for AI inputs"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "Embedding injection prevention",
+          "status": "WARNING",
+          "message": "No explicit embedding injection prevention found",
+          "severity": "high",
+          "recommendation": "Validate and sanitize embedded text before vectorization"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "RAG context poisoning prevention",
+          "status": "WARNING",
+          "message": "No explicit RAG context poisoning prevention found",
+          "severity": "high",
+          "recommendation": "Implement context validation and source authentication"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "Authentication bypass",
+          "status": "PASS",
+          "message": "All protected endpoints require valid JWT token",
+          "severity": "info"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "IDOR prevention",
+          "status": "PASS",
+          "message": "Resource access is scoped to authenticated user",
+          "severity": "info"
+        },
+        {
+          "category": "Backups",
+          "test": "Database backup",
+          "status": "WARNING",
+          "message": "No automated database backup found",
+          "severity": "high",
+          "recommendation": "Implement automated PostgreSQL backups with point-in-time recovery"
+        },
+        {
+          "category": "Backups",
+          "test": "Pinecone backup",
+          "status": "WARNING",
+          "message": "No Pinecone backup strategy found",
+          "severity": "medium",
+          "recommendation": "Implement Pinecone index export and backup strategy"
+        },
+        {
+          "category": "Backups",
+          "test": "Metadata backup",
+          "status": "WARNING",
+          "message": "No metadata backup strategy found",
+          "severity": "medium",
+          "recommendation": "Backup Prisma metadata and DocumentMetadata records"
+        },
+        {
+          "category": "Backups",
+          "test": "Document backup",
+          "status": "WARNING",
+          "message": "Uploaded documents are stored locally without backup",
+          "severity": "high",
+          "recommendation": "Implement S3 or Azure Blob Storage for document backups"
+        },
+        {
+          "category": "Backups",
+          "test": "Backup verification",
+          "status": "WARNING",
+          "message": "No backup verification process found",
+          "severity": "medium",
+          "recommendation": "Implement automated backup verification and restore testing"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Health check",
+          "status": "PASS",
+          "message": "Health check endpoint exists",
+          "severity": "info"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Readiness check",
+          "status": "WARNING",
+          "message": "Readiness check endpoint not found",
+          "severity": "medium",
+          "recommendation": "Implement Readiness check endpoint"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Liveness check",
+          "status": "WARNING",
+          "message": "Liveness check endpoint not found",
+          "severity": "medium",
+          "recommendation": "Implement Liveness check endpoint"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Graceful shutdown",
+          "status": "WARNING",
+          "message": "Graceful shutdown not explicitly implemented",
+          "severity": "medium",
+          "recommendation": "Implement graceful shutdown for HTTP server and job workers"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Environment validation",
+          "status": "PASS",
+          "message": "Environment variables are validated at startup",
+          "severity": "info"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Secrets validation",
+          "status": "WARNING",
+          "message": "Secrets validation exists but may not check all required secrets",
+          "severity": "high",
+          "recommendation": "Validate all required secrets at startup and fail fast if missing"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Dependency health checks",
+          "status": "PASS",
+          "message": "AI services warmup and dependency checks exist",
+          "severity": "info"
+        }
+      ],
+      "criticalIssues": [],
+      "warnings": [
+        {
+          "category": "Authorization",
+          "test": "Endpoint Coverage",
+          "status": "WARNING",
+          "message": "6/8 endpoints properly secured",
+          "severity": "high",
+          "recommendation": "Review all endpoints for proper authentication and authorization"
+        },
+        {
+          "category": "Rate Limiting",
+          "test": "Strict rate limit for /api/v1/auth/login",
+          "status": "WARNING",
+          "message": "No strict rate limiting configured for /api/v1/auth/login",
+          "severity": "high",
+          "recommendation": "Implement stricter rate limiting for /api/v1/auth/login to prevent brute force attacks"
+        },
+        {
+          "category": "Rate Limiting",
+          "test": "Strict rate limit for /api/v1/auth/register",
+          "status": "WARNING",
+          "message": "No strict rate limiting configured for /api/v1/auth/register",
+          "severity": "high",
+          "recommendation": "Implement stricter rate limiting for /api/v1/auth/register to prevent brute force attacks"
+        },
+        {
+          "category": "Input Validation",
+          "test": "File upload validation",
+          "status": "WARNING",
+          "message": "File upload validation exists but may need MIME type and extension checking",
+          "severity": "high",
+          "recommendation": "Validate MIME types, file extensions, and file sizes for all uploads"
+        },
+        {
+          "category": "Input Validation",
+          "test": "Path traversal prevention",
+          "status": "WARNING",
+          "message": "File paths may not be fully sanitized",
+          "severity": "high",
+          "recommendation": "Validate and sanitize all file paths to prevent directory traversal"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "Embedding injection prevention",
+          "status": "WARNING",
+          "message": "No explicit embedding injection prevention found",
+          "severity": "high",
+          "recommendation": "Validate and sanitize embedded text before vectorization"
+        },
+        {
+          "category": "Attack Prevention",
+          "test": "RAG context poisoning prevention",
+          "status": "WARNING",
+          "message": "No explicit RAG context poisoning prevention found",
+          "severity": "high",
+          "recommendation": "Implement context validation and source authentication"
+        },
+        {
+          "category": "Backups",
+          "test": "Database backup",
+          "status": "WARNING",
+          "message": "No automated database backup found",
+          "severity": "high",
+          "recommendation": "Implement automated PostgreSQL backups with point-in-time recovery"
+        },
+        {
+          "category": "Backups",
+          "test": "Document backup",
+          "status": "WARNING",
+          "message": "Uploaded documents are stored locally without backup",
+          "severity": "high",
+          "recommendation": "Implement S3 or Azure Blob Storage for document backups"
+        },
+        {
+          "category": "Deployment Hardening",
+          "test": "Secrets validation",
+          "status": "WARNING",
+          "message": "Secrets validation exists but may not check all required secrets",
+          "severity": "high",
+          "recommendation": "Validate all required secrets at startup and fail fast if missing"
+        }
+      ],
+      "recommendations": [
+        "HIGH: Address 10 high-severity warnings",
+        "Use a cryptographically secure random string of at least 32 characters",
+        "Configure JWT_REFRESH_SECRET with a secure random string",
+        "Set JWT expiration to 15 minutes or less for access tokens",
+        "Set refresh token expiration to 7 days or less",
+        "Implement refresh token rotation with one-time use tokens",
+        "Enforce email verification before allowing login",
+        "Add authentication and role-based authorization",
+        "Review all endpoints for proper authentication and authorization",
+        "Add audit logging for settings_change events",
+        "Add audit logging for deletion events",
+        "Add audit logging for permission_change events",
+        "Ensure all audit logs include: timestamp, user, IP, user agent, endpoint, action, result",
+        "Implement stricter rate limiting for /api/v1/auth/login to prevent brute force attacks",
+        "Implement stricter rate limiting for /api/v1/auth/register to prevent brute force attacks",
+        "Configure Redis for distributed rate limiting in production",
+        "Validate MIME types, file extensions, and file sizes for all uploads",
+        "Enable XSS filter in Helmet configuration",
+        "Implement CSRF protection for state-changing operations",
+        "Validate and sanitize all file paths to prevent directory traversal",
+        "Implement prompt injection detection and filtering for AI inputs",
+        "Validate and sanitize embedded text before vectorization",
+        "Implement context validation and source authentication",
+        "Implement automated PostgreSQL backups with point-in-time recovery",
+        "Implement Pinecone index export and backup strategy",
+        "Backup Prisma metadata and DocumentMetadata records",
+        "Implement S3 or Azure Blob Storage for document backups",
+        "Implement automated backup verification and restore testing",
+        "Implement Readiness check endpoint",
+        "Implement Liveness check endpoint",
+        "Implement graceful shutdown for HTTP server and job workers",
+        "Validate all required secrets at startup and fail fast if missing"
+      ]
+    },
+    "performanceAudit": null,
+    "retrievalAudit": null,
+    "citationAudit": null,
+    "evaluationBenchmark": null,
+    "healthCheck": {
+      "status": "unhealthy",
+      "timestamp": "2026-07-25T06:28:36.170Z",
+      "uptime": 792,
+      "version": "1.0.0",
+      "checks": {
+        "database": {
+          "status": "up",
+          "latency": 183,
+          "lastChecked": "2026-07-25T06:28:36.358Z"
+        },
+        "pinecone": {
+          "status": "down",
+          "error": "pinecone.PineconeClient is not a constructor",
+          "lastChecked": "2026-07-25T06:28:36.767Z"
+        },
+        "redis": {
+          "status": "degraded",
+          "latency": 880,
+          "lastChecked": "2026-07-25T06:28:37.647Z"
+        },
+        "groq": {
+          "status": "up",
+          "latency": 165,
+          "lastChecked": "2026-07-25T06:28:37.812Z"
+        },
+        "email": {
+          "status": "up",
+          "lastChecked": "2026-07-25T06:28:37.812Z"
+        },
+        "monitoring": {
+          "status": "up",
+          "lastChecked": "2026-07-25T06:28:36.170Z"
+        }
+      }
+    },
+    "dependencyCheck": {
+      "health": {
+        "status": "unhealthy",
+        "timestamp": "2026-07-25T06:28:36.170Z",
+        "uptime": 792,
+        "version": "1.0.0",
+        "checks": {
+          "database": {
+            "status": "up",
+            "latency": 183,
+            "lastChecked": "2026-07-25T06:28:36.358Z"
+          },
+          "pinecone": {
+            "status": "down",
+            "error": "pinecone.PineconeClient is not a constructor",
+            "lastChecked": "2026-07-25T06:28:36.767Z"
+          },
+          "redis": {
+            "status": "degraded",
+            "latency": 880,
+            "lastChecked": "2026-07-25T06:28:37.647Z"
+          },
+          "groq": {
+            "status": "up",
+            "latency": 165,
+            "lastChecked": "2026-07-25T06:28:37.812Z"
+          },
+          "email": {
+            "status": "up",
+            "lastChecked": "2026-07-25T06:28:37.812Z"
+          },
+          "monitoring": {
+            "status": "up",
+            "lastChecked": "2026-07-25T06:28:36.170Z"
+          }
+        }
+      }
+    },
+    "environmentValidation": {
+      "nodeEnv": "development",
+      "nodeVersion": "v24.12.0",
+      "platform": "linux",
+      "arch": "x64",
+      "uptime": 8.582515659,
+      "memoryUsage": {
+        "rss": 411607040,
+        "heapTotal": 299548672,
+        "heapUsed": 195845424,
+        "external": 5458775,
+        "arrayBuffers": 2073682
+      }
+    },
+    "configurationValidation": {
+      "checks": {
+        "databaseConfigured": true,
+        "jwtConfigured": true,
+        "pineconeConfigured": true,
+        "groqConfigured": true,
+        "redisConfigured": true,
+        "emailConfigured": false,
+        "corsConfigured": true
+      },
+      "passed": 6,
+      "total": 7,
+      "success": false
+    },
+    "databaseValidation": {
+      "connected": true,
+      "testQuery": [
+        {
+          "test": 1
+        }
+      ],
+      "counts": {
+        "documents": 439,
+        "chunks": 542,
+        "users": 27
+      },
+      "success": true
+    },
+    "pineconeValidation": {
+      "connected": false,
+      "configured": true,
+      "error": "pinecone.PineconeClient is not a constructor",
+      "success": false
+    },
+    "redisValidation": {
+      "configured": true,
+      "connected": true,
+      "success": true
+    },
+    "groqValidation": {
+      "configured": true,
+      "connected": true,
+      "success": true
+    },
+    "emailValidation": {
+      "configured": false,
+      "connected": false,
+      "error": "Cannot find module '../modules/email/email.service'\nRequire stack:\n- /home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/modules/audit/production-audit.service.ts\n- /home/mrnibra/Desktop/NileoPedia-medical/apps/backend/src/scripts/production-audit.ts\n- /home/mrnibra/Desktop/NileoPedia-medical/apps/backend/[eval]",
+      "success": false
+    }
+  },
+  "criticalIssues": [
+    {
+      "category": "Health",
+      "test": "Service Health",
+      "status": "FAIL",
+      "severity": "critical",
+      "message": "Service is unhealthy"
+    }
+  ],
+  "warnings": [
+    {
+      "category": "Authorization",
+      "test": "Endpoint Coverage",
+      "status": "WARNING",
+      "message": "6/8 endpoints properly secured",
+      "severity": "high",
+      "recommendation": "Review all endpoints for proper authentication and authorization"
+    },
+    {
+      "category": "Rate Limiting",
+      "test": "Strict rate limit for /api/v1/auth/login",
+      "status": "WARNING",
+      "message": "No strict rate limiting configured for /api/v1/auth/login",
+      "severity": "high",
+      "recommendation": "Implement stricter rate limiting for /api/v1/auth/login to prevent brute force attacks"
+    },
+    {
+      "category": "Rate Limiting",
+      "test": "Strict rate limit for /api/v1/auth/register",
+      "status": "WARNING",
+      "message": "No strict rate limiting configured for /api/v1/auth/register",
+      "severity": "high",
+      "recommendation": "Implement stricter rate limiting for /api/v1/auth/register to prevent brute force attacks"
+    },
+    {
+      "category": "Input Validation",
+      "test": "File upload validation",
+      "status": "WARNING",
+      "message": "File upload validation exists but may need MIME type and extension checking",
+      "severity": "high",
+      "recommendation": "Validate MIME types, file extensions, and file sizes for all uploads"
+    },
+    {
+      "category": "Input Validation",
+      "test": "Path traversal prevention",
+      "status": "WARNING",
+      "message": "File paths may not be fully sanitized",
+      "severity": "high",
+      "recommendation": "Validate and sanitize all file paths to prevent directory traversal"
+    },
+    {
+      "category": "Attack Prevention",
+      "test": "Embedding injection prevention",
+      "status": "WARNING",
+      "message": "No explicit embedding injection prevention found",
+      "severity": "high",
+      "recommendation": "Validate and sanitize embedded text before vectorization"
+    },
+    {
+      "category": "Attack Prevention",
+      "test": "RAG context poisoning prevention",
+      "status": "WARNING",
+      "message": "No explicit RAG context poisoning prevention found",
+      "severity": "high",
+      "recommendation": "Implement context validation and source authentication"
+    },
+    {
+      "category": "Backups",
+      "test": "Database backup",
+      "status": "WARNING",
+      "message": "No automated database backup found",
+      "severity": "high",
+      "recommendation": "Implement automated PostgreSQL backups with point-in-time recovery"
+    },
+    {
+      "category": "Backups",
+      "test": "Document backup",
+      "status": "WARNING",
+      "message": "Uploaded documents are stored locally without backup",
+      "severity": "high",
+      "recommendation": "Implement S3 or Azure Blob Storage for document backups"
+    },
+    {
+      "category": "Deployment Hardening",
+      "test": "Secrets validation",
+      "status": "WARNING",
+      "message": "Secrets validation exists but may not check all required secrets",
+      "severity": "high",
+      "recommendation": "Validate all required secrets at startup and fail fast if missing"
+    },
+    {
+      "category": "Configuration",
+      "test": "Missing configuration",
+      "status": "WARNING",
+      "message": "Missing configuration: emailConfigured",
+      "severity": "medium"
+    }
+  ],
+  "recommendations": [
+    "HIGH: Address 10 high-severity warnings",
+    "Use a cryptographically secure random string of at least 32 characters",
+    "Configure JWT_REFRESH_SECRET with a secure random string",
+    "Set JWT expiration to 15 minutes or less for access tokens",
+    "Set refresh token expiration to 7 days or less",
+    "Implement refresh token rotation with one-time use tokens",
+    "Enforce email verification before allowing login",
+    "Add authentication and role-based authorization",
+    "Review all endpoints for proper authentication and authorization",
+    "Add audit logging for settings_change events",
+    "Add audit logging for deletion events",
+    "Add audit logging for permission_change events",
+    "Ensure all audit logs include: timestamp, user, IP, user agent, endpoint, action, result",
+    "Implement stricter rate limiting for /api/v1/auth/login to prevent brute force attacks",
+    "Implement stricter rate limiting for /api/v1/auth/register to prevent brute force attacks",
+    "Configure Redis for distributed rate limiting in production",
+    "Validate MIME types, file extensions, and file sizes for all uploads",
+    "Enable XSS filter in Helmet configuration",
+    "Implement CSRF protection for state-changing operations",
+    "Validate and sanitize all file paths to prevent directory traversal",
+    "Implement prompt injection detection and filtering for AI inputs",
+    "Validate and sanitize embedded text before vectorization",
+    "Implement context validation and source authentication",
+    "Implement automated PostgreSQL backups with point-in-time recovery",
+    "Implement Pinecone index export and backup strategy",
+    "Backup Prisma metadata and DocumentMetadata records",
+    "Implement S3 or Azure Blob Storage for document backups",
+    "Implement automated backup verification and restore testing",
+    "Implement Readiness check endpoint",
+    "Implement Liveness check endpoint",
+    "Implement graceful shutdown for HTTP server and job workers",
+    "Validate all required secrets at startup and fail fast if missing",
+    "Increase knowledge base coverage - add more medical documents"
+  ],
+  "deploymentChecklist": [
+    {
+      "category": "Security",
+      "items": [
+        {
+          "label": "SSL/TLS configured",
+          "status": "PASS",
+          "details": "HTTPS in production"
+        },
+        {
+          "label": "Secrets in environment",
+          "status": "PASS",
+          "details": "No secrets in code"
+        },
+        {
+          "label": "Rate limiting enabled",
+          "status": "PASS",
+          "details": "Global rate limiting active"
+        },
+        {
+          "label": "Input validation enforced",
+          "status": "PASS",
+          "details": "Zod + express-validator"
+        }
+      ]
+    },
+    {
+      "category": "Infrastructure",
+      "items": [
+        {
+          "label": "Database connected",
+          "status": "PASS"
+        },
+        {
+          "label": "Pinecone connected",
+          "status": "PASS"
+        },
+        {
+          "label": "Redis connected",
+          "status": "PASS"
+        },
+        {
+          "label": "Groq connected",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "category": "Monitoring",
+      "items": [
+        {
+          "label": "Logging enabled",
+          "status": "PASS",
+          "details": "Winston logger configured"
+        },
+        {
+          "label": "Health checks active",
+          "status": "PASS"
+        },
+        {
+          "label": "Error tracking configured",
+          "status": "WARNING",
+          "details": "Consider adding Sentry"
+        }
+      ]
+    },
+    {
+      "category": "Data",
+      "items": [
+        {
+          "label": "Backup configured",
+          "status": "PASS",
+          "details": "Automated backups available"
+        },
+        {
+          "label": "Data retention policy",
+          "status": "WARNING",
+          "details": "Define retention period"
+        }
+      ]
+    }
+  ]
+}
