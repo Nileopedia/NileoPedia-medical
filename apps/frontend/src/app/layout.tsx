@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { Providers } from "../components/Providers";
 import { AuthGuard } from "../components/AuthGuard";
-import { ThemeProvider } from "next-themes";
+import { ThemeProvider } from "../components/ThemeProvider";
 import BackendBanner from "../components/BackendBanner";
 
 export const metadata: Metadata = {
@@ -28,7 +28,6 @@ export default function RootLayout({
           attribute="class"
           defaultTheme="system"
           enableSystem
-          disableTransitionOnChange
         >
           <Providers>
             <AuthGuard>{children}</AuthGuard>

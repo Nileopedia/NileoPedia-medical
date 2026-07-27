@@ -7,7 +7,7 @@ import { AppLayout } from '../../../components/layout/AppLayout';
 import { api } from '../../../lib/api';
 import { useRouter } from 'next/navigation';
 import { useToast } from '../../../components/ui/Toast';
-import { useTheme } from 'next-themes';
+import { useTheme } from '../../../components/ThemeProvider';
 
 export default function ValidatorSettingsPage() {
   const [settings, setSettings] = useState({

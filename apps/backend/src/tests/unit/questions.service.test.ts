@@ -206,8 +206,7 @@ describe('QuestionsService', () => {
 
       const result = await service.getQuestion('q-1');
 
-      expect(result).toHaveProperty('aiResponse');
-      expect(result.aiResponse).toHaveProperty('summary', 'I could not find supporting medical information in the knowledge base.');
+      expect(result).toHaveProperty('aiResponse', null);
     });
   });
 

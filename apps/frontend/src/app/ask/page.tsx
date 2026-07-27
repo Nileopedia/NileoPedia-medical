@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TextArea } from '../../components/ui/Input';
 import { Button } from '../../components/ui/Button';
 import { Send, Loader2, Stethoscope, Info } from 'lucide-react';
@@ -16,117 +16,143 @@ import { useRouter } from 'next/navigation';
 const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
 export default function AskPage() {
-   const [question, setQuestion] = useState('');
-   const [specialty, setSpecialty] = useState<string>('general');
-   const [loading, setLoading] = useState(false);
-   const [processing, setProcessing] = useState(false);
-   const [response, setResponse] = useState<AIResponse | null>(null);
-   const [partialRecommendations, setPartialRecommendations] = useState<string[]>([]);
-   const [streamingVisible, setStreamingVisible] = useState<boolean[]>([]);
-   const [progress, setProgress] = useState(0);
-   const [socketConnected, setSocketConnected] = useState(false);
-   const [error, setError] = useState<string | null>(null);
-   const [questionId, setQuestionId] = useState<string | null>(null);
-   const router = useRouter();
-   const user = useAppStore((state) => state.user);
-   const { addToast } = useToast();
+    const [question, setQuestion] = useState('');
+    const [specialty, setSpecialty] = useState<string>('general');
+    const [loading, setLoading] = useState(false);
+    const [processing, setProcessing] = useState(false);
+    const [response, setResponse] = useState<AIResponse | null>(null);
+    const [partialRecommendations, setPartialRecommendations] = useState<string[]>([]);
+    const [streamingVisible, setStreamingVisible] = useState<boolean[]>([]);
+    const [progress, setProgress] = useState(0);
+    const [socketConnected, setSocketConnected] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [questionId, setQuestionId] = useState<string | null>(null);
+    const router = useRouter();
+    const user = useAppStore((state) => state.user);
+    const { addToast } = useToast();
+    const questionIdRef = useRef(questionId);
+    const userRef = useRef(user);
+    const addToastRef = useRef(addToast);
+    const isPollingRef = useRef(false);
 
-useEffect(() => {
-     if (!questionId) return;
+    questionIdRef.current = questionId;
+    userRef.current = user;
+    addToastRef.current = addToast;
 
-     let attempts = 0;
-     const maxAttempts = 60;
+    useEffect(() => {
+      if (!questionIdRef.current) return;
 
-    const pollForResponse = async () => {
-       try {
-         const data = await api.getQuestion(questionId);
-         
-         if (data.aiResponse) {
-           setResponse(data.aiResponse);
-           setProcessing(false);
-           setProgress(100);
-           setPartialRecommendations(data.aiResponse.keyRecommendations || []);
-           setStreamingVisible((data.aiResponse.keyRecommendations || []).map(() => true));
-         } else if (attempts < maxAttempts) {
-           attempts++;
-           setProcessing(true);
-           setProgress(Math.min(90, attempts * 15));
-         }
-       } catch (err) {
-         if (err instanceof Error && err.message === 'Please sign in to continue') {
-           router.push('/login');
-           return;
-         }
-         if (typeof err === 'string' && (err.includes('HTTP_429') || err.includes('Too Many Requests'))) {
-           console.warn('Rate limit hit, stopping polling');
-           setError('Rate limit reached. Please wait a moment and try again.');
-           setLoading(false);
-           return;
-         }
-         if (attempts < maxAttempts) {
-           attempts++;
-           setProgress(Math.min(90, attempts * 15));
-         }
-       }
-     };
+      let attempts = 0;
+      const maxAttempts = 60;
+      isPollingRef.current = true;
 
-    setProcessing(true);
-    setProgress(5);
-    pollForResponse();
-    const intervalId = setInterval(pollForResponse, 1500);
+      const pollForResponse = async () => {
+        if (!isPollingRef.current) return;
+        try {
+          const data = await api.getQuestion(questionIdRef.current!);
 
-    const socket: Socket = io(SOCKET_URL, {
-      transports: ['websocket'],
-      reconnection: true,
-      reconnectionAttempts: 5,
-      reconnectionDelay: 1000,
-    });
+          if (data.aiResponse) {
+            setResponse(data.aiResponse);
+            setProcessing(false);
+            setProgress(100);
+            setPartialRecommendations(data.aiResponse.keyRecommendations || []);
+            setStreamingVisible((data.aiResponse.keyRecommendations || []).map(() => true));
+            isPollingRef.current = false;
+            return;
+          }
 
-    socket.on('connect', () => {
-      setSocketConnected(true);
-    });
+          if (attempts < maxAttempts) {
+            attempts++;
+            setProcessing(true);
+            setProgress(Math.min(90, attempts * 15));
+          } else {
+            setProcessing(false);
+            setError('AI response timed out. Please try again later.');
+            setLoading(false);
+            isPollingRef.current = false;
+          }
+        } catch (err) {
+          if (err instanceof Error && err.message === 'Please sign in to continue') {
+            router.push('/login');
+            isPollingRef.current = false;
+            return;
+          }
+          if (typeof err === 'string' && (err.includes('HTTP_429') || err.includes('Too Many Requests'))) {
+            console.warn('Rate limit hit, stopping polling');
+            setError('Rate limit reached. Please wait a moment and try again.');
+            setLoading(false);
+            isPollingRef.current = false;
+            return;
+          }
+          if (attempts < maxAttempts) {
+            attempts++;
+            setProgress(Math.min(90, attempts * 15));
+          }
+        }
+      };
 
-    socket.on('connect_error', () => {
-      console.warn('Backend unavailable');
-    });
-
-    socket.on('disconnect', () => {
-      setSocketConnected(false);
-    });
-
-    socket.on('ai-status', () => {
       setProcessing(true);
-    });
+      setProgress(5);
+      pollForResponse();
+      const intervalId = setInterval(pollForResponse, 1500);
 
-    socket.on('ai-key-findings', (data: { keyFindings: string[] }) => {
-      setPartialRecommendations(data.keyFindings);
-    });
+      const socket: Socket = io(SOCKET_URL, {
+        transports: ['websocket'],
+        reconnection: true,
+        reconnectionAttempts: 5,
+        reconnectionDelay: 1000,
+      });
 
-    socket.on('ai-progress', (data: { progress: number }) => {
-      setProgress(data.progress);
-    });
+      socket.on('connect', () => {
+        setSocketConnected(true);
+      });
 
-    socket.on('ai-response-complete', () => {
-      setProcessing(false);
-      setProgress(100);
-    });
+      socket.on('connect_error', () => {
+        console.warn('Backend unavailable');
+      });
 
-    socket.on('ai-error', (data: { error: string }) => {
-      setError(data.error);
-      setProcessing(false);
-      setLoading(false);
-      addToast({ type: 'error', title: 'AI Processing Failed', message: data.error });
-    });
+      socket.on('disconnect', () => {
+        setSocketConnected(false);
+      });
 
-    setTimeout(() => {
-      socket.emit('stream-question', questionId);
-    }, 100);
+      socket.on('ai-status', () => {
+        setProcessing(true);
+      });
 
-    return () => {
-      clearInterval(intervalId);
-      socket.disconnect();
-    };
-  }, [questionId, user, addToast]);
+      socket.on('ai-key-findings', (data: { keyFindings: string[] }) => {
+        setPartialRecommendations(data.keyFindings);
+      });
+
+      socket.on('ai-progress', (data: { progress: number }) => {
+        setProgress(data.progress);
+      });
+
+      socket.on('ai-response-complete', () => {
+        setProcessing(false);
+        setProgress(100);
+        isPollingRef.current = false;
+      });
+
+      socket.on('ai-error', (data: { error: string }) => {
+        setError(data.error);
+        setProcessing(false);
+        setLoading(false);
+        addToastRef.current({ type: 'error', title: 'AI Processing Failed', message: data.error });
+        isPollingRef.current = false;
+      });
+
+      setTimeout(() => {
+        if (isPollingRef.current) {
+          socket.emit('stream-question', questionIdRef.current);
+        }
+      }, 100);
+
+      return () => {
+        isPollingRef.current = false;
+        clearInterval(intervalId);
+        socket.disconnect();
+      };
+    }, [questionId]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -113,17 +113,11 @@ export class QuestionsService {
 
     if (!question) throw new Error('Question not found');
 
-    // If no AI response exists, return question with empty response
+    // If no AI response exists, return question with null response
     if (!question.aiResponse) {
       return {
         ...question,
-        aiResponse: {
-          summary: 'I could not find supporting medical information in the knowledge base.',
-          keyFindings: [],
-          detailedExplanation: '',
-          confidenceScore: 0,
-          generatedBy: 'Unavailable',
-        },
+        aiResponse: null,
       };
     }
 

@@ -205,10 +205,19 @@ export class UserService {
     uploadNotifications?: boolean;
     validationNotifications?: boolean;
   }) {
-    const preferences = await prisma.userPreferences.upsert({
+    const existing = await prisma.userPreferences.findUnique({
       where: { userId },
-      update: data,
-      create: {
+    });
+
+    if (existing) {
+      return prisma.userPreferences.update({
+        where: { userId },
+        data,
+      });
+    }
+
+    return prisma.userPreferences.create({
+      data: {
         userId,
         theme: data.theme || 'system',
         language: data.language || 'en',
@@ -221,8 +230,6 @@ export class UserService {
         validationNotifications: data.validationNotifications ?? true,
       },
     });
-
-    return preferences;
   }
 
   async createValidator(data: {

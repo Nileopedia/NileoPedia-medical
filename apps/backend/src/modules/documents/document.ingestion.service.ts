@@ -8,6 +8,16 @@ import { CONFIG } from '../../config/env';
 import { aiMetadataExtractionService } from './ai-metadata.service';
 import { QualityValidationService } from '../medical/quality-validation.service';
 
+function normalizeStringField(value: unknown): string | null {
+  if (value === null || value === undefined) return null;
+  if (typeof value === 'string') return value || null;
+  if (Array.isArray(value)) {
+    const filtered = value.filter((item) => typeof item === 'string' && item.trim() !== '');
+    return filtered.length > 0 ? filtered.join(', ') : null;
+  }
+  return null;
+}
+
 export class DocumentIngestionService {
   private embeddingService: EmbeddingService;
 
@@ -221,8 +231,8 @@ export class DocumentIngestionService {
           prognosis: taxonomy.prognosis,
           keywords: taxonomy.keywords,
           meshTerms: taxonomy.meshTerms,
-          icd10: taxonomy.icd10,
-          snomed: taxonomy.snomed,
+          icd10: normalizeStringField(taxonomy.icd10),
+          snomed: normalizeStringField(taxonomy.snomed),
           publicationYear: taxonomy.publicationYear,
           journal: taxonomy.journal,
           publisher: taxonomy.publisher,
@@ -250,8 +260,8 @@ export class DocumentIngestionService {
           prognosis: taxonomy.prognosis,
           keywords: taxonomy.keywords,
           meshTerms: taxonomy.meshTerms,
-          icd10: taxonomy.icd10,
-          snomed: taxonomy.snomed,
+          icd10: normalizeStringField(taxonomy.icd10),
+          snomed: normalizeStringField(taxonomy.snomed),
           publicationYear: taxonomy.publicationYear,
           journal: taxonomy.journal,
           publisher: taxonomy.publisher,

@@ -4,7 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { X, Globe, MessageSquare, Shield } from 'lucide-react';
 import { cn } from '../../utils/cn';
 import { useSettings } from '../../contexts/SettingsContext';
-import { useTheme } from 'next-themes';
+import { useTheme } from '../../components/ThemeProvider';
 
 interface SettingsModalProps {
   isOpen: boolean;

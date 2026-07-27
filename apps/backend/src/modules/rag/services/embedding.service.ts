@@ -192,7 +192,18 @@ export class EmbeddingService {
         logger.info('Embedding source: local');
         return localResult;
       } catch (error) {
-        logger.error('Local embedding failed:', error);
+        logger.error('Local embedding failed, falling back to Hugging Face:', error);
+        if (HF_API_KEY) {
+          try {
+            logger.info('Falling back to Hugging Face embeddings...');
+            const hfResult = await hfEmbedding(text);
+            logger.info('Embedding source: huggingface (fallback)');
+            return hfResult;
+          } catch (hfError) {
+            logger.error('HF embedding fallback failed:', hfError);
+            throw new Error('Embedding service unavailable: HF embedding failed');
+          }
+        }
         throw new Error('Embedding service unavailable: local embedding failed');
       }
     }

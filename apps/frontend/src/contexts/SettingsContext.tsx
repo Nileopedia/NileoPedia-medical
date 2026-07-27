@@ -3,7 +3,7 @@
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useAppStore } from '../store/appStore';
 import { api } from '../lib/api';
-import { useTheme } from 'next-themes';
+import { useTheme } from '../components/ThemeProvider';
 
 type Theme = 'light' | 'dark' | 'system';
 type Language = 'en' | 'am' | 'om';
@@ -47,7 +47,7 @@ const SettingsContext = createContext<SettingsContextValue>({
 
 export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [settings, setSettings] = useState<Settings>(defaultSettings);
-  const { setTheme: setNextTheme, theme: nextTheme } = useTheme();
+  const { theme: nextTheme, setTheme: setNextTheme } = useTheme();
 
   useEffect(() => {
     loadSettings();
