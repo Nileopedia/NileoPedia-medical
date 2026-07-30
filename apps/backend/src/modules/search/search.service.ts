@@ -5,6 +5,7 @@ import {
 } from './search.types';
 import { logger } from '../../config/logger';
 import { DynamicRetrievalService } from '../medical/dynamic-retrieval.service';
+import { SpellCheckService } from '../medical/spell-check.service';
 
 export interface SearchErrorResponse {
   success: false;
@@ -14,10 +15,12 @@ export interface SearchErrorResponse {
 export class SearchService {
   private retrievalService: RetrievalService;
   private dynamicRetrievalService: DynamicRetrievalService;
+  private spellCheckService: SpellCheckService;
 
   constructor() {
     this.retrievalService = new RetrievalService();
     this.dynamicRetrievalService = new DynamicRetrievalService();
+    this.spellCheckService = new SpellCheckService();
   }
 
   async globalSearch(query: SearchQuery): Promise<SearchResultResponse | SearchErrorResponse> {
@@ -88,15 +91,22 @@ export class SearchService {
 
   async keywordSearch(q: string, specialty?: string, limit: number = 20): Promise<SearchResult[]> {
     try {
+      const spellCheck = this.spellCheckService.check(q);
+      const searchQuery = spellCheck.corrections.length > 0 ? spellCheck.correctedQuery : q;
+
+      if (spellCheck.corrections.length > 0) {
+        logger.info(`[KEYWORD SPELLCHECK] "${q}" -> "${searchQuery}"`);
+      }
+
       const where: {
         OR?: Array<{ title?: { contains: string; mode: 'insensitive' }; description?: { contains: string; mode: 'insensitive' } }>;
         specialty?: string;
       } = {};
 
-      if (q) {
+      if (searchQuery) {
         where.OR = [
-          { title: { contains: q, mode: 'insensitive' } },
-          { description: { contains: q, mode: 'insensitive' } },
+          { title: { contains: searchQuery, mode: 'insensitive' } },
+          { description: { contains: searchQuery, mode: 'insensitive' } },
         ];
       }
 
@@ -173,10 +183,15 @@ export class SearchService {
       publicationYear?: number;
     } = {};
 
-    if (q) {
+    const searchQ = (() => {
+      const sc = this.spellCheckService.check(q || '');
+      return sc.corrections.length > 0 ? sc.correctedQuery : q;
+    })();
+
+    if (searchQ) {
       where.OR = [
-        { title: { contains: q, mode: 'insensitive' } },
-        { source: { contains: q, mode: 'insensitive' } },
+        { title: { contains: searchQ, mode: 'insensitive' } },
+        { source: { contains: searchQ, mode: 'insensitive' } },
       ];
     }
 
@@ -223,10 +238,15 @@ export class SearchService {
       OR?: Array<{ title?: { contains: string; mode: 'insensitive' }; source?: { contains: string; mode: 'insensitive' } }>;
     } = {};
 
-    if (q) {
+    const searchQ = (() => {
+      const sc = this.spellCheckService.check(q || '');
+      return sc.corrections.length > 0 ? sc.correctedQuery : q;
+    })();
+
+    if (searchQ) {
       where.OR = [
-        { title: { contains: q, mode: 'insensitive' } },
-        { source: { contains: q, mode: 'insensitive' } },
+        { title: { contains: searchQ, mode: 'insensitive' } },
+        { source: { contains: searchQ, mode: 'insensitive' } },
       ];
     }
 

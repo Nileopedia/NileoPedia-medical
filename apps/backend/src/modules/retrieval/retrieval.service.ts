@@ -6,6 +6,7 @@ import { Bm25Service, Bm25Result } from '../medical/bm25.service';
 import { DynamicRetrievalService } from '../medical/dynamic-retrieval.service';
 import { MedicalAcronymResolver } from '../medical/acronym-resolver.service';
 import { CrossEncoderReranker } from './cross-encoder-reranker.service';
+import { SpellCheckService } from '../medical/spell-check.service';
 
 export interface RetrievalMatch {
   id: string;
@@ -26,6 +27,7 @@ export class RetrievalService {
   private dynamicRetrievalService: DynamicRetrievalService;
   private acronymResolver: MedicalAcronymResolver;
   private crossEncoderReranker: CrossEncoderReranker;
+  private spellCheckService: SpellCheckService;
 
   constructor() {
     this.pineconeService = new PineconeService();
@@ -35,6 +37,7 @@ export class RetrievalService {
     this.dynamicRetrievalService = new DynamicRetrievalService();
     this.acronymResolver = new MedicalAcronymResolver();
     this.crossEncoderReranker = new CrossEncoderReranker();
+    this.spellCheckService = new SpellCheckService();
     this.initMedicalReferenceEmbedding().catch(() => {});
   }
 
@@ -65,10 +68,19 @@ export class RetrievalService {
   }
 
   async semanticSearch(query: string, topK = 8): Promise<RetrievalMatch[]> {
-    const acronymExpansion = this.acronymResolver.resolveAll(query);
+    const spellCheck = this.spellCheckService.check(query);
+    const correctedQuery = spellCheck.correctedQuery;
+    
+    if (spellCheck.corrections.length > 0) {
+      console.log('[SPELLCHECK] Original query:', query);
+      console.log('[SPELLCHECK] Corrected query:', correctedQuery);
+      console.log('[SPELLCHECK] Corrections:', spellCheck.corrections.map(c => `${c.original}->${c.corrected}`).join(', '));
+    }
+    
+    const acronymExpansion = this.acronymResolver.resolveAll(correctedQuery);
     const expandedQuery = acronymExpansion.expandedQuery;
     
-    console.log('[ACRONYM] Original query:', query);
+    console.log('[ACRONYM] Original query:', correctedQuery);
     console.log('[ACRONYM] Expanded query:', expandedQuery);
     console.log('[ACRONYM] Resolved acronyms:', acronymExpansion.acronyms.map(a => a.original).join(', '));
     
@@ -101,8 +113,16 @@ export class RetrievalService {
   }
 
   async hybridSearch(query: string, specialty?: string, topK: number = 8): Promise<RetrievalMatch[]> {
-    const queryAnalysis = this.dynamicRetrievalService.analyzeQuery(query);
-    const acronymExpansion = this.acronymResolver.resolveAll(query);
+    const spellCheck = this.spellCheckService.check(query);
+    const correctedQuery = spellCheck.correctedQuery;
+
+    if (spellCheck.corrections.length > 0) {
+      console.log('[HYBRID SPELLCHECK] Original query:', query);
+      console.log('[HYBRID SPELLCHECK] Corrected query:', correctedQuery);
+    }
+
+    const queryAnalysis = this.dynamicRetrievalService.analyzeQuery(correctedQuery);
+    const acronymExpansion = this.acronymResolver.resolveAll(correctedQuery);
     const expandedQuery = acronymExpansion.expandedQuery;
     const finalExpandedQuery = this.synonymService.expand(expandedQuery).expandedQuery;
 
@@ -343,11 +363,14 @@ export class RetrievalService {
     ];
 
     const normalized = query.toLowerCase().trim();
-    const expansion = this.synonymService.expand(normalized);
+    const spellCheck = this.spellCheckService.check(normalized);
+    const correctedQuery = spellCheck.correctedQuery;
+
+    const expansion = this.synonymService.expand(correctedQuery);
     const expandedTerms = expansion.synonyms.map(s => s.toLowerCase());
 
     const containsMedicalTerm = medicalTerms.some((term) => 
-      normalized.includes(term) || expandedTerms.some(s => s.includes(term))
+      correctedQuery.includes(term) || expandedTerms.some(s => s.includes(term))
     );
 
     if (containsMedicalTerm) {
@@ -355,7 +378,7 @@ export class RetrievalService {
       return true;
     }
 
-    const queryEmbedding = await embeddingService.generateEmbedding(normalized);
+    const queryEmbedding = await embeddingService.generateEmbedding(correctedQuery);
 
     let similarity = 0;
     if (this.medicalReferenceEmbedding) {
