@@ -9,6 +9,14 @@ RUN npm install -g pnpm
 # Copy root package files
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
+# Copy workspace package.json files for dependency resolution
+COPY apps/frontend/package.json apps/frontend/
+COPY packages/constants/package.json packages/constants/
+COPY packages/eslint-config/package.json packages/eslint-config/
+COPY packages/tsconfig/package.json packages/tsconfig/
+COPY packages/types/package.json packages/types/
+COPY packages/ui/package.json packages/ui/
+
 # Install dependencies with memory optimization
 RUN NODE_OPTIONS="--max-old-space-size=2048" pnpm install --frozen-lockfile
 
