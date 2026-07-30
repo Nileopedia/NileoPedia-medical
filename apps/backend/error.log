@@ -116261,3 +116261,50 @@ Argument `icd10`: Invalid value provided. Expected String or Null, provided ().
 2026-07-27T07:01:48.889Z [nileopedia-backend] error: [ERROR] Groq response generation failed: 429 {"error":{"message":"Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kv50rh07fsjv9cexnkntvn1n` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98670, Requested 5307. Please try again in 57m16.128s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
 2026-07-27T07:02:16.091Z [nileopedia-backend] error: [ERROR] Groq response generation failed: 429 {"error":{"message":"Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kv50rh07fsjv9cexnkntvn1n` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 98638, Requested 9800. Please try again in 2h1m30.432s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
 2026-07-27T07:36:39.758Z [nileopedia-backend] error: [ERROR] Groq response generation failed: 429 {"error":{"message":"Rate limit reached for model `llama-3.3-70b-versatile` in organization `org_01kv50rh07fsjv9cexnkntvn1n` service tier `on_demand` on tokens per day (TPD): Limit 100000, Used 96249, Requested 9361. Please try again in 1h20m47.04s. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing","type":"tokens","code":"rate_limit_exceeded"}}
+2026-07-27T08:33:48.393Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.400Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.494Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.611Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.675Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.679Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.720Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.757Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.923Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.931Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.976Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.003Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.281Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.282Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.294Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.300Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.640Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.644Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.659Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.689Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.964Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.975Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.998Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.022Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.458Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.459Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.510Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.515Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.927Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.929Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.955Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.955Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.405Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.409Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.610Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.616Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.931Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.950Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-30T13:56:37.594Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-30T21:59:03.926Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-30T21:59:04.033Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.300Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.359Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.392Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.422Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.446Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.474Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function

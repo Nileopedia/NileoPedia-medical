@@ -233285,3 +233285,507 @@ Argument `icd10`: Invalid value provided. Expected String or Null, provided ().
 2026-07-27T07:58:07.867Z [nileopedia-backend] info: GET /api/health - ::1
 2026-07-27T07:58:07.912Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
 2026-07-27T07:58:11.915Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-27T08:05:34.843Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-27T08:05:35.230Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-27T08:05:40.759Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-27T08:05:54.244Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-27T08:06:04.400Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-27T08:06:14.412Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-27T08:06:15.419Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-27T08:06:16.458Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-27T08:33:48.393Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.400Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.494Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.611Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.675Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.679Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.720Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.757Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.923Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.931Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:48.976Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.003Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.281Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.282Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.294Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.300Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.640Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.644Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.659Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.689Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.964Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.975Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:49.998Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.022Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.458Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.459Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.510Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.515Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.927Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.929Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.955Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:50.955Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.405Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.409Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.610Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.616Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.931Z [nileopedia-backend] error: Document worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T08:33:51.950Z [nileopedia-backend] error: AI worker error connect ECONNREFUSED 127.0.0.1:6379
+2026-07-27T19:07:12.937Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:12.945Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:13.454Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:13.454Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:13.750Z [nileopedia-backend] info: Schedulers initialized
+2026-07-27T19:07:20.242Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:20.242Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:20.579Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:20.580Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:20.581Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:22.873Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:23.153Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:23.154Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:23.154Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:23.173Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:23.600Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:23.602Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:24.154Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:24.156Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:24.156Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:24.165Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:24.246Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:24.246Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:41.067Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.081Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:41.082Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.082Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.082Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.083Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.083Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.083Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.083Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.084Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.084Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.084Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.084Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.084Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.085Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.085Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.088Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:41.088Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:43.461Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.461Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.462Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.463Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.463Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.463Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.463Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.463Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.463Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.467Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:43.467Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:43.468Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:43.475Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:07:43.744Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:43.744Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:43.961Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:07:43.962Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:07:43.962Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:07:43.985Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:08:15.184Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-27T19:08:15.221Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-27T19:08:16.051Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-27T19:08:21.110Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-27T19:08:21.140Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-27T19:08:21.722Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-27T19:08:27.676Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-27T19:08:28.709Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-27T19:08:28.739Z [nileopedia-backend] info: GET /api/v1/admin/ingestion/status - ::1
+2026-07-27T19:08:28.792Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-27T19:08:29.828Z [nileopedia-backend] info: GET /api/v1/admin/analytics - ::1
+2026-07-27T19:08:40.810Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-27T19:08:41.770Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-27T19:08:41.865Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-27T19:08:55.325Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-27T19:08:55.417Z [nileopedia-backend] info: Processing AI generation job: 155
+2026-07-27T19:08:55.829Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:08:55.829Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:08:56.161Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-27T19:08:56.161Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:08:56.162Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:08:56.165Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:08:56.235Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:08:56.238Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:08:56.254Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:08:56.283Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:08:56.620Z [nileopedia-backend] info: GET /api/v1/questions/5cda3e30-cf87-4ee8-b515-897e6ac1effd - ::1
+2026-07-27T19:09:03.003Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.017Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:03.017Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.017Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.017Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.017Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.018Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.018Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.018Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.018Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.019Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.020Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.020Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:03.020Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-27T19:09:05.967Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.967Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.967Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.967Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.968Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.969Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.969Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.969Z [nileopedia-backend] info: Embedding source: local
+2026-07-27T19:09:05.985Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:09:05.986Z [nileopedia-backend] info: [object Object]
+2026-07-27T19:09:12.473Z [nileopedia-backend] info: AI generation completed for question: 5cda3e30-cf87-4ee8-b515-897e6ac1effd
+2026-07-27T19:09:12.483Z [nileopedia-backend] info: AI generation job completed: 155
+2026-07-27T19:10:03.699Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-27T19:10:09.190Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-27T19:10:35.467Z [nileopedia-backend] info: POST /api/v1/admin/ingestion/run - ::1
+2026-07-28T10:42:15.327Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:15.330Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:16.077Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:16.077Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:16.535Z [nileopedia-backend] info: Schedulers initialized
+2026-07-28T10:42:20.551Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:20.551Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:20.834Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:20.835Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:20.835Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:26.849Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:27.841Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:27.842Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:27.843Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:27.861Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:28.205Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:28.205Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:28.450Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:28.450Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:28.450Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:28.455Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:28.495Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:28.496Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:46.723Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.732Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:46.732Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.733Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.734Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.734Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.734Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:46.734Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:48.780Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.781Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.782Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.782Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.782Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.782Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.782Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.782Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:48.788Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:48.789Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:48.790Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:48.800Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:42:49.161Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:49.162Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:49.410Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:42:49.410Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:42:49.410Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:42:49.445Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:43:26.923Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-28T10:43:26.933Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-28T10:43:27.514Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-28T10:43:32.832Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-28T10:43:33.983Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-28T10:43:34.133Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-28T10:43:48.429Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-28T10:43:48.524Z [nileopedia-backend] info: Processing AI generation job: 156
+2026-07-28T10:43:49.034Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:43:49.034Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:43:49.346Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-28T10:43:49.346Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:43:49.346Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:43:49.350Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:43:49.431Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:43:49.432Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:43:49.446Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:43:49.479Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:43:49.682Z [nileopedia-backend] info: GET /api/v1/questions/74aeaad8-54e8-4371-a6b3-c19a6106dc19 - ::1
+2026-07-28T10:44:01.705Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.723Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.724Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.725Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.725Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.725Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.725Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.725Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.725Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.726Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.726Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.726Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.726Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.727Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.728Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:01.728Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-28T10:44:03.929Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.929Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.929Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.929Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.929Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.930Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.931Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.931Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.931Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.931Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.931Z [nileopedia-backend] info: Embedding source: local
+2026-07-28T10:44:03.938Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:44:03.938Z [nileopedia-backend] info: [object Object]
+2026-07-28T10:44:14.072Z [nileopedia-backend] info: AI generation completed for question: 74aeaad8-54e8-4371-a6b3-c19a6106dc19
+2026-07-28T10:44:14.079Z [nileopedia-backend] info: AI generation job completed: 156
+2026-07-30T13:41:07.648Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:07.652Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:08.707Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:08.709Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:09.220Z [nileopedia-backend] info: Schedulers initialized
+2026-07-30T13:41:13.733Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:13.733Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:14.104Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:14.105Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:14.106Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:17.580Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:18.009Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:18.010Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:18.013Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:18.035Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:18.704Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:18.704Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:19.159Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:19.160Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:19.160Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:19.166Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:19.217Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:19.218Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:38.034Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:38.035Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:38.043Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:38.069Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:38.414Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:38.415Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:38.906Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:41:38.906Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:41:38.906Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:38.965Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:42.488Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.497Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:42.497Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.497Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.498Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.499Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.499Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:42.499Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:41:44.449Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.449Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.449Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.450Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.451Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.451Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.451Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.451Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:41:44.451Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:54:32.481Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-30T13:54:32.584Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-30T13:54:33.166Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-30T13:55:30.002Z [nileopedia-backend] info: POST /api/v1/auth/login - ::1
+2026-07-30T13:55:31.615Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-30T13:55:31.806Z [nileopedia-backend] info: GET /api/v1/analytics/user/dashboard - ::1
+2026-07-30T13:55:47.276Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-30T13:56:00.133Z [nileopedia-backend] info: POST /api/v1/questions/ask - ::1
+2026-07-30T13:56:00.172Z [nileopedia-backend] info: Processing AI generation job: 157
+2026-07-30T13:56:00.667Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:56:00.668Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:56:00.968Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T13:56:00.968Z [nileopedia-backend] info: [object Object]
+2026-07-30T13:56:00.968Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:56:00.972Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:56:01.048Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:56:01.049Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:56:01.054Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T13:56:01.077Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T13:56:01.211Z [nileopedia-backend] info: GET /api/v1/questions/374c0068-d8d9-4842-a9a2-4555353bdfed - ::1
+2026-07-30T13:56:37.594Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: Request failed to reach Pinecone. This can occur for reasons such as incorrect configuration (environment, project id, index name), network problems that prevent the request from being completed, or a Pinecone API outage. Check your client configuration, check your network connection, and visit https://status.pinecone.io/ to see whether any outages are ongoing.
+2026-07-30T13:56:37.606Z [nileopedia-backend] info: AI generation job completed: 157
+2026-07-30T21:53:49.896Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:49.899Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:50.192Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:50.192Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:50.210Z [nileopedia-backend] info: Schedulers initialized
+2026-07-30T21:53:50.910Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:50.911Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:51.147Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:51.148Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:51.148Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:53:52.156Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:53:52.247Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:52.249Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:52.250Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:53:52.259Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:53:52.490Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:52.490Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:52.698Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:53:52.698Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:53:52.698Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:53:52.703Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:53:52.746Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:53:52.747Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:08.478Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.487Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:08.488Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.488Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.488Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.489Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.490Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.490Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.490Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.490Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:08.490Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.183Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.184Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.184Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.184Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.184Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.185Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.185Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.193Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:54:11.193Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:54:11.194Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:11.205Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:11.484Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:54:11.485Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:54:11.794Z [nileopedia-backend] info: Using local embeddings (Xenova/all-MiniLM-L6-v2)
+2026-07-30T21:54:11.794Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:54:11.794Z [nileopedia-backend] info: Attempting local embeddings...
+2026-07-30T21:54:11.821Z [nileopedia-backend] info: Embedding source: local
+2026-07-30T21:54:57.181Z [nileopedia-backend] info: GET /api/health - ::1
+2026-07-30T21:54:57.246Z [nileopedia-backend] info: GET /api/v1/users/preferences - ::1
+2026-07-30T21:54:58.809Z [nileopedia-backend] info: PUT /api/v1/users/preferences - ::1
+2026-07-30T21:59:03.476Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-30T21:59:03.483Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-30T21:59:03.504Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:59:03.789Z [nileopedia-backend] info: Using mock vector search (Pinecone not available)
+2026-07-30T21:59:03.789Z [nileopedia-backend] warn: Using mock embeddings - no embedding service available
+2026-07-30T21:59:03.798Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:59:03.842Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-30T21:59:03.926Z [nileopedia-backend] error: [ERROR] Embedding generation failed: Embedding service unavailable
+2026-07-30T21:59:03.951Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-30T21:59:04.033Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.046Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-30T21:59:04.155Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:59:04.160Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-1
+2026-07-30T21:59:04.175Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-30T21:59:04.255Z [nileopedia-backend] info: [object Object]
+2026-07-30T21:59:04.256Z [nileopedia-backend] warn: AI generation skipped - domain filter for question: test-q-domain-2
+2026-07-30T21:59:04.269Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-30T21:59:04.300Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.312Z [nileopedia-backend] warn: [WARN] Using mock embeddings - proceeding in offline mode
+2026-07-30T21:59:04.359Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.392Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.422Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.446Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function
+2026-07-30T21:59:04.474Z [nileopedia-backend] error: [ERROR] Pinecone retrieval failed: retrievalService.hybridSearch is not a function

@@ -134,6 +134,7 @@ export default function AskPage() {
       });
 
       socket.on('ai-error', (data: { error: string }) => {
+        setResponse(null);
         setError(data.error);
         setProcessing(false);
         setLoading(false);
@@ -333,7 +334,8 @@ onKeyDown={(e) => {
                 <Info className="h-5 w-5 text-red-500 mr-3 mt-0.5" />
                 <div>
                   <h3 className="text-base font-semibold text-red-700 mb-2">Unable to Generate Response</h3>
-                  <p className="text-sm text-red-600">
+                  <p className="text-sm text-red-600">{response.summary}</p>
+                  <p className="text-xs text-muted-foreground mt-3">
                     We couldn't retrieve enough medical evidence. Please try rephrasing your question or contact support.
                   </p>
                 </div>

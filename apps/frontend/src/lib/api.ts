@@ -324,8 +324,8 @@ class ApiClient {
   }
 
   private normalizeAiResponse(question: BackendQuestion): QuestionDetail {
-    const NO_RESULTS = 'No retrieval results';
-    const UNAVAILABLE = 'I could not find supporting medical information in the knowledge base.';
+    const NO_RESULTS = 'I could not find supporting medical information in the knowledge base.';
+    const UNAVAILABLE = NO_RESULTS;
     
     const aiResponse = question.aiResponse
       ? {
@@ -343,7 +343,13 @@ class ApiClient {
           generatedAt: question.aiResponse.createdAt || question.createdAt,
           tags: [],
           isSaved: question.isSaved || false,
-          source: (question.aiResponse.summary === NO_RESULTS ? 'no_results' : 'real') as 'real' | 'no_results',
+          source: (
+            question.aiResponse.generatedBy === 'Pipeline Error'
+              ? 'unavailable'
+              : question.aiResponse.summary === NO_RESULTS
+                ? 'no_results'
+                : 'real'
+          ) as 'real' | 'unavailable' | 'no_results',
           documentsUsed: question.aiResponse.documentsUsed ?? 0,
           processingTime: question.aiResponse.processingTime ?? undefined,
         }
