@@ -57,6 +57,144 @@ function createPipelineError(stage: 'embeddings' | 'retrieval' | 'llm' | 'databa
   };
 }
 
+async function generateFallbackResponse(
+  query: string,
+  questionId: string,
+  totalStart: number,
+): Promise<{ success: boolean; responseId: string; metadata: MetadataResponse } | null> {
+  const groq = CONFIG.GROQ_API_KEY ? new Groq({ apiKey: CONFIG.GROQ_API_KEY }) : null;
+  if (!groq) return null;
+
+  try {
+    console.log('[AI FALLBACK] Generating fallback response for:', query);
+    const groqStart = Date.now();
+
+    const systemPrompt = `You are a medical knowledge assistant for NileoPedia, a premium evidence-based medical decision support platform.
+
+Rules:
+- Answer the user's medical question based on your training knowledge.
+- Never invent facts. If you are unsure, state that.
+- Keep explanations concise. Maximum 4 lines per paragraph.
+- Use bullet points, tables, and highlight boxes instead of long paragraphs.
+- Return valid JSON matching the requested schema.`;
+
+    const userPrompt = `QUESTION:
+${query}
+
+Return your response as valid JSON with exactly this structure:
+{
+  "clinicalSummary": "2-4 sentence executive summary with bullet points if helpful",
+  "definition": "Clear medical definition",
+  "clinicalOverview": "Brief clinical overview paragraph",
+  "causes": ["Cause 1", "Cause 2"],
+  "riskFactors": ["Risk factor 1", "Risk factor 2"],
+  "symptoms": ["Symptom 1", "Symptom 2"],
+  "diagnosis": ["Diagnosis method 1", "Diagnosis method 2"],
+  "treatment": {
+    "lifestyle": ["Lifestyle change 1", "Lifestyle change 2"],
+    "medications": [
+      {
+        "name": "Medication name",
+        "class": "Drug class",
+        "use": "Typical use case"
+      }
+    ]
+  },
+  "lifestyleManagement": ["Management strategy 1", "Management strategy 2"],
+  "complications": ["Complication 1", "Complication 2"],
+  "prevention": ["Prevention strategy 1", "Prevention strategy 2"],
+  "specialPopulations": ["Population 1", "Population 2"],
+  "prognosis": "Brief prognosis statement",
+  "patientEducation": ["Education point 1", "Education point 2"],
+  "keyTakeaways": ["Key point 1", "Key point 2", "Key point 3"],
+  "warningBoxes": [],
+  "tables": [],
+  "references": [],
+  "followUpQuestions": ["Follow-up question 1", "Follow-up question 2"],
+  "patientFriendlyVersion": "Simple language explanation for patients"
+}`;
+
+    const completion = await groq.chat.completions.create({
+      model: CONFIG.GROQ_MODEL,
+      messages: [
+        { role: 'system', content: systemPrompt },
+        { role: 'user', content: userPrompt },
+      ],
+      temperature: 0.1,
+      max_tokens: 4096,
+    });
+
+    const rawContent = completion.choices[0]?.message?.content || '{}';
+    const groqMs = Date.now() - groqStart;
+    console.log('[AI FALLBACK] Response received in', groqMs, 'ms');
+
+    let structuredResponse: any;
+    try {
+      const cleaned = rawContent.replace(/^```(?:json)?\n?|```$/g, '').trim();
+      const jsonCleaned = cleaned.replace(/"(\\.|[^"\\])*"/g, (match: string) => match.replace(/\n/g, '\\n').replace(/\r/g, '\\r'));
+      structuredResponse = JSON.parse(jsonCleaned);
+    } catch (parseError: any) {
+      logger.warn('Failed to parse fallback JSON, using raw content');
+      structuredResponse = {
+        ...createEmptyStructuredResponse(rawContent.substring(0, 500)),
+        clinicalSummary: rawContent.substring(0, 500),
+      };
+    }
+
+    const summary = structuredResponse.clinicalSummary || '';
+    const keyFindings = (structuredResponse.keyTakeaways || []).map((rec: string) => `✓ ${rec}`);
+
+    const aiResponse = await prisma.aIResponse.upsert({
+      where: { questionId },
+      create: {
+        questionId,
+        summary,
+        detailedExplanation: JSON.stringify(structuredResponse),
+        keyFindings,
+        confidenceScore: 0.5,
+        generatedBy: 'Llama-3.3-70b (Fallback)',
+        validationStatus: 'APPROVED',
+        documentsUsed: 0,
+      },
+      update: {
+        questionId,
+        summary,
+        detailedExplanation: JSON.stringify(structuredResponse),
+        keyFindings,
+        confidenceScore: 0.5,
+        generatedBy: 'Llama-3.3-70b (Fallback)',
+        validationStatus: 'APPROVED',
+        documentsUsed: 0,
+      },
+    });
+
+    const totalMs = Date.now() - totalStart;
+    await redis.setex(`question-progress:${questionId}`, 300, JSON.stringify({
+      questionId,
+      progress: 100,
+      keyFindings,
+    }));
+
+    logger.info(`Fallback AI generation completed for question: ${questionId}`);
+
+    return {
+      success: true,
+      responseId: aiResponse.id,
+      metadata: {
+        answer: summary,
+        source: 'fallback',
+        documentsUsed: 0,
+        model: 'Llama-3.3-70b (Fallback)',
+        embeddingModel: 'Xenova/all-MiniLM-L6-v2',
+        processingTime: totalMs,
+      },
+    };
+  } catch (error) {
+    logger.error('[AI FALLBACK] Fallback generation failed:', error);
+    return null;
+  }
+}
+
 function createEmptyStructuredResponse(clinicalSummary = ''): Record<string, unknown> {
   return {
     clinicalSummary,
@@ -391,6 +529,13 @@ export async function processAiGeneration(job: AiGenerationJob) {
       })));
 
       if (!retrievalResult.hasContext) {
+        console.log('[AI] No context found for query, trying fallback LLM call:', query);
+
+        const groqFallback = await this.generateFallbackResponse(query, questionId, totalStart);
+        if (groqFallback) {
+          return groqFallback;
+        }
+
         const noResultResponse = await prisma.aIResponse.upsert({
           where: { questionId },
           create: {
@@ -671,7 +816,7 @@ If no relevant information is available in the context, use clinicalSummary: "I 
           authors: ref.authors,
           journal: ref.journal,
           publisher: ref.publisher,
-          publicationYear: ref.year,
+          publicationYear: parseInt(ref.year, 10) || new Date().getFullYear(),
           volume: ref.volume,
           issue: ref.issue,
           pages: ref.pages,
@@ -826,7 +971,7 @@ If no relevant information is available in the context, use clinicalSummary: "I 
           authors: typeof citation.authors === 'string' ? citation.authors : 'Unknown',
           journal: citation.journal,
           publisher: citation.publisher,
-          publicationYear: citation.publicationYear || new Date().getFullYear(),
+          publicationYear: parseInt(citation.publicationYear, 10) || new Date().getFullYear(),
           volume: citation.volume,
           issue: citation.issue,
           pages: citation.pages,

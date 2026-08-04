@@ -3,6 +3,8 @@ import { createServer } from 'http';
 import { Server } from 'socket.io';
 import bcrypt from 'bcryptjs';
 import { UserRole } from '@prisma/client';
+import fs from 'fs';
+import path from 'path';
 import { EmailService } from './modules/email/email.service';
 import './jobs/worker';
 import { redis } from './lib/redis';
@@ -69,6 +71,81 @@ async function seedKnowledgeBase(): Promise<void> {
   }
 }
 
+// Reindex documents into mock vector store when Pinecone is unavailable
+async function reindexWhenPineconeUnavailable(): Promise<void> {
+  try {
+    const { PineconeService } = require('./modules/rag/services/pinecone.service');
+    const { EmbeddingService } = require('./modules/rag/services/embedding.service');
+    const { ChunkingService } = require('./modules/rag/services/chunking.service');
+
+    const pineconeService = new PineconeService();
+
+    if (!pineconeService.isMockMode()) {
+      console.log('[REINDEX] Pinecone is available, skipping mock reindex');
+      return;
+    }
+
+    const completedCount = await prisma.medicalDocument.count({
+      where: { ingestionStatus: 'COMPLETED' },
+    });
+
+    const existingVectors = PineconeService.mockVectors.length;
+    if (existingVectors >= completedCount && completedCount > 0) {
+      console.log(`[REINDEX] Mock store has ${existingVectors} vectors for ${completedCount} documents, skipping reindex`);
+      return;
+    }
+
+    console.log(`[REINDEX] Pinecone in mock mode, reindexing ${completedCount} completed documents...`);
+
+    const embeddingService = new EmbeddingService();
+    const chunkingService = new ChunkingService();
+
+    const documents = await prisma.medicalDocument.findMany({
+      where: { ingestionStatus: 'COMPLETED' },
+      include: { embeddingMetadata: true },
+    });
+
+    let totalVectors = 0;
+    for (const doc of documents) {
+      try {
+        let fullPath = doc.fileUrl;
+        if (!fs.existsSync(fullPath)) {
+          fullPath = path.join(process.cwd(), fullPath);
+        }
+
+        if (!fs.existsSync(fullPath)) {
+          continue;
+        }
+
+        const content = fs.readFileSync(fullPath, 'utf8');
+        const cleanContent = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+        const chunks = chunkingService.chunkDocument(cleanContent, {
+          source: doc.source || 'MedlinePlus',
+          specialty: doc.specialty || 'general',
+        });
+
+        const embeddings: number[][] = [];
+        for (let i = 0; i < chunks.length; i += 20) {
+          const batch = chunks.slice(i, i + 20);
+          const batchEmbeddings = await embeddingService.generateBatchEmbeddings(
+            batch.map((c: any) => c.text),
+          );
+          embeddings.push(...batchEmbeddings);
+        }
+
+        await pineconeService.storeChunks(chunks, embeddings, doc.id);
+        totalVectors += chunks.length;
+      } catch (error) {
+        console.error(`[REINDEX] Failed for document ${doc.id}:`, error);
+      }
+    }
+
+    console.log(`[REINDEX] Reindexing complete: ${totalVectors} vectors stored`);
+  } catch (error) {
+    console.error('[REINDEX] Reindexing failed:', error);
+  }
+}
+
 // Warm up AI services on startup (FR-38)
 async function warmupAiServices(): Promise<void> {
   console.log('\n========== AI SERVICES WARMUP ==========');
@@ -114,40 +191,40 @@ async function warmupAiServices(): Promise<void> {
 
 // Verify Pinecone index on startup
 async function verifyPineconeIndex(): Promise<void> {
-  const { RetrievalService } = require('./modules/retrieval/retrieval.service');
-  const retrievalService = new RetrievalService();
+   const { PineconeService } = require('./modules/rag/services/pinecone.service');
 
-  console.log('\n========== PINECONE INDEX VERIFICATION ==========');
+   console.log('\n========== PINECONE INDEX VERIFICATION ==========');
 
-  const pineconeService = retrievalService.pineconeService || {};
-  if (!pineconeService.isMockMode && !retrievalService.pineconeClient) {
-    console.warn('[WARN] Pinecone not configured - mock mode active');
-    console.log('=================================================\n');
-    return;
-  }
+   const pineconeService = new PineconeService();
 
-  try {
-    const validation = await pineconeService.validateIndex ? pineconeService.validateIndex(384) : { valid: false, error: 'validateIndex not available' };
-    if (!validation.valid) {
-      console.error(`[FATAL] Pinecone index validation failed: ${validation.error}`);
-      console.error(`[FATAL] Update Pinecone index "${CONFIG.PINECONE_INDEX_NAME}" to dimension 384 or switch embedding model in .env.`);
-    } else {
-      console.log(`[PINECONE] Dimension OK (${validation.dimension}D)`);
-    }
+   if (pineconeService.isMockMode()) {
+     console.warn('[WARN] Pinecone unavailable - mock mode active');
+     console.log(`[MOCK] Vectors in mock store: ${PineconeService.mockVectors.length}`);
+     console.log('=================================================\n');
+     return;
+   }
 
-    const stats = await pineconeService.describeIndexStats ? pineconeService.describeIndexStats() : { totalVectorCount: 0, dimension: 0 };
-    const vectorCount = (stats as any).totalVectorCount || 0;
-    if (vectorCount === 0) {
-      console.warn('[WARN] No vectors indexed - knowledge base is empty');
-      console.warn('[WARN] Run ingestion to populate the knowledge base');
-    } else {
-      console.log(`[PINECONE] Index healthy with ${vectorCount} vectors`);
-    }
-  } catch (e: any) {
-    console.error('[ERROR] Failed to verify Pinecone index:', e?.message || e);
-  }
-  console.log('===================================================\n');
-}
+   try {
+     const stats = await pineconeService.describeIndexStats();
+     if (stats) {
+       const vectorCount = (stats as any).totalVectorCount || 0;
+       const dimension = (stats as any).dimension;
+       if (dimension && dimension !== 384) {
+         console.error(`[FATAL] Pinecone index dimension mismatch: index has ${dimension}D but embedding model produces 384D vectors`);
+       } else if (vectorCount === 0) {
+         console.warn('[WARN] No vectors indexed - knowledge base is empty');
+         console.warn('[WARN] Run ingestion to populate the knowledge base');
+       } else {
+         console.log(`[PINECONE] Index healthy with ${vectorCount} vectors (${dimension}D)`);
+       }
+     }
+   } catch (e: any) {
+     console.error('[ERROR] Pinecone connectivity failed, switching to mock mode:', e?.message || e);
+     pineconeService.isAvailable = false;
+     console.log('[MOCK] Vectors in mock store: 0');
+   }
+   console.log('===================================================\n');
+ }
 
 // Verify embedding service on startup
 async function verifyEmbeddings(): Promise<void> {
@@ -207,6 +284,9 @@ prisma.$connect()
 
     // Seed knowledge base if empty
     await seedKnowledgeBase();
+
+    // Reindex documents when Pinecone is unavailable (mock mode)
+    await reindexWhenPineconeUnavailable();
 
     // Setup middleware (cors, helmet, body parser, etc.)
     setupMiddleware(app);

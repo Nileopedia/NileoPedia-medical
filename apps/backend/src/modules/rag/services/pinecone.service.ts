@@ -112,8 +112,20 @@ export class PineconeService {
             await sleep(500);
           }
         } catch (error: any) {
-          failed += batch.length;
           const errorMessage = error?.message || error?.toString?.() || 'Unknown error';
+          const isConnError = errorMessage.includes('Request failed to reach Pinecone') ||
+            errorMessage.includes('ECONNRESET') || errorMessage.includes('ETIMEDOUT') ||
+            errorMessage.includes('fetch failed') || errorMessage.includes('Connect Timeout');
+          if (isConnError && this.isAvailable) {
+            logger.warn('Pinecone connection failed during upsert, switching to mock mode');
+            this.isAvailable = false;
+            this.pinecone = null;
+            this.index = null;
+            PineconeService.mockVectors.push(...vectors.slice(i));
+            console.log('[MOCK] Stored', vectors.length - i, 'vectors (mock mode fallback), total:', PineconeService.mockVectors.length);
+            return { success: vectors.length, failed: 0 };
+          }
+          failed += batch.length;
           const errorCode = error?.code || error?.status || error?.name || 'unknown';
           const errorStack = error?.stack || '';
           logger.error('Pinecone upsert batch failed:', {
@@ -144,12 +156,27 @@ export class PineconeService {
         ...(filter && { filter }),
       };
 
-      const results = await retryWithBackoff(async () => {
-        return await this.index.query(queryRequest);
-      });
-      const matches = results.matches || [];
-      console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m: any) => m.score));
-      return matches;
+      try {
+        const results = await retryWithBackoff(async () => {
+          return await this.index.query(queryRequest);
+        });
+        const matches = results.matches || [];
+        console.log('[PINECONE] Query returned', matches.length, 'matches, scores:', matches.map((m: any) => m.score));
+        return matches;
+      } catch (error: any) {
+        const errorMessage = error?.message || error?.toString?.() || 'Unknown error';
+        const isConnError = errorMessage.includes('Request failed to reach Pinecone') ||
+          errorMessage.includes('ECONNRESET') || errorMessage.includes('ETIMEDOUT') ||
+          errorMessage.includes('fetch failed') || errorMessage.includes('Connect Timeout');
+        if (isConnError) {
+          logger.warn('Pinecone connection failed during query, switching to mock mode');
+          this.isAvailable = false;
+          this.pinecone = null;
+          this.index = null;
+        } else {
+          throw error;
+        }
+      }
     }
 
     if (!PineconeService.mockVectors.length) {
@@ -199,38 +226,38 @@ export class PineconeService {
     }
   }
 
-  async storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string, enrichedMetadata?: Record<string, any>) {
-    console.log('[PINECONE] Storing', chunks.length, 'chunks for document:', documentId);
-    const vectors = embeddings.map((embedding, i) => {
-      const metadata: Record<string, any> = {
-        documentId,
-        chunkIndex: chunks[i].chunkIndex,
-        textPreview: chunks[i].text.substring(0, 100),
-        text: chunks[i].text,
-      };
-      for (const [key, value] of Object.entries(chunks[i].metadata)) {
-        if (value !== null && value !== undefined) {
-          metadata[key] = value;
-        }
-      }
-      if (enrichedMetadata) {
-        for (const [key, value] of Object.entries(enrichedMetadata)) {
-          if (value !== null && value !== undefined && value !== '' && !(Array.isArray(value) && value.length === 0)) {
-            metadata[key] = value;
-          }
-        }
-      }
-      return {
-        id: `${documentId}_chunk_${i}`,
-        values: embedding,
-        metadata,
-      };
-    });
+async storeChunks(chunks: DocumentChunk[], embeddings: number[][], documentId: string, enrichedMetadata?: Record<string, any>) {
+     console.log('[PINECONE] Storing', chunks.length, 'chunks for document:', documentId);
+     const vectors = embeddings.map((embedding, i) => {
+       const metadata: Record<string, any> = {
+         documentId,
+         chunkIndex: chunks[i].chunkIndex,
+         textPreview: chunks[i].text.substring(0, 100),
+         text: chunks[i].text.substring(0, 8000),
+       };
+       for (const [key, value] of Object.entries(chunks[i].metadata)) {
+         if (value !== null && value !== undefined) {
+           metadata[key] = value;
+         }
+       }
+       if (enrichedMetadata) {
+         for (const [key, value] of Object.entries(enrichedMetadata)) {
+           if (value !== null && value !== undefined && value !== '' && !(Array.isArray(value) && value.length === 0)) {
+             metadata[key] = value;
+           }
+         }
+       }
+       return {
+         id: `${documentId}_chunk_${i}`,
+         values: embedding,
+         metadata,
+       };
+     });
 
-    const result = await this.upsertVectors(vectors);
-    console.log('[PINECONE] Stored', result.success, 'of', vectors.length, 'vectors for document:', documentId);
-    return { vectors, result };
-  }
+     const result = await this.upsertVectors(vectors);
+     console.log('[PINECONE] Stored', result.success, 'of', vectors.length, 'vectors for document:', documentId);
+     return { vectors, result };
+   }
 
   async searchSimilar(query: string, embeddingService: any, topK = 10, filter?: Record<string, any>) {
     const queryEmbedding = await embeddingService.generateEmbedding(query);

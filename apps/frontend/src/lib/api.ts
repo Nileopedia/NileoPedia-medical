@@ -324,54 +324,42 @@ class ApiClient {
   }
 
   private normalizeAiResponse(question: BackendQuestion): QuestionDetail {
+    if (!question.aiResponse) {
+      return {
+        id: question.id,
+        questionText: question.questionText,
+        createdAt: question.createdAt,
+        isSaved: question.isSaved || false,
+      };
+    }
+
     const NO_RESULTS = 'I could not find supporting medical information in the knowledge base.';
-    const UNAVAILABLE = NO_RESULTS;
     
-    const aiResponse = question.aiResponse
-      ? {
-          id: question.aiResponse.id,
-          queryId: question.id,
-          title: question.questionText,
-          summary: question.aiResponse.summary,
-          structuredResponse: this.parseStructuredResponse(question.aiResponse.detailedExplanation),
-          keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings ?? []),
-          sections: this.parseSections(question.aiResponse.detailedExplanation),
-          citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
-          status: this.normalizeStatus(question.aiResponse.validationStatus),
-          confidenceScore: question.aiResponse.confidenceScore || 0,
-          model: question.aiResponse.generatedBy || 'Llama-3.3-70b',
-          generatedAt: question.aiResponse.createdAt || question.createdAt,
-          tags: [],
-          isSaved: question.isSaved || false,
-          source: (
-            question.aiResponse.generatedBy === 'Pipeline Error'
-              ? 'unavailable'
-              : question.aiResponse.summary === NO_RESULTS
-                ? 'no_results'
-                : 'real'
-          ) as 'real' | 'unavailable' | 'no_results',
-          documentsUsed: question.aiResponse.documentsUsed ?? 0,
-          processingTime: question.aiResponse.processingTime ?? undefined,
-        }
-      : {
-          id: `resp-${question.id}`,
-          queryId: question.id,
-          title: question.questionText,
-          summary: UNAVAILABLE,
-          structuredResponse: undefined,
-          keyRecommendations: [],
-          sections: {},
-          citations: [],
-          status: 'pending' as const,
-          confidenceScore: 0,
-          model: 'Unavailable',
-          generatedAt: new Date().toISOString(),
-          tags: [],
-          isSaved: false,
-          source: 'unavailable' as const,
-          documentsUsed: 0,
-          processingTime: undefined,
-        };
+    const aiResponse: AIResponse = {
+      id: question.aiResponse.id,
+      queryId: question.id,
+      title: question.questionText,
+      summary: question.aiResponse.summary,
+      structuredResponse: this.parseStructuredResponse(question.aiResponse.detailedExplanation),
+      keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings ?? []),
+      sections: this.parseSections(question.aiResponse.detailedExplanation),
+      citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
+      status: this.normalizeStatus(question.aiResponse.validationStatus),
+      confidenceScore: question.aiResponse.confidenceScore || 0,
+      model: question.aiResponse.generatedBy || 'Llama-3.3-70b',
+      generatedAt: question.aiResponse.createdAt || question.createdAt,
+      tags: [],
+      isSaved: question.isSaved || false,
+      source: (
+        question.aiResponse.generatedBy === 'Pipeline Error'
+          ? 'unavailable'
+          : question.aiResponse.summary === NO_RESULTS
+            ? 'no_results'
+            : 'real'
+      ) as 'real' | 'unavailable' | 'no_results',
+      documentsUsed: question.aiResponse.documentsUsed ?? 0,
+      processingTime: question.aiResponse.processingTime ?? undefined,
+    };
 
     return {
       id: question.id,
