@@ -127,10 +127,23 @@ export default function AskPage() {
         setProgress(data.progress);
       });
 
-      socket.on('ai-response-complete', () => {
-        setProcessing(false);
-        setProgress(100);
+      socket.on('ai-response-complete', async () => {
         isPollingRef.current = false;
+        clearInterval(intervalId);
+        try {
+          const finalData = await api.getQuestion(questionIdRef.current!);
+          if (finalData.aiResponse) {
+            setResponse(finalData.aiResponse);
+            setProcessing(false);
+            setProgress(100);
+            setPartialRecommendations(finalData.aiResponse.keyRecommendations || []);
+            setStreamingVisible((finalData.aiResponse.keyRecommendations || []).map(() => true));
+          }
+        } catch (err) {
+          console.error('Failed to fetch final response:', err);
+          setProcessing(false);
+          setProgress(100);
+        }
       });
 
       socket.on('ai-error', (data: { error: string }) => {
