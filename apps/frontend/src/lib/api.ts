@@ -334,31 +334,53 @@ class ApiClient {
     }
 
     const NO_RESULTS = 'I could not find supporting medical information in the knowledge base.';
-    
+    const OUT_OF_SCOPE_SUMMARY = 'Question outside supported medical domain.';
+    const isOutOfScope = question.aiResponse.generatedBy === 'Domain Filter' ||
+      question.aiResponse.responseType === 'OUT_OF_SCOPE' ||
+      question.aiResponse.summary === OUT_OF_SCOPE_SUMMARY;
+
     const aiResponse: AIResponse = {
       id: question.aiResponse.id,
       queryId: question.id,
       title: question.questionText,
       summary: question.aiResponse.summary,
-      structuredResponse: this.parseStructuredResponse(question.aiResponse.detailedExplanation),
-      keyRecommendations: this.extractRecommendations(question.aiResponse.keyFindings ?? []),
-      sections: this.parseSections(question.aiResponse.detailedExplanation),
-      citations: (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
+      structuredResponse: isOutOfScope ? undefined : this.parseStructuredResponse(question.aiResponse.detailedExplanation),
+      keyRecommendations: isOutOfScope ? [] : this.extractRecommendations(question.aiResponse.keyFindings ?? []),
+      sections: isOutOfScope ? {} : this.parseSections(question.aiResponse.detailedExplanation),
+      citations: isOutOfScope ? [] : (question.aiResponse.citations || []).map((citation) => this.normalizeCitation(citation)),
       status: this.normalizeStatus(question.aiResponse.validationStatus),
-      confidenceScore: question.aiResponse.confidenceScore || 0,
-      model: question.aiResponse.generatedBy || 'Llama-3.3-70b',
+      confidenceScore: isOutOfScope ? 0 : (question.aiResponse.confidenceScore || 0),
+      model: isOutOfScope ? 'Domain Filter' : (question.aiResponse.generatedBy || 'Llama-3.3-70b'),
       generatedAt: question.aiResponse.createdAt || question.createdAt,
       tags: [],
       isSaved: question.isSaved || false,
       source: (
         question.aiResponse.generatedBy === 'Pipeline Error'
           ? 'unavailable'
-          : question.aiResponse.summary === NO_RESULTS
-            ? 'no_results'
-            : 'real'
-      ) as 'real' | 'unavailable' | 'no_results',
-      documentsUsed: question.aiResponse.documentsUsed ?? 0,
+          : isOutOfScope
+            ? 'out_of_scope'
+            : question.aiResponse.summary === NO_RESULTS
+              ? 'no_results'
+              : 'real'
+      ) as 'real' | 'unavailable' | 'no_results' | 'out_of_scope',
+      documentsUsed: isOutOfScope ? 0 : (question.aiResponse.documentsUsed ?? 0),
       processingTime: question.aiResponse.processingTime ?? undefined,
+      responseType: (question.aiResponse.responseType as AIResponse['responseType']) || (isOutOfScope ? 'OUT_OF_SCOPE' : 'NORMAL'),
+      message: isOutOfScope
+        ? 'NileoPedia only answers evidence-based medical and healthcare questions.'
+        : undefined,
+      recommendation: isOutOfScope
+        ? 'Please ask a medical, pharmaceutical, nursing, laboratory, anatomy, physiology, pathology, diagnosis, treatment or healthcare related question.'
+        : undefined,
+      examples: isOutOfScope
+        ? [
+            'What is hypertension?',
+            'Symptoms of malaria',
+            'What causes diabetes?',
+            'Treatment of asthma',
+            'Side effects of metformin',
+          ]
+        : undefined,
     };
 
     return {

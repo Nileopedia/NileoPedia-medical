@@ -36,6 +36,13 @@ export interface PipelineError {
   message: string;
 }
 
+export enum AIResponseStatus {
+  NORMAL = 'NORMAL',
+  NO_CONTEXT = 'NO_CONTEXT',
+  OUT_OF_SCOPE = 'OUT_OF_SCOPE',
+  ERROR = 'ERROR',
+}
+
 export interface MetadataResponse {
   answer: string;
   source: string;
@@ -43,6 +50,7 @@ export interface MetadataResponse {
   model: string;
   embeddingModel: string;
   processingTime: number;
+  responseType?: AIResponseStatus;
 }
 
 export interface EmailJob {

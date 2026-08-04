@@ -850,6 +850,14 @@ export const MedicalResponseViewer: React.FC<MedicalResponseViewerProps> = ({
         </div>
       );
     }
+    if (response.source === 'out_of_scope') {
+      return (
+        <div className="flex items-center gap-2 text-blue-600 dark:text-blue-400">
+          <Info size={16} />
+          <span className="text-sm font-medium">Outside Medical Scope</span>
+        </div>
+      );
+    }
     return (
       <div className="flex items-center gap-2 text-red-600 dark:text-red-400">
         <Info size={16} />
@@ -908,6 +916,7 @@ export const MedicalResponseViewer: React.FC<MedicalResponseViewerProps> = ({
         </div>
 
         {/* Confidence Bar */}
+        {response.source !== 'out_of_scope' && (
         <div className="mb-4">
           <div className="flex items-center justify-between mb-1.5">
             <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
@@ -924,6 +933,7 @@ export const MedicalResponseViewer: React.FC<MedicalResponseViewerProps> = ({
             />
           </div>
         </div>
+        )}
 
         {/* Metadata Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
@@ -991,7 +1001,8 @@ export const MedicalResponseViewer: React.FC<MedicalResponseViewerProps> = ({
       </div>
 
       {/* Main Content + Evidence Panel */}
-      <div className="flex flex-col lg:flex-row">
+      {response.source !== 'out_of_scope' && (
+        <div className="flex flex-col lg:flex-row">
         {/* Sections */}
         <div className={cn('flex-1 p-4 sm:p-6', showEvidencePanel ? 'block' : 'block', 'lg:block')}>
           {/* Key Recommendations (legacy or from structured) */}
@@ -1236,13 +1247,15 @@ export const MedicalResponseViewer: React.FC<MedicalResponseViewerProps> = ({
                   No evidence documents available.
                 </p>
               )}
-            </div>
-          </div>
-        </div>
-      </div>
+             </div>
+           </div>
+         </div>
+       </div>
+       )}
 
-      {/* Action Bar */}
-      <div className="px-4 sm:px-6 py-4 border-t border-border">
+        {/* Action Bar */}
+        {response.source !== 'out_of_scope' && (
+        <div className="px-4 sm:px-6 py-4 border-t border-border">
         <div className="flex flex-wrap items-center gap-2">
           <Button
             variant="outline"
@@ -1292,6 +1305,7 @@ export const MedicalResponseViewer: React.FC<MedicalResponseViewerProps> = ({
           </Button>
         </div>
       </div>
+      )}
     </div>
   );
 };

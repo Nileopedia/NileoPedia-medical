@@ -1,0 +1,1 @@
+{"version":3,"file":"mock.embedding.d.ts","sourceRoot":"","sources":["../../../../src/modules/rag/services/mock.embedding.ts"],"names":[],"mappings":"AAAA,qBAAa,qBAAqB;IAChC,eAAe,SAAU;IAEzB,OAAO,CAAC,mBAAmB,CAAO;IAE5B,iBAAiB,CAAC,IAAI,EAAE,MAAM,GAAG,OAAO,CAAC,MAAM,EAAE,CAAC;IASlD,uBAAuB,CAAC,KAAK,EAAE,MAAM,EAAE,GAAG,OAAO,CAAC,MAAM,EAAE,EAAE,CAAC;CAGpE"}

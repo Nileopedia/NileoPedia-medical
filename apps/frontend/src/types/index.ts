@@ -119,12 +119,16 @@ export interface AIResponse {
   dueDate?: string;
   tags: string[];
   isSaved?: boolean;
-  source: 'real' | 'unavailable' | 'no_results';
+  source: 'real' | 'unavailable' | 'no_results' | 'out_of_scope';
   documentsUsed?: number;
   embeddingModel?: string;
   processingTime?: number;
   specialty?: string;
   evidenceLevel?: string;
+  responseType?: 'NORMAL' | 'NO_CONTEXT' | 'OUT_OF_SCOPE' | 'ERROR';
+  message?: string;
+  recommendation?: string;
+  examples?: string[];
 }
 
 export interface Activity {

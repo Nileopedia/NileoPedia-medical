@@ -1,6 +1,6 @@
 import { Groq } from 'groq-sdk';
 import prisma from '../../config/prisma';
-import { AiGenerationJob, PipelineError, MetadataResponse } from '../types';
+import { AiGenerationJob, PipelineError, MetadataResponse, AIResponseStatus } from '../types';
 import { logger } from '../../config/logger';
 import { redis } from '../../lib/redis';
 import { CONFIG } from '../../config/env';
@@ -369,6 +369,8 @@ export async function processAiGeneration(job: AiGenerationJob) {
           confidenceScore: 0,
           generatedBy: 'Domain Filter',
           validationStatus: 'APPROVED',
+          responseType: 'OUT_OF_SCOPE',
+          reason: 'NON_MEDICAL_QUERY',
         },
         update: {
           questionId,
@@ -378,6 +380,8 @@ export async function processAiGeneration(job: AiGenerationJob) {
           confidenceScore: 0,
           generatedBy: 'Domain Filter',
           validationStatus: 'APPROVED',
+          responseType: 'OUT_OF_SCOPE',
+          reason: 'NON_MEDICAL_QUERY',
         },
       });
 
@@ -388,8 +392,21 @@ export async function processAiGeneration(job: AiGenerationJob) {
         keyFindings: [],
       }));
 
-      logger.warn(`AI generation skipped - domain filter for question: ${questionId}`);
+      logger.warn(`[OUT_OF_SCOPE] Blocked non-medical query | userId=${userId} questionId=${questionId} query="${query}"`);
       console.log('[AI] Domain filter blocked query:', query);
+
+      try {
+        await redis.incr('analytics:out-of-scope:count');
+        await redis.lpush('analytics:out-of-scope:recent', JSON.stringify({
+          questionId,
+          userId,
+          query,
+          timestamp: new Date().toISOString(),
+        }));
+        await redis.ltrim('analytics:out-of-scope:recent', 0, 99);
+      } catch (redisError) {
+        console.error('[OUT_OF_SCOPE] Failed to record analytics:', redisError);
+      }
 
       const metadata: MetadataResponse = {
         answer: 'Question outside supported medical domain.',
@@ -398,6 +415,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
         model: 'none',
         embeddingModel: 'Xenova/all-MiniLM-L6-v2',
         processingTime: totalMs,
+        responseType: AIResponseStatus.OUT_OF_SCOPE,
       };
 
       return { success: true, responseId: noResultResponse.id, metadata };
@@ -531,7 +549,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
       if (!retrievalResult.hasContext) {
         console.log('[AI] No context found for query, trying fallback LLM call:', query);
 
-        const groqFallback = await this.generateFallbackResponse(query, questionId, totalStart);
+        const groqFallback = await generateFallbackResponse(query, questionId, totalStart);
         if (groqFallback) {
           return groqFallback;
         }
@@ -546,6 +564,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
             confidenceScore: 0,
             generatedBy: 'No Context',
             validationStatus: 'APPROVED',
+            responseType: 'NO_CONTEXT',
           },
           update: {
             questionId,
@@ -555,6 +574,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
             confidenceScore: 0,
             generatedBy: 'No Context',
             validationStatus: 'APPROVED',
+            responseType: 'NO_CONTEXT',
           },
         });
 
@@ -575,6 +595,7 @@ export async function processAiGeneration(job: AiGenerationJob) {
           model: 'none',
           embeddingModel: 'Xenova/all-MiniLM-L6-v2',
           processingTime: totalMs,
+          responseType: AIResponseStatus.NO_CONTEXT,
         };
 
         return { success: true, responseId: noResultResponse.id, metadata };
@@ -926,6 +947,7 @@ If no relevant information is available in the context, use clinicalSummary: "I 
         confidenceScore,
         generatedBy,
         validationStatus: 'APPROVED',
+        responseType: 'NORMAL',
         documentsUsed: retrievalResult.context.length,
       },
       update: {
@@ -936,6 +958,7 @@ If no relevant information is available in the context, use clinicalSummary: "I 
         confidenceScore,
         generatedBy,
         validationStatus: 'APPROVED',
+        responseType: 'NORMAL',
         documentsUsed: retrievalResult.context.length,
       },
     });
@@ -971,7 +994,7 @@ If no relevant information is available in the context, use clinicalSummary: "I 
           authors: typeof citation.authors === 'string' ? citation.authors : 'Unknown',
           journal: citation.journal,
           publisher: citation.publisher,
-          publicationYear: parseInt(citation.publicationYear, 10) || new Date().getFullYear(),
+          publicationYear: parseInt(String(citation.publicationYear), 10) || new Date().getFullYear(),
           volume: citation.volume,
           issue: citation.issue,
           pages: citation.pages,
@@ -1012,6 +1035,7 @@ If no relevant information is available in the context, use clinicalSummary: "I 
       model: generatedBy,
       embeddingModel: 'Xenova/all-MiniLM-L6-v2',
       processingTime: totalMs,
+      responseType: AIResponseStatus.NORMAL,
     };
 
     return { success: true, responseId: aiResponse.id, metadata };

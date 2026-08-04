@@ -1,0 +1,143 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.QuestionsController = void 0;
+const questions_service_1 = require("../services/questions.service");
+const logger_1 = require("../../../config/logger");
+const audit_logger_1 = require("../../audit/audit.logger");
+class QuestionsController {
+    constructor() {
+        this.questionsService = new questions_service_1.QuestionsService();
+    }
+    async askQuestion(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const { question, specialty } = req.body;
+            const result = await this.questionsService.askQuestion(userId, question, specialty);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'QUESTION_ASKED',
+                entityType: 'Question',
+                entityId: result.questionId,
+                description: 'User submitted a medical question',
+            });
+            res.status(201).json({
+                success: true,
+                message: 'Question submitted successfully',
+                data: result,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in askQuestion controller:', error);
+            next(error);
+        }
+    }
+    async getHistory(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const category = req.query.category;
+            const startDate = req.query.startDate;
+            const endDate = req.query.endDate;
+            const result = await this.questionsService.getHistory(userId, {
+                page, limit, category, startDate, endDate,
+            });
+            res.status(200).json({
+                success: true,
+                data: {
+                    questions: result.questions,
+                    meta: {
+                        total: result.total,
+                        page: result.page,
+                        limit: result.limit,
+                        totalPages: result.totalPages,
+                    },
+                },
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in getHistory controller:', error);
+            next(error);
+        }
+    }
+    async getSavedResponses(req, res, next) {
+        try {
+            const userId = req.user.id;
+            const page = parseInt(req.query.page) || 1;
+            const limit = parseInt(req.query.limit) || 10;
+            const search = req.query.search;
+            const result = await this.questionsService.getSavedResponses(userId, { page, limit, search });
+            res.status(200).json({
+                success: true,
+                data: {
+                    questions: result.questions,
+                    meta: {
+                        total: result.total,
+                        page: result.page,
+                        limit: result.limit,
+                        totalPages: result.totalPages,
+                    },
+                },
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in getSavedResponses controller:', error);
+            next(error);
+        }
+    }
+    async getQuestion(req, res, next) {
+        try {
+            const { questionId } = req.params;
+            const question = await this.questionsService.getQuestion(questionId);
+            res.status(200).json({
+                success: true,
+                data: question,
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in getQuestion controller:', error);
+            next(error);
+        }
+    }
+    async saveResponse(req, res, next) {
+        try {
+            const { questionId } = req.params;
+            await this.questionsService.saveResponse(questionId, req.user.id);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'RESPONSE_SAVED',
+                entityType: 'Question',
+                entityId: questionId,
+                description: 'User saved an AI response',
+            });
+            res.status(200).json({
+                success: true,
+                message: 'Response saved',
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in saveResponse controller:', error);
+            next(error);
+        }
+    }
+    async unsaveResponse(req, res, next) {
+        try {
+            const { questionId } = req.params;
+            await this.questionsService.unsaveResponse(questionId, req.user.id);
+            await audit_logger_1.AuditLogger.log(req, {
+                action: 'RESPONSE_UNSAVED',
+                entityType: 'Question',
+                entityId: questionId,
+                description: 'User unsaved an AI response',
+            });
+            res.status(200).json({
+                success: true,
+                message: 'Response unsaved',
+            });
+        }
+        catch (error) {
+            logger_1.logger.error('Error in unsaveResponse controller:', error);
+            next(error);
+        }
+    }
+}
+exports.QuestionsController = QuestionsController;
+//# sourceMappingURL=questions.controller.js.map

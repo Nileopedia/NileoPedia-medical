@@ -1,0 +1,400 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.io = exports.app = void 0;
+const express_1 = __importDefault(require("express"));
+const http_1 = require("http");
+const socket_io_1 = require("socket.io");
+const bcryptjs_1 = __importDefault(require("bcryptjs"));
+const client_1 = require("@prisma/client");
+const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
+const email_service_1 = require("./modules/email/email.service");
+require("./jobs/worker");
+const redis_1 = require("./lib/redis");
+const env_1 = require("./config/env");
+const prisma_1 = __importDefault(require("./config/prisma"));
+const middleware_1 = require("./shared/middleware");
+const routes_1 = require("./routes");
+const app = (0, express_1.default)();
+exports.app = app;
+const httpServer = (0, http_1.createServer)(app);
+const io = new socket_io_1.Server(httpServer, {
+    cors: {
+        origin: env_1.CONFIG.CORS_ORIGIN,
+        methods: ['GET', 'POST'],
+    },
+    connectionStateRecovery: {
+        maxDisconnectionDuration: 2 * 60 * 1000,
+    },
+});
+exports.io = io;
+global.io = io;
+// Initialize default admin account
+async function initializeAdmin() {
+    const adminEmail = 'admin@nileopedia.com';
+    const adminPassword = 'Admin123456!';
+    const existingAdmin = await prisma_1.default.user.findUnique({
+        where: { email: adminEmail },
+    });
+    if (existingAdmin) {
+        console.log('Admin account already exists');
+    }
+    else {
+        const hashedPassword = await bcryptjs_1.default.hash(adminPassword, 10);
+        await prisma_1.default.user.create({
+            data: {
+                email: adminEmail,
+                fullName: 'Administrator',
+                password: hashedPassword,
+                role: client_1.UserRole.ADMIN,
+                isEmailVerified: true,
+                accountStatus: 'ACTIVE',
+            },
+        });
+        console.log('Admin account created');
+    }
+}
+// Seed demo knowledge base on startup (FR-20)
+async function seedKnowledgeBase() {
+    const { refreshKnowledgeBase } = require('./jobs/processors/document.processor');
+    const demoCount = await prisma_1.default.medicalDocument.count();
+    if (demoCount === 0) {
+        console.log('Seeding demo knowledge base...');
+        await refreshKnowledgeBase(false);
+        console.log('Demo knowledge base seeded');
+    }
+}
+// Reindex documents into mock vector store when Pinecone is unavailable
+async function reindexWhenPineconeUnavailable() {
+    try {
+        const { PineconeService } = require('./modules/rag/services/pinecone.service');
+        const { EmbeddingService } = require('./modules/rag/services/embedding.service');
+        const { ChunkingService } = require('./modules/rag/services/chunking.service');
+        const pineconeService = new PineconeService();
+        if (!pineconeService.isMockMode()) {
+            console.log('[REINDEX] Pinecone is available, skipping mock reindex');
+            return;
+        }
+        const completedCount = await prisma_1.default.medicalDocument.count({
+            where: { ingestionStatus: 'COMPLETED' },
+        });
+        const existingVectors = PineconeService.mockVectors.length;
+        if (existingVectors >= completedCount && completedCount > 0) {
+            console.log(`[REINDEX] Mock store has ${existingVectors} vectors for ${completedCount} documents, skipping reindex`);
+            return;
+        }
+        console.log(`[REINDEX] Pinecone in mock mode, reindexing ${completedCount} completed documents...`);
+        const embeddingService = new EmbeddingService();
+        const chunkingService = new ChunkingService();
+        const documents = await prisma_1.default.medicalDocument.findMany({
+            where: { ingestionStatus: 'COMPLETED' },
+            include: { embeddingMetadata: true },
+        });
+        let totalVectors = 0;
+        for (const doc of documents) {
+            try {
+                let fullPath = doc.fileUrl;
+                if (!fs_1.default.existsSync(fullPath)) {
+                    fullPath = path_1.default.join(process.cwd(), fullPath);
+                }
+                if (!fs_1.default.existsSync(fullPath)) {
+                    continue;
+                }
+                const content = fs_1.default.readFileSync(fullPath, 'utf8');
+                const cleanContent = content.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
+                const chunks = chunkingService.chunkDocument(cleanContent, {
+                    source: doc.source || 'MedlinePlus',
+                    specialty: doc.specialty || 'general',
+                });
+                const embeddings = [];
+                for (let i = 0; i < chunks.length; i += 20) {
+                    const batch = chunks.slice(i, i + 20);
+                    const batchEmbeddings = await embeddingService.generateBatchEmbeddings(batch.map((c) => c.text));
+                    embeddings.push(...batchEmbeddings);
+                }
+                await pineconeService.storeChunks(chunks, embeddings, doc.id);
+                totalVectors += chunks.length;
+            }
+            catch (error) {
+                console.error(`[REINDEX] Failed for document ${doc.id}:`, error);
+            }
+        }
+        console.log(`[REINDEX] Reindexing complete: ${totalVectors} vectors stored`);
+    }
+    catch (error) {
+        console.error('[REINDEX] Reindexing failed:', error);
+    }
+}
+// Warm up AI services on startup (FR-38)
+async function warmupAiServices() {
+    console.log('\n========== AI SERVICES WARMUP ==========');
+    // Warmup EmbeddingService with preloaded model
+    try {
+        const { EmbeddingService, preloadEmbeddingModel } = require('./modules/rag/services/embedding.service');
+        const embeddingService = new EmbeddingService();
+        console.log('[WARMUP] Initializing EmbeddingService...');
+        const warmupStart = Date.now();
+        try {
+            // Preload the model before first use
+            await preloadEmbeddingModel();
+            await embeddingService.generateEmbedding('medical test query');
+            console.log(`[STARTUP] Embedding model loaded in ${Date.now() - warmupStart}ms`);
+        }
+        catch (e) {
+            console.log('[WARMUP] EmbeddingService using mock mode (warmup fallback):', e);
+        }
+    }
+    catch (e) {
+        console.error('[WARMUP] Failed to initialize EmbeddingService:', e);
+    }
+    // Warmup Pinecone
+    try {
+        const { RetrievalService } = require('./modules/retrieval/retrieval.service');
+        const retrievalService = new RetrievalService();
+        console.log('[WARMUP] Initializing RetrievalService...');
+        const warmupStart = Date.now();
+        try {
+            await retrievalService.hybridSearch('diabetes');
+            console.log(`[STARTUP] Pinecone ready in ${Date.now() - warmupStart}ms`);
+        }
+        catch (e) {
+            console.log('[WARMUP] Pinecone using mock mode (warmup fallback):', e);
+        }
+    }
+    catch (e) {
+        console.error('[WARMUP] Failed to initialize RetrievalService:', e);
+    }
+    console.log('[STARTUP] Warmup complete\n');
+}
+// Verify Pinecone index on startup
+async function verifyPineconeIndex() {
+    const { PineconeService } = require('./modules/rag/services/pinecone.service');
+    console.log('\n========== PINECONE INDEX VERIFICATION ==========');
+    const pineconeService = new PineconeService();
+    if (pineconeService.isMockMode()) {
+        console.warn('[WARN] Pinecone unavailable - mock mode active');
+        console.log(`[MOCK] Vectors in mock store: ${PineconeService.mockVectors.length}`);
+        console.log('=================================================\n');
+        return;
+    }
+    try {
+        const stats = await pineconeService.describeIndexStats();
+        if (stats) {
+            const vectorCount = stats.totalVectorCount || 0;
+            const dimension = stats.dimension;
+            if (dimension && dimension !== 384) {
+                console.error(`[FATAL] Pinecone index dimension mismatch: index has ${dimension}D but embedding model produces 384D vectors`);
+            }
+            else if (vectorCount === 0) {
+                console.warn('[WARN] No vectors indexed - knowledge base is empty');
+                console.warn('[WARN] Run ingestion to populate the knowledge base');
+            }
+            else {
+                console.log(`[PINECONE] Index healthy with ${vectorCount} vectors (${dimension}D)`);
+            }
+        }
+    }
+    catch (e) {
+        console.error('[ERROR] Pinecone connectivity failed, switching to mock mode:', e?.message || e);
+        pineconeService.isAvailable = false;
+        console.log('[MOCK] Vectors in mock store: 0');
+    }
+    console.log('===================================================\n');
+}
+// Verify embedding service on startup
+async function verifyEmbeddings() {
+    const { EmbeddingService } = require('./modules/rag/services/embedding.service');
+    const embeddingService = new EmbeddingService();
+    console.log('\n========== EMBEDDING SERVICE VERIFICATION ==========');
+    console.log('HF_API_KEY configured:', !!env_1.CONFIG.HF_API_KEY);
+    console.log('USE_MOCK_EMBEDDINGS:', env_1.CONFIG.USE_MOCK_EMBEDDINGS);
+    console.log('isRealEmbeddings:', embeddingService.isRealEmbeddings);
+    if (!embeddingService.isRealEmbeddings) {
+        console.warn('\n[INFO] Using mock embeddings - no embedding service available');
+        console.warn('[INFO] Install @xenova/transformers for local embeddings\n');
+    }
+    else {
+        console.log('\n[INFO] Real embeddings active:', embeddingService.embeddingSource);
+        try {
+            const testEmbedding = await embeddingService.generateEmbedding('startup test');
+            console.log('[INFO] Test embedding generated:', testEmbedding.length, 'dimensions');
+        }
+        catch (e) {
+            console.error('[ERROR] Failed to generate test embedding:', e?.message || e);
+        }
+    }
+    console.log('===================================================\n');
+}
+// Connect to database and then setup everything
+prisma_1.default.$connect()
+    .then(async () => {
+    console.log('Database connected successfully');
+    // Initialize admin account
+    await initializeAdmin();
+    // Verify email service on startup
+    const emailStatus = await email_service_1.EmailService.checkConnection();
+    console.log('===================================================');
+    console.log(`[INFO] Email Provider: ${emailStatus.provider}`);
+    console.log(`[INFO] Email Service Configured: ${emailStatus.configured}`);
+    console.log(`[INFO] Email Service Status: ${emailStatus.status}`);
+    console.log('===================================================\n');
+    const warmupPromise = warmupAiServices();
+    const timeoutPromise = new Promise((_, reject) => {
+        setTimeout(() => reject(new Error('Warmup timeout after 20000ms')), 20000);
+    });
+    try {
+        await Promise.race([warmupPromise, timeoutPromise]);
+    }
+    catch (e) {
+        console.warn(`[STARTUP] Warmup timeout or error (continuing startup): ${e.message}`);
+    }
+    // Verify embedding service at startup (non-blocking)
+    setImmediate(() => verifyEmbeddings());
+    setImmediate(() => verifyPineconeIndex());
+    // Seed knowledge base if empty
+    await seedKnowledgeBase();
+    // Reindex documents when Pinecone is unavailable (mock mode)
+    await reindexWhenPineconeUnavailable();
+    // Setup middleware (cors, helmet, body parser, etc.)
+    (0, middleware_1.setupMiddleware)(app);
+    // Health check routes
+    const { healthRoutes } = require('./modules/health/health.routes');
+    app.use('/api/v1/health', healthRoutes);
+    // Import and setup routes with controller instances
+    const { default: authRoutes } = require('./modules/auth/routes/auth.routes');
+    const { AuthController } = require('./modules/auth/controllers/auth.controller');
+    const authController = new AuthController();
+    (0, routes_1.setupRoutes)(app, io, authController);
+    // Mock AI service endpoint (only when explicitly enabled)
+    if (env_1.CONFIG.USE_MOCK_AI) {
+        app.post('/api/v1/mock-ai/generate', (req, res) => {
+            const { query, specialty } = req.body;
+            // Specialty-specific mock content
+            const specialtyContent = {
+                cardiology: {
+                    keywords: ['heart', 'cardiac', 'cardiovascular'],
+                    keyFindings: [
+                        'Cardiology finding 1: ACE inhibitors improve cardiac function',
+                        'Cardiology finding 2: Beta-blockers reduce mortality post-MI',
+                        'Cardiology finding 3: Statins provide cardiovascular protection',
+                    ],
+                },
+                endocrinology: {
+                    keywords: ['diabetes', 'hormone', 'endocrine'],
+                    keyFindings: [
+                        'Endocrinology finding 1: Metformin is first-line for T2DM',
+                        'Endocrinology finding 2: GLP-1 agonists provide cardiovascular benefit',
+                        'Endocrinology finding 3: HbA1c target <7% for most patients',
+                    ],
+                },
+                oncology: {
+                    keywords: ['cancer', 'tumor', 'malignant'],
+                    keyFindings: [
+                        'Oncology finding 1: Immunotherapy improves survival in certain cancers',
+                        'Oncology finding 2: Precision oncology targets specific mutations',
+                        'Oncology finding 3: Multimodal treatment shows best outcomes',
+                    ],
+                },
+                neurology: {
+                    keywords: ['brain', 'neurological', 'nerve'],
+                    keyFindings: [
+                        'Neurology finding 1: Cholinesterase inhibitors improve cognition',
+                        'Neurology finding 2: Mechanical thrombectomy within 24 hours',
+                        'Neurology finding 3: Disease-modifying therapies in development',
+                    ],
+                },
+                gastroenterology: {
+                    keywords: ['liver', 'intestine', 'digestive'],
+                    keyFindings: [
+                        'Gastroenterology finding 1: H. pylori eradication prevents ulcers',
+                        'Gastroenterology finding 2: Anti-TNF agents for IBD',
+                        'Gastroenterology finding 3: Colonoscopy screening reduces CRC',
+                    ],
+                },
+                general: {
+                    keywords: [],
+                    keyFindings: [
+                        'Key finding 1: Relevant medical information identified',
+                        'Key finding 2: Evidence-based recommendations available',
+                        'Key finding 3: Clinical guidelines referenced',
+                    ],
+                },
+            };
+            const content = specialtyContent[specialty] || specialtyContent.general;
+            const specialtyName = specialty ? specialty.charAt(0).toUpperCase() + specialty.slice(1).toLowerCase() : 'General';
+            const mockCitations = Array.from({ length: 3 }, (_, i) => ({
+                title: `${specialtyName} Reference ${i + 1}`,
+                source: 'PubMed',
+                authors: 'Dr. Smith et al.',
+                publicationYear: 2024,
+                doi: `10.1001/${specialty || 'jama'}.${i}`,
+                url: `https://pubmed.ncbi.nlm.nih.gov/${i}`,
+            }));
+            setTimeout(() => {
+                res.json({
+                    summary: `Based on ${specialtyName} medical literature, here are the key insights for: "${query}"`,
+                    citations: mockCitations,
+                    confidenceScore: 0.85 + Math.random() * 0.1,
+                    keyFindings: content.keyFindings,
+                });
+            }, 500);
+        });
+        console.log('Mock AI service endpoint enabled at /api/v1/mock-ai/generate');
+        // Mock ingest endpoint for document processing
+        app.post('/api/v1/mock-ai/ingest', (req, res) => {
+            const { title, content, specialty, documentType, source, } = req.body;
+            console.log(`Mock ingest processed: ${title} (${content?.length || 0} chars)`);
+            setTimeout(() => {
+                res.json({
+                    status: 'indexed',
+                    documentId: `mock-${Date.now()}`,
+                    chunks: Math.ceil((content?.length || 0) / 1000),
+                });
+            }, 100);
+        });
+    }
+    // Health check endpoint
+    app.get('/api/health', (req, res) => {
+        res.status(200).json({
+            status: 'ok',
+            database: prisma_1.default ? 'connected' : 'disconnected',
+            socket: io ? 'active' : 'inactive',
+        });
+    });
+    // Socket.IO connection handling with Redis pub/sub for real-time streaming
+    io.on('connection', (socket) => {
+        console.log('User connected:', socket.id);
+        socket.on('join-user', (userId) => {
+            socket.join(`user-${userId}`);
+        });
+        socket.on('stream-question', (questionId) => {
+            socket.join(`question-${questionId}`);
+            // Send existing data if available
+            redis_1.redis.get(`question-progress:${questionId}`).then((data) => {
+                if (data) {
+                    socket.emit('ai-progress', JSON.parse(data));
+                }
+            });
+        });
+        socket.on('disconnect', () => {
+            console.log('User disconnected:', socket.id);
+        });
+    });
+    // Global error handler
+    const { errorHandler } = require('./shared/middleware');
+    app.use(errorHandler);
+    // Start server
+    const PORT = env_1.CONFIG.PORT || 3001;
+    console.log('Backend URL:', env_1.CONFIG.API_URL);
+    httpServer.listen(PORT, () => {
+        console.log(`Server running in ${env_1.CONFIG.NODE_ENV} mode on port ${PORT}`);
+    });
+})
+    .catch((error) => {
+    console.error('Failed to connect to database:', error);
+    process.exit(1);
+});
+//# sourceMappingURL=app.js.map

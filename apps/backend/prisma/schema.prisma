@@ -23,6 +23,13 @@ enum ValidationStatus {
   REJECTED
 }
 
+enum AIResponseStatus {
+  NORMAL
+  NO_CONTEXT
+  OUT_OF_SCOPE
+  ERROR
+}
+
 enum AccountStatus {
   ACTIVE
   SUSPENDED
@@ -89,6 +96,8 @@ model AIResponse {
   keyFindings     String[]         @default([])
   confidenceScore Float?
   validationStatus ValidationStatus @default(PENDING)
+  responseType    AIResponseStatus @default(NORMAL)
+  reason          String?          @default("NORMAL")
   generatedBy     String           @default("Llama-3.3-70b")
   processingTime  Int?
   documentsUsed   Int?

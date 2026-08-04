@@ -8,6 +8,7 @@ import { AppLayout } from '../../components/layout/AppLayout';
 import { api } from '../../lib/api';
 import { AIResponse } from '../../types';
 import { MedicalResponseViewer } from '../../components/query/MedicalResponseViewer';
+import { OutOfScopeCard } from '../../components/query/OutOfScopeCard';
 import { io, type Socket } from 'socket.io-client';
 import { useAppStore } from '../../store/appStore';
 import { useToast } from '../../components/ui/Toast';
@@ -168,7 +169,7 @@ export default function AskPage() {
       };
     }, [questionId]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!question.trim()) return;
 
@@ -191,6 +192,24 @@ export default function AskPage() {
       }
       setLoading(false);
     }
+  };
+
+  const handleSuggestionClick = (suggestedQuestion: string) => {
+    setQuestion(suggestedQuestion);
+  };
+
+  const handleAskAnother = () => {
+    setResponse(null);
+    setError(null);
+    setQuestion('');
+    setQuestionId(null);
+    setPartialRecommendations([]);
+    setStreamingVisible([]);
+    setProgress(0);
+  };
+
+  const handleBrowseTopics = () => {
+    window.location.href = '/app';
   };
 
   return (
@@ -305,7 +324,16 @@ onKeyDown={(e) => {
             </div>
           )}
 
-          {response && !error && (
+          {response && !error && response.source === 'out_of_scope' && (
+            <OutOfScopeCard
+              response={response}
+              onSuggestionClick={handleSuggestionClick}
+              onAskAnother={handleAskAnother}
+              onBrowseTopics={handleBrowseTopics}
+            />
+          )}
+
+          {response && !error && response.source !== 'out_of_scope' && (
             <div className="bg-card rounded-xl border border-border p-4 sm:p-6 shadow-sm">
               <h2 className="text-base sm:text-lg font-semibold text-foreground mb-3 sm:mb-4">AI Response</h2>
               <MedicalResponseViewer response={response} />

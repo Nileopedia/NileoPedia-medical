@@ -9,6 +9,7 @@ import { useRouter } from 'next/navigation';
 import { api } from '../../../lib/api';
 import { useToast } from '../../../components/ui/Toast';
 import { MedicalResponseViewer } from '../../../components/query/MedicalResponseViewer';
+import { OutOfScopeCard } from '../../../components/query/OutOfScopeCard';
 
 export default function HistoryDetailPage() {
   const params = useParams();
@@ -83,7 +84,16 @@ export default function HistoryDetailPage() {
           </CardContent>
         </Card>
 
-        <MedicalResponseViewer response={question.aiResponse} />
+        {question.aiResponse.source === 'out_of_scope' ? (
+          <OutOfScopeCard
+            response={question.aiResponse}
+            onSuggestionClick={(q) => router.push(`/ask?q=${encodeURIComponent(q)}`)}
+            onAskAnother={() => router.push('/ask')}
+            onBrowseTopics={() => router.push('/app')}
+          />
+        ) : (
+          <MedicalResponseViewer response={question.aiResponse} />
+        )}
       </div>
     </AppLayout>
   );
