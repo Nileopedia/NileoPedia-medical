@@ -102,6 +102,12 @@ export interface StructuredMedicalResponse {
   patientFriendlyVersion: string;
 }
 
+export interface MedicalTopic {
+  name: string;
+  category: string;
+  documentCount: number;
+}
+
 export interface AIResponse {
   id: string;
   queryId: string;

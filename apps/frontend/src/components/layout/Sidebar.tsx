@@ -22,6 +22,7 @@ import {
   LogOut,
   Bot,
   Menu,
+  BookOpen,
 } from 'lucide-react';
 import { Avatar } from '../ui/Avatar';
 import { useAppStore } from '../../store/appStore';
@@ -50,6 +51,7 @@ export const Sidebar: React.FC = () => {
         items: [
           { icon: <LayoutDashboard size={18} />, label: 'Dashboard', path: '/app' },
           { icon: <MessageCircleQuestion size={18} />, label: 'Ask AI', path: '/ask' },
+          { icon: <BookOpen size={18} />, label: 'Medical Topics', path: '/topics' },
           { icon: <History size={18} />, label: 'Query History', path: '/history' },
           { icon: <Bookmark size={18} />, label: 'Saved Responses', path: '/saved' },
           { icon: <User size={18} />, label: 'Profile', path: '/app/profile' },

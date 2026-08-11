@@ -12,7 +12,7 @@ import { OutOfScopeCard } from '../../components/query/OutOfScopeCard';
 import { io, type Socket } from 'socket.io-client';
 import { useAppStore } from '../../store/appStore';
 import { useToast } from '../../components/ui/Toast';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 const SOCKET_URL = process.env.NEXT_PUBLIC_SOCKET_URL;
 
@@ -29,6 +29,7 @@ export default function AskPage() {
     const [error, setError] = useState<string | null>(null);
     const [questionId, setQuestionId] = useState<string | null>(null);
     const router = useRouter();
+    const searchParams = useSearchParams();
     const user = useAppStore((state) => state.user);
     const { addToast } = useToast();
     const questionIdRef = useRef(questionId);
@@ -169,9 +170,9 @@ export default function AskPage() {
       };
     }, [questionId]);
 
-   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!question.trim()) return;
+  const submitQuestion = async (nextQuestion: string, nextSpecialty?: string) => {
+    const trimmedQuestion = nextQuestion.trim();
+    if (!trimmedQuestion) return;
 
     setLoading(true);
     setError(null);
@@ -179,9 +180,10 @@ export default function AskPage() {
     setPartialRecommendations([]);
     setStreamingVisible([]);
     setQuestionId(null);
+    setQuestion(trimmedQuestion);
 
     try {
-      const result = await api.askQuestion(question.trim(), specialty === 'general' ? undefined : specialty);
+      const result = await api.askQuestion(trimmedQuestion, nextSpecialty ?? (specialty === 'general' ? undefined : specialty));
       setQuestionId(result.questionId);
     } catch (err) {
       if (err instanceof Error && err.message === 'Please sign in to continue') {
@@ -194,8 +196,13 @@ export default function AskPage() {
     }
   };
 
-  const handleSuggestionClick = (suggestedQuestion: string) => {
-    setQuestion(suggestedQuestion);
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    await submitQuestion(question);
+  };
+
+  const handleSuggestionClick = async (suggestedQuestion: string) => {
+    await submitQuestion(suggestedQuestion);
   };
 
   const handleAskAnother = () => {
@@ -209,8 +216,17 @@ export default function AskPage() {
   };
 
   const handleBrowseTopics = () => {
-    window.location.href = '/app';
+    router.push('/topics');
   };
+
+  useEffect(() => {
+    const incomingQuestion = searchParams.get('q');
+    if (!incomingQuestion || !incomingQuestion.trim() || questionId || response || processing || loading) return;
+
+    const normalizedQuestion = incomingQuestion.trim();
+    setQuestion(normalizedQuestion);
+    void submitQuestion(normalizedQuestion, specialty === 'general' ? undefined : specialty);
+  }, [searchParams, questionId, response, processing, loading, specialty]);
 
   return (
     <AppLayout>

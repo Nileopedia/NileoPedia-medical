@@ -94,6 +94,12 @@ type SearchResultResponse = {
   searchType: 'semantic' | 'keyword' | 'hybrid';
 };
 
+type MedicalTopicsResponse = {
+  success: boolean;
+  topics: Array<{ name: string; category: string; documentCount: number }>;
+  specialties: string[];
+};
+
 type BackendValidationReview = {
   id: string;
   aiResponseId: string;
@@ -628,6 +634,15 @@ class ApiClient {
     }
     
     return data;
+  }
+
+  async getMedicalTopics(query?: string, specialty?: string): Promise<{ topics: Array<{ name: string; category: string; documentCount: number }>; specialties: string[] }> {
+    const params = new URLSearchParams();
+    if (query) params.set('q', query);
+    if (specialty && specialty !== 'All') params.set('specialty', specialty);
+    const payload = await this.request<ApiEnvelope<MedicalTopicsResponse>>(`/medical-topics${params.toString() ? `?${params.toString()}` : ''}`);
+    const data = this.unwrap(payload);
+    return { topics: data.topics || [], specialties: data.specialties || [] };
   }
 
   async uploadDocument(file: File): Promise<{ documentId: string; status: string }> {

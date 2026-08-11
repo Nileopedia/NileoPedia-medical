@@ -11,6 +11,7 @@ import auditRoutes from '../modules/audit/audit.routes';
 import citationRoutes from '../modules/citations/citation.routes';
 import documentRoutes from '../modules/documents/document.routes';
 import searchRoutes from '../modules/search/search.routes';
+import medicalTopicsRoutes from '../modules/medical/medical-topics.routes';
 
 export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authController: any) => {
   // Health check route
@@ -72,6 +73,9 @@ export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authCont
           'GET /api/v1/search/documents': 'Search documents',
           'GET /api/v1/search/citations': 'Search citations',
         },
+        'medical-topics': {
+          'GET /api/v1/medical-topics': 'List medical topics from ingested document metadata',
+        },
       },
     });
   });
@@ -88,4 +92,5 @@ export const setupRoutes = (app: ReturnType<typeof Router>, io: Server, authCont
   app.use('/api/v1/citations', citationRoutes);
   app.use('/api/v1/documents', documentRoutes);
   app.use('/api/v1/search', searchRoutes);
+  app.use('/api/v1/medical-topics', medicalTopicsRoutes);
 };
