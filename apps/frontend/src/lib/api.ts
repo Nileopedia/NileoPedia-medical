@@ -1,4 +1,5 @@
 import { AIResponse, Citation, Query, User } from '../types';
+import { useAppStore } from '../store/appStore';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
 const SAVED_RESPONSE_IDS_KEY = 'nileopedia.savedResponseIds';
@@ -140,9 +141,64 @@ type BackendPendingResponse = {
 };
 
 class ApiClient {
+  private refreshPromise: Promise<boolean> | null = null;
+
   private getAuthToken(): string | null {
     if (typeof window === 'undefined') return null;
     return localStorage.getItem('token');
+  }
+
+  private getRefreshToken(): string | null {
+    if (typeof window === 'undefined') return null;
+    return localStorage.getItem('refreshToken');
+  }
+
+  private async refreshAccessToken(): Promise<boolean> {
+    if (this.refreshPromise) return this.refreshPromise;
+
+    this.refreshPromise = (async () => {
+      const refreshToken = this.getRefreshToken();
+      if (!refreshToken) return false;
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/refresh-token`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ refreshToken }),
+        });
+
+        if (!response.ok) return false;
+
+        const payload = await response.json();
+        const data = payload?.data;
+        if (!data?.accessToken) return false;
+
+        localStorage.setItem('token', data.accessToken);
+        if (data.refreshToken) {
+          localStorage.setItem('refreshToken', data.refreshToken);
+        }
+        return true;
+      } catch {
+        return false;
+      }
+    })();
+
+    try {
+      return await this.refreshPromise;
+    } finally {
+      this.refreshPromise = null;
+    }
+  }
+
+  private handleSessionExpired(): void {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('user');
+    useAppStore.getState().setUser(null);
+    if (window.location.pathname !== '/login') {
+      window.location.href = '/login';
+    }
   }
 
   private getSavedIds(): string[] {
@@ -175,6 +231,10 @@ class ApiClient {
   }
 
   async request<T>(endpoint: string, options: RequestInit = {}): Promise<T> {
+    return this.performRequest<T>(endpoint, options, true);
+  }
+
+  private async performRequest<T>(endpoint: string, options: RequestInit = {}, allowRefresh: boolean): Promise<T> {
     const token = this.getAuthToken();
     const headers = new Headers(options.headers);
 
@@ -211,11 +271,22 @@ class ApiClient {
       }
     }
 
+    if (response.status === 401 && allowRefresh && token && !endpoint.includes('/auth/refresh-token')) {
+      const refreshed = await this.refreshAccessToken();
+      if (refreshed) {
+        return this.performRequest<T>(endpoint, options, false);
+      }
+      this.handleSessionExpired();
+    }
+
     if (!response.ok) {
        const apiError = payload as { message?: string; errors?: Array<{ msg?: string }> };
         const fallbackMessage = apiError.errors?.[0]?.msg || apiError.message || `Request failed (${response.status})`;
         // Check for authentication errors
         if (response.status === 401) {
+          if (!allowRefresh && token) {
+            this.handleSessionExpired();
+          }
           throw new Error('Please sign in to continue');
         }
         // Check for conflict (duplicate email)
