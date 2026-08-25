@@ -194,17 +194,9 @@ export class UserService {
     return preferences;
   }
 
-  async updatePreferences(userId: string, data: {
-    theme?: string;
-    language?: string;
-    sidebarCollapsed?: boolean;
-    responseStyle?: string;
-    citationEnabled?: boolean;
-    emailNotifications?: boolean;
-    systemNotifications?: boolean;
-    uploadNotifications?: boolean;
-    validationNotifications?: boolean;
-  }) {
+  async updatePreferences(userId: string, data: Record<string, unknown>) {
+    const { id, userId: _uid, createdAt, updatedAt, ...safeData } = data;
+
     const existing = await prisma.userPreferences.findUnique({
       where: { userId },
     });
@@ -212,7 +204,7 @@ export class UserService {
     if (existing) {
       return prisma.userPreferences.update({
         where: { userId },
-        data,
+        data: safeData,
       });
     }
 

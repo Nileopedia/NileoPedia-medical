@@ -480,19 +480,7 @@ class ApiClient {
 
   async getQuestion(questionId: string): Promise<QuestionDetail> {
     const payload = await this.request<ApiEnvelope<BackendQuestion>>(`/questions/${questionId}`);
-    const normalized = this.normalizeAiResponse(this.unwrap(payload));
-    
-    console.log('================================');
-    console.log('Frontend API Payload');
-    console.log('================================');
-    console.log('Raw backend response:', JSON.stringify(this.unwrap(payload), null, 2));
-    console.log('Normalized response:', JSON.stringify(normalized, null, 2));
-    console.log('Response source:', normalized.aiResponse?.source);
-    console.log('Response summary:', normalized.aiResponse?.summary);
-    console.log('Has structured response:', !!normalized.aiResponse?.structuredResponse);
-    console.log('================================\n');
-    
-    return normalized;
+    return this.normalizeAiResponse(this.unwrap(payload));
   }
 
   async getHistory(options: { page?: number; limit?: number; category?: string; startDate?: string; endDate?: string } = {}): Promise<{ questions: Query[]; total: number; page: number; limit: number; totalPages: number }> {

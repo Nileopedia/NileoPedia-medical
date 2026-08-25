@@ -2,7 +2,6 @@
 
 import React, { createContext, useContext, useEffect, useState, useCallback } from 'react';
 import { useAppStore } from '../store/appStore';
-import { api } from '../lib/api';
 import { useTheme } from '../components/ThemeProvider';
 
 type Theme = 'light' | 'dark' | 'system';
@@ -80,10 +79,17 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     if (!token) return;
 
     try {
-      const backendPrefs = await api.request<{ success: boolean; data: Partial<Settings> }>('/users/preferences');
-      if (backendPrefs.data) {
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+      const res = await fetch(`${API_BASE_URL}/users/preferences`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      if (!res.ok) return;
+      const body = await res.json();
+      const backendPrefs = body?.data;
+      if (backendPrefs) {
+        const { id, userId, createdAt, updatedAt, ...prefsOnly } = backendPrefs;
         setSettings((prev) => {
-          const merged = { ...prev, ...backendPrefs.data };
+          const merged = { ...prev, ...prefsOnly } as Settings;
           localStorage.setItem('settings', JSON.stringify(merged));
           return merged;
         });
@@ -99,9 +105,14 @@ export const SettingsProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       
       const token = localStorage.getItem('token');
       if (!token) return;
-      
-      api.request('/users/preferences', {
+
+      const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || '';
+      fetch(`${API_BASE_URL}/users/preferences`, {
         method: 'PUT',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+        },
         body: JSON.stringify(settings),
       }).catch(() => {
         // Silently fail for background sync
